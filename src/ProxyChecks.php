@@ -38,7 +38,7 @@ class ProxyChecks
      * @return Operations\VerifyDomainProxyResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function verifyDomainProxy(?Operations\VerifyDomainProxyRequestBody $request = null): Operations\VerifyDomainProxyResponse
+    public function verify(?Operations\VerifyDomainProxyRequestBody $request = null): Operations\VerifyDomainProxyResponse
     {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/proxy_checks');
@@ -73,7 +73,7 @@ class ProxyChecks
         } elseif (in_array($statusCode, [400, 422])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors74', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors88', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);

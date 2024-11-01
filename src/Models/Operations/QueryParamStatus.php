@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace Clerk\Backend\Models\Operations;
 
 
-/** Filter invitations based on their status */
+/** Filter organization invitations based on their status */
 enum QueryParamStatus: string
 {
     case Pending = 'pending';

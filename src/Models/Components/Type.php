@@ -14,4 +14,8 @@ enum Type: string
     case OauthGoogle = 'oauth_google';
     case OauthMock = 'oauth_mock';
     case Saml = 'saml';
+    case OauthApple = 'oauth_apple';
+    case OauthDiscord = 'oauth_discord';
+    case OauthMicrosoft = 'oauth_microsoft';
+    case OauthGithub = 'oauth_github';
 }

@@ -3,6 +3,9 @@
 
 ## Values
 
-| Name       | Value      |
-| ---------- | ---------- |
-| `Verified` | verified   |
+| Name         | Value        |
+| ------------ | ------------ |
+| `Unverified` | unverified   |
+| `Verified`   | verified     |
+| `Failed`     | failed       |
+| `Expired`    | expired      |

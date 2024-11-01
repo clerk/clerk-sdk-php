@@ -1,6 +1,6 @@
 # ClerkErrors66
 
-Request was not successful
+Authorization invalid
 
 
 ## Fields

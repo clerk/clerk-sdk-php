@@ -12,7 +12,9 @@ namespace Clerk\Backend\Models\Operations;
 class CreateOrganizationRequestBody
 {
     /**
-     * The name of the new organization
+     * The name of the new organization.
+     *
+     * May not contain URLs or HTML.
      *
      * @var string $name
      */
@@ -30,22 +32,22 @@ class CreateOrganizationRequestBody
     /**
      * Metadata saved on the organization, accessible only from the Backend API
      *
-     * @var ?CreateOrganizationPrivateMetadata $privateMetadata
+     * @var ?array<string, mixed> $privateMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('private_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\CreateOrganizationPrivateMetadata|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?CreateOrganizationPrivateMetadata $privateMetadata = null;
+    public ?array $privateMetadata = null;
 
     /**
      * Metadata saved on the organization, read-only from the Frontend API and fully accessible (read/write) from the Backend API
      *
-     * @var ?CreateOrganizationPublicMetadata $publicMetadata
+     * @var ?array<string, mixed> $publicMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\CreateOrganizationPublicMetadata|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?CreateOrganizationPublicMetadata $publicMetadata = null;
+    public ?array $publicMetadata = null;
 
     /**
      * A slug for the new organization.
@@ -69,14 +71,24 @@ class CreateOrganizationRequestBody
     public ?int $maxAllowedMemberships = null;
 
     /**
+     * A custom date/time denoting _when_ the organization was created, specified in RFC3339 format (e.g. `2012-10-20T07:15:20.902Z`).
+     *
+     * @var ?string $createdAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $createdAt = null;
+
+    /**
      * @param  string  $name
      * @param  string  $createdBy
-     * @param  ?CreateOrganizationPrivateMetadata  $privateMetadata
-     * @param  ?CreateOrganizationPublicMetadata  $publicMetadata
+     * @param  ?array<string, mixed>  $privateMetadata
+     * @param  ?array<string, mixed>  $publicMetadata
      * @param  ?string  $slug
      * @param  ?int  $maxAllowedMemberships
+     * @param  ?string  $createdAt
      */
-    public function __construct(string $name, string $createdBy, ?CreateOrganizationPrivateMetadata $privateMetadata = null, ?CreateOrganizationPublicMetadata $publicMetadata = null, ?string $slug = null, ?int $maxAllowedMemberships = null)
+    public function __construct(string $name, string $createdBy, ?array $privateMetadata = null, ?array $publicMetadata = null, ?string $slug = null, ?int $maxAllowedMemberships = null, ?string $createdAt = null)
     {
         $this->name = $name;
         $this->createdBy = $createdBy;
@@ -84,5 +96,6 @@ class CreateOrganizationRequestBody
         $this->publicMetadata = $publicMetadata;
         $this->slug = $slug;
         $this->maxAllowedMemberships = $maxAllowedMemberships;
+        $this->createdAt = $createdAt;
     }
 }

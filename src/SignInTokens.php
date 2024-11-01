@@ -33,7 +33,7 @@ class SignInTokens
      * @return Operations\CreateSignInTokenResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function createSignInToken(?Operations\CreateSignInTokenRequestBody $request = null): Operations\CreateSignInTokenResponse
+    public function create(?Operations\CreateSignInTokenRequestBody $request = null): Operations\CreateSignInTokenResponse
     {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/sign_in_tokens');
@@ -68,7 +68,7 @@ class SignInTokens
         } elseif (in_array($statusCode, [404, 422])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors77', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors91', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -89,7 +89,7 @@ class SignInTokens
      * @return Operations\RevokeSignInTokenResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function revokeSignInToken(string $signInTokenId): Operations\RevokeSignInTokenResponse
+    public function revoke(string $signInTokenId): Operations\RevokeSignInTokenResponse
     {
         $request = new Operations\RevokeSignInTokenRequest(
             signInTokenId: $signInTokenId,
@@ -123,7 +123,7 @@ class SignInTokens
         } elseif (in_array($statusCode, [400, 404])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors78', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors92', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);

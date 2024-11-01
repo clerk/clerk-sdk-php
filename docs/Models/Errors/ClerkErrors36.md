@@ -1,6 +1,6 @@
 # ClerkErrors36
 
-Authentication invalid
+Resource not found
 
 
 ## Fields

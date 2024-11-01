@@ -1,6 +1,6 @@
 # ClerkErrors70
 
-Authentication invalid
+Resource not found
 
 
 ## Fields

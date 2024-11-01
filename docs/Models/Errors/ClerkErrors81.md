@@ -1,6 +1,6 @@
 # ClerkErrors81
 
-Authorization invalid
+Request was not successful
 
 
 ## Fields

@@ -16,10 +16,10 @@ class ListInvitationsRequest
      *
      * Can be used for paginating the results together with `offset`.
      *
-     * @var ?float $limit
+     * @var ?int $limit
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=limit')]
-    public ?float $limit = null;
+    public ?int $limit = null;
 
     /**
      * Skip the first `offset` results when paginating.
@@ -27,25 +27,25 @@ class ListInvitationsRequest
      * Needs to be an integer greater or equal to zero.
      * To be used in conjunction with `limit`.
      *
-     * @var ?float $offset
+     * @var ?int $offset
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=offset')]
-    public ?float $offset = null;
+    public ?int $offset = null;
 
     /**
      * Filter invitations based on their status
      *
-     * @var ?QueryParamStatus $status
+     * @var ?ListInvitationsQueryParamStatus $status
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status')]
-    public ?QueryParamStatus $status = null;
+    public ?ListInvitationsQueryParamStatus $status = null;
 
     /**
-     * @param  ?float  $limit
-     * @param  ?float  $offset
-     * @param  ?QueryParamStatus  $status
+     * @param  ?int  $limit
+     * @param  ?int  $offset
+     * @param  ?ListInvitationsQueryParamStatus  $status
      */
-    public function __construct(?QueryParamStatus $status = null, ?float $limit = 10, ?float $offset = 0)
+    public function __construct(?ListInvitationsQueryParamStatus $status = null, ?int $limit = 10, ?int $offset = 0)
     {
         $this->limit = $limit;
         $this->offset = $offset;

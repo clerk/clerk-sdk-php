@@ -10,7 +10,7 @@ namespace Clerk\Backend\Models\Errors;
 
 use Clerk\Backend\Models\Components;
 use Clerk\Backend\Utils;
-/** ClerkErrors58 - Request was not successful */
+/** ClerkErrors58 - Invalid request parameters */
 class ClerkErrors58
 {
     /**

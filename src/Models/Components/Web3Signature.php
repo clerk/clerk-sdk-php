@@ -29,11 +29,19 @@ class Web3Signature
 
     /**
      *
-     * @var Nonce $nonce
+     * @var ?string $nonce
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('nonce')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Nonce')]
-    public Nonce $nonce;
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $nonce = null;
+
+    /**
+     *
+     * @var ?string $message
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('message')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $message = null;
 
     /**
      *
@@ -54,15 +62,17 @@ class Web3Signature
     /**
      * @param  Web3SignatureVerificationStatus  $status
      * @param  Web3SignatureVerificationStrategy  $strategy
-     * @param  Nonce  $nonce
+     * @param  ?string  $nonce
+     * @param  ?string  $message
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
      */
-    public function __construct(Web3SignatureVerificationStatus $status, Web3SignatureVerificationStrategy $strategy, Nonce $nonce, ?int $attempts = null, ?int $expireAt = null)
+    public function __construct(Web3SignatureVerificationStatus $status, Web3SignatureVerificationStrategy $strategy, ?string $nonce = null, ?string $message = null, ?int $attempts = null, ?int $expireAt = null)
     {
         $this->status = $status;
         $this->strategy = $strategy;
         $this->nonce = $nonce;
+        $this->message = $message;
         $this->attempts = $attempts;
         $this->expireAt = $expireAt;
     }

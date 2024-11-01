@@ -16,30 +16,30 @@ class MergeOrganizationMetadataRequestBody
      *
      * The new object will be merged with the existing value.
      *
-     * @var ?MergeOrganizationMetadataPublicMetadata $publicMetadata
+     * @var ?array<string, mixed> $publicMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\MergeOrganizationMetadataPublicMetadata|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?MergeOrganizationMetadataPublicMetadata $publicMetadata = null;
+    public ?array $publicMetadata = null;
 
     /**
      * Metadata saved on the organization that is only visible to your backend.
      *
      * The new object will be merged with the existing value.
      *
-     * @var ?MergeOrganizationMetadataPrivateMetadata $privateMetadata
+     * @var ?array<string, mixed> $privateMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('private_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\MergeOrganizationMetadataPrivateMetadata|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?MergeOrganizationMetadataPrivateMetadata $privateMetadata = null;
+    public ?array $privateMetadata = null;
 
     /**
-     * @param  ?MergeOrganizationMetadataPublicMetadata  $publicMetadata
-     * @param  ?MergeOrganizationMetadataPrivateMetadata  $privateMetadata
+     * @param  ?array<string, mixed>  $publicMetadata
+     * @param  ?array<string, mixed>  $privateMetadata
      */
-    public function __construct(?MergeOrganizationMetadataPublicMetadata $publicMetadata = null, ?MergeOrganizationMetadataPrivateMetadata $privateMetadata = null)
+    public function __construct(?array $publicMetadata = null, ?array $privateMetadata = null)
     {
         $this->publicMetadata = $publicMetadata;
         $this->privateMetadata = $privateMetadata;

@@ -1,6 +1,6 @@
 # ClerkErrors49
 
-Invalid request parameters
+Request was not successful
 
 
 ## Fields

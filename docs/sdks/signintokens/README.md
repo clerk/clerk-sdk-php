@@ -3,15 +3,12 @@
 
 ## Overview
 
-Sign-in tokens are JWTs that can be used to sign in to an application without specifying any credentials.
-A sign-in token can be used at most once and they can be consumed from the Frontend API using the `ticket` strategy.
-
 ### Available Operations
 
-* [createSignInToken](#createsignintoken) - Create sign-in token
-* [revokeSignInToken](#revokesignintoken) - Revoke the given sign-in token
+* [create](#create) - Create sign-in token
+* [revoke](#revoke) - Revoke the given sign-in token
 
-## createSignInToken
+## create
 
 Creates a new sign-in token and associates it with the given user.
 By default, sign-in tokens expire in 30 days.
@@ -33,7 +30,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $request = new Operations\CreateSignInTokenRequestBody();
 
-$response = $sdk->signInTokens->createSignInToken(
+$response = $sdk->signInTokens->create(
     request: $request
 );
 
@@ -56,10 +53,10 @@ if ($response->signInToken !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors77 | 404, 422             | application/json     |
+| Errors\ClerkErrors91 | 404, 422             | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## revokeSignInToken
+## revoke
 
 Revokes a pending sign-in token
 
@@ -78,7 +75,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->signInTokens->revokeSignInToken(
+$response = $sdk->signInTokens->revoke(
     signInTokenId: '<id>'
 );
 
@@ -101,5 +98,5 @@ if ($response->signInToken !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors78 | 400, 404             | application/json     |
+| Errors\ClerkErrors92 | 400, 404             | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |

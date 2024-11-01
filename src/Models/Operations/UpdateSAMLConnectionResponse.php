@@ -35,21 +35,21 @@ class UpdateSAMLConnectionResponse
     /**
      * A SAML Connection
      *
-     * @var ?Components\SAMLConnection $samlConnection
+     * @var ?Components\SchemasSAMLConnection $schemasSAMLConnection
      */
-    public ?Components\SAMLConnection $samlConnection = null;
+    public ?Components\SchemasSAMLConnection $schemasSAMLConnection = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\SAMLConnection  $samlConnection
+     * @param  ?Components\SchemasSAMLConnection  $schemasSAMLConnection
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\SAMLConnection $samlConnection = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\SchemasSAMLConnection $schemasSAMLConnection = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->samlConnection = $samlConnection;
+        $this->schemasSAMLConnection = $schemasSAMLConnection;
     }
 }

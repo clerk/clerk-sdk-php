@@ -10,7 +10,7 @@ namespace Clerk\Backend\Models\Errors;
 
 use Clerk\Backend\Models\Components;
 use Clerk\Backend\Utils;
-/** ClerkErrors40 - Request was not successful */
+/** ClerkErrors40 - Resource not found */
 class ClerkErrors40
 {
     /**

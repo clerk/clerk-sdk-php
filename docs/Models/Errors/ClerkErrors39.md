@@ -1,6 +1,6 @@
 # ClerkErrors39
 
-Authentication invalid
+Request was not successful
 
 
 ## Fields

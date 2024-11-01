@@ -1,6 +1,6 @@
 # ClerkErrors73
 
-Request was not successful
+Resource not found
 
 
 ## Fields

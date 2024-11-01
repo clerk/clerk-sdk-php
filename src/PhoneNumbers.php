@@ -31,7 +31,7 @@ class PhoneNumbers
      * @return Operations\CreatePhoneNumberResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function createPhoneNumber(?Operations\CreatePhoneNumberRequestBody $request = null): Operations\CreatePhoneNumberResponse
+    public function create(?Operations\CreatePhoneNumberRequestBody $request = null): Operations\CreatePhoneNumberResponse
     {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/phone_numbers');
@@ -87,7 +87,7 @@ class PhoneNumbers
      * @return Operations\GetPhoneNumberResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function getPhoneNumber(string $phoneNumberId): Operations\GetPhoneNumberResponse
+    public function get(string $phoneNumberId): Operations\GetPhoneNumberResponse
     {
         $request = new Operations\GetPhoneNumberRequest(
             phoneNumberId: $phoneNumberId,
@@ -142,7 +142,7 @@ class PhoneNumbers
      * @return Operations\DeletePhoneNumberResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function deletePhoneNumber(string $phoneNumberId): Operations\DeletePhoneNumberResponse
+    public function delete(string $phoneNumberId): Operations\DeletePhoneNumberResponse
     {
         $request = new Operations\DeletePhoneNumberRequest(
             phoneNumberId: $phoneNumberId,
@@ -198,7 +198,7 @@ class PhoneNumbers
      * @return Operations\UpdatePhoneNumberResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function updatePhoneNumber(string $phoneNumberId, ?Operations\UpdatePhoneNumberRequestBody $requestBody = null): Operations\UpdatePhoneNumberResponse
+    public function update(string $phoneNumberId, ?Operations\UpdatePhoneNumberRequestBody $requestBody = null): Operations\UpdatePhoneNumberResponse
     {
         $request = new Operations\UpdatePhoneNumberRequest(
             phoneNumberId: $phoneNumberId,

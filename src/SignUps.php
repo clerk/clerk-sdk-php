@@ -32,7 +32,7 @@ class SignUps
      * @return Operations\UpdateSignUpResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function updateSignUp(string $id, ?Operations\UpdateSignUpRequestBody $requestBody = null): Operations\UpdateSignUpResponse
+    public function update(string $id, ?Operations\UpdateSignUpRequestBody $requestBody = null): Operations\UpdateSignUpResponse
     {
         $request = new Operations\UpdateSignUpRequest(
             id: $id,
@@ -71,7 +71,7 @@ class SignUps
         } elseif ($statusCode == 403) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors79', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors93', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);

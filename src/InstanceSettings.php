@@ -31,7 +31,7 @@ class InstanceSettings
      * @return Operations\UpdateInstanceResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function updateInstance(?Operations\UpdateInstanceRequestBody $request = null): Operations\UpdateInstanceResponse
+    public function update(?Operations\UpdateInstanceRequestBody $request = null): Operations\UpdateInstanceResponse
     {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/instance');
@@ -58,7 +58,7 @@ class InstanceSettings
         } elseif ($statusCode == 422) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors49', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors58', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -79,7 +79,7 @@ class InstanceSettings
      * @return Operations\UpdateInstanceRestrictionsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function updateInstanceRestrictions(?Operations\UpdateInstanceRestrictionsRequestBody $request = null): Operations\UpdateInstanceRestrictionsResponse
+    public function updateRestrictions(?Operations\UpdateInstanceRestrictionsRequestBody $request = null): Operations\UpdateInstanceRestrictionsResponse
     {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/instance/restrictions');
@@ -114,7 +114,7 @@ class InstanceSettings
         } elseif (in_array($statusCode, [402, 422])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors49', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors59', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -135,7 +135,7 @@ class InstanceSettings
      * @return Operations\UpdateInstanceOrganizationSettingsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function updateInstanceOrganizationSettings(?Operations\UpdateInstanceOrganizationSettingsRequestBody $request = null): Operations\UpdateInstanceOrganizationSettingsResponse
+    public function updateOrganizationSettings(?Operations\UpdateInstanceOrganizationSettingsRequestBody $request = null): Operations\UpdateInstanceOrganizationSettingsResponse
     {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/instance/organization_settings');
@@ -170,7 +170,7 @@ class InstanceSettings
         } elseif (in_array($statusCode, [402, 404, 422])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors51', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors61', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);

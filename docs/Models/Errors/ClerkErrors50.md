@@ -1,6 +1,6 @@
 # ClerkErrors50
 
-Request was not successful
+Payment required
 
 
 ## Fields

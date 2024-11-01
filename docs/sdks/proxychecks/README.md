@@ -5,9 +5,9 @@
 
 ### Available Operations
 
-* [verifyDomainProxy](#verifydomainproxy) - Verify the proxy configuration for your domain
+* [verify](#verify) - Verify the proxy configuration for your domain
 
-## verifyDomainProxy
+## verify
 
 This endpoint can be used to validate that a proxy-enabled domain is operational.
 It tries to verify that the proxy URL provided in the parameters maps to a functional proxy that can reach the Clerk Frontend API.
@@ -34,7 +34,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $request = new Operations\VerifyDomainProxyRequestBody();
 
-$response = $sdk->proxyChecks->verifyDomainProxy(
+$response = $sdk->proxyChecks->verify(
     request: $request
 );
 
@@ -57,5 +57,5 @@ if ($response->proxyCheck !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors74 | 400, 422             | application/json     |
+| Errors\ClerkErrors88 | 400, 422             | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |

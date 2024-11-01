@@ -1,6 +1,6 @@
 # ClerkErrors38
 
-Payment required
+Request was not successful
 
 
 ## Fields

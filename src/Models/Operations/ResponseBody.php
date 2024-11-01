@@ -56,13 +56,14 @@ class ResponseBody
     public ?string $provider = null;
 
     /**
+     * $publicMetadata
      *
-     * @var ?GetOAuthAccessTokenPublicMetadata $publicMetadata
+     * @var ?array<string, mixed> $publicMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\GetOAuthAccessTokenPublicMetadata|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?GetOAuthAccessTokenPublicMetadata $publicMetadata = null;
+    public ?array $publicMetadata = null;
 
     /**
      *
@@ -99,12 +100,12 @@ class ResponseBody
      * @param  ?string  $providerUserId
      * @param  ?string  $token
      * @param  ?string  $provider
-     * @param  ?GetOAuthAccessTokenPublicMetadata  $publicMetadata
+     * @param  ?array<string, mixed>  $publicMetadata
      * @param  ?array<string>  $scopes
      * @param  ?string  $tokenSecret
      * @param  ?string  $label
      */
-    public function __construct(?string $object = null, ?string $externalAccountId = null, ?string $providerUserId = null, ?string $token = null, ?string $provider = null, ?GetOAuthAccessTokenPublicMetadata $publicMetadata = null, ?array $scopes = null, ?string $tokenSecret = null, ?string $label = null)
+    public function __construct(?string $object = null, ?string $externalAccountId = null, ?string $providerUserId = null, ?string $token = null, ?string $provider = null, ?array $publicMetadata = null, ?array $scopes = null, ?string $tokenSecret = null, ?string $label = null)
     {
         $this->object = $object;
         $this->externalAccountId = $externalAccountId;

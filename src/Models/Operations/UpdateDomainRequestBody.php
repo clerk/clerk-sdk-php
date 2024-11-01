@@ -35,12 +35,26 @@ class UpdateDomainRequestBody
     public ?string $proxyUrl = null;
 
     /**
+     * Whether this is a domain for a secondary app, meaning that any subdomain provided is significant and
+     *
+     * will be stored as part of the domain. This is useful for supporting multiple apps (one primary and
+     * multiple secondaries) on the same root domain (eTLD+1).
+     *
+     * @var ?bool $isSecondary
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('is_secondary')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $isSecondary = null;
+
+    /**
      * @param  ?string  $name
      * @param  ?string  $proxyUrl
+     * @param  ?bool  $isSecondary
      */
-    public function __construct(?string $name = null, ?string $proxyUrl = null)
+    public function __construct(?string $name = null, ?string $proxyUrl = null, ?bool $isSecondary = null)
     {
         $this->name = $name;
         $this->proxyUrl = $proxyUrl;
+        $this->isSecondary = $isSecondary;
     }
 }

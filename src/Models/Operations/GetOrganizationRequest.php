@@ -20,10 +20,20 @@ class GetOrganizationRequest
     public string $organizationId;
 
     /**
-     * @param  string  $organizationId
+     * Flag to denote whether or not the organization's members count should be included in the response.
+     *
+     * @var ?bool $includeMembersCount
      */
-    public function __construct(string $organizationId)
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=include_members_count')]
+    public ?bool $includeMembersCount = null;
+
+    /**
+     * @param  string  $organizationId
+     * @param  ?bool  $includeMembersCount
+     */
+    public function __construct(string $organizationId, ?bool $includeMembersCount = null)
     {
         $this->organizationId = $organizationId;
+        $this->includeMembersCount = $includeMembersCount;
     }
 }

@@ -24,10 +24,11 @@ class CreateOrganizationInvitationRequestBody
      *
      * Must be an administrator in the organization.
      *
-     * @var string $inviterUserId
+     * @var ?string $inviterUserId
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('inviter_user_id')]
-    public string $inviterUserId;
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $inviterUserId = null;
 
     /**
      * The role of the new member in the organization
@@ -40,22 +41,22 @@ class CreateOrganizationInvitationRequestBody
     /**
      * Metadata saved on the organization invitation, read-only from the Frontend API and fully accessible (read/write) from the Backend API.
      *
-     * @var ?CreateOrganizationInvitationPublicMetadata $publicMetadata
+     * @var ?array<string, mixed> $publicMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\CreateOrganizationInvitationPublicMetadata|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?CreateOrganizationInvitationPublicMetadata $publicMetadata = null;
+    public ?array $publicMetadata = null;
 
     /**
      * Metadata saved on the organization invitation, fully accessible (read/write) from the Backend API but not visible from the Frontend API.
      *
-     * @var ?CreateOrganizationInvitationPrivateMetadata $privateMetadata
+     * @var ?array<string, mixed> $privateMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('private_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\CreateOrganizationInvitationPrivateMetadata|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?CreateOrganizationInvitationPrivateMetadata $privateMetadata = null;
+    public ?array $privateMetadata = null;
 
     /**
      * Optional URL that the invitee will be redirected to once they accept the invitation by clicking the join link in the invitation email.
@@ -68,19 +69,19 @@ class CreateOrganizationInvitationRequestBody
 
     /**
      * @param  string  $emailAddress
-     * @param  string  $inviterUserId
      * @param  string  $role
-     * @param  ?CreateOrganizationInvitationPublicMetadata  $publicMetadata
-     * @param  ?CreateOrganizationInvitationPrivateMetadata  $privateMetadata
+     * @param  ?array<string, mixed>  $publicMetadata
+     * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?string  $redirectUrl
+     * @param  ?string  $inviterUserId
      */
-    public function __construct(string $emailAddress, string $inviterUserId, string $role, ?CreateOrganizationInvitationPublicMetadata $publicMetadata = null, ?CreateOrganizationInvitationPrivateMetadata $privateMetadata = null, ?string $redirectUrl = null)
+    public function __construct(string $emailAddress, string $role, ?array $publicMetadata = null, ?array $privateMetadata = null, ?string $redirectUrl = null, ?string $inviterUserId = null)
     {
         $this->emailAddress = $emailAddress;
-        $this->inviterUserId = $inviterUserId;
         $this->role = $role;
         $this->publicMetadata = $publicMetadata;
         $this->privateMetadata = $privateMetadata;
         $this->redirectUrl = $redirectUrl;
+        $this->inviterUserId = $inviterUserId;
     }
 }

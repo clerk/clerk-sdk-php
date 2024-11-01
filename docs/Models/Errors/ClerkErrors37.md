@@ -1,6 +1,6 @@
 # ClerkErrors37
 
-Request was not successful
+Authorization invalid
 
 
 ## Fields

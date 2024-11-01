@@ -8,11 +8,11 @@ Invitations allow you to invite someone to sign up to your application, via emai
 
 ### Available Operations
 
-* [createInvitation](#createinvitation) - Create an invitation
-* [listInvitations](#listinvitations) - List all invitations
-* [revokeInvitation](#revokeinvitation) - Revokes an invitation
+* [create](#create) - Create an invitation
+* [list](#list) - List all invitations
+* [revoke](#revoke) - Revokes an invitation
 
-## createInvitation
+## create
 
 Creates a new invitation for the given email address and sends the invitation email.
 Keep in mind that you cannot create an invitation if there is already one for the given email address.
@@ -33,10 +33,10 @@ $security = '<YOUR_BEARER_TOKEN_HERE>';
 $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $request = new Operations\CreateInvitationRequestBody(
-    emailAddress: 'Al.Grady1@hotmail.com',
+    emailAddress: 'Loyal79@yahoo.com',
 );
 
-$response = $sdk->invitations->createInvitation(
+$response = $sdk->invitations->create(
     request: $request
 );
 
@@ -59,10 +59,10 @@ if ($response->invitation !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors34 | 400, 422             | application/json     |
+| Errors\ClerkErrors42 | 400, 422             | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## listInvitations
+## list
 
 Returns all non-revoked invitations for your application, sorted by creation date
 
@@ -82,10 +82,10 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->invitations->listInvitations(
+$response = $sdk->invitations->list(
     limit: 10,
     offset: 0,
-    status: Operations\QueryParamStatus::Accepted
+    status: Operations\ListInvitationsQueryParamStatus::Expired
 
 );
 
@@ -98,9 +98,9 @@ if ($response->invitationList !== null) {
 
 | Parameter                                                                                                                                 | Type                                                                                                                                      | Required                                                                                                                                  | Description                                                                                                                               |
 | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `limit`                                                                                                                                   | *?float*                                                                                                                                  | :heavy_minus_sign:                                                                                                                        | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                     |
-| `offset`                                                                                                                                  | *?float*                                                                                                                                  | :heavy_minus_sign:                                                                                                                        | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`. |
-| `status`                                                                                                                                  | [?Operations\QueryParamStatus](../../Models/Operations/QueryParamStatus.md)                                                               | :heavy_minus_sign:                                                                                                                        | Filter invitations based on their status                                                                                                  |
+| `limit`                                                                                                                                   | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                     |
+| `offset`                                                                                                                                  | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`. |
+| `status`                                                                                                                                  | [?Operations\ListInvitationsQueryParamStatus](../../Models/Operations/ListInvitationsQueryParamStatus.md)                                 | :heavy_minus_sign:                                                                                                                        | Filter invitations based on their status                                                                                                  |
 
 ### Response
 
@@ -112,7 +112,7 @@ if ($response->invitationList !== null) {
 | ------------------- | ------------------- | ------------------- |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## revokeInvitation
+## revoke
 
 Revokes the given invitation.
 Revoking an invitation will prevent the user from using the invitation link that was sent to them.
@@ -134,7 +134,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->invitations->revokeInvitation(
+$response = $sdk->invitations->revoke(
     invitationId: '<id>'
 );
 
@@ -157,5 +157,5 @@ if ($response->invitationRevoked !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors35 | 400, 404             | application/json     |
+| Errors\ClerkErrors43 | 400, 404             | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |

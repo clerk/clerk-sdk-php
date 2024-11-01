@@ -29,13 +29,13 @@ class Clients
      * with the newest clients appearing first.
      * Warning: the endpoint is being deprecated and will be removed in future versions.
      *
-     * @param  ?float  $limit
-     * @param  ?float  $offset
+     * @param  ?int  $limit
+     * @param  ?int  $offset
      * @return Operations\GetClientListResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    public function getClientList(?float $limit = null, ?float $offset = null): Operations\GetClientListResponse
+    public function list(?int $limit = null, ?int $offset = null): Operations\GetClientListResponse
     {
         trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
         $request = new Operations\GetClientListRequest(
@@ -93,7 +93,7 @@ class Clients
      * @return Operations\VerifyClientResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function verifyClient(?Operations\VerifyClientRequestBody $request = null): Operations\VerifyClientResponse
+    public function verify(?Operations\VerifyClientRequestBody $request = null): Operations\VerifyClientResponse
     {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/clients/verify');
@@ -149,7 +149,7 @@ class Clients
      * @return Operations\GetClientResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function getClient(string $clientId): Operations\GetClientResponse
+    public function get(string $clientId): Operations\GetClientResponse
     {
         $request = new Operations\GetClientRequest(
             clientId: $clientId,

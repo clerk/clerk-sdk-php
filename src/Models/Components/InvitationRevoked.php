@@ -35,13 +35,14 @@ class InvitationRevoked
     public string $emailAddress;
 
     /**
+     * $publicMetadata
      *
-     * @var ?InvitationRevokedPublicMetadata $publicMetadata
+     * @var ?array<string, mixed> $publicMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\InvitationRevokedPublicMetadata|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?InvitationRevokedPublicMetadata $publicMetadata = null;
+    public ?array $publicMetadata = null;
 
     /**
      *
@@ -66,6 +67,17 @@ class InvitationRevoked
     #[\Speakeasy\Serializer\Annotation\SerializedName('url')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $url = null;
+
+    /**
+     * Unix timestamp of expiration.
+     *
+     *
+     *
+     * @var ?int $expiresAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('expires_at')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $expiresAt = null;
 
     /**
      * Unix timestamp of creation.
@@ -94,11 +106,12 @@ class InvitationRevoked
      * @param  InvitationRevokedStatus  $status
      * @param  int  $createdAt
      * @param  int  $updatedAt
-     * @param  ?InvitationRevokedPublicMetadata  $publicMetadata
+     * @param  ?array<string, mixed>  $publicMetadata
      * @param  ?bool  $revoked
      * @param  ?string  $url
+     * @param  ?int  $expiresAt
      */
-    public function __construct(InvitationRevokedObject $object, string $id, string $emailAddress, InvitationRevokedStatus $status, int $createdAt, int $updatedAt, ?InvitationRevokedPublicMetadata $publicMetadata = null, ?bool $revoked = null, ?string $url = null)
+    public function __construct(InvitationRevokedObject $object, string $id, string $emailAddress, InvitationRevokedStatus $status, int $createdAt, int $updatedAt, ?array $publicMetadata = null, ?bool $revoked = null, ?string $url = null, ?int $expiresAt = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -109,5 +122,6 @@ class InvitationRevoked
         $this->publicMetadata = $publicMetadata;
         $this->revoked = $revoked;
         $this->url = $url;
+        $this->expiresAt = $expiresAt;
     }
 }

@@ -1,20 +1,17 @@
-# SAMLConnections
+# SamlConnections
 (*samlConnections*)
 
 ## Overview
 
-A SAML Connection holds configuration data required for facilitating a SAML SSO flow between your
-Clerk Instance (SP) and a particular SAML IdP.
-
 ### Available Operations
 
-* [listSAMLConnections](#listsamlconnections) - Get a list of SAML Connections for an instance
-* [createSAMLConnection](#createsamlconnection) - Create a SAML Connection
-* [getSAMLConnection](#getsamlconnection) - Retrieve a SAML Connection by ID
-* [updateSAMLConnection](#updatesamlconnection) - Update a SAML Connection
-* [deleteSAMLConnection](#deletesamlconnection) - Delete a SAML Connection
+* [list](#list) - Get a list of SAML Connections for an instance
+* [create](#create) - Create a SAML Connection
+* [get](#get) - Retrieve a SAML Connection by ID
+* [update](#update) - Update a SAML Connection
+* [delete](#delete) - Delete a SAML Connection
 
-## listSAMLConnections
+## list
 
 Returns the list of SAML Connections for an instance.
 Results can be paginated using the optional `limit` and `offset` query parameters.
@@ -35,7 +32,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->samlConnections->listSAMLConnections(
+$response = $sdk->samlConnections->list(
     limit: 10,
     offset: 0
 
@@ -50,8 +47,8 @@ if ($response->samlConnections !== null) {
 
 | Parameter                                                                                                                                 | Type                                                                                                                                      | Required                                                                                                                                  | Description                                                                                                                               |
 | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `limit`                                                                                                                                   | *?float*                                                                                                                                  | :heavy_minus_sign:                                                                                                                        | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                     |
-| `offset`                                                                                                                                  | *?float*                                                                                                                                  | :heavy_minus_sign:                                                                                                                        | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`. |
+| `limit`                                                                                                                                   | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                     |
+| `offset`                                                                                                                                  | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`. |
 
 ### Response
 
@@ -61,10 +58,10 @@ if ($response->samlConnections !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors85 | 402, 403, 422        | application/json     |
+| Errors\ClerkErrors99 | 402, 403, 422        | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## createSAMLConnection
+## create
 
 Create a new SAML Connection.
 
@@ -84,15 +81,15 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $request = new Operations\CreateSAMLConnectionRequestBody(
     name: '<value>',
-    domain: 'stingy-necklace.name',
-    provider: Operations\Provider::SamlGoogle,
+    domain: 'low-packaging.info',
+    provider: Operations\Provider::SamlCustom,
 );
 
-$response = $sdk->samlConnections->createSAMLConnection(
+$response = $sdk->samlConnections->create(
     request: $request
 );
 
-if ($response->samlConnection !== null) {
+if ($response->schemasSAMLConnection !== null) {
     // handle response
 }
 ```
@@ -109,12 +106,12 @@ if ($response->samlConnection !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors86 | 402, 403, 422        | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type            | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| Errors\ClerkErrors100 | 402, 403, 422         | application/json      |
+| Errors\SDKException   | 4XX, 5XX              | \*/\*                 |
 
-## getSAMLConnection
+## get
 
 Fetches the SAML Connection whose ID matches the provided `saml_connection_id` in the path.
 
@@ -133,11 +130,11 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->samlConnections->getSAMLConnection(
+$response = $sdk->samlConnections->get(
     samlConnectionId: '<id>'
 );
 
-if ($response->samlConnection !== null) {
+if ($response->schemasSAMLConnection !== null) {
     // handle response
 }
 ```
@@ -154,12 +151,12 @@ if ($response->samlConnection !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors87 | 402, 403, 404        | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type            | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| Errors\ClerkErrors101 | 402, 403, 404         | application/json      |
+| Errors\SDKException   | 4XX, 5XX              | \*/\*                 |
 
-## updateSAMLConnection
+## update
 
 Updates the SAML Connection whose ID matches the provided `id` in the path.
 
@@ -179,13 +176,13 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $requestBody = new Operations\UpdateSAMLConnectionRequestBody();
 
-$response = $sdk->samlConnections->updateSAMLConnection(
+$response = $sdk->samlConnections->update(
     samlConnectionId: '<id>',
     requestBody: $requestBody
 
 );
 
-if ($response->samlConnection !== null) {
+if ($response->schemasSAMLConnection !== null) {
     // handle response
 }
 ```
@@ -203,12 +200,12 @@ if ($response->samlConnection !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors88 | 402, 403, 404, 422   | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type            | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| Errors\ClerkErrors102 | 402, 403, 404, 422    | application/json      |
+| Errors\SDKException   | 4XX, 5XX              | \*/\*                 |
 
-## deleteSAMLConnection
+## delete
 
 Deletes the SAML Connection whose ID matches the provided `id` in the path.
 
@@ -227,7 +224,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->samlConnections->deleteSAMLConnection(
+$response = $sdk->samlConnections->delete(
     samlConnectionId: '<id>'
 );
 
@@ -248,7 +245,7 @@ if ($response->deletedObject !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors89 | 402, 403, 404        | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type            | Status Code           | Content Type          |
+| --------------------- | --------------------- | --------------------- |
+| Errors\ClerkErrors103 | 402, 403, 404         | application/json      |
+| Errors\SDKException   | 4XX, 5XX              | \*/\*                 |

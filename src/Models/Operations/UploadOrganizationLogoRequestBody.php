@@ -14,10 +14,10 @@ class UploadOrganizationLogoRequestBody
     /**
      * The ID of the user that will be credited with the image upload.
      *
-     * @var string $uploaderUserId
+     * @var ?string $uploaderUserId
      */
     #[SpeakeasyMetadata('multipartForm:name=uploader_user_id')]
-    public string $uploaderUserId;
+    public ?string $uploaderUserId = null;
 
     /**
      *
@@ -27,12 +27,12 @@ class UploadOrganizationLogoRequestBody
     public UploadOrganizationLogoFile $file;
 
     /**
-     * @param  string  $uploaderUserId
      * @param  UploadOrganizationLogoFile  $file
+     * @param  ?string  $uploaderUserId
      */
-    public function __construct(string $uploaderUserId, UploadOrganizationLogoFile $file)
+    public function __construct(UploadOrganizationLogoFile $file, ?string $uploaderUserId = null)
     {
-        $this->uploaderUserId = $uploaderUserId;
         $this->file = $file;
+        $this->uploaderUserId = $uploaderUserId;
     }
 }

@@ -3,17 +3,14 @@
 
 ## Overview
 
-A user can be associated with one or more phone numbers, which allows them to be contacted via SMS.
-<https://clerk.com/docs/reference/clerkjs/phonenumber>
-
 ### Available Operations
 
-* [createPhoneNumber](#createphonenumber) - Create a phone number
-* [getPhoneNumber](#getphonenumber) - Retrieve a phone number
-* [deletePhoneNumber](#deletephonenumber) - Delete a phone number
-* [updatePhoneNumber](#updatephonenumber) - Update a phone number
+* [create](#create) - Create a phone number
+* [get](#get) - Retrieve a phone number
+* [delete](#delete) - Delete a phone number
+* [update](#update) - Update a phone number
 
-## createPhoneNumber
+## create
 
 Create a new phone number
 
@@ -33,7 +30,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $request = new Operations\CreatePhoneNumberRequestBody();
 
-$response = $sdk->phoneNumbers->createPhoneNumber(
+$response = $sdk->phoneNumbers->create(
     request: $request
 );
 
@@ -59,7 +56,7 @@ if ($response->phoneNumber !== null) {
 | Errors\ClerkErrors7     | 400, 401, 403, 404, 422 | application/json        |
 | Errors\SDKException     | 4XX, 5XX                | \*/\*                   |
 
-## getPhoneNumber
+## get
 
 Returns the details of a phone number
 
@@ -78,7 +75,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->phoneNumbers->getPhoneNumber(
+$response = $sdk->phoneNumbers->get(
     phoneNumberId: '<id>'
 );
 
@@ -104,7 +101,7 @@ if ($response->phoneNumber !== null) {
 | Errors\ClerkErrors8 | 400, 401, 403, 404  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## deletePhoneNumber
+## delete
 
 Delete the phone number with the given ID
 
@@ -123,7 +120,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->phoneNumbers->deletePhoneNumber(
+$response = $sdk->phoneNumbers->delete(
     phoneNumberId: '<id>'
 );
 
@@ -149,7 +146,7 @@ if ($response->deletedObject !== null) {
 | Errors\ClerkErrors9 | 400, 401, 403, 404  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## updatePhoneNumber
+## update
 
 Updates a phone number
 
@@ -169,7 +166,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $requestBody = new Operations\UpdatePhoneNumberRequestBody();
 
-$response = $sdk->phoneNumbers->updatePhoneNumber(
+$response = $sdk->phoneNumbers->update(
     phoneNumberId: '<id>',
     requestBody: $requestBody
 

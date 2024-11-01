@@ -13,7 +13,7 @@ namespace Clerk\Backend\Models\Operations;
 class VerifyClientRequestBody
 {
     /**
-     * A JWT Token that represents the active client.
+     * A JWT that represents the active client.
      *
      * @var ?string $token
      */

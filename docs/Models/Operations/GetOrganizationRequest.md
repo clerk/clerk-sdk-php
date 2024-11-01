@@ -3,6 +3,7 @@
 
 ## Fields
 
-| Field                              | Type                               | Required                           | Description                        |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| `organizationId`                   | *string*                           | :heavy_check_mark:                 | The ID or slug of the organization |
+| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `organizationId`                                                                                   | *string*                                                                                           | :heavy_check_mark:                                                                                 | The ID or slug of the organization                                                                 |
+| `includeMembersCount`                                                                              | *?bool*                                                                                            | :heavy_minus_sign:                                                                                 | Flag to denote whether or not the organization's members count should be included in the response. |

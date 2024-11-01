@@ -1,20 +1,18 @@
-# OAuthApplications
-(*oAuthApplications*)
+# OauthApplications
+(*oauthApplications*)
 
 ## Overview
 
-OAuth applications contain data for clients using Clerk as an OAuth2 identity provider.
-
 ### Available Operations
 
-* [listOAuthApplications](#listoauthapplications) - Get a list of OAuth applications for an instance
-* [createOAuthApplication](#createoauthapplication) - Create an OAuth application
-* [getOAuthApplication](#getoauthapplication) - Retrieve an OAuth application by ID
-* [updateOAuthApplication](#updateoauthapplication) - Update an OAuth application
-* [deleteOAuthApplication](#deleteoauthapplication) - Delete an OAuth application
-* [rotateOAuthApplicationSecret](#rotateoauthapplicationsecret) - Rotate the client secret of the given OAuth application
+* [list](#list) - Get a list of OAuth applications for an instance
+* [create](#create) - Create an OAuth application
+* [get](#get) - Retrieve an OAuth application by ID
+* [update](#update) - Update an OAuth application
+* [delete](#delete) - Delete an OAuth application
+* [rotateSecret](#rotatesecret) - Rotate the client secret of the given OAuth application
 
-## listOAuthApplications
+## list
 
 This request returns the list of OAuth applications for an instance.
 Results can be paginated using the optional `limit` and `offset` query parameters.
@@ -36,7 +34,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->oAuthApplications->listOAuthApplications(
+$response = $sdk->oauthApplications->list(
     limit: 10,
     offset: 0
 
@@ -51,8 +49,8 @@ if ($response->oAuthApplications !== null) {
 
 | Parameter                                                                                                                                 | Type                                                                                                                                      | Required                                                                                                                                  | Description                                                                                                                               |
 | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `limit`                                                                                                                                   | *?float*                                                                                                                                  | :heavy_minus_sign:                                                                                                                        | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                     |
-| `offset`                                                                                                                                  | *?float*                                                                                                                                  | :heavy_minus_sign:                                                                                                                        | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`. |
+| `limit`                                                                                                                                   | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                     |
+| `offset`                                                                                                                                  | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`. |
 
 ### Response
 
@@ -62,10 +60,10 @@ if ($response->oAuthApplications !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors79 | 400, 403, 422        | application/json     |
+| Errors\ClerkErrors93 | 400, 403, 422        | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## createOAuthApplication
+## create
 
 Creates a new OAuth application with the given name and callback URL for an instance.
 The callback URL must be a valid url.
@@ -87,11 +85,11 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $request = new Operations\CreateOAuthApplicationRequestBody(
     name: '<value>',
-    callbackUrl: 'https://silent-hyena.name',
+    callbackUrl: 'https://probable-heating.com/',
     scopes: 'profile email public_metadata',
 );
 
-$response = $sdk->oAuthApplications->createOAuthApplication(
+$response = $sdk->oauthApplications->create(
     request: $request
 );
 
@@ -114,10 +112,10 @@ if ($response->oAuthApplicationWithSecret !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors80 | 400, 403, 422        | application/json     |
+| Errors\ClerkErrors94 | 400, 403, 422        | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## getOAuthApplication
+## get
 
 Fetches the OAuth application whose ID matches the provided `id` in the path.
 
@@ -136,7 +134,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->oAuthApplications->getOAuthApplication(
+$response = $sdk->oauthApplications->get(
     oauthApplicationId: '<id>'
 );
 
@@ -159,10 +157,10 @@ if ($response->oAuthApplication !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors81 | 403, 404             | application/json     |
+| Errors\ClerkErrors95 | 403, 404             | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## updateOAuthApplication
+## update
 
 Updates an existing OAuth application
 
@@ -184,7 +182,7 @@ $requestBody = new Operations\UpdateOAuthApplicationRequestBody(
     scopes: 'profile email public_metadata private_metadata',
 );
 
-$response = $sdk->oAuthApplications->updateOAuthApplication(
+$response = $sdk->oauthApplications->update(
     oauthApplicationId: '<id>',
     requestBody: $requestBody
 
@@ -210,10 +208,10 @@ if ($response->oAuthApplication !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors82 | 403, 404, 422        | application/json     |
+| Errors\ClerkErrors96 | 403, 404, 422        | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## deleteOAuthApplication
+## delete
 
 Deletes the given OAuth application.
 This is not reversible.
@@ -233,7 +231,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->oAuthApplications->deleteOAuthApplication(
+$response = $sdk->oauthApplications->delete(
     oauthApplicationId: '<id>'
 );
 
@@ -256,10 +254,10 @@ if ($response->deletedObject !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors83 | 403, 404             | application/json     |
+| Errors\ClerkErrors97 | 403, 404             | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## rotateOAuthApplicationSecret
+## rotateSecret
 
 Rotates the OAuth application's client secret.
 When the client secret is rotated, make sure to update it in authorized OAuth clients.
@@ -279,7 +277,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->oAuthApplications->rotateOAuthApplicationSecret(
+$response = $sdk->oauthApplications->rotateSecret(
     oauthApplicationId: '<id>'
 );
 
@@ -302,5 +300,5 @@ if ($response->oAuthApplicationWithSecret !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors84 | 403, 404             | application/json     |
+| Errors\ClerkErrors98 | 403, 404             | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |

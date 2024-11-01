@@ -34,7 +34,7 @@ class Organizations
      * @return Operations\ListOrganizationsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function listOrganizations(?Operations\ListOrganizationsRequest $request = null): Operations\ListOrganizationsResponse
+    public function list(?Operations\ListOrganizationsRequest $request = null): Operations\ListOrganizationsResponse
     {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/organizations');
@@ -66,7 +66,7 @@ class Organizations
         } elseif (in_array($statusCode, [400, 403, 422])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors57', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors67', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -90,12 +90,14 @@ class Organizations
      * Organizations support private and public metadata.
      * Private metadata can only be accessed from the Backend API.
      * Public metadata can be accessed from the Backend API, and are read-only from the Frontend API.
+     * The `created_by` user will see this as their [active organization] (https://clerk.com/docs/organizations/overview#active-organization)
+     * the next time they create a session, presuming they don't explicitly set a different organization as active before then.
      *
      * @param  ?Operations\CreateOrganizationRequestBody  $request
      * @return Operations\CreateOrganizationResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function createOrganization(?Operations\CreateOrganizationRequestBody $request = null): Operations\CreateOrganizationResponse
+    public function create(?Operations\CreateOrganizationRequestBody $request = null): Operations\CreateOrganizationResponse
     {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/organizations');
@@ -130,7 +132,7 @@ class Organizations
         } elseif (in_array($statusCode, [400, 403, 422])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors58', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors68', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -148,17 +150,20 @@ class Organizations
      * Fetches the organization whose ID or slug matches the provided `id_or_slug` URL query parameter.
      *
      * @param  string  $organizationId
+     * @param  ?bool  $includeMembersCount
      * @return Operations\GetOrganizationResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function getOrganization(string $organizationId): Operations\GetOrganizationResponse
+    public function get(string $organizationId, ?bool $includeMembersCount = null): Operations\GetOrganizationResponse
     {
         $request = new Operations\GetOrganizationRequest(
             organizationId: $organizationId,
+            includeMembersCount: $includeMembersCount,
         );
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/organizations/{organization_id}', Operations\GetOrganizationRequest::class, $request);
         $options = ['http_errors' => false];
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\GetOrganizationRequest::class, $request));
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
@@ -185,7 +190,7 @@ class Organizations
         } elseif (in_array($statusCode, [403, 404])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors59', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors69', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -207,7 +212,7 @@ class Organizations
      * @return Operations\UpdateOrganizationResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function updateOrganization(Operations\UpdateOrganizationRequestBody $requestBody, string $organizationId): Operations\UpdateOrganizationResponse
+    public function update(Operations\UpdateOrganizationRequestBody $requestBody, string $organizationId): Operations\UpdateOrganizationResponse
     {
         $request = new Operations\UpdateOrganizationRequest(
             organizationId: $organizationId,
@@ -247,7 +252,7 @@ class Organizations
         } elseif (in_array($statusCode, [402, 404, 422])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors60', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors70', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -270,7 +275,7 @@ class Organizations
      * @return Operations\DeleteOrganizationResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function deleteOrganization(string $organizationId): Operations\DeleteOrganizationResponse
+    public function delete(string $organizationId): Operations\DeleteOrganizationResponse
     {
         $request = new Operations\DeleteOrganizationRequest(
             organizationId: $organizationId,
@@ -304,7 +309,7 @@ class Organizations
         } elseif ($statusCode == 404) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors61', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors71', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -329,7 +334,7 @@ class Organizations
      * @return Operations\MergeOrganizationMetadataResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function mergeOrganizationMetadata(Operations\MergeOrganizationMetadataRequestBody $requestBody, string $organizationId): Operations\MergeOrganizationMetadataResponse
+    public function mergeMetadata(Operations\MergeOrganizationMetadataRequestBody $requestBody, string $organizationId): Operations\MergeOrganizationMetadataResponse
     {
         $request = new Operations\MergeOrganizationMetadataRequest(
             organizationId: $organizationId,
@@ -369,7 +374,7 @@ class Organizations
         } elseif (in_array($statusCode, [400, 401, 404, 422])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors61', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors71', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -394,7 +399,7 @@ class Organizations
      * @return Operations\UploadOrganizationLogoResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function uploadOrganizationLogo(string $organizationId, ?Operations\UploadOrganizationLogoRequestBody $requestBody = null): Operations\UploadOrganizationLogoResponse
+    public function uploadLogo(string $organizationId, ?Operations\UploadOrganizationLogoRequestBody $requestBody = null): Operations\UploadOrganizationLogoResponse
     {
         $request = new Operations\UploadOrganizationLogoRequest(
             organizationId: $organizationId,
@@ -433,7 +438,7 @@ class Organizations
         } elseif (in_array($statusCode, [400, 403, 404, 413])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors62', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors72', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -452,7 +457,7 @@ class Organizations
      * @return Operations\DeleteOrganizationLogoResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function deleteOrganizationLogo(string $organizationId): Operations\DeleteOrganizationLogoResponse
+    public function deleteLogo(string $organizationId): Operations\DeleteOrganizationLogoResponse
     {
         $request = new Operations\DeleteOrganizationLogoRequest(
             organizationId: $organizationId,
@@ -486,7 +491,7 @@ class Organizations
         } elseif ($statusCode == 404) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors63', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors73', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);

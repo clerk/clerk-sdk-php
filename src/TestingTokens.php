@@ -30,7 +30,7 @@ class TestingTokens
      * @return Operations\CreateTestingTokenResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function createTestingToken(): Operations\CreateTestingTokenResponse
+    public function create(): Operations\CreateTestingTokenResponse
     {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/testing_tokens');

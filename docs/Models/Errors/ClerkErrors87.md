@@ -1,6 +1,6 @@
 # ClerkErrors87
 
-Payment required
+Request was not successful
 
 
 ## Fields

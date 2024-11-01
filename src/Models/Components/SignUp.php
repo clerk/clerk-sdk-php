@@ -140,22 +140,24 @@ class SignUp
     public ?string $lastName = null;
 
     /**
+     * $unsafeMetadata
      *
-     * @var ?SignUpUnsafeMetadata $unsafeMetadata
+     * @var ?array<string, mixed> $unsafeMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('unsafe_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SignUpUnsafeMetadata|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?SignUpUnsafeMetadata $unsafeMetadata = null;
+    public ?array $unsafeMetadata = null;
 
     /**
+     * $publicMetadata
      *
-     * @var ?SignUpPublicMetadata $publicMetadata
+     * @var ?array<string, mixed> $publicMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SignUpPublicMetadata|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?SignUpPublicMetadata $publicMetadata = null;
+    public ?array $publicMetadata = null;
 
     /**
      *
@@ -216,8 +218,8 @@ class SignUp
      * @param  ?array<string>  $missingFields
      * @param  ?array<string>  $unverifiedFields
      * @param  ?Verifications  $verifications
-     * @param  ?SignUpUnsafeMetadata  $unsafeMetadata
-     * @param  ?SignUpPublicMetadata  $publicMetadata
+     * @param  ?array<string, mixed>  $unsafeMetadata
+     * @param  ?array<string, mixed>  $publicMetadata
      * @param  ?ExternalAccount  $externalAccount
      * @param  ?string  $username
      * @param  ?string  $emailAddress
@@ -229,7 +231,7 @@ class SignUp
      * @param  ?string  $createdSessionId
      * @param  ?string  $createdUserId
      */
-    public function __construct(SignUpObject $object, string $id, SignUpStatus $status, bool $passwordEnabled, bool $customAction, int $abandonAt, ?array $requiredFields = null, ?array $optionalFields = null, ?array $missingFields = null, ?array $unverifiedFields = null, ?Verifications $verifications = null, ?SignUpUnsafeMetadata $unsafeMetadata = null, ?SignUpPublicMetadata $publicMetadata = null, ?ExternalAccount $externalAccount = null, ?string $username = null, ?string $emailAddress = null, ?string $phoneNumber = null, ?string $web3Wallet = null, ?string $firstName = null, ?string $lastName = null, ?string $externalId = null, ?string $createdSessionId = null, ?string $createdUserId = null)
+    public function __construct(SignUpObject $object, string $id, SignUpStatus $status, bool $passwordEnabled, bool $customAction, int $abandonAt, ?array $requiredFields = null, ?array $optionalFields = null, ?array $missingFields = null, ?array $unverifiedFields = null, ?Verifications $verifications = null, ?array $unsafeMetadata = null, ?array $publicMetadata = null, ?ExternalAccount $externalAccount = null, ?string $username = null, ?string $emailAddress = null, ?string $phoneNumber = null, ?string $web3Wallet = null, ?string $firstName = null, ?string $lastName = null, ?string $externalId = null, ?string $createdSessionId = null, ?string $createdUserId = null)
     {
         $this->object = $object;
         $this->id = $id;

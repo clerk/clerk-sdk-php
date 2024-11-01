@@ -48,7 +48,7 @@ if ($response->svixURL !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors52 | 400                  | application/json     |
+| Errors\ClerkErrors62 | 400                  | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
 ## deleteSvixApp
@@ -87,7 +87,7 @@ if ($response->statusCode === 200) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors53 | 400                  | application/json     |
+| Errors\ClerkErrors63 | 400                  | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
 ## generateSvixAuthURL
@@ -126,5 +126,5 @@ if ($response->svixURL !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors53 | 400                  | application/json     |
+| Errors\ClerkErrors63 | 400                  | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |

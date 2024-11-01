@@ -14,25 +14,27 @@ class UpdateOrganizationRequestBody
     /**
      * Metadata saved on the organization, that is visible to both your frontend and backend.
      *
-     * @var ?UpdateOrganizationPublicMetadata $publicMetadata
+     * @var ?array<string, mixed> $publicMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\UpdateOrganizationPublicMetadata|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?UpdateOrganizationPublicMetadata $publicMetadata = null;
+    public ?array $publicMetadata = null;
 
     /**
      * Metadata saved on the organization that is only visible to your backend.
      *
-     * @var ?UpdateOrganizationPrivateMetadata $privateMetadata
+     * @var ?array<string, mixed> $privateMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('private_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\UpdateOrganizationPrivateMetadata|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?UpdateOrganizationPrivateMetadata $privateMetadata = null;
+    public ?array $privateMetadata = null;
 
     /**
-     * The new name of the organization
+     * The new name of the organization.
+     *
+     * May not contain URLs or HTML.
      *
      * @var ?string $name
      */
@@ -68,17 +70,28 @@ class UpdateOrganizationRequestBody
     public ?bool $adminDeleteEnabled = null;
 
     /**
-     * @param  ?UpdateOrganizationPublicMetadata  $publicMetadata
-     * @param  ?UpdateOrganizationPrivateMetadata  $privateMetadata
+     * A custom date/time denoting _when_ the organization was created, specified in RFC3339 format (e.g. `2012-10-20T07:15:20.902Z`).
+     *
+     * @var ?string $createdAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $createdAt = null;
+
+    /**
+     * @param  ?array<string, mixed>  $publicMetadata
+     * @param  ?array<string, mixed>  $privateMetadata
+     * @param  ?string  $createdAt
      * @param  ?string  $name
      * @param  ?string  $slug
      * @param  ?int  $maxAllowedMemberships
      * @param  ?bool  $adminDeleteEnabled
      */
-    public function __construct(?UpdateOrganizationPublicMetadata $publicMetadata = null, ?UpdateOrganizationPrivateMetadata $privateMetadata = null, ?string $name = null, ?string $slug = null, ?int $maxAllowedMemberships = null, ?bool $adminDeleteEnabled = null)
+    public function __construct(?array $publicMetadata = null, ?array $privateMetadata = null, ?string $createdAt = null, ?string $name = null, ?string $slug = null, ?int $maxAllowedMemberships = null, ?bool $adminDeleteEnabled = null)
     {
         $this->publicMetadata = $publicMetadata;
         $this->privateMetadata = $privateMetadata;
+        $this->createdAt = $createdAt;
         $this->name = $name;
         $this->slug = $slug;
         $this->maxAllowedMemberships = $maxAllowedMemberships;

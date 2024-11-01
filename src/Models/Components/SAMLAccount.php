@@ -75,13 +75,14 @@ class SAMLAccount
     public ?string $providerUserId = null;
 
     /**
+     * $publicMetadata
      *
-     * @var ?SAMLAccountPublicMetadata $publicMetadata
+     * @var ?array<string, mixed> $publicMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SAMLAccountPublicMetadata|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?SAMLAccountPublicMetadata $publicMetadata = null;
+    public ?array $publicMetadata = null;
 
     /**
      *
@@ -92,18 +93,28 @@ class SAMLAccount
     public Saml|Ticket|null $verification;
 
     /**
+     *
+     * @var ?SAMLConnectionSAMLConnection $samlConnection
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('saml_connection')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SAMLConnectionSAMLConnection')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?SAMLConnectionSAMLConnection $samlConnection = null;
+
+    /**
      * @param  string  $id
      * @param  SAMLAccountObject  $object
      * @param  string  $provider
      * @param  bool  $active
      * @param  string  $emailAddress
-     * @param  ?SAMLAccountPublicMetadata  $publicMetadata
+     * @param  ?array<string, mixed>  $publicMetadata
      * @param  Saml|Ticket|null  $verification
      * @param  ?string  $firstName
      * @param  ?string  $lastName
      * @param  ?string  $providerUserId
+     * @param  ?SAMLConnectionSAMLConnection  $samlConnection
      */
-    public function __construct(string $id, SAMLAccountObject $object, string $provider, bool $active, string $emailAddress, ?SAMLAccountPublicMetadata $publicMetadata = null, Saml|Ticket|null $verification = null, ?string $firstName = null, ?string $lastName = null, ?string $providerUserId = null)
+    public function __construct(string $id, SAMLAccountObject $object, string $provider, bool $active, string $emailAddress, ?array $publicMetadata = null, Saml|Ticket|null $verification = null, ?string $firstName = null, ?string $lastName = null, ?string $providerUserId = null, ?SAMLConnectionSAMLConnection $samlConnection = null)
     {
         $this->id = $id;
         $this->object = $object;
@@ -115,5 +126,6 @@ class SAMLAccount
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->providerUserId = $providerUserId;
+        $this->samlConnection = $samlConnection;
     }
 }

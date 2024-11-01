@@ -3,15 +3,13 @@
 
 ## Overview
 
-Modify instance settings that are currently in beta.
-
 ### Available Operations
 
-* [updateInstanceAuthConfig](#updateinstanceauthconfig) - Update instance settings
-* [~~updateProductionInstanceDomain~~](#updateproductioninstancedomain) - Update production instance domain :warning: **Deprecated**
+* [updateInstanceSettings](#updateinstancesettings) - Update instance settings
+* [~~updateDomain~~](#updatedomain) - Update production instance domain :warning: **Deprecated**
 * [changeProductionInstanceDomain](#changeproductioninstancedomain) - Update production instance domain
 
-## updateInstanceAuthConfig
+## updateInstanceSettings
 
 Updates the settings of an instance
 
@@ -31,7 +29,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $request = new Operations\UpdateInstanceAuthConfigRequestBody();
 
-$response = $sdk->betaFeatures->updateInstanceAuthConfig(
+$response = $sdk->betaFeatures->updateInstanceSettings(
     request: $request
 );
 
@@ -54,10 +52,10 @@ if ($response->instanceSettings !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors42 | 402, 422             | application/json     |
+| Errors\ClerkErrors51 | 402, 422             | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## ~~updateProductionInstanceDomain~~
+## ~~updateDomain~~
 
 Change the domain of a production instance.
 
@@ -83,7 +81,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $request = new Operations\UpdateProductionInstanceDomainRequestBody();
 
-$response = $sdk->betaFeatures->updateProductionInstanceDomain(
+$response = $sdk->betaFeatures->updateDomain(
     request: $request
 );
 
@@ -106,7 +104,7 @@ if ($response->statusCode === 200) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors43 | 400, 422             | application/json     |
+| Errors\ClerkErrors52 | 400, 422             | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
 ## changeProductionInstanceDomain
@@ -156,5 +154,5 @@ if ($response->statusCode === 200) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors50 | 400, 422             | application/json     |
+| Errors\ClerkErrors60 | 400, 422             | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |

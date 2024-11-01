@@ -3,15 +3,12 @@
 
 ## Overview
 
-Allow your users to sign in on behalf of other users.
-<https://clerk.com/docs/authentication/user-impersonation#actor-tokens>
-
 ### Available Operations
 
-* [createActorToken](#createactortoken) - Create actor token
-* [revokeActorToken](#revokeactortoken) - Revoke actor token
+* [create](#create) - Create actor token
+* [revoke](#revoke) - Revoke actor token
 
-## createActorToken
+## create
 
 Create an actor token that can be used to impersonate the given user.
 The `actor` parameter needs to include at least a "sub" key whose value is the ID of the actor (impersonating) user.
@@ -35,7 +32,7 @@ $request = new Operations\CreateActorTokenRequestBody(
     actor: new Operations\Actor(),
 );
 
-$response = $sdk->actorTokens->createActorToken(
+$response = $sdk->actorTokens->create(
     request: $request
 );
 
@@ -58,10 +55,10 @@ if ($response->actorToken !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors44 | 400, 402, 422        | application/json     |
+| Errors\ClerkErrors53 | 400, 402, 422        | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## revokeActorToken
+## revoke
 
 Revokes a pending actor token.
 
@@ -80,7 +77,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->actorTokens->revokeActorToken(
+$response = $sdk->actorTokens->revoke(
     actorTokenId: '<id>'
 );
 
@@ -103,5 +100,5 @@ if ($response->actorToken !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors45 | 400, 404             | application/json     |
+| Errors\ClerkErrors54 | 400, 404             | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |

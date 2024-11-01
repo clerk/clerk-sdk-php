@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Clerk\Backend;
 
 use Clerk\Backend\Models\Operations;
+use Speakeasy\Serializer\DeserializationContext;
 
 class Jwks
 {
@@ -29,12 +30,12 @@ class Jwks
      * @return Operations\GetJWKSResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function getJWKS(): Operations\GetJWKSResponse
+    public function get(): Operations\GetJWKSResponse
     {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/jwks');
         $options = ['http_errors' => false];
-        $options['headers']['Accept'] = '*/*';
+        $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
 
@@ -44,11 +45,19 @@ class Jwks
 
         $statusCode = $httpResponse->getStatusCode();
         if ($statusCode == 200) {
-            return new Operations\GetJWKSResponse(
-                statusCode: $statusCode,
-                contentType: $contentType,
-                rawResponse: $httpResponse
-            );
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Components\WellKnownJWKS', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\GetJWKSResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    wellKnownJWKS: $obj);
+
+                return $response;
+            } else {
+                throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
         } elseif ($statusCode >= 400 && $statusCode < 500 || $statusCode >= 500 && $statusCode < 600) {
             throw new \Clerk\Backend\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         } else {

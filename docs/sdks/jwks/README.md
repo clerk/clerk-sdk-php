@@ -3,13 +3,11 @@
 
 ## Overview
 
-Retrieve the JSON Web Key Set which can be used to verify the token signatures of the instance.
-
 ### Available Operations
 
-* [getJWKS](#getjwks) - Retrieve the JSON Web Key Set of the instance
+* [get](#get) - Retrieve the JSON Web Key Set of the instance
 
-## getJWKS
+## get
 
 Retrieve the JSON Web Key Set of the instance
 
@@ -28,11 +26,11 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->jwks->getJWKS(
+$response = $sdk->jwks->get(
 
 );
 
-if ($response->statusCode === 200) {
+if ($response->wellKnownJWKS !== null) {
     // handle response
 }
 ```

@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Clerk\Backend\Models\Operations;
 
-
+use Clerk\Backend\Models\Components;
 class GetJWKSResponse
 {
     /**
@@ -33,14 +33,23 @@ class GetJWKSResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
+     * Get the JSON Web Key Set
+     *
+     * @var ?Components\WellKnownJWKS $wellKnownJWKS
+     */
+    public ?Components\WellKnownJWKS $wellKnownJWKS = null;
+
+    /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
+     * @param  ?Components\WellKnownJWKS  $wellKnownJWKS
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\WellKnownJWKS $wellKnownJWKS = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
+        $this->wellKnownJWKS = $wellKnownJWKS;
     }
 }

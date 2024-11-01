@@ -10,13 +10,13 @@ Sessions are created when a user successfully goes through the sign in or sign u
 
 ### Available Operations
 
-* [getSessionList](#getsessionlist) - List all sessions
-* [getSession](#getsession) - Retrieve a session
-* [revokeSession](#revokesession) - Revoke a session
-* [~~verifySession~~](#verifysession) - Verify a session :warning: **Deprecated**
-* [createSessionTokenFromTemplate](#createsessiontokenfromtemplate) - Create a session token from a jwt template
+* [list](#list) - List all sessions
+* [get](#get) - Retrieve a session
+* [revoke](#revoke) - Revoke a session
+* [~~verify~~](#verify) - Verify a session :warning: **Deprecated**
+* [createTokenFromTemplate](#createtokenfromtemplate) - Create a session token from a jwt template
 
-## getSessionList
+## list
 
 Returns a list of all sessions.
 The sessions are returned sorted by creation date, with the newest sessions appearing first.
@@ -39,7 +39,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $request = new Operations\GetSessionListRequest();
 
-$response = $sdk->sessions->getSessionList(
+$response = $sdk->sessions->list(
     request: $request
 );
 
@@ -65,7 +65,7 @@ if ($response->sessionList !== null) {
 | Errors\ClerkErrors11 | 400, 401, 422        | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## getSession
+## get
 
 Retrieve the details of a session
 
@@ -84,7 +84,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->sessions->getSession(
+$response = $sdk->sessions->get(
     sessionId: '<id>'
 );
 
@@ -110,7 +110,7 @@ if ($response->session !== null) {
 | Errors\ClerkErrors12 | 400, 401, 404        | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## revokeSession
+## revoke
 
 Sets the status of a session as "revoked", which is an unauthenticated state.
 In multi-session mode, a revoked session will still be returned along with its client object, however the user will need to sign in again.
@@ -130,7 +130,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->sessions->revokeSession(
+$response = $sdk->sessions->revoke(
     sessionId: '<id>'
 );
 
@@ -156,7 +156,7 @@ if ($response->session !== null) {
 | Errors\ClerkErrors13 | 400, 401, 404        | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## ~~verifySession~~
+## ~~verify~~
 
 Returns the session if it is authenticated, otherwise returns an error.
 WARNING: This endpoint is deprecated and will be removed in future versions. We strongly recommend switching to networkless verification using short-lived session tokens,
@@ -181,7 +181,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $requestBody = new Operations\VerifySessionRequestBody();
 
-$response = $sdk->sessions->verifySession(
+$response = $sdk->sessions->verify(
     sessionId: '<id>',
     requestBody: $requestBody
 
@@ -210,7 +210,7 @@ if ($response->session !== null) {
 | Errors\ClerkErrors14 | 400, 401, 404, 410   | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## createSessionTokenFromTemplate
+## createTokenFromTemplate
 
 Creates a JSON Web Token(JWT) based on a session and a JWT Template name defined for your instance
 
@@ -229,7 +229,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->sessions->createSessionTokenFromTemplate(
+$response = $sdk->sessions->createTokenFromTemplate(
     sessionId: '<id>',
     templateName: '<value>'
 

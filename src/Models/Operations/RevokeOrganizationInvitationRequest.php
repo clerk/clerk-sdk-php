@@ -29,17 +29,17 @@ class RevokeOrganizationInvitationRequest
 
     /**
      *
-     * @var RevokeOrganizationInvitationRequestBody $requestBody
+     * @var ?RevokeOrganizationInvitationRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public RevokeOrganizationInvitationRequestBody $requestBody;
+    public ?RevokeOrganizationInvitationRequestBody $requestBody = null;
 
     /**
      * @param  string  $organizationId
      * @param  string  $invitationId
-     * @param  RevokeOrganizationInvitationRequestBody  $requestBody
+     * @param  ?RevokeOrganizationInvitationRequestBody  $requestBody
      */
-    public function __construct(string $organizationId, string $invitationId, RevokeOrganizationInvitationRequestBody $requestBody)
+    public function __construct(string $organizationId, string $invitationId, ?RevokeOrganizationInvitationRequestBody $requestBody = null)
     {
         $this->organizationId = $organizationId;
         $this->invitationId = $invitationId;

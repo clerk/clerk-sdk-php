@@ -3,15 +3,13 @@
 
 ## Overview
 
-Modify the settings of your instance.
-
 ### Available Operations
 
-* [updateInstance](#updateinstance) - Update instance settings
-* [updateInstanceRestrictions](#updateinstancerestrictions) - Update instance restrictions
-* [updateInstanceOrganizationSettings](#updateinstanceorganizationsettings) - Update instance organization settings
+* [update](#update) - Update instance settings
+* [updateRestrictions](#updaterestrictions) - Update instance restrictions
+* [updateOrganizationSettings](#updateorganizationsettings) - Update instance organization settings
 
-## updateInstance
+## update
 
 Updates the settings of an instance
 
@@ -31,7 +29,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $request = new Operations\UpdateInstanceRequestBody();
 
-$response = $sdk->instanceSettings->updateInstance(
+$response = $sdk->instanceSettings->update(
     request: $request
 );
 
@@ -54,10 +52,10 @@ if ($response->statusCode === 200) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors49 | 422                  | application/json     |
+| Errors\ClerkErrors58 | 422                  | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## updateInstanceRestrictions
+## updateRestrictions
 
 Updates the restriction settings of an instance
 
@@ -77,7 +75,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $request = new Operations\UpdateInstanceRestrictionsRequestBody();
 
-$response = $sdk->instanceSettings->updateInstanceRestrictions(
+$response = $sdk->instanceSettings->updateRestrictions(
     request: $request
 );
 
@@ -100,10 +98,10 @@ if ($response->instanceRestrictions !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors49 | 402, 422             | application/json     |
+| Errors\ClerkErrors59 | 402, 422             | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## updateInstanceOrganizationSettings
+## updateOrganizationSettings
 
 Updates the organization settings of the instance
 
@@ -123,7 +121,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $request = new Operations\UpdateInstanceOrganizationSettingsRequestBody();
 
-$response = $sdk->instanceSettings->updateInstanceOrganizationSettings(
+$response = $sdk->instanceSettings->updateOrganizationSettings(
     request: $request
 );
 
@@ -146,5 +144,5 @@ if ($response->organizationSettings !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors51 | 402, 404, 422        | application/json     |
+| Errors\ClerkErrors61 | 402, 404, 422        | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |

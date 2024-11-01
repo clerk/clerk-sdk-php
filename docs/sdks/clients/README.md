@@ -8,11 +8,11 @@ The Client object tracks sessions, as well as the state of any sign in and sign 
 
 ### Available Operations
 
-* [~~getClientList~~](#getclientlist) - List all clients :warning: **Deprecated**
-* [verifyClient](#verifyclient) - Verify a client
-* [getClient](#getclient) - Get a client
+* [~~list~~](#list) - List all clients :warning: **Deprecated**
+* [verify](#verify) - Verify a client
+* [get](#get) - Get a client
 
-## ~~getClientList~~
+## ~~list~~
 
 Returns a list of all clients. The clients are returned sorted by creation date,
 with the newest clients appearing first.
@@ -35,7 +35,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->clients->getClientList(
+$response = $sdk->clients->list(
     limit: 10,
     offset: 0
 
@@ -50,8 +50,8 @@ if ($response->clientList !== null) {
 
 | Parameter                                                                                                                                 | Type                                                                                                                                      | Required                                                                                                                                  | Description                                                                                                                               |
 | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `limit`                                                                                                                                   | *?float*                                                                                                                                  | :heavy_minus_sign:                                                                                                                        | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                     |
-| `offset`                                                                                                                                  | *?float*                                                                                                                                  | :heavy_minus_sign:                                                                                                                        | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`. |
+| `limit`                                                                                                                                   | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                     |
+| `offset`                                                                                                                                  | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`. |
 
 ### Response
 
@@ -64,7 +64,7 @@ if ($response->clientList !== null) {
 | Errors\ClerkErrors  | 400, 401, 410, 422  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## verifyClient
+## verify
 
 Verifies the client in the provided token
 
@@ -84,7 +84,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $request = new Operations\VerifyClientRequestBody();
 
-$response = $sdk->clients->verifyClient(
+$response = $sdk->clients->verify(
     request: $request
 );
 
@@ -110,7 +110,7 @@ if ($response->client !== null) {
 | Errors\ClerkErrors1 | 400, 401, 404       | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## getClient
+## get
 
 Returns the details of a client.
 
@@ -129,7 +129,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->clients->getClient(
+$response = $sdk->clients->get(
     clientId: '<id>'
 );
 

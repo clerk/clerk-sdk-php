@@ -1,19 +1,12 @@
-# AllowListBlockList
-(*allowListBlockList*)
+# AllowlistBlocklist
+(*allowlistBlocklist*)
 
 ## Overview
-
-Allow-lists and Block-lists allow you to control who can sign up or sign in
-to your application, by restricting access based on the user's email
-address or phone number.
-<https://clerk.com/docs/authentication/allowlist>
 
 ### Available Operations
 
 * [listAllowlistIdentifiers](#listallowlistidentifiers) - List all identifiers on the allow-list
 * [createAllowlistIdentifier](#createallowlistidentifier) - Add identifier to the allow-list
-* [deleteAllowlistIdentifier](#deleteallowlistidentifier) - Delete identifier from allow-list
-* [listBlocklistIdentifiers](#listblocklistidentifiers) - List all identifiers on the block-list
 * [createBlocklistIdentifier](#createblocklistidentifier) - Add identifier to the block-list
 * [deleteBlocklistIdentifier](#deleteblocklistidentifier) - Delete identifier from block-list
 
@@ -36,7 +29,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->allowListBlockList->listAllowlistIdentifiers(
+$response = $sdk->allowlistBlocklist->listAllowlistIdentifiers(
 
 );
 
@@ -53,7 +46,7 @@ if ($response->allowlistIdentifierList !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors36 | 401, 402             | application/json     |
+| Errors\ClerkErrors45 | 401, 402             | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
 ## createAllowlistIdentifier
@@ -78,7 +71,7 @@ $request = new Operations\CreateAllowlistIdentifierRequestBody(
     identifier: '<value>',
 );
 
-$response = $sdk->allowListBlockList->createAllowlistIdentifier(
+$response = $sdk->allowlistBlocklist->createAllowlistIdentifier(
     request: $request
 );
 
@@ -101,91 +94,7 @@ if ($response->allowlistIdentifier !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors37 | 400, 402, 422        | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
-
-## deleteAllowlistIdentifier
-
-Delete an identifier from the instance allow-list
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
-
-
-
-$response = $sdk->allowListBlockList->deleteAllowlistIdentifier(
-    identifierId: '<id>'
-);
-
-if ($response->deletedObject !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                              | Type                                                   | Required                                               | Description                                            |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| `identifierId`                                         | *string*                                               | :heavy_check_mark:                                     | The ID of the identifier to delete from the allow-list |
-
-### Response
-
-**[?Operations\DeleteAllowlistIdentifierResponse](../../Models/Operations/DeleteAllowlistIdentifierResponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors38 | 402, 404             | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
-
-## listBlocklistIdentifiers
-
-Get a list of all identifiers which are not allowed to access an instance
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
-
-
-
-$response = $sdk->allowListBlockList->listBlocklistIdentifiers(
-
-);
-
-if ($response->blocklistIdentifiers !== null) {
-    // handle response
-}
-```
-
-### Response
-
-**[?Operations\ListBlocklistIdentifiersResponse](../../Models/Operations/ListBlocklistIdentifiersResponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors39 | 401, 402             | application/json     |
+| Errors\ClerkErrors46 | 400, 402, 422        | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
 ## createBlocklistIdentifier
@@ -210,7 +119,7 @@ $request = new Operations\CreateBlocklistIdentifierRequestBody(
     identifier: '<value>',
 );
 
-$response = $sdk->allowListBlockList->createBlocklistIdentifier(
+$response = $sdk->allowlistBlocklist->createBlocklistIdentifier(
     request: $request
 );
 
@@ -233,7 +142,7 @@ if ($response->blocklistIdentifier !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors40 | 400, 402, 422        | application/json     |
+| Errors\ClerkErrors49 | 400, 402, 422        | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
 ## deleteBlocklistIdentifier
@@ -255,7 +164,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->allowListBlockList->deleteBlocklistIdentifier(
+$response = $sdk->allowlistBlocklist->deleteBlocklistIdentifier(
     identifierId: '<id>'
 );
 
@@ -278,5 +187,5 @@ if ($response->deletedObject !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors41 | 402, 404             | application/json     |
+| Errors\ClerkErrors50 | 402, 404             | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |

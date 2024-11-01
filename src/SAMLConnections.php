@@ -11,7 +11,7 @@ namespace Clerk\Backend;
 use Clerk\Backend\Models\Operations;
 use Speakeasy\Serializer\DeserializationContext;
 
-class SAMLConnections
+class SamlConnections
 {
     private SDKConfiguration $sdkConfiguration;
     /**
@@ -29,12 +29,12 @@ class SAMLConnections
      * Results can be paginated using the optional `limit` and `offset` query parameters.
      * The SAML Connections are ordered by descending creation date and the most recent will be returned first.
      *
-     * @param  ?float  $limit
-     * @param  ?float  $offset
+     * @param  ?int  $limit
+     * @param  ?int  $offset
      * @return Operations\ListSAMLConnectionsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function listSAMLConnections(?float $limit = null, ?float $offset = null): Operations\ListSAMLConnectionsResponse
+    public function list(?int $limit = null, ?int $offset = null): Operations\ListSAMLConnectionsResponse
     {
         $request = new Operations\ListSAMLConnectionsRequest(
             limit: $limit,
@@ -70,7 +70,7 @@ class SAMLConnections
         } elseif (in_array($statusCode, [402, 403, 422])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors85', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors99', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -91,7 +91,7 @@ class SAMLConnections
      * @return Operations\CreateSAMLConnectionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function createSAMLConnection(?Operations\CreateSAMLConnectionRequestBody $request = null): Operations\CreateSAMLConnectionResponse
+    public function create(?Operations\CreateSAMLConnectionRequestBody $request = null): Operations\CreateSAMLConnectionResponse
     {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/saml_connections');
@@ -112,12 +112,12 @@ class SAMLConnections
         if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Components\SAMLConnection', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Components\SchemasSAMLConnection', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\CreateSAMLConnectionResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
-                    samlConnection: $obj);
+                    schemasSAMLConnection: $obj);
 
                 return $response;
             } else {
@@ -126,7 +126,7 @@ class SAMLConnections
         } elseif (in_array($statusCode, [402, 403, 422])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors86', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors100', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -147,7 +147,7 @@ class SAMLConnections
      * @return Operations\GetSAMLConnectionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function getSAMLConnection(string $samlConnectionId): Operations\GetSAMLConnectionResponse
+    public function get(string $samlConnectionId): Operations\GetSAMLConnectionResponse
     {
         $request = new Operations\GetSAMLConnectionRequest(
             samlConnectionId: $samlConnectionId,
@@ -167,12 +167,12 @@ class SAMLConnections
         if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Components\SAMLConnection', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Components\SchemasSAMLConnection', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\GetSAMLConnectionResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
-                    samlConnection: $obj);
+                    schemasSAMLConnection: $obj);
 
                 return $response;
             } else {
@@ -181,7 +181,7 @@ class SAMLConnections
         } elseif (in_array($statusCode, [402, 403, 404])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors87', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors101', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -203,7 +203,7 @@ class SAMLConnections
      * @return Operations\UpdateSAMLConnectionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function updateSAMLConnection(Operations\UpdateSAMLConnectionRequestBody $requestBody, string $samlConnectionId): Operations\UpdateSAMLConnectionResponse
+    public function update(Operations\UpdateSAMLConnectionRequestBody $requestBody, string $samlConnectionId): Operations\UpdateSAMLConnectionResponse
     {
         $request = new Operations\UpdateSAMLConnectionRequest(
             samlConnectionId: $samlConnectionId,
@@ -229,12 +229,12 @@ class SAMLConnections
         if ($statusCode == 200) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Components\SAMLConnection', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Components\SchemasSAMLConnection', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\UpdateSAMLConnectionResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
-                    samlConnection: $obj);
+                    schemasSAMLConnection: $obj);
 
                 return $response;
             } else {
@@ -243,7 +243,7 @@ class SAMLConnections
         } elseif (in_array($statusCode, [402, 403, 404, 422])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors88', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors102', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -264,7 +264,7 @@ class SAMLConnections
      * @return Operations\DeleteSAMLConnectionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function deleteSAMLConnection(string $samlConnectionId): Operations\DeleteSAMLConnectionResponse
+    public function delete(string $samlConnectionId): Operations\DeleteSAMLConnectionResponse
     {
         $request = new Operations\DeleteSAMLConnectionRequest(
             samlConnectionId: $samlConnectionId,
@@ -298,7 +298,7 @@ class SAMLConnections
         } elseif (in_array($statusCode, [402, 403, 404])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors89', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors103', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);

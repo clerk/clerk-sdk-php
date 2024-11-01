@@ -11,7 +11,7 @@ namespace Clerk\Backend;
 use Clerk\Backend\Models\Operations;
 use Speakeasy\Serializer\DeserializationContext;
 
-class OAuthApplications
+class OauthApplications
 {
     private SDKConfiguration $sdkConfiguration;
     /**
@@ -30,12 +30,12 @@ class OAuthApplications
      * The OAuth applications are ordered by descending creation date.
      * Most recent OAuth applications will be returned first.
      *
-     * @param  ?float  $limit
-     * @param  ?float  $offset
+     * @param  ?int  $limit
+     * @param  ?int  $offset
      * @return Operations\ListOAuthApplicationsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function listOAuthApplications(?float $limit = null, ?float $offset = null): Operations\ListOAuthApplicationsResponse
+    public function list(?int $limit = null, ?int $offset = null): Operations\ListOAuthApplicationsResponse
     {
         $request = new Operations\ListOAuthApplicationsRequest(
             limit: $limit,
@@ -71,7 +71,7 @@ class OAuthApplications
         } elseif (in_array($statusCode, [400, 403, 422])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors79', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors93', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -94,7 +94,7 @@ class OAuthApplications
      * @return Operations\CreateOAuthApplicationResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function createOAuthApplication(?Operations\CreateOAuthApplicationRequestBody $request = null): Operations\CreateOAuthApplicationResponse
+    public function create(?Operations\CreateOAuthApplicationRequestBody $request = null): Operations\CreateOAuthApplicationResponse
     {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/oauth_applications');
@@ -129,7 +129,7 @@ class OAuthApplications
         } elseif (in_array($statusCode, [400, 403, 422])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors80', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors94', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -150,7 +150,7 @@ class OAuthApplications
      * @return Operations\GetOAuthApplicationResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function getOAuthApplication(string $oauthApplicationId): Operations\GetOAuthApplicationResponse
+    public function get(string $oauthApplicationId): Operations\GetOAuthApplicationResponse
     {
         $request = new Operations\GetOAuthApplicationRequest(
             oauthApplicationId: $oauthApplicationId,
@@ -184,7 +184,7 @@ class OAuthApplications
         } elseif (in_array($statusCode, [403, 404])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors81', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors95', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -206,7 +206,7 @@ class OAuthApplications
      * @return Operations\UpdateOAuthApplicationResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function updateOAuthApplication(Operations\UpdateOAuthApplicationRequestBody $requestBody, string $oauthApplicationId): Operations\UpdateOAuthApplicationResponse
+    public function update(Operations\UpdateOAuthApplicationRequestBody $requestBody, string $oauthApplicationId): Operations\UpdateOAuthApplicationResponse
     {
         $request = new Operations\UpdateOAuthApplicationRequest(
             oauthApplicationId: $oauthApplicationId,
@@ -246,7 +246,7 @@ class OAuthApplications
         } elseif (in_array($statusCode, [403, 404, 422])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors82', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors96', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -268,7 +268,7 @@ class OAuthApplications
      * @return Operations\DeleteOAuthApplicationResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function deleteOAuthApplication(string $oauthApplicationId): Operations\DeleteOAuthApplicationResponse
+    public function delete(string $oauthApplicationId): Operations\DeleteOAuthApplicationResponse
     {
         $request = new Operations\DeleteOAuthApplicationRequest(
             oauthApplicationId: $oauthApplicationId,
@@ -302,7 +302,7 @@ class OAuthApplications
         } elseif (in_array($statusCode, [403, 404])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors83', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors97', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -324,7 +324,7 @@ class OAuthApplications
      * @return Operations\RotateOAuthApplicationSecretResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function rotateOAuthApplicationSecret(string $oauthApplicationId): Operations\RotateOAuthApplicationSecretResponse
+    public function rotateSecret(string $oauthApplicationId): Operations\RotateOAuthApplicationSecretResponse
     {
         $request = new Operations\RotateOAuthApplicationSecretRequest(
             oauthApplicationId: $oauthApplicationId,
@@ -358,7 +358,7 @@ class OAuthApplications
         } elseif (in_array($statusCode, [403, 404])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors84', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors98', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);

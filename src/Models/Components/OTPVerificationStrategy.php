@@ -13,5 +13,11 @@ enum OTPVerificationStrategy: string
 {
     case PhoneCode = 'phone_code';
     case EmailCode = 'email_code';
+    case EmailLink = 'email_link';
     case ResetPasswordEmailCode = 'reset_password_email_code';
+    case FromOauthDiscord = 'from_oauth_discord';
+    case FromOauthGoogle = 'from_oauth_google';
+    case FromOauthApple = 'from_oauth_apple';
+    case FromOauthMicrosoft = 'from_oauth_microsoft';
+    case FromOauthGithub = 'from_oauth_github';
 }

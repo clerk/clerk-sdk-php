@@ -16,10 +16,10 @@ class GetClientListRequest
      *
      * Can be used for paginating the results together with `offset`.
      *
-     * @var ?float $limit
+     * @var ?int $limit
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=limit')]
-    public ?float $limit = null;
+    public ?int $limit = null;
 
     /**
      * Skip the first `offset` results when paginating.
@@ -27,16 +27,16 @@ class GetClientListRequest
      * Needs to be an integer greater or equal to zero.
      * To be used in conjunction with `limit`.
      *
-     * @var ?float $offset
+     * @var ?int $offset
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=offset')]
-    public ?float $offset = null;
+    public ?int $offset = null;
 
     /**
-     * @param  ?float  $limit
-     * @param  ?float  $offset
+     * @param  ?int  $limit
+     * @param  ?int  $offset
      */
-    public function __construct(?float $limit = 10, ?float $offset = 0)
+    public function __construct(?int $limit = 10, ?int $offset = 0)
     {
         $this->limit = $limit;
         $this->offset = $offset;

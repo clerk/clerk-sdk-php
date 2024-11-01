@@ -50,6 +50,14 @@ class OrganizationInvitation
 
     /**
      *
+     * @var ?string $roleName
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('role_name')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $roleName = null;
+
+    /**
+     *
      * @var ?string $organizationId
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('organization_id')]
@@ -65,22 +73,24 @@ class OrganizationInvitation
     public ?string $status = null;
 
     /**
+     * $publicMetadata
      *
-     * @var ?OrganizationInvitationPublicMetadata $publicMetadata
+     * @var ?array<string, mixed> $publicMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationInvitationPublicMetadata|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?OrganizationInvitationPublicMetadata $publicMetadata = null;
+    public ?array $publicMetadata = null;
 
     /**
+     * $privateMetadata
      *
-     * @var ?OrganizationInvitationPrivateMetadata $privateMetadata
+     * @var ?array<string, mixed> $privateMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('private_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationInvitationPrivateMetadata|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?OrganizationInvitationPrivateMetadata $privateMetadata = null;
+    public ?array $privateMetadata = null;
 
     /**
      * Unix timestamp of creation.
@@ -105,19 +115,21 @@ class OrganizationInvitation
      * @param  ?OrganizationInvitationObject  $object
      * @param  ?string  $emailAddress
      * @param  ?string  $role
+     * @param  ?string  $roleName
      * @param  ?string  $organizationId
      * @param  ?string  $status
-     * @param  ?OrganizationInvitationPublicMetadata  $publicMetadata
-     * @param  ?OrganizationInvitationPrivateMetadata  $privateMetadata
+     * @param  ?array<string, mixed>  $publicMetadata
+     * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?int  $createdAt
      * @param  ?int  $updatedAt
      */
-    public function __construct(?string $id = null, ?OrganizationInvitationObject $object = null, ?string $emailAddress = null, ?string $role = null, ?string $organizationId = null, ?string $status = null, ?OrganizationInvitationPublicMetadata $publicMetadata = null, ?OrganizationInvitationPrivateMetadata $privateMetadata = null, ?int $createdAt = null, ?int $updatedAt = null)
+    public function __construct(?string $id = null, ?OrganizationInvitationObject $object = null, ?string $emailAddress = null, ?string $role = null, ?string $roleName = null, ?string $organizationId = null, ?string $status = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?int $createdAt = null, ?int $updatedAt = null)
     {
         $this->id = $id;
         $this->object = $object;
         $this->emailAddress = $emailAddress;
         $this->role = $role;
+        $this->roleName = $roleName;
         $this->organizationId = $organizationId;
         $this->status = $status;
         $this->publicMetadata = $publicMetadata;

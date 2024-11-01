@@ -114,31 +114,34 @@ class User
     public ?bool $hasImage = null;
 
     /**
+     * $publicMetadata
      *
-     * @var ?PublicMetadata $publicMetadata
+     * @var ?array<string, mixed> $publicMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\PublicMetadata|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?PublicMetadata $publicMetadata = null;
+    public ?array $publicMetadata = null;
 
     /**
+     * $privateMetadata
      *
-     * @var ?PrivateMetadata $privateMetadata
+     * @var ?array<string, mixed> $privateMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('private_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\PrivateMetadata|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?PrivateMetadata $privateMetadata = null;
+    public ?array $privateMetadata = null;
 
     /**
+     * $unsafeMetadata
      *
-     * @var ?UnsafeMetadata $unsafeMetadata
+     * @var ?array<string, mixed> $unsafeMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('unsafe_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\UnsafeMetadata|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?UnsafeMetadata $unsafeMetadata = null;
+    public ?array $unsafeMetadata = null;
 
     /**
      * $emailAddresses
@@ -354,6 +357,17 @@ class User
     public ?bool $createOrganizationEnabled = null;
 
     /**
+     * The maximum number of organizations the user can create. 0 means unlimited.
+     *
+     *
+     *
+     * @var ?int $createOrganizationsLimit
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('create_organizations_limit')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $createOrganizationsLimit = null;
+
+    /**
      * Unix timestamp of the latest session activity, with day precision.
      *
      *
@@ -365,13 +379,24 @@ class User
     public ?int $lastActiveAt = null;
 
     /**
+     * Unix timestamp of when the user accepted the legal requirements.
+     *
+     *
+     *
+     * @var ?int $legalAcceptedAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('legal_accepted_at')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $legalAcceptedAt = null;
+
+    /**
      * @param  ?string  $id
      * @param  ?UserObject  $object
      * @param  ?string  $profileImageUrl
      * @param  ?string  $imageUrl
      * @param  ?bool  $hasImage
-     * @param  ?PublicMetadata  $publicMetadata
-     * @param  ?UnsafeMetadata  $unsafeMetadata
+     * @param  ?array<string, mixed>  $publicMetadata
+     * @param  ?array<string, mixed>  $unsafeMetadata
      * @param  ?array<EmailAddress>  $emailAddresses
      * @param  ?array<PhoneNumber>  $phoneNumbers
      * @param  ?array<Web3Wallet>  $web3Wallets
@@ -395,15 +420,17 @@ class User
      * @param  ?string  $username
      * @param  ?string  $firstName
      * @param  ?string  $lastName
-     * @param  ?PrivateMetadata  $privateMetadata
+     * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?int  $mfaEnabledAt
      * @param  ?int  $mfaDisabledAt
      * @param  ?int  $lastSignInAt
      * @param  ?int  $lockoutExpiresInSeconds
      * @param  ?int  $verificationAttemptsRemaining
+     * @param  ?int  $createOrganizationsLimit
      * @param  ?int  $lastActiveAt
+     * @param  ?int  $legalAcceptedAt
      */
-    public function __construct(?string $id = null, ?UserObject $object = null, ?string $profileImageUrl = null, ?string $imageUrl = null, ?bool $hasImage = null, ?PublicMetadata $publicMetadata = null, ?UnsafeMetadata $unsafeMetadata = null, ?array $emailAddresses = null, ?array $phoneNumbers = null, ?array $web3Wallets = null, ?array $passkeys = null, ?bool $passwordEnabled = null, ?bool $twoFactorEnabled = null, ?bool $totpEnabled = null, ?bool $backupCodeEnabled = null, ?array $externalAccounts = null, ?array $samlAccounts = null, ?bool $banned = null, ?bool $locked = null, ?int $updatedAt = null, ?int $createdAt = null, ?bool $deleteSelfEnabled = null, ?bool $createOrganizationEnabled = null, ?string $externalId = null, ?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $username = null, ?string $firstName = null, ?string $lastName = null, ?PrivateMetadata $privateMetadata = null, ?int $mfaEnabledAt = null, ?int $mfaDisabledAt = null, ?int $lastSignInAt = null, ?int $lockoutExpiresInSeconds = null, ?int $verificationAttemptsRemaining = null, ?int $lastActiveAt = null)
+    public function __construct(?string $id = null, ?UserObject $object = null, ?string $profileImageUrl = null, ?string $imageUrl = null, ?bool $hasImage = null, ?array $publicMetadata = null, ?array $unsafeMetadata = null, ?array $emailAddresses = null, ?array $phoneNumbers = null, ?array $web3Wallets = null, ?array $passkeys = null, ?bool $passwordEnabled = null, ?bool $twoFactorEnabled = null, ?bool $totpEnabled = null, ?bool $backupCodeEnabled = null, ?array $externalAccounts = null, ?array $samlAccounts = null, ?bool $banned = null, ?bool $locked = null, ?int $updatedAt = null, ?int $createdAt = null, ?bool $deleteSelfEnabled = null, ?bool $createOrganizationEnabled = null, ?string $externalId = null, ?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $username = null, ?string $firstName = null, ?string $lastName = null, ?array $privateMetadata = null, ?int $mfaEnabledAt = null, ?int $mfaDisabledAt = null, ?int $lastSignInAt = null, ?int $lockoutExpiresInSeconds = null, ?int $verificationAttemptsRemaining = null, ?int $createOrganizationsLimit = null, ?int $lastActiveAt = null, ?int $legalAcceptedAt = null)
     {
         $this->id = $id;
         $this->object = $object;
@@ -441,6 +468,8 @@ class User
         $this->lastSignInAt = $lastSignInAt;
         $this->lockoutExpiresInSeconds = $lockoutExpiresInSeconds;
         $this->verificationAttemptsRemaining = $verificationAttemptsRemaining;
+        $this->createOrganizationsLimit = $createOrganizationsLimit;
         $this->lastActiveAt = $lastActiveAt;
+        $this->legalAcceptedAt = $legalAcceptedAt;
     }
 }

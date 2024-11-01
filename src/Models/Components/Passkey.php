@@ -29,12 +29,12 @@ class Passkey
 
     /**
      *
-     * @var ?VerificationNonce $nonce
+     * @var ?Nonce $nonce
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('nonce')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationNonce|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Nonce|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?VerificationNonce $nonce = null;
+    public ?Nonce $nonce = null;
 
     /**
      *
@@ -55,11 +55,11 @@ class Passkey
     /**
      * @param  PasskeyVerificationStatus  $status
      * @param  PasskeyVerificationStrategy  $strategy
-     * @param  ?VerificationNonce  $nonce
+     * @param  ?Nonce  $nonce
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
      */
-    public function __construct(PasskeyVerificationStatus $status, PasskeyVerificationStrategy $strategy, ?VerificationNonce $nonce = null, ?int $attempts = null, ?int $expireAt = null)
+    public function __construct(PasskeyVerificationStatus $status, PasskeyVerificationStrategy $strategy, ?Nonce $nonce = null, ?int $attempts = null, ?int $expireAt = null)
     {
         $this->status = $status;
         $this->strategy = $strategy;

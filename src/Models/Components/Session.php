@@ -77,6 +77,15 @@ class Session
 
     /**
      *
+     * @var ?LatestActivity $latestActivity
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('latest_activity')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\LatestActivity|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?LatestActivity $latestActivity = null;
+
+    /**
+     *
      * @var int $expireAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('expire_at')]
@@ -122,8 +131,9 @@ class Session
      * @param  int  $createdAt
      * @param  ?Actor  $actor
      * @param  ?string  $lastActiveOrganizationId
+     * @param  ?LatestActivity  $latestActivity
      */
-    public function __construct(SessionObject $object, string $id, string $userId, string $clientId, Status $status, int $lastActiveAt, int $expireAt, int $abandonAt, int $updatedAt, int $createdAt, ?Actor $actor = null, ?string $lastActiveOrganizationId = null)
+    public function __construct(SessionObject $object, string $id, string $userId, string $clientId, Status $status, int $lastActiveAt, int $expireAt, int $abandonAt, int $updatedAt, int $createdAt, ?Actor $actor = null, ?string $lastActiveOrganizationId = null, ?LatestActivity $latestActivity = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -137,5 +147,6 @@ class Session
         $this->createdAt = $createdAt;
         $this->actor = $actor;
         $this->lastActiveOrganizationId = $lastActiveOrganizationId;
+        $this->latestActivity = $latestActivity;
     }
 }

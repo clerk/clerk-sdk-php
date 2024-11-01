@@ -13,5 +13,11 @@ enum OauthVerificationStrategy: string
 {
     case OauthGoogle = 'oauth_google';
     case OauthMock = 'oauth_mock';
-    case OauthCustomMock = 'oauth_custom_mock';
+    case FromOauthGoogle = 'from_oauth_google';
+    case FromOauthDiscord = 'from_oauth_discord';
+    case FromOauthMicrosoft = 'from_oauth_microsoft';
+    case OauthApple = 'oauth_apple';
+    case OauthMicrosoft = 'oauth_microsoft';
+    case OauthGithub = 'oauth_github';
+    case EmailLink = 'email_link';
 }

@@ -10,7 +10,7 @@ namespace Clerk\Backend\Models\Errors;
 
 use Clerk\Backend\Models\Components;
 use Clerk\Backend\Utils;
-/** ClerkErrors36 - Authentication invalid */
+/** ClerkErrors36 - Resource not found */
 class ClerkErrors36
 {
     /**

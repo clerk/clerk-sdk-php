@@ -31,7 +31,7 @@ class Domains
      * @return Operations\ListDomainsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function listDomains(): Operations\ListDomainsResponse
+    public function list(): Operations\ListDomainsResponse
     {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/domains');
@@ -79,7 +79,7 @@ class Domains
      * @return Operations\AddDomainResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function addDomain(?Operations\AddDomainRequestBody $request = null): Operations\AddDomainResponse
+    public function add(?Operations\AddDomainRequestBody $request = null): Operations\AddDomainResponse
     {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/domains');
@@ -114,7 +114,7 @@ class Domains
         } elseif (in_array($statusCode, [400, 402, 422])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors46', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors55', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -136,7 +136,7 @@ class Domains
      * @return Operations\DeleteDomainResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function deleteDomain(string $domainId): Operations\DeleteDomainResponse
+    public function delete(string $domainId): Operations\DeleteDomainResponse
     {
         $request = new Operations\DeleteDomainRequest(
             domainId: $domainId,
@@ -170,7 +170,7 @@ class Domains
         } elseif (in_array($statusCode, [403, 404])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors47', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors56', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -199,7 +199,7 @@ class Domains
      * @return Operations\UpdateDomainResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function updateDomain(Operations\UpdateDomainRequestBody $requestBody, string $domainId): Operations\UpdateDomainResponse
+    public function update(Operations\UpdateDomainRequestBody $requestBody, string $domainId): Operations\UpdateDomainResponse
     {
         $request = new Operations\UpdateDomainRequest(
             domainId: $domainId,
@@ -239,7 +239,7 @@ class Domains
         } elseif (in_array($statusCode, [400, 404, 422])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors48', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors57', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);

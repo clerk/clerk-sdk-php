@@ -121,6 +121,15 @@ class UpdateSAMLConnectionRequestBody
     public ?bool $allowIdpInitiated = null;
 
     /**
+     * Enable or deactivate additional identifications
+     *
+     * @var ?bool $disableAdditionalIdentifications
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('disable_additional_identifications')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $disableAdditionalIdentifications = null;
+
+    /**
      * @param  ?string  $name
      * @param  ?string  $domain
      * @param  ?string  $idpEntityId
@@ -133,8 +142,9 @@ class UpdateSAMLConnectionRequestBody
      * @param  ?bool  $syncUserAttributes
      * @param  ?bool  $allowSubdomains
      * @param  ?bool  $allowIdpInitiated
+     * @param  ?bool  $disableAdditionalIdentifications
      */
-    public function __construct(?string $name = null, ?string $domain = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?UpdateSAMLConnectionAttributeMapping $attributeMapping = null, ?bool $active = null, ?bool $syncUserAttributes = null, ?bool $allowSubdomains = null, ?bool $allowIdpInitiated = null)
+    public function __construct(?string $name = null, ?string $domain = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?UpdateSAMLConnectionAttributeMapping $attributeMapping = null, ?bool $active = null, ?bool $syncUserAttributes = null, ?bool $allowSubdomains = null, ?bool $allowIdpInitiated = null, ?bool $disableAdditionalIdentifications = null)
     {
         $this->name = $name;
         $this->domain = $domain;
@@ -148,5 +158,6 @@ class UpdateSAMLConnectionRequestBody
         $this->syncUserAttributes = $syncUserAttributes;
         $this->allowSubdomains = $allowSubdomains;
         $this->allowIdpInitiated = $allowIdpInitiated;
+        $this->disableAdditionalIdentifications = $disableAdditionalIdentifications;
     }
 }

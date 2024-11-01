@@ -1,22 +1,17 @@
-# JWTTemplates
+# JwtTemplates
 (*jwtTemplates*)
 
 ## Overview
 
-JWT Templates allow you to generate custom authentication tokens
-tied to authenticated sessions, enabling you to integrate with third-party
-services.
-<https://clerk.com/docs/request-authentication/jwt-templates>
-
 ### Available Operations
 
-* [listJWTTemplates](#listjwttemplates) - List all templates
-* [createJWTTemplate](#createjwttemplate) - Create a JWT template
-* [getJWTTemplate](#getjwttemplate) - Retrieve a template
-* [updateJWTTemplate](#updatejwttemplate) - Update a JWT template
-* [deleteJWTTemplate](#deletejwttemplate) - Delete a Template
+* [list](#list) - List all templates
+* [create](#create) - Create a JWT template
+* [get](#get) - Retrieve a template
+* [update](#update) - Update a JWT template
+* [delete](#delete) - Delete a Template
 
-## listJWTTemplates
+## list
 
 List all templates
 
@@ -35,7 +30,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->jwtTemplates->listJWTTemplates(
+$response = $sdk->jwtTemplates->list(
 
 );
 
@@ -54,7 +49,7 @@ if ($response->jwtTemplateList !== null) {
 | ------------------- | ------------------- | ------------------- |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## createJWTTemplate
+## create
 
 Create a new JWT template
 
@@ -74,7 +69,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $request = new Operations\CreateJWTTemplateRequestBody();
 
-$response = $sdk->jwtTemplates->createJWTTemplate(
+$response = $sdk->jwtTemplates->create(
     request: $request
 );
 
@@ -97,10 +92,10 @@ if ($response->jwtTemplate !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors53 | 400, 402, 422        | application/json     |
+| Errors\ClerkErrors63 | 400, 402, 422        | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## getJWTTemplate
+## get
 
 Retrieve the details of a given JWT template
 
@@ -119,7 +114,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->jwtTemplates->getJWTTemplate(
+$response = $sdk->jwtTemplates->get(
     templateId: '<id>'
 );
 
@@ -142,10 +137,10 @@ if ($response->jwtTemplate !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors54 | 404                  | application/json     |
+| Errors\ClerkErrors64 | 404                  | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## updateJWTTemplate
+## update
 
 Updates an existing JWT template
 
@@ -165,7 +160,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $requestBody = new Operations\UpdateJWTTemplateRequestBody();
 
-$response = $sdk->jwtTemplates->updateJWTTemplate(
+$response = $sdk->jwtTemplates->update(
     templateId: '<id>',
     requestBody: $requestBody
 
@@ -191,10 +186,10 @@ if ($response->jwtTemplate !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors55 | 400, 402, 422        | application/json     |
+| Errors\ClerkErrors65 | 400, 402, 422        | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## deleteJWTTemplate
+## delete
 
 Delete a Template
 
@@ -213,7 +208,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->jwtTemplates->deleteJWTTemplate(
+$response = $sdk->jwtTemplates->delete(
     templateId: '<id>'
 );
 
@@ -236,5 +231,5 @@ if ($response->deletedObject !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors56 | 403, 404             | application/json     |
+| Errors\ClerkErrors66 | 403, 404             | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |

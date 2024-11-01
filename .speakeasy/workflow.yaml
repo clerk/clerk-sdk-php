@@ -1,15 +1,19 @@
 workflowVersion: 1.0.0
 speakeasyVersion: latest
 sources:
-    backend-php:
+    clerk-openapi:
         inputs:
-            - location: ./openapi.json
+            - location: https://raw.githubusercontent.com/clerk/openapi-specs/refs/heads/main/bapi/2021-02-05.yml
+        overlays:
+            - location: ./.speakeasy/fixes.yaml
+            - location: .speakeasy/speakeasy-modifications-overlay.yaml
         registry:
             location: registry.speakeasyapi.dev/clerk/clerk/clerk-openapi
 targets:
     clerk-php:
         target: php
-        source: backend-php
+        source: clerk-openapi
+        output: .
         publish:
             packagist:
                 username: clerkinc

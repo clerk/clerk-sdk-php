@@ -11,5 +11,8 @@ namespace Clerk\Backend\Models\Components;
 
 enum Web3SignatureVerificationStatus: string
 {
+    case Unverified = 'unverified';
     case Verified = 'verified';
+    case Failed = 'failed';
+    case Expired = 'expired';
 }

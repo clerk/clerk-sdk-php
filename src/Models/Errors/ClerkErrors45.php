@@ -10,7 +10,7 @@ namespace Clerk\Backend\Models\Errors;
 
 use Clerk\Backend\Models\Components;
 use Clerk\Backend\Utils;
-/** ClerkErrors45 - Request was not successful */
+/** ClerkErrors45 - Authentication invalid */
 class ClerkErrors45
 {
     /**

@@ -1,6 +1,6 @@
 # ClerkErrors80
 
-Request was not successful
+Authentication invalid
 
 
 ## Fields

@@ -31,7 +31,7 @@ class EmailAddresses
      * @return Operations\CreateEmailAddressResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function createEmailAddress(?Operations\CreateEmailAddressRequestBody $request = null): Operations\CreateEmailAddressResponse
+    public function create(?Operations\CreateEmailAddressRequestBody $request = null): Operations\CreateEmailAddressResponse
     {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/email_addresses');
@@ -87,7 +87,7 @@ class EmailAddresses
      * @return Operations\GetEmailAddressResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function getEmailAddress(string $emailAddressId): Operations\GetEmailAddressResponse
+    public function get(string $emailAddressId): Operations\GetEmailAddressResponse
     {
         $request = new Operations\GetEmailAddressRequest(
             emailAddressId: $emailAddressId,
@@ -142,7 +142,7 @@ class EmailAddresses
      * @return Operations\DeleteEmailAddressResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function deleteEmailAddress(string $emailAddressId): Operations\DeleteEmailAddressResponse
+    public function delete(string $emailAddressId): Operations\DeleteEmailAddressResponse
     {
         $request = new Operations\DeleteEmailAddressRequest(
             emailAddressId: $emailAddressId,
@@ -198,7 +198,7 @@ class EmailAddresses
      * @return Operations\UpdateEmailAddressResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function updateEmailAddress(string $emailAddressId, ?Operations\UpdateEmailAddressRequestBody $requestBody = null): Operations\UpdateEmailAddressResponse
+    public function update(string $emailAddressId, ?Operations\UpdateEmailAddressRequestBody $requestBody = null): Operations\UpdateEmailAddressResponse
     {
         $request = new Operations\UpdateEmailAddressRequest(
             emailAddressId: $emailAddressId,

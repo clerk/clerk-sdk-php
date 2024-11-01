@@ -7,12 +7,12 @@ Domains represent each instance's URLs and DNS setup.
 
 ### Available Operations
 
-* [listDomains](#listdomains) - List all instance domains
-* [addDomain](#adddomain) - Add a domain
-* [deleteDomain](#deletedomain) - Delete a satellite domain
-* [updateDomain](#updatedomain) - Update a domain
+* [list](#list) - List all instance domains
+* [add](#add) - Add a domain
+* [delete](#delete) - Delete a satellite domain
+* [update](#update) - Update a domain
 
-## listDomains
+## list
 
 Use this endpoint to get a list of all domains for an instance.
 The response will contain the primary domain for the instance and any satellite domains. Each domain in the response contains information about the URLs where Clerk operates and the required CNAME targets.
@@ -32,7 +32,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->domains->listDomains(
+$response = $sdk->domains->list(
 
 );
 
@@ -51,7 +51,7 @@ if ($response->domains !== null) {
 | ------------------- | ------------------- | ------------------- |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## addDomain
+## add
 
 Add a new domain for your instance.
 Useful in the case of multi-domain instances, allows adding satellite domains to an instance.
@@ -78,7 +78,7 @@ $request = new Operations\AddDomainRequestBody(
     isSatellite: false,
 );
 
-$response = $sdk->domains->addDomain(
+$response = $sdk->domains->add(
     request: $request
 );
 
@@ -101,10 +101,10 @@ if ($response->domain !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors46 | 400, 402, 422        | application/json     |
+| Errors\ClerkErrors55 | 400, 402, 422        | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## deleteDomain
+## delete
 
 Deletes a satellite domain for the instance.
 It is currently not possible to delete the instance's primary domain.
@@ -124,7 +124,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->domains->deleteDomain(
+$response = $sdk->domains->delete(
     domainId: '<id>'
 );
 
@@ -147,10 +147,10 @@ if ($response->deletedObject !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors47 | 403, 404             | application/json     |
+| Errors\ClerkErrors56 | 403, 404             | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## updateDomain
+## update
 
 The `proxy_url` can be updated only for production instances.
 Update one of the instance's domains. Both primary and satellite domains can be updated.
@@ -177,7 +177,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $requestBody = new Operations\UpdateDomainRequestBody();
 
-$response = $sdk->domains->updateDomain(
+$response = $sdk->domains->update(
     domainId: '<id>',
     requestBody: $requestBody
 
@@ -203,5 +203,5 @@ if ($response->domain !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors48 | 400, 404, 422        | application/json     |
+| Errors\ClerkErrors57 | 400, 404, 422        | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |

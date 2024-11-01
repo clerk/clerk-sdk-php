@@ -8,16 +8,16 @@ Organizations are used to group members under a common entity and provide shared
 
 ### Available Operations
 
-* [listOrganizations](#listorganizations) - Get a list of organizations for an instance
-* [createOrganization](#createorganization) - Create an organization
-* [getOrganization](#getorganization) - Retrieve an organization by ID or slug
-* [updateOrganization](#updateorganization) - Update an organization
-* [deleteOrganization](#deleteorganization) - Delete an organization
-* [mergeOrganizationMetadata](#mergeorganizationmetadata) - Merge and update metadata for an organization
-* [uploadOrganizationLogo](#uploadorganizationlogo) - Upload a logo for the organization
-* [deleteOrganizationLogo](#deleteorganizationlogo) - Delete the organization's logo.
+* [list](#list) - Get a list of organizations for an instance
+* [create](#create) - Create an organization
+* [get](#get) - Retrieve an organization by ID or slug
+* [update](#update) - Update an organization
+* [delete](#delete) - Delete an organization
+* [mergeMetadata](#mergemetadata) - Merge and update metadata for an organization
+* [uploadLogo](#uploadlogo) - Upload a logo for the organization
+* [deleteLogo](#deletelogo) - Delete the organization's logo.
 
-## listOrganizations
+## list
 
 This request returns the list of organizations for an instance.
 Results can be paginated using the optional `limit` and `offset` query parameters.
@@ -40,7 +40,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $request = new Operations\ListOrganizationsRequest();
 
-$response = $sdk->organizations->listOrganizations(
+$response = $sdk->organizations->list(
     request: $request
 );
 
@@ -63,10 +63,10 @@ if ($response->organizations !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors57 | 400, 403, 422        | application/json     |
+| Errors\ClerkErrors67 | 400, 403, 422        | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## createOrganization
+## create
 
 Creates a new organization with the given name for an instance.
 In order to successfully create an organization you need to provide the ID of the User who will become the organization administrator.
@@ -77,6 +77,8 @@ You can provide additional metadata for the organization and set any custom attr
 Organizations support private and public metadata.
 Private metadata can only be accessed from the Backend API.
 Public metadata can be accessed from the Backend API, and are read-only from the Frontend API.
+The `created_by` user will see this as their [active organization] (https://clerk.com/docs/organizations/overview#active-organization)
+the next time they create a session, presuming they don't explicitly set a different organization as active before then.
 
 ### Example Usage
 
@@ -97,7 +99,7 @@ $request = new Operations\CreateOrganizationRequestBody(
     createdBy: '<value>',
 );
 
-$response = $sdk->organizations->createOrganization(
+$response = $sdk->organizations->create(
     request: $request
 );
 
@@ -120,10 +122,10 @@ if ($response->organization !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors58 | 400, 403, 422        | application/json     |
+| Errors\ClerkErrors68 | 400, 403, 422        | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## getOrganization
+## get
 
 Fetches the organization whose ID or slug matches the provided `id_or_slug` URL query parameter.
 
@@ -142,8 +144,10 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->organizations->getOrganization(
-    organizationId: '<id>'
+$response = $sdk->organizations->get(
+    organizationId: '<id>',
+    includeMembersCount: false
+
 );
 
 if ($response->organization !== null) {
@@ -153,9 +157,10 @@ if ($response->organization !== null) {
 
 ### Parameters
 
-| Parameter                          | Type                               | Required                           | Description                        |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| `organizationId`                   | *string*                           | :heavy_check_mark:                 | The ID or slug of the organization |
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `organizationId`                                                                                   | *string*                                                                                           | :heavy_check_mark:                                                                                 | The ID or slug of the organization                                                                 |
+| `includeMembersCount`                                                                              | *?bool*                                                                                            | :heavy_minus_sign:                                                                                 | Flag to denote whether or not the organization's members count should be included in the response. |
 
 ### Response
 
@@ -165,10 +170,10 @@ if ($response->organization !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors59 | 403, 404             | application/json     |
+| Errors\ClerkErrors69 | 403, 404             | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## updateOrganization
+## update
 
 Updates an existing organization
 
@@ -188,7 +193,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $requestBody = new Operations\UpdateOrganizationRequestBody();
 
-$response = $sdk->organizations->updateOrganization(
+$response = $sdk->organizations->update(
     organizationId: '<id>',
     requestBody: $requestBody
 
@@ -214,10 +219,10 @@ if ($response->organization !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors60 | 402, 404, 422        | application/json     |
+| Errors\ClerkErrors70 | 402, 404, 422        | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## deleteOrganization
+## delete
 
 Deletes the given organization.
 Please note that deleting an organization will also delete all memberships and invitations.
@@ -238,7 +243,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->organizations->deleteOrganization(
+$response = $sdk->organizations->delete(
     organizationId: '<id>'
 );
 
@@ -261,10 +266,10 @@ if ($response->deletedObject !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors61 | 404                  | application/json     |
+| Errors\ClerkErrors71 | 404                  | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## mergeOrganizationMetadata
+## mergeMetadata
 
 Update organization metadata attributes by merging existing values with the provided parameters.
 Metadata values will be updated via a deep merge.
@@ -287,7 +292,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $requestBody = new Operations\MergeOrganizationMetadataRequestBody();
 
-$response = $sdk->organizations->mergeOrganizationMetadata(
+$response = $sdk->organizations->mergeMetadata(
     organizationId: '<id>',
     requestBody: $requestBody
 
@@ -313,10 +318,10 @@ if ($response->organization !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors61 | 400, 401, 404, 422   | application/json     |
+| Errors\ClerkErrors71 | 400, 401, 404, 422   | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## uploadOrganizationLogo
+## uploadLogo
 
 Set or replace an organization's logo, by uploading an image file.
 This endpoint uses the `multipart/form-data` request content type and accepts a file of image type.
@@ -338,14 +343,13 @@ $security = '<YOUR_BEARER_TOKEN_HERE>';
 $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $requestBody = new Operations\UploadOrganizationLogoRequestBody(
-    uploaderUserId: '<id>',
     file: new Operations\UploadOrganizationLogoFile(
         fileName: 'example.file',
-        content: '0xd99deAb77d',
+        content: '0x0DDEE4e6Ea',
     ),
 );
 
-$response = $sdk->organizations->uploadOrganizationLogo(
+$response = $sdk->organizations->uploadLogo(
     organizationId: '<id>',
     requestBody: $requestBody
 
@@ -371,10 +375,10 @@ if ($response->organizationWithLogo !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors62 | 400, 403, 404, 413   | application/json     |
+| Errors\ClerkErrors72 | 400, 403, 404, 413   | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |
 
-## deleteOrganizationLogo
+## deleteLogo
 
 Delete the organization's logo.
 
@@ -393,7 +397,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->organizations->deleteOrganizationLogo(
+$response = $sdk->organizations->deleteLogo(
     organizationId: '<id>'
 );
 
@@ -416,5 +420,5 @@ if ($response->organization !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors63 | 404                  | application/json     |
+| Errors\ClerkErrors73 | 404                  | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |

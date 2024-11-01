@@ -23,6 +23,64 @@ class OrganizationInvitations
     }
 
     /**
+     * Get a list of organization invitations for the current instance
+     *
+     * This request returns the list of organization invitations for the instance.
+     * Results can be paginated using the optional `limit` and `offset` query parameters.
+     * You can filter them by providing the 'status' query parameter, that accepts multiple values.
+     * You can change the order by providing the 'order' query parameter, that accepts multiple values.
+     * You can filter by the invited user email address providing the `query` query parameter.
+     * The organization invitations are ordered by descending creation date by default.
+     *
+     * @param  ?Operations\ListInstanceOrganizationInvitationsRequest  $request
+     * @return Operations\ListInstanceOrganizationInvitationsResponse
+     * @throws \Clerk\Backend\Models\Errors\SDKException
+     */
+    public function getAll(?Operations\ListInstanceOrganizationInvitationsRequest $request = null): Operations\ListInstanceOrganizationInvitationsResponse
+    {
+        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/organization_invitations');
+        $options = ['http_errors' => false];
+        $options = array_merge_recursive($options, Utils\Utils::getQueryParams(Operations\ListInstanceOrganizationInvitationsRequest::class, $request));
+        $options['headers']['Accept'] = 'application/json';
+        $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+
+
+        $httpResponse = $this->sdkConfiguration->securityClient->send($httpRequest, $options);
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $statusCode = $httpResponse->getStatusCode();
+        if ($statusCode == 200) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Components\OrganizationInvitationsWithPublicOrganizationData', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\ListInstanceOrganizationInvitationsResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    organizationInvitationsWithPublicOrganizationData: $obj);
+
+                return $response;
+            } else {
+                throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (in_array($statusCode, [400, 404, 422, 500])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $serializer = Utils\JSON::createSerializer();
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors44', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif ($statusCode >= 400 && $statusCode < 500 || $statusCode >= 500 && $statusCode < 600) {
+            throw new \Clerk\Backend\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } else {
+            throw new \Clerk\Backend\Models\Errors\SDKException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        }
+    }
+
+    /**
      * Create and send an organization invitation
      *
      * Creates a new organization invitation and sends an email to the provided `email_address` with a link to accept the invitation and join the organization.
@@ -34,7 +92,7 @@ class OrganizationInvitations
      * When the invited user clicks the link to accept the invitation, they will be redirected to the URL provided.
      * Use this parameter to implement a custom invitation acceptance flow.
      *
-     * You must specify the ID of the user that will send the invitation with the `inviter_user_id` parameter.
+     * You can specify the ID of the user that will send the invitation with the `inviter_user_id` parameter.
      * That user must be a member with administrator privileges in the organization.
      * Only "admin" members can create organization invitations.
      *
@@ -47,7 +105,7 @@ class OrganizationInvitations
      * @return Operations\CreateOrganizationInvitationResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function createOrganizationInvitation(Operations\CreateOrganizationInvitationRequestBody $requestBody, string $organizationId): Operations\CreateOrganizationInvitationResponse
+    public function create(Operations\CreateOrganizationInvitationRequestBody $requestBody, string $organizationId): Operations\CreateOrganizationInvitationResponse
     {
         $request = new Operations\CreateOrganizationInvitationRequest(
             organizationId: $organizationId,
@@ -87,7 +145,7 @@ class OrganizationInvitations
         } elseif (in_array($statusCode, [400, 403, 404, 422])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors63', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors73', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -110,13 +168,13 @@ class OrganizationInvitations
      * Any invitations created as a result of an Organization Domain are not included in the results.
      *
      * @param  string  $organizationId
-     * @param  ?float  $limit
-     * @param  ?float  $offset
+     * @param  ?int  $limit
+     * @param  ?int  $offset
      * @param  ?Operations\ListOrganizationInvitationsQueryParamStatus  $status
      * @return Operations\ListOrganizationInvitationsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function listOrganizationInvitations(string $organizationId, ?float $limit = null, ?float $offset = null, ?Operations\ListOrganizationInvitationsQueryParamStatus $status = null): Operations\ListOrganizationInvitationsResponse
+    public function list(string $organizationId, ?int $limit = null, ?int $offset = null, ?Operations\ListOrganizationInvitationsQueryParamStatus $status = null): Operations\ListOrganizationInvitationsResponse
     {
         $request = new Operations\ListOrganizationInvitationsRequest(
             organizationId: $organizationId,
@@ -154,7 +212,7 @@ class OrganizationInvitations
         } elseif (in_array($statusCode, [400, 404])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors64', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors74', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -175,7 +233,7 @@ class OrganizationInvitations
      * The request body supports passing an optional `redirect_url` parameter for each invitation.
      * When the invited user clicks the link to accept the invitation, they will be redirected to the provided URL.
      * Use this parameter to implement a custom invitation acceptance flow.
-     * You must specify the ID of the user that will send the invitation with the `inviter_user_id` parameter. Each invitation
+     * You can specify the ID of the user that will send the invitation with the `inviter_user_id` parameter. Each invitation
      * can have a different inviter user.
      * Inviter users must be members with administrator privileges in the organization.
      * Only "admin" members can create organization invitations.
@@ -188,7 +246,7 @@ class OrganizationInvitations
      * @return Operations\CreateOrganizationInvitationBulkResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function createOrganizationInvitationBulk(array $requestBody, string $organizationId): Operations\CreateOrganizationInvitationBulkResponse
+    public function bulkCreate(array $requestBody, string $organizationId): Operations\CreateOrganizationInvitationBulkResponse
     {
         $request = new Operations\CreateOrganizationInvitationBulkRequest(
             organizationId: $organizationId,
@@ -228,7 +286,7 @@ class OrganizationInvitations
         } elseif (in_array($statusCode, [400, 403, 404, 422])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors65', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors75', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -251,13 +309,13 @@ class OrganizationInvitations
      * Any invitations created as a result of an Organization Domain are not included in the results.
      *
      * @param  string  $organizationId
-     * @param  ?float  $limit
-     * @param  ?float  $offset
+     * @param  ?int  $limit
+     * @param  ?int  $offset
      * @return Operations\ListPendingOrganizationInvitationsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    public function listPendingOrganizationInvitations(string $organizationId, ?float $limit = null, ?float $offset = null): Operations\ListPendingOrganizationInvitationsResponse
+    public function listPending(string $organizationId, ?int $limit = null, ?int $offset = null): Operations\ListPendingOrganizationInvitationsResponse
     {
         trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
         $request = new Operations\ListPendingOrganizationInvitationsRequest(
@@ -295,7 +353,7 @@ class OrganizationInvitations
         } elseif (in_array($statusCode, [400, 404])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors66', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors76', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -317,7 +375,7 @@ class OrganizationInvitations
      * @return Operations\GetOrganizationInvitationResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function getOrganizationInvitation(string $organizationId, string $invitationId): Operations\GetOrganizationInvitationResponse
+    public function get(string $organizationId, string $invitationId): Operations\GetOrganizationInvitationResponse
     {
         $request = new Operations\GetOrganizationInvitationRequest(
             organizationId: $organizationId,
@@ -352,7 +410,7 @@ class OrganizationInvitations
         } elseif (in_array($statusCode, [400, 403, 404])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors67', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors77', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -370,16 +428,16 @@ class OrganizationInvitations
      * Use this request to revoke a previously issued organization invitation.
      * Revoking an organization invitation makes it invalid; the invited user will no longer be able to join the organization with the revoked invitation.
      * Only organization invitations with "pending" status can be revoked.
-     * The request needs the `requesting_user_id` parameter to specify the user which revokes the invitation.
+     * The request accepts the `requesting_user_id` parameter to specify the user which revokes the invitation.
      * Only users with "admin" role can revoke invitations.
      *
-     * @param  Operations\RevokeOrganizationInvitationRequestBody  $requestBody
      * @param  string  $organizationId
      * @param  string  $invitationId
+     * @param  ?Operations\RevokeOrganizationInvitationRequestBody  $requestBody
      * @return Operations\RevokeOrganizationInvitationResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function revokeOrganizationInvitation(Operations\RevokeOrganizationInvitationRequestBody $requestBody, string $organizationId, string $invitationId): Operations\RevokeOrganizationInvitationResponse
+    public function revoke(string $organizationId, string $invitationId, ?Operations\RevokeOrganizationInvitationRequestBody $requestBody = null): Operations\RevokeOrganizationInvitationResponse
     {
         $request = new Operations\RevokeOrganizationInvitationRequest(
             organizationId: $organizationId,
@@ -390,10 +448,9 @@ class OrganizationInvitations
         $url = Utils\Utils::generateUrl($baseUrl, '/organizations/{organization_id}/invitations/{invitation_id}/revoke', Operations\RevokeOrganizationInvitationRequest::class, $request);
         $options = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
-        if ($body === null) {
-            throw new \Exception('Request body is required');
+        if ($body !== null) {
+            $options = array_merge_recursive($options, $body);
         }
-        $options = array_merge_recursive($options, $body);
         $options['headers']['Accept'] = 'application/json';
         $options['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
@@ -420,7 +477,7 @@ class OrganizationInvitations
         } elseif (in_array($statusCode, [400, 403, 404])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors68', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors78', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);

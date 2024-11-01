@@ -16,15 +16,16 @@ class RevokeOrganizationInvitationRequestBody
      *
      * Must be an administrator in the organization.
      *
-     * @var string $requestingUserId
+     * @var ?string $requestingUserId
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('requesting_user_id')]
-    public string $requestingUserId;
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $requestingUserId = null;
 
     /**
-     * @param  string  $requestingUserId
+     * @param  ?string  $requestingUserId
      */
-    public function __construct(string $requestingUserId)
+    public function __construct(?string $requestingUserId = null)
     {
         $this->requestingUserId = $requestingUserId;
     }

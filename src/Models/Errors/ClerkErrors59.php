@@ -10,7 +10,7 @@ namespace Clerk\Backend\Models\Errors;
 
 use Clerk\Backend\Models\Components;
 use Clerk\Backend\Utils;
-/** ClerkErrors59 - Authorization invalid */
+/** ClerkErrors59 - Payment required */
 class ClerkErrors59
 {
     /**

@@ -16,10 +16,10 @@ class ListOrganizationsRequest
      *
      * Can be used for paginating the results together with `offset`.
      *
-     * @var ?float $limit
+     * @var ?int $limit
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=limit')]
-    public ?float $limit = null;
+    public ?int $limit = null;
 
     /**
      * Skip the first `offset` results when paginating.
@@ -27,10 +27,10 @@ class ListOrganizationsRequest
      * Needs to be an integer greater or equal to zero.
      * To be used in conjunction with `limit`.
      *
-     * @var ?float $offset
+     * @var ?int $offset
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=offset')]
-    public ?float $offset = null;
+    public ?int $offset = null;
 
     /**
      * Flag to denote whether the member counts of each organization should be included in the response or not.
@@ -65,13 +65,13 @@ class ListOrganizationsRequest
     public ?string $orderBy = null;
 
     /**
-     * @param  ?float  $limit
-     * @param  ?float  $offset
+     * @param  ?int  $limit
+     * @param  ?int  $offset
      * @param  ?bool  $includeMembersCount
      * @param  ?string  $query
      * @param  ?string  $orderBy
      */
-    public function __construct(?bool $includeMembersCount = null, ?string $query = null, ?float $limit = 10, ?float $offset = 0, ?string $orderBy = '-created_at')
+    public function __construct(?bool $includeMembersCount = null, ?string $query = null, ?int $limit = 10, ?int $offset = 0, ?string $orderBy = '-created_at')
     {
         $this->limit = $limit;
         $this->offset = $offset;

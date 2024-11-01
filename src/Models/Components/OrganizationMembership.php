@@ -41,6 +41,14 @@ class OrganizationMembership
     public ?string $role = null;
 
     /**
+     *
+     * @var ?string $roleName
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('role_name')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $roleName = null;
+
+    /**
      * $permissions
      *
      * @var ?array<string> $permissions
@@ -53,22 +61,22 @@ class OrganizationMembership
     /**
      * Metadata saved on the organization membership, accessible from both Frontend and Backend APIs
      *
-     * @var ?OrganizationMembershipPublicMetadata $publicMetadata
+     * @var ?array<string, mixed> $publicMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationMembershipPublicMetadata|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?OrganizationMembershipPublicMetadata $publicMetadata = null;
+    public ?array $publicMetadata = null;
 
     /**
      * Metadata saved on the organization membership, accessible only from the Backend API
      *
-     * @var ?OrganizationMembershipPrivateMetadata $privateMetadata
+     * @var ?array<string, mixed> $privateMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('private_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationMembershipPrivateMetadata|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?OrganizationMembershipPrivateMetadata $privateMetadata = null;
+    public ?array $privateMetadata = null;
 
     /**
      *
@@ -110,19 +118,21 @@ class OrganizationMembership
      * @param  ?string  $id
      * @param  ?OrganizationMembershipObject  $object
      * @param  ?string  $role
+     * @param  ?string  $roleName
      * @param  ?array<string>  $permissions
-     * @param  ?OrganizationMembershipPublicMetadata  $publicMetadata
-     * @param  ?OrganizationMembershipPrivateMetadata  $privateMetadata
+     * @param  ?array<string, mixed>  $publicMetadata
+     * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?OrganizationMembershipOrganization  $organization
      * @param  ?PublicUserData  $publicUserData
      * @param  ?int  $createdAt
      * @param  ?int  $updatedAt
      */
-    public function __construct(?string $id = null, ?OrganizationMembershipObject $object = null, ?string $role = null, ?array $permissions = null, ?OrganizationMembershipPublicMetadata $publicMetadata = null, ?OrganizationMembershipPrivateMetadata $privateMetadata = null, ?OrganizationMembershipOrganization $organization = null, ?PublicUserData $publicUserData = null, ?int $createdAt = null, ?int $updatedAt = null)
+    public function __construct(?string $id = null, ?OrganizationMembershipObject $object = null, ?string $role = null, ?string $roleName = null, ?array $permissions = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?OrganizationMembershipOrganization $organization = null, ?PublicUserData $publicUserData = null, ?int $createdAt = null, ?int $updatedAt = null)
     {
         $this->id = $id;
         $this->object = $object;
         $this->role = $role;
+        $this->roleName = $roleName;
         $this->permissions = $permissions;
         $this->publicMetadata = $publicMetadata;
         $this->privateMetadata = $privateMetadata;

@@ -3,17 +3,14 @@
 
 ## Overview
 
-A user can be associated with one or more email addresses, which allows them to be contacted via email.
-<https://clerk.com/docs/reference/clerkjs/emailaddress>
-
 ### Available Operations
 
-* [createEmailAddress](#createemailaddress) - Create an email address
-* [getEmailAddress](#getemailaddress) - Retrieve an email address
-* [deleteEmailAddress](#deleteemailaddress) - Delete an email address
-* [updateEmailAddress](#updateemailaddress) - Update an email address
+* [create](#create) - Create an email address
+* [get](#get) - Retrieve an email address
+* [delete](#delete) - Delete an email address
+* [update](#update) - Update an email address
 
-## createEmailAddress
+## create
 
 Create a new email address
 
@@ -33,7 +30,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $request = new Operations\CreateEmailAddressRequestBody();
 
-$response = $sdk->emailAddresses->createEmailAddress(
+$response = $sdk->emailAddresses->create(
     request: $request
 );
 
@@ -59,7 +56,7 @@ if ($response->emailAddress !== null) {
 | Errors\ClerkErrors3     | 400, 401, 403, 404, 422 | application/json        |
 | Errors\SDKException     | 4XX, 5XX                | \*/\*                   |
 
-## getEmailAddress
+## get
 
 Returns the details of an email address.
 
@@ -78,7 +75,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->emailAddresses->getEmailAddress(
+$response = $sdk->emailAddresses->get(
     emailAddressId: '<id>'
 );
 
@@ -104,7 +101,7 @@ if ($response->emailAddress !== null) {
 | Errors\ClerkErrors4 | 400, 401, 403, 404  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## deleteEmailAddress
+## delete
 
 Delete the email address with the given ID
 
@@ -123,7 +120,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->emailAddresses->deleteEmailAddress(
+$response = $sdk->emailAddresses->delete(
     emailAddressId: '<id>'
 );
 
@@ -149,7 +146,7 @@ if ($response->deletedObject !== null) {
 | Errors\ClerkErrors5 | 400, 401, 403, 404  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## updateEmailAddress
+## update
 
 Updates an email address.
 
@@ -169,7 +166,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $requestBody = new Operations\UpdateEmailAddressRequestBody();
 
-$response = $sdk->emailAddresses->updateEmailAddress(
+$response = $sdk->emailAddresses->update(
     emailAddressId: '<id>',
     requestBody: $requestBody
 

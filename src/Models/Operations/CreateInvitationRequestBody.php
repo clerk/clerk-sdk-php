@@ -26,12 +26,12 @@ class CreateInvitationRequestBody
      * The value of this property should be a well-formed JSON object.
      * Once the user accepts the invitation and signs up, these metadata will end up in the user's public metadata.
      *
-     * @var ?CreateInvitationPublicMetadata $publicMetadata
+     * @var ?array<string, mixed> $publicMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\CreateInvitationPublicMetadata|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?CreateInvitationPublicMetadata $publicMetadata = null;
+    public ?array $publicMetadata = null;
 
     /**
      * Optional URL which specifies where to redirect the user once they click the invitation link.
@@ -65,18 +65,29 @@ class CreateInvitationRequestBody
     public ?bool $ignoreExisting = null;
 
     /**
+     * The number of days the invitation will be valid for. By default, the invitation does not expire.
+     *
+     * @var ?int $expiresInDays
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('expires_in_days')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $expiresInDays = null;
+
+    /**
      * @param  string  $emailAddress
-     * @param  ?CreateInvitationPublicMetadata  $publicMetadata
+     * @param  ?array<string, mixed>  $publicMetadata
      * @param  ?string  $redirectUrl
      * @param  ?bool  $notify
      * @param  ?bool  $ignoreExisting
+     * @param  ?int  $expiresInDays
      */
-    public function __construct(string $emailAddress, ?CreateInvitationPublicMetadata $publicMetadata = null, ?string $redirectUrl = null, ?bool $notify = true, ?bool $ignoreExisting = false)
+    public function __construct(string $emailAddress, ?array $publicMetadata = null, ?string $redirectUrl = null, ?int $expiresInDays = null, ?bool $notify = true, ?bool $ignoreExisting = false)
     {
         $this->emailAddress = $emailAddress;
         $this->publicMetadata = $publicMetadata;
         $this->redirectUrl = $redirectUrl;
         $this->notify = $notify;
         $this->ignoreExisting = $ignoreExisting;
+        $this->expiresInDays = $expiresInDays;
     }
 }

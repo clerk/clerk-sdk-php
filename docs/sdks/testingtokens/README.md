@@ -3,14 +3,11 @@
 
 ## Overview
 
-Tokens meant for use by end-to-end test suites in requests to the Frontend API, so as to bypass bot detection measures.
-<https://clerk.com/docs/testing/overview#testing-tokens>
-
 ### Available Operations
 
-* [createTestingToken](#createtestingtoken) - Retrieve a new testing token
+* [create](#create) - Retrieve a new testing token
 
-## createTestingToken
+## create
 
 Retrieve a new testing token. Only available for development instances.
 
@@ -29,7 +26,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->testingTokens->createTestingToken(
+$response = $sdk->testingTokens->create(
 
 );
 

@@ -64,20 +64,22 @@ class Organization
     public ?bool $adminDeleteEnabled = null;
 
     /**
+     * $publicMetadata
      *
-     * @var OrganizationPublicMetadata $publicMetadata
+     * @var array<string, mixed> $publicMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationPublicMetadata')]
-    public OrganizationPublicMetadata $publicMetadata;
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
+    public array $publicMetadata;
 
     /**
+     * $privateMetadata
      *
-     * @var OrganizationPrivateMetadata $privateMetadata
+     * @var array<string, mixed> $privateMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('private_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationPrivateMetadata')]
-    public OrganizationPrivateMetadata $privateMetadata;
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
+    public array $privateMetadata;
 
     /**
      *
@@ -113,15 +115,15 @@ class Organization
      * @param  string  $name
      * @param  string  $slug
      * @param  int  $maxAllowedMemberships
-     * @param  OrganizationPublicMetadata  $publicMetadata
-     * @param  OrganizationPrivateMetadata  $privateMetadata
+     * @param  array<string, mixed>  $publicMetadata
+     * @param  array<string, mixed>  $privateMetadata
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  ?bool  $adminDeleteEnabled
      * @param  ?string  $createdBy
      * @param  ?int  $membersCount
      */
-    public function __construct(OrganizationObject $object, string $id, string $name, string $slug, int $maxAllowedMemberships, OrganizationPublicMetadata $publicMetadata, OrganizationPrivateMetadata $privateMetadata, int $createdAt, int $updatedAt, ?bool $adminDeleteEnabled = null, ?string $createdBy = null, ?int $membersCount = null)
+    public function __construct(OrganizationObject $object, string $id, string $name, string $slug, int $maxAllowedMemberships, array $publicMetadata, array $privateMetadata, int $createdAt, int $updatedAt, ?bool $adminDeleteEnabled = null, ?string $createdBy = null, ?int $membersCount = null)
     {
         $this->object = $object;
         $this->id = $id;

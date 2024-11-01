@@ -39,11 +39,6 @@ class ClerkBackend
      */
     public Miscellaneous $miscellaneous;
 
-    /**
-     * Retrieve the JSON Web Key Set which can be used to verify the token signatures of the instance.
-     *
-     * @var Jwks $$jwks
-     */
     public Jwks $jwks;
 
     /**
@@ -53,18 +48,8 @@ class ClerkBackend
      */
     public Clients $clients;
 
-    /**
-     * A user can be associated with one or more email addresses, which allows them to be contacted via email.
-     *
-     * @var EmailAddresses $$emailAddresses
-     */
     public EmailAddresses $emailAddresses;
 
-    /**
-     * A user can be associated with one or more phone numbers, which allows them to be contacted via SMS.
-     *
-     * @var PhoneNumbers $$phoneNumbers
-     */
     public PhoneNumbers $phoneNumbers;
 
     /**
@@ -77,12 +62,11 @@ class ClerkBackend
      */
     public Sessions $sessions;
 
-    /**
-     * Email & SMS templates allow you to customize the theming and wording of emails & SMS messages that are sent by your instance.
-     *
-     * @var EmailAndSMSTemplates $$emailAndSMSTemplates
-     */
-    public EmailAndSMSTemplates $emailAndSMSTemplates;
+    public EmailSMSTemplates $emailSMSTemplates;
+
+    public EmailAndSmsTemplates $emailAndSmsTemplates;
+
+    public Templates $templates;
 
     /**
      * The user object represents a user that has successfully signed up to your application.
@@ -98,28 +82,16 @@ class ClerkBackend
      */
     public Invitations $invitations;
 
-    /**
-     * Allow-lists and Block-lists allow you to control who can sign up or sign in
-     *
-     * to your application, by restricting access based on the user's email
-     * address or phone number.
-     *
-     * @var AllowListBlockList $$allowListBlockList
-     */
-    public AllowListBlockList $allowListBlockList;
+    public OrganizationInvitations $organizationInvitations;
 
-    /**
-     * Modify instance settings that are currently in beta.
-     *
-     * @var BetaFeatures $$betaFeatures
-     */
+    public AllowlistBlocklist $allowlistBlocklist;
+
+    public AllowlistIdentifiers $allowlistIdentifiers;
+
+    public BlocklistIdentifiers $blocklistIdentifiers;
+
     public BetaFeatures $betaFeatures;
 
-    /**
-     * Allow your users to sign in on behalf of other users.
-     *
-     * @var ActorTokens $$actorTokens
-     */
     public ActorTokens $actorTokens;
 
     /**
@@ -129,11 +101,6 @@ class ClerkBackend
      */
     public Domains $domains;
 
-    /**
-     * Modify the settings of your instance.
-     *
-     * @var InstanceSettings $$instanceSettings
-     */
     public InstanceSettings $instanceSettings;
 
     /**
@@ -143,15 +110,7 @@ class ClerkBackend
      */
     public Webhooks $webhooks;
 
-    /**
-     * JWT Templates allow you to generate custom authentication tokens
-     *
-     * tied to authenticated sessions, enabling you to integrate with third-party
-     * services.
-     *
-     * @var JWTTemplates $$jwtTemplates
-     */
-    public JWTTemplates $jwtTemplates;
+    public JwtTemplates $jwtTemplates;
 
     /**
      * Organizations are used to group members under a common entity and provide shared access to resources.
@@ -160,63 +119,26 @@ class ClerkBackend
      */
     public Organizations $organizations;
 
-    /**
-     * Invite users to an organization.
-     *
-     * @var OrganizationInvitations $$organizationInvitations
-     */
-    public OrganizationInvitations $organizationInvitations;
-
-    /**
-     * Manage member roles in an organization.
-     *
-     * @var OrganizationMemberships $$organizationMemberships
-     */
     public OrganizationMemberships $organizationMemberships;
+
+    public OrganizationDomains $organizationDomains;
+
+    public OrganizationDomain $organizationDomain;
 
     public ProxyChecks $proxyChecks;
 
-    /**
-     * Redirect URLs are whitelisted URLs that facilitate secure authentication flows in native applications (e.g. React Native, Expo).
-     *
-     * In these contexts, Clerk ensures that security-critical nonces are passed only to the whitelisted URLs.
-     *
-     * @var RedirectURLs $$redirectURLs
-     */
     public RedirectURLs $redirectURLs;
 
-    /**
-     * Sign-in tokens are JWTs that can be used to sign in to an application without specifying any credentials.
-     *
-     * A sign-in token can be used at most once and they can be consumed from the Frontend API using the `ticket` strategy.
-     *
-     * @var SignInTokens $$signInTokens
-     */
+    public ClerkBackendRedirectUrls $redirectUrls;
+
     public SignInTokens $signInTokens;
 
     public SignUps $signUps;
 
-    /**
-     * OAuth applications contain data for clients using Clerk as an OAuth2 identity provider.
-     *
-     * @var OAuthApplications $$oAuthApplications
-     */
-    public OAuthApplications $oAuthApplications;
+    public OauthApplications $oauthApplications;
 
-    /**
-     * A SAML Connection holds configuration data required for facilitating a SAML SSO flow between your
-     *
-     * Clerk Instance (SP) and a particular SAML IdP.
-     *
-     * @var SAMLConnections $$samlConnections
-     */
-    public SAMLConnections $samlConnections;
+    public SamlConnections $samlConnections;
 
-    /**
-     * Tokens meant for use by end-to-end test suites in requests to the Frontend API, so as to bypass bot detection measures.
-     *
-     * @var TestingTokens $$testingTokens
-     */
     public TestingTokens $testingTokens;
 
     /**
@@ -241,25 +163,32 @@ class ClerkBackend
         $this->emailAddresses = new EmailAddresses($this->sdkConfiguration);
         $this->phoneNumbers = new PhoneNumbers($this->sdkConfiguration);
         $this->sessions = new Sessions($this->sdkConfiguration);
-        $this->emailAndSMSTemplates = new EmailAndSMSTemplates($this->sdkConfiguration);
+        $this->emailSMSTemplates = new EmailSMSTemplates($this->sdkConfiguration);
+        $this->emailAndSmsTemplates = new EmailAndSmsTemplates($this->sdkConfiguration);
+        $this->templates = new Templates($this->sdkConfiguration);
         $this->users = new Users($this->sdkConfiguration);
         $this->invitations = new Invitations($this->sdkConfiguration);
-        $this->allowListBlockList = new AllowListBlockList($this->sdkConfiguration);
+        $this->organizationInvitations = new OrganizationInvitations($this->sdkConfiguration);
+        $this->allowlistBlocklist = new AllowlistBlocklist($this->sdkConfiguration);
+        $this->allowlistIdentifiers = new AllowlistIdentifiers($this->sdkConfiguration);
+        $this->blocklistIdentifiers = new BlocklistIdentifiers($this->sdkConfiguration);
         $this->betaFeatures = new BetaFeatures($this->sdkConfiguration);
         $this->actorTokens = new ActorTokens($this->sdkConfiguration);
         $this->domains = new Domains($this->sdkConfiguration);
         $this->instanceSettings = new InstanceSettings($this->sdkConfiguration);
         $this->webhooks = new Webhooks($this->sdkConfiguration);
-        $this->jwtTemplates = new JWTTemplates($this->sdkConfiguration);
+        $this->jwtTemplates = new JwtTemplates($this->sdkConfiguration);
         $this->organizations = new Organizations($this->sdkConfiguration);
-        $this->organizationInvitations = new OrganizationInvitations($this->sdkConfiguration);
         $this->organizationMemberships = new OrganizationMemberships($this->sdkConfiguration);
+        $this->organizationDomains = new OrganizationDomains($this->sdkConfiguration);
+        $this->organizationDomain = new OrganizationDomain($this->sdkConfiguration);
         $this->proxyChecks = new ProxyChecks($this->sdkConfiguration);
         $this->redirectURLs = new RedirectURLs($this->sdkConfiguration);
+        $this->redirectUrls = new ClerkBackendRedirectUrls($this->sdkConfiguration);
         $this->signInTokens = new SignInTokens($this->sdkConfiguration);
         $this->signUps = new SignUps($this->sdkConfiguration);
-        $this->oAuthApplications = new OAuthApplications($this->sdkConfiguration);
-        $this->samlConnections = new SAMLConnections($this->sdkConfiguration);
+        $this->oauthApplications = new OauthApplications($this->sdkConfiguration);
+        $this->samlConnections = new SamlConnections($this->sdkConfiguration);
         $this->testingTokens = new TestingTokens($this->sdkConfiguration);
     }
 }

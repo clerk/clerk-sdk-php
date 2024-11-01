@@ -6,17 +6,17 @@ require 'vendor/autoload.php';
 
 use Clerk\Backend;
 
-$sdk = Backend\ClerkBackend::builder()->build();
+$security = '<YOUR_BEARER_TOKEN_HERE>';
+
+$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 
 
-$response = $sdk->miscellaneous->getPublicInterstitial(
-    frontendApi: '<value>',
-    publishableKey: '<value>'
-
+$response = $sdk->emailAddresses->get(
+    emailAddressId: '<id>'
 );
 
-if ($response->statusCode === 200) {
+if ($response->emailAddress !== null) {
     // handle response
 }
 ```

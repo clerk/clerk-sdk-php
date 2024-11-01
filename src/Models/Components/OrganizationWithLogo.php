@@ -64,20 +64,22 @@ class OrganizationWithLogo
     public ?bool $adminDeleteEnabled = null;
 
     /**
+     * $publicMetadata
      *
-     * @var OrganizationWithLogoPublicMetadata $publicMetadata
+     * @var array<string, mixed> $publicMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationWithLogoPublicMetadata')]
-    public OrganizationWithLogoPublicMetadata $publicMetadata;
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
+    public array $publicMetadata;
 
     /**
+     * $privateMetadata
      *
-     * @var OrganizationWithLogoPrivateMetadata $privateMetadata
+     * @var array<string, mixed> $privateMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('private_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationWithLogoPrivateMetadata')]
-    public OrganizationWithLogoPrivateMetadata $privateMetadata;
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
+    public array $privateMetadata;
 
     /**
      *
@@ -137,8 +139,8 @@ class OrganizationWithLogo
      * @param  string  $name
      * @param  string  $slug
      * @param  int  $maxAllowedMemberships
-     * @param  OrganizationWithLogoPublicMetadata  $publicMetadata
-     * @param  OrganizationWithLogoPrivateMetadata  $privateMetadata
+     * @param  array<string, mixed>  $publicMetadata
+     * @param  array<string, mixed>  $privateMetadata
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  string  $imageUrl
@@ -148,7 +150,7 @@ class OrganizationWithLogo
      * @param  ?bool  $hasImage
      * @param  ?int  $membersCount
      */
-    public function __construct(OrganizationWithLogoObject $object, string $id, string $name, string $slug, int $maxAllowedMemberships, OrganizationWithLogoPublicMetadata $publicMetadata, OrganizationWithLogoPrivateMetadata $privateMetadata, int $createdAt, int $updatedAt, string $imageUrl, ?bool $adminDeleteEnabled = null, ?string $createdBy = null, ?string $logoUrl = null, ?bool $hasImage = null, ?int $membersCount = null)
+    public function __construct(OrganizationWithLogoObject $object, string $id, string $name, string $slug, int $maxAllowedMemberships, array $publicMetadata, array $privateMetadata, int $createdAt, int $updatedAt, string $imageUrl, ?bool $adminDeleteEnabled = null, ?string $createdBy = null, ?string $logoUrl = null, ?bool $hasImage = null, ?int $membersCount = null)
     {
         $this->object = $object;
         $this->id = $id;

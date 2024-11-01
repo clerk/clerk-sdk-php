@@ -34,7 +34,7 @@ class Sessions
      * @return Operations\GetSessionListResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function getSessionList(?Operations\GetSessionListRequest $request = null): Operations\GetSessionListResponse
+    public function list(?Operations\GetSessionListRequest $request = null): Operations\GetSessionListResponse
     {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/sessions');
@@ -87,7 +87,7 @@ class Sessions
      * @return Operations\GetSessionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function getSession(string $sessionId): Operations\GetSessionResponse
+    public function get(string $sessionId): Operations\GetSessionResponse
     {
         $request = new Operations\GetSessionRequest(
             sessionId: $sessionId,
@@ -143,7 +143,7 @@ class Sessions
      * @return Operations\RevokeSessionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function revokeSession(string $sessionId): Operations\RevokeSessionResponse
+    public function revoke(string $sessionId): Operations\RevokeSessionResponse
     {
         $request = new Operations\RevokeSessionRequest(
             sessionId: $sessionId,
@@ -203,7 +203,7 @@ class Sessions
      * @throws \Clerk\Backend\Models\Errors\SDKException
      * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    public function verifySession(string $sessionId, ?Operations\VerifySessionRequestBody $requestBody = null): Operations\VerifySessionResponse
+    public function verify(string $sessionId, ?Operations\VerifySessionRequestBody $requestBody = null): Operations\VerifySessionResponse
     {
         trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
         $request = new Operations\VerifySessionRequest(
@@ -265,7 +265,7 @@ class Sessions
      * @return Operations\CreateSessionTokenFromTemplateResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function createSessionTokenFromTemplate(string $sessionId, string $templateName): Operations\CreateSessionTokenFromTemplateResponse
+    public function createTokenFromTemplate(string $sessionId, string $templateName): Operations\CreateSessionTokenFromTemplateResponse
     {
         $request = new Operations\CreateSessionTokenFromTemplateRequest(
             sessionId: $sessionId,

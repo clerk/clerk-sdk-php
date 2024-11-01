@@ -12,7 +12,7 @@ namespace Clerk\Backend\Models\Operations;
 class CreateActorTokenRequestBody
 {
     /**
-     * The ID of the user that can use the newly created sign in token.
+     * The ID of the user being impersonated.
      *
      * @var string $userId
      */

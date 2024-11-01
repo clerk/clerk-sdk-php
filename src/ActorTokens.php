@@ -32,7 +32,7 @@ class ActorTokens
      * @return Operations\CreateActorTokenResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function createActorToken(?Operations\CreateActorTokenRequestBody $request = null): Operations\CreateActorTokenResponse
+    public function create(?Operations\CreateActorTokenRequestBody $request = null): Operations\CreateActorTokenResponse
     {
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/actor_tokens');
@@ -67,7 +67,7 @@ class ActorTokens
         } elseif (in_array($statusCode, [400, 402, 422])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors44', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors53', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -88,7 +88,7 @@ class ActorTokens
      * @return Operations\RevokeActorTokenResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function revokeActorToken(string $actorTokenId): Operations\RevokeActorTokenResponse
+    public function revoke(string $actorTokenId): Operations\RevokeActorTokenResponse
     {
         $request = new Operations\RevokeActorTokenRequest(
             actorTokenId: $actorTokenId,
@@ -122,7 +122,7 @@ class ActorTokens
         } elseif (in_array($statusCode, [400, 404])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $serializer = Utils\JSON::createSerializer();
-                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors45', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize((string) $httpResponse->getBody(), '\Clerk\Backend\Models\Errors\ClerkErrors54', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 throw $obj->toException();
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);

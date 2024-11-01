@@ -127,10 +127,10 @@ class GetUserListRequest
      *
      * Can be used for paginating the results together with `offset`.
      *
-     * @var ?float $limit
+     * @var ?int $limit
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=limit')]
-    public ?float $limit = null;
+    public ?int $limit = null;
 
     /**
      * Skip the first `offset` results when paginating.
@@ -138,10 +138,10 @@ class GetUserListRequest
      * Needs to be an integer greater or equal to zero.
      * To be used in conjunction with `limit`.
      *
-     * @var ?float $offset
+     * @var ?int $offset
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=offset')]
-    public ?float $offset = null;
+    public ?int $offset = null;
 
     /**
      * Allows to return users in a particular order.
@@ -167,11 +167,11 @@ class GetUserListRequest
      * @param  ?array<string>  $organizationId
      * @param  ?string  $query
      * @param  ?int  $lastActiveAtSince
-     * @param  ?float  $limit
-     * @param  ?float  $offset
+     * @param  ?int  $limit
+     * @param  ?int  $offset
      * @param  ?string  $orderBy
      */
-    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $externalId = null, ?array $username = null, ?array $web3Wallet = null, ?array $userId = null, ?array $organizationId = null, ?string $query = null, ?int $lastActiveAtSince = null, ?float $limit = 10, ?float $offset = 0, ?string $orderBy = '-created_at')
+    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $externalId = null, ?array $username = null, ?array $web3Wallet = null, ?array $userId = null, ?array $organizationId = null, ?string $query = null, ?int $lastActiveAtSince = null, ?int $limit = 10, ?int $offset = 0, ?string $orderBy = '-created_at')
     {
         $this->emailAddress = $emailAddress;
         $this->phoneNumber = $phoneNumber;

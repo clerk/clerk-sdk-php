@@ -5,9 +5,9 @@
 
 ### Available Operations
 
-* [updateSignUp](#updatesignup) - Update a sign-up
+* [update](#update) - Update a sign-up
 
-## updateSignUp
+## update
 
 Update the sign-up with the given ID
 
@@ -27,7 +27,7 @@ $sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
 
 $requestBody = new Operations\UpdateSignUpRequestBody();
 
-$response = $sdk->signUps->updateSignUp(
+$response = $sdk->signUps->update(
     id: '<id>',
     requestBody: $requestBody
 
@@ -53,5 +53,5 @@ if ($response->signUp !== null) {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors79 | 403                  | application/json     |
+| Errors\ClerkErrors93 | 403                  | application/json     |
 | Errors\SDKException  | 4XX, 5XX             | \*/\*                |

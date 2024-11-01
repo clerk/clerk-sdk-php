@@ -1,6 +1,6 @@
 # ClerkErrors59
 
-Authorization invalid
+Payment required
 
 
 ## Fields
