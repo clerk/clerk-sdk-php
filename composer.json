@@ -6,14 +6,21 @@
       "Clerk\\Backend\\": "src/"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Clerk\\Backend\\Tests\\": "Tests/"
+    }
+  },
   "license": "MIT",
   "require": {
     "php": "^8.2",
-    "guzzlehttp/guzzle": "^7.0",
-    "speakeasy/serializer": "^4.0.0",
     "brick/date-time": "^0.7.0",
+    "brick/math": "^0.12.1",
+    "firebase/php-jwt": "^6.10",
+    "guzzlehttp/guzzle": "^7.0",
     "phpdocumentor/type-resolver": "^1.8",
-    "brick/math": "^0.12.1"
+    "phpseclib/phpseclib": "^3.0",
+    "speakeasy/serializer": "^4.0.0"
   },
   "require-dev": {
     "laravel/pint": "^1.18.1",

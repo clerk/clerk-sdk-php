@@ -51,6 +51,7 @@ More information about the API can be found at https://clerk.com/docs
 * [SDK Installation](#sdk-installation)
 * [Usage](#usage)
 * [SDK Example Usage](#sdk-example-usage)
+* [Request Authentication](#request-authentication)
 * [Available Resources and Operations](#available-resources-and-operations)
 * [Error Handling](#error-handling)
 * [Server Selection](#server-selection)
@@ -103,6 +104,35 @@ if ($response->emailAddress !== null) {
 }
 ```
 <!-- End SDK Example Usage [usage] -->
+
+## Request Authentication
+
+Use the [authenticateRequest](https://github.com/clerk/clerk-sdk-php/tree/main/src/Helpers/Jwks/AuthenticateRequest.php) method to authenticate a request from your app's frontend (when using a Clerk frontend SDK) to Clerk's Backend API. For example the following utility function checks if the user is effectively signed in:
+
+```php
+use GuzzleHttp\Psr7\Request;
+use Clerk\Backend\Helpers\Jwks\AuthenticateRequestOptions;
+use Clerk\Backend\Helpers\Jwks\AuthenticateRequest;
+use Clerk\Backend\Helpers\Jwks\RequestState;
+
+class UserAuthentication
+{
+    public static function isSignedIn(Request $request): bool
+    {
+        $options = new AuthenticateRequestOptions(
+            secretKey: getenv("CLERK_SECRET_KEY"),
+            authorizedParties: ["https://example.com"]
+        );
+
+        $requestState = AuthenticateRequest::authenticateRequest($request, $options);
+
+        return $requestState.isSignedIn();
+    }
+}
+```
+
+If the request is correctly authenticated, the token's payload is made available in `$requestState->payload`. Otherwise the reason for the token verification failure is given by `requestState->errorReason`.
+
 
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
