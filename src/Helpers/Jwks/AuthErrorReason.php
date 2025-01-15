@@ -10,7 +10,7 @@ class AuthErrorReason
     public static ErrorReason $SESSION_TOKEN_MISSING;
     public static ErrorReason $SECRET_KEY_MISSING;
 
-    public static function init()
+    public static function init(): void
     {
         self::$SESSION_TOKEN_MISSING = new ErrorReason(
             'session-token-missing',

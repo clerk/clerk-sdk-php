@@ -10,7 +10,9 @@ class VerifyTokenOptions
 
     private ?string $secretKey;
     private ?string $jwtKey;
+    /** @var ?array<string> */
     private ?array $audiences;
+    /** @var ?array<string> */
     private ?array $authorizedParties;
     private int $clockSkewInMs;
     private string $apiUrl;
@@ -19,13 +21,13 @@ class VerifyTokenOptions
     /**
      * Options to configure VerifyToken::verifyToken.
      *
-     * @param  string|null  $secretKey  The Clerk secret key from the API Keys page in the Clerk Dashboard. (Optional)
-     * @param  string|null  $jwtKey  PEM Public String used to verify the session token in a networkless manner. (Optional)
-     * @param  array|null  $audiences  A list of audiences to verify against.
-     * @param  array|null  $authorizedParties  An allowlist of origins to verify against.
-     * @param  int|null  $clockSkewInMs  Allowed time difference (in milliseconds) between the Clerk server (which generates the token) and the clock of the user's application server when validating a token. Defaults to 5000 ms.
-     * @param  string|null  $apiUrl  The Clerk Backend API endpoint. Defaults to 'https://api.clerk.com'
-     * @param  string|null  $apiVersion  The version passed to the Clerk API. Defaults to 'v1'
+     * @param  ?string  $secretKey  The Clerk secret key from the API Keys page in the Clerk Dashboard. (Optional)
+     * @param  ?string  $jwtKey  PEM Public String used to verify the session token in a networkless manner. (Optional)
+     * @param  ?array<string>  $audiences  A list of audiences to verify against.
+     * @param  ?array<string>  $authorizedParties  An allowlist of origins to verify against.
+     * @param  ?int  $clockSkewInMs  Allowed time difference (in milliseconds) between the Clerk server (which generates the token) and the clock of the user's application server when validating a token. Defaults to 5000 ms.
+     * @param  ?string  $apiUrl  The Clerk Backend API endpoint. Defaults to 'https://api.clerk.com'
+     * @param  ?string  $apiVersion  The version passed to the Clerk API. Defaults to 'v1'
 
      * @throws TokenVerificationException
      */
@@ -34,9 +36,9 @@ class VerifyTokenOptions
         ?string $jwtKey = null,
         ?array $audiences = null,
         ?array $authorizedParties = null,
-        ?int $clockSkewInMs = null,
-        ?string $apiUrl = null,
-        ?string $apiVersion = null
+        ?int $clockSkewInMs = self::DEFAULT_CLOCK_SKEW_MS,
+        ?string $apiUrl = self::DEFAULT_API_URL,
+        ?string $apiVersion = self::DEFAULT_API_VERSION
     ) {
         if (empty($secretKey) && empty($jwtKey)) {
             throw new TokenVerificationException(TokenVerificationErrorReason::$SECRET_KEY_MISSING);
@@ -46,9 +48,9 @@ class VerifyTokenOptions
         $this->jwtKey = $jwtKey;
         $this->audiences = $audiences;
         $this->authorizedParties = $authorizedParties;
-        $this->clockSkewInMs = $clockSkewInMs ?? self::DEFAULT_CLOCK_SKEW_MS;
-        $this->apiUrl = $apiUrl ?? self::DEFAULT_API_URL;
-        $this->apiVersion = $apiVersion ?? self::DEFAULT_API_VERSION;
+        $this->clockSkewInMs = $clockSkewInMs;
+        $this->apiUrl = $apiUrl;
+        $this->apiVersion = $apiVersion;
     }
 
     public function getSecretKey(): ?string
@@ -61,11 +63,17 @@ class VerifyTokenOptions
         return $this->jwtKey;
     }
 
+    /**
+     * @return ?array<string>
+     */
     public function getAudiences(): ?array
     {
         return $this->audiences;
     }
 
+    /**
+     * @return ?array<string>
+     */
     public function getAuthorizedParties(): ?array
     {
         return $this->authorizedParties;

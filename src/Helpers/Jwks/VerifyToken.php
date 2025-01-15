@@ -79,9 +79,11 @@ class VerifyToken
     private static function getLocalJwtKey(string $jwtKey): string
     {
         try {
-            $rsaKey = publicKeyLoader::load($jwtKey);
+            $rsaKey = PublicKeyLoader::load($jwtKey);
+            $stringKey = $rsaKey->toString('PKCS8');
 
-            return $rsaKey->toString('PKCS8');
+            /** @phpstan-ignore-next-line */
+            return $stringKey;
         } catch (Exception $ex) {
             throw new TokenVerificationException(TokenVerificationErrorReason::$JWK_LOCAL_INVALID, $ex);
         }

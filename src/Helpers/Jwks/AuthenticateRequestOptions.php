@@ -8,18 +8,20 @@ class AuthenticateRequestOptions
 
     private ?string $secretKey;
     private ?string $jwtKey;
+    /** @var array<string> */
     private ?array $audiences;
+    /** @var array<string> */
     private array $authorizedParties;
     private int $clockSkewInMs;
 
     /**
      * Options to configure AuthenticateRequest::authenticateRequest.
      *
-     * @param  string|null  $secretKey  The Clerk secret key from the API Keys page in the Clerk Dashboard.
-     * @param  string|null  $jwtKey  PEM Public String used to verify the session token in a networkless manner.
-     * @param  array|null  $audiences  A list of audiences to verify against.
-     * @param  array|null  $authorizedParties  An allowlist of origins to verify against.
-     * @param  int|null  $clockSkewInMs  Allowed time difference (in milliseconds) between the Clerk server (which generates the token) and the clock of the user's application server when validating a token. Defaults to 5000 ms.
+     * @param  ?string  $secretKey  The Clerk secret key from the API Keys page in the Clerk Dashboard.
+     * @param  ?string  $jwtKey  PEM Public String used to verify the session token in a networkless manner.
+     * @param  ?array<string>  $audiences  A list of audiences to verify against.
+     * @param  ?array<string>  $authorizedParties  An allowlist of origins to verify against.
+     * @param  ?int  $clockSkewInMs  Allowed time difference (in milliseconds) between the Clerk server (which generates the token) and the clock of the user's application server when validating a token. Defaults to 5000 ms.
      * @throws AuthenticateRequestException
      */
     public function __construct(
@@ -50,11 +52,17 @@ class AuthenticateRequestOptions
         return $this->jwtKey;
     }
 
+    /**
+     * @return ?array<string>
+     */
     public function getAudiences(): ?array
     {
         return $this->audiences;
     }
 
+    /**
+     * @return array<string>
+     */
     public function getAuthorizedParties(): array
     {
         return $this->authorizedParties;

@@ -21,7 +21,7 @@ class TokenVerificationErrorReason
     public static ErrorReason $TOKEN_INVALID_SIGNATURE;
     public static ErrorReason $SECRET_KEY_MISSING;
 
-    public static function init()
+    public static function init(): void
     {
         self::$JWK_FAILED_TO_LOAD = new ErrorReason(
             'jwk-failed-to-load',
