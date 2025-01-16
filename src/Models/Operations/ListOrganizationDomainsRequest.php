@@ -20,6 +20,22 @@ class ListOrganizationDomainsRequest
     public string $organizationId;
 
     /**
+     * Filter domains by their verification status. `true` or `false`
+     *
+     * @var ?string $verified
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=verified')]
+    public ?string $verified = null;
+
+    /**
+     * Filter domains by their enrollment mode
+     *
+     * @var ?string $enrollmentMode
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=enrollment_mode')]
+    public ?string $enrollmentMode = null;
+
+    /**
      * Applies a limit to the number of results returned.
      *
      * Can be used for paginating the results together with `offset`.
@@ -41,22 +57,6 @@ class ListOrganizationDomainsRequest
     public ?int $offset = null;
 
     /**
-     * Filter domains by their verification status. `true` or `false`
-     *
-     * @var ?string $verified
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=verified')]
-    public ?string $verified = null;
-
-    /**
-     * Filter domains by their enrollment mode
-     *
-     * @var ?string $enrollmentMode
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=enrollment_mode')]
-    public ?string $enrollmentMode = null;
-
-    /**
      * @param  string  $organizationId
      * @param  ?int  $limit
      * @param  ?int  $offset
@@ -66,9 +66,9 @@ class ListOrganizationDomainsRequest
     public function __construct(string $organizationId, ?string $verified = null, ?string $enrollmentMode = null, ?int $limit = 10, ?int $offset = 0)
     {
         $this->organizationId = $organizationId;
-        $this->limit = $limit;
-        $this->offset = $offset;
         $this->verified = $verified;
         $this->enrollmentMode = $enrollmentMode;
+        $this->limit = $limit;
+        $this->offset = $offset;
     }
 }

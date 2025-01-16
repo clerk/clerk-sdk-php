@@ -42,26 +42,10 @@ class Organization
 
     /**
      *
-     * @var ?int $membersCount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('members_count')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $membersCount = null;
-
-    /**
-     *
      * @var int $maxAllowedMemberships
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('max_allowed_memberships')]
     public int $maxAllowedMemberships;
-
-    /**
-     *
-     * @var ?bool $adminDeleteEnabled
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('admin_delete_enabled')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $adminDeleteEnabled = null;
 
     /**
      * $publicMetadata
@@ -82,14 +66,6 @@ class Organization
     public array $privateMetadata;
 
     /**
-     *
-     * @var ?string $createdBy
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('created_by')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $createdBy = null;
-
-    /**
      * Unix timestamp of creation.
      *
      *
@@ -108,6 +84,30 @@ class Organization
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
     public int $updatedAt;
+
+    /**
+     *
+     * @var ?bool $adminDeleteEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('admin_delete_enabled')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $adminDeleteEnabled = null;
+
+    /**
+     *
+     * @var ?string $createdBy
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('created_by')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $createdBy = null;
+
+    /**
+     *
+     * @var ?int $membersCount
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('members_count')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $membersCount = null;
 
     /**
      * @param  OrganizationObject  $object

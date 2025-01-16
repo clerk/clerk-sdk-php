@@ -33,15 +33,6 @@ class Template
     public ?TemplateObject $object = null;
 
     /**
-     * the id of the instance the template belongs to
-     *
-     * @var ?string $instanceId
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('instance_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $instanceId = null;
-
-    /**
      * whether this is a system (default) or user overridden) template
      *
      * @var ?string $resourceType
@@ -112,15 +103,6 @@ class Template
     #[\Speakeasy\Serializer\Annotation\SerializedName('can_toggle')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $canToggle = null;
-
-    /**
-     * email subject
-     *
-     * @var ?string $subject
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('subject')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $subject = null;
 
     /**
      * the editor markup used to generate the body of the template
@@ -213,6 +195,24 @@ class Template
     #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?int $createdAt = null;
+
+    /**
+     * the id of the instance the template belongs to
+     *
+     * @var ?string $instanceId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('instance_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $instanceId = null;
+
+    /**
+     * email subject
+     *
+     * @var ?string $subject
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('subject')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $subject = null;
 
     /**
      * @param  ?string  $id

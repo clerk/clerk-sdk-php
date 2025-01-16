@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Clerk\Backend\Utils;
 
 use GuzzleHttp\ClientInterface;
+use Psr\Http\Message\RequestInterface;
 
 class Utils
 {
@@ -141,20 +142,25 @@ class Utils
      * @param  array<string,array<string,array<string,string>>>|null  $globals
      * @return array<string,mixed>
      */
-    public static function getQueryParams(string $type, mixed $queryParams, ?array $globals = null): array
+    public static function getQueryParams(string $type, mixed $queryParams, ?string $urlOverride, ?array $globals = null): array
     {
         $qp = new QueryParameters();
         $globals ??= [];
 
-        $query = $qp->parseQueryParams($type, $queryParams, $globals);
+        $parsedUrl = [];
+        if ($urlOverride != null) {
+            $splitUrl = explode('?', $urlOverride);
+            if (count($splitUrl) > 1) {
+                $parsedUrl = self::proper_parse_str($splitUrl[1]);
+            }
+        }
+        $query = $qp->parseQueryParams($type, $queryParams, $parsedUrl, $globals);
 
         if ($query === null) {
             return [];
         }
 
-        return [
-            'query' => $query,
-        ];
+        return $query;
     }
 
     /**
@@ -174,6 +180,182 @@ class Utils
             'headers' => $headers,
         ];
     }
+
+    /**
+     * The builtin php parse_str function does not
+     * properly implement query param parsing (specifically it doesn't handle
+     * multiple values from the same key)  This function is a bit more correct
+     * @param  string  $str
+     * @return array<string,mixed>
+     */
+    public static function proper_parse_str($str)
+    {
+        $arr = [];
+
+        if (empty($str)) {
+            return $arr;
+        }
+
+        $pairs = explode('&', $str);
+
+        foreach ($pairs as $i) {
+            [$name,$value] = explode('=', $i, 2);
+
+            // if name already exists
+            if (isset($arr[$name])) {
+                // stick multiple values into an array
+                if (is_array($arr[$name])) {
+                    $arr[$name][] = $value;
+                } else {
+                    $arr[$name] = [$arr[$name], $value];
+                }
+            } else {
+                // else treat as scalar
+                $arr[$name] = $value;
+            }
+        }
+
+        return $arr;
+    }
+
+    /**
+     * convertHeadersToOptions will convert the headers from a request to options for a client.
+     *
+     * @param  RequestInterface  $request
+     * @param  array<string,mixed>  $options
+     * @return array<string, string>
+     */
+    public static function convertHeadersToOptions(RequestInterface $request, array $options): array
+    {
+        $headers = $request->getHeaders();
+        foreach ($request->getHeaders() as $name => $values) {
+            $options['headers'][$name] = $values;
+        }
+
+        return $options;
+    }
+
+    /**
+     * removeHeaders will remove all headers from a request
+     * 
+     * @param  RequestInterface  $request
+     * @return RequestInterface
+     */
+    public static function removeHeaders(RequestInterface $request): RequestInterface
+    {
+        $headers = $request->getHeaders();
+        foreach ($request->getHeaders() as $name => $values) {
+            $request = $request->withoutHeader($name);
+        }
+
+        return $request;
+    }
+
+    /**
+     * urljoin joins a base URL and a relative URL.
+     * this is a PHP port of the Python urllib.urljoin function
+     *
+     * @param  string  $base
+     * @param  string  $rel
+     * @return string
+     */
+    public static function urljoin(string $base, string $rel): string
+    {
+        $pbase = parse_url($base);
+        if ($pbase === false) {
+            throw new \InvalidArgumentException('Invalid base URL: '.$base);
+        } else {
+            $pbase = (array) $pbase;
+        }
+        $prel = parse_url($rel);
+        if ($prel === false) {
+            throw new \InvalidArgumentException('Invalid relative URL: '.$rel);
+        } else {
+            $prel = (array) $prel;
+        }
+
+        $merged = array_merge($pbase, $prel);
+        if (array_key_exists('path', $pbase) && array_key_exists('path', $prel) && $prel['path'][0] != '/') {
+            // Relative path
+            $dir = preg_replace('@/[^/]*$@', '', $pbase['path']);
+            $merged['path'] = $dir.'/'.$prel['path'];
+        } elseif (array_key_exists('path', $pbase)) {
+            $merged['path'] = $pbase['path'];
+        } elseif (array_key_exists('path', $prel)) {
+            $merged['path'] = $prel['path'];
+        } else {
+            $merged['path'] = '';
+        }
+
+        // Get the path components, and remove the initial empty one
+        $pathParts = explode('/', $merged['path']);
+        array_shift($pathParts);
+
+        $path = [];
+        $prevPart = '';
+        foreach ($pathParts as $part) {
+            if ($part == '..' && count($path) > 0) {
+                // Cancel out the parent directory (if there's a parent to cancel)
+                $parent = array_pop($path);
+                // But if it was also a parent directory, leave it in
+                if ($parent == '..') {
+                    array_push($path, $parent);
+                    array_push($path, $part);
+                }
+            } elseif ($prevPart != '' || ($part != '.' && $part != '')) {
+                // Don't include empty or current-directory components
+                if ($part == '.') {
+                    $part = '';
+                }
+                array_push($path, $part);
+            }
+            $prevPart = $part;
+        }
+        $merged['path'] = '/'.implode('/', $path);
+
+        $ret = '';
+        if (isset($merged['scheme'])) {
+            $ret .= $merged['scheme'].':';
+        }
+
+        if (isset($merged['scheme']) || isset($merged['host'])) {
+            $ret .= '//';
+        }
+
+        if (isset($prel['host'])) {
+            $hostSource = $prel;
+        } else {
+            $hostSource = $pbase;
+        }
+
+        // username, password, and port are associated with the hostname, not merged
+        if (isset($hostSource['host'])) {
+            if (isset($hostSource['user'])) {
+                $ret .= $hostSource['user'];
+                if (isset($hostSource['pass'])) {
+                    $ret .= ':'.$hostSource['pass'];
+                }
+                $ret .= '@';
+            }
+            $ret .= $hostSource['host'];
+            if (isset($hostSource['port'])) {
+                $ret .= ':'.$hostSource['port'];
+            }
+        }
+
+        $ret .= $merged['path'];
+
+        if (isset($prel['query'])) {
+            $ret .= '?'.$prel['query'];
+        }
+
+        if (isset($prel['fragment'])) {
+            $ret .= '#'.$prel['fragment'];
+        }
+
+        return $ret;
+    }
+
 }
 
 function removePrefix(string $text, string $prefix): string
@@ -242,6 +424,7 @@ function valToString(mixed $val, array $extras): string
         default:
             return var_export($val, true);
     }
+
 }
 
 /**

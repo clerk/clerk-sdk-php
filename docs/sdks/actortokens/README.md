@@ -23,9 +23,11 @@ require 'vendor/autoload.php';
 use Clerk\Backend;
 use Clerk\Backend\Models\Operations;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 $request = new Operations\CreateActorTokenRequestBody(
     userId: '<id>',
@@ -53,10 +55,10 @@ if ($response->actorToken !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors53 | 400, 402, 422        | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 402, 422       | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## revoke
 
@@ -71,9 +73,11 @@ require 'vendor/autoload.php';
 
 use Clerk\Backend;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 
 
@@ -98,7 +102,7 @@ if ($response->actorToken !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors54 | 400, 404             | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 404            | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |

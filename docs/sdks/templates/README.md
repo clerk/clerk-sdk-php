@@ -23,9 +23,11 @@ require 'vendor/autoload.php';
 use Clerk\Backend;
 use Clerk\Backend\Models\Operations;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 $requestBody = new Operations\PreviewTemplateRequestBody();
 
@@ -55,7 +57,7 @@ if ($response->object !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors20 | 400, 401, 404, 422   | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 401, 404, 422  | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |

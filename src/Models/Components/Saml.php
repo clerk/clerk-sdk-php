@@ -29,6 +29,13 @@ class Saml
 
     /**
      *
+     * @var int $expireAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('expire_at')]
+    public int $expireAt;
+
+    /**
+     *
      * @var ?string $externalVerificationRedirectUrl
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('external_verification_redirect_url')]
@@ -42,13 +49,6 @@ class Saml
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SAMLErrorClerkError')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?SAMLErrorClerkError $error = null;
-
-    /**
-     *
-     * @var int $expireAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('expire_at')]
-    public int $expireAt;
 
     /**
      *

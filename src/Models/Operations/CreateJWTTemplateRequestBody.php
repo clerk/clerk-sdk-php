@@ -31,6 +31,15 @@ class CreateJWTTemplateRequestBody
     public ?Claims $claims = null;
 
     /**
+     * Whether a custom signing key/algorithm is also provided for this template
+     *
+     * @var ?bool $customSigningKey
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('custom_signing_key')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $customSigningKey = null;
+
+    /**
      * JWT token lifetime
      *
      * @var ?float $lifetime
@@ -47,15 +56,6 @@ class CreateJWTTemplateRequestBody
     #[\Speakeasy\Serializer\Annotation\SerializedName('allowed_clock_skew')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?float $allowedClockSkew = null;
-
-    /**
-     * Whether a custom signing key/algorithm is also provided for this template
-     *
-     * @var ?bool $customSigningKey
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('custom_signing_key')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $customSigningKey = null;
 
     /**
      * The custom signing algorithm to use when minting JWTs

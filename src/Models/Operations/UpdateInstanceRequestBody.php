@@ -12,6 +12,39 @@ namespace Clerk\Backend\Models\Operations;
 class UpdateInstanceRequestBody
 {
     /**
+     * For browser-like stacks such as browser extensions, Electron, or Capacitor.js the instance allowed origins need to be updated with the request origin value.
+     *
+     * For Chrome extensions popup, background, or service worker pages the origin is chrome-extension://extension_uiid. For Electron apps the default origin is http://localhost:3000. For Capacitor, the origin is capacitor://localhost.
+     *
+     * @var ?array<string> $allowedOrigins
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('allowed_origins')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $allowedOrigins = null;
+
+    /**
+     * Whether the instance should operate in cookieless development mode (i.e. without third-party cookies).
+     *
+     * Deprecated: Please use `url_based_session_syncing` instead.
+     *
+     * @var ?bool $cookielessDev
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cookieless_dev')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $cookielessDev = null;
+
+    /**
+     * Whether the instance should use URL-based session syncing in development mode (i.e. without third-party cookies).
+     *
+     * @var ?bool $urlBasedSessionSyncing
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('url_based_session_syncing')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $urlBasedSessionSyncing = null;
+
+    /**
      * Toggles test mode for this instance, allowing the use of test email addresses and phone numbers.
      *
      * Defaults to true for development instances.
@@ -65,39 +98,6 @@ class UpdateInstanceRequestBody
     #[\Speakeasy\Serializer\Annotation\SerializedName('development_origin')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $developmentOrigin = null;
-
-    /**
-     * For browser-like stacks such as browser extensions, Electron, or Capacitor.js the instance allowed origins need to be updated with the request origin value.
-     *
-     * For Chrome extensions popup, background, or service worker pages the origin is chrome-extension://extension_uiid. For Electron apps the default origin is http://localhost:3000. For Capacitor, the origin is capacitor://localhost.
-     *
-     * @var ?array<string> $allowedOrigins
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('allowed_origins')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $allowedOrigins = null;
-
-    /**
-     * Whether the instance should operate in cookieless development mode (i.e. without third-party cookies).
-     *
-     * Deprecated: Please use `url_based_session_syncing` instead.
-     *
-     * @var ?bool $cookielessDev
-     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cookieless_dev')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $cookielessDev = null;
-
-    /**
-     * Whether the instance should use URL-based session syncing in development mode (i.e. without third-party cookies).
-     *
-     * @var ?bool $urlBasedSessionSyncing
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('url_based_session_syncing')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $urlBasedSessionSyncing = null;
 
     /**
      * @param  ?array<string>  $allowedOrigins

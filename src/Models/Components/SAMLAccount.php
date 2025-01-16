@@ -51,6 +51,24 @@ class SAMLAccount
     public string $emailAddress;
 
     /**
+     * $publicMetadata
+     *
+     * @var ?array<string, mixed> $publicMetadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $publicMetadata = null;
+
+    /**
+     *
+     * @var Saml|Ticket|null $verification
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Saml|\Clerk\Backend\Models\Components\Ticket')]
+    public Saml|Ticket|null $verification;
+
+    /**
      *
      * @var ?string $firstName
      */
@@ -73,24 +91,6 @@ class SAMLAccount
     #[\Speakeasy\Serializer\Annotation\SerializedName('provider_user_id')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $providerUserId = null;
-
-    /**
-     * $publicMetadata
-     *
-     * @var ?array<string, mixed> $publicMetadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $publicMetadata = null;
-
-    /**
-     *
-     * @var Saml|Ticket|null $verification
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Saml|\Clerk\Backend\Models\Components\Ticket')]
-    public Saml|Ticket|null $verification;
 
     /**
      *

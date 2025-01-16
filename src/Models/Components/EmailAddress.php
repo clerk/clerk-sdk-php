@@ -13,14 +13,6 @@ namespace Clerk\Backend\Models\Components;
 class EmailAddress
 {
     /**
-     *
-     * @var ?string $id
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $id = null;
-
-    /**
      * String representing the object's type. Objects of the same type share the same value.
      *
      *
@@ -44,14 +36,6 @@ class EmailAddress
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('reserved')]
     public bool $reserved;
-
-    /**
-     *
-     * @var Otp|Admin|Oauth|null $verification
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Otp|\Clerk\Backend\Models\Components\Admin|\Clerk\Backend\Models\Components\Oauth')]
-    public Otp|Admin|Oauth|null $verification;
 
     /**
      * $linkedTo
@@ -81,6 +65,22 @@ class EmailAddress
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
     public int $updatedAt;
+
+    /**
+     *
+     * @var ?string $id
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $id = null;
+
+    /**
+     *
+     * @var Otp|Admin|Oauth|null $verification
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Otp|\Clerk\Backend\Models\Components\Admin|\Clerk\Backend\Models\Components\Oauth')]
+    public Otp|Admin|Oauth|null $verification;
 
     /**
      * @param  EmailAddressObject  $object

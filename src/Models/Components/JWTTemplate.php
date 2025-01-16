@@ -57,22 +57,6 @@ class JWTTemplate
     public int $allowedClockSkew;
 
     /**
-     *
-     * @var ?bool $customSigningKey
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('custom_signing_key')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $customSigningKey = null;
-
-    /**
-     *
-     * @var ?string $signingAlgorithm
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('signing_algorithm')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $signingAlgorithm = null;
-
-    /**
      * Unix timestamp of creation.
      *
      *
@@ -91,6 +75,22 @@ class JWTTemplate
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
     public int $updatedAt;
+
+    /**
+     *
+     * @var ?bool $customSigningKey
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('custom_signing_key')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $customSigningKey = null;
+
+    /**
+     *
+     * @var ?string $signingAlgorithm
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('signing_algorithm')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $signingAlgorithm = null;
 
     /**
      * @param  JWTTemplateObject  $object

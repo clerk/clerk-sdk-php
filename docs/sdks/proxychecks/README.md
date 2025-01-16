@@ -28,9 +28,11 @@ require 'vendor/autoload.php';
 use Clerk\Backend;
 use Clerk\Backend\Models\Operations;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 $request = new Operations\VerifyDomainProxyRequestBody();
 
@@ -55,7 +57,7 @@ if ($response->proxyCheck !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors88 | 400, 422             | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 422            | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |

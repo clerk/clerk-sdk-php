@@ -15,7 +15,7 @@ class SetUserProfileImageRequestBody
      *
      * @var ?File $file
      */
-    #[SpeakeasyMetadata('multipartForm:file=true')]
+    #[SpeakeasyMetadata('multipartForm:file=true,name=file')]
     public ?File $file = null;
 
     /**

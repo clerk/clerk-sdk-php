@@ -5,49 +5,11 @@
 
 ### Available Operations
 
-* [list](#list) - List all templates
 * [create](#create) - Create a JWT template
-* [get](#get) - Retrieve a template
-* [update](#update) - Update a JWT template
 * [delete](#delete) - Delete a Template
-
-## list
-
-List all templates
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
-
-
-
-$response = $sdk->jwtTemplates->list(
-
-);
-
-if ($response->jwtTemplateList !== null) {
-    // handle response
-}
-```
-
-### Response
-
-**[?Operations\ListJWTTemplatesResponse](../../Models/Operations/ListJWTTemplatesResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+* [get](#get) - Retrieve a template
+* [list](#list) - List all templates
+* [update](#update) - Update a JWT template
 
 ## create
 
@@ -63,9 +25,11 @@ require 'vendor/autoload.php';
 use Clerk\Backend;
 use Clerk\Backend\Models\Operations;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 $request = new Operations\CreateJWTTemplateRequestBody();
 
@@ -90,10 +54,57 @@ if ($response->jwtTemplate !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors63 | 400, 402, 422        | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 402, 422       | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## delete
+
+Delete a Template
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->jwtTemplates->delete(
+    templateId: '<id>'
+);
+
+if ($response->deletedObject !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `templateId`       | *string*           | :heavy_check_mark: | JWT Template ID    |
+
+### Response
+
+**[?Operations\DeleteJWTTemplateResponse](../../Models/Operations/DeleteJWTTemplateResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 403, 404            | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## get
 
@@ -108,9 +119,11 @@ require 'vendor/autoload.php';
 
 use Clerk\Backend;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 
 
@@ -135,10 +148,50 @@ if ($response->jwtTemplate !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors64 | 404                  | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 404                 | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## list
+
+List all templates
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->jwtTemplates->list(
+
+);
+
+if ($response->jwtTemplateList !== null) {
+    // handle response
+}
+```
+
+### Response
+
+**[?Operations\ListJWTTemplatesResponse](../../Models/Operations/ListJWTTemplatesResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## update
 
@@ -154,9 +207,11 @@ require 'vendor/autoload.php';
 use Clerk\Backend;
 use Clerk\Backend\Models\Operations;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 $requestBody = new Operations\UpdateJWTTemplateRequestBody();
 
@@ -184,52 +239,7 @@ if ($response->jwtTemplate !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors65 | 400, 402, 422        | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
-
-## delete
-
-Delete a Template
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
-
-
-
-$response = $sdk->jwtTemplates->delete(
-    templateId: '<id>'
-);
-
-if ($response->deletedObject !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `templateId`       | *string*           | :heavy_check_mark: | JWT Template ID    |
-
-### Response
-
-**[?Operations\DeleteJWTTemplateResponse](../../Models/Operations/DeleteJWTTemplateResponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors66 | 403, 404             | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 402, 422       | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |

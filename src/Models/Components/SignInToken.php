@@ -43,22 +43,6 @@ class SignInToken
     public string $userId;
 
     /**
-     *
-     * @var ?string $token
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('token')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $token = null;
-
-    /**
-     *
-     * @var ?string $url
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('url')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $url = null;
-
-    /**
      * Unix timestamp of creation.
      *
      *
@@ -77,6 +61,22 @@ class SignInToken
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
     public int $updatedAt;
+
+    /**
+     *
+     * @var ?string $token
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('token')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $token = null;
+
+    /**
+     *
+     * @var ?string $url
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('url')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $url = null;
 
     /**
      * @param  SignInTokenObject  $object

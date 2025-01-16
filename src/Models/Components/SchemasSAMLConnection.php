@@ -42,43 +42,6 @@ class SchemasSAMLConnection
 
     /**
      *
-     * @var ?string $idpEntityId
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('idp_entity_id')]
-    public ?string $idpEntityId;
-
-    /**
-     *
-     * @var ?string $idpSsoUrl
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('idp_sso_url')]
-    public ?string $idpSsoUrl;
-
-    /**
-     *
-     * @var ?string $idpCertificate
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('idp_certificate')]
-    public ?string $idpCertificate;
-
-    /**
-     *
-     * @var ?string $idpMetadataUrl
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('idp_metadata_url')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $idpMetadataUrl = null;
-
-    /**
-     *
-     * @var ?string $idpMetadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('idp_metadata')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $idpMetadata = null;
-
-    /**
-     *
      * @var string $acsUrl
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('acs_url')]
@@ -97,15 +60,6 @@ class SchemasSAMLConnection
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('sp_metadata_url')]
     public string $spMetadataUrl;
-
-    /**
-     *
-     * @var ?AttributeMapping $attributeMapping
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('attribute_mapping')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\AttributeMapping|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?AttributeMapping $attributeMapping = null;
 
     /**
      *
@@ -136,6 +90,56 @@ class SchemasSAMLConnection
     public bool $syncUserAttributes;
 
     /**
+     * Unix timestamp of creation.
+     *
+     *
+     *
+     * @var int $createdAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
+    public int $createdAt;
+
+    /**
+     * Unix timestamp of last update.
+     *
+     *
+     *
+     * @var int $updatedAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
+    public int $updatedAt;
+
+    /**
+     *
+     * @var ?string $idpEntityId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('idp_entity_id')]
+    public ?string $idpEntityId;
+
+    /**
+     *
+     * @var ?string $idpSsoUrl
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('idp_sso_url')]
+    public ?string $idpSsoUrl;
+
+    /**
+     *
+     * @var ?string $idpCertificate
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('idp_certificate')]
+    public ?string $idpCertificate;
+
+    /**
+     *
+     * @var ?AttributeMapping $attributeMapping
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('attribute_mapping')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\AttributeMapping|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?AttributeMapping $attributeMapping = null;
+
+    /**
      *
      * @var ?bool $allowSubdomains
      */
@@ -160,24 +164,20 @@ class SchemasSAMLConnection
     public ?bool $disableAdditionalIdentifications = null;
 
     /**
-     * Unix timestamp of creation.
      *
-     *
-     *
-     * @var int $createdAt
+     * @var ?string $idpMetadataUrl
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
-    public int $createdAt;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('idp_metadata_url')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $idpMetadataUrl = null;
 
     /**
-     * Unix timestamp of last update.
      *
-     *
-     *
-     * @var int $updatedAt
+     * @var ?string $idpMetadata
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
-    public int $updatedAt;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('idp_metadata')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $idpMetadata = null;
 
     /**
      * @param  SchemasSAMLConnectionObject  $object

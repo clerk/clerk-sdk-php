@@ -1,4 +1,4 @@
-speakeasyVersion: 1.424.0
+speakeasyVersion: 1.468.8
 sources:
     backend-php:
         sourceNamespace: clerk-openapi
@@ -14,16 +14,19 @@ sources:
             - latest
     clerk-openapi:
         sourceNamespace: clerk-openapi
-        sourceRevisionDigest: sha256:4b309982d724961b5d616de53670c4e83100396c683dd24e6887b0a1d9492caa
-        sourceBlobDigest: sha256:39103d5b007f360c879775cfb2ac02ea4b9c4537111da30a45fc8f84d5d51af9
+        sourceRevisionDigest: sha256:63b29fd2d58cfb91eb30a20375ca006902c4c49b66eb7809abc9be61308a8c8f
+        sourceBlobDigest: sha256:609c6b756340367a9d2676c398d525a59a6dabc6673f81f7b31488c782f236da
         tags:
             - latest
+            - v1
 targets:
     clerk-php:
         source: clerk-openapi
         sourceNamespace: clerk-openapi
-        sourceRevisionDigest: sha256:4b309982d724961b5d616de53670c4e83100396c683dd24e6887b0a1d9492caa
-        sourceBlobDigest: sha256:39103d5b007f360c879775cfb2ac02ea4b9c4537111da30a45fc8f84d5d51af9
+        sourceRevisionDigest: sha256:63b29fd2d58cfb91eb30a20375ca006902c4c49b66eb7809abc9be61308a8c8f
+        sourceBlobDigest: sha256:609c6b756340367a9d2676c398d525a59a6dabc6673f81f7b31488c782f236da
+        codeSamplesNamespace: clerk-openapi-php-code-samples
+        codeSamplesRevisionDigest: sha256:76edccda16de6746efdc9190568daf158251a86ffb51cd943772d07409353c81
     my-first-target:
         source: clerk-backend-php
         sourceNamespace: clerk-openapi
@@ -52,5 +55,5 @@ workflow:
                     token: $packagist_token
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/clerk/clerk/clerk-openapi-code-samples
+                    location: registry.speakeasyapi.dev/clerk/clerk/clerk-openapi-php-code-samples
                 blocking: false

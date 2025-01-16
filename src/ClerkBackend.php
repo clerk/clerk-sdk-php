@@ -190,5 +190,7 @@ class ClerkBackend
         $this->oauthApplications = new OauthApplications($this->sdkConfiguration);
         $this->samlConnections = new SamlConnections($this->sdkConfiguration);
         $this->testingTokens = new TestingTokens($this->sdkConfiguration);
+        $this->sdkConfiguration->client = $this->sdkConfiguration->initHooks($this->sdkConfiguration->client);
+
     }
 }

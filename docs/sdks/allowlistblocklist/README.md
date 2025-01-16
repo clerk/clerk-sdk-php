@@ -5,49 +5,10 @@
 
 ### Available Operations
 
-* [listAllowlistIdentifiers](#listallowlistidentifiers) - List all identifiers on the allow-list
 * [createAllowlistIdentifier](#createallowlistidentifier) - Add identifier to the allow-list
 * [createBlocklistIdentifier](#createblocklistidentifier) - Add identifier to the block-list
 * [deleteBlocklistIdentifier](#deleteblocklistidentifier) - Delete identifier from block-list
-
-## listAllowlistIdentifiers
-
-Get a list of all identifiers allowed to sign up to an instance
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
-
-
-
-$response = $sdk->allowlistBlocklist->listAllowlistIdentifiers(
-
-);
-
-if ($response->allowlistIdentifierList !== null) {
-    // handle response
-}
-```
-
-### Response
-
-**[?Operations\ListAllowlistIdentifiersResponse](../../Models/Operations/ListAllowlistIdentifiersResponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors45 | 401, 402             | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+* [listAllowlistIdentifiers](#listallowlistidentifiers) - List all identifiers on the allow-list
 
 ## createAllowlistIdentifier
 
@@ -63,9 +24,11 @@ require 'vendor/autoload.php';
 use Clerk\Backend;
 use Clerk\Backend\Models\Operations;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 $request = new Operations\CreateAllowlistIdentifierRequestBody(
     identifier: '<value>',
@@ -92,10 +55,10 @@ if ($response->allowlistIdentifier !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors46 | 400, 402, 422        | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 402, 422       | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## createBlocklistIdentifier
 
@@ -111,9 +74,11 @@ require 'vendor/autoload.php';
 use Clerk\Backend;
 use Clerk\Backend\Models\Operations;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 $request = new Operations\CreateBlocklistIdentifierRequestBody(
     identifier: '<value>',
@@ -140,10 +105,10 @@ if ($response->blocklistIdentifier !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors49 | 400, 402, 422        | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 402, 422       | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## deleteBlocklistIdentifier
 
@@ -158,9 +123,11 @@ require 'vendor/autoload.php';
 
 use Clerk\Backend;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 
 
@@ -185,7 +152,48 @@ if ($response->deletedObject !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors50 | 402, 404             | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 402, 404            | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## listAllowlistIdentifiers
+
+Get a list of all identifiers allowed to sign up to an instance
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->allowlistBlocklist->listAllowlistIdentifiers(
+
+);
+
+if ($response->allowlistIdentifierList !== null) {
+    // handle response
+}
+```
+
+### Response
+
+**[?Operations\ListAllowlistIdentifiersResponse](../../Models/Operations/ListAllowlistIdentifiersResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 401, 402            | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |

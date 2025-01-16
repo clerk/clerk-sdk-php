@@ -105,7 +105,7 @@ class RequestBodies
             }
 
             if ($metadata->file) {
-                $options['multipart'][] = $this->serializeMultipartFile($val);
+                $options['multipart'][] = $this->serializeMultipartFile($metadata->name, $val);
             } elseif ($metadata->json) {
                 $serializer = JSON::createSerializer();
                 $options['multipart'][] = [
@@ -138,16 +138,16 @@ class RequestBodies
     }
 
     /**
+     * @param  string  $fieldName
      * @param  mixed  $value
      * @return array<string,mixed>
      */
-    private function serializeMultipartFile(mixed $value): array
+    private function serializeMultipartFile(string $fieldName, mixed $value): array
     {
         if (gettype($value) != 'object') {
             throw new \Exception('Invalid type for multipart/form-data file');
         }
 
-        $name = '';
         $filename = '';
         $content = '';
 
@@ -164,17 +164,16 @@ class RequestBodies
             if ($metadata->content) {
                 $content = $val;
             } else {
-                $name = $metadata->name;
                 $filename = $val;
             }
         }
 
-        if (empty($name) || empty($filename) || empty($content)) {
+        if (empty($filename) || empty($content)) {
             throw new \Exception('Invalid multipart/form-data file');
         }
 
         return [
-            'name' => $name,
+            'name' => $fieldName,
             'contents' => $content,
             'filename' => $filename,
         ];

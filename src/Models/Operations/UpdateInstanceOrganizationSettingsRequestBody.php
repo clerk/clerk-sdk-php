@@ -12,6 +12,36 @@ namespace Clerk\Backend\Models\Operations;
 class UpdateInstanceOrganizationSettingsRequestBody
 {
     /**
+     * Specify which enrollment modes to enable for your Organization Domains.
+     *
+     * Supported modes are 'automatic_invitation' & 'automatic_suggestion'.
+     *
+     * @var ?array<string> $domainsEnrollmentModes
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('domains_enrollment_modes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $domainsEnrollmentModes = null;
+
+    /**
+     * Specify what the default organization role is for an organization creator.
+     *
+     * @var ?string $creatorRoleId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('creator_role_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $creatorRoleId = null;
+
+    /**
+     * Specify what the default organization role is for the organization domains.
+     *
+     * @var ?string $domainsDefaultRoleId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('domains_default_role_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $domainsDefaultRoleId = null;
+
+    /**
      *
      * @var ?bool $enabled
      */
@@ -42,36 +72,6 @@ class UpdateInstanceOrganizationSettingsRequestBody
     #[\Speakeasy\Serializer\Annotation\SerializedName('domains_enabled')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $domainsEnabled = null;
-
-    /**
-     * Specify which enrollment modes to enable for your Organization Domains.
-     *
-     * Supported modes are 'automatic_invitation' & 'automatic_suggestion'.
-     *
-     * @var ?array<string> $domainsEnrollmentModes
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('domains_enrollment_modes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $domainsEnrollmentModes = null;
-
-    /**
-     * Specify what the default organization role is for an organization creator.
-     *
-     * @var ?string $creatorRoleId
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('creator_role_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $creatorRoleId = null;
-
-    /**
-     * Specify what the default organization role is for the organization domains.
-     *
-     * @var ?string $domainsDefaultRoleId
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('domains_default_role_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $domainsDefaultRoleId = null;
 
     /**
      * @param  ?array<string>  $domainsEnrollmentModes

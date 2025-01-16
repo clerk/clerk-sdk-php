@@ -21,6 +21,22 @@ class PublicUserData
 
     /**
      *
+     * @var ?string $imageUrl
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('image_url')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $imageUrl = null;
+
+    /**
+     *
+     * @var ?bool $hasImage
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('has_image')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $hasImage = null;
+
+    /**
+     *
      * @var ?string $firstName
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('first_name')]
@@ -43,22 +59,6 @@ class PublicUserData
     #[\Speakeasy\Serializer\Annotation\SerializedName('profile_image_url')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $profileImageUrl = null;
-
-    /**
-     *
-     * @var ?string $imageUrl
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('image_url')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $imageUrl = null;
-
-    /**
-     *
-     * @var ?bool $hasImage
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('has_image')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $hasImage = null;
 
     /**
      *

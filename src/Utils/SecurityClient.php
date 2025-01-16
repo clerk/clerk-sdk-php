@@ -92,7 +92,7 @@ class SecurityClient implements ClientInterface
         }
 
         if (count($this->clientOptions['headers']) > 0) {
-            $options['headers'] = array_merge_recursive($options['headers'], $this->clientOptions['headers']);
+            $options['headers'] = array_merge($this->clientOptions['headers'], $options['headers']);
         }
 
         if (count($this->clientOptions['query']) > 0) {

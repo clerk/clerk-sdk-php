@@ -12,35 +12,6 @@ namespace Clerk\Backend\Models\Operations;
 class UpdateUserRequestBody
 {
     /**
-     * The ID of the user as used in your external systems or your previous authentication solution.
-     *
-     * Must be unique across your instance.
-     *
-     * @var ?string $externalId
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('external_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $externalId = null;
-
-    /**
-     * The first name to assign to the user
-     *
-     * @var ?string $firstName
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('first_name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $firstName = null;
-
-    /**
-     * The last name to assign to the user
-     *
-     * @var ?string $lastName
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('last_name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $lastName = null;
-
-    /**
      * The ID of the email address to set as primary.
      *
      * It must be verified, and present on the current user.
@@ -50,17 +21,6 @@ class UpdateUserRequestBody
     #[\Speakeasy\Serializer\Annotation\SerializedName('primary_email_address_id')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $primaryEmailAddressId = null;
-
-    /**
-     * If set to `true`, the user will be notified that their primary email address has changed.
-     *
-     * By default, no notification is sent.
-     *
-     * @var ?bool $notifyPrimaryEmailAddressChanged
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('notify_primary_email_address_changed')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $notifyPrimaryEmailAddressChanged = null;
 
     /**
      * The ID of the phone number to set as primary.
@@ -83,37 +43,6 @@ class UpdateUserRequestBody
     #[\Speakeasy\Serializer\Annotation\SerializedName('primary_web3_wallet_id')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $primaryWeb3WalletId = null;
-
-    /**
-     * The username to give to the user.
-     *
-     * It must be unique across your instance.
-     *
-     * @var ?string $username
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('username')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $username = null;
-
-    /**
-     * The ID of the image to set as the user's profile image
-     *
-     * @var ?string $profileImageId
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('profile_image_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $profileImageId = null;
-
-    /**
-     * The plaintext password to give the user.
-     *
-     * Must be at least 8 characters long, and can not be in any list of hacked passwords.
-     *
-     * @var ?string $password
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('password')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $password = null;
 
     /**
      * In case you already have the password digests and not the passwords, you can use them for the newly created user via this property.
@@ -143,24 +72,6 @@ class UpdateUserRequestBody
     #[\Speakeasy\Serializer\Annotation\SerializedName('password_hasher')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $passwordHasher = null;
-
-    /**
-     * Set it to `true` if you're updating the user's password and want to skip any password policy settings check. This parameter can only be used when providing a `password`.
-     *
-     * @var ?bool $skipPasswordChecks
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('skip_password_checks')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $skipPasswordChecks = null;
-
-    /**
-     * Set to `true` to sign out the user from all their active sessions once their password is updated. This parameter can only be used when providing a `password`.
-     *
-     * @var ?bool $signOutOfOtherSessions
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('sign_out_of_other_sessions')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $signOutOfOtherSessions = null;
 
     /**
      * In case TOTP is configured on the instance, you can provide the secret to enable it on the specific user without the need to reset it.
@@ -221,6 +132,93 @@ class UpdateUserRequestBody
     public ?array $unsafeMetadata = null;
 
     /**
+     * A custom date/time denoting _when_ the user signed up to the application, specified in RFC3339 format (e.g. `2012-10-20T07:15:20.902Z`).
+     *
+     * @var ?string $createdAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $createdAt = null;
+
+    /**
+     * The ID of the user as used in your external systems or your previous authentication solution.
+     *
+     * Must be unique across your instance.
+     *
+     * @var ?string $externalId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('external_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $externalId = null;
+
+    /**
+     * The first name to assign to the user
+     *
+     * @var ?string $firstName
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('first_name')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $firstName = null;
+
+    /**
+     * The last name to assign to the user
+     *
+     * @var ?string $lastName
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('last_name')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $lastName = null;
+
+    /**
+     * The username to give to the user.
+     *
+     * It must be unique across your instance.
+     *
+     * @var ?string $username
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('username')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $username = null;
+
+    /**
+     * The ID of the image to set as the user's profile image
+     *
+     * @var ?string $profileImageId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('profile_image_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $profileImageId = null;
+
+    /**
+     * The plaintext password to give the user.
+     *
+     * Must be at least 8 characters long, and can not be in any list of hacked passwords.
+     *
+     * @var ?string $password
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('password')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $password = null;
+
+    /**
+     * Set it to `true` if you're updating the user's password and want to skip any password policy settings check. This parameter can only be used when providing a `password`.
+     *
+     * @var ?bool $skipPasswordChecks
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('skip_password_checks')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $skipPasswordChecks = null;
+
+    /**
+     * Set to `true` to sign out the user from all their active sessions once their password is updated. This parameter can only be used when providing a `password`.
+     *
+     * @var ?bool $signOutOfOtherSessions
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('sign_out_of_other_sessions')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $signOutOfOtherSessions = null;
+
+    /**
      * If true, the user can delete themselves with the Frontend API.
      *
      * @var ?bool $deleteSelfEnabled
@@ -268,13 +266,15 @@ class UpdateUserRequestBody
     public ?int $createOrganizationsLimit = null;
 
     /**
-     * A custom date/time denoting _when_ the user signed up to the application, specified in RFC3339 format (e.g. `2012-10-20T07:15:20.902Z`).
+     * If set to `true`, the user will be notified that their primary email address has changed.
      *
-     * @var ?string $createdAt
+     * By default, no notification is sent.
+     *
+     * @var ?bool $notifyPrimaryEmailAddressChanged
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('notify_primary_email_address_changed')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $createdAt = null;
+    public ?bool $notifyPrimaryEmailAddressChanged = null;
 
     /**
      * @param  ?string  $primaryEmailAddressId
@@ -306,7 +306,6 @@ class UpdateUserRequestBody
     public function __construct(?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $passwordDigest = null, ?string $passwordHasher = null, ?string $totpSecret = null, ?array $backupCodes = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null, ?string $createdAt = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $username = null, ?string $profileImageId = null, ?string $password = null, ?bool $skipPasswordChecks = null, ?bool $signOutOfOtherSessions = null, ?bool $deleteSelfEnabled = null, ?bool $createOrganizationEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?int $createOrganizationsLimit = null, ?bool $notifyPrimaryEmailAddressChanged = false)
     {
         $this->primaryEmailAddressId = $primaryEmailAddressId;
-        $this->notifyPrimaryEmailAddressChanged = $notifyPrimaryEmailAddressChanged;
         $this->primaryPhoneNumberId = $primaryPhoneNumberId;
         $this->primaryWeb3WalletId = $primaryWeb3WalletId;
         $this->passwordDigest = $passwordDigest;
@@ -330,5 +329,6 @@ class UpdateUserRequestBody
         $this->legalAcceptedAt = $legalAcceptedAt;
         $this->skipLegalChecks = $skipLegalChecks;
         $this->createOrganizationsLimit = $createOrganizationsLimit;
+        $this->notifyPrimaryEmailAddressChanged = $notifyPrimaryEmailAddressChanged;
     }
 }

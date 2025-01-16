@@ -62,25 +62,6 @@ class OrganizationDomain
     public ?EnrollmentMode $enrollmentMode = null;
 
     /**
-     * Affiliation email address for the domain, if available.
-     *
-     * @var ?string $affiliationEmailAddress
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('affiliation_email_address')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $affiliationEmailAddress = null;
-
-    /**
-     * Verification details for the domain
-     *
-     * @var ?OrganizationDomainVerification $verification
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationDomainVerification|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?OrganizationDomainVerification $verification = null;
-
-    /**
      * Total number of pending invitations associated with this domain
      *
      * @var ?int $totalPendingInvitations
@@ -115,6 +96,25 @@ class OrganizationDomain
     #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?int $updatedAt = null;
+
+    /**
+     * Affiliation email address for the domain, if available.
+     *
+     * @var ?string $affiliationEmailAddress
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('affiliation_email_address')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $affiliationEmailAddress = null;
+
+    /**
+     * Verification details for the domain
+     *
+     * @var ?OrganizationDomainVerification $verification
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationDomainVerification|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?OrganizationDomainVerification $verification = null;
 
     /**
      * @param  ?string  $id

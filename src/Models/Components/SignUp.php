@@ -36,6 +36,27 @@ class SignUp
     public SignUpStatus $status;
 
     /**
+     *
+     * @var bool $passwordEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('password_enabled')]
+    public bool $passwordEnabled;
+
+    /**
+     *
+     * @var bool $customAction
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('custom_action')]
+    public bool $customAction;
+
+    /**
+     *
+     * @var int $abandonAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('abandon_at')]
+    public int $abandonAt;
+
+    /**
      * $requiredFields
      *
      * @var ?array<string> $requiredFields
@@ -85,6 +106,35 @@ class SignUp
     public ?Verifications $verifications = null;
 
     /**
+     * $unsafeMetadata
+     *
+     * @var ?array<string, mixed> $unsafeMetadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('unsafe_metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $unsafeMetadata = null;
+
+    /**
+     * $publicMetadata
+     *
+     * @var ?array<string, mixed> $publicMetadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $publicMetadata = null;
+
+    /**
+     *
+     * @var ?ExternalAccount $externalAccount
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('external_account')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ExternalAccount|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?ExternalAccount $externalAccount = null;
+
+    /**
      *
      * @var ?string $username
      */
@@ -118,13 +168,6 @@ class SignUp
 
     /**
      *
-     * @var bool $passwordEnabled
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('password_enabled')]
-    public bool $passwordEnabled;
-
-    /**
-     *
      * @var ?string $firstName
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('first_name')]
@@ -138,33 +181,6 @@ class SignUp
     #[\Speakeasy\Serializer\Annotation\SerializedName('last_name')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $lastName = null;
-
-    /**
-     * $unsafeMetadata
-     *
-     * @var ?array<string, mixed> $unsafeMetadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('unsafe_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $unsafeMetadata = null;
-
-    /**
-     * $publicMetadata
-     *
-     * @var ?array<string, mixed> $publicMetadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $publicMetadata = null;
-
-    /**
-     *
-     * @var bool $customAction
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('custom_action')]
-    public bool $customAction;
 
     /**
      *
@@ -189,22 +205,6 @@ class SignUp
     #[\Speakeasy\Serializer\Annotation\SerializedName('created_user_id')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $createdUserId = null;
-
-    /**
-     *
-     * @var int $abandonAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('abandon_at')]
-    public int $abandonAt;
-
-    /**
-     *
-     * @var ?ExternalAccount $externalAccount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('external_account')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ExternalAccount|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ExternalAccount $externalAccount = null;
 
     /**
      * @param  SignUpObject  $object

@@ -21,6 +21,13 @@ class DeletedObject
 
     /**
      *
+     * @var bool $deleted
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('deleted')]
+    public bool $deleted;
+
+    /**
+     *
      * @var ?string $id
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
@@ -34,13 +41,6 @@ class DeletedObject
     #[\Speakeasy\Serializer\Annotation\SerializedName('slug')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $slug = null;
-
-    /**
-     *
-     * @var bool $deleted
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('deleted')]
-    public bool $deleted;
 
     /**
      * @param  string  $object

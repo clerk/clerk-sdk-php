@@ -28,15 +28,6 @@ class CreateOAuthApplicationRequestBody
     public string $callbackUrl;
 
     /**
-     * Define the allowed scopes for the new OAuth applications that dictate the user payload of the OAuth user info endpoint. Available scopes are `profile`, `email`, `public_metadata`, `private_metadata`. Provide the requested scopes as a string, separated by spaces.
-     *
-     * @var ?string $scopes
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('scopes')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $scopes = null;
-
-    /**
      * If true, this client is public and cannot securely store a client secret.
      *
      * Only the authorization code flow with proof key for code exchange (PKCE) may be used.
@@ -49,6 +40,15 @@ class CreateOAuthApplicationRequestBody
     public ?bool $public = null;
 
     /**
+     * Define the allowed scopes for the new OAuth applications that dictate the user payload of the OAuth user info endpoint. Available scopes are `profile`, `email`, `public_metadata`, `private_metadata`. Provide the requested scopes as a string, separated by spaces.
+     *
+     * @var ?string $scopes
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('scopes')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $scopes = null;
+
+    /**
      * @param  string  $name
      * @param  string  $callbackUrl
      * @param  ?string  $scopes
@@ -58,7 +58,7 @@ class CreateOAuthApplicationRequestBody
     {
         $this->name = $name;
         $this->callbackUrl = $callbackUrl;
-        $this->scopes = $scopes;
         $this->public = $public;
+        $this->scopes = $scopes;
     }
 }

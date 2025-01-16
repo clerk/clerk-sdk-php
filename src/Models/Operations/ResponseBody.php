@@ -66,14 +66,6 @@ class ResponseBody
     public ?array $publicMetadata = null;
 
     /**
-     *
-     * @var ?string $label
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('label')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $label = null;
-
-    /**
      * The list of scopes that the token is valid for.
      *
      * Only present for OAuth 2.0 tokens.
@@ -93,6 +85,14 @@ class ResponseBody
     #[\Speakeasy\Serializer\Annotation\SerializedName('token_secret')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $tokenSecret = null;
+
+    /**
+     *
+     * @var ?string $label
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('label')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $label = null;
 
     /**
      * @param  ?string  $object

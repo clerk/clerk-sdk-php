@@ -8,63 +8,14 @@ Organizations are used to group members under a common entity and provide shared
 
 ### Available Operations
 
-* [list](#list) - Get a list of organizations for an instance
 * [create](#create) - Create an organization
-* [get](#get) - Retrieve an organization by ID or slug
-* [update](#update) - Update an organization
 * [delete](#delete) - Delete an organization
-* [mergeMetadata](#mergemetadata) - Merge and update metadata for an organization
-* [uploadLogo](#uploadlogo) - Upload a logo for the organization
 * [deleteLogo](#deletelogo) - Delete the organization's logo.
-
-## list
-
-This request returns the list of organizations for an instance.
-Results can be paginated using the optional `limit` and `offset` query parameters.
-The organizations are ordered by descending creation date.
-Most recent organizations will be returned first.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
-
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
-
-$request = new Operations\ListOrganizationsRequest();
-
-$response = $sdk->organizations->list(
-    request: $request
-);
-
-if ($response->organizations !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `$request`                                                                                 | [Operations\ListOrganizationsRequest](../../Models/Operations/ListOrganizationsRequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
-
-### Response
-
-**[?Operations\ListOrganizationsResponse](../../Models/Operations/ListOrganizationsResponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors67 | 400, 403, 422        | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+* [get](#get) - Retrieve an organization by ID or slug
+* [list](#list) - Get a list of organizations for an instance
+* [mergeMetadata](#mergemetadata) - Merge and update metadata for an organization
+* [update](#update) - Update an organization
+* [uploadLogo](#uploadlogo) - Upload a logo for the organization
 
 ## create
 
@@ -90,9 +41,11 @@ require 'vendor/autoload.php';
 use Clerk\Backend;
 use Clerk\Backend\Models\Operations;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 $request = new Operations\CreateOrganizationRequestBody(
     name: '<value>',
@@ -120,10 +73,106 @@ if ($response->organization !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors68 | 400, 403, 422        | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 403, 422       | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## delete
+
+Deletes the given organization.
+Please note that deleting an organization will also delete all memberships and invitations.
+This is not reversible.
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->organizations->delete(
+    organizationId: '<id>'
+);
+
+if ($response->deletedObject !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                            | Type                                 | Required                             | Description                          |
+| ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
+| `organizationId`                     | *string*                             | :heavy_check_mark:                   | The ID of the organization to delete |
+
+### Response
+
+**[?Operations\DeleteOrganizationResponse](../../Models/Operations/DeleteOrganizationResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 404                 | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## deleteLogo
+
+Delete the organization's logo.
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->organizations->deleteLogo(
+    organizationId: '<id>'
+);
+
+if ($response->organization !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `organizationId`                                               | *string*                                                       | :heavy_check_mark:                                             | The ID of the organization for which the logo will be deleted. |
+
+### Response
+
+**[?Operations\DeleteOrganizationLogoResponse](../../Models/Operations/DeleteOrganizationLogoResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 404                 | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## get
 
@@ -138,9 +187,11 @@ require 'vendor/autoload.php';
 
 use Clerk\Backend;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 
 
@@ -168,14 +219,17 @@ if ($response->organization !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors69 | 403, 404             | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 403, 404            | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## update
+## list
 
-Updates an existing organization
+This request returns the list of organizations for an instance.
+Results can be paginated using the optional `limit` and `offset` query parameters.
+The organizations are ordered by descending creation date.
+Most recent organizations will be returned first.
 
 ### Example Usage
 
@@ -187,87 +241,39 @@ require 'vendor/autoload.php';
 use Clerk\Backend;
 use Clerk\Backend\Models\Operations;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$request = new Operations\ListOrganizationsRequest();
 
-$requestBody = new Operations\UpdateOrganizationRequestBody();
-
-$response = $sdk->organizations->update(
-    organizationId: '<id>',
-    requestBody: $requestBody
-
+$response = $sdk->organizations->list(
+    request: $request
 );
 
-if ($response->organization !== null) {
+if ($response->organizations !== null) {
     // handle response
 }
 ```
 
 ### Parameters
 
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `organizationId`                                                                                     | *string*                                                                                             | :heavy_check_mark:                                                                                   | The ID of the organization to update                                                                 |
-| `requestBody`                                                                                        | [Operations\UpdateOrganizationRequestBody](../../Models/Operations/UpdateOrganizationRequestBody.md) | :heavy_check_mark:                                                                                   | N/A                                                                                                  |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `$request`                                                                                 | [Operations\ListOrganizationsRequest](../../Models/Operations/ListOrganizationsRequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 
 ### Response
 
-**[?Operations\UpdateOrganizationResponse](../../Models/Operations/UpdateOrganizationResponse.md)**
+**[?Operations\ListOrganizationsResponse](../../Models/Operations/ListOrganizationsResponse.md)**
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors70 | 402, 404, 422        | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
-
-## delete
-
-Deletes the given organization.
-Please note that deleting an organization will also delete all memberships and invitations.
-This is not reversible.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
-
-
-
-$response = $sdk->organizations->delete(
-    organizationId: '<id>'
-);
-
-if ($response->deletedObject !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                            | Type                                 | Required                             | Description                          |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| `organizationId`                     | *string*                             | :heavy_check_mark:                   | The ID of the organization to delete |
-
-### Response
-
-**[?Operations\DeleteOrganizationResponse](../../Models/Operations/DeleteOrganizationResponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors71 | 404                  | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 403, 422       | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## mergeMetadata
 
@@ -286,9 +292,11 @@ require 'vendor/autoload.php';
 use Clerk\Backend;
 use Clerk\Backend\Models\Operations;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 $requestBody = new Operations\MergeOrganizationMetadataRequestBody();
 
@@ -316,10 +324,61 @@ if ($response->organization !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors71 | 400, 401, 404, 422   | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 401, 404, 422  | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## update
+
+Updates an existing organization
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+$requestBody = new Operations\UpdateOrganizationRequestBody();
+
+$response = $sdk->organizations->update(
+    organizationId: '<id>',
+    requestBody: $requestBody
+
+);
+
+if ($response->organization !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `organizationId`                                                                                     | *string*                                                                                             | :heavy_check_mark:                                                                                   | The ID of the organization to update                                                                 |
+| `requestBody`                                                                                        | [Operations\UpdateOrganizationRequestBody](../../Models/Operations/UpdateOrganizationRequestBody.md) | :heavy_check_mark:                                                                                   | N/A                                                                                                  |
+
+### Response
+
+**[?Operations\UpdateOrganizationResponse](../../Models/Operations/UpdateOrganizationResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 402, 404, 422       | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## uploadLogo
 
@@ -338,9 +397,11 @@ require 'vendor/autoload.php';
 use Clerk\Backend;
 use Clerk\Backend\Models\Operations;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 $requestBody = new Operations\UploadOrganizationLogoRequestBody(
     file: new Operations\UploadOrganizationLogoFile(
@@ -373,52 +434,7 @@ if ($response->organizationWithLogo !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors72 | 400, 403, 404, 413   | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
-
-## deleteLogo
-
-Delete the organization's logo.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
-
-
-
-$response = $sdk->organizations->deleteLogo(
-    organizationId: '<id>'
-);
-
-if ($response->organization !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
-| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
-| `organizationId`                                               | *string*                                                       | :heavy_check_mark:                                             | The ID of the organization for which the logo will be deleted. |
-
-### Response
-
-**[?Operations\DeleteOrganizationLogoResponse](../../Models/Operations/DeleteOrganizationLogoResponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors73 | 404                  | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 403, 404, 413  | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |

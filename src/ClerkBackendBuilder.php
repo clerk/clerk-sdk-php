@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace Clerk\Backend;
 
+use Clerk\Backend\Utils\Retry;
+
 /**
  * ClerkBackendBuilder is used to configure and build an instance of the SDK.
  */
@@ -26,7 +28,7 @@ class ClerkBackendBuilder
      */
     public function setClient(\GuzzleHttp\ClientInterface $client): ClerkBackendBuilder
     {
-        $this->sdkConfig->defaultClient = $client;
+        $this->sdkConfig->client = $client;
 
         return $this;
     }
@@ -88,6 +90,13 @@ class ClerkBackendBuilder
         return $this;
     }
 
+    public function setRetryConfig(Retry\RetryConfig $config): ClerkBackendBuilder
+    {
+        $this->sdkConfig->retryConfig = $config;
+
+        return $this;
+    }
+
     /**
      * build is used to build the SDK with any of the configured options.
      *
@@ -95,16 +104,13 @@ class ClerkBackendBuilder
      */
     public function build(): ClerkBackend
     {
-        if ($this->sdkConfig->defaultClient === null) {
-            $this->sdkConfig->defaultClient = new \GuzzleHttp\Client([
+        if ($this->sdkConfig->client === null) {
+            $this->sdkConfig->client = new \GuzzleHttp\Client([
                 'timeout' => 60,
             ]);
         }
         if ($this->sdkConfig->hasSecurity()) {
-            $this->sdkConfig->securityClient = Utils\Utils::configureSecurityClient($this->sdkConfig->defaultClient, $this->sdkConfig->getSecurity());
-        }
-        if ($this->sdkConfig->securityClient === null) {
-            $this->sdkConfig->securityClient = $this->sdkConfig->defaultClient;
+            $this->sdkConfig->client = Utils\Utils::configureSecurityClient($this->sdkConfig->client, $this->sdkConfig->getSecurity());
         }
 
         return new ClerkBackend($this->sdkConfig);

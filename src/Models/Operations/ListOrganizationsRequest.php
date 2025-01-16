@@ -12,6 +12,24 @@ use Clerk\Backend\Utils\SpeakeasyMetadata;
 class ListOrganizationsRequest
 {
     /**
+     * Flag to denote whether the member counts of each organization should be included in the response or not.
+     *
+     * @var ?bool $includeMembersCount
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=include_members_count')]
+    public ?bool $includeMembersCount = null;
+
+    /**
+     * Returns organizations with ID, name, or slug that match the given query.
+     *
+     * Uses exact match for organization ID and partial match for name and slug.
+     *
+     * @var ?string $query
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=query')]
+    public ?string $query = null;
+
+    /**
      * Applies a limit to the number of results returned.
      *
      * Can be used for paginating the results together with `offset`.
@@ -31,24 +49,6 @@ class ListOrganizationsRequest
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=offset')]
     public ?int $offset = null;
-
-    /**
-     * Flag to denote whether the member counts of each organization should be included in the response or not.
-     *
-     * @var ?bool $includeMembersCount
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=include_members_count')]
-    public ?bool $includeMembersCount = null;
-
-    /**
-     * Returns organizations with ID, name, or slug that match the given query.
-     *
-     * Uses exact match for organization ID and partial match for name and slug.
-     *
-     * @var ?string $query
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=query')]
-    public ?string $query = null;
 
     /**
      * Allows to return organizations in a particular order.
@@ -73,10 +73,10 @@ class ListOrganizationsRequest
      */
     public function __construct(?bool $includeMembersCount = null, ?string $query = null, ?int $limit = 10, ?int $offset = 0, ?string $orderBy = '-created_at')
     {
-        $this->limit = $limit;
-        $this->offset = $offset;
         $this->includeMembersCount = $includeMembersCount;
         $this->query = $query;
+        $this->limit = $limit;
+        $this->offset = $offset;
         $this->orderBy = $orderBy;
     }
 }

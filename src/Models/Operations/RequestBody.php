@@ -20,17 +20,6 @@ class RequestBody
     public string $emailAddress;
 
     /**
-     * The ID of the user that invites the new member to the organization.
-     *
-     * Must be an administrator in the organization.
-     *
-     * @var ?string $inviterUserId
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('inviter_user_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $inviterUserId = null;
-
-    /**
      * The role of the new member in the organization.
      *
      * @var string $role
@@ -66,6 +55,17 @@ class RequestBody
     #[\Speakeasy\Serializer\Annotation\SerializedName('redirect_url')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $redirectUrl = null;
+
+    /**
+     * The ID of the user that invites the new member to the organization.
+     *
+     * Must be an administrator in the organization.
+     *
+     * @var ?string $inviterUserId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('inviter_user_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $inviterUserId = null;
 
     /**
      * @param  string  $emailAddress

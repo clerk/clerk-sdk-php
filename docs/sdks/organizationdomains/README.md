@@ -6,8 +6,8 @@
 ### Available Operations
 
 * [create](#create) - Create a new organization domain.
-* [list](#list) - Get a list of all domains of an organization.
 * [delete](#delete) - Remove a domain from an organization.
+* [list](#list) - Get a list of all domains of an organization.
 
 ## create
 
@@ -23,9 +23,11 @@ require 'vendor/autoload.php';
 use Clerk\Backend;
 use Clerk\Backend\Models\Operations;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 $requestBody = new Operations\CreateOrganizationDomainRequestBody();
 
@@ -53,58 +55,10 @@ if ($response->organizationDomain !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors84 | 400, 403, 404, 422   | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
-
-## list
-
-Get a list of all domains of an organization.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
-
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
-
-$request = new Operations\ListOrganizationDomainsRequest(
-    organizationId: '<id>',
-);
-
-$response = $sdk->organizationDomains->list(
-    request: $request
-);
-
-if ($response->organizationDomains !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `$request`                                                                                             | [Operations\ListOrganizationDomainsRequest](../../Models/Operations/ListOrganizationDomainsRequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
-
-### Response
-
-**[?Operations\ListOrganizationDomainsResponse](../../Models/Operations/ListOrganizationDomainsResponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors85 | 401, 422             | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 403, 404, 422  | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## delete
 
@@ -119,9 +73,11 @@ require 'vendor/autoload.php';
 
 use Clerk\Backend;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 
 
@@ -149,7 +105,57 @@ if ($response->deletedObject !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors87 | 400, 401, 404        | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 401, 404       | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## list
+
+Get a list of all domains of an organization.
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+$request = new Operations\ListOrganizationDomainsRequest(
+    organizationId: '<id>',
+);
+
+$response = $sdk->organizationDomains->list(
+    request: $request
+);
+
+if ($response->organizationDomains !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `$request`                                                                                             | [Operations\ListOrganizationDomainsRequest](../../Models/Operations/ListOrganizationDomainsRequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+
+### Response
+
+**[?Operations\ListOrganizationDomainsResponse](../../Models/Operations/ListOrganizationDomainsResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 401, 422            | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |

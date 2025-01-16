@@ -45,6 +45,15 @@ class CreateInvitationRequestBody
     public ?string $redirectUrl = null;
 
     /**
+     * The number of days the invitation will be valid for. By default, the invitation does not expire.
+     *
+     * @var ?int $expiresInDays
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('expires_in_days')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $expiresInDays = null;
+
+    /**
      * Optional flag which denotes whether an email invitation should be sent to the given email address.
      *
      * Defaults to true.
@@ -65,15 +74,6 @@ class CreateInvitationRequestBody
     public ?bool $ignoreExisting = null;
 
     /**
-     * The number of days the invitation will be valid for. By default, the invitation does not expire.
-     *
-     * @var ?int $expiresInDays
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('expires_in_days')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $expiresInDays = null;
-
-    /**
      * @param  string  $emailAddress
      * @param  ?array<string, mixed>  $publicMetadata
      * @param  ?string  $redirectUrl
@@ -86,8 +86,8 @@ class CreateInvitationRequestBody
         $this->emailAddress = $emailAddress;
         $this->publicMetadata = $publicMetadata;
         $this->redirectUrl = $redirectUrl;
+        $this->expiresInDays = $expiresInDays;
         $this->notify = $notify;
         $this->ignoreExisting = $ignoreExisting;
-        $this->expiresInDays = $expiresInDays;
     }
 }

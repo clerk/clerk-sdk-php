@@ -12,14 +12,6 @@ namespace Clerk\Backend\Models\Components;
 class Web3Wallet
 {
     /**
-     *
-     * @var ?string $id
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $id = null;
-
-    /**
      * String representing the object's type. Objects of the same type share the same value.
      *
      *
@@ -36,14 +28,6 @@ class Web3Wallet
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('web3_wallet')]
     public string $web3Wallet;
-
-    /**
-     *
-     * @var Web3Signature|Web3WalletVerificationAdmin|null $verification
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Web3Signature|\Clerk\Backend\Models\Components\Web3WalletVerificationAdmin')]
-    public Web3Signature|Web3WalletVerificationAdmin|null $verification;
 
     /**
      * Unix timestamp of creation
@@ -64,6 +48,22 @@ class Web3Wallet
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
     public int $updatedAt;
+
+    /**
+     *
+     * @var ?string $id
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $id = null;
+
+    /**
+     *
+     * @var Web3Signature|Web3WalletVerificationAdmin|null $verification
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Web3Signature|\Clerk\Backend\Models\Components\Web3WalletVerificationAdmin')]
+    public Web3Signature|Web3WalletVerificationAdmin|null $verification;
 
     /**
      * @param  Web3WalletObject  $object

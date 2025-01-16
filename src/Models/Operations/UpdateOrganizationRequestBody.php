@@ -32,6 +32,15 @@ class UpdateOrganizationRequestBody
     public ?array $privateMetadata = null;
 
     /**
+     * A custom date/time denoting _when_ the organization was created, specified in RFC3339 format (e.g. `2012-10-20T07:15:20.902Z`).
+     *
+     * @var ?string $createdAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $createdAt = null;
+
+    /**
      * The new name of the organization.
      *
      * May not contain URLs or HTML.
@@ -68,15 +77,6 @@ class UpdateOrganizationRequestBody
     #[\Speakeasy\Serializer\Annotation\SerializedName('admin_delete_enabled')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $adminDeleteEnabled = null;
-
-    /**
-     * A custom date/time denoting _when_ the organization was created, specified in RFC3339 format (e.g. `2012-10-20T07:15:20.902Z`).
-     *
-     * @var ?string $createdAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $createdAt = null;
 
     /**
      * @param  ?array<string, mixed>  $publicMetadata

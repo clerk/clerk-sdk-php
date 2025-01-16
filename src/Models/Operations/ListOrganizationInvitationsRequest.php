@@ -20,6 +20,14 @@ class ListOrganizationInvitationsRequest
     public string $organizationId;
 
     /**
+     * Filter organization invitations based on their status
+     *
+     * @var ?ListOrganizationInvitationsQueryParamStatus $status
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status')]
+    public ?ListOrganizationInvitationsQueryParamStatus $status = null;
+
+    /**
      * Applies a limit to the number of results returned.
      *
      * Can be used for paginating the results together with `offset`.
@@ -41,14 +49,6 @@ class ListOrganizationInvitationsRequest
     public ?int $offset = null;
 
     /**
-     * Filter organization invitations based on their status
-     *
-     * @var ?ListOrganizationInvitationsQueryParamStatus $status
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status')]
-    public ?ListOrganizationInvitationsQueryParamStatus $status = null;
-
-    /**
      * @param  string  $organizationId
      * @param  ?int  $limit
      * @param  ?int  $offset
@@ -57,8 +57,8 @@ class ListOrganizationInvitationsRequest
     public function __construct(string $organizationId, ?ListOrganizationInvitationsQueryParamStatus $status = null, ?int $limit = 10, ?int $offset = 0)
     {
         $this->organizationId = $organizationId;
+        $this->status = $status;
         $this->limit = $limit;
         $this->offset = $offset;
-        $this->status = $status;
     }
 }

@@ -12,35 +12,6 @@ namespace Clerk\Backend\Models\Operations;
 class CreateUserRequestBody
 {
     /**
-     * The ID of the user as used in your external systems or your previous authentication solution.
-     *
-     * Must be unique across your instance.
-     *
-     * @var ?string $externalId
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('external_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $externalId = null;
-
-    /**
-     * The first name to assign to the user
-     *
-     * @var ?string $firstName
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('first_name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $firstName = null;
-
-    /**
-     * The last name to assign to the user
-     *
-     * @var ?string $lastName
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('last_name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $lastName = null;
-
-    /**
      * Email addresses to add to the user.
      *
      * Must be unique across your instance.
@@ -78,28 +49,6 @@ class CreateUserRequestBody
     #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $web3Wallet = null;
-
-    /**
-     * The username to give to the user.
-     *
-     * It must be unique across your instance.
-     *
-     * @var ?string $username
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('username')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $username = null;
-
-    /**
-     * The plaintext password to give the user.
-     *
-     * Must be at least 8 characters long, and can not be in any list of hacked passwords.
-     *
-     * @var ?string $password
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('password')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $password = null;
 
     /**
      * In case you already have the password digests and not the passwords, you can use them for the newly created user via this property.
@@ -213,6 +162,66 @@ class CreateUserRequestBody
     public ?array $unsafeMetadata = null;
 
     /**
+     * A custom date/time denoting _when_ the user signed up to the application, specified in RFC3339 format (e.g. `2012-10-20T07:15:20.902Z`).
+     *
+     * @var ?string $createdAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $createdAt = null;
+
+    /**
+     * The ID of the user as used in your external systems or your previous authentication solution.
+     *
+     * Must be unique across your instance.
+     *
+     * @var ?string $externalId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('external_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $externalId = null;
+
+    /**
+     * The first name to assign to the user
+     *
+     * @var ?string $firstName
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('first_name')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $firstName = null;
+
+    /**
+     * The last name to assign to the user
+     *
+     * @var ?string $lastName
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('last_name')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $lastName = null;
+
+    /**
+     * The username to give to the user.
+     *
+     * It must be unique across your instance.
+     *
+     * @var ?string $username
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('username')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $username = null;
+
+    /**
+     * The plaintext password to give the user.
+     *
+     * Must be at least 8 characters long, and can not be in any list of hacked passwords.
+     *
+     * @var ?string $password
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('password')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $password = null;
+
+    /**
      * If enabled, user can delete themselves via FAPI.
      *
      *
@@ -264,15 +273,6 @@ class CreateUserRequestBody
     #[\Speakeasy\Serializer\Annotation\SerializedName('create_organizations_limit')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?int $createOrganizationsLimit = null;
-
-    /**
-     * A custom date/time denoting _when_ the user signed up to the application, specified in RFC3339 format (e.g. `2012-10-20T07:15:20.902Z`).
-     *
-     * @var ?string $createdAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $createdAt = null;
 
     /**
      * @param  ?array<string>  $emailAddress

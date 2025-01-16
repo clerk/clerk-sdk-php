@@ -12,6 +12,22 @@ use Clerk\Backend\Utils\SpeakeasyMetadata;
 class ListInstanceOrganizationInvitationsRequest
 {
     /**
+     * Filter organization invitations based on their status
+     *
+     * @var ?ListInstanceOrganizationInvitationsQueryParamStatus $status
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status')]
+    public ?ListInstanceOrganizationInvitationsQueryParamStatus $status = null;
+
+    /**
+     * Filter organization invitations based on their `email_address`
+     *
+     * @var ?string $query
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=query')]
+    public ?string $query = null;
+
+    /**
      * Applies a limit to the number of results returned.
      *
      * Can be used for paginating the results together with `offset`.
@@ -47,22 +63,6 @@ class ListInstanceOrganizationInvitationsRequest
     public ?string $orderBy = null;
 
     /**
-     * Filter organization invitations based on their status
-     *
-     * @var ?ListInstanceOrganizationInvitationsQueryParamStatus $status
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status')]
-    public ?ListInstanceOrganizationInvitationsQueryParamStatus $status = null;
-
-    /**
-     * Filter organization invitations based on their `email_address`
-     *
-     * @var ?string $query
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=query')]
-    public ?string $query = null;
-
-    /**
      * @param  ?int  $limit
      * @param  ?int  $offset
      * @param  ?string  $orderBy
@@ -71,10 +71,10 @@ class ListInstanceOrganizationInvitationsRequest
      */
     public function __construct(?ListInstanceOrganizationInvitationsQueryParamStatus $status = null, ?string $query = null, ?int $limit = 10, ?int $offset = 0, ?string $orderBy = '-created_at')
     {
+        $this->status = $status;
+        $this->query = $query;
         $this->limit = $limit;
         $this->offset = $offset;
         $this->orderBy = $orderBy;
-        $this->status = $status;
-        $this->query = $query;
     }
 }

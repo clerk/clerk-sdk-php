@@ -45,15 +45,6 @@ class Session
 
     /**
      *
-     * @var ?Actor $actor
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('actor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Actor|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?Actor $actor = null;
-
-    /**
-     *
      * @var Status $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
@@ -62,27 +53,10 @@ class Session
 
     /**
      *
-     * @var ?string $lastActiveOrganizationId
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('last_active_organization_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $lastActiveOrganizationId = null;
-
-    /**
-     *
      * @var int $lastActiveAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('last_active_at')]
     public int $lastActiveAt;
-
-    /**
-     *
-     * @var ?LatestActivity $latestActivity
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('latest_activity')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\LatestActivity|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?LatestActivity $latestActivity = null;
 
     /**
      *
@@ -117,6 +91,32 @@ class Session
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
     public int $createdAt;
+
+    /**
+     *
+     * @var ?Actor $actor
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('actor')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Actor|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?Actor $actor = null;
+
+    /**
+     *
+     * @var ?string $lastActiveOrganizationId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('last_active_organization_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $lastActiveOrganizationId = null;
+
+    /**
+     *
+     * @var ?LatestActivity $latestActivity
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('latest_activity')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\LatestActivity|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?LatestActivity $latestActivity = null;
 
     /**
      * @param  SessionObject  $object

@@ -42,26 +42,10 @@ class OrganizationWithLogo
 
     /**
      *
-     * @var ?int $membersCount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('members_count')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $membersCount = null;
-
-    /**
-     *
      * @var int $maxAllowedMemberships
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('max_allowed_memberships')]
     public int $maxAllowedMemberships;
-
-    /**
-     *
-     * @var ?bool $adminDeleteEnabled
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('admin_delete_enabled')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $adminDeleteEnabled = null;
 
     /**
      * $publicMetadata
@@ -80,14 +64,6 @@ class OrganizationWithLogo
     #[\Speakeasy\Serializer\Annotation\SerializedName('private_metadata')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
     public array $privateMetadata;
-
-    /**
-     *
-     * @var ?string $createdBy
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('created_by')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $createdBy = null;
 
     /**
      * Unix timestamp of creation.
@@ -111,6 +87,29 @@ class OrganizationWithLogo
 
     /**
      *
+     * @var string $imageUrl
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('image_url')]
+    public string $imageUrl;
+
+    /**
+     *
+     * @var ?bool $adminDeleteEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('admin_delete_enabled')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $adminDeleteEnabled = null;
+
+    /**
+     *
+     * @var ?string $createdBy
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('created_by')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $createdBy = null;
+
+    /**
+     *
      * @var ?string $logoUrl
      * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -120,18 +119,19 @@ class OrganizationWithLogo
 
     /**
      *
-     * @var string $imageUrl
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('image_url')]
-    public string $imageUrl;
-
-    /**
-     *
      * @var ?bool $hasImage
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('has_image')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $hasImage = null;
+
+    /**
+     *
+     * @var ?int $membersCount
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('members_count')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $membersCount = null;
 
     /**
      * @param  OrganizationWithLogoObject  $object

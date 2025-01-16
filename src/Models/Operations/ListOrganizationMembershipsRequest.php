@@ -20,6 +20,17 @@ class ListOrganizationMembershipsRequest
     public string $organizationId;
 
     /**
+     * Sorts organizations memberships by phone_number, email_address, created_at, first_name, last_name or username.
+     *
+     * By prepending one of those values with + or -,
+     * we can choose to sort in ascending (ASC) or descending (DESC) order."
+     *
+     * @var ?string $orderBy
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=order_by')]
+    public ?string $orderBy = null;
+
+    /**
      * Applies a limit to the number of results returned.
      *
      * Can be used for paginating the results together with `offset`.
@@ -41,17 +52,6 @@ class ListOrganizationMembershipsRequest
     public ?int $offset = null;
 
     /**
-     * Sorts organizations memberships by phone_number, email_address, created_at, first_name, last_name or username.
-     *
-     * By prepending one of those values with + or -,
-     * we can choose to sort in ascending (ASC) or descending (DESC) order."
-     *
-     * @var ?string $orderBy
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=order_by')]
-    public ?string $orderBy = null;
-
-    /**
      * @param  string  $organizationId
      * @param  ?int  $limit
      * @param  ?int  $offset
@@ -60,8 +60,8 @@ class ListOrganizationMembershipsRequest
     public function __construct(string $organizationId, ?string $orderBy = null, ?int $limit = 10, ?int $offset = 0)
     {
         $this->organizationId = $organizationId;
+        $this->orderBy = $orderBy;
         $this->limit = $limit;
         $this->offset = $offset;
-        $this->orderBy = $orderBy;
     }
 }

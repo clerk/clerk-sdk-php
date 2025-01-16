@@ -12,14 +12,6 @@ namespace Clerk\Backend\Models\Components;
 class SchemasPasskey
 {
     /**
-     *
-     * @var ?string $id
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $id = null;
-
-    /**
      * String representing the object's type. Objects of the same type share the same value.
      *
      *
@@ -46,6 +38,14 @@ class SchemasPasskey
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('last_used_at')]
     public int $lastUsedAt;
+
+    /**
+     *
+     * @var ?string $id
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $id = null;
 
     /**
      *

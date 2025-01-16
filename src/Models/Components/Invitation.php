@@ -35,49 +35,12 @@ class Invitation
     public string $emailAddress;
 
     /**
-     * $publicMetadata
-     *
-     * @var ?array<string, mixed> $publicMetadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $publicMetadata = null;
-
-    /**
-     *
-     * @var ?bool $revoked
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('revoked')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $revoked = null;
-
-    /**
      *
      * @var InvitationStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\InvitationStatus')]
     public InvitationStatus $status;
-
-    /**
-     *
-     * @var ?string $url
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('url')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $url = null;
-
-    /**
-     * Unix timestamp of expiration.
-     *
-     *
-     *
-     * @var ?int $expiresAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('expires_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $expiresAt = null;
 
     /**
      * Unix timestamp of creation.
@@ -98,6 +61,43 @@ class Invitation
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
     public int $updatedAt;
+
+    /**
+     * $publicMetadata
+     *
+     * @var ?array<string, mixed> $publicMetadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $publicMetadata = null;
+
+    /**
+     *
+     * @var ?bool $revoked
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('revoked')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $revoked = null;
+
+    /**
+     *
+     * @var ?string $url
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('url')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $url = null;
+
+    /**
+     * Unix timestamp of expiration.
+     *
+     *
+     *
+     * @var ?int $expiresAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('expires_at')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $expiresAt = null;
 
     /**
      * @param  InvitationObject  $object

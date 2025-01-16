@@ -52,6 +52,26 @@ class Client
     public array $sessions;
 
     /**
+     * Unix timestamp of last update.
+     *
+     *
+     *
+     * @var int $updatedAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
+    public int $updatedAt;
+
+    /**
+     * Unix timestamp of creation.
+     *
+     *
+     *
+     * @var int $createdAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
+    public int $createdAt;
+
+    /**
      *
      * @var ?string $signInId
      */
@@ -74,26 +94,6 @@ class Client
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('last_active_session_id')]
     public ?string $lastActiveSessionId;
-
-    /**
-     * Unix timestamp of last update.
-     *
-     *
-     *
-     * @var int $updatedAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
-    public int $updatedAt;
-
-    /**
-     * Unix timestamp of creation.
-     *
-     *
-     *
-     * @var int $createdAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
-    public int $createdAt;
 
     /**
      * @param  ObjectT  $object

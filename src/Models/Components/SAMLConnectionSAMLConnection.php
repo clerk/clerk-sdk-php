@@ -54,6 +54,26 @@ class SAMLConnectionSAMLConnection
     public bool $syncUserAttributes;
 
     /**
+     * Unix timestamp of creation.
+     *
+     *
+     *
+     * @var int $createdAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
+    public int $createdAt;
+
+    /**
+     * Unix timestamp of last update.
+     *
+     *
+     *
+     * @var int $updatedAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
+    public int $updatedAt;
+
+    /**
      *
      * @var ?bool $allowSubdomains
      */
@@ -76,26 +96,6 @@ class SAMLConnectionSAMLConnection
     #[\Speakeasy\Serializer\Annotation\SerializedName('disable_additional_identifications')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $disableAdditionalIdentifications = null;
-
-    /**
-     * Unix timestamp of creation.
-     *
-     *
-     *
-     * @var int $createdAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
-    public int $createdAt;
-
-    /**
-     * Unix timestamp of last update.
-     *
-     *
-     *
-     * @var int $updatedAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
-    public int $updatedAt;
 
     /**
      * @param  string  $id

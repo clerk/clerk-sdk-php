@@ -6,8 +6,8 @@
 ### Available Operations
 
 * [create](#create) - Create a phone number
-* [get](#get) - Retrieve a phone number
 * [delete](#delete) - Delete a phone number
+* [get](#get) - Retrieve a phone number
 * [update](#update) - Update a phone number
 
 ## create
@@ -24,9 +24,11 @@ require 'vendor/autoload.php';
 use Clerk\Backend;
 use Clerk\Backend\Models\Operations;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 $request = new Operations\CreatePhoneNumberRequestBody();
 
@@ -53,53 +55,8 @@ if ($response->phoneNumber !== null) {
 
 | Error Type              | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
-| Errors\ClerkErrors7     | 400, 401, 403, 404, 422 | application/json        |
+| Errors\ClerkErrors      | 400, 401, 403, 404, 422 | application/json        |
 | Errors\SDKException     | 4XX, 5XX                | \*/\*                   |
-
-## get
-
-Returns the details of a phone number
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
-
-
-
-$response = $sdk->phoneNumbers->get(
-    phoneNumberId: '<id>'
-);
-
-if ($response->phoneNumber !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                              | Type                                   | Required                               | Description                            |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| `phoneNumberId`                        | *string*                               | :heavy_check_mark:                     | The ID of the phone number to retrieve |
-
-### Response
-
-**[?Operations\GetPhoneNumberResponse](../../Models/Operations/GetPhoneNumberResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors8 | 400, 401, 403, 404  | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## delete
 
@@ -114,9 +71,11 @@ require 'vendor/autoload.php';
 
 use Clerk\Backend;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 
 
@@ -143,7 +102,54 @@ if ($response->deletedObject !== null) {
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors9 | 400, 401, 403, 404  | application/json    |
+| Errors\ClerkErrors  | 400, 401, 403, 404  | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## get
+
+Returns the details of a phone number
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->phoneNumbers->get(
+    phoneNumberId: '<id>'
+);
+
+if ($response->phoneNumber !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                              | Type                                   | Required                               | Description                            |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| `phoneNumberId`                        | *string*                               | :heavy_check_mark:                     | The ID of the phone number to retrieve |
+
+### Response
+
+**[?Operations\GetPhoneNumberResponse](../../Models/Operations/GetPhoneNumberResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 401, 403, 404  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## update
@@ -160,9 +166,11 @@ require 'vendor/autoload.php';
 use Clerk\Backend;
 use Clerk\Backend\Models\Operations;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 $requestBody = new Operations\UpdatePhoneNumberRequestBody();
 
@@ -190,7 +198,7 @@ if ($response->phoneNumber !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors10 | 400, 401, 403, 404   | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 401, 403, 404  | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |

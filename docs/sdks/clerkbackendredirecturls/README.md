@@ -6,8 +6,8 @@
 ### Available Operations
 
 * [create](#create) - Create a redirect URL
-* [get](#get) - Retrieve a redirect URL
 * [delete](#delete) - Delete a redirect URL
+* [get](#get) - Retrieve a redirect URL
 
 ## create
 
@@ -23,9 +23,11 @@ require 'vendor/autoload.php';
 use Clerk\Backend;
 use Clerk\Backend\Models\Operations;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 $request = new Operations\CreateRedirectURLRequestBody();
 
@@ -50,55 +52,10 @@ if ($response->redirectURL !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors89 | 400, 422             | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
-
-## get
-
-Retrieve the details of the redirect URL with the given ID
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
-
-
-
-$response = $sdk->redirectUrls->get(
-    id: '<id>'
-);
-
-if ($response->redirectURL !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                  | Type                       | Required                   | Description                |
-| -------------------------- | -------------------------- | -------------------------- | -------------------------- |
-| `id`                       | *string*                   | :heavy_check_mark:         | The ID of the redirect URL |
-
-### Response
-
-**[?Operations\GetRedirectURLResponse](../../Models/Operations/GetRedirectURLResponse.md)**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors90 | 404                  | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 422            | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## delete
 
@@ -113,9 +70,11 @@ require 'vendor/autoload.php';
 
 use Clerk\Backend;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 
 
@@ -140,7 +99,54 @@ if ($response->deletedObject !== null) {
 
 ### Errors
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| Errors\ClerkErrors91 | 404                  | application/json     |
-| Errors\SDKException  | 4XX, 5XX             | \*/\*                |
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 404                 | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## get
+
+Retrieve the details of the redirect URL with the given ID
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->redirectUrls->get(
+    id: '<id>'
+);
+
+if ($response->redirectURL !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                  | Type                       | Required                   | Description                |
+| -------------------------- | -------------------------- | -------------------------- | -------------------------- |
+| `id`                       | *string*                   | :heavy_check_mark:         | The ID of the redirect URL |
+
+### Response
+
+**[?Operations\GetRedirectURLResponse](../../Models/Operations/GetRedirectURLResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 404                 | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |

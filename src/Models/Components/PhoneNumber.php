@@ -13,14 +13,6 @@ namespace Clerk\Backend\Models\Components;
 class PhoneNumber
 {
     /**
-     *
-     * @var ?string $id
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $id = null;
-
-    /**
      * String representing the object's type. Objects of the same type share the same value.
      *
      *
@@ -40,34 +32,10 @@ class PhoneNumber
 
     /**
      *
-     * @var ?bool $reservedForSecondFactor
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('reserved_for_second_factor')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $reservedForSecondFactor = null;
-
-    /**
-     *
-     * @var ?bool $defaultSecondFactor
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('default_second_factor')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $defaultSecondFactor = null;
-
-    /**
-     *
      * @var bool $reserved
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('reserved')]
     public bool $reserved;
-
-    /**
-     *
-     * @var VerificationOTP|VerificationAdmin|null $verification
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationOTP|\Clerk\Backend\Models\Components\VerificationAdmin')]
-    public VerificationOTP|VerificationAdmin|null $verification;
 
     /**
      * $linkedTo
@@ -77,16 +45,6 @@ class PhoneNumber
     #[\Speakeasy\Serializer\Annotation\SerializedName('linked_to')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\IdentificationLink>')]
     public array $linkedTo;
-
-    /**
-     * $backupCodes
-     *
-     * @var ?array<string> $backupCodes
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('backup_codes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $backupCodes = null;
 
     /**
      * Unix timestamp of creation
@@ -107,6 +65,48 @@ class PhoneNumber
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
     public int $updatedAt;
+
+    /**
+     *
+     * @var ?string $id
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $id = null;
+
+    /**
+     *
+     * @var ?bool $reservedForSecondFactor
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('reserved_for_second_factor')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $reservedForSecondFactor = null;
+
+    /**
+     *
+     * @var ?bool $defaultSecondFactor
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('default_second_factor')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $defaultSecondFactor = null;
+
+    /**
+     *
+     * @var VerificationOTP|VerificationAdmin|null $verification
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationOTP|\Clerk\Backend\Models\Components\VerificationAdmin')]
+    public VerificationOTP|VerificationAdmin|null $verification;
+
+    /**
+     * $backupCodes
+     *
+     * @var ?array<string> $backupCodes
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('backup_codes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $backupCodes = null;
 
     /**
      * @param  PhoneNumberObject  $object

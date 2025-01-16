@@ -6,8 +6,8 @@
 ### Available Operations
 
 * [create](#create) - Create an email address
-* [get](#get) - Retrieve an email address
 * [delete](#delete) - Delete an email address
+* [get](#get) - Retrieve an email address
 * [update](#update) - Update an email address
 
 ## create
@@ -24,9 +24,11 @@ require 'vendor/autoload.php';
 use Clerk\Backend;
 use Clerk\Backend\Models\Operations;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 $request = new Operations\CreateEmailAddressRequestBody();
 
@@ -53,53 +55,8 @@ if ($response->emailAddress !== null) {
 
 | Error Type              | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
-| Errors\ClerkErrors3     | 400, 401, 403, 404, 422 | application/json        |
+| Errors\ClerkErrors      | 400, 401, 403, 404, 422 | application/json        |
 | Errors\SDKException     | 4XX, 5XX                | \*/\*                   |
-
-## get
-
-Returns the details of an email address.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
-
-
-
-$response = $sdk->emailAddresses->get(
-    emailAddressId: '<id>'
-);
-
-if ($response->emailAddress !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                               | Type                                    | Required                                | Description                             |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| `emailAddressId`                        | *string*                                | :heavy_check_mark:                      | The ID of the email address to retrieve |
-
-### Response
-
-**[?Operations\GetEmailAddressResponse](../../Models/Operations/GetEmailAddressResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors4 | 400, 401, 403, 404  | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## delete
 
@@ -114,9 +71,11 @@ require 'vendor/autoload.php';
 
 use Clerk\Backend;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 
 
@@ -143,7 +102,54 @@ if ($response->deletedObject !== null) {
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors5 | 400, 401, 403, 404  | application/json    |
+| Errors\ClerkErrors  | 400, 401, 403, 404  | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## get
+
+Returns the details of an email address.
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->emailAddresses->get(
+    emailAddressId: '<id>'
+);
+
+if ($response->emailAddress !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                               | Type                                    | Required                                | Description                             |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| `emailAddressId`                        | *string*                                | :heavy_check_mark:                      | The ID of the email address to retrieve |
+
+### Response
+
+**[?Operations\GetEmailAddressResponse](../../Models/Operations/GetEmailAddressResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 401, 403, 404  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## update
@@ -160,9 +166,11 @@ require 'vendor/autoload.php';
 use Clerk\Backend;
 use Clerk\Backend\Models\Operations;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 $requestBody = new Operations\UpdateEmailAddressRequestBody();
 
@@ -192,5 +200,5 @@ if ($response->emailAddress !== null) {
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors6 | 400, 401, 403, 404  | application/json    |
+| Errors\ClerkErrors  | 400, 401, 403, 404  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |

@@ -12,15 +12,6 @@ namespace Clerk\Backend\Models\Operations;
 class UpdateInstanceAuthConfigRequestBody
 {
     /**
-     * Whether sign up is restricted to email addresses, phone numbers and usernames that are on the allowlist.
-     *
-     * @var ?bool $restrictedToAllowlist
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('restricted_to_allowlist')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $restrictedToAllowlist = null;
-
-    /**
      * The local part of the email address from which authentication-related emails (e.g. OTP code, magic links) will be sent.
      *
      * Only alphanumeric values are allowed.
@@ -73,6 +64,15 @@ class UpdateInstanceAuthConfigRequestBody
     public ?bool $testMode = null;
 
     /**
+     * Whether sign up is restricted to email addresses, phone numbers and usernames that are on the allowlist.
+     *
+     * @var ?bool $restrictedToAllowlist
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('restricted_to_allowlist')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $restrictedToAllowlist = null;
+
+    /**
      * @param  ?bool  $restrictedToAllowlist
      * @param  ?string  $fromEmailAddress
      * @param  ?bool  $progressiveSignUp
@@ -82,11 +82,11 @@ class UpdateInstanceAuthConfigRequestBody
      */
     public function __construct(?string $fromEmailAddress = null, ?bool $progressiveSignUp = null, ?string $sessionTokenTemplate = null, ?bool $enhancedEmailDeliverability = null, ?bool $testMode = null, ?bool $restrictedToAllowlist = false)
     {
-        $this->restrictedToAllowlist = $restrictedToAllowlist;
         $this->fromEmailAddress = $fromEmailAddress;
         $this->progressiveSignUp = $progressiveSignUp;
         $this->sessionTokenTemplate = $sessionTokenTemplate;
         $this->enhancedEmailDeliverability = $enhancedEmailDeliverability;
         $this->testMode = $testMode;
+        $this->restrictedToAllowlist = $restrictedToAllowlist;
     }
 }

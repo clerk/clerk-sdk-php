@@ -12,6 +12,14 @@ use Clerk\Backend\Utils\SpeakeasyMetadata;
 class ListInvitationsRequest
 {
     /**
+     * Filter invitations based on their status
+     *
+     * @var ?ListInvitationsQueryParamStatus $status
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status')]
+    public ?ListInvitationsQueryParamStatus $status = null;
+
+    /**
      * Applies a limit to the number of results returned.
      *
      * Can be used for paginating the results together with `offset`.
@@ -33,22 +41,14 @@ class ListInvitationsRequest
     public ?int $offset = null;
 
     /**
-     * Filter invitations based on their status
-     *
-     * @var ?ListInvitationsQueryParamStatus $status
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status')]
-    public ?ListInvitationsQueryParamStatus $status = null;
-
-    /**
      * @param  ?int  $limit
      * @param  ?int  $offset
      * @param  ?ListInvitationsQueryParamStatus  $status
      */
     public function __construct(?ListInvitationsQueryParamStatus $status = null, ?int $limit = 10, ?int $offset = 0)
     {
+        $this->status = $status;
         $this->limit = $limit;
         $this->offset = $offset;
-        $this->status = $status;
     }
 }

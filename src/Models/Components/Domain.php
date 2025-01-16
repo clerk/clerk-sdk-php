@@ -48,6 +48,13 @@ class Domain
     public string $frontendApiUrl;
 
     /**
+     *
+     * @var string $developmentOrigin
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('development_origin')]
+    public string $developmentOrigin;
+
+    /**
      * Null for satellite domains.
      *
      *
@@ -65,13 +72,6 @@ class Domain
     #[\Speakeasy\Serializer\Annotation\SerializedName('proxy_url')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $proxyUrl = null;
-
-    /**
-     *
-     * @var string $developmentOrigin
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('development_origin')]
-    public string $developmentOrigin;
 
     /**
      * $cnameTargets

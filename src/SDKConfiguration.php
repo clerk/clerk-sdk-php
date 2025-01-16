@@ -7,18 +7,17 @@
 declare(strict_types=1);
 
 namespace Clerk\Backend;
+use Clerk\Backend\Utils\Retry\RetryConfig;
 
 class SDKConfiguration
 {
-    public ?\GuzzleHttp\ClientInterface $defaultClient = null;
+    public ?\GuzzleHttp\ClientInterface $client = null;
 
-    public ?\GuzzleHttp\ClientInterface $securityClient = null;
-
+    public Hooks\SDKHooks $hooks;
     public ?Models\Components\Security $security = null;
 
     /** @var pure-Closure(): string */
     public ?\Closure $securitySource = null;
-
     public string $serverUrl = '';
 
     public int $serverIndex = 0;
@@ -27,11 +26,18 @@ class SDKConfiguration
 
     public string $openapiDocVersion = 'v1';
 
-    public string $sdkVersion = '0.4.3';
+    public string $sdkVersion = '0.4.4';
 
-    public string $genVersion = '2.445.1';
+    public string $genVersion = '2.493.19';
 
-    public string $userAgent = 'speakeasy-sdk/php 0.4.3 2.445.1 v1 clerk/backend-php';
+    public string $userAgent = 'speakeasy-sdk/php 0.4.4 2.493.19 v1 clerk/backend-php';
+
+    public ?RetryConfig $retryConfig = null;
+
+    public function __construct()
+    {
+        $this->hooks = new Hooks\SDKHooks();
+    }
 
     public function getServerUrl(): string
     {
@@ -62,5 +68,41 @@ class SDKConfiguration
         } else {
             return $this->security;
         }
+    }
+
+    /**
+     * @return Utils\ServerDetails
+     */
+    public function getServerDetails(): Utils\ServerDetails
+    {
+        if ($this->serverUrl !== '') {
+            return new Utils\ServerDetails(rtrim($this->serverUrl, '/'), []);
+        }
+        if ($this->serverIndex === null) {
+            $this->serverIndex = 0;
+        }
+
+        return new Utils\ServerDetails(ClerkBackend::SERVERS[$this->serverIndex], []);
+
+    }
+
+    public function getTemplatedServerUrl(): string
+    {
+        if ($this->serverUrl) {
+            return Utils\Utils::templateUrl($this->serverUrl.trim('/'), []);
+        }
+
+        return Utils\Utils::templateUrl($this->getServerUrl(), []);
+    }
+
+    public function initHooks(\GuzzleHttp\ClientInterface $client): \GuzzleHttp\ClientInterface
+    {
+        $preHooksUrl = $this->getTemplatedServerUrl();
+        $ret = $this->hooks->sdkInit($preHooksUrl, $client);
+        if ($preHooksUrl != $ret->url) {
+            $this->serverUrl = $ret->url;
+        }
+
+        return $ret->client;
     }
 }

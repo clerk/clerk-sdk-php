@@ -15,7 +15,7 @@ class UploadOrganizationLogoFile
      *
      * @var string $fileName
      */
-    #[SpeakeasyMetadata('multipartForm:name=file')]
+    #[SpeakeasyMetadata('multipartForm:name=fileName')]
     public string $fileName;
 
     /**

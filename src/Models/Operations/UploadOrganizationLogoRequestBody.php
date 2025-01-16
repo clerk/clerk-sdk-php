@@ -12,19 +12,19 @@ use Clerk\Backend\Utils\SpeakeasyMetadata;
 class UploadOrganizationLogoRequestBody
 {
     /**
+     *
+     * @var UploadOrganizationLogoFile $file
+     */
+    #[SpeakeasyMetadata('multipartForm:file=true,name=file')]
+    public UploadOrganizationLogoFile $file;
+
+    /**
      * The ID of the user that will be credited with the image upload.
      *
      * @var ?string $uploaderUserId
      */
     #[SpeakeasyMetadata('multipartForm:name=uploader_user_id')]
     public ?string $uploaderUserId = null;
-
-    /**
-     *
-     * @var UploadOrganizationLogoFile $file
-     */
-    #[SpeakeasyMetadata('multipartForm:file=true')]
-    public UploadOrganizationLogoFile $file;
 
     /**
      * @param  UploadOrganizationLogoFile  $file

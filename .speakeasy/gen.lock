@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 8c24a12b-d2f1-466a-bdaa-6d83a049a679
 management:
-  docChecksum: 5b058eb4b1b83a6a9d0c18b6d90f6683
+  docChecksum: f0199ba2e624b064609f40e1787c4b75
   docVersion: v1
-  speakeasyVersion: 1.424.0
-  generationVersion: 2.445.1
-  releaseVersion: 0.4.3
-  configChecksum: efc024d26c13d6e77ca9842fd44a2433
+  speakeasyVersion: 1.468.8
+  generationVersion: 2.493.19
+  releaseVersion: 0.4.4
+  configChecksum: ac0bc9517a5b4ebfecd7ca396f66c143
   published: true
 features:
   php:
     constsAndDefaults: 0.2.0
-    core: 3.7.0
+    core: 3.7.9
     deprecations: 2.81.1
-    examples: 2.81.3
+    examples: 2.81.5
     flattening: 2.81.1
     globalSecurity: 2.81.7
     globalSecurityFlattening: 0.1.1
@@ -23,10 +23,9 @@ features:
     nameOverrides: 2.81.2
     nullables: 1.0.0
     responseFormat: 0.1.0
-    unions: 0.1.3
+    unions: 0.1.4
 generatedFiles:
   - .gitattributes
-  - CONTRIBUTING.md
   - USAGE.md
   - composer.json
   - docs/Models/Components/Actor.md
@@ -185,110 +184,6 @@ generatedFiles:
   - docs/Models/Components/Web3WalletVerificationAdmin.md
   - docs/Models/Components/WellKnownJWKS.md
   - docs/Models/Errors/ClerkErrors.md
-  - docs/Models/Errors/ClerkErrors1.md
-  - docs/Models/Errors/ClerkErrors10.md
-  - docs/Models/Errors/ClerkErrors100.md
-  - docs/Models/Errors/ClerkErrors101.md
-  - docs/Models/Errors/ClerkErrors102.md
-  - docs/Models/Errors/ClerkErrors103.md
-  - docs/Models/Errors/ClerkErrors104.md
-  - docs/Models/Errors/ClerkErrors11.md
-  - docs/Models/Errors/ClerkErrors12.md
-  - docs/Models/Errors/ClerkErrors13.md
-  - docs/Models/Errors/ClerkErrors14.md
-  - docs/Models/Errors/ClerkErrors15.md
-  - docs/Models/Errors/ClerkErrors16.md
-  - docs/Models/Errors/ClerkErrors17.md
-  - docs/Models/Errors/ClerkErrors18.md
-  - docs/Models/Errors/ClerkErrors19.md
-  - docs/Models/Errors/ClerkErrors2.md
-  - docs/Models/Errors/ClerkErrors20.md
-  - docs/Models/Errors/ClerkErrors21.md
-  - docs/Models/Errors/ClerkErrors22.md
-  - docs/Models/Errors/ClerkErrors23.md
-  - docs/Models/Errors/ClerkErrors24.md
-  - docs/Models/Errors/ClerkErrors25.md
-  - docs/Models/Errors/ClerkErrors26.md
-  - docs/Models/Errors/ClerkErrors27.md
-  - docs/Models/Errors/ClerkErrors28.md
-  - docs/Models/Errors/ClerkErrors29.md
-  - docs/Models/Errors/ClerkErrors3.md
-  - docs/Models/Errors/ClerkErrors30.md
-  - docs/Models/Errors/ClerkErrors31.md
-  - docs/Models/Errors/ClerkErrors32.md
-  - docs/Models/Errors/ClerkErrors33.md
-  - docs/Models/Errors/ClerkErrors34.md
-  - docs/Models/Errors/ClerkErrors35.md
-  - docs/Models/Errors/ClerkErrors36.md
-  - docs/Models/Errors/ClerkErrors37.md
-  - docs/Models/Errors/ClerkErrors38.md
-  - docs/Models/Errors/ClerkErrors39.md
-  - docs/Models/Errors/ClerkErrors4.md
-  - docs/Models/Errors/ClerkErrors40.md
-  - docs/Models/Errors/ClerkErrors41.md
-  - docs/Models/Errors/ClerkErrors42.md
-  - docs/Models/Errors/ClerkErrors43.md
-  - docs/Models/Errors/ClerkErrors44.md
-  - docs/Models/Errors/ClerkErrors45.md
-  - docs/Models/Errors/ClerkErrors46.md
-  - docs/Models/Errors/ClerkErrors47.md
-  - docs/Models/Errors/ClerkErrors48.md
-  - docs/Models/Errors/ClerkErrors49.md
-  - docs/Models/Errors/ClerkErrors5.md
-  - docs/Models/Errors/ClerkErrors50.md
-  - docs/Models/Errors/ClerkErrors51.md
-  - docs/Models/Errors/ClerkErrors52.md
-  - docs/Models/Errors/ClerkErrors53.md
-  - docs/Models/Errors/ClerkErrors54.md
-  - docs/Models/Errors/ClerkErrors55.md
-  - docs/Models/Errors/ClerkErrors56.md
-  - docs/Models/Errors/ClerkErrors57.md
-  - docs/Models/Errors/ClerkErrors58.md
-  - docs/Models/Errors/ClerkErrors59.md
-  - docs/Models/Errors/ClerkErrors6.md
-  - docs/Models/Errors/ClerkErrors60.md
-  - docs/Models/Errors/ClerkErrors61.md
-  - docs/Models/Errors/ClerkErrors62.md
-  - docs/Models/Errors/ClerkErrors63.md
-  - docs/Models/Errors/ClerkErrors64.md
-  - docs/Models/Errors/ClerkErrors65.md
-  - docs/Models/Errors/ClerkErrors66.md
-  - docs/Models/Errors/ClerkErrors67.md
-  - docs/Models/Errors/ClerkErrors68.md
-  - docs/Models/Errors/ClerkErrors69.md
-  - docs/Models/Errors/ClerkErrors7.md
-  - docs/Models/Errors/ClerkErrors70.md
-  - docs/Models/Errors/ClerkErrors71.md
-  - docs/Models/Errors/ClerkErrors72.md
-  - docs/Models/Errors/ClerkErrors73.md
-  - docs/Models/Errors/ClerkErrors74.md
-  - docs/Models/Errors/ClerkErrors75.md
-  - docs/Models/Errors/ClerkErrors76.md
-  - docs/Models/Errors/ClerkErrors77.md
-  - docs/Models/Errors/ClerkErrors78.md
-  - docs/Models/Errors/ClerkErrors79.md
-  - docs/Models/Errors/ClerkErrors8.md
-  - docs/Models/Errors/ClerkErrors80.md
-  - docs/Models/Errors/ClerkErrors81.md
-  - docs/Models/Errors/ClerkErrors82.md
-  - docs/Models/Errors/ClerkErrors83.md
-  - docs/Models/Errors/ClerkErrors84.md
-  - docs/Models/Errors/ClerkErrors85.md
-  - docs/Models/Errors/ClerkErrors86.md
-  - docs/Models/Errors/ClerkErrors87.md
-  - docs/Models/Errors/ClerkErrors88.md
-  - docs/Models/Errors/ClerkErrors89.md
-  - docs/Models/Errors/ClerkErrors9.md
-  - docs/Models/Errors/ClerkErrors90.md
-  - docs/Models/Errors/ClerkErrors91.md
-  - docs/Models/Errors/ClerkErrors92.md
-  - docs/Models/Errors/ClerkErrors93.md
-  - docs/Models/Errors/ClerkErrors94.md
-  - docs/Models/Errors/ClerkErrors95.md
-  - docs/Models/Errors/ClerkErrors96.md
-  - docs/Models/Errors/ClerkErrors97.md
-  - docs/Models/Errors/ClerkErrors98.md
-  - docs/Models/Errors/ClerkErrors99.md
   - docs/Models/Errors/Meta.md
   - docs/Models/Operations/Actor.md
   - docs/Models/Operations/AddDomainRequestBody.md
@@ -632,6 +527,22 @@ generatedFiles:
   - src/EmailAddresses.php
   - src/EmailAndSmsTemplates.php
   - src/EmailSMSTemplates.php
+  - src/Hooks/AfterErrorContext.php
+  - src/Hooks/AfterErrorHook.php
+  - src/Hooks/AfterSuccessContext.php
+  - src/Hooks/AfterSuccessHook.php
+  - src/Hooks/BeforeRequestContext.php
+  - src/Hooks/BeforeRequestHook.php
+  - src/Hooks/Credentials.php
+  - src/Hooks/ErrorResponseContext.php
+  - src/Hooks/FailEarlyException.php
+  - src/Hooks/HookContext.php
+  - src/Hooks/Hooks.php
+  - src/Hooks/SDKHooks.php
+  - src/Hooks/SDKInitHook.php
+  - src/Hooks/SDKRequestContext.php
+  - src/Hooks/Session.php
+  - src/Hooks/TokenResponse.php
   - src/InstanceSettings.php
   - src/Invitations.php
   - src/Jwks.php
@@ -785,214 +696,6 @@ generatedFiles:
   - src/Models/Components/Web3WalletVerificationAdmin.php
   - src/Models/Components/WellKnownJWKS.php
   - src/Models/Errors/ClerkErrors.php
-  - src/Models/Errors/ClerkErrors1.php
-  - src/Models/Errors/ClerkErrors10.php
-  - src/Models/Errors/ClerkErrors100.php
-  - src/Models/Errors/ClerkErrors100Throwable.php
-  - src/Models/Errors/ClerkErrors101.php
-  - src/Models/Errors/ClerkErrors101Throwable.php
-  - src/Models/Errors/ClerkErrors102.php
-  - src/Models/Errors/ClerkErrors102Throwable.php
-  - src/Models/Errors/ClerkErrors103.php
-  - src/Models/Errors/ClerkErrors103Throwable.php
-  - src/Models/Errors/ClerkErrors104.php
-  - src/Models/Errors/ClerkErrors104Throwable.php
-  - src/Models/Errors/ClerkErrors10Throwable.php
-  - src/Models/Errors/ClerkErrors11.php
-  - src/Models/Errors/ClerkErrors11Throwable.php
-  - src/Models/Errors/ClerkErrors12.php
-  - src/Models/Errors/ClerkErrors12Throwable.php
-  - src/Models/Errors/ClerkErrors13.php
-  - src/Models/Errors/ClerkErrors13Throwable.php
-  - src/Models/Errors/ClerkErrors14.php
-  - src/Models/Errors/ClerkErrors14Throwable.php
-  - src/Models/Errors/ClerkErrors15.php
-  - src/Models/Errors/ClerkErrors15Throwable.php
-  - src/Models/Errors/ClerkErrors16.php
-  - src/Models/Errors/ClerkErrors16Throwable.php
-  - src/Models/Errors/ClerkErrors17.php
-  - src/Models/Errors/ClerkErrors17Throwable.php
-  - src/Models/Errors/ClerkErrors18.php
-  - src/Models/Errors/ClerkErrors18Throwable.php
-  - src/Models/Errors/ClerkErrors19.php
-  - src/Models/Errors/ClerkErrors19Throwable.php
-  - src/Models/Errors/ClerkErrors1Throwable.php
-  - src/Models/Errors/ClerkErrors2.php
-  - src/Models/Errors/ClerkErrors20.php
-  - src/Models/Errors/ClerkErrors20Throwable.php
-  - src/Models/Errors/ClerkErrors21.php
-  - src/Models/Errors/ClerkErrors21Throwable.php
-  - src/Models/Errors/ClerkErrors22.php
-  - src/Models/Errors/ClerkErrors22Throwable.php
-  - src/Models/Errors/ClerkErrors23.php
-  - src/Models/Errors/ClerkErrors23Throwable.php
-  - src/Models/Errors/ClerkErrors24.php
-  - src/Models/Errors/ClerkErrors24Throwable.php
-  - src/Models/Errors/ClerkErrors25.php
-  - src/Models/Errors/ClerkErrors25Throwable.php
-  - src/Models/Errors/ClerkErrors26.php
-  - src/Models/Errors/ClerkErrors26Throwable.php
-  - src/Models/Errors/ClerkErrors27.php
-  - src/Models/Errors/ClerkErrors27Throwable.php
-  - src/Models/Errors/ClerkErrors28.php
-  - src/Models/Errors/ClerkErrors28Throwable.php
-  - src/Models/Errors/ClerkErrors29.php
-  - src/Models/Errors/ClerkErrors29Throwable.php
-  - src/Models/Errors/ClerkErrors2Throwable.php
-  - src/Models/Errors/ClerkErrors3.php
-  - src/Models/Errors/ClerkErrors30.php
-  - src/Models/Errors/ClerkErrors30Throwable.php
-  - src/Models/Errors/ClerkErrors31.php
-  - src/Models/Errors/ClerkErrors31Throwable.php
-  - src/Models/Errors/ClerkErrors32.php
-  - src/Models/Errors/ClerkErrors32Throwable.php
-  - src/Models/Errors/ClerkErrors33.php
-  - src/Models/Errors/ClerkErrors33Throwable.php
-  - src/Models/Errors/ClerkErrors34.php
-  - src/Models/Errors/ClerkErrors34Throwable.php
-  - src/Models/Errors/ClerkErrors35.php
-  - src/Models/Errors/ClerkErrors35Throwable.php
-  - src/Models/Errors/ClerkErrors36.php
-  - src/Models/Errors/ClerkErrors36Throwable.php
-  - src/Models/Errors/ClerkErrors37.php
-  - src/Models/Errors/ClerkErrors37Throwable.php
-  - src/Models/Errors/ClerkErrors38.php
-  - src/Models/Errors/ClerkErrors38Throwable.php
-  - src/Models/Errors/ClerkErrors39.php
-  - src/Models/Errors/ClerkErrors39Throwable.php
-  - src/Models/Errors/ClerkErrors3Throwable.php
-  - src/Models/Errors/ClerkErrors4.php
-  - src/Models/Errors/ClerkErrors40.php
-  - src/Models/Errors/ClerkErrors40Throwable.php
-  - src/Models/Errors/ClerkErrors41.php
-  - src/Models/Errors/ClerkErrors41Throwable.php
-  - src/Models/Errors/ClerkErrors42.php
-  - src/Models/Errors/ClerkErrors42Throwable.php
-  - src/Models/Errors/ClerkErrors43.php
-  - src/Models/Errors/ClerkErrors43Throwable.php
-  - src/Models/Errors/ClerkErrors44.php
-  - src/Models/Errors/ClerkErrors44Throwable.php
-  - src/Models/Errors/ClerkErrors45.php
-  - src/Models/Errors/ClerkErrors45Throwable.php
-  - src/Models/Errors/ClerkErrors46.php
-  - src/Models/Errors/ClerkErrors46Throwable.php
-  - src/Models/Errors/ClerkErrors47.php
-  - src/Models/Errors/ClerkErrors47Throwable.php
-  - src/Models/Errors/ClerkErrors48.php
-  - src/Models/Errors/ClerkErrors48Throwable.php
-  - src/Models/Errors/ClerkErrors49.php
-  - src/Models/Errors/ClerkErrors49Throwable.php
-  - src/Models/Errors/ClerkErrors4Throwable.php
-  - src/Models/Errors/ClerkErrors5.php
-  - src/Models/Errors/ClerkErrors50.php
-  - src/Models/Errors/ClerkErrors50Throwable.php
-  - src/Models/Errors/ClerkErrors51.php
-  - src/Models/Errors/ClerkErrors51Throwable.php
-  - src/Models/Errors/ClerkErrors52.php
-  - src/Models/Errors/ClerkErrors52Throwable.php
-  - src/Models/Errors/ClerkErrors53.php
-  - src/Models/Errors/ClerkErrors53Throwable.php
-  - src/Models/Errors/ClerkErrors54.php
-  - src/Models/Errors/ClerkErrors54Throwable.php
-  - src/Models/Errors/ClerkErrors55.php
-  - src/Models/Errors/ClerkErrors55Throwable.php
-  - src/Models/Errors/ClerkErrors56.php
-  - src/Models/Errors/ClerkErrors56Throwable.php
-  - src/Models/Errors/ClerkErrors57.php
-  - src/Models/Errors/ClerkErrors57Throwable.php
-  - src/Models/Errors/ClerkErrors58.php
-  - src/Models/Errors/ClerkErrors58Throwable.php
-  - src/Models/Errors/ClerkErrors59.php
-  - src/Models/Errors/ClerkErrors59Throwable.php
-  - src/Models/Errors/ClerkErrors5Throwable.php
-  - src/Models/Errors/ClerkErrors6.php
-  - src/Models/Errors/ClerkErrors60.php
-  - src/Models/Errors/ClerkErrors60Throwable.php
-  - src/Models/Errors/ClerkErrors61.php
-  - src/Models/Errors/ClerkErrors61Throwable.php
-  - src/Models/Errors/ClerkErrors62.php
-  - src/Models/Errors/ClerkErrors62Throwable.php
-  - src/Models/Errors/ClerkErrors63.php
-  - src/Models/Errors/ClerkErrors63Throwable.php
-  - src/Models/Errors/ClerkErrors64.php
-  - src/Models/Errors/ClerkErrors64Throwable.php
-  - src/Models/Errors/ClerkErrors65.php
-  - src/Models/Errors/ClerkErrors65Throwable.php
-  - src/Models/Errors/ClerkErrors66.php
-  - src/Models/Errors/ClerkErrors66Throwable.php
-  - src/Models/Errors/ClerkErrors67.php
-  - src/Models/Errors/ClerkErrors67Throwable.php
-  - src/Models/Errors/ClerkErrors68.php
-  - src/Models/Errors/ClerkErrors68Throwable.php
-  - src/Models/Errors/ClerkErrors69.php
-  - src/Models/Errors/ClerkErrors69Throwable.php
-  - src/Models/Errors/ClerkErrors6Throwable.php
-  - src/Models/Errors/ClerkErrors7.php
-  - src/Models/Errors/ClerkErrors70.php
-  - src/Models/Errors/ClerkErrors70Throwable.php
-  - src/Models/Errors/ClerkErrors71.php
-  - src/Models/Errors/ClerkErrors71Throwable.php
-  - src/Models/Errors/ClerkErrors72.php
-  - src/Models/Errors/ClerkErrors72Throwable.php
-  - src/Models/Errors/ClerkErrors73.php
-  - src/Models/Errors/ClerkErrors73Throwable.php
-  - src/Models/Errors/ClerkErrors74.php
-  - src/Models/Errors/ClerkErrors74Throwable.php
-  - src/Models/Errors/ClerkErrors75.php
-  - src/Models/Errors/ClerkErrors75Throwable.php
-  - src/Models/Errors/ClerkErrors76.php
-  - src/Models/Errors/ClerkErrors76Throwable.php
-  - src/Models/Errors/ClerkErrors77.php
-  - src/Models/Errors/ClerkErrors77Throwable.php
-  - src/Models/Errors/ClerkErrors78.php
-  - src/Models/Errors/ClerkErrors78Throwable.php
-  - src/Models/Errors/ClerkErrors79.php
-  - src/Models/Errors/ClerkErrors79Throwable.php
-  - src/Models/Errors/ClerkErrors7Throwable.php
-  - src/Models/Errors/ClerkErrors8.php
-  - src/Models/Errors/ClerkErrors80.php
-  - src/Models/Errors/ClerkErrors80Throwable.php
-  - src/Models/Errors/ClerkErrors81.php
-  - src/Models/Errors/ClerkErrors81Throwable.php
-  - src/Models/Errors/ClerkErrors82.php
-  - src/Models/Errors/ClerkErrors82Throwable.php
-  - src/Models/Errors/ClerkErrors83.php
-  - src/Models/Errors/ClerkErrors83Throwable.php
-  - src/Models/Errors/ClerkErrors84.php
-  - src/Models/Errors/ClerkErrors84Throwable.php
-  - src/Models/Errors/ClerkErrors85.php
-  - src/Models/Errors/ClerkErrors85Throwable.php
-  - src/Models/Errors/ClerkErrors86.php
-  - src/Models/Errors/ClerkErrors86Throwable.php
-  - src/Models/Errors/ClerkErrors87.php
-  - src/Models/Errors/ClerkErrors87Throwable.php
-  - src/Models/Errors/ClerkErrors88.php
-  - src/Models/Errors/ClerkErrors88Throwable.php
-  - src/Models/Errors/ClerkErrors89.php
-  - src/Models/Errors/ClerkErrors89Throwable.php
-  - src/Models/Errors/ClerkErrors8Throwable.php
-  - src/Models/Errors/ClerkErrors9.php
-  - src/Models/Errors/ClerkErrors90.php
-  - src/Models/Errors/ClerkErrors90Throwable.php
-  - src/Models/Errors/ClerkErrors91.php
-  - src/Models/Errors/ClerkErrors91Throwable.php
-  - src/Models/Errors/ClerkErrors92.php
-  - src/Models/Errors/ClerkErrors92Throwable.php
-  - src/Models/Errors/ClerkErrors93.php
-  - src/Models/Errors/ClerkErrors93Throwable.php
-  - src/Models/Errors/ClerkErrors94.php
-  - src/Models/Errors/ClerkErrors94Throwable.php
-  - src/Models/Errors/ClerkErrors95.php
-  - src/Models/Errors/ClerkErrors95Throwable.php
-  - src/Models/Errors/ClerkErrors96.php
-  - src/Models/Errors/ClerkErrors96Throwable.php
-  - src/Models/Errors/ClerkErrors97.php
-  - src/Models/Errors/ClerkErrors97Throwable.php
-  - src/Models/Errors/ClerkErrors98.php
-  - src/Models/Errors/ClerkErrors98Throwable.php
-  - src/Models/Errors/ClerkErrors99.php
-  - src/Models/Errors/ClerkErrors99Throwable.php
-  - src/Models/Errors/ClerkErrors9Throwable.php
   - src/Models/Errors/ClerkErrorsThrowable.php
   - src/Models/Errors/Meta.php
   - src/Models/Errors/SDKException.php
@@ -1318,22 +1021,35 @@ generatedFiles:
   - src/Utils/JSON.php
   - src/Utils/MixedJSONHandler.php
   - src/Utils/MultipartMetadata.php
+  - src/Utils/Options.php
   - src/Utils/ParamsMetadata.php
   - src/Utils/PathParameters.php
   - src/Utils/PhpDocTypeParser.php
   - src/Utils/QueryParameters.php
   - src/Utils/RequestBodies.php
   - src/Utils/RequestMetadata.php
+  - src/Utils/Retry/PermanentError.php
+  - src/Utils/Retry/RetryConfig.php
+  - src/Utils/Retry/RetryConfigBackoff.php
+  - src/Utils/Retry/RetryConfigNone.php
+  - src/Utils/Retry/RetryStrategy.php
+  - src/Utils/Retry/RetryUtils.php
+  - src/Utils/Retry/TemporaryError.php
   - src/Utils/Security.php
   - src/Utils/SecurityClient.php
   - src/Utils/SecurityMetadata.php
+  - src/Utils/ServerDetails.php
   - src/Utils/SpeakeasyMetadata.php
   - src/Utils/UnionHandler.php
   - src/Utils/Utils.php
   - src/Webhooks.php
 examples:
   GetPublicInterstitial: {}
-  GetJWKS: {}
+  GetJWKS:
+    speakeasy-default-get-JWKS:
+      responses:
+        "200":
+          application/json: {}
   GetClientList:
     speakeasy-default-get-client-list:
       responses:
@@ -1478,7 +1194,8 @@ examples:
       responses:
         "401":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
-        "200": {}
+        "200":
+          application/json: {}
   GetTemplateList:
     speakeasy-default-get-template-list:
       parameters:
@@ -1487,7 +1204,8 @@ examples:
       responses:
         "400":
           application/json: {"errors": []}
-        "200": {}
+        "200":
+          application/json: [{}, {}, {}]
   GetTemplate:
     speakeasy-default-get-template:
       parameters:
@@ -1497,7 +1215,8 @@ examples:
       responses:
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
-        "200": {}
+        "200":
+          application/json: {}
   UpsertTemplate:
     speakeasy-default-upsert-template:
       parameters:
@@ -1507,7 +1226,8 @@ examples:
       responses:
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
-        "200": {}
+        "200":
+          application/json: {}
   RevertTemplate:
     speakeasy-default-revert-template:
       parameters:
@@ -1517,7 +1237,8 @@ examples:
       responses:
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
-        "200": {}
+        "200":
+          application/json: {}
   PreviewTemplate:
     speakeasy-default-preview-template:
       parameters:
@@ -1527,7 +1248,8 @@ examples:
       responses:
         "400":
           application/json: {"errors": []}
-        "200": {}
+        "200":
+          application/json: {}
   ToggleTemplateDelivery:
     speakeasy-default-toggle-template-delivery:
       parameters:
@@ -1537,7 +1259,8 @@ examples:
       responses:
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
-        "200": {}
+        "200":
+          application/json: {}
   GetUserList:
     "":
       parameters:
@@ -1577,6 +1300,8 @@ examples:
       parameters:
         path:
           user_id: "<id>"
+      requestBody:
+        application/json: {}
       responses:
         "200":
           application/json: {"last_active_at": 1700690400000, "legal_accepted_at": 1700690400000}
@@ -1637,6 +1362,8 @@ examples:
       parameters:
         path:
           user_id: "<id>"
+      requestBody:
+        multipart/form-data: {}
       responses:
         "200":
           application/json: {"last_active_at": 1700690400000, "legal_accepted_at": 1700690400000}
@@ -1671,7 +1398,8 @@ examples:
       responses:
         "400":
           application/json: {"errors": []}
-        "200": {}
+        "200":
+          application/json: [{}]
   UsersGetOrganizationMemberships:
     speakeasy-default-users-get-organization-memberships:
       parameters:
@@ -1680,7 +1408,7 @@ examples:
         query: {}
       responses:
         "200":
-          application/json: {"total_count": 492159}
+          application/json: {"data": [{}], "total_count": 492159}
         "403":
           application/json: {"errors": []}
   VerifyPassword:
@@ -1691,7 +1419,8 @@ examples:
       responses:
         "500":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
-        "200": {}
+        "200":
+          application/json: {}
   VerifyTOTP:
     speakeasy-default-verify-TOTP:
       parameters:
@@ -1700,7 +1429,8 @@ examples:
       responses:
         "500":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
-        "200": {}
+        "200":
+          application/json: {}
   DisableMFA:
     speakeasy-default-disable-MFA:
       parameters:
@@ -1709,7 +1439,10 @@ examples:
       responses:
         "404":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
-        "200": {}
+        "200":
+          application/json: {}
+        "500":
+          application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
   CreateInvitation:
     speakeasy-default-create-invitation:
       responses:
@@ -1737,13 +1470,15 @@ examples:
       responses:
         "401":
           application/json: {"errors": []}
-        "200": {}
+        "200":
+          application/json: [{}, {}, {}]
   CreateAllowlistIdentifier:
     speakeasy-default-create-allowlist-identifier:
       responses:
         "400":
           application/json: {"errors": []}
-        "200": {}
+        "200":
+          application/json: {}
   DeleteAllowlistIdentifier:
     speakeasy-default-delete-allowlist-identifier:
       parameters:
@@ -1758,7 +1493,7 @@ examples:
     speakeasy-default-list-blocklist-identifiers:
       responses:
         "200":
-          application/json: {"total_count": 935502}
+          application/json: {"data": [{}, {}, {}], "total_count": 935502}
         "401":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
   CreateBlocklistIdentifier:
@@ -1766,7 +1501,8 @@ examples:
       responses:
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
-        "200": {}
+        "200":
+          application/json: {}
   DeleteBlocklistIdentifier:
     speakeasy-default-delete-blocklist-identifier:
       parameters:
@@ -1782,7 +1518,8 @@ examples:
       responses:
         "402":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
-        "200": {}
+        "200":
+          application/json: {}
   UpdateProductionInstanceDomain:
     speakeasy-default-update-production-instance-domain:
       responses:
@@ -1796,10 +1533,10 @@ examples:
   CreateActorToken:
     speakeasy-default-create-actor-token:
       requestBody:
-        application/json: {"user_id": "<id>"}
+        application/json: {"user_id": "<id>", "actor": {}}
       responses:
         "200":
-          application/json: {"object": "actor_token", "id": "<id>", "status": "pending", "user_id": "<id>", "created_at": 664688, "updated_at": 62962}
+          application/json: {"object": "actor_token", "id": "<id>", "status": "pending", "user_id": "<id>", "actor": {}, "created_at": 664688, "updated_at": 62962}
         "400":
           application/json: {"errors": []}
   RevokeActorToken:
@@ -1809,7 +1546,7 @@ examples:
           actor_token_id: "<id>"
       responses:
         "200":
-          application/json: {"object": "actor_token", "id": "<id>", "status": "pending", "user_id": "<id>", "created_at": 114905, "updated_at": 8992}
+          application/json: {"object": "actor_token", "id": "<id>", "status": "pending", "user_id": "<id>", "actor": {}, "created_at": 114905, "updated_at": 8992}
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
   ListDomains:
@@ -1839,6 +1576,8 @@ examples:
       parameters:
         path:
           domain_id: "<id>"
+      requestBody:
+        application/json: {}
       responses:
         "200":
           application/json: {"object": "domain", "id": "<id>", "name": "<value>", "is_satellite": false, "frontend_api_url": "https://nifty-joy.net/", "development_origin": "<value>"}
@@ -1854,7 +1593,8 @@ examples:
       responses:
         "402":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
-        "200": {}
+        "200":
+          application/json: {}
   UpdateInstanceOrganizationSettings:
     speakeasy-default-update-instance-organization-settings:
       responses:
@@ -1885,12 +1625,12 @@ examples:
     speakeasy-default-list-JWT-templates:
       responses:
         "200":
-          application/json: [{"object": "jwt_template", "id": "<id>", "name": "<value>", "lifetime": 333725, "allowed_clock_skew": 732880, "created_at": 409143, "updated_at": 212242}, {"object": "jwt_template", "id": "<id>", "name": "<value>", "lifetime": 490314, "allowed_clock_skew": 125836, "created_at": 67512, "updated_at": 999787}, {"object": "jwt_template", "id": "<id>", "name": "<value>", "lifetime": 499997, "allowed_clock_skew": 230615, "created_at": 312845, "updated_at": 535888}]
+          application/json: [{"object": "jwt_template", "id": "<id>", "name": "<value>", "claims": {}, "lifetime": 333725, "allowed_clock_skew": 732880, "created_at": 409143, "updated_at": 212242}, {"object": "jwt_template", "id": "<id>", "name": "<value>", "claims": {}, "lifetime": 490314, "allowed_clock_skew": 125836, "created_at": 67512, "updated_at": 999787}, {"object": "jwt_template", "id": "<id>", "name": "<value>", "claims": {}, "lifetime": 499997, "allowed_clock_skew": 230615, "created_at": 312845, "updated_at": 535888}]
   CreateJWTTemplate:
     speakeasy-default-create-JWT-template:
       responses:
         "200":
-          application/json: {"object": "jwt_template", "id": "<id>", "name": "<value>", "lifetime": 636196, "allowed_clock_skew": 687004, "created_at": 273048, "updated_at": 891395}
+          application/json: {"object": "jwt_template", "id": "<id>", "name": "<value>", "claims": {}, "lifetime": 636196, "allowed_clock_skew": 687004, "created_at": 273048, "updated_at": 891395}
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
   GetJWTTemplate:
@@ -1900,7 +1640,7 @@ examples:
           template_id: "<id>"
       responses:
         "200":
-          application/json: {"object": "jwt_template", "id": "<id>", "name": "<value>", "lifetime": 962772, "allowed_clock_skew": 674175, "created_at": 21361, "updated_at": 274270}
+          application/json: {"object": "jwt_template", "id": "<id>", "name": "<value>", "claims": {}, "lifetime": 962772, "allowed_clock_skew": 674175, "created_at": 21361, "updated_at": 274270}
         "404":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
   UpdateJWTTemplate:
@@ -1910,7 +1650,7 @@ examples:
           template_id: "<id>"
       responses:
         "200":
-          application/json: {"object": "jwt_template", "id": "<id>", "name": "<value>", "lifetime": 570419, "allowed_clock_skew": 725258, "created_at": 759751, "updated_at": 883134}
+          application/json: {"object": "jwt_template", "id": "<id>", "name": "<value>", "claims": {}, "lifetime": 570419, "allowed_clock_skew": 725258, "created_at": 759751, "updated_at": 883134}
         "400":
           application/json: {"errors": []}
   DeleteJWTTemplate:
@@ -1953,6 +1693,8 @@ examples:
       parameters:
         path:
           organization_id: "<id>"
+      requestBody:
+        application/json: {}
       responses:
         "200":
           application/json: {"object": "organization", "id": "<id>", "name": "<value>", "slug": "<value>", "max_allowed_memberships": 524231, "public_metadata": {"key": "<value>", "key1": "<value>"}, "private_metadata": {"key": "<value>", "key1": "<value>"}, "created_at": 565012, "updated_at": 59099}
@@ -1973,6 +1715,8 @@ examples:
       parameters:
         path:
           organization_id: "<id>"
+      requestBody:
+        application/json: {}
       responses:
         "200":
           application/json: {"object": "organization", "id": "<id>", "name": "<value>", "slug": "<value>", "max_allowed_memberships": 253408, "public_metadata": {"key": "<value>"}, "private_metadata": {"key": "<value>", "key1": "<value>"}, "created_at": 598734, "updated_at": 850278}
@@ -2008,7 +1752,8 @@ examples:
       responses:
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
-        "200": {}
+        "200":
+          application/json: {}
   ListOrganizationInvitations:
     speakeasy-default-list-organization-invitations:
       parameters:
@@ -2017,7 +1762,7 @@ examples:
         query: {}
       responses:
         "200":
-          application/json: {"total_count": 146396}
+          application/json: {"data": [{}, {}, {}], "total_count": 146396}
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
   CreateOrganizationInvitationBulk:
@@ -2052,7 +1797,8 @@ examples:
       responses:
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
-        "200": {}
+        "200":
+          application/json: {}
   RevokeOrganizationInvitation:
     speakeasy-default-revoke-organization-invitation:
       parameters:
@@ -2064,7 +1810,8 @@ examples:
       responses:
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
-        "200": {}
+        "200":
+          application/json: {}
   CreateOrganizationMembership:
     speakeasy-default-create-organization-membership:
       parameters:
@@ -2075,7 +1822,8 @@ examples:
       responses:
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
-        "200": {}
+        "200":
+          application/json: {}
   ListOrganizationMemberships:
     speakeasy-default-list-organization-memberships:
       parameters:
@@ -2084,7 +1832,7 @@ examples:
         query: {}
       responses:
         "200":
-          application/json: {"total_count": 506931}
+          application/json: {"data": [{}, {}, {}], "total_count": 506931}
         "401":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
   UpdateOrganizationMembership:
@@ -2098,7 +1846,8 @@ examples:
       responses:
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
-        "200": {}
+        "200":
+          application/json: {}
   DeleteOrganizationMembership:
     speakeasy-default-delete-organization-membership:
       parameters:
@@ -2108,17 +1857,21 @@ examples:
       responses:
         "400":
           application/json: {"errors": []}
-        "200": {}
+        "200":
+          application/json: {}
   UpdateOrganizationMembershipMetadata:
     speakeasy-default-update-organization-membership-metadata:
       parameters:
         path:
           organization_id: "<id>"
           user_id: "<id>"
+      requestBody:
+        application/json: {}
       responses:
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
-        "200": {}
+        "200":
+          application/json: {}
   VerifyDomainProxy:
     speakeasy-default-verify-domain-proxy:
       responses:
@@ -2272,6 +2025,8 @@ examples:
       parameters:
         path:
           saml_connection_id: "<id>"
+      requestBody:
+        application/json: {}
       responses:
         "200":
           application/json: {"object": "saml_connection", "id": "<id>", "name": "<value>", "domain": "bitter-cheetah.biz", "idp_entity_id": "<id>", "idp_sso_url": "https://dual-pomelo.org", "idp_certificate": "<value>", "acs_url": "https://paltry-middle.net", "sp_entity_id": "<id>", "sp_metadata_url": "https://immediate-tune-up.info/", "active": true, "provider": "<value>", "user_count": 910631, "sync_user_attributes": true, "created_at": 347299, "updated_at": 414806}
@@ -2300,7 +2055,7 @@ examples:
         query: {}
       responses:
         "200":
-          application/json: {"total_count": 375907}
+          application/json: {"data": [{}], "total_count": 375907}
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
   DeleteBackupCode:
@@ -2310,6 +2065,10 @@ examples:
           user_id: "<id>"
       responses:
         "404":
+          application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
+        "200":
+          application/json: {}
+        "500":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
   UserPasskeyDelete:
     speakeasy-default-user-passkey-delete:
@@ -2322,6 +2081,8 @@ examples:
           application/json: {"object": "<value>", "deleted": true}
         "403":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
+        "500":
+          application/json: {"errors": []}
   UserWeb3WalletDelete:
     speakeasy-default-user-web3-wallet-delete:
       parameters:
@@ -2333,6 +2094,8 @@ examples:
           application/json: {"object": "<value>", "deleted": false}
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
+        "500":
+          application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
   CreateUserTOTP:
     speakeasy-default-create-user-TOTP:
       parameters:
@@ -2343,6 +2106,8 @@ examples:
           application/json: {"key": "<value>", "key1": "<value>"}
         "403":
           application/json: {"errors": []}
+        "500":
+          application/json: {"errors": []}
   DeleteTOTP:
     speakeasy-default-delete-TOTP:
       parameters:
@@ -2350,6 +2115,10 @@ examples:
           user_id: "<id>"
       responses:
         "404":
+          application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
+        "200":
+          application/json: {}
+        "500":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
   DeleteExternalAccount:
     speakeasy-default-delete-external-account:
@@ -2362,28 +2131,38 @@ examples:
           application/json: {"object": "<value>", "deleted": false}
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
+        "500":
+          application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
   ListInstanceOrganizationInvitations:
     speakeasy-default-list-instance-organization-invitations:
       responses:
         "200":
-          application/json: {"total_count": 59215}
+          application/json: {"data": [{}], "total_count": 59215}
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
+        "500":
+          application/json: {"errors": []}
   InstanceGetOrganizationMemberships:
     speakeasy-default-instance-get-organization-memberships:
       responses:
         "200":
-          application/json: {"total_count": 59215}
+          application/json: {"data": [{}], "total_count": 59215}
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
+        "500":
+          application/json: {"errors": []}
   CreateOrganizationDomain:
     speakeasy-default-create-organization-domain:
       parameters:
         path:
           organization_id: "<id>"
+      requestBody:
+        application/json: {}
       responses:
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
+        "200":
+          application/json: {}
   ListOrganizationDomains:
     speakeasy-default-list-organization-domains:
       parameters:
@@ -2392,7 +2171,7 @@ examples:
         query: {}
       responses:
         "200":
-          application/json: {"total_count": 547272}
+          application/json: {"data": [{}, {}, {}], "total_count": 547272}
         "401":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
   DeleteOrganizationDomain:
@@ -2412,6 +2191,11 @@ examples:
         path:
           organization_id: "<id>"
           domain_id: "<id>"
+      requestBody:
+        application/json: {}
       responses:
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
+        "200":
+          application/json: {}
+generatedTests: {}

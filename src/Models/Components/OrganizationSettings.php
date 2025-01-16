@@ -36,22 +36,6 @@ class OrganizationSettings
     public int $maxAllowedMemberships;
 
     /**
-     *
-     * @var ?int $maxAllowedRoles
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('max_allowed_roles')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $maxAllowedRoles = null;
-
-    /**
-     *
-     * @var ?int $maxAllowedPermissions
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('max_allowed_permissions')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $maxAllowedPermissions = null;
-
-    /**
      * The role key that a user will be assigned after creating an organization.
      *
      * @var string $creatorRole
@@ -90,6 +74,22 @@ class OrganizationSettings
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('domains_default_role')]
     public string $domainsDefaultRole;
+
+    /**
+     *
+     * @var ?int $maxAllowedRoles
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('max_allowed_roles')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $maxAllowedRoles = null;
+
+    /**
+     *
+     * @var ?int $maxAllowedPermissions
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('max_allowed_permissions')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $maxAllowedPermissions = null;
 
     /**
      * @param  OrganizationSettingsObject  $object

@@ -29,6 +29,13 @@ class Oauth
 
     /**
      *
+     * @var int $expireAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('expire_at')]
+    public int $expireAt;
+
+    /**
+     *
      * @var ?string $externalVerificationRedirectUrl
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('external_verification_redirect_url')]
@@ -43,13 +50,6 @@ class Oauth
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ErrorClerkError')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ErrorClerkError $error = null;
-
-    /**
-     *
-     * @var int $expireAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('expire_at')]
-    public int $expireAt;
 
     /**
      *

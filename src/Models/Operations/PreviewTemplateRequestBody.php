@@ -13,17 +13,6 @@ namespace Clerk\Backend\Models\Operations;
 class PreviewTemplateRequestBody
 {
     /**
-     * The email subject.
-     *
-     * Applicable only to email templates.
-     *
-     * @var ?string $subject
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('subject')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $subject = null;
-
-    /**
      * The template body before variable interpolation
      *
      * @var ?string $body
@@ -55,6 +44,17 @@ class PreviewTemplateRequestBody
     #[\Speakeasy\Serializer\Annotation\SerializedName('reply_to_email_name')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $replyToEmailName = null;
+
+    /**
+     * The email subject.
+     *
+     * Applicable only to email templates.
+     *
+     * @var ?string $subject
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('subject')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $subject = null;
 
     /**
      * @param  ?string  $body

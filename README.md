@@ -47,14 +47,24 @@ More information about the API can be found at https://clerk.com/docs
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
+<!-- $toc-max-depth=2 -->
+* [clerk/backend-php](#clerkbackend-php)
+  * [Overview](#overview)
+  * [SDK Installation](#sdk-installation)
+  * [Usage](#usage)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Request Authentication](#request-authentication)
+  * [Authentication](#authentication)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+* [Development](#development)
+  * [Maturity](#maturity)
+  * [Support](#support)
+  * [Contributing](#contributing)
+  * [Security](#security)
+  * [License](#license)
 
-* [SDK Installation](#sdk-installation)
-* [Usage](#usage)
-* [SDK Example Usage](#sdk-example-usage)
-* [Request Authentication](#request-authentication)
-* [Available Resources and Operations](#available-resources-and-operations)
-* [Error Handling](#error-handling)
-* [Server Selection](#server-selection)
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
@@ -89,9 +99,11 @@ require 'vendor/autoload.php';
 
 use Clerk\Backend;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 
 
@@ -134,6 +146,45 @@ class UserAuthentication
 If the request is correctly authenticated, the token's payload is made available in `$requestState->payload`. Otherwise the reason for the token verification failure is given by `requestState->errorReason`.
 
 
+<!-- Start Authentication [security] -->
+## Authentication
+
+### Per-Client Security Schemes
+
+This SDK supports the following security scheme globally:
+
+| Name         | Type | Scheme      |
+| ------------ | ---- | ----------- |
+| `bearerAuth` | http | HTTP Bearer |
+
+To authenticate with the API the `bearerAuth` parameter must be set when initializing the SDK. For example:
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->miscellaneous->getInterstitial(
+    frontendApi: '<value>',
+    publishableKey: '<value>'
+
+);
+
+if ($response->statusCode === 200) {
+    // handle response
+}
+```
+<!-- End Authentication [security] -->
+
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
@@ -147,10 +198,10 @@ If the request is correctly authenticated, the token's payload is made available
 
 ### [allowlistBlocklist](docs/sdks/allowlistblocklist/README.md)
 
-* [listAllowlistIdentifiers](docs/sdks/allowlistblocklist/README.md#listallowlistidentifiers) - List all identifiers on the allow-list
 * [createAllowlistIdentifier](docs/sdks/allowlistblocklist/README.md#createallowlistidentifier) - Add identifier to the allow-list
 * [createBlocklistIdentifier](docs/sdks/allowlistblocklist/README.md#createblocklistidentifier) - Add identifier to the block-list
 * [deleteBlocklistIdentifier](docs/sdks/allowlistblocklist/README.md#deleteblocklistidentifier) - Delete identifier from block-list
+* [listAllowlistIdentifiers](docs/sdks/allowlistblocklist/README.md#listallowlistidentifiers) - List all identifiers on the allow-list
 
 ### [allowlistIdentifiers](docs/sdks/allowlistidentifiers/README.md)
 
@@ -158,9 +209,9 @@ If the request is correctly authenticated, the token's payload is made available
 
 ### [betaFeatures](docs/sdks/betafeatures/README.md)
 
+* [changeProductionInstanceDomain](docs/sdks/betafeatures/README.md#changeproductioninstancedomain) - Update production instance domain
 * [updateInstanceSettings](docs/sdks/betafeatures/README.md#updateinstancesettings) - Update instance settings
 * [~~updateDomain~~](docs/sdks/betafeatures/README.md#updatedomain) - Update production instance domain :warning: **Deprecated**
-* [changeProductionInstanceDomain](docs/sdks/betafeatures/README.md#changeproductioninstancedomain) - Update production instance domain
 
 ### [blocklistIdentifiers](docs/sdks/blocklistidentifiers/README.md)
 
@@ -169,22 +220,22 @@ If the request is correctly authenticated, the token's payload is made available
 
 ### [clients](docs/sdks/clients/README.md)
 
+* [get](docs/sdks/clients/README.md#get) - Get a client
 * [~~list~~](docs/sdks/clients/README.md#list) - List all clients :warning: **Deprecated**
 * [verify](docs/sdks/clients/README.md#verify) - Verify a client
-* [get](docs/sdks/clients/README.md#get) - Get a client
 
 ### [domains](docs/sdks/domains/README.md)
 
-* [list](docs/sdks/domains/README.md#list) - List all instance domains
 * [add](docs/sdks/domains/README.md#add) - Add a domain
 * [delete](docs/sdks/domains/README.md#delete) - Delete a satellite domain
+* [list](docs/sdks/domains/README.md#list) - List all instance domains
 * [update](docs/sdks/domains/README.md#update) - Update a domain
 
 ### [emailAddresses](docs/sdks/emailaddresses/README.md)
 
 * [create](docs/sdks/emailaddresses/README.md#create) - Create an email address
-* [get](docs/sdks/emailaddresses/README.md#get) - Retrieve an email address
 * [delete](docs/sdks/emailaddresses/README.md#delete) - Delete an email address
+* [get](docs/sdks/emailaddresses/README.md#get) - Retrieve an email address
 * [update](docs/sdks/emailaddresses/README.md#update) - Update an email address
 
 ### [~~emailAndSmsTemplates~~](docs/sdks/emailandsmstemplates/README.md)
@@ -193,16 +244,16 @@ If the request is correctly authenticated, the token's payload is made available
 
 ### [~~emailSMSTemplates~~](docs/sdks/emailsmstemplates/README.md)
 
+* [~~get~~](docs/sdks/emailsmstemplates/README.md#get) - Retrieve a template :warning: **Deprecated**
 * [~~list~~](docs/sdks/emailsmstemplates/README.md#list) - List all templates :warning: **Deprecated**
 * [~~revert~~](docs/sdks/emailsmstemplates/README.md#revert) - Revert a template :warning: **Deprecated**
-* [~~get~~](docs/sdks/emailsmstemplates/README.md#get) - Retrieve a template :warning: **Deprecated**
 * [~~toggleTemplateDelivery~~](docs/sdks/emailsmstemplates/README.md#toggletemplatedelivery) - Toggle the delivery by Clerk for a template of a given type and slug :warning: **Deprecated**
 
 ### [instanceSettings](docs/sdks/instancesettings/README.md)
 
 * [update](docs/sdks/instancesettings/README.md#update) - Update instance settings
-* [updateRestrictions](docs/sdks/instancesettings/README.md#updaterestrictions) - Update instance restrictions
 * [updateOrganizationSettings](docs/sdks/instancesettings/README.md#updateorganizationsettings) - Update instance organization settings
+* [updateRestrictions](docs/sdks/instancesettings/README.md#updaterestrictions) - Update instance restrictions
 
 ### [invitations](docs/sdks/invitations/README.md)
 
@@ -216,11 +267,11 @@ If the request is correctly authenticated, the token's payload is made available
 
 ### [jwtTemplates](docs/sdks/jwttemplates/README.md)
 
-* [list](docs/sdks/jwttemplates/README.md#list) - List all templates
 * [create](docs/sdks/jwttemplates/README.md#create) - Create a JWT template
-* [get](docs/sdks/jwttemplates/README.md#get) - Retrieve a template
-* [update](docs/sdks/jwttemplates/README.md#update) - Update a JWT template
 * [delete](docs/sdks/jwttemplates/README.md#delete) - Delete a Template
+* [get](docs/sdks/jwttemplates/README.md#get) - Retrieve a template
+* [list](docs/sdks/jwttemplates/README.md#list) - List all templates
+* [update](docs/sdks/jwttemplates/README.md#update) - Update a JWT template
 
 ### [miscellaneous](docs/sdks/miscellaneous/README.md)
 
@@ -228,12 +279,12 @@ If the request is correctly authenticated, the token's payload is made available
 
 ### [oauthApplications](docs/sdks/oauthapplications/README.md)
 
-* [list](docs/sdks/oauthapplications/README.md#list) - Get a list of OAuth applications for an instance
 * [create](docs/sdks/oauthapplications/README.md#create) - Create an OAuth application
-* [get](docs/sdks/oauthapplications/README.md#get) - Retrieve an OAuth application by ID
-* [update](docs/sdks/oauthapplications/README.md#update) - Update an OAuth application
 * [delete](docs/sdks/oauthapplications/README.md#delete) - Delete an OAuth application
+* [get](docs/sdks/oauthapplications/README.md#get) - Retrieve an OAuth application by ID
+* [list](docs/sdks/oauthapplications/README.md#list) - Get a list of OAuth applications for an instance
 * [rotateSecret](docs/sdks/oauthapplications/README.md#rotatesecret) - Rotate the client secret of the given OAuth application
+* [update](docs/sdks/oauthapplications/README.md#update) - Update an OAuth application
 
 ### [organizationDomain](docs/sdks/organizationdomain/README.md)
 
@@ -242,44 +293,44 @@ If the request is correctly authenticated, the token's payload is made available
 ### [organizationDomains](docs/sdks/organizationdomains/README.md)
 
 * [create](docs/sdks/organizationdomains/README.md#create) - Create a new organization domain.
-* [list](docs/sdks/organizationdomains/README.md#list) - Get a list of all domains of an organization.
 * [delete](docs/sdks/organizationdomains/README.md#delete) - Remove a domain from an organization.
+* [list](docs/sdks/organizationdomains/README.md#list) - Get a list of all domains of an organization.
 
 ### [organizationInvitations](docs/sdks/organizationinvitations/README.md)
 
-* [getAll](docs/sdks/organizationinvitations/README.md#getall) - Get a list of organization invitations for the current instance
 * [create](docs/sdks/organizationinvitations/README.md#create) - Create and send an organization invitation
-* [list](docs/sdks/organizationinvitations/README.md#list) - Get a list of organization invitations
 * [bulkCreate](docs/sdks/organizationinvitations/README.md#bulkcreate) - Bulk create and send organization invitations
-* [~~listPending~~](docs/sdks/organizationinvitations/README.md#listpending) - Get a list of pending organization invitations :warning: **Deprecated**
 * [get](docs/sdks/organizationinvitations/README.md#get) - Retrieve an organization invitation by ID
+* [getAll](docs/sdks/organizationinvitations/README.md#getall) - Get a list of organization invitations for the current instance
+* [list](docs/sdks/organizationinvitations/README.md#list) - Get a list of organization invitations
+* [~~listPending~~](docs/sdks/organizationinvitations/README.md#listpending) - Get a list of pending organization invitations :warning: **Deprecated**
 * [revoke](docs/sdks/organizationinvitations/README.md#revoke) - Revoke a pending organization invitation
 
 ### [organizationMemberships](docs/sdks/organizationmemberships/README.md)
 
 * [create](docs/sdks/organizationmemberships/README.md#create) - Create a new organization membership
+* [delete](docs/sdks/organizationmemberships/README.md#delete) - Remove a member from an organization
+* [getAll](docs/sdks/organizationmemberships/README.md#getall) - Get a list of all organization memberships within an instance.
 * [list](docs/sdks/organizationmemberships/README.md#list) - Get a list of all members of an organization
 * [update](docs/sdks/organizationmemberships/README.md#update) - Update an organization membership
-* [delete](docs/sdks/organizationmemberships/README.md#delete) - Remove a member from an organization
 * [updateMetadata](docs/sdks/organizationmemberships/README.md#updatemetadata) - Merge and update organization membership metadata
-* [getAll](docs/sdks/organizationmemberships/README.md#getall) - Get a list of all organization memberships within an instance.
 
 ### [organizations](docs/sdks/organizations/README.md)
 
-* [list](docs/sdks/organizations/README.md#list) - Get a list of organizations for an instance
 * [create](docs/sdks/organizations/README.md#create) - Create an organization
-* [get](docs/sdks/organizations/README.md#get) - Retrieve an organization by ID or slug
-* [update](docs/sdks/organizations/README.md#update) - Update an organization
 * [delete](docs/sdks/organizations/README.md#delete) - Delete an organization
-* [mergeMetadata](docs/sdks/organizations/README.md#mergemetadata) - Merge and update metadata for an organization
-* [uploadLogo](docs/sdks/organizations/README.md#uploadlogo) - Upload a logo for the organization
 * [deleteLogo](docs/sdks/organizations/README.md#deletelogo) - Delete the organization's logo.
+* [get](docs/sdks/organizations/README.md#get) - Retrieve an organization by ID or slug
+* [list](docs/sdks/organizations/README.md#list) - Get a list of organizations for an instance
+* [mergeMetadata](docs/sdks/organizations/README.md#mergemetadata) - Merge and update metadata for an organization
+* [update](docs/sdks/organizations/README.md#update) - Update an organization
+* [uploadLogo](docs/sdks/organizations/README.md#uploadlogo) - Upload a logo for the organization
 
 ### [phoneNumbers](docs/sdks/phonenumbers/README.md)
 
 * [create](docs/sdks/phonenumbers/README.md#create) - Create a phone number
-* [get](docs/sdks/phonenumbers/README.md#get) - Retrieve a phone number
 * [delete](docs/sdks/phonenumbers/README.md#delete) - Delete a phone number
+* [get](docs/sdks/phonenumbers/README.md#get) - Retrieve a phone number
 * [update](docs/sdks/phonenumbers/README.md#update) - Update a phone number
 
 ### [proxyChecks](docs/sdks/proxychecks/README.md)
@@ -289,8 +340,8 @@ If the request is correctly authenticated, the token's payload is made available
 ### [redirectUrls](docs/sdks/clerkbackendredirecturls/README.md)
 
 * [create](docs/sdks/clerkbackendredirecturls/README.md#create) - Create a redirect URL
-* [get](docs/sdks/clerkbackendredirecturls/README.md#get) - Retrieve a redirect URL
 * [delete](docs/sdks/clerkbackendredirecturls/README.md#delete) - Delete a redirect URL
+* [get](docs/sdks/clerkbackendredirecturls/README.md#get) - Retrieve a redirect URL
 
 ### [redirectURLs](docs/sdks/redirecturls/README.md)
 
@@ -298,19 +349,19 @@ If the request is correctly authenticated, the token's payload is made available
 
 ### [samlConnections](docs/sdks/samlconnections/README.md)
 
-* [list](docs/sdks/samlconnections/README.md#list) - Get a list of SAML Connections for an instance
 * [create](docs/sdks/samlconnections/README.md#create) - Create a SAML Connection
-* [get](docs/sdks/samlconnections/README.md#get) - Retrieve a SAML Connection by ID
-* [update](docs/sdks/samlconnections/README.md#update) - Update a SAML Connection
 * [delete](docs/sdks/samlconnections/README.md#delete) - Delete a SAML Connection
+* [get](docs/sdks/samlconnections/README.md#get) - Retrieve a SAML Connection by ID
+* [list](docs/sdks/samlconnections/README.md#list) - Get a list of SAML Connections for an instance
+* [update](docs/sdks/samlconnections/README.md#update) - Update a SAML Connection
 
 ### [sessions](docs/sdks/sessions/README.md)
 
-* [list](docs/sdks/sessions/README.md#list) - List all sessions
+* [createTokenFromTemplate](docs/sdks/sessions/README.md#createtokenfromtemplate) - Create a session token from a jwt template
 * [get](docs/sdks/sessions/README.md#get) - Retrieve a session
+* [list](docs/sdks/sessions/README.md#list) - List all sessions
 * [revoke](docs/sdks/sessions/README.md#revoke) - Revoke a session
 * [~~verify~~](docs/sdks/sessions/README.md#verify) - Verify a session :warning: **Deprecated**
-* [createTokenFromTemplate](docs/sdks/sessions/README.md#createtokenfromtemplate) - Create a session token from a jwt template
 
 ### [signInTokens](docs/sdks/signintokens/README.md)
 
@@ -331,31 +382,31 @@ If the request is correctly authenticated, the token's payload is made available
 
 ### [users](docs/sdks/users/README.md)
 
-* [list](docs/sdks/users/README.md#list) - List all users
-* [create](docs/sdks/users/README.md#create) - Create a new user
-* [count](docs/sdks/users/README.md#count) - Count users
-* [get](docs/sdks/users/README.md#get) - Retrieve a user
-* [update](docs/sdks/users/README.md#update) - Update a user
-* [delete](docs/sdks/users/README.md#delete) - Delete a user
 * [ban](docs/sdks/users/README.md#ban) - Ban a user
-* [unban](docs/sdks/users/README.md#unban) - Unban a user
-* [lock](docs/sdks/users/README.md#lock) - Lock a user
-* [unlock](docs/sdks/users/README.md#unlock) - Unlock a user
-* [setProfileImage](docs/sdks/users/README.md#setprofileimage) - Set user profile image
-* [deleteProfileImage](docs/sdks/users/README.md#deleteprofileimage) - Delete user profile image
-* [updateMetadata](docs/sdks/users/README.md#updatemetadata) - Merge and update a user's metadata
-* [getOAuthAccessToken](docs/sdks/users/README.md#getoauthaccesstoken) - Retrieve the OAuth access token of a user
-* [getOrganizationMemberships](docs/sdks/users/README.md#getorganizationmemberships) - Retrieve all memberships for a user
-* [getOrganizationInvitations](docs/sdks/users/README.md#getorganizationinvitations) - Retrieve all invitations for a user
-* [verifyPassword](docs/sdks/users/README.md#verifypassword) - Verify the password of a user
-* [verifyTOTP](docs/sdks/users/README.md#verifytotp) - Verify a TOTP or backup code for a user
-* [disableMFA](docs/sdks/users/README.md#disablemfa) - Disable a user's MFA methods
+* [create](docs/sdks/users/README.md#create) - Create a new user
+* [createTOTP](docs/sdks/users/README.md#createtotp) - Create a TOTP for a user
 * [deleteBackupCodes](docs/sdks/users/README.md#deletebackupcodes) - Disable all user's Backup codes
+* [deleteExternalAccount](docs/sdks/users/README.md#deleteexternalaccount) - Delete External Account
+* [deleteTotp](docs/sdks/users/README.md#deletetotp) - Delete all the user's TOTPs
+* [delete](docs/sdks/users/README.md#delete) - Delete a user
+* [deleteProfileImage](docs/sdks/users/README.md#deleteprofileimage) - Delete user profile image
+* [disableMFA](docs/sdks/users/README.md#disablemfa) - Disable a user's MFA methods
+* [getOAuthAccessToken](docs/sdks/users/README.md#getoauthaccesstoken) - Retrieve the OAuth access token of a user
+* [get](docs/sdks/users/README.md#get) - Retrieve a user
+* [list](docs/sdks/users/README.md#list) - List all users
+* [count](docs/sdks/users/README.md#count) - Count users
+* [lock](docs/sdks/users/README.md#lock) - Lock a user
+* [setProfileImage](docs/sdks/users/README.md#setprofileimage) - Set user profile image
+* [unban](docs/sdks/users/README.md#unban) - Unban a user
+* [unlock](docs/sdks/users/README.md#unlock) - Unlock a user
+* [update](docs/sdks/users/README.md#update) - Update a user
+* [updateMetadata](docs/sdks/users/README.md#updatemetadata) - Merge and update a user's metadata
 * [deletePasskey](docs/sdks/users/README.md#deletepasskey) - Delete a user passkey
 * [deleteWeb3Wallet](docs/sdks/users/README.md#deleteweb3wallet) - Delete a user web3 wallet
-* [createTOTP](docs/sdks/users/README.md#createtotp) - Create a TOTP for a user
-* [deleteTotp](docs/sdks/users/README.md#deletetotp) - Delete all the user's TOTPs
-* [deleteExternalAccount](docs/sdks/users/README.md#deleteexternalaccount) - Delete External Account
+* [getOrganizationInvitations](docs/sdks/users/README.md#getorganizationinvitations) - Retrieve all invitations for a user
+* [getOrganizationMemberships](docs/sdks/users/README.md#getorganizationmemberships) - Retrieve all memberships for a user
+* [verifyPassword](docs/sdks/users/README.md#verifypassword) - Verify the password of a user
+* [verifyTOTP](docs/sdks/users/README.md#verifytotp) - Verify a TOTP or backup code for a user
 
 ### [webhooks](docs/sdks/webhooks/README.md)
 
@@ -380,12 +431,12 @@ By default an API error will raise a `Errors\SDKException` exception, which has 
 | `$rawResponse` | *?\Psr\Http\Message\ResponseInterface*  | The raw HTTP response |
 | `$body`        | *string*                                | The response content  |
 
-When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `verify` method throws the following exceptions:
+When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `get` method throws the following exceptions:
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors1 | 400, 401, 404       | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type          | Status Code   | Content Type     |
+| ------------------- | ------------- | ---------------- |
+| Errors\ClerkErrors  | 400, 401, 404 | application/json |
+| Errors\SDKException | 4XX, 5XX      | \*/\*            |
 
 ### Example
 
@@ -395,23 +446,22 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
 
-$security = '<YOUR_BEARER_TOKEN_HERE>';
-
-$sdk = Backend\ClerkBackend::builder()->setSecurity($security)->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
 try {
-    $request = new Operations\VerifyClientRequestBody();
-
-    $response = $sdk->clients->verify(
-        request: $request
+    $response = $sdk->clients->get(
+        clientId: '<id>'
     );
 
     if ($response->client !== null) {
         // handle response
     }
-} catch (Errors\ClerkErrors1Throwable $e) {
+} catch (Errors\ClerkErrorsThrowable $e) {
     // handle $e->$container data
     throw $e;
 } catch (Errors\SDKException $e) {
@@ -424,22 +474,32 @@ try {
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-## Server Selection
-
-### Select Server by Index
-
-You can override the default server globally by passing a server index to the `server_idx: int` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
-
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `https://api.clerk.com/v1` | None |
-
-
-
-
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
+The default server can also be overridden globally using the `setServerUrl(string $serverUrl)` builder method when initializing the SDK client instance. For example:
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setServerURL('https://api.clerk.com/v1')
+    ->build();
+
+
+
+$response = $sdk->miscellaneous->getInterstitial(
+    frontendApi: '<value>',
+    publishableKey: '<value>'
+
+);
+
+if ($response->statusCode === 200) {
+    // handle response
+}
+```
 <!-- End Server Selection [server] -->
 
 
