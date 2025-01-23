@@ -3,10 +3,12 @@ id: 8c24a12b-d2f1-466a-bdaa-6d83a049a679
 management:
   docChecksum: f0199ba2e624b064609f40e1787c4b75
   docVersion: v1
-  speakeasyVersion: 1.469.12
+  speakeasyVersion: 1.470.1
   generationVersion: 2.493.34
-  releaseVersion: 0.4.5
-  configChecksum: 1e8d4fe1384beb84cc726d94e54cb378
+  releaseVersion: 0.4.6
+  configChecksum: cf68fd92145678656748f3c4d652b833
+  repoURL: https://github.com/clerk/clerk-sdk-php.git
+  installationURL: https://github.com/clerk/clerk-sdk-php
   published: true
 features:
   php:
