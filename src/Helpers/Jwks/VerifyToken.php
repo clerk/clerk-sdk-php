@@ -134,7 +134,7 @@ class VerifyToken
         throw new TokenVerificationException(TokenVerificationErrorReason::$JWK_KID_MISMATCH);
     }
 
-    private static function fetchJwks(VerifyTokenOptions $options): Clerk\Backend\Models\Components\Jwks
+    private static function fetchJwks(VerifyTokenOptions $options): \Clerk\Backend\Models\Components\Jwks
     {
         if ($options->getSecretKey() === null) {
             throw new TokenVerificationException(TokenVerificationErrorReason::$SECRET_KEY_MISSING);

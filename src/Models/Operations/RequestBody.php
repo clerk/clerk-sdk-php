@@ -12,7 +12,7 @@ namespace Clerk\Backend\Models\Operations;
 class RequestBody
 {
     /**
-     * The email address of the new member that is going to be invited to the organization
+     * The email address the invitation will be sent to
      *
      * @var string $emailAddress
      */
@@ -20,15 +20,10 @@ class RequestBody
     public string $emailAddress;
 
     /**
-     * The role of the new member in the organization.
+     * Metadata that will be attached to the newly created invitation.
      *
-     * @var string $role
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('role')]
-    public string $role;
-
-    /**
-     * Metadata saved on the organization invitation, read-only from the Frontend API and fully accessible (read/write) from the Backend API.
+     * The value of this property should be a well-formed JSON object.
+     * Once the user accepts the invitation and signs up, these metadata will end up in the user's public metadata.
      *
      * @var ?array<string, mixed> $publicMetadata
      */
@@ -38,17 +33,7 @@ class RequestBody
     public ?array $publicMetadata = null;
 
     /**
-     * Metadata saved on the organization invitation, fully accessible (read/write) from the Backend API but not visible from the Frontend API.
-     *
-     * @var ?array<string, mixed> $privateMetadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('private_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $privateMetadata = null;
-
-    /**
-     * Optional URL that the invitee will be redirected to once they accept the invitation by clicking the join link in the invitation email.
+     * The URL where the user is redirected upon visiting the invitation link, where they can accept the invitation. Required if you have implemented a [custom flow for handling application invitations](/docs/custom-flows/invitations).
      *
      * @var ?string $redirectUrl
      */
@@ -57,31 +42,51 @@ class RequestBody
     public ?string $redirectUrl = null;
 
     /**
-     * The ID of the user that invites the new member to the organization.
+     * The number of days the invitation will be valid for. By default, the invitation expires after 30 days.
      *
-     * Must be an administrator in the organization.
-     *
-     * @var ?string $inviterUserId
+     * @var ?int $expiresInDays
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('inviter_user_id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('expires_in_days')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $inviterUserId = null;
+    public ?int $expiresInDays = null;
+
+    /**
+     * Optional flag which denotes whether an email invitation should be sent to the given email address.
+     *
+     * Defaults to true.
+     *
+     * @var ?bool $notify
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('notify')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $notify = null;
+
+    /**
+     * Whether an invitation should be created if there is already an existing invitation for this email
+     *
+     * address, or it's claimed by another user.
+     *
+     * @var ?bool $ignoreExisting
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ignore_existing')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $ignoreExisting = null;
 
     /**
      * @param  string  $emailAddress
-     * @param  string  $role
      * @param  ?array<string, mixed>  $publicMetadata
-     * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?string  $redirectUrl
-     * @param  ?string  $inviterUserId
+     * @param  ?bool  $notify
+     * @param  ?bool  $ignoreExisting
+     * @param  ?int  $expiresInDays
      */
-    public function __construct(string $emailAddress, string $role, ?array $publicMetadata = null, ?array $privateMetadata = null, ?string $redirectUrl = null, ?string $inviterUserId = null)
+    public function __construct(string $emailAddress, ?array $publicMetadata = null, ?string $redirectUrl = null, ?int $expiresInDays = null, ?bool $notify = true, ?bool $ignoreExisting = false)
     {
         $this->emailAddress = $emailAddress;
-        $this->role = $role;
         $this->publicMetadata = $publicMetadata;
-        $this->privateMetadata = $privateMetadata;
         $this->redirectUrl = $redirectUrl;
-        $this->inviterUserId = $inviterUserId;
+        $this->expiresInDays = $expiresInDays;
+        $this->notify = $notify;
+        $this->ignoreExisting = $ignoreExisting;
     }
 }

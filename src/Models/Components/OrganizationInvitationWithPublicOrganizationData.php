@@ -120,6 +120,14 @@ class OrganizationInvitationWithPublicOrganizationData
     public ?int $updatedAt = null;
 
     /**
+     *
+     * @var ?string $url
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('url')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $url = null;
+
+    /**
      * @param  ?string  $id
      * @param  ?OrganizationInvitationWithPublicOrganizationDataObject  $object
      * @param  ?string  $emailAddress
@@ -132,8 +140,9 @@ class OrganizationInvitationWithPublicOrganizationData
      * @param  ?PublicOrganizationData  $publicOrganizationData
      * @param  ?int  $createdAt
      * @param  ?int  $updatedAt
+     * @param  ?string  $url
      */
-    public function __construct(?string $id = null, ?OrganizationInvitationWithPublicOrganizationDataObject $object = null, ?string $emailAddress = null, ?string $role = null, ?string $roleName = null, ?string $organizationId = null, ?string $status = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?PublicOrganizationData $publicOrganizationData = null, ?int $createdAt = null, ?int $updatedAt = null)
+    public function __construct(?string $id = null, ?OrganizationInvitationWithPublicOrganizationDataObject $object = null, ?string $emailAddress = null, ?string $role = null, ?string $roleName = null, ?string $organizationId = null, ?string $status = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?PublicOrganizationData $publicOrganizationData = null, ?int $createdAt = null, ?int $updatedAt = null, ?string $url = null)
     {
         $this->id = $id;
         $this->object = $object;
@@ -147,5 +156,6 @@ class OrganizationInvitationWithPublicOrganizationData
         $this->publicOrganizationData = $publicOrganizationData;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
+        $this->url = $url;
     }
 }

@@ -476,13 +476,13 @@ class OrganizationMemberships
      * Metadata values will be updated via a deep merge. Deep means that any nested JSON objects will be merged as well.
      * You can remove metadata keys at any level by setting their value to `null`.
      *
-     * @param  Operations\UpdateOrganizationMembershipMetadataRequestBody  $requestBody
      * @param  string  $organizationId
      * @param  string  $userId
+     * @param  ?Operations\UpdateOrganizationMembershipMetadataRequestBody  $requestBody
      * @return Operations\UpdateOrganizationMembershipMetadataResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function updateMetadata(Operations\UpdateOrganizationMembershipMetadataRequestBody $requestBody, string $organizationId, string $userId, ?Options $options = null): Operations\UpdateOrganizationMembershipMetadataResponse
+    public function updateMetadata(string $organizationId, string $userId, ?Operations\UpdateOrganizationMembershipMetadataRequestBody $requestBody = null, ?Options $options = null): Operations\UpdateOrganizationMembershipMetadataResponse
     {
         $request = new Operations\UpdateOrganizationMembershipMetadataRequest(
             organizationId: $organizationId,
@@ -494,10 +494,9 @@ class OrganizationMemberships
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
-        if ($body === null) {
-            throw new \Exception('Request body is required');
+        if ($body !== null) {
+            $httpOptions = array_merge_recursive($httpOptions, $body);
         }
-        $httpOptions = array_merge_recursive($httpOptions, $body);
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('PATCH', $url);

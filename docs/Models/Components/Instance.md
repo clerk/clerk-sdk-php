@@ -1,0 +1,13 @@
+# Instance
+
+Success
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `object`                                                                              | [?Components\InstanceObject](../../Models/Components/InstanceObject.md)               | :heavy_minus_sign:                                                                    | String representing the object's type. Objects of the same type share the same value. |                                                                                       |
+| `id`                                                                                  | *?string*                                                                             | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
+| `environmentType`                                                                     | *?string*                                                                             | :heavy_minus_sign:                                                                    | N/A                                                                                   | development                                                                           |
+| `allowedOrigins`                                                                      | array<*string*>                                                                       | :heavy_minus_sign:                                                                    | N/A                                                                                   | [<br/>"http://localhost:3000",<br/>"https://some-domain"<br/>]                        |

@@ -35,21 +35,21 @@ class GetJWKSResponse
     /**
      * Get the JSON Web Key Set
      *
-     * @var ?Components\WellKnownJWKS $wellKnownJWKS
+     * @var ?Components\Jwks $jwks
      */
-    public ?Components\WellKnownJWKS $wellKnownJWKS = null;
+    public ?Components\Jwks $jwks = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\WellKnownJWKS  $wellKnownJWKS
+     * @param  ?Components\Jwks  $jwks
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\WellKnownJWKS $wellKnownJWKS = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\Jwks $jwks = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->wellKnownJWKS = $wellKnownJWKS;
+        $this->jwks = $jwks;
     }
 }

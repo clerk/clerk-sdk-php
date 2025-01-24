@@ -36,7 +36,6 @@ $sdk = Backend\ClerkBackend::builder()
 
 $request = new Operations\CreateOAuthApplicationRequestBody(
     name: '<value>',
-    callbackUrl: 'https://probable-heating.com/',
     scopes: 'profile email public_metadata',
 );
 

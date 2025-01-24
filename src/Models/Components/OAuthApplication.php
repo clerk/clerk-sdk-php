@@ -90,6 +90,20 @@ class OAuthApplication
     public string $userInfoUrl;
 
     /**
+     *
+     * @var string $discoveryUrl
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('discovery_url')]
+    public string $discoveryUrl;
+
+    /**
+     *
+     * @var string $tokenIntrospectionUrl
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('token_introspection_url')]
+    public string $tokenIntrospectionUrl;
+
+    /**
      * Unix timestamp of creation.
      *
      *
@@ -121,10 +135,12 @@ class OAuthApplication
      * @param  string  $authorizeUrl
      * @param  string  $tokenFetchUrl
      * @param  string  $userInfoUrl
+     * @param  string  $discoveryUrl
+     * @param  string  $tokenIntrospectionUrl
      * @param  int  $createdAt
      * @param  int  $updatedAt
      */
-    public function __construct(OAuthApplicationObject $object, string $id, string $instanceId, string $name, string $clientId, bool $public, string $scopes, string $callbackUrl, string $authorizeUrl, string $tokenFetchUrl, string $userInfoUrl, int $createdAt, int $updatedAt)
+    public function __construct(OAuthApplicationObject $object, string $id, string $instanceId, string $name, string $clientId, bool $public, string $scopes, string $callbackUrl, string $authorizeUrl, string $tokenFetchUrl, string $userInfoUrl, string $discoveryUrl, string $tokenIntrospectionUrl, int $createdAt, int $updatedAt)
     {
         $this->object = $object;
         $this->id = $id;
@@ -137,6 +153,8 @@ class OAuthApplication
         $this->authorizeUrl = $authorizeUrl;
         $this->tokenFetchUrl = $tokenFetchUrl;
         $this->userInfoUrl = $userInfoUrl;
+        $this->discoveryUrl = $discoveryUrl;
+        $this->tokenIntrospectionUrl = $tokenIntrospectionUrl;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
     }

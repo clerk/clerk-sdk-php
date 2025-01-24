@@ -102,14 +102,6 @@ class OrganizationWithLogo
 
     /**
      *
-     * @var ?string $createdBy
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('created_by')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $createdBy = null;
-
-    /**
-     *
      * @var ?string $logoUrl
      * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -134,6 +126,14 @@ class OrganizationWithLogo
     public ?int $membersCount = null;
 
     /**
+     *
+     * @var ?string $createdBy
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('created_by')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $createdBy = null;
+
+    /**
      * @param  OrganizationWithLogoObject  $object
      * @param  string  $id
      * @param  string  $name
@@ -145,12 +145,12 @@ class OrganizationWithLogo
      * @param  int  $updatedAt
      * @param  string  $imageUrl
      * @param  ?bool  $adminDeleteEnabled
-     * @param  ?string  $createdBy
      * @param  ?string  $logoUrl
      * @param  ?bool  $hasImage
      * @param  ?int  $membersCount
+     * @param  ?string  $createdBy
      */
-    public function __construct(OrganizationWithLogoObject $object, string $id, string $name, string $slug, int $maxAllowedMemberships, array $publicMetadata, array $privateMetadata, int $createdAt, int $updatedAt, string $imageUrl, ?bool $adminDeleteEnabled = null, ?string $createdBy = null, ?string $logoUrl = null, ?bool $hasImage = null, ?int $membersCount = null)
+    public function __construct(OrganizationWithLogoObject $object, string $id, string $name, string $slug, int $maxAllowedMemberships, array $publicMetadata, array $privateMetadata, int $createdAt, int $updatedAt, string $imageUrl, ?bool $adminDeleteEnabled = null, ?string $logoUrl = null, ?bool $hasImage = null, ?int $membersCount = null, ?string $createdBy = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -163,9 +163,9 @@ class OrganizationWithLogo
         $this->updatedAt = $updatedAt;
         $this->imageUrl = $imageUrl;
         $this->adminDeleteEnabled = $adminDeleteEnabled;
-        $this->createdBy = $createdBy;
         $this->logoUrl = $logoUrl;
         $this->hasImage = $hasImage;
         $this->membersCount = $membersCount;
+        $this->createdBy = $createdBy;
     }
 }

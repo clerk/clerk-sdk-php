@@ -251,12 +251,14 @@ if ($response->statusCode === 200) {
 
 ### [instanceSettings](docs/sdks/instancesettings/README.md)
 
+* [getInstance](docs/sdks/instancesettings/README.md#getinstance) - Fetch the current instance
 * [update](docs/sdks/instancesettings/README.md#update) - Update instance settings
 * [updateOrganizationSettings](docs/sdks/instancesettings/README.md#updateorganizationsettings) - Update instance organization settings
 * [updateRestrictions](docs/sdks/instancesettings/README.md#updaterestrictions) - Update instance restrictions
 
 ### [invitations](docs/sdks/invitations/README.md)
 
+* [createBulkInvitations](docs/sdks/invitations/README.md#createbulkinvitations) - Create multiple invitations
 * [create](docs/sdks/invitations/README.md#create) - Create an invitation
 * [list](docs/sdks/invitations/README.md#list) - List all invitations
 * [revoke](docs/sdks/invitations/README.md#revoke) - Revokes an invitation
@@ -357,11 +359,13 @@ if ($response->statusCode === 200) {
 
 ### [sessions](docs/sdks/sessions/README.md)
 
+* [createSessionToken](docs/sdks/sessions/README.md#createsessiontoken) - Create a session token
 * [createTokenFromTemplate](docs/sdks/sessions/README.md#createtokenfromtemplate) - Create a session token from a jwt template
 * [get](docs/sdks/sessions/README.md#get) - Retrieve a session
 * [list](docs/sdks/sessions/README.md#list) - List all sessions
 * [revoke](docs/sdks/sessions/README.md#revoke) - Revoke a session
 * [~~verify~~](docs/sdks/sessions/README.md#verify) - Verify a session :warning: **Deprecated**
+* [createSession](docs/sdks/sessions/README.md#createsession) - Create a new active session
 
 ### [signInTokens](docs/sdks/signintokens/README.md)
 
@@ -407,6 +411,11 @@ if ($response->statusCode === 200) {
 * [getOrganizationMemberships](docs/sdks/users/README.md#getorganizationmemberships) - Retrieve all memberships for a user
 * [verifyPassword](docs/sdks/users/README.md#verifypassword) - Verify the password of a user
 * [verifyTOTP](docs/sdks/users/README.md#verifytotp) - Verify a TOTP or backup code for a user
+
+### [waitlistEntries](docs/sdks/waitlistentries/README.md)
+
+* [createWaitlistEntry](docs/sdks/waitlistentries/README.md#createwaitlistentry) - Create a waitlist entry
+* [listWaitlistEntries](docs/sdks/waitlistentries/README.md#listwaitlistentries) - List all waitlist entries
 
 ### [webhooks](docs/sdks/webhooks/README.md)
 

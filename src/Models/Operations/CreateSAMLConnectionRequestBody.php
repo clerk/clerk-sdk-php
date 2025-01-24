@@ -82,6 +82,15 @@ class CreateSAMLConnectionRequestBody
     public ?string $idpMetadata = null;
 
     /**
+     * The ID of the organization to which users of this SAML Connection will be added
+     *
+     * @var ?string $organizationId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('organization_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $organizationId = null;
+
+    /**
      * Define the attribute name mapping between Identity Provider and Clerk's user properties
      *
      * @var ?AttributeMapping $attributeMapping
@@ -100,9 +109,10 @@ class CreateSAMLConnectionRequestBody
      * @param  ?string  $idpCertificate
      * @param  ?string  $idpMetadataUrl
      * @param  ?string  $idpMetadata
+     * @param  ?string  $organizationId
      * @param  ?AttributeMapping  $attributeMapping
      */
-    public function __construct(string $name, string $domain, Provider $provider, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?AttributeMapping $attributeMapping = null)
+    public function __construct(string $name, string $domain, Provider $provider, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?AttributeMapping $attributeMapping = null)
     {
         $this->name = $name;
         $this->domain = $domain;
@@ -112,6 +122,7 @@ class CreateSAMLConnectionRequestBody
         $this->idpCertificate = $idpCertificate;
         $this->idpMetadataUrl = $idpMetadataUrl;
         $this->idpMetadata = $idpMetadata;
+        $this->organizationId = $organizationId;
         $this->attributeMapping = $attributeMapping;
     }
 }

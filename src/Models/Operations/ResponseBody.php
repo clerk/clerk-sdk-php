@@ -95,6 +95,15 @@ class ResponseBody
     public ?string $label = null;
 
     /**
+     * Unix timestamp of the access token expiration.
+     *
+     * @var ?int $expiresAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('expires_at')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $expiresAt = null;
+
+    /**
      * @param  ?string  $object
      * @param  ?string  $externalAccountId
      * @param  ?string  $providerUserId
@@ -104,8 +113,9 @@ class ResponseBody
      * @param  ?array<string>  $scopes
      * @param  ?string  $tokenSecret
      * @param  ?string  $label
+     * @param  ?int  $expiresAt
      */
-    public function __construct(?string $object = null, ?string $externalAccountId = null, ?string $providerUserId = null, ?string $token = null, ?string $provider = null, ?array $publicMetadata = null, ?array $scopes = null, ?string $tokenSecret = null, ?string $label = null)
+    public function __construct(?string $object = null, ?string $externalAccountId = null, ?string $providerUserId = null, ?string $token = null, ?string $provider = null, ?array $publicMetadata = null, ?array $scopes = null, ?string $tokenSecret = null, ?string $label = null, ?int $expiresAt = null)
     {
         $this->object = $object;
         $this->externalAccountId = $externalAccountId;
@@ -116,5 +126,6 @@ class ResponseBody
         $this->scopes = $scopes;
         $this->tokenSecret = $tokenSecret;
         $this->label = $label;
+        $this->expiresAt = $expiresAt;
     }
 }

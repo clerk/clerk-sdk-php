@@ -21,12 +21,12 @@ Components\Otp $value = /* values here */
 Components\Admin $value = /* values here */
 ```
 
-### `Components\Oauth`
+### `Components\FromOAuth`
 
 ```php
 /**
-* @var Components\Oauth
+* @var Components\FromOAuth
 */
-Components\Oauth $value = /* values here */
+Components\FromOAuth $value = /* values here */
 ```
 

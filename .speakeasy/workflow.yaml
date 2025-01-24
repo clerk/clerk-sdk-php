@@ -16,7 +16,7 @@ targets:
         output: .
         publish:
             packagist:
-                username: clerkinc
+                username: $packagist_username
                 token: $packagist_token
         codeSamples:
             registry:

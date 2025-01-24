@@ -29,17 +29,17 @@ class UpdateOrganizationMembershipMetadataRequest
 
     /**
      *
-     * @var UpdateOrganizationMembershipMetadataRequestBody $requestBody
+     * @var ?UpdateOrganizationMembershipMetadataRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public UpdateOrganizationMembershipMetadataRequestBody $requestBody;
+    public ?UpdateOrganizationMembershipMetadataRequestBody $requestBody = null;
 
     /**
      * @param  string  $organizationId
      * @param  string  $userId
-     * @param  UpdateOrganizationMembershipMetadataRequestBody  $requestBody
+     * @param  ?UpdateOrganizationMembershipMetadataRequestBody  $requestBody
      */
-    public function __construct(string $organizationId, string $userId, UpdateOrganizationMembershipMetadataRequestBody $requestBody)
+    public function __construct(string $organizationId, string $userId, ?UpdateOrganizationMembershipMetadataRequestBody $requestBody = null)
     {
         $this->organizationId = $organizationId;
         $this->userId = $userId;

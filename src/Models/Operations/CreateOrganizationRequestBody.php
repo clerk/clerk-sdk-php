@@ -24,10 +24,11 @@ class CreateOrganizationRequestBody
     /**
      * The ID of the User who will become the administrator for the new organization
      *
-     * @var string $createdBy
+     * @var ?string $createdBy
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('created_by')]
-    public string $createdBy;
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $createdBy = null;
 
     /**
      * Metadata saved on the organization, accessible only from the Backend API
@@ -81,14 +82,14 @@ class CreateOrganizationRequestBody
 
     /**
      * @param  string  $name
-     * @param  string  $createdBy
+     * @param  ?string  $createdBy
      * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?array<string, mixed>  $publicMetadata
      * @param  ?string  $slug
      * @param  ?int  $maxAllowedMemberships
      * @param  ?string  $createdAt
      */
-    public function __construct(string $name, string $createdBy, ?array $privateMetadata = null, ?array $publicMetadata = null, ?string $slug = null, ?int $maxAllowedMemberships = null, ?string $createdAt = null)
+    public function __construct(string $name, ?string $createdBy = null, ?array $privateMetadata = null, ?array $publicMetadata = null, ?string $slug = null, ?int $maxAllowedMemberships = null, ?string $createdAt = null)
     {
         $this->name = $name;
         $this->createdBy = $createdBy;

@@ -20,6 +20,14 @@ class ListInvitationsRequest
     public ?ListInvitationsQueryParamStatus $status = null;
 
     /**
+     * Filter invitations based on their `email_address` or `id`
+     *
+     * @var ?string $query
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=query')]
+    public ?string $query = null;
+
+    /**
      * Applies a limit to the number of results returned.
      *
      * Can be used for paginating the results together with `offset`.
@@ -44,10 +52,12 @@ class ListInvitationsRequest
      * @param  ?int  $limit
      * @param  ?int  $offset
      * @param  ?ListInvitationsQueryParamStatus  $status
+     * @param  ?string  $query
      */
-    public function __construct(?ListInvitationsQueryParamStatus $status = null, ?int $limit = 10, ?int $offset = 0)
+    public function __construct(?ListInvitationsQueryParamStatus $status = null, ?string $query = null, ?int $limit = 10, ?int $offset = 0)
     {
         $this->status = $status;
+        $this->query = $query;
         $this->limit = $limit;
         $this->offset = $offset;
     }

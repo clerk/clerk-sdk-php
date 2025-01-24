@@ -5,9 +5,50 @@
 
 ### Available Operations
 
+* [getInstance](#getinstance) - Fetch the current instance
 * [update](#update) - Update instance settings
 * [updateOrganizationSettings](#updateorganizationsettings) - Update instance organization settings
 * [updateRestrictions](#updaterestrictions) - Update instance restrictions
+
+## getInstance
+
+Fetches the current instance
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->instanceSettings->getInstance(
+
+);
+
+if ($response->instance !== null) {
+    // handle response
+}
+```
+
+### Response
+
+**[?Operations\GetInstanceResponse](../../Models/Operations/GetInstanceResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## update
 
@@ -102,7 +143,7 @@ if ($response->organizationSettings !== null) {
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 402, 404, 422       | application/json    |
+| Errors\ClerkErrors  | 400, 402, 404, 422  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## updateRestrictions

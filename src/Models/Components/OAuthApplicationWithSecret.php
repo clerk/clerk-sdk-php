@@ -90,6 +90,20 @@ class OAuthApplicationWithSecret
     public string $userInfoUrl;
 
     /**
+     *
+     * @var string $discoveryUrl
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('discovery_url')]
+    public string $discoveryUrl;
+
+    /**
+     *
+     * @var string $tokenIntrospectionUrl
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('token_introspection_url')]
+    public string $tokenIntrospectionUrl;
+
+    /**
      * Unix timestamp of creation.
      *
      *
@@ -132,11 +146,13 @@ class OAuthApplicationWithSecret
      * @param  string  $authorizeUrl
      * @param  string  $tokenFetchUrl
      * @param  string  $userInfoUrl
+     * @param  string  $discoveryUrl
+     * @param  string  $tokenIntrospectionUrl
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  ?string  $clientSecret
      */
-    public function __construct(OAuthApplicationWithSecretObject $object, string $id, string $instanceId, string $name, string $clientId, bool $public, string $scopes, string $callbackUrl, string $authorizeUrl, string $tokenFetchUrl, string $userInfoUrl, int $createdAt, int $updatedAt, ?string $clientSecret = null)
+    public function __construct(OAuthApplicationWithSecretObject $object, string $id, string $instanceId, string $name, string $clientId, bool $public, string $scopes, string $callbackUrl, string $authorizeUrl, string $tokenFetchUrl, string $userInfoUrl, string $discoveryUrl, string $tokenIntrospectionUrl, int $createdAt, int $updatedAt, ?string $clientSecret = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -149,6 +165,8 @@ class OAuthApplicationWithSecret
         $this->authorizeUrl = $authorizeUrl;
         $this->tokenFetchUrl = $tokenFetchUrl;
         $this->userInfoUrl = $userInfoUrl;
+        $this->discoveryUrl = $discoveryUrl;
+        $this->tokenIntrospectionUrl = $tokenIntrospectionUrl;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
         $this->clientSecret = $clientSecret;

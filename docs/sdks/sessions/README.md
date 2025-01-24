@@ -10,11 +10,64 @@ Sessions are created when a user successfully goes through the sign in or sign u
 
 ### Available Operations
 
+* [createSessionToken](#createsessiontoken) - Create a session token
 * [createTokenFromTemplate](#createtokenfromtemplate) - Create a session token from a jwt template
 * [get](#get) - Retrieve a session
 * [list](#list) - List all sessions
 * [revoke](#revoke) - Revoke a session
 * [~~verify~~](#verify) - Verify a session :warning: **Deprecated**
+* [createSession](#createsession) - Create a new active session
+
+## createSessionToken
+
+Creates a session JSON Web Token (JWT) based on a session.
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+$requestBody = new Operations\CreateSessionTokenRequestBody();
+
+$response = $sdk->sessions->createSessionToken(
+    sessionId: '<id>',
+    requestBody: $requestBody
+
+);
+
+if ($response->object !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
+| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `sessionId`                                                                                           | *string*                                                                                              | :heavy_check_mark:                                                                                    | The ID of the session                                                                                 |
+| `requestBody`                                                                                         | [?Operations\CreateSessionTokenRequestBody](../../Models/Operations/CreateSessionTokenRequestBody.md) | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |
+
+### Response
+
+**[?Operations\CreateSessionTokenResponse](../../Models/Operations/CreateSessionTokenResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 401, 404            | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## createTokenFromTemplate
 
@@ -28,6 +81,7 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
 
 $sdk = Backend\ClerkBackend::builder()
     ->setSecurity(
@@ -35,11 +89,12 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-
+$requestBody = new Operations\CreateSessionTokenFromTemplateRequestBody();
 
 $response = $sdk->sessions->createTokenFromTemplate(
     sessionId: '<id>',
-    templateName: '<value>'
+    templateName: '<value>',
+    requestBody: $requestBody
 
 );
 
@@ -50,10 +105,11 @@ if ($response->object !== null) {
 
 ### Parameters
 
-| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
-| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `sessionId`                                                                   | *string*                                                                      | :heavy_check_mark:                                                            | The ID of the session                                                         |
-| `templateName`                                                                | *string*                                                                      | :heavy_check_mark:                                                            | The name of the JWT Template defined in your instance (e.g. `custom_hasura`). |
+| Parameter                                                                                                                     | Type                                                                                                                          | Required                                                                                                                      | Description                                                                                                                   |
+| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `sessionId`                                                                                                                   | *string*                                                                                                                      | :heavy_check_mark:                                                                                                            | The ID of the session                                                                                                         |
+| `templateName`                                                                                                                | *string*                                                                                                                      | :heavy_check_mark:                                                                                                            | The name of the JWT Template defined in your instance (e.g. `custom_hasura`).                                                 |
+| `requestBody`                                                                                                                 | [?Operations\CreateSessionTokenFromTemplateRequestBody](../../Models/Operations/CreateSessionTokenFromTemplateRequestBody.md) | :heavy_minus_sign:                                                                                                            | N/A                                                                                                                           |
 
 ### Response
 
@@ -266,4 +322,54 @@ if ($response->session !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 400, 401, 404, 410  | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## createSession
+
+Create a new active session for the provided user ID.
+
+This operation is only available for Clerk Development instances.
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+$request = new Operations\CreateSessionRequestBody();
+
+$response = $sdk->sessions->createSession(
+    request: $request
+);
+
+if ($response->session !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `$request`                                                                                 | [Operations\CreateSessionRequestBody](../../Models/Operations/CreateSessionRequestBody.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+
+### Response
+
+**[?Operations\CreateSessionResponse](../../Models/Operations/CreateSessionResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 401, 404, 422  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |

@@ -60,14 +60,32 @@ class Keys
     public ?string $e = null;
 
     /**
+     *
+     * @var ?string $x
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('x')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $x = null;
+
+    /**
+     *
+     * @var ?string $crv
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('crv')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $crv = null;
+
+    /**
      * @param  ?string  $use
      * @param  ?string  $kty
      * @param  ?string  $kid
      * @param  ?string  $alg
      * @param  ?string  $n
      * @param  ?string  $e
+     * @param  ?string  $x
+     * @param  ?string  $crv
      */
-    public function __construct(?string $use = null, ?string $kty = null, ?string $kid = null, ?string $alg = null, ?string $n = null, ?string $e = null)
+    public function __construct(?string $use = null, ?string $kty = null, ?string $kid = null, ?string $alg = null, ?string $n = null, ?string $e = null, ?string $x = null, ?string $crv = null)
     {
         $this->use = $use;
         $this->kty = $kty;
@@ -75,5 +93,7 @@ class Keys
         $this->alg = $alg;
         $this->n = $n;
         $this->e = $e;
+        $this->x = $x;
+        $this->crv = $crv;
     }
 }

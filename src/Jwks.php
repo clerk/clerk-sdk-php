@@ -84,12 +84,12 @@ class Jwks
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Components\WellKnownJWKS', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Components\Jwks', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\GetJWKSResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
-                    wellKnownJWKS: $obj);
+                    jwks: $obj);
 
                 return $response;
             } else {

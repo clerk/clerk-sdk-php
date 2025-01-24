@@ -30,6 +30,8 @@ class CreateOrganizationInvitationRequestBody
     /**
      * Metadata saved on the organization invitation, read-only from the Frontend API and fully accessible (read/write) from the Backend API.
      *
+     * When the organization invitation is accepted, the metadata will be transferred to the newly created organization membership.
+     *
      * @var ?array<string, mixed> $publicMetadata
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
@@ -39,6 +41,8 @@ class CreateOrganizationInvitationRequestBody
 
     /**
      * Metadata saved on the organization invitation, fully accessible (read/write) from the Backend API but not visible from the Frontend API.
+     *
+     * When the organization invitation is accepted, the metadata will be transferred to the newly created organization membership.
      *
      * @var ?array<string, mixed> $privateMetadata
      */
@@ -68,14 +72,24 @@ class CreateOrganizationInvitationRequestBody
     public ?string $inviterUserId = null;
 
     /**
+     * The number of days the invitation will be valid for. By default, the invitation has a 30 days expire.
+     *
+     * @var ?int $expiresInDays
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('expires_in_days')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $expiresInDays = null;
+
+    /**
      * @param  string  $emailAddress
      * @param  string  $role
      * @param  ?array<string, mixed>  $publicMetadata
      * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?string  $redirectUrl
      * @param  ?string  $inviterUserId
+     * @param  ?int  $expiresInDays
      */
-    public function __construct(string $emailAddress, string $role, ?array $publicMetadata = null, ?array $privateMetadata = null, ?string $redirectUrl = null, ?string $inviterUserId = null)
+    public function __construct(string $emailAddress, string $role, ?array $publicMetadata = null, ?array $privateMetadata = null, ?string $redirectUrl = null, ?string $inviterUserId = null, ?int $expiresInDays = null)
     {
         $this->emailAddress = $emailAddress;
         $this->role = $role;
@@ -83,5 +97,6 @@ class CreateOrganizationInvitationRequestBody
         $this->privateMetadata = $privateMetadata;
         $this->redirectUrl = $redirectUrl;
         $this->inviterUserId = $inviterUserId;
+        $this->expiresInDays = $expiresInDays;
     }
 }

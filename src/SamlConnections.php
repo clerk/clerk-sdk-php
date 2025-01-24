@@ -79,7 +79,7 @@ class SamlConnections
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-        if ($statusCode == 402 || $statusCode == 403 || $statusCode == 422 || $statusCode >= 400 && $statusCode < 500 || $statusCode >= 500 && $statusCode < 600) {
+        if ($statusCode == 402 || $statusCode == 403 || $statusCode == 404 || $statusCode == 422 || $statusCode >= 400 && $statusCode < 500 || $statusCode >= 500 && $statusCode < 600) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
@@ -100,7 +100,7 @@ class SamlConnections
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
-        } elseif (in_array($statusCode, [402, 403, 422])) {
+        } elseif (in_array($statusCode, [402, 403, 404, 422])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -279,14 +279,16 @@ class SamlConnections
      *
      * @param  ?int  $limit
      * @param  ?int  $offset
+     * @param  ?array<string>  $organizationId
      * @return Operations\ListSAMLConnectionsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function list(?int $limit = null, ?int $offset = null, ?Options $options = null): Operations\ListSAMLConnectionsResponse
+    public function list(?int $limit = null, ?int $offset = null, ?array $organizationId = null, ?Options $options = null): Operations\ListSAMLConnectionsResponse
     {
         $request = new Operations\ListSAMLConnectionsRequest(
             limit: $limit,
             offset: $offset,
+            organizationId: $organizationId,
         );
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/saml_connections');

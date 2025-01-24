@@ -64,12 +64,12 @@ class OrganizationInvitations
      * The public metadata are visible by both the Frontend and the Backend whereas the private ones only by the Backend.
      * When the organization invitation is accepted, the metadata will be transferred to the newly created organization membership.
      *
-     * @param  Operations\CreateOrganizationInvitationRequestBody  $requestBody
      * @param  string  $organizationId
+     * @param  ?Operations\CreateOrganizationInvitationRequestBody  $requestBody
      * @return Operations\CreateOrganizationInvitationResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function create(Operations\CreateOrganizationInvitationRequestBody $requestBody, string $organizationId, ?Options $options = null): Operations\CreateOrganizationInvitationResponse
+    public function create(string $organizationId, ?Operations\CreateOrganizationInvitationRequestBody $requestBody = null, ?Options $options = null): Operations\CreateOrganizationInvitationResponse
     {
         $request = new Operations\CreateOrganizationInvitationRequest(
             organizationId: $organizationId,
@@ -80,10 +80,9 @@ class OrganizationInvitations
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
-        if ($body === null) {
-            throw new \Exception('Request body is required');
+        if ($body !== null) {
+            $httpOptions = array_merge_recursive($httpOptions, $body);
         }
-        $httpOptions = array_merge_recursive($httpOptions, $body);
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
@@ -158,7 +157,7 @@ class OrganizationInvitations
      * by both the Frontend and the Backend, whereas the private metadata are only visible by the Backend.
      * When the organization invitation is accepted, the metadata will be transferred to the newly created organization membership.
      *
-     * @param  array<Operations\RequestBody>  $requestBody
+     * @param  array<Operations\CreateOrganizationInvitationBulkRequestBody>  $requestBody
      * @param  string  $organizationId
      * @return Operations\CreateOrganizationInvitationBulkResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException

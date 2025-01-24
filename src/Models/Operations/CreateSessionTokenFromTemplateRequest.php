@@ -28,12 +28,21 @@ class CreateSessionTokenFromTemplateRequest
     public string $templateName;
 
     /**
+     *
+     * @var ?CreateSessionTokenFromTemplateRequestBody $requestBody
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public ?CreateSessionTokenFromTemplateRequestBody $requestBody = null;
+
+    /**
      * @param  string  $sessionId
      * @param  string  $templateName
+     * @param  ?CreateSessionTokenFromTemplateRequestBody  $requestBody
      */
-    public function __construct(string $sessionId, string $templateName)
+    public function __construct(string $sessionId, string $templateName, ?CreateSessionTokenFromTemplateRequestBody $requestBody = null)
     {
         $this->sessionId = $sessionId;
         $this->templateName = $templateName;
+        $this->requestBody = $requestBody;
     }
 }

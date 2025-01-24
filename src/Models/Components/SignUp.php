@@ -207,6 +207,17 @@ class SignUp
     public ?string $createdUserId = null;
 
     /**
+     * Unix timestamp at which the user accepted the legal requirements.
+     *
+     *
+     *
+     * @var ?int $legalAcceptedAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('legal_accepted_at')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $legalAcceptedAt = null;
+
+    /**
      * @param  SignUpObject  $object
      * @param  string  $id
      * @param  SignUpStatus  $status
@@ -230,8 +241,9 @@ class SignUp
      * @param  ?string  $externalId
      * @param  ?string  $createdSessionId
      * @param  ?string  $createdUserId
+     * @param  ?int  $legalAcceptedAt
      */
-    public function __construct(SignUpObject $object, string $id, SignUpStatus $status, bool $passwordEnabled, bool $customAction, int $abandonAt, ?array $requiredFields = null, ?array $optionalFields = null, ?array $missingFields = null, ?array $unverifiedFields = null, ?Verifications $verifications = null, ?array $unsafeMetadata = null, ?array $publicMetadata = null, ?ExternalAccount $externalAccount = null, ?string $username = null, ?string $emailAddress = null, ?string $phoneNumber = null, ?string $web3Wallet = null, ?string $firstName = null, ?string $lastName = null, ?string $externalId = null, ?string $createdSessionId = null, ?string $createdUserId = null)
+    public function __construct(SignUpObject $object, string $id, SignUpStatus $status, bool $passwordEnabled, bool $customAction, int $abandonAt, ?array $requiredFields = null, ?array $optionalFields = null, ?array $missingFields = null, ?array $unverifiedFields = null, ?Verifications $verifications = null, ?array $unsafeMetadata = null, ?array $publicMetadata = null, ?ExternalAccount $externalAccount = null, ?string $username = null, ?string $emailAddress = null, ?string $phoneNumber = null, ?string $web3Wallet = null, ?string $firstName = null, ?string $lastName = null, ?string $externalId = null, ?string $createdSessionId = null, ?string $createdUserId = null, ?int $legalAcceptedAt = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -256,5 +268,6 @@ class SignUp
         $this->externalId = $externalId;
         $this->createdSessionId = $createdSessionId;
         $this->createdUserId = $createdUserId;
+        $this->legalAcceptedAt = $legalAcceptedAt;
     }
 }

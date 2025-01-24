@@ -21,16 +21,16 @@ class CreateOrganizationInvitationRequest
 
     /**
      *
-     * @var CreateOrganizationInvitationRequestBody $requestBody
+     * @var ?CreateOrganizationInvitationRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public CreateOrganizationInvitationRequestBody $requestBody;
+    public ?CreateOrganizationInvitationRequestBody $requestBody = null;
 
     /**
      * @param  string  $organizationId
-     * @param  CreateOrganizationInvitationRequestBody  $requestBody
+     * @param  ?CreateOrganizationInvitationRequestBody  $requestBody
      */
-    public function __construct(string $organizationId, CreateOrganizationInvitationRequestBody $requestBody)
+    public function __construct(string $organizationId, ?CreateOrganizationInvitationRequestBody $requestBody = null)
     {
         $this->organizationId = $organizationId;
         $this->requestBody = $requestBody;

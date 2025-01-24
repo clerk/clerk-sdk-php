@@ -111,6 +111,25 @@ class OrganizationInvitation
     public ?int $updatedAt = null;
 
     /**
+     *
+     * @var ?string $url
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('url')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $url = null;
+
+    /**
+     * Unix timestamp of expiration.
+     *
+     *
+     *
+     * @var ?int $expiresAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('expires_at')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $expiresAt = null;
+
+    /**
      * @param  ?string  $id
      * @param  ?OrganizationInvitationObject  $object
      * @param  ?string  $emailAddress
@@ -122,8 +141,10 @@ class OrganizationInvitation
      * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?int  $createdAt
      * @param  ?int  $updatedAt
+     * @param  ?string  $url
+     * @param  ?int  $expiresAt
      */
-    public function __construct(?string $id = null, ?OrganizationInvitationObject $object = null, ?string $emailAddress = null, ?string $role = null, ?string $roleName = null, ?string $organizationId = null, ?string $status = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?int $createdAt = null, ?int $updatedAt = null)
+    public function __construct(?string $id = null, ?OrganizationInvitationObject $object = null, ?string $emailAddress = null, ?string $role = null, ?string $roleName = null, ?string $organizationId = null, ?string $status = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?int $createdAt = null, ?int $updatedAt = null, ?string $url = null, ?int $expiresAt = null)
     {
         $this->id = $id;
         $this->object = $object;
@@ -136,5 +157,7 @@ class OrganizationInvitation
         $this->privateMetadata = $privateMetadata;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
+        $this->url = $url;
+        $this->expiresAt = $expiresAt;
     }
 }

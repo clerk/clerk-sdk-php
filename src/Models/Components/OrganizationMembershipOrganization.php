@@ -95,19 +95,19 @@ class OrganizationMembershipOrganization
 
     /**
      *
-     * @var ?string $createdBy
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('created_by')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $createdBy = null;
-
-    /**
-     *
      * @var ?int $membersCount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('members_count')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?int $membersCount = null;
+
+    /**
+     *
+     * @var ?string $createdBy
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('created_by')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $createdBy = null;
 
     /**
      * @param  OrganizationMembershipOrganizationObject  $object
@@ -120,10 +120,10 @@ class OrganizationMembershipOrganization
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  ?bool  $adminDeleteEnabled
-     * @param  ?string  $createdBy
      * @param  ?int  $membersCount
+     * @param  ?string  $createdBy
      */
-    public function __construct(OrganizationMembershipOrganizationObject $object, string $id, string $name, string $slug, int $maxAllowedMemberships, array $publicMetadata, array $privateMetadata, int $createdAt, int $updatedAt, ?bool $adminDeleteEnabled = null, ?string $createdBy = null, ?int $membersCount = null)
+    public function __construct(OrganizationMembershipOrganizationObject $object, string $id, string $name, string $slug, int $maxAllowedMemberships, array $publicMetadata, array $privateMetadata, int $createdAt, int $updatedAt, ?bool $adminDeleteEnabled = null, ?int $membersCount = null, ?string $createdBy = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -135,7 +135,7 @@ class OrganizationMembershipOrganization
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
         $this->adminDeleteEnabled = $adminDeleteEnabled;
-        $this->createdBy = $createdBy;
         $this->membersCount = $membersCount;
+        $this->createdBy = $createdBy;
     }
 }

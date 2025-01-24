@@ -14,12 +14,12 @@ class CreateSessionTokenFromTemplateResponseBody
 {
     /**
      *
-     * @var ?ObjectT $object
+     * @var ?CreateSessionTokenFromTemplateObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\ObjectT|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\CreateSessionTokenFromTemplateObject|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ObjectT $object = null;
+    public ?CreateSessionTokenFromTemplateObject $object = null;
 
     /**
      *
@@ -30,10 +30,10 @@ class CreateSessionTokenFromTemplateResponseBody
     public ?string $jwt = null;
 
     /**
-     * @param  ?ObjectT  $object
+     * @param  ?CreateSessionTokenFromTemplateObject  $object
      * @param  ?string  $jwt
      */
-    public function __construct(?ObjectT $object = null, ?string $jwt = null)
+    public function __construct(?CreateSessionTokenFromTemplateObject $object = null, ?string $jwt = null)
     {
         $this->object = $object;
         $this->jwt = $jwt;

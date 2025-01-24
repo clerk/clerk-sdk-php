@@ -13,4 +13,5 @@ enum Web3SignatureVerificationStrategy: string
 {
     case Web3MetamaskSignature = 'web3_metamask_signature';
     case Web3CoinbaseWalletSignature = 'web3_coinbase_wallet_signature';
+    case Web3OkxWalletSignature = 'web3_okx_wallet_signature';
 }

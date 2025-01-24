@@ -47,7 +47,7 @@ class TestingTokens
     /**
      * Retrieve a new testing token
      *
-     * Retrieve a new testing token. Only available for development instances.
+     * Retrieve a new testing token.
      *
      * @return Operations\CreateTestingTokenResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
@@ -74,7 +74,7 @@ class TestingTokens
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-        if ($statusCode == 400 || $statusCode >= 400 && $statusCode < 500 || $statusCode >= 500 && $statusCode < 600) {
+        if ($statusCode >= 400 && $statusCode < 500 || $statusCode >= 500 && $statusCode < 600) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
@@ -95,7 +95,7 @@ class TestingTokens
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
-        } elseif ($statusCode == 400 || $statusCode >= 400 && $statusCode < 500) {
+        } elseif ($statusCode >= 400 && $statusCode < 500) {
             throw new \Clerk\Backend\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         } elseif ($statusCode >= 500 && $statusCode < 600) {
             throw new \Clerk\Backend\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);

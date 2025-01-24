@@ -45,7 +45,7 @@ class CreateInvitationRequestBody
     public ?string $redirectUrl = null;
 
     /**
-     * The number of days the invitation will be valid for. By default, the invitation does not expire.
+     * The number of days the invitation will be valid for. By default, the invitation expires after 30 days.
      *
      * @var ?int $expiresInDays
      */
@@ -54,9 +54,21 @@ class CreateInvitationRequestBody
     public ?int $expiresInDays = null;
 
     /**
+     * The slug of the email template to use for the invitation email.
+     *
+     * If not provided, the "invitation" template will be used.
+     *
+     * @var ?TemplateSlug $templateSlug
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('template_slug')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\TemplateSlug|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?TemplateSlug $templateSlug = null;
+
+    /**
      * Optional flag which denotes whether an email invitation should be sent to the given email address.
      *
-     * Defaults to true.
+     * Defaults to `true`.
      *
      * @var ?bool $notify
      */
@@ -80,13 +92,15 @@ class CreateInvitationRequestBody
      * @param  ?bool  $notify
      * @param  ?bool  $ignoreExisting
      * @param  ?int  $expiresInDays
+     * @param  ?TemplateSlug  $templateSlug
      */
-    public function __construct(string $emailAddress, ?array $publicMetadata = null, ?string $redirectUrl = null, ?int $expiresInDays = null, ?bool $notify = true, ?bool $ignoreExisting = false)
+    public function __construct(string $emailAddress, ?array $publicMetadata = null, ?string $redirectUrl = null, ?int $expiresInDays = null, ?TemplateSlug $templateSlug = null, ?bool $notify = true, ?bool $ignoreExisting = false)
     {
         $this->emailAddress = $emailAddress;
         $this->publicMetadata = $publicMetadata;
         $this->redirectUrl = $redirectUrl;
         $this->expiresInDays = $expiresInDays;
+        $this->templateSlug = $templateSlug;
         $this->notify = $notify;
         $this->ignoreExisting = $ignoreExisting;
     }

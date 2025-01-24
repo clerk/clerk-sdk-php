@@ -9,8 +9,8 @@ declare(strict_types=1);
 namespace Clerk\Backend\Models\Components;
 
 
-/** WellKnownJWKS - Get the JSON Web Key Set */
-class WellKnownJWKS
+/** Jwks - Get the JSON Web Key Set */
+class Jwks
 {
     /**
      * $keys

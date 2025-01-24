@@ -75,6 +75,15 @@ class UpdateSAMLConnectionRequestBody
     public ?string $idpMetadata = null;
 
     /**
+     * The ID of the organization to which users of this SAML Connection will be added
+     *
+     * @var ?string $organizationId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('organization_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $organizationId = null;
+
+    /**
      * Define the atrtibute name mapping between Identity Provider and Clerk's user properties
      *
      * @var ?UpdateSAMLConnectionAttributeMapping $attributeMapping
@@ -137,6 +146,7 @@ class UpdateSAMLConnectionRequestBody
      * @param  ?string  $idpCertificate
      * @param  ?string  $idpMetadataUrl
      * @param  ?string  $idpMetadata
+     * @param  ?string  $organizationId
      * @param  ?UpdateSAMLConnectionAttributeMapping  $attributeMapping
      * @param  ?bool  $active
      * @param  ?bool  $syncUserAttributes
@@ -144,7 +154,7 @@ class UpdateSAMLConnectionRequestBody
      * @param  ?bool  $allowIdpInitiated
      * @param  ?bool  $disableAdditionalIdentifications
      */
-    public function __construct(?string $name = null, ?string $domain = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?UpdateSAMLConnectionAttributeMapping $attributeMapping = null, ?bool $active = null, ?bool $syncUserAttributes = null, ?bool $allowSubdomains = null, ?bool $allowIdpInitiated = null, ?bool $disableAdditionalIdentifications = null)
+    public function __construct(?string $name = null, ?string $domain = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?UpdateSAMLConnectionAttributeMapping $attributeMapping = null, ?bool $active = null, ?bool $syncUserAttributes = null, ?bool $allowSubdomains = null, ?bool $allowIdpInitiated = null, ?bool $disableAdditionalIdentifications = null)
     {
         $this->name = $name;
         $this->domain = $domain;
@@ -153,6 +163,7 @@ class UpdateSAMLConnectionRequestBody
         $this->idpCertificate = $idpCertificate;
         $this->idpMetadataUrl = $idpMetadataUrl;
         $this->idpMetadata = $idpMetadata;
+        $this->organizationId = $organizationId;
         $this->attributeMapping = $attributeMapping;
         $this->active = $active;
         $this->syncUserAttributes = $syncUserAttributes;

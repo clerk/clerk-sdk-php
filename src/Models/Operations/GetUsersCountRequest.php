@@ -89,6 +89,39 @@ class GetUsersCountRequest
     public ?string $query = null;
 
     /**
+     * Counts users with emails that match the given query, via case-insensitive partial match.
+     *
+     * For example, `email_address_query=ello` will match a user with the email `HELLO@example.com`,
+     * and will be included in the resulting count.
+     *
+     * @var ?string $emailAddressQuery
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=email_address_query')]
+    public ?string $emailAddressQuery = null;
+
+    /**
+     * Counts users with phone numbers that match the given query, via case-insensitive partial match.
+     *
+     * For example, `phone_number_query=555` will match a user with the phone number `+1555xxxxxxx`,
+     * and will be included in the resulting count.
+     *
+     * @var ?string $phoneNumberQuery
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=phone_number_query')]
+    public ?string $phoneNumberQuery = null;
+
+    /**
+     * Counts users with usernames that match the given query, via case-insensitive partial match.
+     *
+     * For example, `username_query=CoolUser` will match a user with the username `SomeCoolUser`,
+     * and will be included in the resulting count.
+     *
+     * @var ?string $usernameQuery
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=username_query')]
+    public ?string $usernameQuery = null;
+
+    /**
      * @param  ?array<string>  $emailAddress
      * @param  ?array<string>  $phoneNumber
      * @param  ?array<string>  $externalId
@@ -96,8 +129,11 @@ class GetUsersCountRequest
      * @param  ?array<string>  $web3Wallet
      * @param  ?array<string>  $userId
      * @param  ?string  $query
+     * @param  ?string  $emailAddressQuery
+     * @param  ?string  $phoneNumberQuery
+     * @param  ?string  $usernameQuery
      */
-    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $externalId = null, ?array $username = null, ?array $web3Wallet = null, ?array $userId = null, ?string $query = null)
+    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $externalId = null, ?array $username = null, ?array $web3Wallet = null, ?array $userId = null, ?string $query = null, ?string $emailAddressQuery = null, ?string $phoneNumberQuery = null, ?string $usernameQuery = null)
     {
         $this->emailAddress = $emailAddress;
         $this->phoneNumber = $phoneNumber;
@@ -106,5 +142,8 @@ class GetUsersCountRequest
         $this->web3Wallet = $web3Wallet;
         $this->userId = $userId;
         $this->query = $query;
+        $this->emailAddressQuery = $emailAddressQuery;
+        $this->phoneNumberQuery = $phoneNumberQuery;
+        $this->usernameQuery = $usernameQuery;
     }
 }

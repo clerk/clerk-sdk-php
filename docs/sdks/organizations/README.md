@@ -20,7 +20,6 @@ Organizations are used to group members under a common entity and provide shared
 ## create
 
 Creates a new organization with the given name for an instance.
-In order to successfully create an organization you need to provide the ID of the User who will become the organization administrator.
 You can specify an optional slug for the new organization.
 If provided, the organization slug can contain only lowercase alphanumeric characters (letters and digits) and the dash "-".
 Organization slugs must be unique for the instance.
@@ -49,7 +48,6 @@ $sdk = Backend\ClerkBackend::builder()
 
 $request = new Operations\CreateOrganizationRequestBody(
     name: '<value>',
-    createdBy: '<value>',
 );
 
 $response = $sdk->organizations->create(

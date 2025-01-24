@@ -521,7 +521,7 @@ if ($response->responseBodies !== null) {
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 422            | application/json    |
+| Errors\ClerkErrors  | 400, 404, 422       | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## get
@@ -593,7 +593,10 @@ $sdk = Backend\ClerkBackend::builder()
     ->build();
 
 $request = new Operations\GetUserListRequest(
-    lastActiveAtSince: 1700690400000,
+    lastActiveAtBefore: 1700690400000,
+    lastActiveAtAfter: 1700690400000,
+    createdAtBefore: 1730160000000,
+    createdAtAfter: 1730160000000,
 );
 
 $response = $sdk->users->list(

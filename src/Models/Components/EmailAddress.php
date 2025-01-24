@@ -76,11 +76,22 @@ class EmailAddress
 
     /**
      *
-     * @var Otp|Admin|Oauth|null $verification
+     * @var Otp|Admin|FromOAuth|null $verification
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Otp|\Clerk\Backend\Models\Components\Admin|\Clerk\Backend\Models\Components\Oauth')]
-    public Otp|Admin|Oauth|null $verification;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Otp|\Clerk\Backend\Models\Components\Admin|\Clerk\Backend\Models\Components\FromOAuth')]
+    public Otp|Admin|FromOAuth|null $verification;
+
+    /**
+     * Indicates whether this email address domain matches an active enterprise connection.
+     *
+     *
+     *
+     * @var ?bool $matchesSsoConnection
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('matches_sso_connection')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $matchesSsoConnection = null;
 
     /**
      * @param  EmailAddressObject  $object
@@ -90,9 +101,10 @@ class EmailAddress
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  ?string  $id
-     * @param  Otp|Admin|Oauth|null  $verification
+     * @param  Otp|Admin|FromOAuth|null  $verification
+     * @param  ?bool  $matchesSsoConnection
      */
-    public function __construct(EmailAddressObject $object, string $emailAddress, bool $reserved, array $linkedTo, int $createdAt, int $updatedAt, ?string $id = null, Otp|Admin|Oauth|null $verification = null)
+    public function __construct(EmailAddressObject $object, string $emailAddress, bool $reserved, array $linkedTo, int $createdAt, int $updatedAt, ?string $id = null, Otp|Admin|FromOAuth|null $verification = null, ?bool $matchesSsoConnection = null)
     {
         $this->object = $object;
         $this->emailAddress = $emailAddress;
@@ -102,5 +114,6 @@ class EmailAddress
         $this->updatedAt = $updatedAt;
         $this->id = $id;
         $this->verification = $verification;
+        $this->matchesSsoConnection = $matchesSsoConnection;
     }
 }

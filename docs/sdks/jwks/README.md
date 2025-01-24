@@ -32,7 +32,7 @@ $response = $sdk->jwks->get(
 
 );
 
-if ($response->wellKnownJWKS !== null) {
+if ($response->jwks !== null) {
     // handle response
 }
 ```

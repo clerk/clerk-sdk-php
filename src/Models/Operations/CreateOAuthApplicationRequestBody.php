@@ -22,10 +22,11 @@ class CreateOAuthApplicationRequestBody
     /**
      * The callback URL of the new OAuth application
      *
-     * @var string $callbackUrl
+     * @var ?string $callbackUrl
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('callback_url')]
-    public string $callbackUrl;
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $callbackUrl = null;
 
     /**
      * If true, this client is public and cannot securely store a client secret.
@@ -50,11 +51,11 @@ class CreateOAuthApplicationRequestBody
 
     /**
      * @param  string  $name
-     * @param  string  $callbackUrl
+     * @param  ?string  $callbackUrl
      * @param  ?string  $scopes
      * @param  ?bool  $public
      */
-    public function __construct(string $name, string $callbackUrl, ?bool $public = null, ?string $scopes = 'profile email')
+    public function __construct(string $name, ?string $callbackUrl = null, ?bool $public = null, ?string $scopes = 'profile email')
     {
         $this->name = $name;
         $this->callbackUrl = $callbackUrl;

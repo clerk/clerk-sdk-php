@@ -112,15 +112,94 @@ class GetUserListRequest
     public ?string $query = null;
 
     /**
-     * Returns users that had session activity since the given date, with day precision.
+     * Returns users with emails that match the given query, via case-insensitive partial match.
      *
-     * Providing a value with higher precision than day will result in an error.
+     * For example, `email_address_query=ello` will match a user with the email `HELLO@example.com`.
+     *
+     * @var ?string $emailAddressQuery
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=email_address_query')]
+    public ?string $emailAddressQuery = null;
+
+    /**
+     * Returns users with phone numbers that match the given query, via case-insensitive partial match.
+     *
+     * For example, `phone_number_query=555` will match a user with the phone number `+1555xxxxxxx`.
+     *
+     * @var ?string $phoneNumberQuery
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=phone_number_query')]
+    public ?string $phoneNumberQuery = null;
+
+    /**
+     * Returns users with usernames that match the given query, via case-insensitive partial match.
+     *
+     * For example, `username_query=CoolUser` will match a user with the username `SomeCoolUser`.
+     *
+     * @var ?string $usernameQuery
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=username_query')]
+    public ?string $usernameQuery = null;
+
+    /**
+     * Returns users with names that match the given query, via case-insensitive partial match.
+     *
+     * @var ?string $nameQuery
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=name_query')]
+    public ?string $nameQuery = null;
+
+    /**
+     * Returns users whose last session activity was before the given date (with millisecond precision).
+     *
+     * Example: use 1700690400000 to retrieve users whose last session activity was before 2023-11-23.
+     *
+     * @var ?int $lastActiveAtBefore
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=last_active_at_before')]
+    public ?int $lastActiveAtBefore = null;
+
+    /**
+     * Returns users whose last session activity was after the given date (with millisecond precision).
+     *
+     * Example: use 1700690400000 to retrieve users whose last session activity was after 2023-11-23.
+     *
+     * @var ?int $lastActiveAtAfter
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=last_active_at_after')]
+    public ?int $lastActiveAtAfter = null;
+
+    /**
+     * Returns users that had session activity since the given date.
+     *
      * Example: use 1700690400000 to retrieve users that had session activity from 2023-11-23 until the current day.
+     * Deprecated in favor of `last_active_at_after`.
      *
      * @var ?int $lastActiveAtSince
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=last_active_at_since')]
     public ?int $lastActiveAtSince = null;
+
+    /**
+     * Returns users who have been created before the given date (with millisecond precision).
+     *
+     * Example: use 1730160000000 to retrieve users who have been created before 2024-10-29.
+     *
+     * @var ?int $createdAtBefore
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=created_at_before')]
+    public ?int $createdAtBefore = null;
+
+    /**
+     * Returns users who have been created after the given date (with millisecond precision).
+     *
+     * Example: use 1730160000000 to retrieve users who have been created after 2024-10-29.
+     *
+     * @var ?int $createdAtAfter
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=created_at_after')]
+    public ?int $createdAtAfter = null;
 
     /**
      * Applies a limit to the number of results returned.
@@ -166,12 +245,20 @@ class GetUserListRequest
      * @param  ?array<string>  $userId
      * @param  ?array<string>  $organizationId
      * @param  ?string  $query
+     * @param  ?string  $emailAddressQuery
+     * @param  ?string  $phoneNumberQuery
+     * @param  ?string  $usernameQuery
+     * @param  ?string  $nameQuery
+     * @param  ?int  $lastActiveAtBefore
+     * @param  ?int  $lastActiveAtAfter
      * @param  ?int  $lastActiveAtSince
+     * @param  ?int  $createdAtBefore
+     * @param  ?int  $createdAtAfter
      * @param  ?int  $limit
      * @param  ?int  $offset
      * @param  ?string  $orderBy
      */
-    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $externalId = null, ?array $username = null, ?array $web3Wallet = null, ?array $userId = null, ?array $organizationId = null, ?string $query = null, ?int $lastActiveAtSince = null, ?int $limit = 10, ?int $offset = 0, ?string $orderBy = '-created_at')
+    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $externalId = null, ?array $username = null, ?array $web3Wallet = null, ?array $userId = null, ?array $organizationId = null, ?string $query = null, ?string $emailAddressQuery = null, ?string $phoneNumberQuery = null, ?string $usernameQuery = null, ?string $nameQuery = null, ?int $lastActiveAtBefore = null, ?int $lastActiveAtAfter = null, ?int $lastActiveAtSince = null, ?int $createdAtBefore = null, ?int $createdAtAfter = null, ?int $limit = 10, ?int $offset = 0, ?string $orderBy = '-created_at')
     {
         $this->emailAddress = $emailAddress;
         $this->phoneNumber = $phoneNumber;
@@ -181,7 +268,15 @@ class GetUserListRequest
         $this->userId = $userId;
         $this->organizationId = $organizationId;
         $this->query = $query;
+        $this->emailAddressQuery = $emailAddressQuery;
+        $this->phoneNumberQuery = $phoneNumberQuery;
+        $this->usernameQuery = $usernameQuery;
+        $this->nameQuery = $nameQuery;
+        $this->lastActiveAtBefore = $lastActiveAtBefore;
+        $this->lastActiveAtAfter = $lastActiveAtAfter;
         $this->lastActiveAtSince = $lastActiveAtSince;
+        $this->createdAtBefore = $createdAtBefore;
+        $this->createdAtAfter = $createdAtAfter;
         $this->limit = $limit;
         $this->offset = $offset;
         $this->orderBy = $orderBy;

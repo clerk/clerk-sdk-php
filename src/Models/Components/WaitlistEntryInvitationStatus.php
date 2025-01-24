@@ -9,11 +9,10 @@ declare(strict_types=1);
 namespace Clerk\Backend\Models\Components;
 
 
-enum OauthVerificationStatus: string
+enum WaitlistEntryInvitationStatus: string
 {
-    case Unverified = 'unverified';
-    case Verified = 'verified';
-    case Failed = 'failed';
+    case Pending = 'pending';
+    case Accepted = 'accepted';
+    case Revoked = 'revoked';
     case Expired = 'expired';
-    case Transferable = 'transferable';
 }

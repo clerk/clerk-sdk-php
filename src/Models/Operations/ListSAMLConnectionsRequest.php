@@ -12,6 +12,21 @@ use Clerk\Backend\Utils\SpeakeasyMetadata;
 class ListSAMLConnectionsRequest
 {
     /**
+     * Returns SAML connections that have an associated organization ID to the
+     *
+     * given organizations.
+     * For each organization id, the `+` and `-` can be
+     * prepended to the id, which denote whether the
+     * respective organization should be included or
+     * excluded from the result set.
+     * Accepts up to 100 organization ids.
+     *
+     * @var ?array<string> $organizationId
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=organization_id')]
+    public ?array $organizationId = null;
+
+    /**
      * Applies a limit to the number of results returned.
      *
      * Can be used for paginating the results together with `offset`.
@@ -35,9 +50,11 @@ class ListSAMLConnectionsRequest
     /**
      * @param  ?int  $limit
      * @param  ?int  $offset
+     * @param  ?array<string>  $organizationId
      */
-    public function __construct(?int $limit = 10, ?int $offset = 0)
+    public function __construct(?array $organizationId = null, ?int $limit = 10, ?int $offset = 0)
     {
+        $this->organizationId = $organizationId;
         $this->limit = $limit;
         $this->offset = $offset;
     }
