@@ -32,14 +32,14 @@ class Otp
      * @var int $attempts
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('attempts')]
-    public int $attempts;
+    public ?int $attempts;
 
     /**
      *
      * @var int $expireAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('expire_at')]
-    public int $expireAt;
+    public ?int $expireAt;
 
     /**
      * @param  VerificationStatus  $status
@@ -47,7 +47,7 @@ class Otp
      * @param  int  $attempts
      * @param  int  $expireAt
      */
-    public function __construct(VerificationStatus $status, Strategy $strategy, int $attempts, int $expireAt)
+    public function __construct(VerificationStatus $status, Strategy $strategy, ?int $attempts, ?int $expireAt)
     {
         $this->status = $status;
         $this->strategy = $strategy;
