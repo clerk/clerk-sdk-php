@@ -21,6 +21,7 @@ class GetOAuthApplicationRequest
 
     /**
      * @param  string  $oauthApplicationId
+     * @phpstan-pure
      */
     public function __construct(string $oauthApplicationId)
     {

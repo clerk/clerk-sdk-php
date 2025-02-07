@@ -44,6 +44,7 @@ class GenerateSvixAuthURLResponse
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Components\SvixURL  $svixURL
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\SvixURL $svixURL = null)
     {

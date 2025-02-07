@@ -21,6 +21,7 @@ class UpdateOrganizationMembershipRequestBody
 
     /**
      * @param  string  $role
+     * @phpstan-pure
      */
     public function __construct(string $role)
     {

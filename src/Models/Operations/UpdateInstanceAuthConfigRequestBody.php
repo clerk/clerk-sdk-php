@@ -79,6 +79,7 @@ class UpdateInstanceAuthConfigRequestBody
      * @param  ?string  $sessionTokenTemplate
      * @param  ?bool  $enhancedEmailDeliverability
      * @param  ?bool  $testMode
+     * @phpstan-pure
      */
     public function __construct(?string $fromEmailAddress = null, ?bool $progressiveSignUp = null, ?string $sessionTokenTemplate = null, ?bool $enhancedEmailDeliverability = null, ?bool $testMode = null, ?bool $restrictedToAllowlist = false)
     {

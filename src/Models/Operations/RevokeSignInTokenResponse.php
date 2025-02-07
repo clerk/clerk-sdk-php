@@ -44,6 +44,7 @@ class RevokeSignInTokenResponse
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Components\SignInToken  $signInToken
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\SignInToken $signInToken = null)
     {

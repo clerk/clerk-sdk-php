@@ -86,6 +86,7 @@ class UpdateOrganizationRequestBody
      * @param  ?string  $slug
      * @param  ?int  $maxAllowedMemberships
      * @param  ?bool  $adminDeleteEnabled
+     * @phpstan-pure
      */
     public function __construct(?array $publicMetadata = null, ?array $privateMetadata = null, ?string $createdAt = null, ?string $name = null, ?string $slug = null, ?int $maxAllowedMemberships = null, ?bool $adminDeleteEnabled = null)
     {

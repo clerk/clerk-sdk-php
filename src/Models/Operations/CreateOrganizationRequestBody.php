@@ -88,6 +88,7 @@ class CreateOrganizationRequestBody
      * @param  ?string  $slug
      * @param  ?int  $maxAllowedMemberships
      * @param  ?string  $createdAt
+     * @phpstan-pure
      */
     public function __construct(string $name, ?string $createdBy = null, ?array $privateMetadata = null, ?array $publicMetadata = null, ?string $slug = null, ?int $maxAllowedMemberships = null, ?string $createdAt = null)
     {

@@ -30,6 +30,7 @@ class GetOrganizationInvitationRequest
     /**
      * @param  string  $organizationId
      * @param  string  $invitationId
+     * @phpstan-pure
      */
     public function __construct(string $organizationId, string $invitationId)
     {

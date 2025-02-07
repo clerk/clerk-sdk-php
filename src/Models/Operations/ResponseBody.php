@@ -114,6 +114,7 @@ class ResponseBody
      * @param  ?string  $tokenSecret
      * @param  ?string  $label
      * @param  ?int  $expiresAt
+     * @phpstan-pure
      */
     public function __construct(?string $object = null, ?string $externalAccountId = null, ?string $providerUserId = null, ?string $token = null, ?string $provider = null, ?array $publicMetadata = null, ?array $scopes = null, ?string $tokenSecret = null, ?string $label = null, ?int $expiresAt = null)
     {

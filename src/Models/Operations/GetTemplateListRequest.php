@@ -21,6 +21,7 @@ class GetTemplateListRequest
 
     /**
      * @param  TemplateType  $templateType
+     * @phpstan-pure
      */
     public function __construct(TemplateType $templateType)
     {

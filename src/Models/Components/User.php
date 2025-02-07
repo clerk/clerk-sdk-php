@@ -429,6 +429,7 @@ class User
      * @param  ?int  $createOrganizationsLimit
      * @param  ?int  $lastActiveAt
      * @param  ?int  $legalAcceptedAt
+     * @phpstan-pure
      */
     public function __construct(?string $id = null, ?UserObject $object = null, ?string $profileImageUrl = null, ?string $imageUrl = null, ?bool $hasImage = null, ?array $publicMetadata = null, ?array $unsafeMetadata = null, ?array $emailAddresses = null, ?array $phoneNumbers = null, ?array $web3Wallets = null, ?array $passkeys = null, ?bool $passwordEnabled = null, ?bool $twoFactorEnabled = null, ?bool $totpEnabled = null, ?bool $backupCodeEnabled = null, ?array $externalAccounts = null, ?array $samlAccounts = null, ?bool $banned = null, ?bool $locked = null, ?int $updatedAt = null, ?int $createdAt = null, ?bool $deleteSelfEnabled = null, ?bool $createOrganizationEnabled = null, ?string $externalId = null, ?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $username = null, ?string $firstName = null, ?string $lastName = null, ?array $privateMetadata = null, ?int $mfaEnabledAt = null, ?int $mfaDisabledAt = null, ?int $lastSignInAt = null, ?int $lockoutExpiresInSeconds = null, ?int $verificationAttemptsRemaining = null, ?int $createOrganizationsLimit = null, ?int $lastActiveAt = null, ?int $legalAcceptedAt = null)
     {

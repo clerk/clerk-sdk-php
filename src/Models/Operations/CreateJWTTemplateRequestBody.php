@@ -83,6 +83,7 @@ class CreateJWTTemplateRequestBody
      * @param  ?float  $allowedClockSkew
      * @param  ?string  $signingAlgorithm
      * @param  ?string  $signingKey
+     * @phpstan-pure
      */
     public function __construct(?string $name = null, ?Claims $claims = null, ?bool $customSigningKey = null, ?float $lifetime = null, ?float $allowedClockSkew = null, ?string $signingAlgorithm = null, ?string $signingKey = null)
     {

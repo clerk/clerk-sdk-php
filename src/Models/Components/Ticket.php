@@ -48,6 +48,7 @@ class Ticket
      * @param  TicketVerificationStrategy  $strategy
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
+     * @phpstan-pure
      */
     public function __construct(TicketVerificationStatus $status, TicketVerificationStrategy $strategy, ?int $attempts = null, ?int $expireAt = null)
     {

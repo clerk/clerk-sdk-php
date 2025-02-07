@@ -30,6 +30,7 @@ class GetTemplateRequest
     /**
      * @param  PathParamTemplateType  $templateType
      * @param  string  $slug
+     * @phpstan-pure
      */
     public function __construct(PathParamTemplateType $templateType, string $slug)
     {

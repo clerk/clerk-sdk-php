@@ -21,6 +21,7 @@ class RevokeActorTokenRequest
 
     /**
      * @param  string  $actorTokenId
+     * @phpstan-pure
      */
     public function __construct(string $actorTokenId)
     {

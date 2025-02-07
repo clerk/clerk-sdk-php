@@ -38,6 +38,7 @@ class ToggleTemplateDeliveryRequest
      * @param  ToggleTemplateDeliveryPathParamTemplateType  $templateType
      * @param  string  $slug
      * @param  ?ToggleTemplateDeliveryRequestBody  $requestBody
+     * @phpstan-pure
      */
     public function __construct(ToggleTemplateDeliveryPathParamTemplateType $templateType, string $slug, ?ToggleTemplateDeliveryRequestBody $requestBody = null)
     {

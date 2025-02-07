@@ -44,6 +44,7 @@ class CreatePhoneNumberResponse
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Components\PhoneNumber  $phoneNumber
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\PhoneNumber $phoneNumber = null)
     {

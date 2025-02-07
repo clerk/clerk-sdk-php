@@ -21,6 +21,7 @@ class RevokeInvitationRequest
 
     /**
      * @param  string  $invitationId
+     * @phpstan-pure
      */
     public function __construct(string $invitationId)
     {

@@ -55,6 +55,7 @@ class SAMLErrorClerkError
      * @param  string  $code
      * @param  ?ClerkErrorErrorMeta  $meta
      * @param  ?string  $clerkTraceId
+     * @phpstan-pure
      */
     public function __construct(string $message, string $longMessage, string $code, ?ClerkErrorErrorMeta $meta = null, ?string $clerkTraceId = null)
     {

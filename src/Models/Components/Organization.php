@@ -122,6 +122,7 @@ class Organization
      * @param  ?bool  $adminDeleteEnabled
      * @param  ?int  $membersCount
      * @param  ?string  $createdBy
+     * @phpstan-pure
      */
     public function __construct(OrganizationObject $object, string $id, string $name, string $slug, int $maxAllowedMemberships, array $publicMetadata, array $privateMetadata, int $createdAt, int $updatedAt, ?bool $adminDeleteEnabled = null, ?int $membersCount = null, ?string $createdBy = null)
     {

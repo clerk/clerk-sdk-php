@@ -38,7 +38,7 @@ class FromOAuth
      * @var ?ErrorClerkError $error
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ErrorClerkError')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ErrorClerkError|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ErrorClerkError $error = null;
 
@@ -56,6 +56,7 @@ class FromOAuth
      * @param  ?int  $expireAt
      * @param  ?ErrorClerkError  $error
      * @param  ?int  $attempts
+     * @phpstan-pure
      */
     public function __construct(FromOAuthVerificationStatus $status, string $strategy, ?int $expireAt = null, ?ErrorClerkError $error = null, ?int $attempts = null)
     {

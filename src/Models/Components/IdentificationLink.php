@@ -13,11 +13,10 @@ class IdentificationLink
 {
     /**
      *
-     * @var Type $type
+     * @var string $type
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Type')]
-    public Type $type;
+    public string $type;
 
     /**
      *
@@ -27,10 +26,11 @@ class IdentificationLink
     public string $id;
 
     /**
-     * @param  Type  $type
+     * @param  string  $type
      * @param  string  $id
+     * @phpstan-pure
      */
-    public function __construct(Type $type, string $id)
+    public function __construct(string $type, string $id)
     {
         $this->type = $type;
         $this->id = $id;

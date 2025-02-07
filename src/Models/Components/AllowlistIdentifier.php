@@ -99,6 +99,7 @@ class AllowlistIdentifier
      * @param  ?string  $instanceId
      * @param  ?int  $createdAt
      * @param  ?int  $updatedAt
+     * @phpstan-pure
      */
     public function __construct(?AllowlistIdentifierObject $object = null, ?string $id = null, ?string $invitationId = null, ?string $identifier = null, ?IdentifierType $identifierType = null, ?string $instanceId = null, ?int $createdAt = null, ?int $updatedAt = null)
     {

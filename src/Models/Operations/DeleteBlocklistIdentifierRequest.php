@@ -21,6 +21,7 @@ class DeleteBlocklistIdentifierRequest
 
     /**
      * @param  string  $identifierId
+     * @phpstan-pure
      */
     public function __construct(string $identifierId)
     {

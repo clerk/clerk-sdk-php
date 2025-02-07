@@ -29,6 +29,7 @@ class UpdateUserRequest
     /**
      * @param  string  $userId
      * @param  UpdateUserRequestBody  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $userId, UpdateUserRequestBody $requestBody)
     {

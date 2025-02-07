@@ -153,6 +153,7 @@ class UpdateSAMLConnectionRequestBody
      * @param  ?bool  $allowSubdomains
      * @param  ?bool  $allowIdpInitiated
      * @param  ?bool  $disableAdditionalIdentifications
+     * @phpstan-pure
      */
     public function __construct(?string $name = null, ?string $domain = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?UpdateSAMLConnectionAttributeMapping $attributeMapping = null, ?bool $active = null, ?bool $syncUserAttributes = null, ?bool $allowSubdomains = null, ?bool $allowIdpInitiated = null, ?bool $disableAdditionalIdentifications = null)
     {

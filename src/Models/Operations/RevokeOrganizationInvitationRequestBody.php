@@ -24,6 +24,7 @@ class RevokeOrganizationInvitationRequestBody
 
     /**
      * @param  ?string  $requestingUserId
+     * @phpstan-pure
      */
     public function __construct(?string $requestingUserId = null)
     {

@@ -29,6 +29,7 @@ class UpdateOAuthApplicationRequest
     /**
      * @param  string  $oauthApplicationId
      * @param  UpdateOAuthApplicationRequestBody  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $oauthApplicationId, UpdateOAuthApplicationRequestBody $requestBody)
     {

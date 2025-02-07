@@ -29,6 +29,7 @@ class UpdateJWTTemplateRequest
     /**
      * @param  string  $templateId
      * @param  ?UpdateJWTTemplateRequestBody  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $templateId, ?UpdateJWTTemplateRequestBody $requestBody = null)
     {

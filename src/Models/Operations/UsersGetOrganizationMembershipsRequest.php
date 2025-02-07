@@ -44,6 +44,7 @@ class UsersGetOrganizationMembershipsRequest
      * @param  string  $userId
      * @param  ?int  $limit
      * @param  ?int  $offset
+     * @phpstan-pure
      */
     public function __construct(string $userId, ?int $limit = 10, ?int $offset = 0)
     {

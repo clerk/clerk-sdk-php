@@ -35,6 +35,7 @@ class GetClientListRequest
     /**
      * @param  ?int  $limit
      * @param  ?int  $offset
+     * @phpstan-pure
      */
     public function __construct(?int $limit = 10, ?int $offset = 0)
     {

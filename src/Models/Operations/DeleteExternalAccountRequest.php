@@ -30,6 +30,7 @@ class DeleteExternalAccountRequest
     /**
      * @param  string  $userId
      * @param  string  $externalAccountId
+     * @phpstan-pure
      */
     public function __construct(string $userId, string $externalAccountId)
     {

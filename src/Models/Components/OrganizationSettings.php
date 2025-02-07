@@ -102,6 +102,7 @@ class OrganizationSettings
      * @param  string  $domainsDefaultRole
      * @param  ?int  $maxAllowedRoles
      * @param  ?int  $maxAllowedPermissions
+     * @phpstan-pure
      */
     public function __construct(OrganizationSettingsObject $object, bool $enabled, int $maxAllowedMemberships, string $creatorRole, bool $adminDeleteEnabled, bool $domainsEnabled, array $domainsEnrollmentModes, string $domainsDefaultRole, ?int $maxAllowedRoles = null, ?int $maxAllowedPermissions = null)
     {

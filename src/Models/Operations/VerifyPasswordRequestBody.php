@@ -21,6 +21,7 @@ class VerifyPasswordRequestBody
 
     /**
      * @param  string  $password
+     * @phpstan-pure
      */
     public function __construct(string $password)
     {

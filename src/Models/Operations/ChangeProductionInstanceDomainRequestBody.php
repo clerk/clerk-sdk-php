@@ -35,6 +35,7 @@ class ChangeProductionInstanceDomainRequestBody
     /**
      * @param  ?string  $homeUrl
      * @param  ?bool  $isSecondary
+     * @phpstan-pure
      */
     public function __construct(?string $homeUrl = null, ?bool $isSecondary = null)
     {

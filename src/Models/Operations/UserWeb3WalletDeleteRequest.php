@@ -30,6 +30,7 @@ class UserWeb3WalletDeleteRequest
     /**
      * @param  string  $userId
      * @param  string  $web3WalletIdentificationId
+     * @phpstan-pure
      */
     public function __construct(string $userId, string $web3WalletIdentificationId)
     {

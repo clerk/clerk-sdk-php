@@ -21,6 +21,7 @@ class DeleteJWTTemplateRequest
 
     /**
      * @param  string  $templateId
+     * @phpstan-pure
      */
     public function __construct(string $templateId)
     {

@@ -53,6 +53,7 @@ class ListInvitationsRequest
      * @param  ?int  $offset
      * @param  ?ListInvitationsQueryParamStatus  $status
      * @param  ?string  $query
+     * @phpstan-pure
      */
     public function __construct(?ListInvitationsQueryParamStatus $status = null, ?string $query = null, ?int $limit = 10, ?int $offset = 0)
     {

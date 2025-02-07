@@ -22,6 +22,7 @@ class ToggleTemplateDeliveryRequestBody
 
     /**
      * @param  ?bool  $deliveredByClerk
+     * @phpstan-pure
      */
     public function __construct(?bool $deliveredByClerk = null)
     {

@@ -38,6 +38,7 @@ class UpdateOrganizationDomainRequest
      * @param  string  $organizationId
      * @param  string  $domainId
      * @param  UpdateOrganizationDomainRequestBody  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $organizationId, string $domainId, UpdateOrganizationDomainRequestBody $requestBody)
     {

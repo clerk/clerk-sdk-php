@@ -42,6 +42,7 @@ class TestingToken
      * @param  TestingTokenObject  $object
      * @param  string  $token
      * @param  int  $expiresAt
+     * @phpstan-pure
      */
     public function __construct(TestingTokenObject $object, string $token, int $expiresAt)
     {

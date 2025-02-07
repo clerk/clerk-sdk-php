@@ -54,6 +54,7 @@ class OrganizationDomainVerification
      * @param  ?string  $strategy
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
+     * @phpstan-pure
      */
     public function __construct(?OrganizationDomainStatus $status = null, ?string $strategy = null, ?int $attempts = null, ?int $expireAt = null)
     {

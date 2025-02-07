@@ -60,6 +60,7 @@ class RedirectURL
      * @param  string  $url
      * @param  int  $createdAt
      * @param  int  $updatedAt
+     * @phpstan-pure
      */
     public function __construct(RedirectURLObject $object, string $id, string $url, int $createdAt, int $updatedAt)
     {

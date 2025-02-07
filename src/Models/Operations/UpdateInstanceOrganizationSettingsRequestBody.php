@@ -81,6 +81,7 @@ class UpdateInstanceOrganizationSettingsRequestBody
      * @param  ?int  $maxAllowedMemberships
      * @param  ?bool  $adminDeleteEnabled
      * @param  ?bool  $domainsEnabled
+     * @phpstan-pure
      */
     public function __construct(?array $domainsEnrollmentModes = null, ?string $creatorRoleId = null, ?string $domainsDefaultRoleId = null, ?bool $enabled = null, ?int $maxAllowedMemberships = null, ?bool $adminDeleteEnabled = null, ?bool $domainsEnabled = null)
     {

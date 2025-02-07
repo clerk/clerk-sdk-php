@@ -132,6 +132,7 @@ class Session
      * @param  ?Actor  $actor
      * @param  ?string  $lastActiveOrganizationId
      * @param  ?LatestActivity  $latestActivity
+     * @phpstan-pure
      */
     public function __construct(SessionObject $object, string $id, string $userId, string $clientId, Status $status, int $lastActiveAt, int $expireAt, int $abandonAt, int $updatedAt, int $createdAt, ?Actor $actor = null, ?string $lastActiveOrganizationId = null, ?LatestActivity $latestActivity = null)
     {

@@ -78,6 +78,7 @@ class CreateOrganizationInvitationBulkRequestBody
      * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?string  $redirectUrl
      * @param  ?string  $inviterUserId
+     * @phpstan-pure
      */
     public function __construct(string $emailAddress, string $role, ?array $publicMetadata = null, ?array $privateMetadata = null, ?string $redirectUrl = null, ?string $inviterUserId = null)
     {

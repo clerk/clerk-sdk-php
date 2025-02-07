@@ -22,6 +22,7 @@ class CreateSessionTokenRequestBody
 
     /**
      * @param  ?float  $expiresInSeconds
+     * @phpstan-pure
      */
     public function __construct(?float $expiresInSeconds = null)
     {

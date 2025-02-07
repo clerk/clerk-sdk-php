@@ -93,6 +93,7 @@ class CreateInvitationRequestBody
      * @param  ?bool  $ignoreExisting
      * @param  ?int  $expiresInDays
      * @param  ?TemplateSlug  $templateSlug
+     * @phpstan-pure
      */
     public function __construct(string $emailAddress, ?array $publicMetadata = null, ?string $redirectUrl = null, ?int $expiresInDays = null, ?TemplateSlug $templateSlug = null, ?bool $notify = true, ?bool $ignoreExisting = false)
     {

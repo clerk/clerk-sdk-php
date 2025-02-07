@@ -33,6 +33,7 @@ class TotalCount
     /**
      * @param  TotalCountObject  $object
      * @param  int  $totalCount
+     * @phpstan-pure
      */
     public function __construct(TotalCountObject $object, int $totalCount)
     {

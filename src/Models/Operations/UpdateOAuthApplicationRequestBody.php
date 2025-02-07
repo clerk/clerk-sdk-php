@@ -12,6 +12,15 @@ namespace Clerk\Backend\Models\Operations;
 class UpdateOAuthApplicationRequestBody
 {
     /**
+     * If true, this client is public and you can use the Proof Key of Code Exchange (PKCE) flow.
+     *
+     * @var ?bool $public
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('public')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $public = null;
+
+    /**
      * The new name of the OAuth application
      *
      * @var ?string $name
@@ -21,9 +30,20 @@ class UpdateOAuthApplicationRequestBody
     public ?string $name = null;
 
     /**
+     * An array of redirect URIs of the new OAuth application
+     *
+     * @var ?array<string> $redirectUris
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('redirect_uris')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $redirectUris = null;
+
+    /**
      * The new callback URL of the OAuth application
      *
      * @var ?string $callbackUrl
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('callback_url')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
@@ -39,13 +59,18 @@ class UpdateOAuthApplicationRequestBody
     public ?string $scopes = null;
 
     /**
+     * @param  ?bool  $public
      * @param  ?string  $name
+     * @param  ?array<string>  $redirectUris
      * @param  ?string  $callbackUrl
      * @param  ?string  $scopes
+     * @phpstan-pure
      */
-    public function __construct(?string $name = null, ?string $callbackUrl = null, ?string $scopes = 'profile email')
+    public function __construct(?bool $public = null, ?string $name = null, ?array $redirectUris = null, ?string $callbackUrl = null, ?string $scopes = 'profile email')
     {
+        $this->public = $public;
         $this->name = $name;
+        $this->redirectUris = $redirectUris;
         $this->callbackUrl = $callbackUrl;
         $this->scopes = $scopes;
     }

@@ -29,6 +29,7 @@ class UpdateUserMetadataRequest
     /**
      * @param  string  $userId
      * @param  ?UpdateUserMetadataRequestBody  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $userId, ?UpdateUserMetadataRequestBody $requestBody = null)
     {

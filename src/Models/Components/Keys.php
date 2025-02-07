@@ -84,6 +84,7 @@ class Keys
      * @param  ?string  $e
      * @param  ?string  $x
      * @param  ?string  $crv
+     * @phpstan-pure
      */
     public function __construct(?string $use = null, ?string $kty = null, ?string $kid = null, ?string $alg = null, ?string $n = null, ?string $e = null, ?string $x = null, ?string $crv = null)
     {

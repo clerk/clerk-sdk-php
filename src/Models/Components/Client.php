@@ -105,6 +105,7 @@ class Client
      * @param  ?string  $signInId
      * @param  ?string  $signUpId
      * @param  ?string  $lastActiveSessionId
+     * @phpstan-pure
      */
     public function __construct(ObjectT $object, string $id, array $sessionIds, array $sessions, int $updatedAt, int $createdAt, ?string $signInId = null, ?string $signUpId = null, ?string $lastActiveSessionId = null)
     {

@@ -44,6 +44,7 @@ class UpdateInstanceOrganizationSettingsResponse
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Components\OrganizationSettings  $organizationSettings
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\OrganizationSettings $organizationSettings = null)
     {

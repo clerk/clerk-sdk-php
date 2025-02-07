@@ -57,6 +57,7 @@ class UpdateInstanceRestrictionsRequestBody
      * @param  ?bool  $blockEmailSubaddresses
      * @param  ?bool  $blockDisposableEmailDomains
      * @param  ?bool  $ignoreDotsForGmailAddresses
+     * @phpstan-pure
      */
     public function __construct(?bool $allowlist = null, ?bool $blocklist = null, ?bool $blockEmailSubaddresses = null, ?bool $blockDisposableEmailDomains = null, ?bool $ignoreDotsForGmailAddresses = null)
     {

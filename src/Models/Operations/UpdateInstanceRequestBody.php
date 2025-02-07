@@ -109,6 +109,7 @@ class UpdateInstanceRequestBody
      * @param  ?string  $supportEmail
      * @param  ?string  $clerkJsVersion
      * @param  ?string  $developmentOrigin
+     * @phpstan-pure
      */
     public function __construct(?array $allowedOrigins = null, ?bool $cookielessDev = null, ?bool $urlBasedSessionSyncing = null, ?bool $testMode = null, ?bool $hibp = null, ?bool $enhancedEmailDeliverability = null, ?string $supportEmail = null, ?string $clerkJsVersion = null, ?string $developmentOrigin = null)
     {

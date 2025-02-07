@@ -47,6 +47,7 @@ class DeletedObject
      * @param  bool  $deleted
      * @param  ?string  $id
      * @param  ?string  $slug
+     * @phpstan-pure
      */
     public function __construct(string $object, bool $deleted, ?string $id = null, ?string $slug = null)
     {

@@ -34,6 +34,7 @@ class CreateSignInTokenRequestBody
     /**
      * @param  ?string  $userId
      * @param  ?int  $expiresInSeconds
+     * @phpstan-pure
      */
     public function __construct(?string $userId = null, ?int $expiresInSeconds = 2592000)
     {

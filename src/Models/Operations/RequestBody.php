@@ -79,6 +79,7 @@ class RequestBody
      * @param  ?bool  $notify
      * @param  ?bool  $ignoreExisting
      * @param  ?int  $expiresInDays
+     * @phpstan-pure
      */
     public function __construct(string $emailAddress, ?array $publicMetadata = null, ?string $redirectUrl = null, ?int $expiresInDays = null, ?bool $notify = true, ?bool $ignoreExisting = false)
     {

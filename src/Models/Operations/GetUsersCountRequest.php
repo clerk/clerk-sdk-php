@@ -122,6 +122,14 @@ class GetUsersCountRequest
     public ?string $usernameQuery = null;
 
     /**
+     * Counts users which are either banned (`banned=true`) or not banned (`banned=false`).
+     *
+     * @var ?bool $banned
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=banned')]
+    public ?bool $banned = null;
+
+    /**
      * @param  ?array<string>  $emailAddress
      * @param  ?array<string>  $phoneNumber
      * @param  ?array<string>  $externalId
@@ -132,8 +140,10 @@ class GetUsersCountRequest
      * @param  ?string  $emailAddressQuery
      * @param  ?string  $phoneNumberQuery
      * @param  ?string  $usernameQuery
+     * @param  ?bool  $banned
+     * @phpstan-pure
      */
-    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $externalId = null, ?array $username = null, ?array $web3Wallet = null, ?array $userId = null, ?string $query = null, ?string $emailAddressQuery = null, ?string $phoneNumberQuery = null, ?string $usernameQuery = null)
+    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $externalId = null, ?array $username = null, ?array $web3Wallet = null, ?array $userId = null, ?string $query = null, ?string $emailAddressQuery = null, ?string $phoneNumberQuery = null, ?string $usernameQuery = null, ?bool $banned = null)
     {
         $this->emailAddress = $emailAddress;
         $this->phoneNumber = $phoneNumber;
@@ -145,5 +155,6 @@ class GetUsersCountRequest
         $this->emailAddressQuery = $emailAddressQuery;
         $this->phoneNumberQuery = $phoneNumberQuery;
         $this->usernameQuery = $usernameQuery;
+        $this->banned = $banned;
     }
 }

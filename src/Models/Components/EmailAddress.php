@@ -79,7 +79,7 @@ class EmailAddress
      * @var Otp|Admin|FromOAuth|null $verification
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Otp|\Clerk\Backend\Models\Components\Admin|\Clerk\Backend\Models\Components\FromOAuth')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Otp|\Clerk\Backend\Models\Components\Admin|\Clerk\Backend\Models\Components\FromOAuth|null')]
     public Otp|Admin|FromOAuth|null $verification;
 
     /**
@@ -103,6 +103,7 @@ class EmailAddress
      * @param  ?string  $id
      * @param  Otp|Admin|FromOAuth|null  $verification
      * @param  ?bool  $matchesSsoConnection
+     * @phpstan-pure
      */
     public function __construct(EmailAddressObject $object, string $emailAddress, bool $reserved, array $linkedTo, int $createdAt, int $updatedAt, ?string $id = null, Otp|Admin|FromOAuth|null $verification = null, ?bool $matchesSsoConnection = null)
     {

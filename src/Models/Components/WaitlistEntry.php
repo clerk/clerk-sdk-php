@@ -90,6 +90,7 @@ class WaitlistEntry
      * @param  int  $updatedAt
      * @param  ?bool  $isLocked
      * @param  ?WaitlistEntryInvitation  $invitation
+     * @phpstan-pure
      */
     public function __construct(WaitlistEntryObject $object, string $id, string $emailAddress, WaitlistEntryStatus $status, int $createdAt, int $updatedAt, ?bool $isLocked = null, ?WaitlistEntryInvitation $invitation = null)
     {

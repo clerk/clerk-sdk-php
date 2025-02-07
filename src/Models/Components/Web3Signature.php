@@ -66,6 +66,7 @@ class Web3Signature
      * @param  ?string  $message
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
+     * @phpstan-pure
      */
     public function __construct(Web3SignatureVerificationStatus $status, Web3SignatureVerificationStrategy $strategy, ?string $nonce = null, ?string $message = null, ?int $attempts = null, ?int $expireAt = null)
     {

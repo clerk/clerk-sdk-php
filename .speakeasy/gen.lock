@@ -1,22 +1,24 @@
 lockVersion: 2.0.0
 id: 8c24a12b-d2f1-466a-bdaa-6d83a049a679
 management:
-  docChecksum: 293282b19953a337b7a810122b9b8ffc
+  docChecksum: 460ff9605d042257d29b142feb929348
   docVersion: v1
-  speakeasyVersion: 1.469.12
-  generationVersion: 2.493.34
-  releaseVersion: 0.1.4
-  configChecksum: e7a1ea77238fea976a13a337a8df7ee3
+  speakeasyVersion: 1.487.0
+  generationVersion: 2.506.0
+  releaseVersion: 0.1.5
+  configChecksum: e875c2911ac71e8e02a64c7fbe30a132
+  repoURL: https://github.com/clerk/clerk-sdk-php.git
+  installationURL: https://github.com/clerk/clerk-sdk-php
   published: true
 features:
   php:
     constsAndDefaults: 0.2.0
-    core: 3.7.9
+    core: 3.7.13
     deprecations: 2.81.1
     examples: 2.81.5
     flattening: 2.81.1
     globalSecurity: 2.81.7
-    globalSecurityFlattening: 0.1.1
+    globalSecurityFlattening: 0.1.2
     globalServerURLs: 2.82.1
     groups: 2.81.2
     methodArguments: 0.1.0
@@ -167,7 +169,6 @@ generatedFiles:
   - docs/Models/Components/TicketVerificationStrategy.md
   - docs/Models/Components/TotalCount.md
   - docs/Models/Components/TotalCountObject.md
-  - docs/Models/Components/Type.md
   - docs/Models/Components/User.md
   - docs/Models/Components/UserObject.md
   - docs/Models/Components/Verification.md
@@ -255,8 +256,6 @@ generatedFiles:
   - docs/Models/Operations/CreateTestingTokenResponse.md
   - docs/Models/Operations/CreateUserRequestBody.md
   - docs/Models/Operations/CreateUserResponse.md
-  - docs/Models/Operations/CreateUserTOTPRequest.md
-  - docs/Models/Operations/CreateUserTOTPResponse.md
   - docs/Models/Operations/CreateWaitlistEntryRequestBody.md
   - docs/Models/Operations/CreateWaitlistEntryResponse.md
   - docs/Models/Operations/DeleteAllowlistIdentifierRequest.md
@@ -708,7 +707,6 @@ generatedFiles:
   - src/Models/Components/TicketVerificationStrategy.php
   - src/Models/Components/TotalCount.php
   - src/Models/Components/TotalCountObject.php
-  - src/Models/Components/Type.php
   - src/Models/Components/User.php
   - src/Models/Components/UserObject.php
   - src/Models/Components/VerificationAdmin.php
@@ -795,8 +793,6 @@ generatedFiles:
   - src/Models/Operations/CreateTestingTokenResponse.php
   - src/Models/Operations/CreateUserRequestBody.php
   - src/Models/Operations/CreateUserResponse.php
-  - src/Models/Operations/CreateUserTOTPRequest.php
-  - src/Models/Operations/CreateUserTOTPResponse.php
   - src/Models/Operations/CreateWaitlistEntryRequestBody.php
   - src/Models/Operations/CreateWaitlistEntryResponse.php
   - src/Models/Operations/DeleteAllowlistIdentifierRequest.php
@@ -2194,7 +2190,7 @@ examples:
           offset: 0
       responses:
         "200":
-          application/json: {"data": [{"object": "oauth_application", "id": "<id>", "instance_id": "<id>", "name": "<value>", "client_id": "<id>", "public": false, "scopes": "<value>", "callback_url": "https://definite-deer.com", "authorize_url": "https://productive-affect.net", "token_fetch_url": "https://black-poetry.name/", "user_info_url": "https://acidic-avalanche.info", "discovery_url": "https://neglected-plastic.biz", "token_introspection_url": "https://crooked-overload.name/", "created_at": 485729, "updated_at": 73227}, {"object": "oauth_application", "id": "<id>", "instance_id": "<id>", "name": "<value>", "client_id": "<id>", "public": false, "scopes": "<value>", "callback_url": "https://ugly-jungle.com", "authorize_url": "https://torn-affiliate.org/", "token_fetch_url": "https://unwilling-comparison.com/", "user_info_url": "https://concrete-incandescence.info", "discovery_url": "https://secret-bob.com/", "token_introspection_url": "https://memorable-overcoat.com", "created_at": 432930, "updated_at": 480616}, {"object": "oauth_application", "id": "<id>", "instance_id": "<id>", "name": "<value>", "client_id": "<id>", "public": true, "scopes": "<value>", "callback_url": "https://tempting-handle.org", "authorize_url": "https://imaginative-cap.biz/", "token_fetch_url": "https://animated-ostrich.org", "user_info_url": "https://bowed-poppy.name", "discovery_url": "https://hidden-jet.com/", "token_introspection_url": "https://odd-sustenance.info", "created_at": 838930, "updated_at": 816637}], "total_count": 996014}
+          application/json: {"data": [{"object": "oauth_application", "id": "<id>", "instance_id": "<id>", "name": "<value>", "client_id": "<id>", "public": false, "scopes": "<value>", "redirect_uris": ["<value>", "<value>", "<value>"], "callback_url": "https://definite-deer.com", "authorize_url": "https://productive-affect.net", "token_fetch_url": "https://black-poetry.name/", "user_info_url": "https://acidic-avalanche.info", "discovery_url": "https://neglected-plastic.biz", "token_introspection_url": "https://crooked-overload.name/", "created_at": 485729, "updated_at": 73227}, {"object": "oauth_application", "id": "<id>", "instance_id": "<id>", "name": "<value>", "client_id": "<id>", "public": false, "scopes": "<value>", "redirect_uris": ["<value>", "<value>"], "callback_url": "https://ugly-jungle.com", "authorize_url": "https://torn-affiliate.org/", "token_fetch_url": "https://unwilling-comparison.com/", "user_info_url": "https://concrete-incandescence.info", "discovery_url": "https://secret-bob.com/", "token_introspection_url": "https://memorable-overcoat.com", "created_at": 432930, "updated_at": 480616}, {"object": "oauth_application", "id": "<id>", "instance_id": "<id>", "name": "<value>", "client_id": "<id>", "public": true, "scopes": "<value>", "redirect_uris": ["<value>", "<value>"], "callback_url": "https://tempting-handle.org", "authorize_url": "https://imaginative-cap.biz/", "token_fetch_url": "https://animated-ostrich.org", "user_info_url": "https://bowed-poppy.name", "discovery_url": "https://hidden-jet.com/", "token_introspection_url": "https://odd-sustenance.info", "created_at": 838930, "updated_at": 816637}], "total_count": 996014}
         "400":
           application/json: {"errors": []}
   CreateOAuthApplication:
@@ -2203,7 +2199,7 @@ examples:
         application/json: {"name": "<value>", "callback_url": "https://probable-heating.com/", "scopes": "profile email public_metadata"}
       responses:
         "200":
-          application/json: {"object": "oauth_application", "id": "<id>", "instance_id": "<id>", "name": "<value>", "client_id": "<id>", "public": true, "scopes": "<value>", "callback_url": "https://well-documented-cd.biz", "authorize_url": "https://stable-skean.name/", "token_fetch_url": "https://well-worn-formation.biz", "user_info_url": "https://enlightened-curl.com/", "discovery_url": "https://probable-heating.com/", "token_introspection_url": "https://standard-utilization.com/", "created_at": 322997, "updated_at": 185693}
+          application/json: {"object": "oauth_application", "id": "<id>", "instance_id": "<id>", "name": "<value>", "client_id": "<id>", "public": true, "scopes": "<value>", "redirect_uris": ["<value>"], "callback_url": "https://well-documented-cd.biz", "authorize_url": "https://stable-skean.name/", "token_fetch_url": "https://well-worn-formation.biz", "user_info_url": "https://enlightened-curl.com/", "discovery_url": "https://probable-heating.com/", "token_introspection_url": "https://standard-utilization.com/", "created_at": 322997, "updated_at": 185693}
         "400":
           application/json: {"errors": []}
   GetOAuthApplication:
@@ -2213,7 +2209,7 @@ examples:
           oauth_application_id: "<id>"
       responses:
         "200":
-          application/json: {"object": "oauth_application", "id": "<id>", "instance_id": "<id>", "name": "<value>", "client_id": "<id>", "public": false, "scopes": "<value>", "callback_url": "https://necessary-lender.org", "authorize_url": "https://knowledgeable-diversity.biz/", "token_fetch_url": "https://jittery-sermon.com", "user_info_url": "https://genuine-bowler.name/", "discovery_url": "https://normal-making.name", "token_introspection_url": "https://lavish-ice-cream.biz", "created_at": 805876, "updated_at": 380699}
+          application/json: {"object": "oauth_application", "id": "<id>", "instance_id": "<id>", "name": "<value>", "client_id": "<id>", "public": false, "scopes": "<value>", "redirect_uris": ["<value>", "<value>"], "callback_url": "https://necessary-lender.org", "authorize_url": "https://knowledgeable-diversity.biz/", "token_fetch_url": "https://jittery-sermon.com", "user_info_url": "https://genuine-bowler.name/", "discovery_url": "https://normal-making.name", "token_introspection_url": "https://lavish-ice-cream.biz", "created_at": 805876, "updated_at": 380699}
         "403":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
   UpdateOAuthApplication:
@@ -2225,9 +2221,11 @@ examples:
         application/json: {"scopes": "profile email public_metadata private_metadata"}
       responses:
         "200":
-          application/json: {"object": "oauth_application", "id": "<id>", "instance_id": "<id>", "name": "<value>", "client_id": "<id>", "public": false, "scopes": "<value>", "callback_url": "https://grown-worth.name", "authorize_url": "https://worthwhile-avalanche.org/", "token_fetch_url": "https://general-digit.com/", "user_info_url": "https://uniform-euphonium.info", "discovery_url": "https://passionate-flu.org", "token_introspection_url": "https://lumbering-wheel.com", "created_at": 771203, "updated_at": 693508}
+          application/json: {"object": "oauth_application", "id": "<id>", "instance_id": "<id>", "name": "<value>", "client_id": "<id>", "public": false, "scopes": "<value>", "redirect_uris": ["<value>", "<value>", "<value>"], "callback_url": "https://grown-worth.name", "authorize_url": "https://worthwhile-avalanche.org/", "token_fetch_url": "https://general-digit.com/", "user_info_url": "https://uniform-euphonium.info", "discovery_url": "https://passionate-flu.org", "token_introspection_url": "https://lumbering-wheel.com", "created_at": 771203, "updated_at": 693508}
         "403":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
+        "400":
+          application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
   DeleteOAuthApplication:
     speakeasy-default-delete-O-auth-application:
       parameters:
@@ -2245,7 +2243,7 @@ examples:
           oauth_application_id: "<id>"
       responses:
         "200":
-          application/json: {"object": "oauth_application", "id": "<id>", "instance_id": "<id>", "name": "<value>", "client_id": "<id>", "public": false, "scopes": "<value>", "callback_url": "https://memorable-tray.biz/", "authorize_url": "https://round-plumber.info", "token_fetch_url": "https://annual-councilman.com", "user_info_url": "https://blank-lifestyle.name", "discovery_url": "https://enchanting-language.org", "token_introspection_url": "https://tempting-popularity.net/", "created_at": 522183, "updated_at": 873135}
+          application/json: {"object": "oauth_application", "id": "<id>", "instance_id": "<id>", "name": "<value>", "client_id": "<id>", "public": false, "scopes": "<value>", "redirect_uris": ["<value>", "<value>", "<value>"], "callback_url": "https://memorable-tray.biz/", "authorize_url": "https://round-plumber.info", "token_fetch_url": "https://annual-councilman.com", "user_info_url": "https://blank-lifestyle.name", "discovery_url": "https://enchanting-language.org", "token_introspection_url": "https://tempting-popularity.net/", "created_at": 522183, "updated_at": 873135}
         "403":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
   ListSAMLConnections:

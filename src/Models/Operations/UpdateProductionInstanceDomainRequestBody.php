@@ -22,6 +22,7 @@ class UpdateProductionInstanceDomainRequestBody
 
     /**
      * @param  ?string  $homeUrl
+     * @phpstan-pure
      */
     public function __construct(?string $homeUrl = null)
     {

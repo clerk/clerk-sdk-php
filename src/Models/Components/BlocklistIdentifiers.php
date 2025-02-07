@@ -34,6 +34,7 @@ class BlocklistIdentifiers
     /**
      * @param  array<BlocklistIdentifier>  $data
      * @param  int  $totalCount
+     * @phpstan-pure
      */
     public function __construct(array $data, int $totalCount)
     {

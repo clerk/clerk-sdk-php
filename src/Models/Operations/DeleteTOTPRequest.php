@@ -21,6 +21,7 @@ class DeleteTOTPRequest
 
     /**
      * @param  string  $userId
+     * @phpstan-pure
      */
     public function __construct(string $userId)
     {

@@ -58,6 +58,7 @@ class Passkey
      * @param  ?Nonce  $nonce
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
+     * @phpstan-pure
      */
     public function __construct(PasskeyVerificationStatus $status, PasskeyVerificationStrategy $strategy, ?Nonce $nonce = null, ?int $attempts = null, ?int $expireAt = null)
     {

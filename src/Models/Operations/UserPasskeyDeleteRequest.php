@@ -30,6 +30,7 @@ class UserPasskeyDeleteRequest
     /**
      * @param  string  $userId
      * @param  string  $passkeyIdentificationId
+     * @phpstan-pure
      */
     public function __construct(string $userId, string $passkeyIdentificationId)
     {

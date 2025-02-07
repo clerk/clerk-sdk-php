@@ -111,6 +111,7 @@ class CreateSAMLConnectionRequestBody
      * @param  ?string  $idpMetadata
      * @param  ?string  $organizationId
      * @param  ?AttributeMapping  $attributeMapping
+     * @phpstan-pure
      */
     public function __construct(string $name, string $domain, Provider $provider, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?AttributeMapping $attributeMapping = null)
     {

@@ -388,7 +388,6 @@ if ($response->statusCode === 200) {
 
 * [ban](docs/sdks/users/README.md#ban) - Ban a user
 * [create](docs/sdks/users/README.md#create) - Create a new user
-* [createTOTP](docs/sdks/users/README.md#createtotp) - Create a TOTP for a user
 * [deleteBackupCodes](docs/sdks/users/README.md#deletebackupcodes) - Disable all user's Backup codes
 * [deleteExternalAccount](docs/sdks/users/README.md#deleteexternalaccount) - Delete External Account
 * [deleteTotp](docs/sdks/users/README.md#deletetotp) - Delete all the user's TOTPs

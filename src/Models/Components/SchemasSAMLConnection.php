@@ -211,6 +211,7 @@ class SchemasSAMLConnection
      * @param  ?string  $idpMetadataUrl
      * @param  ?string  $idpMetadata
      * @param  ?string  $organizationId
+     * @phpstan-pure
      */
     public function __construct(SchemasSAMLConnectionObject $object, string $id, string $name, string $domain, string $acsUrl, string $spEntityId, string $spMetadataUrl, bool $active, string $provider, int $userCount, bool $syncUserAttributes, int $createdAt, int $updatedAt, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?AttributeMapping $attributeMapping = null, ?bool $allowSubdomains = null, ?bool $allowIdpInitiated = null, ?bool $disableAdditionalIdentifications = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null)
     {

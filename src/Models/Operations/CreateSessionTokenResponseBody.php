@@ -32,6 +32,7 @@ class CreateSessionTokenResponseBody
     /**
      * @param  ?ObjectT  $object
      * @param  ?string  $jwt
+     * @phpstan-pure
      */
     public function __construct(?ObjectT $object = null, ?string $jwt = null)
     {

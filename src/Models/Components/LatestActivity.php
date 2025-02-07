@@ -91,6 +91,7 @@ class LatestActivity
      * @param  ?string  $ipAddress
      * @param  ?string  $city
      * @param  ?string  $country
+     * @phpstan-pure
      */
     public function __construct(string $object, string $id, ?string $deviceType = null, ?bool $isMobile = null, ?string $browserName = null, ?string $browserVersion = null, ?string $ipAddress = null, ?string $city = null, ?string $country = null)
     {

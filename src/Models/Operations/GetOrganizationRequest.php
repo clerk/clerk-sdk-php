@@ -30,6 +30,7 @@ class GetOrganizationRequest
     /**
      * @param  string  $organizationId
      * @param  ?bool  $includeMembersCount
+     * @phpstan-pure
      */
     public function __construct(string $organizationId, ?bool $includeMembersCount = null)
     {

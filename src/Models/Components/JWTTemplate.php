@@ -103,6 +103,7 @@ class JWTTemplate
      * @param  int  $updatedAt
      * @param  ?bool  $customSigningKey
      * @param  ?string  $signingAlgorithm
+     * @phpstan-pure
      */
     public function __construct(JWTTemplateObject $object, string $id, string $name, Claims $claims, int $lifetime, int $allowedClockSkew, int $createdAt, int $updatedAt, ?bool $customSigningKey = null, ?string $signingAlgorithm = null)
     {

@@ -44,6 +44,7 @@ class CreateBlocklistIdentifierResponse
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Components\BlocklistIdentifier  $blocklistIdentifier
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\BlocklistIdentifier $blocklistIdentifier = null)
     {

@@ -57,6 +57,7 @@ class PublicOrganizationData
      * @param  ?string  $slug
      * @param  ?string  $imageUrl
      * @param  ?bool  $hasImage
+     * @phpstan-pure
      */
     public function __construct(?string $id = null, ?string $name = null, ?string $slug = null, ?string $imageUrl = null, ?bool $hasImage = null)
     {

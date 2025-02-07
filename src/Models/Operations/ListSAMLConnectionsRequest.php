@@ -51,6 +51,7 @@ class ListSAMLConnectionsRequest
      * @param  ?int  $limit
      * @param  ?int  $offset
      * @param  ?array<string>  $organizationId
+     * @phpstan-pure
      */
     public function __construct(?array $organizationId = null, ?int $limit = 10, ?int $offset = 0)
     {

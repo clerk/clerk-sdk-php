@@ -44,6 +44,7 @@ class VerifyDomainProxyResponse
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Components\ProxyCheck  $proxyCheck
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\ProxyCheck $proxyCheck = null)
     {

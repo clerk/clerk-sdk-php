@@ -32,6 +32,7 @@ class VerifyDomainProxyRequestBody
     /**
      * @param  ?string  $domainId
      * @param  ?string  $proxyUrl
+     * @phpstan-pure
      */
     public function __construct(?string $domainId = null, ?string $proxyUrl = null)
     {

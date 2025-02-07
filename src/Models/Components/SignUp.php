@@ -242,6 +242,7 @@ class SignUp
      * @param  ?string  $createdSessionId
      * @param  ?string  $createdUserId
      * @param  ?int  $legalAcceptedAt
+     * @phpstan-pure
      */
     public function __construct(SignUpObject $object, string $id, SignUpStatus $status, bool $passwordEnabled, bool $customAction, int $abandonAt, ?array $requiredFields = null, ?array $optionalFields = null, ?array $missingFields = null, ?array $unverifiedFields = null, ?Verifications $verifications = null, ?array $unsafeMetadata = null, ?array $publicMetadata = null, ?ExternalAccount $externalAccount = null, ?string $username = null, ?string $emailAddress = null, ?string $phoneNumber = null, ?string $web3Wallet = null, ?string $firstName = null, ?string $lastName = null, ?string $externalId = null, ?string $createdSessionId = null, ?string $createdUserId = null, ?int $legalAcceptedAt = null)
     {

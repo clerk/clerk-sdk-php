@@ -21,6 +21,7 @@ class RevokeSignInTokenRequest
 
     /**
      * @param  string  $signInTokenId
+     * @phpstan-pure
      */
     public function __construct(string $signInTokenId)
     {

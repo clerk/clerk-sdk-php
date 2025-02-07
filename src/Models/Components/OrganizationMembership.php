@@ -126,6 +126,7 @@ class OrganizationMembership
      * @param  ?PublicUserData  $publicUserData
      * @param  ?int  $createdAt
      * @param  ?int  $updatedAt
+     * @phpstan-pure
      */
     public function __construct(?string $id = null, ?OrganizationMembershipObject $object = null, ?string $role = null, ?string $roleName = null, ?array $permissions = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?OrganizationMembershipOrganization $organization = null, ?PublicUserData $publicUserData = null, ?int $createdAt = null, ?int $updatedAt = null)
     {

@@ -32,6 +32,7 @@ class UpdateOrganizationDomainRequestBody
     /**
      * @param  ?string  $enrollmentMode
      * @param  ?bool  $verified
+     * @phpstan-pure
      */
     public function __construct(?string $enrollmentMode = null, ?bool $verified = null)
     {

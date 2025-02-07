@@ -44,7 +44,7 @@ class ClerkBackendBuilder
         $security = new Models\Components\Security(
             bearerAuth: $bearerAuth
         );
-        $this->sdkConfig->security = $security;
+        $this->sdkConfig->securitySource = fn () => $security;
 
         return $this;
     }
@@ -58,7 +58,7 @@ class ClerkBackendBuilder
      */
     public function setSecuritySource(\Closure $securitySource): ClerkBackendBuilder
     {
-        $this->sdkConfig->securitySource = $securitySource;
+        $this->sdkConfig->securitySource = fn () => new Models\Components\Security(bearerAuth: $securitySource());
 
         return $this;
     }

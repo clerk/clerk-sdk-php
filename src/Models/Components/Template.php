@@ -237,6 +237,7 @@ class Template
      * @param  ?int  $createdAt
      * @param  ?string  $instanceId
      * @param  ?string  $subject
+     * @phpstan-pure
      */
     public function __construct(?string $id = null, ?TemplateObject $object = null, ?string $resourceType = null, ?string $templateType = null, ?string $name = null, ?string $slug = null, ?int $position = null, ?bool $canRevert = null, ?bool $canDelete = null, ?bool $canToggle = null, ?string $markup = null, ?string $body = null, ?array $availableVariables = null, ?array $requiredVariables = null, ?string $fromEmailName = null, ?string $replyToEmailName = null, ?bool $deliveredByClerk = null, ?bool $enabled = null, ?int $updatedAt = null, ?int $createdAt = null, ?string $instanceId = null, ?string $subject = null)
     {

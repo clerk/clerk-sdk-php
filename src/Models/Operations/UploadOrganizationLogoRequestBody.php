@@ -29,6 +29,7 @@ class UploadOrganizationLogoRequestBody
     /**
      * @param  UploadOrganizationLogoFile  $file
      * @param  ?string  $uploaderUserId
+     * @phpstan-pure
      */
     public function __construct(UploadOrganizationLogoFile $file, ?string $uploaderUserId = null)
     {

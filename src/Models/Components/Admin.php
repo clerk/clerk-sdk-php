@@ -48,6 +48,7 @@ class Admin
      * @param  VerificationStrategy  $strategy
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
+     * @phpstan-pure
      */
     public function __construct(AdminVerificationStatus $status, VerificationStrategy $strategy, ?int $attempts = null, ?int $expireAt = null)
     {

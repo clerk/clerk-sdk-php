@@ -53,6 +53,7 @@ class Instance
      * @param  ?string  $id
      * @param  ?string  $environmentType
      * @param  ?array<string>  $allowedOrigins
+     * @phpstan-pure
      */
     public function __construct(?InstanceObject $object = null, ?string $id = null, ?string $environmentType = null, ?array $allowedOrigins = null)
     {
