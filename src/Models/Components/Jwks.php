@@ -24,6 +24,7 @@ class Jwks
 
     /**
      * @param  ?array<Keys>  $keys
+     * @phpstan-pure
      */
     public function __construct(?array $keys = null)
     {

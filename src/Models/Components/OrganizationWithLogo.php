@@ -149,6 +149,7 @@ class OrganizationWithLogo
      * @param  ?bool  $hasImage
      * @param  ?int  $membersCount
      * @param  ?string  $createdBy
+     * @phpstan-pure
      */
     public function __construct(OrganizationWithLogoObject $object, string $id, string $name, string $slug, int $maxAllowedMemberships, array $publicMetadata, array $privateMetadata, int $createdAt, int $updatedAt, string $imageUrl, ?bool $adminDeleteEnabled = null, ?string $logoUrl = null, ?bool $hasImage = null, ?int $membersCount = null, ?string $createdBy = null)
     {

@@ -32,6 +32,7 @@ class CreateOrganizationMembershipRequestBody
     /**
      * @param  string  $userId
      * @param  string  $role
+     * @phpstan-pure
      */
     public function __construct(string $userId, string $role)
     {

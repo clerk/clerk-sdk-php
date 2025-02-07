@@ -96,6 +96,7 @@ class ActorToken
      * @param  int  $updatedAt
      * @param  ?string  $token
      * @param  ?string  $url
+     * @phpstan-pure
      */
     public function __construct(ActorTokenObject $object, string $id, ActorTokenStatus $status, string $userId, ActorTokenActor $actor, int $createdAt, int $updatedAt, ?string $token = null, ?string $url = null)
     {

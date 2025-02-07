@@ -21,6 +21,7 @@ class DeleteDomainRequest
 
     /**
      * @param  string  $domainId
+     * @phpstan-pure
      */
     public function __construct(string $domainId)
     {

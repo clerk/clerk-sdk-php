@@ -45,6 +45,7 @@ class UpdatePhoneNumberRequestBody
      * @param  ?bool  $verified
      * @param  ?bool  $primary
      * @param  ?bool  $reservedForSecondFactor
+     * @phpstan-pure
      */
     public function __construct(?bool $verified = null, ?bool $primary = null, ?bool $reservedForSecondFactor = null)
     {

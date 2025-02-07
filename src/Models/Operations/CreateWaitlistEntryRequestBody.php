@@ -33,6 +33,7 @@ class CreateWaitlistEntryRequestBody
     /**
      * @param  string  $emailAddress
      * @param  ?bool  $notify
+     * @phpstan-pure
      */
     public function __construct(string $emailAddress, ?bool $notify = null)
     {

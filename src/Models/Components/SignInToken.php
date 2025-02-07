@@ -87,6 +87,7 @@ class SignInToken
      * @param  int  $updatedAt
      * @param  ?string  $token
      * @param  ?string  $url
+     * @phpstan-pure
      */
     public function __construct(SignInTokenObject $object, string $id, SignInTokenStatus $status, string $userId, int $createdAt, int $updatedAt, ?string $token = null, ?string $url = null)
     {

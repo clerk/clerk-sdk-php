@@ -46,6 +46,7 @@ class VerificationOTP
      * @param  OTPVerificationStrategy  $strategy
      * @param  int  $attempts
      * @param  int  $expireAt
+     * @phpstan-pure
      */
     public function __construct(OTPVerificationStatus $status, OTPVerificationStrategy $strategy, int $attempts, int $expireAt)
     {

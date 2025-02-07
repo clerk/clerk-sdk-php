@@ -29,6 +29,7 @@ class UpdatePhoneNumberRequest
     /**
      * @param  string  $phoneNumberId
      * @param  ?UpdatePhoneNumberRequestBody  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $phoneNumberId, ?UpdatePhoneNumberRequestBody $requestBody = null)
     {

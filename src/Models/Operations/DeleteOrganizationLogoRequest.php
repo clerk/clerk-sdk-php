@@ -21,6 +21,7 @@ class DeleteOrganizationLogoRequest
 
     /**
      * @param  string  $organizationId
+     * @phpstan-pure
      */
     public function __construct(string $organizationId)
     {

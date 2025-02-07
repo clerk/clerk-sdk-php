@@ -36,7 +36,6 @@ $sdk = Backend\ClerkBackend::builder()
 
 $request = new Operations\CreateOAuthApplicationRequestBody(
     name: '<value>',
-    scopes: 'profile email public_metadata',
 );
 
 $response = $sdk->oauthApplications->create(
@@ -281,9 +280,7 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$requestBody = new Operations\UpdateOAuthApplicationRequestBody(
-    scopes: 'profile email public_metadata private_metadata',
-);
+$requestBody = new Operations\UpdateOAuthApplicationRequestBody();
 
 $response = $sdk->oauthApplications->update(
     oauthApplicationId: '<id>',
@@ -311,5 +308,5 @@ if ($response->oAuthApplication !== null) {
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 403, 404, 422       | application/json    |
+| Errors\ClerkErrors  | 400, 403, 404, 422  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |

@@ -76,6 +76,7 @@ class PublicUserData
      * @param  ?string  $lastName
      * @param  ?string  $profileImageUrl
      * @param  ?string  $identifier
+     * @phpstan-pure
      */
     public function __construct(?string $userId = null, ?string $imageUrl = null, ?bool $hasImage = null, ?string $firstName = null, ?string $lastName = null, ?string $profileImageUrl = null, ?string $identifier = null)
     {

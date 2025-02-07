@@ -44,6 +44,7 @@ class DeleteBackupCodeResponse
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?DeleteBackupCodeResponseBody  $object
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?DeleteBackupCodeResponseBody $object = null)
     {

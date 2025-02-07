@@ -67,6 +67,7 @@ class CreatePhoneNumberRequestBody
      * @param  ?bool  $verified
      * @param  ?bool  $primary
      * @param  ?bool  $reservedForSecondFactor
+     * @phpstan-pure
      */
     public function __construct(?string $userId = null, ?string $phoneNumber = null, ?bool $verified = null, ?bool $primary = null, ?bool $reservedForSecondFactor = null)
     {

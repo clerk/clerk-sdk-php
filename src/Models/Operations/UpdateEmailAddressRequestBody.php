@@ -32,6 +32,7 @@ class UpdateEmailAddressRequestBody
     /**
      * @param  ?bool  $verified
      * @param  ?bool  $primary
+     * @phpstan-pure
      */
     public function __construct(?bool $verified = null, ?bool $primary = null)
     {

@@ -20,19 +20,27 @@ class CreateOAuthApplicationRequestBody
     public string $name;
 
     /**
+     * An array of redirect URIs of the new OAuth application
+     *
+     * @var ?array<string> $redirectUris
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('redirect_uris')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $redirectUris = null;
+
+    /**
      * The callback URL of the new OAuth application
      *
      * @var ?string $callbackUrl
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('callback_url')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $callbackUrl = null;
 
     /**
-     * If true, this client is public and cannot securely store a client secret.
-     *
-     * Only the authorization code flow with proof key for code exchange (PKCE) may be used.
-     * Public clients cannot be updated to be confidential clients, and vice versa.
+     * If true, this client is public and you can use the Proof Key of Code Exchange (PKCE) flow.
      *
      * @var ?bool $public
      */
@@ -51,13 +59,16 @@ class CreateOAuthApplicationRequestBody
 
     /**
      * @param  string  $name
+     * @param  ?array<string>  $redirectUris
      * @param  ?string  $callbackUrl
      * @param  ?string  $scopes
      * @param  ?bool  $public
+     * @phpstan-pure
      */
-    public function __construct(string $name, ?string $callbackUrl = null, ?bool $public = null, ?string $scopes = 'profile email')
+    public function __construct(string $name, ?array $redirectUris = null, ?string $callbackUrl = null, ?bool $public = null, ?string $scopes = 'profile email')
     {
         $this->name = $name;
+        $this->redirectUris = $redirectUris;
         $this->callbackUrl = $callbackUrl;
         $this->public = $public;
         $this->scopes = $scopes;

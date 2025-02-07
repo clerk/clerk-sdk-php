@@ -44,6 +44,7 @@ class ListInstanceOrganizationInvitationsResponse
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Components\OrganizationInvitationsWithPublicOrganizationData  $organizationInvitationsWithPublicOrganizationData
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\OrganizationInvitationsWithPublicOrganizationData $organizationInvitationsWithPublicOrganizationData = null)
     {

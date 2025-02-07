@@ -29,6 +29,7 @@ class UpdateSAMLConnectionRequest
     /**
      * @param  string  $samlConnectionId
      * @param  UpdateSAMLConnectionRequestBody  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $samlConnectionId, UpdateSAMLConnectionRequestBody $requestBody)
     {

@@ -62,6 +62,7 @@ class GetSessionListRequest
      * @param  ?Status  $status
      * @param  ?int  $limit
      * @param  ?int  $offset
+     * @phpstan-pure
      */
     public function __construct(?string $clientId = null, ?string $userId = null, ?Status $status = null, ?int $limit = 10, ?int $offset = 0)
     {

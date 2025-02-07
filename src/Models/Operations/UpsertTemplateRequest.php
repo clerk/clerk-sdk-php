@@ -38,6 +38,7 @@ class UpsertTemplateRequest
      * @param  UpsertTemplatePathParamTemplateType  $templateType
      * @param  string  $slug
      * @param  ?UpsertTemplateRequestBody  $requestBody
+     * @phpstan-pure
      */
     public function __construct(UpsertTemplatePathParamTemplateType $templateType, string $slug, ?UpsertTemplateRequestBody $requestBody = null)
     {

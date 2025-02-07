@@ -21,6 +21,7 @@ class GetSessionRequest
 
     /**
      * @param  string  $sessionId
+     * @phpstan-pure
      */
     public function __construct(string $sessionId)
     {

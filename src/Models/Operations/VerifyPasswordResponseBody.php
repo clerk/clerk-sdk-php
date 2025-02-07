@@ -22,6 +22,7 @@ class VerifyPasswordResponseBody
 
     /**
      * @param  ?bool  $verified
+     * @phpstan-pure
      */
     public function __construct(?bool $verified = null)
     {

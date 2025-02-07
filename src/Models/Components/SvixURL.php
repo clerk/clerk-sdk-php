@@ -21,6 +21,7 @@ class SvixURL
 
     /**
      * @param  string  $svixUrl
+     * @phpstan-pure
      */
     public function __construct(string $svixUrl)
     {

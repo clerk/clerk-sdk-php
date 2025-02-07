@@ -29,6 +29,7 @@ class MergeOrganizationMetadataRequest
     /**
      * @param  string  $organizationId
      * @param  MergeOrganizationMetadataRequestBody  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $organizationId, MergeOrganizationMetadataRequestBody $requestBody)
     {

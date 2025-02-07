@@ -38,6 +38,7 @@ class RevokeOrganizationInvitationRequest
      * @param  string  $organizationId
      * @param  string  $invitationId
      * @param  ?RevokeOrganizationInvitationRequestBody  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $organizationId, string $invitationId, ?RevokeOrganizationInvitationRequestBody $requestBody = null)
     {

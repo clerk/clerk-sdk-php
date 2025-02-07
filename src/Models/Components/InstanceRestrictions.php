@@ -60,6 +60,7 @@ class InstanceRestrictions
      * @param  ?bool  $blocklist
      * @param  ?bool  $blockEmailSubaddresses
      * @param  ?bool  $ignoreDotsForGmailAddresses
+     * @phpstan-pure
      */
     public function __construct(?InstanceRestrictionsObject $object = null, ?bool $allowlist = null, ?bool $blocklist = null, ?bool $blockEmailSubaddresses = null, ?bool $ignoreDotsForGmailAddresses = null)
     {

@@ -29,6 +29,7 @@ class SetUserProfileImageRequest
     /**
      * @param  string  $userId
      * @param  SetUserProfileImageRequestBody  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $userId, SetUserProfileImageRequestBody $requestBody)
     {

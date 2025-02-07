@@ -46,7 +46,7 @@ class Saml
      * @var ?SAMLErrorClerkError $error
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SAMLErrorClerkError')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SAMLErrorClerkError|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?SAMLErrorClerkError $error = null;
 
@@ -65,6 +65,7 @@ class Saml
      * @param  ?string  $externalVerificationRedirectUrl
      * @param  ?SAMLErrorClerkError  $error
      * @param  ?int  $attempts
+     * @phpstan-pure
      */
     public function __construct(SAMLVerificationStatus $status, SAMLVerificationStrategy $strategy, int $expireAt, ?string $externalVerificationRedirectUrl = null, ?SAMLErrorClerkError $error = null, ?int $attempts = null)
     {

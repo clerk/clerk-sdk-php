@@ -30,6 +30,7 @@ class GetOAuthAccessTokenRequest
     /**
      * @param  string  $userId
      * @param  string  $provider
+     * @phpstan-pure
      */
     public function __construct(string $userId, string $provider)
     {

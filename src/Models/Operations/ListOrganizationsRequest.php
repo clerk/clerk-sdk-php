@@ -70,6 +70,7 @@ class ListOrganizationsRequest
      * @param  ?bool  $includeMembersCount
      * @param  ?string  $query
      * @param  ?string  $orderBy
+     * @phpstan-pure
      */
     public function __construct(?bool $includeMembersCount = null, ?string $query = null, ?int $limit = 10, ?int $offset = 0, ?string $orderBy = '-created_at')
     {

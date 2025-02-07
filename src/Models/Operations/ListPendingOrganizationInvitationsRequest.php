@@ -44,6 +44,7 @@ class ListPendingOrganizationInvitationsRequest
      * @param  string  $organizationId
      * @param  ?int  $limit
      * @param  ?int  $offset
+     * @phpstan-pure
      */
     public function __construct(string $organizationId, ?int $limit = 10, ?int $offset = 0)
     {

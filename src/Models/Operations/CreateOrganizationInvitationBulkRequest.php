@@ -30,6 +30,7 @@ class CreateOrganizationInvitationBulkRequest
     /**
      * @param  string  $organizationId
      * @param  array<CreateOrganizationInvitationBulkRequestBody>  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $organizationId, array $requestBody)
     {

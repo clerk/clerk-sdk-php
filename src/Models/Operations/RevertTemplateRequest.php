@@ -30,6 +30,7 @@ class RevertTemplateRequest
     /**
      * @param  RevertTemplatePathParamTemplateType  $templateType
      * @param  string  $slug
+     * @phpstan-pure
      */
     public function __construct(RevertTemplatePathParamTemplateType $templateType, string $slug)
     {

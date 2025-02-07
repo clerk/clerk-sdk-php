@@ -54,6 +54,7 @@ class CreateEmailAddressRequestBody
      * @param  ?string  $emailAddress
      * @param  ?bool  $verified
      * @param  ?bool  $primary
+     * @phpstan-pure
      */
     public function __construct(?string $userId = null, ?string $emailAddress = null, ?bool $verified = null, ?bool $primary = null)
     {

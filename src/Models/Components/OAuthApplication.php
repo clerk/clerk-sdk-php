@@ -62,8 +62,18 @@ class OAuthApplication
     public string $scopes;
 
     /**
+     * $redirectUris
+     *
+     * @var array<string> $redirectUris
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('redirect_uris')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>')]
+    public array $redirectUris;
+
+    /**
      *
      * @var string $callbackUrl
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('callback_url')]
     public string $callbackUrl;
@@ -131,6 +141,7 @@ class OAuthApplication
      * @param  string  $clientId
      * @param  bool  $public
      * @param  string  $scopes
+     * @param  array<string>  $redirectUris
      * @param  string  $callbackUrl
      * @param  string  $authorizeUrl
      * @param  string  $tokenFetchUrl
@@ -139,8 +150,9 @@ class OAuthApplication
      * @param  string  $tokenIntrospectionUrl
      * @param  int  $createdAt
      * @param  int  $updatedAt
+     * @phpstan-pure
      */
-    public function __construct(OAuthApplicationObject $object, string $id, string $instanceId, string $name, string $clientId, bool $public, string $scopes, string $callbackUrl, string $authorizeUrl, string $tokenFetchUrl, string $userInfoUrl, string $discoveryUrl, string $tokenIntrospectionUrl, int $createdAt, int $updatedAt)
+    public function __construct(OAuthApplicationObject $object, string $id, string $instanceId, string $name, string $clientId, bool $public, string $scopes, array $redirectUris, string $callbackUrl, string $authorizeUrl, string $tokenFetchUrl, string $userInfoUrl, string $discoveryUrl, string $tokenIntrospectionUrl, int $createdAt, int $updatedAt)
     {
         $this->object = $object;
         $this->id = $id;
@@ -149,6 +161,7 @@ class OAuthApplication
         $this->clientId = $clientId;
         $this->public = $public;
         $this->scopes = $scopes;
+        $this->redirectUris = $redirectUris;
         $this->callbackUrl = $callbackUrl;
         $this->authorizeUrl = $authorizeUrl;
         $this->tokenFetchUrl = $tokenFetchUrl;

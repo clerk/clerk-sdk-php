@@ -50,6 +50,7 @@ class UpdateDomainRequestBody
      * @param  ?string  $name
      * @param  ?string  $proxyUrl
      * @param  ?bool  $isSecondary
+     * @phpstan-pure
      */
     public function __construct(?string $name = null, ?string $proxyUrl = null, ?bool $isSecondary = null)
     {

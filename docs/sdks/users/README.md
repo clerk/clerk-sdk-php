@@ -10,7 +10,6 @@ The user object represents a user that has successfully signed up to your applic
 
 * [ban](#ban) - Ban a user
 * [create](#create) - Create a new user
-* [createTOTP](#createtotp) - Create a TOTP for a user
 * [deleteBackupCodes](#deletebackupcodes) - Disable all user's Backup codes
 * [deleteExternalAccount](#deleteexternalaccount) - Delete External Account
 * [deleteTotp](#deletetotp) - Delete all the user's TOTPs
@@ -133,55 +132,6 @@ if ($response->user !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 400, 401, 403, 422  | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## createTOTP
-
-Creates a TOTP (Time-based One-Time Password) for a given user, returning both the TOTP secret and the URI.
-
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->users->createTOTP(
-    userId: '<id>'
-);
-
-if ($response->totp !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                              | Type                                                   | Required                                               | Description                                            |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| `userId`                                               | *string*                                               | :heavy_check_mark:                                     | The ID of the user for whom the TOTP is being created. |
-
-### Response
-
-**[?Operations\CreateUserTOTPResponse](../../Models/Operations/CreateUserTOTPResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 403, 404            | application/json    |
-| Errors\ClerkErrors  | 500                 | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## deleteBackupCodes

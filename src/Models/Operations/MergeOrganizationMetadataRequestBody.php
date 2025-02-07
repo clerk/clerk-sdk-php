@@ -38,6 +38,7 @@ class MergeOrganizationMetadataRequestBody
     /**
      * @param  ?array<string, mixed>  $publicMetadata
      * @param  ?array<string, mixed>  $privateMetadata
+     * @phpstan-pure
      */
     public function __construct(?array $publicMetadata = null, ?array $privateMetadata = null)
     {

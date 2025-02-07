@@ -32,6 +32,7 @@ class VerifyTOTPResponseBody
     /**
      * @param  ?bool  $verified
      * @param  ?CodeType  $codeType
+     * @phpstan-pure
      */
     public function __construct(?bool $verified = null, ?CodeType $codeType = null)
     {

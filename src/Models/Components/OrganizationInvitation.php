@@ -143,6 +143,7 @@ class OrganizationInvitation
      * @param  ?int  $updatedAt
      * @param  ?string  $url
      * @param  ?int  $expiresAt
+     * @phpstan-pure
      */
     public function __construct(?string $id = null, ?OrganizationInvitationObject $object = null, ?string $emailAddress = null, ?string $role = null, ?string $roleName = null, ?string $organizationId = null, ?string $status = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?int $createdAt = null, ?int $updatedAt = null, ?string $url = null, ?int $expiresAt = null)
     {

@@ -44,6 +44,7 @@ class UpdateSAMLConnectionResponse
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Components\SchemasSAMLConnection  $schemasSAMLConnection
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\SchemasSAMLConnection $schemasSAMLConnection = null)
     {

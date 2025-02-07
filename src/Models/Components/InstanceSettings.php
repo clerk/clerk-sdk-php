@@ -69,6 +69,7 @@ class InstanceSettings
      * @param  ?string  $fromEmailAddress
      * @param  ?bool  $progressiveSignUp
      * @param  ?bool  $enhancedEmailDeliverability
+     * @phpstan-pure
      */
     public function __construct(?InstanceSettingsObject $object = null, ?string $id = null, ?bool $restrictedToAllowlist = null, ?string $fromEmailAddress = null, ?bool $progressiveSignUp = null, ?bool $enhancedEmailDeliverability = null)
     {

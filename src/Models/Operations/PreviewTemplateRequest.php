@@ -39,6 +39,7 @@ class PreviewTemplateRequest
      * @param  string  $templateType
      * @param  string  $slug
      * @param  ?PreviewTemplateRequestBody  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $templateType, string $slug, ?PreviewTemplateRequestBody $requestBody = null)
     {

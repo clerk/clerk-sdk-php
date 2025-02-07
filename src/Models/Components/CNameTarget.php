@@ -39,6 +39,7 @@ class CNameTarget
      * @param  string  $host
      * @param  string  $value
      * @param  bool  $required
+     * @phpstan-pure
      */
     public function __construct(string $host, string $value, bool $required)
     {

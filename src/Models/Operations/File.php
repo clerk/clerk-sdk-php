@@ -28,6 +28,7 @@ class File
     /**
      * @param  string  $fileName
      * @param  string  $content
+     * @phpstan-pure
      */
     public function __construct(string $fileName, string $content)
     {

@@ -42,6 +42,7 @@ class CreateOrganizationDomainRequestBody
      * @param  ?string  $name
      * @param  ?string  $enrollmentMode
      * @param  ?bool  $verified
+     * @phpstan-pure
      */
     public function __construct(?string $name = null, ?string $enrollmentMode = null, ?bool $verified = null)
     {

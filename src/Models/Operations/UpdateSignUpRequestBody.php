@@ -24,6 +24,7 @@ class UpdateSignUpRequestBody
 
     /**
      * @param  ?string  $externalId
+     * @phpstan-pure
      */
     public function __construct(?string $externalId = null)
     {

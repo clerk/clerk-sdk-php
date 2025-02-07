@@ -18,7 +18,6 @@ targets:
             packagist:
                 username: $packagist_username
                 token: $packagist_token
-                packageName: clerkinc/backend-php
         codeSamples:
             registry:
                 location: registry.speakeasyapi.dev/clerk/clerk/clerk-openapi-php-code-samples

@@ -141,6 +141,7 @@ class OrganizationInvitationWithPublicOrganizationData
      * @param  ?int  $createdAt
      * @param  ?int  $updatedAt
      * @param  ?string  $url
+     * @phpstan-pure
      */
     public function __construct(?string $id = null, ?OrganizationInvitationWithPublicOrganizationDataObject $object = null, ?string $emailAddress = null, ?string $role = null, ?string $roleName = null, ?string $organizationId = null, ?string $status = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?PublicOrganizationData $publicOrganizationData = null, ?int $createdAt = null, ?int $updatedAt = null, ?string $url = null)
     {

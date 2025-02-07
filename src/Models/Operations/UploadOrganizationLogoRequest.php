@@ -29,6 +29,7 @@ class UploadOrganizationLogoRequest
     /**
      * @param  string  $organizationId
      * @param  ?UploadOrganizationLogoRequestBody  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $organizationId, ?UploadOrganizationLogoRequestBody $requestBody = null)
     {

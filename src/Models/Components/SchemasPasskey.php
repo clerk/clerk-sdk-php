@@ -52,7 +52,7 @@ class SchemasPasskey
      * @var ?Passkey $verification
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Passkey')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Passkey|null')]
     public ?Passkey $verification;
 
     /**
@@ -61,6 +61,7 @@ class SchemasPasskey
      * @param  int  $lastUsedAt
      * @param  ?string  $id
      * @param  ?Passkey  $verification
+     * @phpstan-pure
      */
     public function __construct(SchemasPasskeyObject $object, string $name, int $lastUsedAt, ?string $id = null, ?Passkey $verification = null)
     {

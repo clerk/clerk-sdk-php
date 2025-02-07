@@ -38,6 +38,7 @@ class UpdateOrganizationMembershipMetadataRequest
      * @param  string  $organizationId
      * @param  string  $userId
      * @param  ?UpdateOrganizationMembershipMetadataRequestBody  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $organizationId, string $userId, ?UpdateOrganizationMembershipMetadataRequestBody $requestBody = null)
     {

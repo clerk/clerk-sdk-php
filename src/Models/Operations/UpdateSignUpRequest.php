@@ -29,6 +29,7 @@ class UpdateSignUpRequest
     /**
      * @param  string  $id
      * @param  ?UpdateSignUpRequestBody  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $id, ?UpdateSignUpRequestBody $requestBody = null)
     {

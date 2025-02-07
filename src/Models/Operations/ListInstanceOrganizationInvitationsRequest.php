@@ -68,6 +68,7 @@ class ListInstanceOrganizationInvitationsRequest
      * @param  ?string  $orderBy
      * @param  ?ListInstanceOrganizationInvitationsQueryParamStatus  $status
      * @param  ?string  $query
+     * @phpstan-pure
      */
     public function __construct(?ListInstanceOrganizationInvitationsQueryParamStatus $status = null, ?string $query = null, ?int $limit = 10, ?int $offset = 0, ?string $orderBy = '-created_at')
     {

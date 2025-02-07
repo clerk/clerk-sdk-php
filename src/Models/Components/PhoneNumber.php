@@ -95,7 +95,7 @@ class PhoneNumber
      * @var VerificationOTP|VerificationAdmin|null $verification
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationOTP|\Clerk\Backend\Models\Components\VerificationAdmin')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationOTP|\Clerk\Backend\Models\Components\VerificationAdmin|null')]
     public VerificationOTP|VerificationAdmin|null $verification;
 
     /**
@@ -120,6 +120,7 @@ class PhoneNumber
      * @param  ?bool  $defaultSecondFactor
      * @param  VerificationOTP|VerificationAdmin|null  $verification
      * @param  ?array<string>  $backupCodes
+     * @phpstan-pure
      */
     public function __construct(PhoneNumberObject $object, string $phoneNumber, bool $reserved, array $linkedTo, int $createdAt, int $updatedAt, ?string $id = null, ?bool $reservedForSecondFactor = null, ?bool $defaultSecondFactor = null, VerificationOTP|VerificationAdmin|null $verification = null, ?array $backupCodes = null)
     {

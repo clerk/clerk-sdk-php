@@ -30,6 +30,7 @@ class GetPublicInterstitialRequest
     /**
      * @param  ?string  $frontendApi
      * @param  ?string  $publishableKey
+     * @phpstan-pure
      */
     public function __construct(?string $frontendApi = null, ?string $publishableKey = null)
     {

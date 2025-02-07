@@ -40,6 +40,7 @@ class AddDomainRequestBody
      * @param  string  $name
      * @param  bool  $isSatellite
      * @param  ?string  $proxyUrl
+     * @phpstan-pure
      */
     public function __construct(string $name, bool $isSatellite, ?string $proxyUrl = null)
     {

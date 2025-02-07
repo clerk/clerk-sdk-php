@@ -30,6 +30,7 @@ class VerifySessionRequest
     /**
      * @param  string  $sessionId
      * @param  ?VerifySessionRequestBody  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $sessionId, ?VerifySessionRequestBody $requestBody = null)
     {

@@ -90,6 +90,7 @@ class UpsertTemplateRequestBody
      * @param  ?string  $subject
      * @param  ?string  $markup
      * @param  ?bool  $deliveredByClerk
+     * @phpstan-pure
      */
     public function __construct(?string $name = null, ?string $body = null, ?string $fromEmailName = null, ?string $replyToEmailName = null, ?string $subject = null, ?string $markup = null, ?bool $deliveredByClerk = null)
     {

@@ -44,6 +44,7 @@ class UploadOrganizationLogoResponse
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Components\OrganizationWithLogo  $organizationWithLogo
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\OrganizationWithLogo $organizationWithLogo = null)
     {

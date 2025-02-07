@@ -128,6 +128,7 @@ class OrganizationDomain
      * @param  ?int  $updatedAt
      * @param  ?string  $affiliationEmailAddress
      * @param  ?OrganizationDomainVerification  $verification
+     * @phpstan-pure
      */
     public function __construct(?string $id = null, ?OrganizationDomainObject $object = null, ?string $organizationId = null, ?string $name = null, ?EnrollmentMode $enrollmentMode = null, ?int $totalPendingInvitations = null, ?int $totalPendingSuggestions = null, ?int $createdAt = null, ?int $updatedAt = null, ?string $affiliationEmailAddress = null, ?OrganizationDomainVerification $verification = null)
     {

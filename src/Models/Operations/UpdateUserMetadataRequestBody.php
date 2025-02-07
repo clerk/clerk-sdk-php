@@ -53,6 +53,7 @@ class UpdateUserMetadataRequestBody
      * @param  ?array<string, mixed>  $publicMetadata
      * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?array<string, mixed>  $unsafeMetadata
+     * @phpstan-pure
      */
     public function __construct(?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null)
     {

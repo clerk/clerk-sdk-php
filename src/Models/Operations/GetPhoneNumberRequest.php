@@ -21,6 +21,7 @@ class GetPhoneNumberRequest
 
     /**
      * @param  string  $phoneNumberId
+     * @phpstan-pure
      */
     public function __construct(string $phoneNumberId)
     {

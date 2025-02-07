@@ -109,6 +109,7 @@ class SAMLConnectionSAMLConnection
      * @param  ?bool  $allowSubdomains
      * @param  ?bool  $allowIdpInitiated
      * @param  ?bool  $disableAdditionalIdentifications
+     * @phpstan-pure
      */
     public function __construct(string $id, string $name, string $domain, bool $active, string $provider, bool $syncUserAttributes, int $createdAt, int $updatedAt, ?bool $allowSubdomains = null, ?bool $allowIdpInitiated = null, ?bool $disableAdditionalIdentifications = null)
     {

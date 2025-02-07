@@ -29,6 +29,7 @@ class UpdateEmailAddressRequest
     /**
      * @param  string  $emailAddressId
      * @param  ?UpdateEmailAddressRequestBody  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $emailAddressId, ?UpdateEmailAddressRequestBody $requestBody = null)
     {

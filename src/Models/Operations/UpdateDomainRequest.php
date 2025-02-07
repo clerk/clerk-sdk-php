@@ -29,6 +29,7 @@ class UpdateDomainRequest
     /**
      * @param  string  $domainId
      * @param  UpdateDomainRequestBody  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $domainId, UpdateDomainRequestBody $requestBody)
     {

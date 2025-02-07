@@ -78,6 +78,7 @@ class ProxyCheck
      * @param  bool  $successful
      * @param  int  $createdAt
      * @param  int  $updatedAt
+     * @phpstan-pure
      */
     public function __construct(ProxyCheckObject $object, string $id, string $domainId, int $lastRunAt, string $proxyUrl, bool $successful, int $createdAt, int $updatedAt)
     {

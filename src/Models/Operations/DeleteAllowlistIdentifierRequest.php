@@ -21,6 +21,7 @@ class DeleteAllowlistIdentifierRequest
 
     /**
      * @param  string  $identifierId
+     * @phpstan-pure
      */
     public function __construct(string $identifierId)
     {

@@ -57,6 +57,7 @@ class CreateActorTokenRequestBody
      * @param  Actor  $actor
      * @param  ?int  $expiresInSeconds
      * @param  ?int  $sessionMaxDurationInSeconds
+     * @phpstan-pure
      */
     public function __construct(string $userId, Actor $actor, ?int $expiresInSeconds = 3600, ?int $sessionMaxDurationInSeconds = 1800)
     {

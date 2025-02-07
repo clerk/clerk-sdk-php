@@ -302,6 +302,7 @@ class UpdateUserRequestBody
      * @param  ?string  $legalAcceptedAt
      * @param  ?bool  $skipLegalChecks
      * @param  ?int  $createOrganizationsLimit
+     * @phpstan-pure
      */
     public function __construct(?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $passwordDigest = null, ?string $passwordHasher = null, ?string $totpSecret = null, ?array $backupCodes = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null, ?string $createdAt = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $username = null, ?string $profileImageId = null, ?string $password = null, ?bool $skipPasswordChecks = null, ?bool $signOutOfOtherSessions = null, ?bool $deleteSelfEnabled = null, ?bool $createOrganizationEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?int $createOrganizationsLimit = null, ?bool $notifyPrimaryEmailAddressChanged = false)
     {

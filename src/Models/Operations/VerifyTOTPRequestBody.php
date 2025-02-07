@@ -21,6 +21,7 @@ class VerifyTOTPRequestBody
 
     /**
      * @param  string  $code
+     * @phpstan-pure
      */
     public function __construct(string $code)
     {

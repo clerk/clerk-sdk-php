@@ -48,6 +48,7 @@ class Web3WalletVerificationAdmin
      * @param  AdminVerificationWeb3WalletStrategy  $strategy
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
+     * @phpstan-pure
      */
     public function __construct(AdminVerificationWeb3WalletStatus $status, AdminVerificationWeb3WalletStrategy $strategy, ?int $attempts = null, ?int $expireAt = null)
     {

@@ -88,6 +88,7 @@ class CreateOrganizationInvitationRequestBody
      * @param  ?string  $redirectUrl
      * @param  ?string  $inviterUserId
      * @param  ?int  $expiresInDays
+     * @phpstan-pure
      */
     public function __construct(string $emailAddress, string $role, ?array $publicMetadata = null, ?array $privateMetadata = null, ?string $redirectUrl = null, ?string $inviterUserId = null, ?int $expiresInDays = null)
     {

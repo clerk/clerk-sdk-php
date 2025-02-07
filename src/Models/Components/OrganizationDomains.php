@@ -34,6 +34,7 @@ class OrganizationDomains
     /**
      * @param  array<OrganizationDomain>  $data
      * @param  int  $totalCount
+     * @phpstan-pure
      */
     public function __construct(array $data, int $totalCount)
     {

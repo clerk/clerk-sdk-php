@@ -44,6 +44,7 @@ class CreateWaitlistEntryResponse
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Components\WaitlistEntry  $waitlistEntry
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\WaitlistEntry $waitlistEntry = null)
     {

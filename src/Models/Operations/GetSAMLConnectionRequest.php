@@ -21,6 +21,7 @@ class GetSAMLConnectionRequest
 
     /**
      * @param  string  $samlConnectionId
+     * @phpstan-pure
      */
     public function __construct(string $samlConnectionId)
     {

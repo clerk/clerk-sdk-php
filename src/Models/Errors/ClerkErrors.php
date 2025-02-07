@@ -34,6 +34,7 @@ class ClerkErrors
     /**
      * @param  array<Components\ClerkError>  $errors
      * @param  ?Meta  $meta
+     * @phpstan-pure
      */
     public function __construct(array $errors, ?Meta $meta = null)
     {

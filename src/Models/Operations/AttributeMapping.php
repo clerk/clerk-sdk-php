@@ -49,6 +49,7 @@ class AttributeMapping
      * @param  ?string  $emailAddress
      * @param  ?string  $firstName
      * @param  ?string  $lastName
+     * @phpstan-pure
      */
     public function __construct(?string $userId = null, ?string $emailAddress = null, ?string $firstName = null, ?string $lastName = null)
     {

@@ -93,6 +93,7 @@ class Domain
      * @param  ?string  $accountsPortalUrl
      * @param  ?string  $proxyUrl
      * @param  ?array<CNameTarget>  $cnameTargets
+     * @phpstan-pure
      */
     public function __construct(DomainObject $object, string $id, string $name, bool $isSatellite, string $frontendApiUrl, string $developmentOrigin, ?string $accountsPortalUrl = null, ?string $proxyUrl = null, ?array $cnameTargets = null)
     {

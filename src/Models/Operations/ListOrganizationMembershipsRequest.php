@@ -56,6 +56,7 @@ class ListOrganizationMembershipsRequest
      * @param  ?int  $limit
      * @param  ?int  $offset
      * @param  ?string  $orderBy
+     * @phpstan-pure
      */
     public function __construct(string $organizationId, ?string $orderBy = null, ?int $limit = 10, ?int $offset = 0)
     {

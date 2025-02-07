@@ -298,6 +298,7 @@ class CreateUserRequestBody
      * @param  ?bool  $skipLegalChecks
      * @param  ?bool  $createOrganizationEnabled
      * @param  ?int  $createOrganizationsLimit
+     * @phpstan-pure
      */
     public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $web3Wallet = null, ?string $passwordDigest = null, ?string $passwordHasher = null, ?bool $skipPasswordChecks = null, ?bool $skipPasswordRequirement = null, ?string $totpSecret = null, ?array $backupCodes = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null, ?string $createdAt = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $username = null, ?string $password = null, ?bool $deleteSelfEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?bool $createOrganizationEnabled = null, ?int $createOrganizationsLimit = null)
     {

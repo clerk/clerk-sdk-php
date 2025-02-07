@@ -53,6 +53,7 @@ class UsersGetOrganizationInvitationsRequest
      * @param  ?int  $limit
      * @param  ?int  $offset
      * @param  ?QueryParamStatus  $status
+     * @phpstan-pure
      */
     public function __construct(string $userId, ?QueryParamStatus $status = null, ?int $limit = 10, ?int $offset = 0)
     {

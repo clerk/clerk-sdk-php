@@ -21,6 +21,7 @@ class GetEmailAddressRequest
 
     /**
      * @param  string  $emailAddressId
+     * @phpstan-pure
      */
     public function __construct(string $emailAddressId)
     {

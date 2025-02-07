@@ -30,6 +30,7 @@ class DeleteOrganizationDomainRequest
     /**
      * @param  string  $organizationId
      * @param  string  $domainId
+     * @phpstan-pure
      */
     public function __construct(string $organizationId, string $domainId)
     {

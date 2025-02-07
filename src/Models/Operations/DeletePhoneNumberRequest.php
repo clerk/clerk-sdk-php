@@ -21,6 +21,7 @@ class DeletePhoneNumberRequest
 
     /**
      * @param  string  $phoneNumberId
+     * @phpstan-pure
      */
     public function __construct(string $phoneNumberId)
     {

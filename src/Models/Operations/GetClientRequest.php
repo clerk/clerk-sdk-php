@@ -21,6 +21,7 @@ class GetClientRequest
 
     /**
      * @param  string  $clientId
+     * @phpstan-pure
      */
     public function __construct(string $clientId)
     {

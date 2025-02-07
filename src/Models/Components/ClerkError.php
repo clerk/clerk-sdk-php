@@ -55,6 +55,7 @@ class ClerkError
      * @param  string  $code
      * @param  ?Meta  $meta
      * @param  ?string  $clerkTraceId
+     * @phpstan-pure
      */
     public function __construct(string $message, string $longMessage, string $code, ?Meta $meta = null, ?string $clerkTraceId = null)
     {

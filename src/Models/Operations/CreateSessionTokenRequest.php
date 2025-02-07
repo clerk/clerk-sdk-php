@@ -29,6 +29,7 @@ class CreateSessionTokenRequest
     /**
      * @param  string  $sessionId
      * @param  ?CreateSessionTokenRequestBody  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $sessionId, ?CreateSessionTokenRequestBody $requestBody = null)
     {

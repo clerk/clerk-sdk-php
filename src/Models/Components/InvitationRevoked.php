@@ -110,6 +110,7 @@ class InvitationRevoked
      * @param  ?bool  $revoked
      * @param  ?string  $url
      * @param  ?int  $expiresAt
+     * @phpstan-pure
      */
     public function __construct(InvitationRevokedObject $object, string $id, string $emailAddress, InvitationRevokedStatus $status, int $createdAt, int $updatedAt, ?array $publicMetadata = null, ?bool $revoked = null, ?string $url = null, ?int $expiresAt = null)
     {

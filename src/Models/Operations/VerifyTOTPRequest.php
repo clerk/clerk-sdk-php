@@ -29,6 +29,7 @@ class VerifyTOTPRequest
     /**
      * @param  string  $userId
      * @param  ?VerifyTOTPRequestBody  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $userId, ?VerifyTOTPRequestBody $requestBody = null)
     {

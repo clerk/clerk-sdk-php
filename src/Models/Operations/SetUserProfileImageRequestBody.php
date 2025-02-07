@@ -20,6 +20,7 @@ class SetUserProfileImageRequestBody
 
     /**
      * @param  ?File  $file
+     * @phpstan-pure
      */
     public function __construct(?File $file = null)
     {

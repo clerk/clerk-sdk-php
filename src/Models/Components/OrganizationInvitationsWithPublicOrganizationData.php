@@ -34,6 +34,7 @@ class OrganizationInvitationsWithPublicOrganizationData
     /**
      * @param  array<OrganizationInvitationWithPublicOrganizationData>  $data
      * @param  int  $totalCount
+     * @phpstan-pure
      */
     public function __construct(array $data, int $totalCount)
     {

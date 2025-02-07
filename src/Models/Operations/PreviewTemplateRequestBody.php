@@ -61,6 +61,7 @@ class PreviewTemplateRequestBody
      * @param  ?string  $fromEmailName
      * @param  ?string  $replyToEmailName
      * @param  ?string  $subject
+     * @phpstan-pure
      */
     public function __construct(?string $body = null, ?string $fromEmailName = null, ?string $replyToEmailName = null, ?string $subject = null)
     {

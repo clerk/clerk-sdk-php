@@ -29,6 +29,7 @@ class VerifyPasswordRequest
     /**
      * @param  string  $userId
      * @param  ?VerifyPasswordRequestBody  $requestBody
+     * @phpstan-pure
      */
     public function __construct(string $userId, ?VerifyPasswordRequestBody $requestBody = null)
     {

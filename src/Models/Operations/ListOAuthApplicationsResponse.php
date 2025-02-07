@@ -44,6 +44,7 @@ class ListOAuthApplicationsResponse
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
      * @param  ?Components\OAuthApplications  $oAuthApplications
+     * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\OAuthApplications $oAuthApplications = null)
     {

@@ -35,6 +35,7 @@ class CreateAllowlistIdentifierRequestBody
     /**
      * @param  string  $identifier
      * @param  ?bool  $notify
+     * @phpstan-pure
      */
     public function __construct(string $identifier, ?bool $notify = false)
     {

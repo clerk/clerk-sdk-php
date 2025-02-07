@@ -150,6 +150,14 @@ class GetUserListRequest
     public ?string $nameQuery = null;
 
     /**
+     * Returns users which are either banned (`banned=true`) or not banned (`banned=false`).
+     *
+     * @var ?bool $banned
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=banned')]
+    public ?bool $banned = null;
+
+    /**
      * Returns users whose last session activity was before the given date (with millisecond precision).
      *
      * Example: use 1700690400000 to retrieve users whose last session activity was before 2023-11-23.
@@ -249,6 +257,7 @@ class GetUserListRequest
      * @param  ?string  $phoneNumberQuery
      * @param  ?string  $usernameQuery
      * @param  ?string  $nameQuery
+     * @param  ?bool  $banned
      * @param  ?int  $lastActiveAtBefore
      * @param  ?int  $lastActiveAtAfter
      * @param  ?int  $lastActiveAtSince
@@ -257,8 +266,9 @@ class GetUserListRequest
      * @param  ?int  $limit
      * @param  ?int  $offset
      * @param  ?string  $orderBy
+     * @phpstan-pure
      */
-    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $externalId = null, ?array $username = null, ?array $web3Wallet = null, ?array $userId = null, ?array $organizationId = null, ?string $query = null, ?string $emailAddressQuery = null, ?string $phoneNumberQuery = null, ?string $usernameQuery = null, ?string $nameQuery = null, ?int $lastActiveAtBefore = null, ?int $lastActiveAtAfter = null, ?int $lastActiveAtSince = null, ?int $createdAtBefore = null, ?int $createdAtAfter = null, ?int $limit = 10, ?int $offset = 0, ?string $orderBy = '-created_at')
+    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $externalId = null, ?array $username = null, ?array $web3Wallet = null, ?array $userId = null, ?array $organizationId = null, ?string $query = null, ?string $emailAddressQuery = null, ?string $phoneNumberQuery = null, ?string $usernameQuery = null, ?string $nameQuery = null, ?bool $banned = null, ?int $lastActiveAtBefore = null, ?int $lastActiveAtAfter = null, ?int $lastActiveAtSince = null, ?int $createdAtBefore = null, ?int $createdAtAfter = null, ?int $limit = 10, ?int $offset = 0, ?string $orderBy = '-created_at')
     {
         $this->emailAddress = $emailAddress;
         $this->phoneNumber = $phoneNumber;
@@ -272,6 +282,7 @@ class GetUserListRequest
         $this->phoneNumberQuery = $phoneNumberQuery;
         $this->usernameQuery = $usernameQuery;
         $this->nameQuery = $nameQuery;
+        $this->banned = $banned;
         $this->lastActiveAtBefore = $lastActiveAtBefore;
         $this->lastActiveAtAfter = $lastActiveAtAfter;
         $this->lastActiveAtSince = $lastActiveAtSince;

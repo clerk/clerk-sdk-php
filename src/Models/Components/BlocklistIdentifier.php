@@ -89,6 +89,7 @@ class BlocklistIdentifier
      * @param  ?string  $instanceId
      * @param  ?int  $createdAt
      * @param  ?int  $updatedAt
+     * @phpstan-pure
      */
     public function __construct(?BlocklistIdentifierObject $object = null, ?string $id = null, ?string $identifier = null, ?BlocklistIdentifierIdentifierType $identifierType = null, ?string $instanceId = null, ?int $createdAt = null, ?int $updatedAt = null)
     {
