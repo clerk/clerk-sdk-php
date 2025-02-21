@@ -12,7 +12,7 @@ use Clerk\Backend\Utils\SpeakeasyMetadata;
 class ListWaitlistEntriesRequest
 {
     /**
-     * Filter waitlist entries by email address
+     * Filter waitlist entries by `email_address` or `id`
      *
      * @var ?string $query
      */

@@ -43,6 +43,13 @@ class Saml
 
     /**
      *
+     * @var ?int $attempts
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('attempts')]
+    public ?int $attempts;
+
+    /**
+     *
      * @var ?SAMLErrorClerkError $error
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
@@ -52,28 +59,30 @@ class Saml
 
     /**
      *
-     * @var ?int $attempts
+     * @var ?string $verifiedAtClient
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('attempts')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('verified_at_client')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $attempts = null;
+    public ?string $verifiedAtClient = null;
 
     /**
      * @param  SAMLVerificationStatus  $status
      * @param  SAMLVerificationStrategy  $strategy
      * @param  int  $expireAt
      * @param  ?string  $externalVerificationRedirectUrl
-     * @param  ?SAMLErrorClerkError  $error
      * @param  ?int  $attempts
+     * @param  ?SAMLErrorClerkError  $error
+     * @param  ?string  $verifiedAtClient
      * @phpstan-pure
      */
-    public function __construct(SAMLVerificationStatus $status, SAMLVerificationStrategy $strategy, int $expireAt, ?string $externalVerificationRedirectUrl = null, ?SAMLErrorClerkError $error = null, ?int $attempts = null)
+    public function __construct(SAMLVerificationStatus $status, SAMLVerificationStrategy $strategy, int $expireAt, ?string $externalVerificationRedirectUrl = null, ?int $attempts = null, ?SAMLErrorClerkError $error = null, ?string $verifiedAtClient = null)
     {
         $this->status = $status;
         $this->strategy = $strategy;
         $this->expireAt = $expireAt;
         $this->externalVerificationRedirectUrl = $externalVerificationRedirectUrl;
-        $this->error = $error;
         $this->attempts = $attempts;
+        $this->error = $error;
+        $this->verifiedAtClient = $verifiedAtClient;
     }
 }

@@ -30,6 +30,22 @@ class ListOrganizationsRequest
     public ?string $query = null;
 
     /**
+     * Returns organizations with the organization ids specified.
+     *
+     * Any organization ids not found are ignored.
+     * For each organization id, the `+` and `-` can be
+     * prepended to the id, which denote whether the
+     * respective organization should be included or
+     * excluded from the result set.
+     * Accepts up to 100 organization ids.
+     * Example: ?organization_id=+org_1&organization_id=-org_2
+     *
+     * @var ?array<string> $organizationId
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=organization_id')]
+    public ?array $organizationId = null;
+
+    /**
      * Applies a limit to the number of results returned.
      *
      * Can be used for paginating the results together with `offset`.
@@ -69,13 +85,15 @@ class ListOrganizationsRequest
      * @param  ?int  $offset
      * @param  ?bool  $includeMembersCount
      * @param  ?string  $query
+     * @param  ?array<string>  $organizationId
      * @param  ?string  $orderBy
      * @phpstan-pure
      */
-    public function __construct(?bool $includeMembersCount = null, ?string $query = null, ?int $limit = 10, ?int $offset = 0, ?string $orderBy = '-created_at')
+    public function __construct(?bool $includeMembersCount = null, ?string $query = null, ?array $organizationId = null, ?int $limit = 10, ?int $offset = 0, ?string $orderBy = '-created_at')
     {
         $this->includeMembersCount = $includeMembersCount;
         $this->query = $query;
+        $this->organizationId = $organizationId;
         $this->limit = $limit;
         $this->offset = $offset;
         $this->orderBy = $orderBy;
