@@ -29,6 +29,20 @@ class Web3Signature
 
     /**
      *
+     * @var ?int $attempts
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('attempts')]
+    public ?int $attempts;
+
+    /**
+     *
+     * @var ?int $expireAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('expire_at')]
+    public ?int $expireAt;
+
+    /**
+     *
      * @var ?string $nonce
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('nonce')]
@@ -45,36 +59,30 @@ class Web3Signature
 
     /**
      *
-     * @var ?int $attempts
+     * @var ?string $verifiedAtClient
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('attempts')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('verified_at_client')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $attempts = null;
-
-    /**
-     *
-     * @var ?int $expireAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('expire_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $expireAt = null;
+    public ?string $verifiedAtClient = null;
 
     /**
      * @param  Web3SignatureVerificationStatus  $status
      * @param  Web3SignatureVerificationStrategy  $strategy
-     * @param  ?string  $nonce
-     * @param  ?string  $message
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
+     * @param  ?string  $nonce
+     * @param  ?string  $message
+     * @param  ?string  $verifiedAtClient
      * @phpstan-pure
      */
-    public function __construct(Web3SignatureVerificationStatus $status, Web3SignatureVerificationStrategy $strategy, ?string $nonce = null, ?string $message = null, ?int $attempts = null, ?int $expireAt = null)
+    public function __construct(Web3SignatureVerificationStatus $status, Web3SignatureVerificationStrategy $strategy, ?int $attempts = null, ?int $expireAt = null, ?string $nonce = null, ?string $message = null, ?string $verifiedAtClient = null)
     {
         $this->status = $status;
         $this->strategy = $strategy;
-        $this->nonce = $nonce;
-        $this->message = $message;
         $this->attempts = $attempts;
         $this->expireAt = $expireAt;
+        $this->nonce = $nonce;
+        $this->message = $message;
+        $this->verifiedAtClient = $verifiedAtClient;
     }
 }

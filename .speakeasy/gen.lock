@@ -1,29 +1,29 @@
 lockVersion: 2.0.0
 id: 8c24a12b-d2f1-466a-bdaa-6d83a049a679
 management:
-  docChecksum: 460ff9605d042257d29b142feb929348
+  docChecksum: 700df59d57d96465b66817b239f8ea33
   docVersion: v1
-  speakeasyVersion: 1.487.0
-  generationVersion: 2.506.0
-  releaseVersion: 0.1.5
-  configChecksum: e875c2911ac71e8e02a64c7fbe30a132
+  speakeasyVersion: 1.498.1
+  generationVersion: 2.518.1
+  releaseVersion: 0.1.6
+  configChecksum: f2765e471fad41e6b41d11c5169c41f1
   repoURL: https://github.com/clerk/clerk-sdk-php.git
   installationURL: https://github.com/clerk/clerk-sdk-php
   published: true
 features:
   php:
     constsAndDefaults: 0.2.0
-    core: 3.7.13
+    core: 3.7.14
     deprecations: 2.81.1
     examples: 2.81.5
     flattening: 2.81.1
-    globalSecurity: 2.81.7
+    globalSecurity: 2.81.8
     globalSecurityFlattening: 0.1.2
     globalServerURLs: 2.82.1
     groups: 2.81.2
     methodArguments: 0.1.0
     nameOverrides: 2.81.2
-    nullables: 1.0.0
+    nullables: 1.0.1
     responseFormat: 0.1.0
     unions: 0.1.4
 generatedFiles:
@@ -1160,7 +1160,7 @@ examples:
           email_address_id: "<id>"
       responses:
         "200":
-          application/json: {"object": "email_address", "email_address": "Lavern48@hotmail.com", "reserved": true, "verification": {"status": "verified", "strategy": "<value>", "expire_at": 344620}, "linked_to": [], "created_at": 789275, "updated_at": 889838}
+          application/json: {"object": "email_address", "email_address": "Lavern48@hotmail.com", "reserved": true, "verification": {"status": "verified", "strategy": "<value>", "expire_at": 344620, "attempts": 991464}, "linked_to": [], "created_at": 789275, "updated_at": 889838}
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
   CreatePhoneNumber:
@@ -1177,7 +1177,7 @@ examples:
           phone_number_id: "<id>"
       responses:
         "200":
-          application/json: {"object": "phone_number", "phone_number": "655.944.2294 x8023", "reserved": true, "verification": {"status": "verified", "strategy": "admin"}, "linked_to": [{"type": "saml", "id": "<id>"}, {"type": "oauth_microsoft", "id": "<id>"}, {"type": "oauth_discord", "id": "<id>"}], "created_at": 550965, "updated_at": 322612}
+          application/json: {"object": "phone_number", "phone_number": "655.944.2294 x8023", "reserved": true, "verification": {"status": "verified", "strategy": "admin", "attempts": 558834, "expire_at": 544221}, "linked_to": [{"type": "saml", "id": "<id>"}, {"type": "oauth_microsoft", "id": "<id>"}, {"type": "oauth_discord", "id": "<id>"}], "created_at": 550965, "updated_at": 322612}
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
   DeletePhoneNumber:
@@ -1197,7 +1197,7 @@ examples:
           phone_number_id: "<id>"
       responses:
         "200":
-          application/json: {"object": "phone_number", "phone_number": "(639) 749-0843 x21783", "reserved": true, "verification": {"status": "verified", "strategy": "admin"}, "linked_to": [{"type": "saml", "id": "<id>"}, {"type": "oauth_google", "id": "<id>"}], "created_at": 756247, "updated_at": 810877}
+          application/json: {"object": "phone_number", "phone_number": "(639) 749-0843 x21783", "reserved": true, "verification": {"status": "verified", "strategy": "admin", "attempts": 597129, "expire_at": 344620}, "linked_to": [{"type": "saml", "id": "<id>"}, {"type": "oauth_google", "id": "<id>"}], "created_at": 756247, "updated_at": 810877}
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
   GetSessionList:
@@ -2179,7 +2179,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"object": "sign_up_attempt", "id": "<id>", "status": "abandoned", "password_enabled": false, "custom_action": true, "abandon_at": 991464}
+          application/json: {"object": "sign_up_attempt", "id": "<id>", "status": "abandoned", "password_enabled": false, "custom_action": true, "abandon_at": 991464, "legal_accepted_at": 1700690400000}
         "403":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
   ListOAuthApplications:

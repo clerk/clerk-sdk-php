@@ -29,30 +29,40 @@ class VerificationOTP
 
     /**
      *
-     * @var int $attempts
+     * @var ?int $attempts
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('attempts')]
-    public int $attempts;
+    public ?int $attempts;
 
     /**
      *
-     * @var int $expireAt
+     * @var ?int $expireAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('expire_at')]
-    public int $expireAt;
+    public ?int $expireAt;
+
+    /**
+     *
+     * @var ?string $verifiedAtClient
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('verified_at_client')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $verifiedAtClient = null;
 
     /**
      * @param  OTPVerificationStatus  $status
      * @param  OTPVerificationStrategy  $strategy
-     * @param  int  $attempts
-     * @param  int  $expireAt
+     * @param  ?int  $attempts
+     * @param  ?int  $expireAt
+     * @param  ?string  $verifiedAtClient
      * @phpstan-pure
      */
-    public function __construct(OTPVerificationStatus $status, OTPVerificationStrategy $strategy, int $attempts, int $expireAt)
+    public function __construct(OTPVerificationStatus $status, OTPVerificationStrategy $strategy, ?int $attempts = null, ?int $expireAt = null, ?string $verifiedAtClient = null)
     {
         $this->status = $status;
         $this->strategy = $strategy;
         $this->attempts = $attempts;
         $this->expireAt = $expireAt;
+        $this->verifiedAtClient = $verifiedAtClient;
     }
 }

@@ -32,29 +32,37 @@ class VerificationAdmin
      * @var ?int $attempts
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('attempts')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $attempts = null;
+    public ?int $attempts;
 
     /**
      *
      * @var ?int $expireAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('expire_at')]
+    public ?int $expireAt;
+
+    /**
+     *
+     * @var ?string $verifiedAtClient
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('verified_at_client')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $expireAt = null;
+    public ?string $verifiedAtClient = null;
 
     /**
      * @param  AdminVerificationPhoneNumberStatus  $status
      * @param  AdminVerificationStrategy  $strategy
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
+     * @param  ?string  $verifiedAtClient
      * @phpstan-pure
      */
-    public function __construct(AdminVerificationPhoneNumberStatus $status, AdminVerificationStrategy $strategy, ?int $attempts = null, ?int $expireAt = null)
+    public function __construct(AdminVerificationPhoneNumberStatus $status, AdminVerificationStrategy $strategy, ?int $attempts = null, ?int $expireAt = null, ?string $verifiedAtClient = null)
     {
         $this->status = $status;
         $this->strategy = $strategy;
         $this->attempts = $attempts;
         $this->expireAt = $expireAt;
+        $this->verifiedAtClient = $verifiedAtClient;
     }
 }

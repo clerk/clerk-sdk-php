@@ -41,16 +41,30 @@ class Passkey
      * @var ?int $attempts
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('attempts')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $attempts = null;
+    public ?int $attempts;
 
     /**
      *
      * @var ?int $expireAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('expire_at')]
+    public ?int $expireAt;
+
+    /**
+     *
+     * @var ?string $message
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('message')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $expireAt = null;
+    public ?string $message = null;
+
+    /**
+     *
+     * @var ?string $verifiedAtClient
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('verified_at_client')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $verifiedAtClient = null;
 
     /**
      * @param  PasskeyVerificationStatus  $status
@@ -58,14 +72,18 @@ class Passkey
      * @param  ?Nonce  $nonce
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
+     * @param  ?string  $message
+     * @param  ?string  $verifiedAtClient
      * @phpstan-pure
      */
-    public function __construct(PasskeyVerificationStatus $status, PasskeyVerificationStrategy $strategy, ?Nonce $nonce = null, ?int $attempts = null, ?int $expireAt = null)
+    public function __construct(PasskeyVerificationStatus $status, PasskeyVerificationStrategy $strategy, ?Nonce $nonce = null, ?int $attempts = null, ?int $expireAt = null, ?string $message = null, ?string $verifiedAtClient = null)
     {
         $this->status = $status;
         $this->strategy = $strategy;
         $this->nonce = $nonce;
         $this->attempts = $attempts;
         $this->expireAt = $expireAt;
+        $this->message = $message;
+        $this->verifiedAtClient = $verifiedAtClient;
     }
 }

@@ -328,7 +328,8 @@ if ($response->session !== null) {
 
 Create a new active session for the provided user ID.
 
-This operation is only available for Clerk Development instances.
+**This operation is intended only for use in testing, and is not available for production instances.** If you are looking to generate a user session from the backend,
+we recommend using the [Sign-in Tokens](https://clerk.com/docs/reference/backend-api/tag/Sign-in-Tokens#operation/CreateSignInToken) resource instead.
 
 ### Example Usage
 
