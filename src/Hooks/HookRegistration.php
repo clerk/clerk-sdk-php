@@ -21,7 +21,7 @@ class HookRegistration
         $hooks->registerBeforeRequestHook(new ClerkBeforeRequestHooks());
         
         // $myHook = new MyHook();
-        
+
         // $hooks->registerSDKInitHook($myHook);
         // $hooks->registerBeforeRequestHook($myHook);
         // $hooks->registerAfterSuccessHook($myHook);
