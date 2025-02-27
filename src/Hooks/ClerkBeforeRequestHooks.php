@@ -10,11 +10,9 @@ class ClerkBeforeRequestHooks implements BeforeRequestHook
 {
     public function beforeRequest(BeforeRequestContext $context, RequestInterface $request): RequestInterface
     {
-        $request = $request->withHeader(
+        return $request->withHeader(
             'Clerk-API-Version',
             '2024-10-01'
         );
-        
-        return $request;
     }
 }
