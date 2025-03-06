@@ -2,8 +2,6 @@
 
 namespace Clerk\Backend\Helpers\Jwks;
 
-use Psr\Http\Message\RequestInterface;
-
 /**
  * Helper methods to authenticate requests.
  */
@@ -20,14 +18,14 @@ class AuthenticateRequest
      *
      * WARNING: authenticateRequest is applicable in the context of Backend APIs only.
      *
-     * @param  RequestInterface  $request  The HTTP request to be authenticated.
+     * @param  mixed  $request  The HTTP request to be authenticated.
      * @param  AuthenticateRequestOptions  $options  The request authentication options.
      * @return RequestState The request state.
      *
      * @throws AuthenticateRequestException If the session token or secret key is missing.
      */
     public static function authenticateRequest(
-        RequestInterface $request,
+        mixed $request,
         AuthenticateRequestOptions $options
     ): RequestState {
         $sessionToken = self::getSessionToken($request);
@@ -52,10 +50,8 @@ class AuthenticateRequest
         } else {
             return RequestState::signedOut(AuthErrorReason::$SECRET_KEY_MISSING);
         }
-
         try {
             $claims = VerifyToken::verifyToken($sessionToken, $verifyTokenOptions);
-
             return RequestState::signedIn($sessionToken, $claims);
         } catch (TokenVerificationException $e) {
             return RequestState::signedOut($e->getReason());
@@ -65,27 +61,33 @@ class AuthenticateRequest
     /**
      * Retrieve token from __session cookie or Authorization header.
      *
-     * @param  RequestInterface  $request  The HTTP request
+     * @param  mixed  $request  The HTTP request
      * @return string|null The session token, if present
      */
-    private static function getSessionToken(RequestInterface $request): ?string
+    private static function getSessionToken(mixed $request): ?string
     {
-        $authorizationHeaders = $request->getHeader('Authorization');
+
+        if (in_array("getHeader", get_class_methods($request))) {
+            $authorizationHeaders = $request->getHeader('Authorization')[0];
+            $cookieHeaders = $request->getHeader('Cookie')[0];
+        } else {
+            $authorizationHeaders = $request->headers->get('Authorization');
+            $cookieHeaders = $request->headers->get('Cookie');
+        }
+
         if (! empty($authorizationHeaders)) {
-            $bearerToken = $authorizationHeaders[0];
+            $bearerToken = $authorizationHeaders;
             if (! empty($bearerToken)) {
                 return str_replace('Bearer ', '', $bearerToken);
             }
         }
-
-        $cookieHeaders = $request->getHeader('Cookie');
         if (! empty($cookieHeaders)) {
-            $cookieHeaderValue = $cookieHeaders[0];
+            $cookieHeaderValue = $cookieHeaders;
             if (! empty($cookieHeaderValue)) {
                 $cookies = array_map('trim', explode(';', $cookieHeaderValue));
                 foreach ($cookies as $cookie) {
                     [$name, $value] = explode('=', $cookie, 2);
-                    if ($name === self::SESSION_COOKIE_NAME) {
+                    if (str_starts_with($name, self::SESSION_COOKIE_NAME)) {
                         return $value;
                     }
                 }
