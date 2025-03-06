@@ -68,28 +68,23 @@ class AuthenticateRequest
     {
 
         if (in_array("getHeader", get_class_methods($request))) {
-            $authorizationHeaders = $request->getHeader('Authorization')[0];
-            $cookieHeaders = $request->getHeader('Cookie')[0];
+            $authorizationHeaders = $request->hasHeader('Authorization') ? $request->getHeader('Authorization')[0] : null;
+            $cookieHeaders = $request->hasHeader('Cookie') ? $request->getHeader('Cookie')[0] : null;
         } else {
             $authorizationHeaders = $request->headers->get('Authorization');
             $cookieHeaders = $request->headers->get('Cookie');
         }
 
         if (! empty($authorizationHeaders)) {
-            $bearerToken = $authorizationHeaders;
-            if (! empty($bearerToken)) {
-                return str_replace('Bearer ', '', $bearerToken);
-            }
+            return str_replace('Bearer ', '', $authorizationHeaders);
+
         }
         if (! empty($cookieHeaders)) {
-            $cookieHeaderValue = $cookieHeaders;
-            if (! empty($cookieHeaderValue)) {
-                $cookies = array_map('trim', explode(';', $cookieHeaderValue));
-                foreach ($cookies as $cookie) {
-                    [$name, $value] = explode('=', $cookie, 2);
-                    if (str_starts_with($name, self::SESSION_COOKIE_NAME)) {
-                        return $value;
-                    }
+            $cookies = array_map('trim', explode(';', $cookieHeaders));
+            foreach ($cookies as $cookie) {
+                [$name, $value] = explode('=', $cookie, 2);
+                if (str_starts_with($name, self::SESSION_COOKIE_NAME)) {
+                    return $value;
                 }
             }
         }
