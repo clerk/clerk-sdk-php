@@ -16,7 +16,7 @@
     "php": "^8.2",
     "galbar/jsonpath": "^3.0",
     "guzzlehttp/guzzle": "^7.0",
-    "speakeasy/serializer": "^4.0.0",
+    "speakeasy/serializer": "^4.0.2",
     "brick/date-time": "^0.7.0",
     "phpdocumentor/type-resolver": "^1.8",
     "brick/math": "^0.12.1",

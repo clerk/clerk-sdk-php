@@ -6,7 +6,7 @@ namespace Clerk\Backend\Hooks;
 
 use Psr\Http\Message\RequestInterface;
 
-class ClerkBeforeRequestHooks implements BeforeRequestHook 
+class ClerkBeforeRequestHooks implements BeforeRequestHook
 {
     public function beforeRequest(BeforeRequestContext $context, RequestInterface $request): RequestInterface
     {

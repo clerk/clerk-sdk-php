@@ -19,7 +19,7 @@ class HookRegistration
     public static function initHooks(Hooks $hooks): void
     {
         $hooks->registerBeforeRequestHook(new ClerkBeforeRequestHooks());
-        
+
         // $myHook = new MyHook();
 
         // $hooks->registerSDKInitHook($myHook);
