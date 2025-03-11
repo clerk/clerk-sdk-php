@@ -1,6 +1,6 @@
 <?php
 
-namespace Clerk\Backend\Tests;
+namespace Clerk\Backend\Tests\Hooks;
 
 require 'vendor/autoload.php';
 

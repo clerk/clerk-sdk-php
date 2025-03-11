@@ -52,6 +52,7 @@ class AuthenticateRequest
         }
         try {
             $claims = VerifyToken::verifyToken($sessionToken, $verifyTokenOptions);
+
             return RequestState::signedIn($sessionToken, $claims);
         } catch (TokenVerificationException $e) {
             return RequestState::signedOut($e->getReason());
@@ -67,7 +68,7 @@ class AuthenticateRequest
     private static function getSessionToken(mixed $request): ?string
     {
 
-        if (in_array("getHeader", get_class_methods($request))) {
+        if (in_array('getHeader', get_class_methods($request))) {
             $authorizationHeaders = $request->hasHeader('Authorization') ? $request->getHeader('Authorization')[0] : null;
             $cookieHeaders = $request->hasHeader('Cookie') ? $request->getHeader('Cookie')[0] : null;
         } else {

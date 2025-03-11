@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Clerk\Backend\Tests\Hooks;
 
 use Clerk\Backend\Hooks\BeforeRequestContext;
-use Clerk\Backend\Hooks\ClerkBeforeRequestHooks;
+use Clerk\Backend\Hooks\ClerkBeforeRequestHook;
 use Clerk\Backend\Hooks\HookContext;
 
 use PHPUnit\Framework\TestCase;
@@ -35,7 +35,7 @@ final class ClerkBeforeRequestHooksTest extends TestCase
         $context = new BeforeRequestContext($hookContext);
         
         // Create the hook instance
-        $hook = new ClerkBeforeRequestHooks();
+        $hook = new ClerkBeforeRequestHook();
         
         // Call the beforeRequest method
         $result = $hook->beforeRequest($context, $request);
