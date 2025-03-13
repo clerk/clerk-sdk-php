@@ -5,9 +5,9 @@
 
 ### Available Operations
 
-* [get](#get) - Retrieve the JSON Web Key Set of the instance
+* [getJWKS](#getjwks) - Retrieve the JSON Web Key Set of the instance
 
-## get
+## getJWKS
 
 Retrieve the JSON Web Key Set of the instance
 
@@ -28,7 +28,7 @@ $sdk = Backend\ClerkBackend::builder()
 
 
 
-$response = $sdk->jwks->get(
+$response = $sdk->jwks->getJWKS(
 
 );
 

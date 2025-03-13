@@ -23,11 +23,22 @@ class UpdateSignUpRequestBody
     public ?string $externalId = null;
 
     /**
+     * If true, the sign-up will be marked as a custom action.
+     *
+     * @var ?bool $customAction
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('custom_action')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $customAction = null;
+
+    /**
      * @param  ?string  $externalId
+     * @param  ?bool  $customAction
      * @phpstan-pure
      */
-    public function __construct(?string $externalId = null)
+    public function __construct(?string $externalId = null, ?bool $customAction = null)
     {
         $this->externalId = $externalId;
+        $this->customAction = $customAction;
     }
 }

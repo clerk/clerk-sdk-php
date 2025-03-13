@@ -15,59 +15,63 @@ class InstanceRestrictions
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var ?InstanceRestrictionsObject $object
+     * @var InstanceRestrictionsObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\InstanceRestrictionsObject|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?InstanceRestrictionsObject $object = null;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\InstanceRestrictionsObject')]
+    public InstanceRestrictionsObject $object;
 
     /**
      *
-     * @var ?bool $allowlist
+     * @var bool $allowlist
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('allowlist')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $allowlist = null;
+    public bool $allowlist;
 
     /**
      *
-     * @var ?bool $blocklist
+     * @var bool $blocklist
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('blocklist')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $blocklist = null;
+    public bool $blocklist;
 
     /**
      *
-     * @var ?bool $blockEmailSubaddresses
+     * @var bool $blockEmailSubaddresses
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('block_email_subaddresses')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $blockEmailSubaddresses = null;
+    public bool $blockEmailSubaddresses;
 
     /**
      *
-     * @var ?bool $ignoreDotsForGmailAddresses
+     * @var bool $blockDisposableEmailDomains
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ignore_dots_for_gmail_addresses')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $ignoreDotsForGmailAddresses = null;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('block_disposable_email_domains')]
+    public bool $blockDisposableEmailDomains;
 
     /**
-     * @param  ?InstanceRestrictionsObject  $object
-     * @param  ?bool  $allowlist
-     * @param  ?bool  $blocklist
-     * @param  ?bool  $blockEmailSubaddresses
-     * @param  ?bool  $ignoreDotsForGmailAddresses
+     *
+     * @var bool $ignoreDotsForGmailAddresses
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ignore_dots_for_gmail_addresses')]
+    public bool $ignoreDotsForGmailAddresses;
+
+    /**
+     * @param  InstanceRestrictionsObject  $object
+     * @param  bool  $allowlist
+     * @param  bool  $blocklist
+     * @param  bool  $blockEmailSubaddresses
+     * @param  bool  $blockDisposableEmailDomains
+     * @param  bool  $ignoreDotsForGmailAddresses
      * @phpstan-pure
      */
-    public function __construct(?InstanceRestrictionsObject $object = null, ?bool $allowlist = null, ?bool $blocklist = null, ?bool $blockEmailSubaddresses = null, ?bool $ignoreDotsForGmailAddresses = null)
+    public function __construct(InstanceRestrictionsObject $object, bool $allowlist, bool $blocklist, bool $blockEmailSubaddresses, bool $blockDisposableEmailDomains, bool $ignoreDotsForGmailAddresses)
     {
         $this->object = $object;
         $this->allowlist = $allowlist;
         $this->blocklist = $blocklist;
         $this->blockEmailSubaddresses = $blockEmailSubaddresses;
+        $this->blockDisposableEmailDomains = $blockDisposableEmailDomains;
         $this->ignoreDotsForGmailAddresses = $ignoreDotsForGmailAddresses;
     }
 }

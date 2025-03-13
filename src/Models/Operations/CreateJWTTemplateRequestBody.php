@@ -14,21 +14,19 @@ class CreateJWTTemplateRequestBody
     /**
      * JWT template name
      *
-     * @var ?string $name
+     * @var string $name
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $name = null;
+    public string $name;
 
     /**
      * JWT template claims in JSON format
      *
-     * @var ?Claims $claims
+     * @var Claims $claims
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('claims')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\Claims|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?Claims $claims = null;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\Claims')]
+    public Claims $claims;
 
     /**
      * Whether a custom signing key/algorithm is also provided for this template
@@ -58,7 +56,7 @@ class CreateJWTTemplateRequestBody
     public ?float $allowedClockSkew = null;
 
     /**
-     * The custom signing algorithm to use when minting JWTs
+     * The custom signing algorithm to use when minting JWTs. Required if `custom_signing_key` is `true`.
      *
      * @var ?string $signingAlgorithm
      */
@@ -67,7 +65,7 @@ class CreateJWTTemplateRequestBody
     public ?string $signingAlgorithm = null;
 
     /**
-     * The custom signing private key to use when minting JWTs
+     * The custom signing private key to use when minting JWTs. Required if `custom_signing_key` is `true`.
      *
      * @var ?string $signingKey
      */
@@ -76,8 +74,8 @@ class CreateJWTTemplateRequestBody
     public ?string $signingKey = null;
 
     /**
-     * @param  ?string  $name
-     * @param  ?Claims  $claims
+     * @param  string  $name
+     * @param  Claims  $claims
      * @param  ?bool  $customSigningKey
      * @param  ?float  $lifetime
      * @param  ?float  $allowedClockSkew
@@ -85,7 +83,7 @@ class CreateJWTTemplateRequestBody
      * @param  ?string  $signingKey
      * @phpstan-pure
      */
-    public function __construct(?string $name = null, ?Claims $claims = null, ?bool $customSigningKey = null, ?float $lifetime = null, ?float $allowedClockSkew = null, ?string $signingAlgorithm = null, ?string $signingKey = null)
+    public function __construct(string $name, Claims $claims, ?bool $customSigningKey = null, ?float $lifetime = null, ?float $allowedClockSkew = null, ?string $signingAlgorithm = null, ?string $signingKey = null)
     {
         $this->name = $name;
         $this->claims = $claims;

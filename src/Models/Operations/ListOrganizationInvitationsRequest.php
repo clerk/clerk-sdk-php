@@ -50,9 +50,9 @@ class ListOrganizationInvitationsRequest
 
     /**
      * @param  string  $organizationId
+     * @param  ?ListOrganizationInvitationsQueryParamStatus  $status
      * @param  ?int  $limit
      * @param  ?int  $offset
-     * @param  ?ListOrganizationInvitationsQueryParamStatus  $status
      * @phpstan-pure
      */
     public function __construct(string $organizationId, ?ListOrganizationInvitationsQueryParamStatus $status = null, ?int $limit = 10, ?int $offset = 0)

@@ -12,6 +12,25 @@ use Clerk\Backend\Utils\SpeakeasyMetadata;
 class ListSAMLConnectionsRequest
 {
     /**
+     * Returns SAML connections that have a name that matches the given query, via case-insensitive partial match.
+     *
+     * @var ?string $query
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=query')]
+    public ?string $query = null;
+
+    /**
+     * Sorts organizations memberships by phone_number, email_address, created_at, first_name, last_name or username.
+     *
+     * By prepending one of those values with + or -,
+     * we can choose to sort in ascending (ASC) or descending (DESC) order.
+     *
+     * @var ?string $orderBy
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=order_by')]
+    public ?string $orderBy = null;
+
+    /**
      * Returns SAML connections that have an associated organization ID to the
      *
      * given organizations.
@@ -50,11 +69,15 @@ class ListSAMLConnectionsRequest
     /**
      * @param  ?int  $limit
      * @param  ?int  $offset
+     * @param  ?string  $query
+     * @param  ?string  $orderBy
      * @param  ?array<string>  $organizationId
      * @phpstan-pure
      */
-    public function __construct(?array $organizationId = null, ?int $limit = 10, ?int $offset = 0)
+    public function __construct(?string $query = null, ?string $orderBy = null, ?array $organizationId = null, ?int $limit = 10, ?int $offset = 0)
     {
+        $this->query = $query;
+        $this->orderBy = $orderBy;
         $this->organizationId = $organizationId;
         $this->limit = $limit;
         $this->offset = $offset;

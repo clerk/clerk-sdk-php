@@ -48,6 +48,13 @@ class OrganizationWithLogo
     public int $maxAllowedMemberships;
 
     /**
+     *
+     * @var bool $adminDeleteEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('admin_delete_enabled')]
+    public bool $adminDeleteEnabled;
+
+    /**
      * $publicMetadata
      *
      * @var array<string, mixed> $publicMetadata
@@ -94,28 +101,10 @@ class OrganizationWithLogo
 
     /**
      *
-     * @var ?bool $adminDeleteEnabled
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('admin_delete_enabled')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $adminDeleteEnabled = null;
-
-    /**
-     *
-     * @var ?string $logoUrl
-     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('logo_url')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $logoUrl = null;
-
-    /**
-     *
-     * @var ?bool $hasImage
+     * @var bool $hasImage
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('has_image')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $hasImage = null;
+    public bool $hasImage;
 
     /**
      *
@@ -127,6 +116,22 @@ class OrganizationWithLogo
 
     /**
      *
+     * @var ?bool $missingMemberWithElevatedPermissions
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('missing_member_with_elevated_permissions')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $missingMemberWithElevatedPermissions = null;
+
+    /**
+     *
+     * @var ?int $pendingInvitationsCount
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('pending_invitations_count')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $pendingInvitationsCount = null;
+
+    /**
+     *
      * @var ?string $createdBy
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('created_by')]
@@ -134,39 +139,52 @@ class OrganizationWithLogo
     public ?string $createdBy = null;
 
     /**
+     *
+     * @var ?string $logoUrl
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('logo_url')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $logoUrl = null;
+
+    /**
      * @param  OrganizationWithLogoObject  $object
      * @param  string  $id
      * @param  string  $name
      * @param  string  $slug
      * @param  int  $maxAllowedMemberships
+     * @param  bool  $adminDeleteEnabled
      * @param  array<string, mixed>  $publicMetadata
      * @param  array<string, mixed>  $privateMetadata
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  string  $imageUrl
-     * @param  ?bool  $adminDeleteEnabled
-     * @param  ?string  $logoUrl
-     * @param  ?bool  $hasImage
+     * @param  bool  $hasImage
      * @param  ?int  $membersCount
+     * @param  ?bool  $missingMemberWithElevatedPermissions
+     * @param  ?int  $pendingInvitationsCount
      * @param  ?string  $createdBy
+     * @param  ?string  $logoUrl
      * @phpstan-pure
      */
-    public function __construct(OrganizationWithLogoObject $object, string $id, string $name, string $slug, int $maxAllowedMemberships, array $publicMetadata, array $privateMetadata, int $createdAt, int $updatedAt, string $imageUrl, ?bool $adminDeleteEnabled = null, ?string $logoUrl = null, ?bool $hasImage = null, ?int $membersCount = null, ?string $createdBy = null)
+    public function __construct(OrganizationWithLogoObject $object, string $id, string $name, string $slug, int $maxAllowedMemberships, bool $adminDeleteEnabled, array $publicMetadata, array $privateMetadata, int $createdAt, int $updatedAt, string $imageUrl, bool $hasImage, ?int $membersCount = null, ?bool $missingMemberWithElevatedPermissions = null, ?int $pendingInvitationsCount = null, ?string $createdBy = null, ?string $logoUrl = null)
     {
         $this->object = $object;
         $this->id = $id;
         $this->name = $name;
         $this->slug = $slug;
         $this->maxAllowedMemberships = $maxAllowedMemberships;
+        $this->adminDeleteEnabled = $adminDeleteEnabled;
         $this->publicMetadata = $publicMetadata;
         $this->privateMetadata = $privateMetadata;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
         $this->imageUrl = $imageUrl;
-        $this->adminDeleteEnabled = $adminDeleteEnabled;
-        $this->logoUrl = $logoUrl;
         $this->hasImage = $hasImage;
         $this->membersCount = $membersCount;
+        $this->missingMemberWithElevatedPermissions = $missingMemberWithElevatedPermissions;
+        $this->pendingInvitationsCount = $pendingInvitationsCount;
         $this->createdBy = $createdBy;
+        $this->logoUrl = $logoUrl;
     }
 }

@@ -24,24 +24,6 @@ class UpdateInstanceOrganizationSettingsRequestBody
     public ?array $domainsEnrollmentModes = null;
 
     /**
-     * Specify what the default organization role is for an organization creator.
-     *
-     * @var ?string $creatorRoleId
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('creator_role_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $creatorRoleId = null;
-
-    /**
-     * Specify what the default organization role is for the organization domains.
-     *
-     * @var ?string $domainsDefaultRoleId
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('domains_default_role_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $domainsDefaultRoleId = null;
-
-    /**
      *
      * @var ?bool $enabled
      */
@@ -74,23 +56,41 @@ class UpdateInstanceOrganizationSettingsRequestBody
     public ?bool $domainsEnabled = null;
 
     /**
+     * Specify what the default organization role is for an organization creator.
+     *
+     * @var ?string $creatorRoleId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('creator_role_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $creatorRoleId = null;
+
+    /**
+     * Specify what the default organization role is for the organization domains.
+     *
+     * @var ?string $domainsDefaultRoleId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('domains_default_role_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $domainsDefaultRoleId = null;
+
+    /**
      * @param  ?array<string>  $domainsEnrollmentModes
-     * @param  ?string  $creatorRoleId
-     * @param  ?string  $domainsDefaultRoleId
      * @param  ?bool  $enabled
      * @param  ?int  $maxAllowedMemberships
      * @param  ?bool  $adminDeleteEnabled
      * @param  ?bool  $domainsEnabled
+     * @param  ?string  $creatorRoleId
+     * @param  ?string  $domainsDefaultRoleId
      * @phpstan-pure
      */
-    public function __construct(?array $domainsEnrollmentModes = null, ?string $creatorRoleId = null, ?string $domainsDefaultRoleId = null, ?bool $enabled = null, ?int $maxAllowedMemberships = null, ?bool $adminDeleteEnabled = null, ?bool $domainsEnabled = null)
+    public function __construct(?array $domainsEnrollmentModes = null, ?bool $enabled = null, ?int $maxAllowedMemberships = null, ?bool $adminDeleteEnabled = null, ?bool $domainsEnabled = null, ?string $creatorRoleId = null, ?string $domainsDefaultRoleId = null)
     {
         $this->domainsEnrollmentModes = $domainsEnrollmentModes;
-        $this->creatorRoleId = $creatorRoleId;
-        $this->domainsDefaultRoleId = $domainsDefaultRoleId;
         $this->enabled = $enabled;
         $this->maxAllowedMemberships = $maxAllowedMemberships;
         $this->adminDeleteEnabled = $adminDeleteEnabled;
         $this->domainsEnabled = $domainsEnabled;
+        $this->creatorRoleId = $creatorRoleId;
+        $this->domainsDefaultRoleId = $domainsDefaultRoleId;
     }
 }

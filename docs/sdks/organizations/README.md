@@ -3,9 +3,6 @@
 
 ## Overview
 
-Organizations are used to group members under a common entity and provide shared access to resources.
-<https://clerk.com/docs/organizations/overview>
-
 ### Available Operations
 
 * [create](#create) - Create an organization
@@ -195,7 +192,8 @@ $sdk = Backend\ClerkBackend::builder()
 
 $response = $sdk->organizations->get(
     organizationId: '<id>',
-    includeMembersCount: false
+    includeMembersCount: false,
+    includeMissingMemberWithElevatedPermissions: false
 
 );
 
@@ -206,10 +204,11 @@ if ($response->organization !== null) {
 
 ### Parameters
 
-| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `organizationId`                                                                                   | *string*                                                                                           | :heavy_check_mark:                                                                                 | The ID or slug of the organization                                                                 |
-| `includeMembersCount`                                                                              | *?bool*                                                                                            | :heavy_minus_sign:                                                                                 | Flag to denote whether or not the organization's members count should be included in the response. |
+| Parameter                                                                                                                      | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| `organizationId`                                                                                                               | *string*                                                                                                                       | :heavy_check_mark:                                                                                                             | The ID or slug of the organization                                                                                             |
+| `includeMembersCount`                                                                                                          | *?bool*                                                                                                                        | :heavy_minus_sign:                                                                                                             | Flag to denote whether or not the organization's members count should be included in the response.                             |
+| `includeMissingMemberWithElevatedPermissions`                                                                                  | *?bool*                                                                                                                        | :heavy_minus_sign:                                                                                                             | Flag to denote whether or not to include a member with elevated permissions who is not currently a member of the organization. |
 
 ### Response
 

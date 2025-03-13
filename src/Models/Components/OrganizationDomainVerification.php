@@ -15,21 +15,19 @@ class OrganizationDomainVerification
     /**
      * Status of the verification. It can be `unverified` or `verified`
      *
-     * @var ?OrganizationDomainStatus $status
+     * @var OrganizationDomainStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationDomainStatus|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?OrganizationDomainStatus $status = null;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationDomainStatus')]
+    public OrganizationDomainStatus $status;
 
     /**
      * Name of the strategy used to verify the domain
      *
-     * @var ?string $strategy
+     * @var string $strategy
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $strategy = null;
+    public string $strategy;
 
     /**
      * How many attempts have been made to verify the domain
@@ -37,8 +35,7 @@ class OrganizationDomainVerification
      * @var ?int $attempts
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('attempts')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $attempts = null;
+    public ?int $attempts;
 
     /**
      * Unix timestamp of when the verification will expire
@@ -46,17 +43,16 @@ class OrganizationDomainVerification
      * @var ?int $expireAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('expire_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $expireAt = null;
+    public ?int $expireAt;
 
     /**
-     * @param  ?OrganizationDomainStatus  $status
-     * @param  ?string  $strategy
+     * @param  OrganizationDomainStatus  $status
+     * @param  string  $strategy
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
      * @phpstan-pure
      */
-    public function __construct(?OrganizationDomainStatus $status = null, ?string $strategy = null, ?int $attempts = null, ?int $expireAt = null)
+    public function __construct(OrganizationDomainStatus $status, string $strategy, ?int $attempts = null, ?int $expireAt = null)
     {
         $this->status = $status;
         $this->strategy = $strategy;

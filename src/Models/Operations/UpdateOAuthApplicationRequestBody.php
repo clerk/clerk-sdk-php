@@ -12,16 +12,9 @@ namespace Clerk\Backend\Models\Operations;
 class UpdateOAuthApplicationRequestBody
 {
     /**
-     * If true, this client is public and you can use the Proof Key of Code Exchange (PKCE) flow.
+     * The new name of the OAuth application.
      *
-     * @var ?bool $public
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('public')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $public = null;
-
-    /**
-     * The new name of the OAuth application
+     * Max length: 256
      *
      * @var ?string $name
      */
@@ -50,6 +43,15 @@ class UpdateOAuthApplicationRequestBody
     public ?string $callbackUrl = null;
 
     /**
+     * If true, this client is public and you can use the Proof Key of Code Exchange (PKCE) flow.
+     *
+     * @var ?bool $public
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('public')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $public = null;
+
+    /**
      * Define the allowed scopes for the new OAuth applications that dictate the user payload of the OAuth user info endpoint. Available scopes are `profile`, `email`, `public_metadata`, `private_metadata`. Provide the requested scopes as a string, separated by spaces.
      *
      * @var ?string $scopes
@@ -59,19 +61,19 @@ class UpdateOAuthApplicationRequestBody
     public ?string $scopes = null;
 
     /**
-     * @param  ?bool  $public
      * @param  ?string  $name
      * @param  ?array<string>  $redirectUris
      * @param  ?string  $callbackUrl
      * @param  ?string  $scopes
+     * @param  ?bool  $public
      * @phpstan-pure
      */
-    public function __construct(?bool $public = null, ?string $name = null, ?array $redirectUris = null, ?string $callbackUrl = null, ?string $scopes = 'profile email')
+    public function __construct(?string $name = null, ?array $redirectUris = null, ?string $callbackUrl = null, ?bool $public = null, ?string $scopes = 'profile email')
     {
-        $this->public = $public;
         $this->name = $name;
         $this->redirectUris = $redirectUris;
         $this->callbackUrl = $callbackUrl;
+        $this->public = $public;
         $this->scopes = $scopes;
     }
 }

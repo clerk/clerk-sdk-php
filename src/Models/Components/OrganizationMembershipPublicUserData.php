@@ -9,47 +9,43 @@ declare(strict_types=1);
 namespace Clerk\Backend\Models\Components;
 
 
-class PublicUserData
+/** OrganizationMembershipPublicUserData - An organization membership with public user data populated */
+class OrganizationMembershipPublicUserData
 {
     /**
      *
-     * @var ?string $userId
+     * @var string $userId
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('user_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $userId = null;
+    public string $userId;
 
     /**
      *
-     * @var ?string $imageUrl
+     * @var string $imageUrl
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('image_url')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $imageUrl = null;
+    public string $imageUrl;
 
     /**
      *
-     * @var ?bool $hasImage
+     * @var bool $hasImage
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('has_image')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $hasImage = null;
+    public bool $hasImage;
 
     /**
      *
      * @var ?string $firstName
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('first_name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $firstName = null;
+    public ?string $firstName;
 
     /**
      *
      * @var ?string $lastName
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('last_name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $lastName = null;
+    public ?string $lastName;
 
     /**
      *
@@ -57,8 +53,7 @@ class PublicUserData
      * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('profile_image_url')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $profileImageUrl = null;
+    public ?string $profileImageUrl;
 
     /**
      *
@@ -69,16 +64,16 @@ class PublicUserData
     public ?string $identifier = null;
 
     /**
-     * @param  ?string  $userId
-     * @param  ?string  $imageUrl
-     * @param  ?bool  $hasImage
+     * @param  string  $userId
+     * @param  string  $imageUrl
+     * @param  bool  $hasImage
      * @param  ?string  $firstName
      * @param  ?string  $lastName
      * @param  ?string  $profileImageUrl
      * @param  ?string  $identifier
      * @phpstan-pure
      */
-    public function __construct(?string $userId = null, ?string $imageUrl = null, ?bool $hasImage = null, ?string $firstName = null, ?string $lastName = null, ?string $profileImageUrl = null, ?string $identifier = null)
+    public function __construct(string $userId, string $imageUrl, bool $hasImage, ?string $firstName = null, ?string $lastName = null, ?string $profileImageUrl = null, ?string $identifier = null)
     {
         $this->userId = $userId;
         $this->imageUrl = $imageUrl;

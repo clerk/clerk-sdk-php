@@ -58,10 +58,10 @@ class ListOrganizationDomainsRequest
 
     /**
      * @param  string  $organizationId
-     * @param  ?int  $limit
-     * @param  ?int  $offset
      * @param  ?string  $verified
      * @param  ?string  $enrollmentMode
+     * @param  ?int  $limit
+     * @param  ?int  $offset
      * @phpstan-pure
      */
     public function __construct(string $organizationId, ?string $verified = null, ?string $enrollmentMode = null, ?int $limit = 10, ?int $offset = 0)

@@ -5,10 +5,10 @@
 
 ### Available Operations
 
-* [createWaitlistEntry](#createwaitlistentry) - Create a waitlist entry
-* [listWaitlistEntries](#listwaitlistentries) - List all waitlist entries
+* [create](#create) - Create a waitlist entry
+* [list](#list) - List all waitlist entries
 
-## createWaitlistEntry
+## create
 
 Creates a new waitlist entry for the given email address.
 If the email address is already on the waitlist, no new entry will be created and the existing waitlist entry will be returned.
@@ -30,10 +30,10 @@ $sdk = Backend\ClerkBackend::builder()
     ->build();
 
 $request = new Operations\CreateWaitlistEntryRequestBody(
-    emailAddress: 'Demond_Willms@hotmail.com',
+    emailAddress: 'Loyal79@yahoo.com',
 );
 
-$response = $sdk->waitlistEntries->createWaitlistEntry(
+$response = $sdk->waitlistEntries->create(
     request: $request
 );
 
@@ -59,7 +59,7 @@ if ($response->waitlistEntry !== null) {
 | Errors\ClerkErrors  | 400, 422            | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## listWaitlistEntries
+## list
 
 Retrieve a list of waitlist entries for the instance.
 Entries are ordered by creation date in descending order by default.
@@ -83,7 +83,7 @@ $sdk = Backend\ClerkBackend::builder()
 
 $request = new Operations\ListWaitlistEntriesRequest();
 
-$response = $sdk->waitlistEntries->listWaitlistEntries(
+$response = $sdk->waitlistEntries->list(
     request: $request
 );
 

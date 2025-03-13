@@ -24,27 +24,6 @@ class UpdateInstanceRequestBody
     public ?array $allowedOrigins = null;
 
     /**
-     * Whether the instance should operate in cookieless development mode (i.e. without third-party cookies).
-     *
-     * Deprecated: Please use `url_based_session_syncing` instead.
-     *
-     * @var ?bool $cookielessDev
-     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('cookieless_dev')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $cookielessDev = null;
-
-    /**
-     * Whether the instance should use URL-based session syncing in development mode (i.e. without third-party cookies).
-     *
-     * @var ?bool $urlBasedSessionSyncing
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('url_based_session_syncing')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $urlBasedSessionSyncing = null;
-
-    /**
      * Toggles test mode for this instance, allowing the use of test email addresses and phone numbers.
      *
      * Defaults to true for development instances.
@@ -100,27 +79,48 @@ class UpdateInstanceRequestBody
     public ?string $developmentOrigin = null;
 
     /**
+     * Whether the instance should operate in cookieless development mode (i.e. without third-party cookies).
+     *
+     * Deprecated: Please use `url_based_session_syncing` instead.
+     *
+     * @var ?bool $cookielessDev
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cookieless_dev')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $cookielessDev = null;
+
+    /**
+     * Whether the instance should use URL-based session syncing in development mode (i.e. without third-party cookies).
+     *
+     * @var ?bool $urlBasedSessionSyncing
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('url_based_session_syncing')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $urlBasedSessionSyncing = null;
+
+    /**
      * @param  ?array<string>  $allowedOrigins
-     * @param  ?bool  $cookielessDev
-     * @param  ?bool  $urlBasedSessionSyncing
      * @param  ?bool  $testMode
      * @param  ?bool  $hibp
      * @param  ?bool  $enhancedEmailDeliverability
      * @param  ?string  $supportEmail
      * @param  ?string  $clerkJsVersion
      * @param  ?string  $developmentOrigin
+     * @param  ?bool  $cookielessDev
+     * @param  ?bool  $urlBasedSessionSyncing
      * @phpstan-pure
      */
-    public function __construct(?array $allowedOrigins = null, ?bool $cookielessDev = null, ?bool $urlBasedSessionSyncing = null, ?bool $testMode = null, ?bool $hibp = null, ?bool $enhancedEmailDeliverability = null, ?string $supportEmail = null, ?string $clerkJsVersion = null, ?string $developmentOrigin = null)
+    public function __construct(?array $allowedOrigins = null, ?bool $testMode = null, ?bool $hibp = null, ?bool $enhancedEmailDeliverability = null, ?string $supportEmail = null, ?string $clerkJsVersion = null, ?string $developmentOrigin = null, ?bool $cookielessDev = null, ?bool $urlBasedSessionSyncing = null)
     {
         $this->allowedOrigins = $allowedOrigins;
-        $this->cookielessDev = $cookielessDev;
-        $this->urlBasedSessionSyncing = $urlBasedSessionSyncing;
         $this->testMode = $testMode;
         $this->hibp = $hibp;
         $this->enhancedEmailDeliverability = $enhancedEmailDeliverability;
         $this->supportEmail = $supportEmail;
         $this->clerkJsVersion = $clerkJsVersion;
         $this->developmentOrigin = $developmentOrigin;
+        $this->cookielessDev = $cookielessDev;
+        $this->urlBasedSessionSyncing = $urlBasedSessionSyncing;
     }
 }

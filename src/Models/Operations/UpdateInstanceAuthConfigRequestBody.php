@@ -33,15 +33,6 @@ class UpdateInstanceAuthConfigRequestBody
     public ?bool $progressiveSignUp = null;
 
     /**
-     * The name of the JWT Template used to augment your session tokens. To disable this, pass an empty string.
-     *
-     * @var ?string $sessionTokenTemplate
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('session_token_template')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $sessionTokenTemplate = null;
-
-    /**
      * The "enhanced_email_deliverability" feature will send emails from "verifications@clerk.dev" instead of your domain.
      *
      * This can be helpful if you do not have a high domain reputation.
@@ -76,16 +67,14 @@ class UpdateInstanceAuthConfigRequestBody
      * @param  ?bool  $restrictedToAllowlist
      * @param  ?string  $fromEmailAddress
      * @param  ?bool  $progressiveSignUp
-     * @param  ?string  $sessionTokenTemplate
      * @param  ?bool  $enhancedEmailDeliverability
      * @param  ?bool  $testMode
      * @phpstan-pure
      */
-    public function __construct(?string $fromEmailAddress = null, ?bool $progressiveSignUp = null, ?string $sessionTokenTemplate = null, ?bool $enhancedEmailDeliverability = null, ?bool $testMode = null, ?bool $restrictedToAllowlist = false)
+    public function __construct(?string $fromEmailAddress = null, ?bool $progressiveSignUp = null, ?bool $enhancedEmailDeliverability = null, ?bool $testMode = null, ?bool $restrictedToAllowlist = false)
     {
         $this->fromEmailAddress = $fromEmailAddress;
         $this->progressiveSignUp = $progressiveSignUp;
-        $this->sessionTokenTemplate = $sessionTokenTemplate;
         $this->enhancedEmailDeliverability = $enhancedEmailDeliverability;
         $this->testMode = $testMode;
         $this->restrictedToAllowlist = $restrictedToAllowlist;

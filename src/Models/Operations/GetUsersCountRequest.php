@@ -78,6 +78,17 @@ class GetUsersCountRequest
     public ?array $userId = null;
 
     /**
+     * Returns users that have memberships to the given organizations. For each organization id, the `+` and `-`
+     *
+     * can be prepended to the id, which denote whether the respective organization should be included or
+     * excluded from the result set. Accepts up to 100 organization ids.
+     *
+     * @var ?array<string> $organizationId
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=organization_id')]
+    public ?array $organizationId = null;
+
+    /**
      * Counts users that match the given query.
      *
      * For possible matches, we check the email addresses, phone numbers, usernames, web3 wallets, user ids, first and last names.
@@ -122,6 +133,14 @@ class GetUsersCountRequest
     public ?string $usernameQuery = null;
 
     /**
+     * Returns users with names that match the given query, via case-insensitive partial match.
+     *
+     * @var ?string $nameQuery
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=name_query')]
+    public ?string $nameQuery = null;
+
+    /**
      * Counts users which are either banned (`banned=true`) or not banned (`banned=false`).
      *
      * @var ?bool $banned
@@ -130,20 +149,79 @@ class GetUsersCountRequest
     public ?bool $banned = null;
 
     /**
+     * Returns users whose last session activity was before the given date (with millisecond precision).
+     *
+     * Example: use 1700690400000 to retrieve users whose last session activity was before 2023-11-23.
+     *
+     * @var ?int $lastActiveAtBefore
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=last_active_at_before')]
+    public ?int $lastActiveAtBefore = null;
+
+    /**
+     * Returns users whose last session activity was after the given date (with millisecond precision).
+     *
+     * Example: use 1700690400000 to retrieve users whose last session activity was after 2023-11-23.
+     *
+     * @var ?int $lastActiveAtAfter
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=last_active_at_after')]
+    public ?int $lastActiveAtAfter = null;
+
+    /**
+     * Returns users that had session activity since the given date.
+     *
+     * Example: use 1700690400000 to retrieve users that had session activity from 2023-11-23 until the current day.
+     * Deprecated in favor of `last_active_at_after`.
+     *
+     * @var ?int $lastActiveAtSince
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=last_active_at_since')]
+    public ?int $lastActiveAtSince = null;
+
+    /**
+     * Returns users who have been created before the given date (with millisecond precision).
+     *
+     * Example: use 1730160000000 to retrieve users who have been created before 2024-10-29.
+     *
+     * @var ?int $createdAtBefore
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=created_at_before')]
+    public ?int $createdAtBefore = null;
+
+    /**
+     * Returns users who have been created after the given date (with millisecond precision).
+     *
+     * Example: use 1730160000000 to retrieve users who have been created after 2024-10-29.
+     *
+     * @var ?int $createdAtAfter
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=created_at_after')]
+    public ?int $createdAtAfter = null;
+
+    /**
      * @param  ?array<string>  $emailAddress
      * @param  ?array<string>  $phoneNumber
      * @param  ?array<string>  $externalId
      * @param  ?array<string>  $username
      * @param  ?array<string>  $web3Wallet
      * @param  ?array<string>  $userId
+     * @param  ?array<string>  $organizationId
      * @param  ?string  $query
      * @param  ?string  $emailAddressQuery
      * @param  ?string  $phoneNumberQuery
      * @param  ?string  $usernameQuery
+     * @param  ?string  $nameQuery
      * @param  ?bool  $banned
+     * @param  ?int  $lastActiveAtBefore
+     * @param  ?int  $lastActiveAtAfter
+     * @param  ?int  $lastActiveAtSince
+     * @param  ?int  $createdAtBefore
+     * @param  ?int  $createdAtAfter
      * @phpstan-pure
      */
-    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $externalId = null, ?array $username = null, ?array $web3Wallet = null, ?array $userId = null, ?string $query = null, ?string $emailAddressQuery = null, ?string $phoneNumberQuery = null, ?string $usernameQuery = null, ?bool $banned = null)
+    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $externalId = null, ?array $username = null, ?array $web3Wallet = null, ?array $userId = null, ?array $organizationId = null, ?string $query = null, ?string $emailAddressQuery = null, ?string $phoneNumberQuery = null, ?string $usernameQuery = null, ?string $nameQuery = null, ?bool $banned = null, ?int $lastActiveAtBefore = null, ?int $lastActiveAtAfter = null, ?int $lastActiveAtSince = null, ?int $createdAtBefore = null, ?int $createdAtAfter = null)
     {
         $this->emailAddress = $emailAddress;
         $this->phoneNumber = $phoneNumber;
@@ -151,10 +229,17 @@ class GetUsersCountRequest
         $this->username = $username;
         $this->web3Wallet = $web3Wallet;
         $this->userId = $userId;
+        $this->organizationId = $organizationId;
         $this->query = $query;
         $this->emailAddressQuery = $emailAddressQuery;
         $this->phoneNumberQuery = $phoneNumberQuery;
         $this->usernameQuery = $usernameQuery;
+        $this->nameQuery = $nameQuery;
         $this->banned = $banned;
+        $this->lastActiveAtBefore = $lastActiveAtBefore;
+        $this->lastActiveAtAfter = $lastActiveAtAfter;
+        $this->lastActiveAtSince = $lastActiveAtSince;
+        $this->createdAtBefore = $createdAtBefore;
+        $this->createdAtAfter = $createdAtAfter;
     }
 }

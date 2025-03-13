@@ -89,7 +89,11 @@ $sdk = Backend\ClerkBackend::builder()
 
 
 $response = $sdk->emailSMSTemplates->list(
-    templateType: Operations\TemplateType::Sms
+    templateType: Operations\TemplateType::Sms,
+    paginated: false,
+    limit: 10,
+    offset: 0
+
 );
 
 if ($response->templateList !== null) {
@@ -99,9 +103,12 @@ if ($response->templateList !== null) {
 
 ### Parameters
 
-| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| `templateType`                                                     | [Operations\TemplateType](../../Models/Operations/TemplateType.md) | :heavy_check_mark:                                                 | The type of templates to list (email or SMS)                       |
+| Parameter                                                                                                                                 | Type                                                                                                                                      | Required                                                                                                                                  | Description                                                                                                                               |
+| ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `templateType`                                                                                                                            | [Operations\TemplateType](../../Models/Operations/TemplateType.md)                                                                        | :heavy_check_mark:                                                                                                                        | The type of templates to list (email or SMS)                                                                                              |
+| `paginated`                                                                                                                               | *?bool*                                                                                                                                   | :heavy_minus_sign:                                                                                                                        | Whether to paginate the results.<br/>If true, the results will be paginated.<br/>If false, the results will not be paginated.             |
+| `limit`                                                                                                                                   | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                     |
+| `offset`                                                                                                                                  | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`. |
 
 ### Response
 

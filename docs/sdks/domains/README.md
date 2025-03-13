@@ -3,8 +3,6 @@
 
 ## Overview
 
-Domains represent each instance's URLs and DNS setup.
-
 ### Available Operations
 
 * [add](#add) - Add a domain

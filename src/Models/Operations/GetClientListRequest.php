@@ -12,6 +12,17 @@ use Clerk\Backend\Utils\SpeakeasyMetadata;
 class GetClientListRequest
 {
     /**
+     * Whether to paginate the results.
+     *
+     * If true, the results will be paginated.
+     * If false, the results will not be paginated.
+     *
+     * @var ?bool $paginated
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=paginated')]
+    public ?bool $paginated = null;
+
+    /**
      * Applies a limit to the number of results returned.
      *
      * Can be used for paginating the results together with `offset`.
@@ -33,12 +44,14 @@ class GetClientListRequest
     public ?int $offset = null;
 
     /**
+     * @param  ?bool  $paginated
      * @param  ?int  $limit
      * @param  ?int  $offset
      * @phpstan-pure
      */
-    public function __construct(?int $limit = 10, ?int $offset = 0)
+    public function __construct(?bool $paginated = null, ?int $limit = 10, ?int $offset = 0)
     {
+        $this->paginated = $paginated;
         $this->limit = $limit;
         $this->offset = $offset;
     }

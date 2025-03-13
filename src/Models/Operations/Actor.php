@@ -16,8 +16,32 @@ namespace Clerk\Backend\Models\Operations;
  */
 class Actor
 {
+    /**
+     * The ID of the actor.
+     *
+     * @var string $sub
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('sub')]
+    public string $sub;
 
-    public function __construct()
+    /**
+     * $additionalProperties
+     *
+     * @var ?array<string, mixed> $additionalProperties
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('additionalProperties')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $additionalProperties = null;
+
+    /**
+     * @param  string  $sub
+     * @param  ?array<string, mixed>  $additionalProperties
+     * @phpstan-pure
+     */
+    public function __construct(string $sub, ?array $additionalProperties = null)
     {
+        $this->sub = $sub;
+        $this->additionalProperties = $additionalProperties;
     }
 }

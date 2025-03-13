@@ -36,6 +36,50 @@ class SignUp
     public SignUpStatus $status;
 
     /**
+     * $requiredFields
+     *
+     * @var array<string> $requiredFields
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('required_fields')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>')]
+    public array $requiredFields;
+
+    /**
+     * $optionalFields
+     *
+     * @var array<string> $optionalFields
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('optional_fields')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>')]
+    public array $optionalFields;
+
+    /**
+     * $missingFields
+     *
+     * @var array<string> $missingFields
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('missing_fields')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>')]
+    public array $missingFields;
+
+    /**
+     * $unverifiedFields
+     *
+     * @var array<string> $unverifiedFields
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('unverified_fields')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>')]
+    public array $unverifiedFields;
+
+    /**
+     *
+     * @var SignUpVerifications $verifications
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('verifications')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SignUpVerifications')]
+    public SignUpVerifications $verifications;
+
+    /**
      *
      * @var bool $passwordEnabled
      */
@@ -50,6 +94,9 @@ class SignUp
     public bool $customAction;
 
     /**
+     * Unix timestamp at which the user abandoned the sign up attempt.
+     *
+     *
      *
      * @var int $abandonAt
      */
@@ -57,53 +104,46 @@ class SignUp
     public int $abandonAt;
 
     /**
-     * $requiredFields
      *
-     * @var ?array<string> $requiredFields
+     * @var ?string $username
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('required_fields')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $requiredFields = null;
-
-    /**
-     * $optionalFields
-     *
-     * @var ?array<string> $optionalFields
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('optional_fields')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $optionalFields = null;
-
-    /**
-     * $missingFields
-     *
-     * @var ?array<string> $missingFields
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('missing_fields')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $missingFields = null;
-
-    /**
-     * $unverifiedFields
-     *
-     * @var ?array<string> $unverifiedFields
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('unverified_fields')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $unverifiedFields = null;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('username')]
+    public ?string $username;
 
     /**
      *
-     * @var ?Verifications $verifications
+     * @var ?string $emailAddress
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('verifications')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Verifications|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?Verifications $verifications = null;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('email_address')]
+    public ?string $emailAddress;
+
+    /**
+     *
+     * @var ?string $phoneNumber
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('phone_number')]
+    public ?string $phoneNumber;
+
+    /**
+     *
+     * @var ?string $web3Wallet
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('web3_wallet')]
+    public ?string $web3Wallet;
+
+    /**
+     *
+     * @var ?string $firstName
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('first_name')]
+    public ?string $firstName;
+
+    /**
+     *
+     * @var ?string $lastName
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('last_name')]
+    public ?string $lastName;
 
     /**
      * $unsafeMetadata
@@ -127,84 +167,24 @@ class SignUp
 
     /**
      *
-     * @var ?ExternalAccount $externalAccount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('external_account')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ExternalAccount|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ExternalAccount $externalAccount = null;
-
-    /**
-     *
-     * @var ?string $username
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('username')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $username = null;
-
-    /**
-     *
-     * @var ?string $emailAddress
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('email_address')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $emailAddress = null;
-
-    /**
-     *
-     * @var ?string $phoneNumber
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('phone_number')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $phoneNumber = null;
-
-    /**
-     *
-     * @var ?string $web3Wallet
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('web3_wallet')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $web3Wallet = null;
-
-    /**
-     *
-     * @var ?string $firstName
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('first_name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $firstName = null;
-
-    /**
-     *
-     * @var ?string $lastName
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('last_name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $lastName = null;
-
-    /**
-     *
      * @var ?string $externalId
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('external_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $externalId = null;
+    public ?string $externalId;
 
     /**
      *
      * @var ?string $createdSessionId
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('created_session_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $createdSessionId = null;
+    public ?string $createdSessionId;
 
     /**
      *
      * @var ?string $createdUserId
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('created_user_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $createdUserId = null;
+    public ?string $createdUserId;
 
     /**
      * Unix timestamp at which the user accepted the legal requirements.
@@ -214,61 +194,70 @@ class SignUp
      * @var ?int $legalAcceptedAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('legal_accepted_at')]
+    public ?int $legalAcceptedAt;
+
+    /**
+     *
+     * @var ?SignUpExternalAccount $externalAccount
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('external_account')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SignUpExternalAccount|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $legalAcceptedAt = null;
+    public ?SignUpExternalAccount $externalAccount = null;
 
     /**
      * @param  SignUpObject  $object
      * @param  string  $id
      * @param  SignUpStatus  $status
+     * @param  array<string>  $requiredFields
+     * @param  array<string>  $optionalFields
+     * @param  array<string>  $missingFields
+     * @param  array<string>  $unverifiedFields
+     * @param  SignUpVerifications  $verifications
      * @param  bool  $passwordEnabled
      * @param  bool  $customAction
      * @param  int  $abandonAt
-     * @param  ?array<string>  $requiredFields
-     * @param  ?array<string>  $optionalFields
-     * @param  ?array<string>  $missingFields
-     * @param  ?array<string>  $unverifiedFields
-     * @param  ?Verifications  $verifications
-     * @param  ?array<string, mixed>  $unsafeMetadata
-     * @param  ?array<string, mixed>  $publicMetadata
-     * @param  ?ExternalAccount  $externalAccount
      * @param  ?string  $username
      * @param  ?string  $emailAddress
      * @param  ?string  $phoneNumber
      * @param  ?string  $web3Wallet
      * @param  ?string  $firstName
      * @param  ?string  $lastName
+     * @param  ?array<string, mixed>  $unsafeMetadata
+     * @param  ?array<string, mixed>  $publicMetadata
      * @param  ?string  $externalId
      * @param  ?string  $createdSessionId
      * @param  ?string  $createdUserId
      * @param  ?int  $legalAcceptedAt
+     * @param  ?SignUpExternalAccount  $externalAccount
      * @phpstan-pure
      */
-    public function __construct(SignUpObject $object, string $id, SignUpStatus $status, bool $passwordEnabled, bool $customAction, int $abandonAt, ?array $requiredFields = null, ?array $optionalFields = null, ?array $missingFields = null, ?array $unverifiedFields = null, ?Verifications $verifications = null, ?array $unsafeMetadata = null, ?array $publicMetadata = null, ?ExternalAccount $externalAccount = null, ?string $username = null, ?string $emailAddress = null, ?string $phoneNumber = null, ?string $web3Wallet = null, ?string $firstName = null, ?string $lastName = null, ?string $externalId = null, ?string $createdSessionId = null, ?string $createdUserId = null, ?int $legalAcceptedAt = null)
+    public function __construct(SignUpObject $object, string $id, SignUpStatus $status, array $requiredFields, array $optionalFields, array $missingFields, array $unverifiedFields, SignUpVerifications $verifications, bool $passwordEnabled, bool $customAction, int $abandonAt, ?string $username = null, ?string $emailAddress = null, ?string $phoneNumber = null, ?string $web3Wallet = null, ?string $firstName = null, ?string $lastName = null, ?array $unsafeMetadata = null, ?array $publicMetadata = null, ?string $externalId = null, ?string $createdSessionId = null, ?string $createdUserId = null, ?int $legalAcceptedAt = null, ?SignUpExternalAccount $externalAccount = null)
     {
         $this->object = $object;
         $this->id = $id;
         $this->status = $status;
-        $this->passwordEnabled = $passwordEnabled;
-        $this->customAction = $customAction;
-        $this->abandonAt = $abandonAt;
         $this->requiredFields = $requiredFields;
         $this->optionalFields = $optionalFields;
         $this->missingFields = $missingFields;
         $this->unverifiedFields = $unverifiedFields;
         $this->verifications = $verifications;
-        $this->unsafeMetadata = $unsafeMetadata;
-        $this->publicMetadata = $publicMetadata;
-        $this->externalAccount = $externalAccount;
+        $this->passwordEnabled = $passwordEnabled;
+        $this->customAction = $customAction;
+        $this->abandonAt = $abandonAt;
         $this->username = $username;
         $this->emailAddress = $emailAddress;
         $this->phoneNumber = $phoneNumber;
         $this->web3Wallet = $web3Wallet;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
+        $this->unsafeMetadata = $unsafeMetadata;
+        $this->publicMetadata = $publicMetadata;
         $this->externalId = $externalId;
         $this->createdSessionId = $createdSessionId;
         $this->createdUserId = $createdUserId;
         $this->legalAcceptedAt = $legalAcceptedAt;
+        $this->externalAccount = $externalAccount;
     }
 }

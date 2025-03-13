@@ -20,6 +20,14 @@ class ListOrganizationsRequest
     public ?bool $includeMembersCount = null;
 
     /**
+     * Flag to denote whether or not to include a member with elevated permissions who is not currently a member of the organization.
+     *
+     * @var ?bool $includeMissingMemberWithElevatedPermissions
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=include_missing_member_with_elevated_permissions')]
+    public ?bool $includeMissingMemberWithElevatedPermissions = null;
+
+    /**
      * Returns organizations with ID, name, or slug that match the given query.
      *
      * Uses exact match for organization ID and partial match for name and slug.
@@ -30,20 +38,41 @@ class ListOrganizationsRequest
     public ?string $query = null;
 
     /**
-     * Returns organizations with the organization ids specified.
+     * Returns organizations with the user ids specified. Any user ids not found are ignored.
      *
-     * Any organization ids not found are ignored.
-     * For each organization id, the `+` and `-` can be
-     * prepended to the id, which denote whether the
-     * respective organization should be included or
-     * excluded from the result set.
-     * Accepts up to 100 organization ids.
+     * For each user id, the `+` and `-` can be prepended to the id, which denote whether the
+     * respective organization should be included or excluded from the result set.
+     *
+     * @var ?array<string> $userId
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=user_id')]
+    public ?array $userId = null;
+
+    /**
+     * Returns organizations with the organization ids specified. Any organization ids not found are ignored.
+     *
+     * For each organization id, the `+` and `-` can be prepended to the id, which denote whether the
+     * respective organization should be included or excluded from the result set. Accepts up to 100 organization ids.
      * Example: ?organization_id=+org_1&organization_id=-org_2
      *
      * @var ?array<string> $organizationId
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=organization_id')]
     public ?array $organizationId = null;
+
+    /**
+     * Allows to return organizations in a particular order.
+     *
+     * At the moment, you can order the returned organizations either by their `name`, `created_at` or `members_count`.
+     * In order to specify the direction, you can use the `+/-` symbols prepended in the property to order by.
+     * For example, if you want organizations to be returned in descending order according to their `created_at` property, you can use `-created_at`.
+     * If you don't use `+` or `-`, then `+` is implied.
+     * Defaults to `-created_at`.
+     *
+     * @var ?string $orderBy
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=order_by')]
+    public ?string $orderBy = null;
 
     /**
      * Applies a limit to the number of results returned.
@@ -67,35 +96,25 @@ class ListOrganizationsRequest
     public ?int $offset = null;
 
     /**
-     * Allows to return organizations in a particular order.
-     *
-     * At the moment, you can order the returned organizations either by their `name`, `created_at` or `members_count`.
-     * In order to specify the direction, you can use the `+/-` symbols prepended in the property to order by.
-     * For example, if you want organizations to be returned in descending order according to their `created_at` property, you can use `-created_at`.
-     * If you don't use `+` or `-`, then `+` is implied.
-     * Defaults to `-created_at`.
-     *
-     * @var ?string $orderBy
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=order_by')]
-    public ?string $orderBy = null;
-
-    /**
-     * @param  ?int  $limit
-     * @param  ?int  $offset
      * @param  ?bool  $includeMembersCount
+     * @param  ?bool  $includeMissingMemberWithElevatedPermissions
      * @param  ?string  $query
+     * @param  ?array<string>  $userId
      * @param  ?array<string>  $organizationId
      * @param  ?string  $orderBy
+     * @param  ?int  $limit
+     * @param  ?int  $offset
      * @phpstan-pure
      */
-    public function __construct(?bool $includeMembersCount = null, ?string $query = null, ?array $organizationId = null, ?int $limit = 10, ?int $offset = 0, ?string $orderBy = '-created_at')
+    public function __construct(?bool $includeMembersCount = null, ?bool $includeMissingMemberWithElevatedPermissions = null, ?string $query = null, ?array $userId = null, ?array $organizationId = null, ?string $orderBy = '-created_at', ?int $limit = 10, ?int $offset = 0)
     {
         $this->includeMembersCount = $includeMembersCount;
+        $this->includeMissingMemberWithElevatedPermissions = $includeMissingMemberWithElevatedPermissions;
         $this->query = $query;
+        $this->userId = $userId;
         $this->organizationId = $organizationId;
+        $this->orderBy = $orderBy;
         $this->limit = $limit;
         $this->offset = $offset;
-        $this->orderBy = $orderBy;
     }
 }

@@ -30,7 +30,10 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$request = new Operations\CreatePhoneNumberRequestBody();
+$request = new Operations\CreatePhoneNumberRequestBody(
+    userId: '<id>',
+    phoneNumber: '741.279.0107 x857',
+);
 
 $response = $sdk->phoneNumbers->create(
     request: $request

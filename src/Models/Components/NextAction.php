@@ -9,10 +9,9 @@ declare(strict_types=1);
 namespace Clerk\Backend\Models\Components;
 
 
-class Verifications
+enum NextAction: string
 {
-
-    public function __construct()
-    {
-    }
+    case NeedsPrepare = 'needs_prepare';
+    case NeedsAttempt = 'needs_attempt';
+    case Unknown = '';
 }

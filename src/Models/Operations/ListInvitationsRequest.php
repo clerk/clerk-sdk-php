@@ -28,6 +28,30 @@ class ListInvitationsRequest
     public ?string $query = null;
 
     /**
+     * Allows to return organizations in a particular order.
+     *
+     * At the moment, you can order the returned organizations either by their `name`, `created_at` or `members_count`.
+     * In order to specify the direction, you can use the `+/-` symbols prepended in the property to order by.
+     * For example, if you want organizations to be returned in descending order according to their `created_at` property, you can use `-created_at`.
+     * If you don't use `+` or `-`, then `+` is implied.
+     *
+     * @var ?string $orderBy
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=order_by')]
+    public ?string $orderBy = null;
+
+    /**
+     * Whether to paginate the results.
+     *
+     * If true, the results will be paginated.
+     * If false, the results will not be paginated.
+     *
+     * @var ?bool $paginated
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=paginated')]
+    public ?bool $paginated = null;
+
+    /**
      * Applies a limit to the number of results returned.
      *
      * Can be used for paginating the results together with `offset`.
@@ -49,16 +73,20 @@ class ListInvitationsRequest
     public ?int $offset = null;
 
     /**
-     * @param  ?int  $limit
-     * @param  ?int  $offset
      * @param  ?ListInvitationsQueryParamStatus  $status
      * @param  ?string  $query
+     * @param  ?string  $orderBy
+     * @param  ?bool  $paginated
+     * @param  ?int  $limit
+     * @param  ?int  $offset
      * @phpstan-pure
      */
-    public function __construct(?ListInvitationsQueryParamStatus $status = null, ?string $query = null, ?int $limit = 10, ?int $offset = 0)
+    public function __construct(?ListInvitationsQueryParamStatus $status = null, ?string $query = null, ?string $orderBy = null, ?bool $paginated = null, ?int $limit = 10, ?int $offset = 0)
     {
         $this->status = $status;
         $this->query = $query;
+        $this->orderBy = $orderBy;
+        $this->paginated = $paginated;
         $this->limit = $limit;
         $this->offset = $offset;
     }

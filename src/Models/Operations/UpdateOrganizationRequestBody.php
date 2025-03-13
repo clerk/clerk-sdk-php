@@ -32,18 +32,10 @@ class UpdateOrganizationRequestBody
     public ?array $privateMetadata = null;
 
     /**
-     * A custom date/time denoting _when_ the organization was created, specified in RFC3339 format (e.g. `2012-10-20T07:15:20.902Z`).
-     *
-     * @var ?string $createdAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $createdAt = null;
-
-    /**
      * The new name of the organization.
      *
      * May not contain URLs or HTML.
+     * Max length: 256
      *
      * @var ?string $name
      */
@@ -79,23 +71,32 @@ class UpdateOrganizationRequestBody
     public ?bool $adminDeleteEnabled = null;
 
     /**
+     * A custom date/time denoting _when_ the organization was created, specified in RFC3339 format (e.g. `2012-10-20T07:15:20.902Z`).
+     *
+     * @var ?string $createdAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $createdAt = null;
+
+    /**
      * @param  ?array<string, mixed>  $publicMetadata
      * @param  ?array<string, mixed>  $privateMetadata
-     * @param  ?string  $createdAt
      * @param  ?string  $name
      * @param  ?string  $slug
      * @param  ?int  $maxAllowedMemberships
      * @param  ?bool  $adminDeleteEnabled
+     * @param  ?string  $createdAt
      * @phpstan-pure
      */
-    public function __construct(?array $publicMetadata = null, ?array $privateMetadata = null, ?string $createdAt = null, ?string $name = null, ?string $slug = null, ?int $maxAllowedMemberships = null, ?bool $adminDeleteEnabled = null)
+    public function __construct(?array $publicMetadata = null, ?array $privateMetadata = null, ?string $name = null, ?string $slug = null, ?int $maxAllowedMemberships = null, ?bool $adminDeleteEnabled = null, ?string $createdAt = null)
     {
         $this->publicMetadata = $publicMetadata;
         $this->privateMetadata = $privateMetadata;
-        $this->createdAt = $createdAt;
         $this->name = $name;
         $this->slug = $slug;
         $this->maxAllowedMemberships = $maxAllowedMemberships;
         $this->adminDeleteEnabled = $adminDeleteEnabled;
+        $this->createdAt = $createdAt;
     }
 }

@@ -12,12 +12,21 @@ use Clerk\Backend\Utils\SpeakeasyMetadata;
 class GetPublicInterstitialRequest
 {
     /**
-     * The Frontend API key of your instance
+     * Please use `frontend_api` instead
      *
-     * @var ?string $frontendApi
+     * @var ?string $frontendApiQueryParameter
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=frontendApi')]
-    public ?string $frontendApi = null;
+    public ?string $frontendApiQueryParameter = null;
+
+    /**
+     * The Frontend API key of your instance
+     *
+     * @var ?string $frontendApiQueryParameter1
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=frontend_api')]
+    public ?string $frontendApiQueryParameter1 = null;
 
     /**
      * The publishable key of your instance
@@ -28,13 +37,55 @@ class GetPublicInterstitialRequest
     public ?string $publishableKey = null;
 
     /**
-     * @param  ?string  $frontendApi
+     * The proxy URL of your instance
+     *
+     * @var ?string $proxyUrl
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=proxy_url')]
+    public ?string $proxyUrl = null;
+
+    /**
+     * The domain of your instance
+     *
+     * @var ?string $domain
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=domain')]
+    public ?string $domain = null;
+
+    /**
+     * The sign in URL of your instance
+     *
+     * @var ?string $signInUrl
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=sign_in_url')]
+    public ?string $signInUrl = null;
+
+    /**
+     * Whether to use the domain for the script URL
+     *
+     * @var ?bool $useDomainForScript
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=use_domain_for_script')]
+    public ?bool $useDomainForScript = null;
+
+    /**
+     * @param  ?string  $frontendApiQueryParameter
+     * @param  ?string  $frontendApiQueryParameter1
      * @param  ?string  $publishableKey
+     * @param  ?string  $proxyUrl
+     * @param  ?string  $domain
+     * @param  ?string  $signInUrl
+     * @param  ?bool  $useDomainForScript
      * @phpstan-pure
      */
-    public function __construct(?string $frontendApi = null, ?string $publishableKey = null)
+    public function __construct(?string $frontendApiQueryParameter = null, ?string $frontendApiQueryParameter1 = null, ?string $publishableKey = null, ?string $proxyUrl = null, ?string $domain = null, ?string $signInUrl = null, ?bool $useDomainForScript = null)
     {
-        $this->frontendApi = $frontendApi;
+        $this->frontendApiQueryParameter = $frontendApiQueryParameter;
+        $this->frontendApiQueryParameter1 = $frontendApiQueryParameter1;
         $this->publishableKey = $publishableKey;
+        $this->proxyUrl = $proxyUrl;
+        $this->domain = $domain;
+        $this->signInUrl = $signInUrl;
+        $this->useDomainForScript = $useDomainForScript;
     }
 }

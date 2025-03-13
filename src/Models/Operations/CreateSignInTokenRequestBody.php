@@ -14,11 +14,10 @@ class CreateSignInTokenRequestBody
     /**
      * The ID of the user that can use the newly created sign in token
      *
-     * @var ?string $userId
+     * @var string $userId
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('user_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $userId = null;
+    public string $userId;
 
     /**
      * Optional parameter to specify the life duration of the sign in token in seconds.
@@ -32,11 +31,11 @@ class CreateSignInTokenRequestBody
     public ?int $expiresInSeconds = null;
 
     /**
-     * @param  ?string  $userId
+     * @param  string  $userId
      * @param  ?int  $expiresInSeconds
      * @phpstan-pure
      */
-    public function __construct(?string $userId = null, ?int $expiresInSeconds = 2592000)
+    public function __construct(string $userId, ?int $expiresInSeconds = 2592000)
     {
         $this->userId = $userId;
         $this->expiresInSeconds = $expiresInSeconds;

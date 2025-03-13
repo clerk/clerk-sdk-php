@@ -30,7 +30,10 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$request = new Operations\CreateEmailAddressRequestBody();
+$request = new Operations\CreateEmailAddressRequestBody(
+    userId: '<id>',
+    emailAddress: 'Loyal79@yahoo.com',
+);
 
 $response = $sdk->emailAddresses->create(
     request: $request

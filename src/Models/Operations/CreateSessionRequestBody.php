@@ -14,17 +14,16 @@ class CreateSessionRequestBody
     /**
      * The ID representing the user
      *
-     * @var ?string $userId
+     * @var string $userId
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('user_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $userId = null;
+    public string $userId;
 
     /**
-     * @param  ?string  $userId
+     * @param  string  $userId
      * @phpstan-pure
      */
-    public function __construct(?string $userId = null)
+    public function __construct(string $userId)
     {
         $this->userId = $userId;
     }

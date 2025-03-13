@@ -5,7 +5,55 @@
 
 ### Available Operations
 
+* [get](#get) - Retrieve a sign-up by ID
 * [update](#update) - Update a sign-up
+
+## get
+
+Retrieve the details of the sign-up with the given ID
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->signUps->get(
+    id: '<id>'
+);
+
+if ($response->signUp !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                         | Type                              | Required                          | Description                       |
+| --------------------------------- | --------------------------------- | --------------------------------- | --------------------------------- |
+| `id`                              | *string*                          | :heavy_check_mark:                | The ID of the sign-up to retrieve |
+
+### Response
+
+**[?Operations\GetSignUpResponse](../../Models/Operations/GetSignUpResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 403                 | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## update
 

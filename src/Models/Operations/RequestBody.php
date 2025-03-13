@@ -51,6 +51,16 @@ class RequestBody
     public ?int $expiresInDays = null;
 
     /**
+     * The slug of the email template to use for the invitation email.
+     *
+     * @var ?CreateBulkInvitationsTemplateSlug $templateSlug
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('template_slug')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\CreateBulkInvitationsTemplateSlug|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?CreateBulkInvitationsTemplateSlug $templateSlug = null;
+
+    /**
      * Optional flag which denotes whether an email invitation should be sent to the given email address.
      *
      * Defaults to true.
@@ -74,6 +84,7 @@ class RequestBody
 
     /**
      * @param  string  $emailAddress
+     * @param  ?CreateBulkInvitationsTemplateSlug  $templateSlug
      * @param  ?array<string, mixed>  $publicMetadata
      * @param  ?string  $redirectUrl
      * @param  ?bool  $notify
@@ -81,12 +92,13 @@ class RequestBody
      * @param  ?int  $expiresInDays
      * @phpstan-pure
      */
-    public function __construct(string $emailAddress, ?array $publicMetadata = null, ?string $redirectUrl = null, ?int $expiresInDays = null, ?bool $notify = true, ?bool $ignoreExisting = false)
+    public function __construct(string $emailAddress, ?array $publicMetadata = null, ?string $redirectUrl = null, ?int $expiresInDays = null, ?CreateBulkInvitationsTemplateSlug $templateSlug = CreateBulkInvitationsTemplateSlug::Invitation, ?bool $notify = true, ?bool $ignoreExisting = false)
     {
         $this->emailAddress = $emailAddress;
         $this->publicMetadata = $publicMetadata;
         $this->redirectUrl = $redirectUrl;
         $this->expiresInDays = $expiresInDays;
+        $this->templateSlug = $templateSlug;
         $this->notify = $notify;
         $this->ignoreExisting = $ignoreExisting;
     }

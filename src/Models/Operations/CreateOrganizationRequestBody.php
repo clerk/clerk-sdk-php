@@ -15,6 +15,7 @@ class CreateOrganizationRequestBody
      * The name of the new organization.
      *
      * May not contain URLs or HTML.
+     * Max length: 256
      *
      * @var string $name
      */

@@ -57,6 +57,20 @@ class JWTTemplate
     public int $allowedClockSkew;
 
     /**
+     *
+     * @var bool $customSigningKey
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('custom_signing_key')]
+    public bool $customSigningKey;
+
+    /**
+     *
+     * @var string $signingAlgorithm
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('signing_algorithm')]
+    public string $signingAlgorithm;
+
+    /**
      * Unix timestamp of creation.
      *
      *
@@ -77,35 +91,19 @@ class JWTTemplate
     public int $updatedAt;
 
     /**
-     *
-     * @var ?bool $customSigningKey
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('custom_signing_key')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $customSigningKey = null;
-
-    /**
-     *
-     * @var ?string $signingAlgorithm
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('signing_algorithm')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $signingAlgorithm = null;
-
-    /**
      * @param  JWTTemplateObject  $object
      * @param  string  $id
      * @param  string  $name
      * @param  Claims  $claims
      * @param  int  $lifetime
      * @param  int  $allowedClockSkew
+     * @param  bool  $customSigningKey
+     * @param  string  $signingAlgorithm
      * @param  int  $createdAt
      * @param  int  $updatedAt
-     * @param  ?bool  $customSigningKey
-     * @param  ?string  $signingAlgorithm
      * @phpstan-pure
      */
-    public function __construct(JWTTemplateObject $object, string $id, string $name, Claims $claims, int $lifetime, int $allowedClockSkew, int $createdAt, int $updatedAt, ?bool $customSigningKey = null, ?string $signingAlgorithm = null)
+    public function __construct(JWTTemplateObject $object, string $id, string $name, Claims $claims, int $lifetime, int $allowedClockSkew, bool $customSigningKey, string $signingAlgorithm, int $createdAt, int $updatedAt)
     {
         $this->object = $object;
         $this->id = $id;
@@ -113,9 +111,9 @@ class JWTTemplate
         $this->claims = $claims;
         $this->lifetime = $lifetime;
         $this->allowedClockSkew = $allowedClockSkew;
-        $this->createdAt = $createdAt;
-        $this->updatedAt = $updatedAt;
         $this->customSigningKey = $customSigningKey;
         $this->signingAlgorithm = $signingAlgorithm;
+        $this->createdAt = $createdAt;
+        $this->updatedAt = $updatedAt;
     }
 }
