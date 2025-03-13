@@ -3,17 +3,14 @@
 
 ## Overview
 
-Invitations allow you to invite someone to sign up to your application, via email.
-<https://clerk.com/docs/authentication/invitations>
-
 ### Available Operations
 
-* [createBulkInvitations](#createbulkinvitations) - Create multiple invitations
+* [bulkCreate](#bulkcreate) - Create multiple invitations
 * [create](#create) - Create an invitation
 * [list](#list) - List all invitations
 * [revoke](#revoke) - Revokes an invitation
 
-## createBulkInvitations
+## bulkCreate
 
 Use this API operation to create multiple invitations for the provided email addresses. You can choose to send the
 invitations as emails by setting the `notify` parameter to `true`. There cannot be an existing invitation for any
@@ -38,11 +35,11 @@ $sdk = Backend\ClerkBackend::builder()
 
 $request = [
     new Operations\RequestBody(
-        emailAddress: 'Era_Pouros@yahoo.com',
+        emailAddress: 'Queen25@gmail.com',
     ),
 ];
 
-$response = $sdk->invitations->createBulkInvitations(
+$response = $sdk->invitations->bulkCreate(
     request: $request
 );
 
@@ -140,14 +137,10 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-
+$request = new Operations\ListInvitationsRequest();
 
 $response = $sdk->invitations->list(
-    limit: 10,
-    offset: 0,
-    status: Operations\ListInvitationsQueryParamStatus::Expired,
-    query: '<value>'
-
+    request: $request
 );
 
 if ($response->invitationList !== null) {
@@ -157,12 +150,9 @@ if ($response->invitationList !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                                 | Type                                                                                                                                      | Required                                                                                                                                  | Description                                                                                                                               |
-| ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `limit`                                                                                                                                   | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                     |
-| `offset`                                                                                                                                  | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`. |
-| `status`                                                                                                                                  | [?Operations\ListInvitationsQueryParamStatus](../../Models/Operations/ListInvitationsQueryParamStatus.md)                                 | :heavy_minus_sign:                                                                                                                        | Filter invitations based on their status                                                                                                  |
-| `query`                                                                                                                                   | *?string*                                                                                                                                 | :heavy_minus_sign:                                                                                                                        | Filter invitations based on their `email_address` or `id`                                                                                 |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `$request`                                                                             | [Operations\ListInvitationsRequest](../../Models/Operations/ListInvitationsRequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 
 ### Response
 

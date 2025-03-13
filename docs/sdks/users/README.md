@@ -3,23 +3,21 @@
 
 ## Overview
 
-The user object represents a user that has successfully signed up to your application.
-<https://clerk.com/docs/reference/clerkjs/user>
-
 ### Available Operations
 
 * [ban](#ban) - Ban a user
 * [create](#create) - Create a new user
 * [deleteBackupCodes](#deletebackupcodes) - Disable all user's Backup codes
 * [deleteExternalAccount](#deleteexternalaccount) - Delete External Account
-* [deleteTotp](#deletetotp) - Delete all the user's TOTPs
+* [deleteTOTP](#deletetotp) - Delete all the user's TOTPs
 * [delete](#delete) - Delete a user
 * [deleteProfileImage](#deleteprofileimage) - Delete user profile image
-* [disableMFA](#disablemfa) - Disable a user's MFA methods
+* [disableMfa](#disablemfa) - Disable a user's MFA methods
 * [getOAuthAccessToken](#getoauthaccesstoken) - Retrieve the OAuth access token of a user
 * [get](#get) - Retrieve a user
 * [list](#list) - List all users
 * [count](#count) - Count users
+* [getInstanceOrganizationMemberships](#getinstanceorganizationmemberships) - Get a list of all organization memberships within an instance.
 * [lock](#lock) - Lock a user
 * [setProfileImage](#setprofileimage) - Set user profile image
 * [unban](#unban) - Unban a user
@@ -31,7 +29,7 @@ The user object represents a user that has successfully signed up to your applic
 * [getOrganizationInvitations](#getorganizationinvitations) - Retrieve all invitations for a user
 * [getOrganizationMemberships](#getorganizationmemberships) - Retrieve all memberships for a user
 * [verifyPassword](#verifypassword) - Verify the password of a user
-* [verifyTOTP](#verifytotp) - Verify a TOTP or backup code for a user
+* [verifyTotp](#verifytotp) - Verify a TOTP or backup code for a user
 
 ## ban
 
@@ -233,7 +231,7 @@ if ($response->deletedObject !== null) {
 | Errors\ClerkErrors  | 500                 | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## deleteTotp
+## deleteTOTP
 
 Deletes all of the user's TOTPs.
 
@@ -254,7 +252,7 @@ $sdk = Backend\ClerkBackend::builder()
 
 
 
-$response = $sdk->users->deleteTotp(
+$response = $sdk->users->deleteTOTP(
     userId: '<id>'
 );
 
@@ -375,7 +373,7 @@ if ($response->user !== null) {
 | Errors\ClerkErrors  | 404                 | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## disableMFA
+## disableMfa
 
 Disable all of a user's MFA methods (e.g. OTP sent via SMS, TOTP on their authenticator app) at once.
 
@@ -396,7 +394,7 @@ $sdk = Backend\ClerkBackend::builder()
 
 
 
-$response = $sdk->users->disableMFA(
+$response = $sdk->users->disableMfa(
     userId: '<id>'
 );
 
@@ -436,6 +434,7 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
 
 $sdk = Backend\ClerkBackend::builder()
     ->setSecurity(
@@ -443,12 +442,13 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-
+$request = new Operations\GetOAuthAccessTokenRequest(
+    userId: '<id>',
+    provider: '<value>',
+);
 
 $response = $sdk->users->getOAuthAccessToken(
-    userId: '<id>',
-    provider: '<value>'
-
+    request: $request
 );
 
 if ($response->responseBodies !== null) {
@@ -458,10 +458,9 @@ if ($response->responseBodies !== null) {
 
 ### Parameters
 
-| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
-| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
-| `userId`                                                        | *string*                                                        | :heavy_check_mark:                                              | The ID of the user for which to retrieve the OAuth access token |
-| `provider`                                                      | *string*                                                        | :heavy_check_mark:                                              | The ID of the OAuth provider (e.g. `oauth_google`)              |
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `$request`                                                                                     | [Operations\GetOAuthAccessTokenRequest](../../Models/Operations/GetOAuthAccessTokenRequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 
 ### Response
 
@@ -595,7 +594,12 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$request = new Operations\GetUsersCountRequest();
+$request = new Operations\GetUsersCountRequest(
+    lastActiveAtBefore: 1700690400000,
+    lastActiveAtAfter: 1700690400000,
+    createdAtBefore: 1730160000000,
+    createdAtAfter: 1730160000000,
+);
 
 $response = $sdk->users->count(
     request: $request
@@ -621,6 +625,59 @@ if ($response->totalCount !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 422                 | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## getInstanceOrganizationMemberships
+
+Retrieves all organization user memberships for the given instance.
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->users->getInstanceOrganizationMemberships(
+    orderBy: '<value>',
+    limit: 10,
+    offset: 0
+
+);
+
+if ($response->organizationMemberships !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                                                          | Type                                                                                                                                                                                                                               | Required                                                                                                                                                                                                                           | Description                                                                                                                                                                                                                        |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `orderBy`                                                                                                                                                                                                                          | *?string*                                                                                                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                                                                                 | Sorts organizations memberships by phone_number, email_address, created_at, first_name, last_name or username.<br/>By prepending one of those values with + or -,<br/>we can choose to sort in ascending (ASC) or descending (DESC) order. |
+| `limit`                                                                                                                                                                                                                            | *?int*                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                 | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                                                                                                              |
+| `offset`                                                                                                                                                                                                                           | *?int*                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                 | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`.                                                                                  |
+
+### Response
+
+**[?Operations\InstanceGetOrganizationMembershipsResponse](../../Models/Operations/InstanceGetOrganizationMembershipsResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 401, 422       | application/json    |
+| Errors\ClerkErrors  | 500                 | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## lock
@@ -1167,7 +1224,7 @@ $sdk = Backend\ClerkBackend::builder()
     ->build();
 
 $requestBody = new Operations\VerifyPasswordRequestBody(
-    password: 'fSBhIihdxMPlTHN',
+    password: '1fwgbLjqCRGKsWc',
 );
 
 $response = $sdk->users->verifyPassword(
@@ -1199,7 +1256,7 @@ if ($response->object !== null) {
 | Errors\ClerkErrors  | 500                 | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## verifyTOTP
+## verifyTotp
 
 Verify that the provided TOTP or backup code is valid for the user.
 Verifying a backup code will result it in being consumed (i.e. it will
@@ -1226,7 +1283,7 @@ $requestBody = new Operations\VerifyTOTPRequestBody(
     code: '<value>',
 );
 
-$response = $sdk->users->verifyTOTP(
+$response = $sdk->users->verifyTotp(
     userId: '<id>',
     requestBody: $requestBody
 

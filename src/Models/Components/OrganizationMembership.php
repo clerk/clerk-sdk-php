@@ -14,31 +14,70 @@ class OrganizationMembership
 {
     /**
      *
-     * @var ?string $id
+     * @var string $id
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $id = null;
+    public string $id;
 
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
      *
      *
-     * @var ?OrganizationMembershipObject $object
+     * @var OrganizationMembershipObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationMembershipObject|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?OrganizationMembershipObject $object = null;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationMembershipObject')]
+    public OrganizationMembershipObject $object;
 
     /**
      *
-     * @var ?string $role
+     * @var string $role
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('role')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $role = null;
+    public string $role;
+
+    /**
+     * $permissions
+     *
+     * @var array<string> $permissions
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('permissions')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>')]
+    public array $permissions;
+
+    /**
+     * Metadata saved on the organization membership, accessible from both Frontend and Backend APIs
+     *
+     * @var array<string, mixed> $publicMetadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
+    public array $publicMetadata;
+
+    /**
+     *
+     * @var OrganizationMembershipOrganization $organization
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('organization')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationMembershipOrganization')]
+    public OrganizationMembershipOrganization $organization;
+
+    /**
+     * Unix timestamp of creation.
+     *
+     * @var int $createdAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
+    public int $createdAt;
+
+    /**
+     * Unix timestamp of last update.
+     *
+     * @var int $updatedAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
+    public int $updatedAt;
 
     /**
      *
@@ -47,26 +86,6 @@ class OrganizationMembership
     #[\Speakeasy\Serializer\Annotation\SerializedName('role_name')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $roleName = null;
-
-    /**
-     * $permissions
-     *
-     * @var ?array<string> $permissions
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('permissions')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $permissions = null;
-
-    /**
-     * Metadata saved on the organization membership, accessible from both Frontend and Backend APIs
-     *
-     * @var ?array<string, mixed> $publicMetadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $publicMetadata = null;
 
     /**
      * Metadata saved on the organization membership, accessible only from the Backend API
@@ -79,67 +98,41 @@ class OrganizationMembership
     public ?array $privateMetadata = null;
 
     /**
+     * An organization membership with public user data populated
      *
-     * @var ?OrganizationMembershipOrganization $organization
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('organization')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationMembershipOrganization|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?OrganizationMembershipOrganization $organization = null;
-
-    /**
-     *
-     * @var ?PublicUserData $publicUserData
+     * @var ?OrganizationMembershipPublicUserData $publicUserData
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('public_user_data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\PublicUserData|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationMembershipPublicUserData|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?PublicUserData $publicUserData = null;
+    public ?OrganizationMembershipPublicUserData $publicUserData = null;
 
     /**
-     * Unix timestamp of creation.
-     *
-     * @var ?int $createdAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $createdAt = null;
-
-    /**
-     * Unix timestamp of last update.
-     *
-     * @var ?int $updatedAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $updatedAt = null;
-
-    /**
-     * @param  ?string  $id
-     * @param  ?OrganizationMembershipObject  $object
-     * @param  ?string  $role
+     * @param  string  $id
+     * @param  OrganizationMembershipObject  $object
+     * @param  string  $role
+     * @param  array<string>  $permissions
+     * @param  array<string, mixed>  $publicMetadata
+     * @param  OrganizationMembershipOrganization  $organization
+     * @param  int  $createdAt
+     * @param  int  $updatedAt
      * @param  ?string  $roleName
-     * @param  ?array<string>  $permissions
-     * @param  ?array<string, mixed>  $publicMetadata
      * @param  ?array<string, mixed>  $privateMetadata
-     * @param  ?OrganizationMembershipOrganization  $organization
-     * @param  ?PublicUserData  $publicUserData
-     * @param  ?int  $createdAt
-     * @param  ?int  $updatedAt
+     * @param  ?OrganizationMembershipPublicUserData  $publicUserData
      * @phpstan-pure
      */
-    public function __construct(?string $id = null, ?OrganizationMembershipObject $object = null, ?string $role = null, ?string $roleName = null, ?array $permissions = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?OrganizationMembershipOrganization $organization = null, ?PublicUserData $publicUserData = null, ?int $createdAt = null, ?int $updatedAt = null)
+    public function __construct(string $id, OrganizationMembershipObject $object, string $role, array $permissions, array $publicMetadata, OrganizationMembershipOrganization $organization, int $createdAt, int $updatedAt, ?string $roleName = null, ?array $privateMetadata = null, ?OrganizationMembershipPublicUserData $publicUserData = null)
     {
         $this->id = $id;
         $this->object = $object;
         $this->role = $role;
-        $this->roleName = $roleName;
         $this->permissions = $permissions;
         $this->publicMetadata = $publicMetadata;
-        $this->privateMetadata = $privateMetadata;
         $this->organization = $organization;
-        $this->publicUserData = $publicUserData;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
+        $this->roleName = $roleName;
+        $this->privateMetadata = $privateMetadata;
+        $this->publicUserData = $publicUserData;
     }
 }

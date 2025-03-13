@@ -15,28 +15,25 @@ class Instance
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var ?InstanceObject $object
+     * @var InstanceObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\InstanceObject|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?InstanceObject $object = null;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\InstanceObject')]
+    public InstanceObject $object;
 
     /**
      *
-     * @var ?string $id
+     * @var string $id
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $id = null;
+    public string $id;
 
     /**
      *
-     * @var ?string $environmentType
+     * @var string $environmentType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('environment_type')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $environmentType = null;
+    public string $environmentType;
 
     /**
      * $allowedOrigins
@@ -45,17 +42,16 @@ class Instance
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('allowed_origins')]
     #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $allowedOrigins = null;
+    public ?array $allowedOrigins;
 
     /**
-     * @param  ?InstanceObject  $object
-     * @param  ?string  $id
-     * @param  ?string  $environmentType
+     * @param  InstanceObject  $object
+     * @param  string  $id
+     * @param  string  $environmentType
      * @param  ?array<string>  $allowedOrigins
      * @phpstan-pure
      */
-    public function __construct(?InstanceObject $object = null, ?string $id = null, ?string $environmentType = null, ?array $allowedOrigins = null)
+    public function __construct(InstanceObject $object, string $id, string $environmentType, ?array $allowedOrigins = null)
     {
         $this->object = $object;
         $this->id = $id;

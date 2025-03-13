@@ -12,12 +12,12 @@
 Components\Saml $value = /* values here */
 ```
 
-### `Components\Ticket`
+### `Components\VerificationTicket`
 
 ```php
 /**
-* @var Components\Ticket
+* @var Components\VerificationTicket
 */
-Components\Ticket $value = /* values here */
+Components\VerificationTicket $value = /* values here */
 ```
 

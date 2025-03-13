@@ -20,12 +20,23 @@ class CreateOrganizationInvitationBulkRequestBody
     public string $emailAddress;
 
     /**
-     * The role of the new member in the organization.
+     * The role of the new member in the organization
      *
      * @var string $role
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('role')]
     public string $role;
+
+    /**
+     * The ID of the user that invites the new member to the organization.
+     *
+     * Must be an administrator in the organization.
+     *
+     * @var ?string $inviterUserId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('inviter_user_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $inviterUserId = null;
 
     /**
      * Metadata saved on the organization invitation, read-only from the Frontend API and fully accessible (read/write) from the Backend API.
@@ -61,32 +72,32 @@ class CreateOrganizationInvitationBulkRequestBody
     public ?string $redirectUrl = null;
 
     /**
-     * The ID of the user that invites the new member to the organization.
+     * The number of days the invitation will be valid for. By default, the invitation has a 30 days expire.
      *
-     * Must be an administrator in the organization.
-     *
-     * @var ?string $inviterUserId
+     * @var ?int $expiresInDays
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('inviter_user_id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('expires_in_days')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $inviterUserId = null;
+    public ?int $expiresInDays = null;
 
     /**
      * @param  string  $emailAddress
      * @param  string  $role
+     * @param  ?string  $inviterUserId
      * @param  ?array<string, mixed>  $publicMetadata
      * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?string  $redirectUrl
-     * @param  ?string  $inviterUserId
+     * @param  ?int  $expiresInDays
      * @phpstan-pure
      */
-    public function __construct(string $emailAddress, string $role, ?array $publicMetadata = null, ?array $privateMetadata = null, ?string $redirectUrl = null, ?string $inviterUserId = null)
+    public function __construct(string $emailAddress, string $role, ?string $inviterUserId = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?string $redirectUrl = null, ?int $expiresInDays = null)
     {
         $this->emailAddress = $emailAddress;
         $this->role = $role;
+        $this->inviterUserId = $inviterUserId;
         $this->publicMetadata = $publicMetadata;
         $this->privateMetadata = $privateMetadata;
         $this->redirectUrl = $redirectUrl;
-        $this->inviterUserId = $inviterUserId;
+        $this->expiresInDays = $expiresInDays;
     }
 }

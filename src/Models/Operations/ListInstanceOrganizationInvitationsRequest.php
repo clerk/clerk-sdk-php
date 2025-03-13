@@ -28,6 +28,20 @@ class ListInstanceOrganizationInvitationsRequest
     public ?string $query = null;
 
     /**
+     * Allows to return organization invitations in a particular order.
+     *
+     * At the moment, you can order the returned organization invitations either by their `created_at` or `email_address`.
+     * In order to specify the direction, you can use the `+/-` symbols prepended in the property to order by.
+     * For example, if you want organization invitations to be returned in descending order according to their `created_at` property, you can use `-created_at`.
+     * If you don't use `+` or `-`, then `+` is implied.
+     * Defaults to `-created_at`.
+     *
+     * @var ?string $orderBy
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=order_by')]
+    public ?string $orderBy = null;
+
+    /**
      * Applies a limit to the number of results returned.
      *
      * Can be used for paginating the results together with `offset`.
@@ -49,33 +63,19 @@ class ListInstanceOrganizationInvitationsRequest
     public ?int $offset = null;
 
     /**
-     * Allows to return organization invitations in a particular order.
-     *
-     * At the moment, you can order the returned organization invitations either by their `created_at` or `email_address`.
-     * In order to specify the direction, you can use the `+/-` symbols prepended in the property to order by.
-     * For example, if you want organization invitations to be returned in descending order according to their `created_at` property, you can use `-created_at`.
-     * If you don't use `+` or `-`, then `+` is implied.
-     * Defaults to `-created_at`.
-     *
-     * @var ?string $orderBy
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=order_by')]
-    public ?string $orderBy = null;
-
-    /**
-     * @param  ?int  $limit
-     * @param  ?int  $offset
      * @param  ?string  $orderBy
      * @param  ?ListInstanceOrganizationInvitationsQueryParamStatus  $status
      * @param  ?string  $query
+     * @param  ?int  $limit
+     * @param  ?int  $offset
      * @phpstan-pure
      */
-    public function __construct(?ListInstanceOrganizationInvitationsQueryParamStatus $status = null, ?string $query = null, ?int $limit = 10, ?int $offset = 0, ?string $orderBy = '-created_at')
+    public function __construct(?ListInstanceOrganizationInvitationsQueryParamStatus $status = null, ?string $query = null, ?string $orderBy = '-created_at', ?int $limit = 10, ?int $offset = 0)
     {
         $this->status = $status;
         $this->query = $query;
+        $this->orderBy = $orderBy;
         $this->limit = $limit;
         $this->offset = $offset;
-        $this->orderBy = $orderBy;
     }
 }

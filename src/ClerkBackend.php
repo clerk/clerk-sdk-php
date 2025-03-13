@@ -11,15 +11,13 @@ namespace Clerk\Backend;
 
 
 /**
- * ClerkBackend - Clerk Backend API: The Clerk REST Backend API, meant to be accessed by backend
+ * ClerkBackend - Clerk Backend API: The Clerk REST Backend API, meant to be accessed by backend servers.
  *
- * servers.
  *
  * ### Versions
  *
  * When the API changes in a way that isn't compatible with older versions, a new version is released.
- * Each version is identified by its release date, e.g. `2021-02-05`. For more information, please see [Clerk API Versions](https://clerk.com/docs/backend-requests/versioning/overview).
- *
+ * Each version is identified by its release date, e.g. `2024-10-01`. For more information, please see [Clerk API Versions](https://clerk.com/docs/versioning/available-versions).
  *
  * Please see https://clerk.com/docs for more information.
  * https://clerk.com/docs
@@ -32,34 +30,16 @@ class ClerkBackend
         'https://api.clerk.com/v1',
     ];
 
-    /**
-     * Various endpoints that do not belong in any particular category.
-     *
-     * @var Miscellaneous $$miscellaneous
-     */
     public Miscellaneous $miscellaneous;
 
     public Jwks $jwks;
 
-    /**
-     * The Client object tracks sessions, as well as the state of any sign in and sign up attempts, for a given device.
-     *
-     * @var Clients $$clients
-     */
     public Clients $clients;
 
     public EmailAddresses $emailAddresses;
 
     public PhoneNumbers $phoneNumbers;
 
-    /**
-     * The Session object is an abstraction over an HTTP session.
-     *
-     * It models the period of information exchange between a user and the server.
-     * Sessions are created when a user successfully goes through the sign in or sign up flows.
-     *
-     * @var Sessions $$sessions
-     */
     public Sessions $sessions;
 
     public EmailSMSTemplates $emailSMSTemplates;
@@ -68,23 +48,11 @@ class ClerkBackend
 
     public Templates $templates;
 
-    /**
-     * The user object represents a user that has successfully signed up to your application.
-     *
-     * @var Users $$users
-     */
     public Users $users;
 
-    /**
-     * Invitations allow you to invite someone to sign up to your application, via email.
-     *
-     * @var Invitations $$invitations
-     */
     public Invitations $invitations;
 
     public OrganizationInvitations $organizationInvitations;
-
-    public AllowlistBlocklist $allowlistBlocklist;
 
     public AllowlistIdentifiers $allowlistIdentifiers;
 
@@ -94,42 +62,23 @@ class ClerkBackend
 
     public ActorTokens $actorTokens;
 
-    /**
-     * Domains represent each instance's URLs and DNS setup.
-     *
-     * @var Domains $$domains
-     */
     public Domains $domains;
 
     public InstanceSettings $instanceSettings;
 
-    /**
-     * You can configure webhooks to be notified about various events that happen on your instance.
-     *
-     * @var Webhooks $$webhooks
-     */
     public Webhooks $webhooks;
 
     public JwtTemplates $jwtTemplates;
 
-    /**
-     * Organizations are used to group members under a common entity and provide shared access to resources.
-     *
-     * @var Organizations $$organizations
-     */
     public Organizations $organizations;
 
     public OrganizationMemberships $organizationMemberships;
 
     public OrganizationDomains $organizationDomains;
 
-    public OrganizationDomain $organizationDomain;
-
     public ProxyChecks $proxyChecks;
 
-    public RedirectURLs $redirectURLs;
-
-    public ClerkBackendRedirectUrls $redirectUrls;
+    public RedirectUrls $redirectUrls;
 
     public SignInTokens $signInTokens;
 
@@ -171,7 +120,6 @@ class ClerkBackend
         $this->users = new Users($this->sdkConfiguration);
         $this->invitations = new Invitations($this->sdkConfiguration);
         $this->organizationInvitations = new OrganizationInvitations($this->sdkConfiguration);
-        $this->allowlistBlocklist = new AllowlistBlocklist($this->sdkConfiguration);
         $this->allowlistIdentifiers = new AllowlistIdentifiers($this->sdkConfiguration);
         $this->blocklistIdentifiers = new BlocklistIdentifiers($this->sdkConfiguration);
         $this->betaFeatures = new BetaFeatures($this->sdkConfiguration);
@@ -183,10 +131,8 @@ class ClerkBackend
         $this->organizations = new Organizations($this->sdkConfiguration);
         $this->organizationMemberships = new OrganizationMemberships($this->sdkConfiguration);
         $this->organizationDomains = new OrganizationDomains($this->sdkConfiguration);
-        $this->organizationDomain = new OrganizationDomain($this->sdkConfiguration);
         $this->proxyChecks = new ProxyChecks($this->sdkConfiguration);
-        $this->redirectURLs = new RedirectURLs($this->sdkConfiguration);
-        $this->redirectUrls = new ClerkBackendRedirectUrls($this->sdkConfiguration);
+        $this->redirectUrls = new RedirectUrls($this->sdkConfiguration);
         $this->signInTokens = new SignInTokens($this->sdkConfiguration);
         $this->signUps = new SignUps($this->sdkConfiguration);
         $this->oauthApplications = new OauthApplications($this->sdkConfiguration);

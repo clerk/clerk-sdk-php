@@ -19,3 +19,13 @@ Based on:
 - [php v0.1.6] .
 ### Releases
 - [Composer v0.1.6] https://packagist.org/packages/clerkinc/backend-php#v0.1.6 - .
+
+## 2025-03-13 00:30:27
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.517.2 (2.548.5) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [php v0.2.0] .
+### Releases
+- [Composer v0.2.0] https://packagist.org/packages/clerkinc/backend-php#v0.2.0 - .

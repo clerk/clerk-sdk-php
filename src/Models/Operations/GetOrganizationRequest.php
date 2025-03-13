@@ -28,13 +28,23 @@ class GetOrganizationRequest
     public ?bool $includeMembersCount = null;
 
     /**
+     * Flag to denote whether or not to include a member with elevated permissions who is not currently a member of the organization.
+     *
+     * @var ?bool $includeMissingMemberWithElevatedPermissions
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=include_missing_member_with_elevated_permissions')]
+    public ?bool $includeMissingMemberWithElevatedPermissions = null;
+
+    /**
      * @param  string  $organizationId
      * @param  ?bool  $includeMembersCount
+     * @param  ?bool  $includeMissingMemberWithElevatedPermissions
      * @phpstan-pure
      */
-    public function __construct(string $organizationId, ?bool $includeMembersCount = null)
+    public function __construct(string $organizationId, ?bool $includeMembersCount = null, ?bool $includeMissingMemberWithElevatedPermissions = null)
     {
         $this->organizationId = $organizationId;
         $this->includeMembersCount = $includeMembersCount;
+        $this->includeMissingMemberWithElevatedPermissions = $includeMissingMemberWithElevatedPermissions;
     }
 }

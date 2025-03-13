@@ -5,4 +5,4 @@
 
 | Field                        | Type                         | Required                     | Description                  |
 | ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
-| `userId`                     | *?string*                    | :heavy_minus_sign:           | The ID representing the user |
+| `userId`                     | *string*                     | :heavy_check_mark:           | The ID representing the user |

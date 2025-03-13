@@ -59,6 +59,9 @@ class Session
     public int $lastActiveAt;
 
     /**
+     * Unix timestamp of expiration.
+     *
+     *
      *
      * @var int $expireAt
      */
@@ -66,6 +69,9 @@ class Session
     public int $expireAt;
 
     /**
+     * Unix timestamp of abandonment.
+     *
+     *
      *
      * @var int $abandonAt
      */
@@ -111,12 +117,12 @@ class Session
 
     /**
      *
-     * @var ?LatestActivity $latestActivity
+     * @var ?SessionActivityResponse $latestActivity
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('latest_activity')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\LatestActivity|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SessionActivityResponse|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?LatestActivity $latestActivity = null;
+    public ?SessionActivityResponse $latestActivity = null;
 
     /**
      * @param  SessionObject  $object
@@ -131,10 +137,10 @@ class Session
      * @param  int  $createdAt
      * @param  ?Actor  $actor
      * @param  ?string  $lastActiveOrganizationId
-     * @param  ?LatestActivity  $latestActivity
+     * @param  ?SessionActivityResponse  $latestActivity
      * @phpstan-pure
      */
-    public function __construct(SessionObject $object, string $id, string $userId, string $clientId, Status $status, int $lastActiveAt, int $expireAt, int $abandonAt, int $updatedAt, int $createdAt, ?Actor $actor = null, ?string $lastActiveOrganizationId = null, ?LatestActivity $latestActivity = null)
+    public function __construct(SessionObject $object, string $id, string $userId, string $clientId, Status $status, int $lastActiveAt, int $expireAt, int $abandonAt, int $updatedAt, int $createdAt, ?Actor $actor = null, ?string $lastActiveOrganizationId = null, ?SessionActivityResponse $latestActivity = null)
     {
         $this->object = $object;
         $this->id = $id;

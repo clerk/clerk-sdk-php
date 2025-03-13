@@ -76,11 +76,11 @@ class EmailAddress
 
     /**
      *
-     * @var Otp|Admin|FromOAuth|null $verification
+     * @var Otp|Admin|FromOAuth|Ticket|null $verification
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Otp|\Clerk\Backend\Models\Components\Admin|\Clerk\Backend\Models\Components\FromOAuth|null')]
-    public Otp|Admin|FromOAuth|null $verification;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Otp|\Clerk\Backend\Models\Components\Admin|\Clerk\Backend\Models\Components\FromOAuth|\Clerk\Backend\Models\Components\Ticket|null')]
+    public Otp|Admin|FromOAuth|Ticket|null $verification;
 
     /**
      * Indicates whether this email address domain matches an active enterprise connection.
@@ -101,11 +101,11 @@ class EmailAddress
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  ?string  $id
-     * @param  Otp|Admin|FromOAuth|null  $verification
+     * @param  Otp|Admin|FromOAuth|Ticket|null  $verification
      * @param  ?bool  $matchesSsoConnection
      * @phpstan-pure
      */
-    public function __construct(EmailAddressObject $object, string $emailAddress, bool $reserved, array $linkedTo, int $createdAt, int $updatedAt, ?string $id = null, Otp|Admin|FromOAuth|null $verification = null, ?bool $matchesSsoConnection = null)
+    public function __construct(EmailAddressObject $object, string $emailAddress, bool $reserved, array $linkedTo, int $createdAt, int $updatedAt, ?string $id = null, Otp|Admin|FromOAuth|Ticket|null $verification = null, ?bool $matchesSsoConnection = null)
     {
         $this->object = $object;
         $this->emailAddress = $emailAddress;

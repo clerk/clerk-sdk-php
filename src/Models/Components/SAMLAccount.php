@@ -62,11 +62,11 @@ class SAMLAccount
 
     /**
      *
-     * @var Saml|Ticket|null $verification
+     * @var Saml|VerificationTicket|null $verification
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Saml|\Clerk\Backend\Models\Components\Ticket|null')]
-    public Saml|Ticket|null $verification;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Saml|\Clerk\Backend\Models\Components\VerificationTicket|null')]
+    public Saml|VerificationTicket|null $verification;
 
     /**
      *
@@ -108,14 +108,14 @@ class SAMLAccount
      * @param  bool  $active
      * @param  string  $emailAddress
      * @param  ?array<string, mixed>  $publicMetadata
-     * @param  Saml|Ticket|null  $verification
+     * @param  Saml|VerificationTicket|null  $verification
      * @param  ?string  $firstName
      * @param  ?string  $lastName
      * @param  ?string  $providerUserId
      * @param  ?SAMLConnectionSAMLConnection  $samlConnection
      * @phpstan-pure
      */
-    public function __construct(string $id, SAMLAccountObject $object, string $provider, bool $active, string $emailAddress, ?array $publicMetadata = null, Saml|Ticket|null $verification = null, ?string $firstName = null, ?string $lastName = null, ?string $providerUserId = null, ?SAMLConnectionSAMLConnection $samlConnection = null)
+    public function __construct(string $id, SAMLAccountObject $object, string $provider, bool $active, string $emailAddress, ?array $publicMetadata = null, Saml|VerificationTicket|null $verification = null, ?string $firstName = null, ?string $lastName = null, ?string $providerUserId = null, ?SAMLConnectionSAMLConnection $samlConnection = null)
     {
         $this->id = $id;
         $this->object = $object;

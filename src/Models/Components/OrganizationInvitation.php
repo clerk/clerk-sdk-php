@@ -13,48 +13,68 @@ namespace Clerk\Backend\Models\Components;
 class OrganizationInvitation
 {
     /**
-     *
-     * @var ?string $id
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $id = null;
-
-    /**
      * String representing the object's type. Objects of the same type share the same value.
      *
      *
      *
-     * @var ?OrganizationInvitationObject $object
+     * @var OrganizationInvitationObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationInvitationObject|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?OrganizationInvitationObject $object = null;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationInvitationObject')]
+    public OrganizationInvitationObject $object;
 
     /**
      *
-     * @var ?string $emailAddress
+     * @var string $id
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    public string $id;
+
+    /**
+     *
+     * @var string $emailAddress
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('email_address')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $emailAddress = null;
+    public string $emailAddress;
 
     /**
      *
-     * @var ?string $role
+     * @var string $role
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('role')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $role = null;
+    public string $role;
 
     /**
      *
-     * @var ?string $roleName
+     * @var string $roleName
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('role_name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $roleName = null;
+    public string $roleName;
+
+    /**
+     * $publicMetadata
+     *
+     * @var array<string, mixed> $publicMetadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
+    public array $publicMetadata;
+
+    /**
+     * Unix timestamp of creation.
+     *
+     * @var int $createdAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
+    public int $createdAt;
+
+    /**
+     * Unix timestamp of last update.
+     *
+     * @var int $updatedAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
+    public int $updatedAt;
 
     /**
      *
@@ -73,16 +93,6 @@ class OrganizationInvitation
     public ?string $status = null;
 
     /**
-     * $publicMetadata
-     *
-     * @var ?array<string, mixed> $publicMetadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $publicMetadata = null;
-
-    /**
      * $privateMetadata
      *
      * @var ?array<string, mixed> $privateMetadata
@@ -93,71 +103,49 @@ class OrganizationInvitation
     public ?array $privateMetadata = null;
 
     /**
-     * Unix timestamp of creation.
-     *
-     * @var ?int $createdAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $createdAt = null;
-
-    /**
-     * Unix timestamp of last update.
-     *
-     * @var ?int $updatedAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $updatedAt = null;
-
-    /**
      *
      * @var ?string $url
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('url')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $url = null;
+    public ?string $url;
 
     /**
      * Unix timestamp of expiration.
      *
-     *
-     *
      * @var ?int $expiresAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('expires_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $expiresAt = null;
+    public ?int $expiresAt;
 
     /**
-     * @param  ?string  $id
-     * @param  ?OrganizationInvitationObject  $object
-     * @param  ?string  $emailAddress
-     * @param  ?string  $role
-     * @param  ?string  $roleName
+     * @param  OrganizationInvitationObject  $object
+     * @param  string  $id
+     * @param  string  $emailAddress
+     * @param  string  $role
+     * @param  string  $roleName
+     * @param  array<string, mixed>  $publicMetadata
+     * @param  int  $createdAt
+     * @param  int  $updatedAt
      * @param  ?string  $organizationId
      * @param  ?string  $status
-     * @param  ?array<string, mixed>  $publicMetadata
      * @param  ?array<string, mixed>  $privateMetadata
-     * @param  ?int  $createdAt
-     * @param  ?int  $updatedAt
      * @param  ?string  $url
      * @param  ?int  $expiresAt
      * @phpstan-pure
      */
-    public function __construct(?string $id = null, ?OrganizationInvitationObject $object = null, ?string $emailAddress = null, ?string $role = null, ?string $roleName = null, ?string $organizationId = null, ?string $status = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?int $createdAt = null, ?int $updatedAt = null, ?string $url = null, ?int $expiresAt = null)
+    public function __construct(OrganizationInvitationObject $object, string $id, string $emailAddress, string $role, string $roleName, array $publicMetadata, int $createdAt, int $updatedAt, ?string $organizationId = null, ?string $status = null, ?array $privateMetadata = null, ?string $url = null, ?int $expiresAt = null)
     {
-        $this->id = $id;
         $this->object = $object;
+        $this->id = $id;
         $this->emailAddress = $emailAddress;
         $this->role = $role;
         $this->roleName = $roleName;
-        $this->organizationId = $organizationId;
-        $this->status = $status;
         $this->publicMetadata = $publicMetadata;
-        $this->privateMetadata = $privateMetadata;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
+        $this->organizationId = $organizationId;
+        $this->status = $status;
+        $this->privateMetadata = $privateMetadata;
         $this->url = $url;
         $this->expiresAt = $expiresAt;
     }

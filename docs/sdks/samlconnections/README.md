@@ -171,6 +171,7 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
 
 $sdk = Backend\ClerkBackend::builder()
     ->setSecurity(
@@ -178,15 +179,10 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-
+$request = new Operations\ListSAMLConnectionsRequest();
 
 $response = $sdk->samlConnections->list(
-    limit: 10,
-    offset: 0,
-    organizationId: [
-        '<id>',
-    ]
-
+    request: $request
 );
 
 if ($response->samlConnections !== null) {
@@ -196,11 +192,9 @@ if ($response->samlConnections !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                                                                                                                   | Type                                                                                                                                                                                                                                                                                                        | Required                                                                                                                                                                                                                                                                                                    | Description                                                                                                                                                                                                                                                                                                 |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `limit`                                                                                                                                                                                                                                                                                                     | *?int*                                                                                                                                                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                                                                                                                                                          | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                                                                                                                                                                                       |
-| `offset`                                                                                                                                                                                                                                                                                                    | *?int*                                                                                                                                                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                                                                                                                                                          | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`.                                                                                                                                                           |
-| `organizationId`                                                                                                                                                                                                                                                                                            | array<*string*>                                                                                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                                                                                          | Returns SAML connections that have an associated organization ID to the<br/>given organizations.<br/>For each organization id, the `+` and `-` can be<br/>prepended to the id, which denote whether the<br/>respective organization should be included or<br/>excluded from the result set.<br/>Accepts up to 100 organization ids. |
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `$request`                                                                                     | [Operations\ListSAMLConnectionsRequest](../../Models/Operations/ListSAMLConnectionsRequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 
 ### Response
 

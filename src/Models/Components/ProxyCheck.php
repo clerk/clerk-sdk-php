@@ -36,13 +36,6 @@ class ProxyCheck
 
     /**
      *
-     * @var int $lastRunAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('last_run_at')]
-    public int $lastRunAt;
-
-    /**
-     *
      * @var string $proxyUrl
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('proxy_url')]
@@ -56,6 +49,9 @@ class ProxyCheck
     public bool $successful;
 
     /**
+     * Unix timestamp of creation.
+     *
+     *
      *
      * @var int $createdAt
      */
@@ -63,6 +59,9 @@ class ProxyCheck
     public int $createdAt;
 
     /**
+     * Unix timestamp of last update.
+     *
+     *
      *
      * @var int $updatedAt
      */
@@ -70,25 +69,35 @@ class ProxyCheck
     public int $updatedAt;
 
     /**
+     * Unix timestamp of last run.
+     *
+     *
+     *
+     * @var ?int $lastRunAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('last_run_at')]
+    public ?int $lastRunAt;
+
+    /**
      * @param  ProxyCheckObject  $object
      * @param  string  $id
      * @param  string  $domainId
-     * @param  int  $lastRunAt
      * @param  string  $proxyUrl
      * @param  bool  $successful
      * @param  int  $createdAt
      * @param  int  $updatedAt
+     * @param  ?int  $lastRunAt
      * @phpstan-pure
      */
-    public function __construct(ProxyCheckObject $object, string $id, string $domainId, int $lastRunAt, string $proxyUrl, bool $successful, int $createdAt, int $updatedAt)
+    public function __construct(ProxyCheckObject $object, string $id, string $domainId, string $proxyUrl, bool $successful, int $createdAt, int $updatedAt, ?int $lastRunAt = null)
     {
         $this->object = $object;
         $this->id = $id;
         $this->domainId = $domainId;
-        $this->lastRunAt = $lastRunAt;
         $this->proxyUrl = $proxyUrl;
         $this->successful = $successful;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
+        $this->lastRunAt = $lastRunAt;
     }
 }

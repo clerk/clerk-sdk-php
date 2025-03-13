@@ -12,7 +12,9 @@ namespace Clerk\Backend\Models\Operations;
 class CreateOAuthApplicationRequestBody
 {
     /**
-     * The name of the new OAuth application
+     * The name of the new OAuth application.
+     *
+     * Max length: 256
      *
      * @var string $name
      */

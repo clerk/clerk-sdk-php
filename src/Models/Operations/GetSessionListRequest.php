@@ -36,6 +36,17 @@ class GetSessionListRequest
     public ?Status $status = null;
 
     /**
+     * Whether to paginate the results.
+     *
+     * If true, the results will be paginated.
+     * If false, the results will not be paginated.
+     *
+     * @var ?bool $paginated
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=paginated')]
+    public ?bool $paginated = null;
+
+    /**
      * Applies a limit to the number of results returned.
      *
      * Can be used for paginating the results together with `offset`.
@@ -60,15 +71,17 @@ class GetSessionListRequest
      * @param  ?string  $clientId
      * @param  ?string  $userId
      * @param  ?Status  $status
+     * @param  ?bool  $paginated
      * @param  ?int  $limit
      * @param  ?int  $offset
      * @phpstan-pure
      */
-    public function __construct(?string $clientId = null, ?string $userId = null, ?Status $status = null, ?int $limit = 10, ?int $offset = 0)
+    public function __construct(?string $clientId = null, ?string $userId = null, ?Status $status = null, ?bool $paginated = null, ?int $limit = 10, ?int $offset = 0)
     {
         $this->clientId = $clientId;
         $this->userId = $userId;
         $this->status = $status;
+        $this->paginated = $paginated;
         $this->limit = $limit;
         $this->offset = $offset;
     }

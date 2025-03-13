@@ -35,7 +35,7 @@ class CreateWaitlistEntryRequestBody
      * @param  ?bool  $notify
      * @phpstan-pure
      */
-    public function __construct(string $emailAddress, ?bool $notify = null)
+    public function __construct(string $emailAddress, ?bool $notify = true)
     {
         $this->emailAddress = $emailAddress;
         $this->notify = $notify;

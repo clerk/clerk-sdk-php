@@ -21,11 +21,22 @@ class UpdateProductionInstanceDomainRequestBody
     public ?string $homeUrl = null;
 
     /**
+     * Whether the domain is a secondary app.
+     *
+     * @var ?bool $isSecondary
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('is_secondary')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $isSecondary = null;
+
+    /**
      * @param  ?string  $homeUrl
+     * @param  ?bool  $isSecondary
      * @phpstan-pure
      */
-    public function __construct(?string $homeUrl = null)
+    public function __construct(?string $homeUrl = null, ?bool $isSecondary = null)
     {
         $this->homeUrl = $homeUrl;
+        $this->isSecondary = $isSecondary;
     }
 }

@@ -132,12 +132,12 @@ class SchemasSAMLConnection
 
     /**
      *
-     * @var ?AttributeMapping $attributeMapping
+     * @var ?SAMLConnectionAttributeMapping $attributeMapping
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('attribute_mapping')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\AttributeMapping|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SAMLConnectionAttributeMapping|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?AttributeMapping $attributeMapping = null;
+    public ?SAMLConnectionAttributeMapping $attributeMapping = null;
 
     /**
      *
@@ -204,7 +204,7 @@ class SchemasSAMLConnection
      * @param  ?string  $idpEntityId
      * @param  ?string  $idpSsoUrl
      * @param  ?string  $idpCertificate
-     * @param  ?AttributeMapping  $attributeMapping
+     * @param  ?SAMLConnectionAttributeMapping  $attributeMapping
      * @param  ?bool  $allowSubdomains
      * @param  ?bool  $allowIdpInitiated
      * @param  ?bool  $disableAdditionalIdentifications
@@ -213,7 +213,7 @@ class SchemasSAMLConnection
      * @param  ?string  $organizationId
      * @phpstan-pure
      */
-    public function __construct(SchemasSAMLConnectionObject $object, string $id, string $name, string $domain, string $acsUrl, string $spEntityId, string $spMetadataUrl, bool $active, string $provider, int $userCount, bool $syncUserAttributes, int $createdAt, int $updatedAt, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?AttributeMapping $attributeMapping = null, ?bool $allowSubdomains = null, ?bool $allowIdpInitiated = null, ?bool $disableAdditionalIdentifications = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null)
+    public function __construct(SchemasSAMLConnectionObject $object, string $id, string $name, string $domain, string $acsUrl, string $spEntityId, string $spMetadataUrl, bool $active, string $provider, int $userCount, bool $syncUserAttributes, int $createdAt, int $updatedAt, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?SAMLConnectionAttributeMapping $attributeMapping = null, ?bool $allowSubdomains = null, ?bool $allowIdpInitiated = null, ?bool $disableAdditionalIdentifications = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null)
     {
         $this->object = $object;
         $this->id = $id;

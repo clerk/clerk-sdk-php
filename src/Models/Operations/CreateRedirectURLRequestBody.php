@@ -14,17 +14,16 @@ class CreateRedirectURLRequestBody
     /**
      * The full url value prefixed with `https://` or a custom scheme e.g. `"https://my-app.com/oauth-callback"` or `"my-app://oauth-callback"`
      *
-     * @var ?string $url
+     * @var string $url
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('url')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $url = null;
+    public string $url;
 
     /**
-     * @param  ?string  $url
+     * @param  string  $url
      * @phpstan-pure
      */
-    public function __construct(?string $url = null)
+    public function __construct(string $url)
     {
         $this->url = $url;
     }

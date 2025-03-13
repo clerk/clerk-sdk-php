@@ -45,18 +45,7 @@ class CreateInvitationRequestBody
     public ?string $redirectUrl = null;
 
     /**
-     * The number of days the invitation will be valid for. By default, the invitation expires after 30 days.
-     *
-     * @var ?int $expiresInDays
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('expires_in_days')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $expiresInDays = null;
-
-    /**
      * The slug of the email template to use for the invitation email.
-     *
-     * If not provided, the "invitation" template will be used.
      *
      * @var ?TemplateSlug $templateSlug
      */
@@ -64,6 +53,15 @@ class CreateInvitationRequestBody
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\TemplateSlug|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?TemplateSlug $templateSlug = null;
+
+    /**
+     * The number of days the invitation will be valid for. By default, the invitation expires after 30 days.
+     *
+     * @var ?int $expiresInDays
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('expires_in_days')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $expiresInDays = null;
 
     /**
      * Optional flag which denotes whether an email invitation should be sent to the given email address.
@@ -89,19 +87,19 @@ class CreateInvitationRequestBody
      * @param  string  $emailAddress
      * @param  ?array<string, mixed>  $publicMetadata
      * @param  ?string  $redirectUrl
+     * @param  ?TemplateSlug  $templateSlug
      * @param  ?bool  $notify
      * @param  ?bool  $ignoreExisting
      * @param  ?int  $expiresInDays
-     * @param  ?TemplateSlug  $templateSlug
      * @phpstan-pure
      */
-    public function __construct(string $emailAddress, ?array $publicMetadata = null, ?string $redirectUrl = null, ?int $expiresInDays = null, ?TemplateSlug $templateSlug = null, ?bool $notify = true, ?bool $ignoreExisting = false)
+    public function __construct(string $emailAddress, ?array $publicMetadata = null, ?string $redirectUrl = null, ?TemplateSlug $templateSlug = null, ?int $expiresInDays = null, ?bool $notify = true, ?bool $ignoreExisting = false)
     {
         $this->emailAddress = $emailAddress;
         $this->publicMetadata = $publicMetadata;
         $this->redirectUrl = $redirectUrl;
-        $this->expiresInDays = $expiresInDays;
         $this->templateSlug = $templateSlug;
+        $this->expiresInDays = $expiresInDays;
         $this->notify = $notify;
         $this->ignoreExisting = $ignoreExisting;
     }

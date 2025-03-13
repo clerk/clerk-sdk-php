@@ -44,9 +44,9 @@ class InstanceGetOrganizationMembershipsRequest
     public ?int $offset = null;
 
     /**
+     * @param  ?string  $orderBy
      * @param  ?int  $limit
      * @param  ?int  $offset
-     * @param  ?string  $orderBy
      * @phpstan-pure
      */
     public function __construct(?string $orderBy = null, ?int $limit = 10, ?int $offset = 0)

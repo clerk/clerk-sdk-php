@@ -51,18 +51,6 @@ class CreateUserRequestBody
     public ?array $web3Wallet = null;
 
     /**
-     * In case you already have the password digests and not the passwords, you can use them for the newly created user via this property.
-     *
-     * The digests should be generated with one of the supported algorithms.
-     * The hashing algorithm can be specified using the `password_hasher` property.
-     *
-     * @var ?string $passwordDigest
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('password_digest')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $passwordDigest = null;
-
-    /**
      * The hashing algorithm that was used to generate the password digest.
      *
      *
@@ -78,44 +66,6 @@ class CreateUserRequestBody
     #[\Speakeasy\Serializer\Annotation\SerializedName('password_hasher')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $passwordHasher = null;
-
-    /**
-     * When set to `true` all password checks are skipped.
-     *
-     * It is recommended to use this method only when migrating plaintext passwords to Clerk.
-     * Upon migration the user base should be prompted to pick stronger password.
-     *
-     * @var ?bool $skipPasswordChecks
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('skip_password_checks')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $skipPasswordChecks = null;
-
-    /**
-     * When set to `true`, `password` is not required anymore when creating the user and can be omitted.
-     *
-     * This is useful when you are trying to create a user that doesn't have a password, in an instance that is using passwords.
-     * Please note that you cannot use this flag if password is the only way for a user to sign into your instance.
-     *
-     * @var ?bool $skipPasswordRequirement
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('skip_password_requirement')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $skipPasswordRequirement = null;
-
-    /**
-     * In case TOTP is configured on the instance, you can provide the secret to enable it on the newly created user without the need to reset it.
-     *
-     * Please note that currently the supported options are:
-     * * Period: 30 seconds
-     * * Code length: 6 digits
-     * * Algorithm: SHA1
-     *
-     * @var ?string $totpSecret
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('totp_secret')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $totpSecret = null;
 
     /**
      * If Backup Codes are configured on the instance, you can provide them to enable it on the newly created user without the need to reset them.
@@ -160,15 +110,6 @@ class CreateUserRequestBody
     #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $unsafeMetadata = null;
-
-    /**
-     * A custom date/time denoting _when_ the user signed up to the application, specified in RFC3339 format (e.g. `2012-10-20T07:15:20.902Z`).
-     *
-     * @var ?string $createdAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $createdAt = null;
 
     /**
      * The ID of the user as used in your external systems or your previous authentication solution.
@@ -220,6 +161,56 @@ class CreateUserRequestBody
     #[\Speakeasy\Serializer\Annotation\SerializedName('password')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $password = null;
+
+    /**
+     * In case you already have the password digests and not the passwords, you can use them for the newly created user via this property.
+     *
+     * The digests should be generated with one of the supported algorithms.
+     * The hashing algorithm can be specified using the `password_hasher` property.
+     *
+     * @var ?string $passwordDigest
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('password_digest')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $passwordDigest = null;
+
+    /**
+     * When set to `true` all password checks are skipped.
+     *
+     * It is recommended to use this method only when migrating plaintext passwords to Clerk.
+     * Upon migration the user base should be prompted to pick stronger password.
+     *
+     * @var ?bool $skipPasswordChecks
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('skip_password_checks')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $skipPasswordChecks = null;
+
+    /**
+     * When set to `true`, `password` is not required anymore when creating the user and can be omitted.
+     *
+     * This is useful when you are trying to create a user that doesn't have a password, in an instance that is using passwords.
+     * Please note that you cannot use this flag if password is the only way for a user to sign into your instance.
+     *
+     * @var ?bool $skipPasswordRequirement
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('skip_password_requirement')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $skipPasswordRequirement = null;
+
+    /**
+     * In case TOTP is configured on the instance, you can provide the secret to enable it on the newly created user without the need to reset it.
+     *
+     * Please note that currently the supported options are:
+     * * Period: 30 seconds
+     * * Code length: 6 digits
+     * * Algorithm: SHA1
+     *
+     * @var ?string $totpSecret
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('totp_secret')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $totpSecret = null;
 
     /**
      * If enabled, user can delete themselves via FAPI.
@@ -275,55 +266,64 @@ class CreateUserRequestBody
     public ?int $createOrganizationsLimit = null;
 
     /**
+     * A custom date/time denoting _when_ the user signed up to the application, specified in RFC3339 format (e.g. `2012-10-20T07:15:20.902Z`).
+     *
+     * @var ?string $createdAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $createdAt = null;
+
+    /**
      * @param  ?array<string>  $emailAddress
      * @param  ?array<string>  $phoneNumber
      * @param  ?array<string>  $web3Wallet
-     * @param  ?string  $passwordDigest
      * @param  ?string  $passwordHasher
-     * @param  ?bool  $skipPasswordChecks
-     * @param  ?bool  $skipPasswordRequirement
-     * @param  ?string  $totpSecret
      * @param  ?array<string>  $backupCodes
      * @param  ?array<string, mixed>  $publicMetadata
      * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?array<string, mixed>  $unsafeMetadata
-     * @param  ?string  $createdAt
      * @param  ?string  $externalId
      * @param  ?string  $firstName
      * @param  ?string  $lastName
      * @param  ?string  $username
      * @param  ?string  $password
+     * @param  ?string  $passwordDigest
+     * @param  ?bool  $skipPasswordChecks
+     * @param  ?bool  $skipPasswordRequirement
+     * @param  ?string  $totpSecret
      * @param  ?bool  $deleteSelfEnabled
      * @param  ?string  $legalAcceptedAt
      * @param  ?bool  $skipLegalChecks
      * @param  ?bool  $createOrganizationEnabled
      * @param  ?int  $createOrganizationsLimit
+     * @param  ?string  $createdAt
      * @phpstan-pure
      */
-    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $web3Wallet = null, ?string $passwordDigest = null, ?string $passwordHasher = null, ?bool $skipPasswordChecks = null, ?bool $skipPasswordRequirement = null, ?string $totpSecret = null, ?array $backupCodes = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null, ?string $createdAt = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $username = null, ?string $password = null, ?bool $deleteSelfEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?bool $createOrganizationEnabled = null, ?int $createOrganizationsLimit = null)
+    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $web3Wallet = null, ?string $passwordHasher = null, ?array $backupCodes = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $username = null, ?string $password = null, ?string $passwordDigest = null, ?bool $skipPasswordChecks = null, ?bool $skipPasswordRequirement = null, ?string $totpSecret = null, ?bool $deleteSelfEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?bool $createOrganizationEnabled = null, ?int $createOrganizationsLimit = null, ?string $createdAt = null)
     {
         $this->emailAddress = $emailAddress;
         $this->phoneNumber = $phoneNumber;
         $this->web3Wallet = $web3Wallet;
-        $this->passwordDigest = $passwordDigest;
         $this->passwordHasher = $passwordHasher;
-        $this->skipPasswordChecks = $skipPasswordChecks;
-        $this->skipPasswordRequirement = $skipPasswordRequirement;
-        $this->totpSecret = $totpSecret;
         $this->backupCodes = $backupCodes;
         $this->publicMetadata = $publicMetadata;
         $this->privateMetadata = $privateMetadata;
         $this->unsafeMetadata = $unsafeMetadata;
-        $this->createdAt = $createdAt;
         $this->externalId = $externalId;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->username = $username;
         $this->password = $password;
+        $this->passwordDigest = $passwordDigest;
+        $this->skipPasswordChecks = $skipPasswordChecks;
+        $this->skipPasswordRequirement = $skipPasswordRequirement;
+        $this->totpSecret = $totpSecret;
         $this->deleteSelfEnabled = $deleteSelfEnabled;
         $this->legalAcceptedAt = $legalAcceptedAt;
         $this->skipLegalChecks = $skipLegalChecks;
         $this->createOrganizationEnabled = $createOrganizationEnabled;
         $this->createOrganizationsLimit = $createOrganizationsLimit;
+        $this->createdAt = $createdAt;
     }
 }

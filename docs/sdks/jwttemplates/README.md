@@ -31,7 +31,10 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$request = new Operations\CreateJWTTemplateRequestBody();
+$request = new Operations\CreateJWTTemplateRequestBody(
+    name: '<value>',
+    claims: new Operations\Claims(),
+);
 
 $response = $sdk->jwtTemplates->create(
     request: $request
@@ -175,6 +178,9 @@ $sdk = Backend\ClerkBackend::builder()
 
 
 $response = $sdk->jwtTemplates->list(
+    paginated: false,
+    limit: 10,
+    offset: 0
 
 );
 
@@ -182,6 +188,14 @@ if ($response->jwtTemplateList !== null) {
     // handle response
 }
 ```
+
+### Parameters
+
+| Parameter                                                                                                                                 | Type                                                                                                                                      | Required                                                                                                                                  | Description                                                                                                                               |
+| ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `paginated`                                                                                                                               | *?bool*                                                                                                                                   | :heavy_minus_sign:                                                                                                                        | Whether to paginate the results.<br/>If true, the results will be paginated.<br/>If false, the results will not be paginated.             |
+| `limit`                                                                                                                                   | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                     |
+| `offset`                                                                                                                                  | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`. |
 
 ### Response
 
@@ -213,7 +227,10 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$requestBody = new Operations\UpdateJWTTemplateRequestBody();
+$requestBody = new Operations\UpdateJWTTemplateRequestBody(
+    name: '<value>',
+    claims: new Operations\UpdateJWTTemplateClaims(),
+);
 
 $response = $sdk->jwtTemplates->update(
     templateId: '<id>',

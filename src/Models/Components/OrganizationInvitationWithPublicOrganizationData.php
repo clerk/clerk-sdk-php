@@ -13,48 +13,68 @@ namespace Clerk\Backend\Models\Components;
 class OrganizationInvitationWithPublicOrganizationData
 {
     /**
-     *
-     * @var ?string $id
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $id = null;
-
-    /**
      * String representing the object's type. Objects of the same type share the same value.
      *
      *
      *
-     * @var ?OrganizationInvitationWithPublicOrganizationDataObject $object
+     * @var OrganizationInvitationWithPublicOrganizationDataObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationInvitationWithPublicOrganizationDataObject|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?OrganizationInvitationWithPublicOrganizationDataObject $object = null;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationInvitationWithPublicOrganizationDataObject')]
+    public OrganizationInvitationWithPublicOrganizationDataObject $object;
 
     /**
      *
-     * @var ?string $emailAddress
+     * @var string $id
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    public string $id;
+
+    /**
+     *
+     * @var string $emailAddress
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('email_address')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $emailAddress = null;
+    public string $emailAddress;
 
     /**
      *
-     * @var ?string $role
+     * @var string $role
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('role')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $role = null;
+    public string $role;
 
     /**
      *
-     * @var ?string $roleName
+     * @var string $roleName
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('role_name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $roleName = null;
+    public string $roleName;
+
+    /**
+     * $publicMetadata
+     *
+     * @var array<string, mixed> $publicMetadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
+    public array $publicMetadata;
+
+    /**
+     * Unix timestamp of creation.
+     *
+     * @var int $createdAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
+    public int $createdAt;
+
+    /**
+     * Unix timestamp of last update.
+     *
+     * @var int $updatedAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
+    public int $updatedAt;
 
     /**
      *
@@ -73,16 +93,6 @@ class OrganizationInvitationWithPublicOrganizationData
     public ?string $status = null;
 
     /**
-     * $publicMetadata
-     *
-     * @var ?array<string, mixed> $publicMetadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $publicMetadata = null;
-
-    /**
      * $privateMetadata
      *
      * @var ?array<string, mixed> $privateMetadata
@@ -94,69 +104,60 @@ class OrganizationInvitationWithPublicOrganizationData
 
     /**
      *
-     * @var ?PublicOrganizationData $publicOrganizationData
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('public_organization_data')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\PublicOrganizationData|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?PublicOrganizationData $publicOrganizationData = null;
-
-    /**
-     * Unix timestamp of creation.
-     *
-     * @var ?int $createdAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $createdAt = null;
-
-    /**
-     * Unix timestamp of last update.
-     *
-     * @var ?int $updatedAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $updatedAt = null;
-
-    /**
-     *
      * @var ?string $url
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('url')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $url = null;
+    public ?string $url;
 
     /**
-     * @param  ?string  $id
-     * @param  ?OrganizationInvitationWithPublicOrganizationDataObject  $object
-     * @param  ?string  $emailAddress
-     * @param  ?string  $role
-     * @param  ?string  $roleName
+     * Unix timestamp of expiration.
+     *
+     * @var ?int $expiresAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('expires_at')]
+    public ?int $expiresAt;
+
+    /**
+     *
+     * @var ?OrganizationInvitationPublicOrganizationData $publicOrganizationData
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('public_organization_data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationInvitationPublicOrganizationData|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?OrganizationInvitationPublicOrganizationData $publicOrganizationData = null;
+
+    /**
+     * @param  OrganizationInvitationWithPublicOrganizationDataObject  $object
+     * @param  string  $id
+     * @param  string  $emailAddress
+     * @param  string  $role
+     * @param  string  $roleName
+     * @param  array<string, mixed>  $publicMetadata
+     * @param  int  $createdAt
+     * @param  int  $updatedAt
      * @param  ?string  $organizationId
      * @param  ?string  $status
-     * @param  ?array<string, mixed>  $publicMetadata
      * @param  ?array<string, mixed>  $privateMetadata
-     * @param  ?PublicOrganizationData  $publicOrganizationData
-     * @param  ?int  $createdAt
-     * @param  ?int  $updatedAt
      * @param  ?string  $url
+     * @param  ?int  $expiresAt
+     * @param  ?OrganizationInvitationPublicOrganizationData  $publicOrganizationData
      * @phpstan-pure
      */
-    public function __construct(?string $id = null, ?OrganizationInvitationWithPublicOrganizationDataObject $object = null, ?string $emailAddress = null, ?string $role = null, ?string $roleName = null, ?string $organizationId = null, ?string $status = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?PublicOrganizationData $publicOrganizationData = null, ?int $createdAt = null, ?int $updatedAt = null, ?string $url = null)
+    public function __construct(OrganizationInvitationWithPublicOrganizationDataObject $object, string $id, string $emailAddress, string $role, string $roleName, array $publicMetadata, int $createdAt, int $updatedAt, ?string $organizationId = null, ?string $status = null, ?array $privateMetadata = null, ?string $url = null, ?int $expiresAt = null, ?OrganizationInvitationPublicOrganizationData $publicOrganizationData = null)
     {
-        $this->id = $id;
         $this->object = $object;
+        $this->id = $id;
         $this->emailAddress = $emailAddress;
         $this->role = $role;
         $this->roleName = $roleName;
-        $this->organizationId = $organizationId;
-        $this->status = $status;
         $this->publicMetadata = $publicMetadata;
-        $this->privateMetadata = $privateMetadata;
-        $this->publicOrganizationData = $publicOrganizationData;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
+        $this->organizationId = $organizationId;
+        $this->status = $status;
+        $this->privateMetadata = $privateMetadata;
         $this->url = $url;
+        $this->expiresAt = $expiresAt;
+        $this->publicOrganizationData = $publicOrganizationData;
     }
 }

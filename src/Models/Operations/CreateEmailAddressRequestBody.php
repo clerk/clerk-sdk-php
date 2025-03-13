@@ -14,20 +14,18 @@ class CreateEmailAddressRequestBody
     /**
      * The ID representing the user
      *
-     * @var ?string $userId
+     * @var string $userId
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('user_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $userId = null;
+    public string $userId;
 
     /**
      * The new email address. Must adhere to the RFC 5322 specification for email address format.
      *
-     * @var ?string $emailAddress
+     * @var string $emailAddress
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('email_address')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $emailAddress = null;
+    public string $emailAddress;
 
     /**
      * When created, the email address will be marked as verified.
@@ -50,13 +48,13 @@ class CreateEmailAddressRequestBody
     public ?bool $primary = null;
 
     /**
-     * @param  ?string  $userId
-     * @param  ?string  $emailAddress
+     * @param  string  $userId
+     * @param  string  $emailAddress
      * @param  ?bool  $verified
      * @param  ?bool  $primary
      * @phpstan-pure
      */
-    public function __construct(?string $userId = null, ?string $emailAddress = null, ?bool $verified = null, ?bool $primary = null)
+    public function __construct(string $userId, string $emailAddress, ?bool $verified = null, ?bool $primary = null)
     {
         $this->userId = $userId;
         $this->emailAddress = $emailAddress;

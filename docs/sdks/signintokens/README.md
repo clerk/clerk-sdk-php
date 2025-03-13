@@ -30,7 +30,9 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$request = new Operations\CreateSignInTokenRequestBody();
+$request = new Operations\CreateSignInTokenRequestBody(
+    userId: '<id>',
+);
 
 $response = $sdk->signInTokens->create(
     request: $request

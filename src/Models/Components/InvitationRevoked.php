@@ -35,6 +35,15 @@ class InvitationRevoked
     public string $emailAddress;
 
     /**
+     * $publicMetadata
+     *
+     * @var array<string, mixed> $publicMetadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
+    public array $publicMetadata;
+
+    /**
      *
      * @var InvitationRevokedStatus $status
      */
@@ -61,16 +70,6 @@ class InvitationRevoked
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
     public int $updatedAt;
-
-    /**
-     * $publicMetadata
-     *
-     * @var ?array<string, mixed> $publicMetadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $publicMetadata = null;
 
     /**
      *
@@ -103,24 +102,24 @@ class InvitationRevoked
      * @param  InvitationRevokedObject  $object
      * @param  string  $id
      * @param  string  $emailAddress
+     * @param  array<string, mixed>  $publicMetadata
      * @param  InvitationRevokedStatus  $status
      * @param  int  $createdAt
      * @param  int  $updatedAt
-     * @param  ?array<string, mixed>  $publicMetadata
      * @param  ?bool  $revoked
      * @param  ?string  $url
      * @param  ?int  $expiresAt
      * @phpstan-pure
      */
-    public function __construct(InvitationRevokedObject $object, string $id, string $emailAddress, InvitationRevokedStatus $status, int $createdAt, int $updatedAt, ?array $publicMetadata = null, ?bool $revoked = null, ?string $url = null, ?int $expiresAt = null)
+    public function __construct(InvitationRevokedObject $object, string $id, string $emailAddress, array $publicMetadata, InvitationRevokedStatus $status, int $createdAt, int $updatedAt, ?bool $revoked = null, ?string $url = null, ?int $expiresAt = null)
     {
         $this->object = $object;
         $this->id = $id;
         $this->emailAddress = $emailAddress;
+        $this->publicMetadata = $publicMetadata;
         $this->status = $status;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
-        $this->publicMetadata = $publicMetadata;
         $this->revoked = $revoked;
         $this->url = $url;
         $this->expiresAt = $expiresAt;

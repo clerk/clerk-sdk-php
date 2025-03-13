@@ -3,22 +3,17 @@
 
 ## Overview
 
-The Session object is an abstraction over an HTTP session.
-It models the period of information exchange between a user and the server.
-Sessions are created when a user successfully goes through the sign in or sign up flows.
-<https://clerk.com/docs/reference/clerkjs/session>
-
 ### Available Operations
 
-* [createSessionToken](#createsessiontoken) - Create a session token
+* [createToken](#createtoken) - Create a session token
 * [createTokenFromTemplate](#createtokenfromtemplate) - Create a session token from a jwt template
 * [get](#get) - Retrieve a session
 * [list](#list) - List all sessions
 * [revoke](#revoke) - Revoke a session
 * [~~verify~~](#verify) - Verify a session :warning: **Deprecated**
-* [createSession](#createsession) - Create a new active session
+* [create](#create) - Create a new active session
 
-## createSessionToken
+## createToken
 
 Creates a session JSON Web Token (JWT) based on a session.
 
@@ -40,7 +35,7 @@ $sdk = Backend\ClerkBackend::builder()
 
 $requestBody = new Operations\CreateSessionTokenRequestBody();
 
-$response = $sdk->sessions->createSessionToken(
+$response = $sdk->sessions->createToken(
     sessionId: '<id>',
     requestBody: $requestBody
 
@@ -324,7 +319,7 @@ if ($response->session !== null) {
 | Errors\ClerkErrors  | 400, 401, 404, 410  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## createSession
+## create
 
 Create a new active session for the provided user ID.
 
@@ -347,9 +342,11 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$request = new Operations\CreateSessionRequestBody();
+$request = new Operations\CreateSessionRequestBody(
+    userId: '<id>',
+);
 
-$response = $sdk->sessions->createSession(
+$response = $sdk->sessions->create(
     request: $request
 );
 

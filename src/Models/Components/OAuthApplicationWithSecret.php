@@ -71,6 +71,9 @@ class OAuthApplicationWithSecret
     public array $redirectUris;
 
     /**
+     * Deprecated: Use redirect_uris instead.
+     *
+     *
      *
      * @var string $callbackUrl
      * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.

@@ -31,7 +31,9 @@ $sdk = Backend\ClerkBackend::builder()
 
 $request = new Operations\CreateActorTokenRequestBody(
     userId: '<id>',
-    actor: new Operations\Actor(),
+    actor: new Operations\Actor(
+        sub: 'user_2OEpKhcCN1Lat9NQ0G6puh7q5Rb',
+    ),
 );
 
 $response = $sdk->actorTokens->create(

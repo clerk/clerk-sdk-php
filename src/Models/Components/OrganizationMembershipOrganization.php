@@ -48,6 +48,13 @@ class OrganizationMembershipOrganization
     public int $maxAllowedMemberships;
 
     /**
+     *
+     * @var bool $adminDeleteEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('admin_delete_enabled')]
+    public bool $adminDeleteEnabled;
+
+    /**
      * $publicMetadata
      *
      * @var array<string, mixed> $publicMetadata
@@ -87,19 +94,27 @@ class OrganizationMembershipOrganization
 
     /**
      *
-     * @var ?bool $adminDeleteEnabled
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('admin_delete_enabled')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $adminDeleteEnabled = null;
-
-    /**
-     *
      * @var ?int $membersCount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('members_count')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?int $membersCount = null;
+
+    /**
+     *
+     * @var ?bool $missingMemberWithElevatedPermissions
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('missing_member_with_elevated_permissions')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $missingMemberWithElevatedPermissions = null;
+
+    /**
+     *
+     * @var ?int $pendingInvitationsCount
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('pending_invitations_count')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $pendingInvitationsCount = null;
 
     /**
      *
@@ -115,28 +130,32 @@ class OrganizationMembershipOrganization
      * @param  string  $name
      * @param  string  $slug
      * @param  int  $maxAllowedMemberships
+     * @param  bool  $adminDeleteEnabled
      * @param  array<string, mixed>  $publicMetadata
      * @param  array<string, mixed>  $privateMetadata
      * @param  int  $createdAt
      * @param  int  $updatedAt
-     * @param  ?bool  $adminDeleteEnabled
      * @param  ?int  $membersCount
+     * @param  ?bool  $missingMemberWithElevatedPermissions
+     * @param  ?int  $pendingInvitationsCount
      * @param  ?string  $createdBy
      * @phpstan-pure
      */
-    public function __construct(OrganizationMembershipOrganizationObject $object, string $id, string $name, string $slug, int $maxAllowedMemberships, array $publicMetadata, array $privateMetadata, int $createdAt, int $updatedAt, ?bool $adminDeleteEnabled = null, ?int $membersCount = null, ?string $createdBy = null)
+    public function __construct(OrganizationMembershipOrganizationObject $object, string $id, string $name, string $slug, int $maxAllowedMemberships, bool $adminDeleteEnabled, array $publicMetadata, array $privateMetadata, int $createdAt, int $updatedAt, ?int $membersCount = null, ?bool $missingMemberWithElevatedPermissions = null, ?int $pendingInvitationsCount = null, ?string $createdBy = null)
     {
         $this->object = $object;
         $this->id = $id;
         $this->name = $name;
         $this->slug = $slug;
         $this->maxAllowedMemberships = $maxAllowedMemberships;
+        $this->adminDeleteEnabled = $adminDeleteEnabled;
         $this->publicMetadata = $publicMetadata;
         $this->privateMetadata = $privateMetadata;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
-        $this->adminDeleteEnabled = $adminDeleteEnabled;
         $this->membersCount = $membersCount;
+        $this->missingMemberWithElevatedPermissions = $missingMemberWithElevatedPermissions;
+        $this->pendingInvitationsCount = $pendingInvitationsCount;
         $this->createdBy = $createdBy;
     }
 }

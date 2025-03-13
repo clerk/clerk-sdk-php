@@ -3,9 +3,6 @@
 
 ## Overview
 
-The Client object tracks sessions, as well as the state of any sign in and sign up attempts, for a given device.
-<https://clerk.com/docs/reference/clerkjs/client>
-
 ### Available Operations
 
 * [get](#get) - Get a client
@@ -85,6 +82,7 @@ $sdk = Backend\ClerkBackend::builder()
 
 
 $response = $sdk->clients->list(
+    paginated: false,
     limit: 10,
     offset: 0
 
@@ -99,6 +97,7 @@ if ($response->clientList !== null) {
 
 | Parameter                                                                                                                                 | Type                                                                                                                                      | Required                                                                                                                                  | Description                                                                                                                               |
 | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `paginated`                                                                                                                               | *?bool*                                                                                                                                   | :heavy_minus_sign:                                                                                                                        | Whether to paginate the results.<br/>If true, the results will be paginated.<br/>If false, the results will not be paginated.             |
 | `limit`                                                                                                                                   | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                     |
 | `offset`                                                                                                                                  | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`. |
 
@@ -133,7 +132,9 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$request = new Operations\VerifyClientRequestBody();
+$request = new Operations\VerifyClientRequestBody(
+    token: '<value>',
+);
 
 $response = $sdk->clients->verify(
     request: $request

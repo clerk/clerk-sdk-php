@@ -36,6 +36,20 @@ class OrganizationSettings
     public int $maxAllowedMemberships;
 
     /**
+     *
+     * @var int $maxAllowedRoles
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('max_allowed_roles')]
+    public int $maxAllowedRoles;
+
+    /**
+     *
+     * @var int $maxAllowedPermissions
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('max_allowed_permissions')]
+    public int $maxAllowedPermissions;
+
+    /**
      * The role key that a user will be assigned after creating an organization.
      *
      * @var string $creatorRole
@@ -76,45 +90,29 @@ class OrganizationSettings
     public string $domainsDefaultRole;
 
     /**
-     *
-     * @var ?int $maxAllowedRoles
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('max_allowed_roles')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $maxAllowedRoles = null;
-
-    /**
-     *
-     * @var ?int $maxAllowedPermissions
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('max_allowed_permissions')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $maxAllowedPermissions = null;
-
-    /**
      * @param  OrganizationSettingsObject  $object
      * @param  bool  $enabled
      * @param  int  $maxAllowedMemberships
+     * @param  int  $maxAllowedRoles
+     * @param  int  $maxAllowedPermissions
      * @param  string  $creatorRole
      * @param  bool  $adminDeleteEnabled
      * @param  bool  $domainsEnabled
      * @param  array<DomainsEnrollmentModes>  $domainsEnrollmentModes
      * @param  string  $domainsDefaultRole
-     * @param  ?int  $maxAllowedRoles
-     * @param  ?int  $maxAllowedPermissions
      * @phpstan-pure
      */
-    public function __construct(OrganizationSettingsObject $object, bool $enabled, int $maxAllowedMemberships, string $creatorRole, bool $adminDeleteEnabled, bool $domainsEnabled, array $domainsEnrollmentModes, string $domainsDefaultRole, ?int $maxAllowedRoles = null, ?int $maxAllowedPermissions = null)
+    public function __construct(OrganizationSettingsObject $object, bool $enabled, int $maxAllowedMemberships, int $maxAllowedRoles, int $maxAllowedPermissions, string $creatorRole, bool $adminDeleteEnabled, bool $domainsEnabled, array $domainsEnrollmentModes, string $domainsDefaultRole)
     {
         $this->object = $object;
         $this->enabled = $enabled;
         $this->maxAllowedMemberships = $maxAllowedMemberships;
+        $this->maxAllowedRoles = $maxAllowedRoles;
+        $this->maxAllowedPermissions = $maxAllowedPermissions;
         $this->creatorRole = $creatorRole;
         $this->adminDeleteEnabled = $adminDeleteEnabled;
         $this->domainsEnabled = $domainsEnabled;
         $this->domainsEnrollmentModes = $domainsEnrollmentModes;
         $this->domainsDefaultRole = $domainsDefaultRole;
-        $this->maxAllowedRoles = $maxAllowedRoles;
-        $this->maxAllowedPermissions = $maxAllowedPermissions;
     }
 }

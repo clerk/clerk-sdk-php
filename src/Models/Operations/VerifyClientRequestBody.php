@@ -15,17 +15,16 @@ class VerifyClientRequestBody
     /**
      * A JWT that represents the active client.
      *
-     * @var ?string $token
+     * @var string $token
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('token')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $token = null;
+    public string $token;
 
     /**
-     * @param  ?string  $token
+     * @param  string  $token
      * @phpstan-pure
      */
-    public function __construct(?string $token = null)
+    public function __construct(string $token)
     {
         $this->token = $token;
     }

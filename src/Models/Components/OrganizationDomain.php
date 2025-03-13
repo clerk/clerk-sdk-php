@@ -13,89 +13,80 @@ namespace Clerk\Backend\Models\Components;
 class OrganizationDomain
 {
     /**
-     * Unique identifier for the organization domain
-     *
-     * @var ?string $id
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $id = null;
-
-    /**
      * String representing the object's type. Objects of the same type share the same value. Always `organization_domain`
      *
      *
      *
-     * @var ?OrganizationDomainObject $object
+     * @var OrganizationDomainObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationDomainObject|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?OrganizationDomainObject $object = null;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationDomainObject')]
+    public OrganizationDomainObject $object;
+
+    /**
+     * Unique identifier for the organization domain
+     *
+     * @var string $id
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
+    public string $id;
 
     /**
      * Unique identifier for the organization
      *
-     * @var ?string $organizationId
+     * @var string $organizationId
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('organization_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $organizationId = null;
+    public string $organizationId;
 
     /**
      * Name of the organization domain
      *
-     * @var ?string $name
+     * @var string $name
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $name = null;
+    public string $name;
 
     /**
      * Mode of enrollment for the domain
      *
-     * @var ?EnrollmentMode $enrollmentMode
+     * @var EnrollmentMode $enrollmentMode
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('enrollment_mode')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\EnrollmentMode|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?EnrollmentMode $enrollmentMode = null;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\EnrollmentMode')]
+    public EnrollmentMode $enrollmentMode;
 
     /**
      * Total number of pending invitations associated with this domain
      *
-     * @var ?int $totalPendingInvitations
+     * @var int $totalPendingInvitations
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('total_pending_invitations')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $totalPendingInvitations = null;
+    public int $totalPendingInvitations;
 
     /**
      * Total number of pending suggestions associated with this domain
      *
-     * @var ?int $totalPendingSuggestions
+     * @var int $totalPendingSuggestions
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('total_pending_suggestions')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $totalPendingSuggestions = null;
+    public int $totalPendingSuggestions;
 
     /**
      * Unix timestamp when the domain was created
      *
-     * @var ?int $createdAt
+     * @var int $createdAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $createdAt = null;
+    public int $createdAt;
 
     /**
      * Unix timestamp of the last update to the domain
      *
-     * @var ?int $updatedAt
+     * @var int $updatedAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $updatedAt = null;
+    public int $updatedAt;
 
     /**
      * Affiliation email address for the domain, if available.
@@ -103,8 +94,7 @@ class OrganizationDomain
      * @var ?string $affiliationEmailAddress
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('affiliation_email_address')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $affiliationEmailAddress = null;
+    public ?string $affiliationEmailAddress;
 
     /**
      * Verification details for the domain
@@ -113,27 +103,26 @@ class OrganizationDomain
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationDomainVerification|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?OrganizationDomainVerification $verification = null;
+    public ?OrganizationDomainVerification $verification;
 
     /**
-     * @param  ?string  $id
-     * @param  ?OrganizationDomainObject  $object
-     * @param  ?string  $organizationId
-     * @param  ?string  $name
-     * @param  ?EnrollmentMode  $enrollmentMode
-     * @param  ?int  $totalPendingInvitations
-     * @param  ?int  $totalPendingSuggestions
-     * @param  ?int  $createdAt
-     * @param  ?int  $updatedAt
+     * @param  OrganizationDomainObject  $object
+     * @param  string  $id
+     * @param  string  $organizationId
+     * @param  string  $name
+     * @param  EnrollmentMode  $enrollmentMode
+     * @param  int  $totalPendingInvitations
+     * @param  int  $totalPendingSuggestions
+     * @param  int  $createdAt
+     * @param  int  $updatedAt
      * @param  ?string  $affiliationEmailAddress
      * @param  ?OrganizationDomainVerification  $verification
      * @phpstan-pure
      */
-    public function __construct(?string $id = null, ?OrganizationDomainObject $object = null, ?string $organizationId = null, ?string $name = null, ?EnrollmentMode $enrollmentMode = null, ?int $totalPendingInvitations = null, ?int $totalPendingSuggestions = null, ?int $createdAt = null, ?int $updatedAt = null, ?string $affiliationEmailAddress = null, ?OrganizationDomainVerification $verification = null)
+    public function __construct(OrganizationDomainObject $object, string $id, string $organizationId, string $name, EnrollmentMode $enrollmentMode, int $totalPendingInvitations, int $totalPendingSuggestions, int $createdAt, int $updatedAt, ?string $affiliationEmailAddress = null, ?OrganizationDomainVerification $verification = null)
     {
-        $this->id = $id;
         $this->object = $object;
+        $this->id = $id;
         $this->organizationId = $organizationId;
         $this->name = $name;
         $this->enrollmentMode = $enrollmentMode;

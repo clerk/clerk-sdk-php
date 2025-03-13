@@ -12,6 +12,76 @@ namespace Clerk\Backend\Models\Operations;
 class UpdateUserRequestBody
 {
     /**
+     * In case you already have the password digests and not the passwords, you can use them for the newly created user via this property.
+     *
+     * The digests should be generated with one of the supported algorithms.
+     * The hashing algorithm can be specified using the `password_hasher` property.
+     *
+     * @var ?string $passwordDigest
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('password_digest')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $passwordDigest = null;
+
+    /**
+     * The hashing algorithm that was used to generate the password digest.
+     *
+     *
+     * The algorithms we support at the moment are [`bcrypt`](https://en.wikipedia.org/wiki/Bcrypt), [`bcrypt_sha256_django`](https://docs.djangoproject.com/en/4.0/topics/auth/passwords/), [`md5`](https://en.wikipedia.org/wiki/MD5), `pbkdf2_sha1`, `pbkdf2_sha256`, [`pbkdf2_sha256_django`](https://docs.djangoproject.com/en/4.0/topics/auth/passwords/),
+     * [`phpass`](https://www.openwall.com/phpass/), [`scrypt_firebase`](https://firebaseopensource.com/projects/firebase/scrypt/),
+     * [`scrypt_werkzeug`](https://werkzeug.palletsprojects.com/en/3.0.x/utils/#werkzeug.security.generate_password_hash), [`sha256`](https://en.wikipedia.org/wiki/SHA-2),
+     * and the [`argon2`](https://argon2.online/) variants: `argon2i` and `argon2id`.
+     *
+     * Each of the supported hashers expects the incoming digest to be in a particular format. See the [Clerk docs](https://clerk.com/docs/references/backend/user/create-user) for more information.
+     *
+     * @var ?string $passwordHasher
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('password_hasher')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $passwordHasher = null;
+
+    /**
+     * If Backup Codes are configured on the instance, you can provide them to enable it on the specific user without the need to reset them.
+     *
+     * You must provide the backup codes in plain format or the corresponding bcrypt digest.
+     *
+     * @var ?array<string> $backupCodes
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('backup_codes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $backupCodes = null;
+
+    /**
+     * The ID of the user as used in your external systems or your previous authentication solution.
+     *
+     * Must be unique across your instance.
+     *
+     * @var ?string $externalId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('external_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $externalId = null;
+
+    /**
+     * The first name to assign to the user
+     *
+     * @var ?string $firstName
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('first_name')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $firstName = null;
+
+    /**
+     * The last name to assign to the user
+     *
+     * @var ?string $lastName
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('last_name')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $lastName = null;
+
+    /**
      * The ID of the email address to set as primary.
      *
      * It must be verified, and present on the current user.
@@ -43,131 +113,6 @@ class UpdateUserRequestBody
     #[\Speakeasy\Serializer\Annotation\SerializedName('primary_web3_wallet_id')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $primaryWeb3WalletId = null;
-
-    /**
-     * In case you already have the password digests and not the passwords, you can use them for the newly created user via this property.
-     *
-     * The digests should be generated with one of the supported algorithms.
-     * The hashing algorithm can be specified using the `password_hasher` property.
-     *
-     * @var ?string $passwordDigest
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('password_digest')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $passwordDigest = null;
-
-    /**
-     * The hashing algorithm that was used to generate the password digest.
-     *
-     *
-     * The algorithms we support at the moment are [`bcrypt`](https://en.wikipedia.org/wiki/Bcrypt), [`bcrypt_sha256_django`](https://docs.djangoproject.com/en/4.0/topics/auth/passwords/), [`md5`](https://en.wikipedia.org/wiki/MD5), `pbkdf2_sha1`, `pbkdf2_sha256`, [`pbkdf2_sha256_django`](https://docs.djangoproject.com/en/4.0/topics/auth/passwords/),
-     * [`phpass`](https://www.openwall.com/phpass/), [`scrypt_firebase`](https://firebaseopensource.com/projects/firebase/scrypt/),
-     * [`scrypt_werkzeug`](https://werkzeug.palletsprojects.com/en/3.0.x/utils/#werkzeug.security.generate_password_hash), [`sha256`](https://en.wikipedia.org/wiki/SHA-2),
-     * and the [`argon2`](https://argon2.online/) variants: `argon2i` and `argon2id`.
-     *
-     * Each of the supported hashers expects the incoming digest to be in a particular format. See the [Clerk docs](https://clerk.com/docs/references/backend/user/create-user) for more information.
-     *
-     * @var ?string $passwordHasher
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('password_hasher')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $passwordHasher = null;
-
-    /**
-     * In case TOTP is configured on the instance, you can provide the secret to enable it on the specific user without the need to reset it.
-     *
-     * Please note that currently the supported options are:
-     * * Period: 30 seconds
-     * * Code length: 6 digits
-     * * Algorithm: SHA1
-     *
-     * @var ?string $totpSecret
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('totp_secret')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $totpSecret = null;
-
-    /**
-     * If Backup Codes are configured on the instance, you can provide them to enable it on the specific user without the need to reset them.
-     *
-     * You must provide the backup codes in plain format or the corresponding bcrypt digest.
-     *
-     * @var ?array<string> $backupCodes
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('backup_codes')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $backupCodes = null;
-
-    /**
-     * Metadata saved on the user, that is visible to both your Frontend and Backend APIs
-     *
-     * @var ?array<string, mixed> $publicMetadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $publicMetadata = null;
-
-    /**
-     * Metadata saved on the user, that is only visible to your Backend API
-     *
-     * @var ?array<string, mixed> $privateMetadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('private_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $privateMetadata = null;
-
-    /**
-     * Metadata saved on the user, that can be updated from both the Frontend and Backend APIs.
-     *
-     * Note: Since this data can be modified from the frontend, it is not guaranteed to be safe.
-     *
-     * @var ?array<string, mixed> $unsafeMetadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('unsafe_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $unsafeMetadata = null;
-
-    /**
-     * A custom date/time denoting _when_ the user signed up to the application, specified in RFC3339 format (e.g. `2012-10-20T07:15:20.902Z`).
-     *
-     * @var ?string $createdAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $createdAt = null;
-
-    /**
-     * The ID of the user as used in your external systems or your previous authentication solution.
-     *
-     * Must be unique across your instance.
-     *
-     * @var ?string $externalId
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('external_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $externalId = null;
-
-    /**
-     * The first name to assign to the user
-     *
-     * @var ?string $firstName
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('first_name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $firstName = null;
-
-    /**
-     * The last name to assign to the user
-     *
-     * @var ?string $lastName
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('last_name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $lastName = null;
 
     /**
      * The username to give to the user.
@@ -219,6 +164,52 @@ class UpdateUserRequestBody
     public ?bool $signOutOfOtherSessions = null;
 
     /**
+     * In case TOTP is configured on the instance, you can provide the secret to enable it on the specific user without the need to reset it.
+     *
+     * Please note that currently the supported options are:
+     * * Period: 30 seconds
+     * * Code length: 6 digits
+     * * Algorithm: SHA1
+     *
+     * @var ?string $totpSecret
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('totp_secret')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $totpSecret = null;
+
+    /**
+     * Metadata saved on the user, that is visible to both your Frontend and Backend APIs
+     *
+     * @var ?array<string, mixed> $publicMetadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $publicMetadata = null;
+
+    /**
+     * Metadata saved on the user, that is only visible to your Backend API
+     *
+     * @var ?array<string, mixed> $privateMetadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('private_metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $privateMetadata = null;
+
+    /**
+     * Metadata saved on the user, that can be updated from both the Frontend and Backend APIs.
+     *
+     * Note: Since this data can be modified from the frontend, it is not guaranteed to be safe.
+     *
+     * @var ?array<string, mixed> $unsafeMetadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('unsafe_metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $unsafeMetadata = null;
+
+    /**
      * If true, the user can delete themselves with the Frontend API.
      *
      * @var ?bool $deleteSelfEnabled
@@ -266,6 +257,15 @@ class UpdateUserRequestBody
     public ?int $createOrganizationsLimit = null;
 
     /**
+     * A custom date/time denoting _when_ the user signed up to the application, specified in RFC3339 format (e.g. `2012-10-20T07:15:20.902Z`).
+     *
+     * @var ?string $createdAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $createdAt = null;
+
+    /**
      * If set to `true`, the user will be notified that their primary email address has changed.
      *
      * By default, no notification is sent.
@@ -277,59 +277,59 @@ class UpdateUserRequestBody
     public ?bool $notifyPrimaryEmailAddressChanged = null;
 
     /**
+     * @param  ?string  $passwordDigest
+     * @param  ?string  $passwordHasher
+     * @param  ?array<string>  $backupCodes
+     * @param  ?string  $externalId
+     * @param  ?string  $firstName
+     * @param  ?string  $lastName
      * @param  ?string  $primaryEmailAddressId
      * @param  ?bool  $notifyPrimaryEmailAddressChanged
      * @param  ?string  $primaryPhoneNumberId
      * @param  ?string  $primaryWeb3WalletId
-     * @param  ?string  $passwordDigest
-     * @param  ?string  $passwordHasher
-     * @param  ?string  $totpSecret
-     * @param  ?array<string>  $backupCodes
-     * @param  ?array<string, mixed>  $publicMetadata
-     * @param  ?array<string, mixed>  $privateMetadata
-     * @param  ?array<string, mixed>  $unsafeMetadata
-     * @param  ?string  $createdAt
-     * @param  ?string  $externalId
-     * @param  ?string  $firstName
-     * @param  ?string  $lastName
      * @param  ?string  $username
      * @param  ?string  $profileImageId
      * @param  ?string  $password
      * @param  ?bool  $skipPasswordChecks
      * @param  ?bool  $signOutOfOtherSessions
+     * @param  ?string  $totpSecret
+     * @param  ?array<string, mixed>  $publicMetadata
+     * @param  ?array<string, mixed>  $privateMetadata
+     * @param  ?array<string, mixed>  $unsafeMetadata
      * @param  ?bool  $deleteSelfEnabled
      * @param  ?bool  $createOrganizationEnabled
      * @param  ?string  $legalAcceptedAt
      * @param  ?bool  $skipLegalChecks
      * @param  ?int  $createOrganizationsLimit
+     * @param  ?string  $createdAt
      * @phpstan-pure
      */
-    public function __construct(?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $passwordDigest = null, ?string $passwordHasher = null, ?string $totpSecret = null, ?array $backupCodes = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null, ?string $createdAt = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $username = null, ?string $profileImageId = null, ?string $password = null, ?bool $skipPasswordChecks = null, ?bool $signOutOfOtherSessions = null, ?bool $deleteSelfEnabled = null, ?bool $createOrganizationEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?int $createOrganizationsLimit = null, ?bool $notifyPrimaryEmailAddressChanged = false)
+    public function __construct(?string $passwordDigest = null, ?string $passwordHasher = null, ?array $backupCodes = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $username = null, ?string $profileImageId = null, ?string $password = null, ?bool $skipPasswordChecks = null, ?bool $signOutOfOtherSessions = null, ?string $totpSecret = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null, ?bool $deleteSelfEnabled = null, ?bool $createOrganizationEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?int $createOrganizationsLimit = null, ?string $createdAt = null, ?bool $notifyPrimaryEmailAddressChanged = false)
     {
-        $this->primaryEmailAddressId = $primaryEmailAddressId;
-        $this->primaryPhoneNumberId = $primaryPhoneNumberId;
-        $this->primaryWeb3WalletId = $primaryWeb3WalletId;
         $this->passwordDigest = $passwordDigest;
         $this->passwordHasher = $passwordHasher;
-        $this->totpSecret = $totpSecret;
         $this->backupCodes = $backupCodes;
-        $this->publicMetadata = $publicMetadata;
-        $this->privateMetadata = $privateMetadata;
-        $this->unsafeMetadata = $unsafeMetadata;
-        $this->createdAt = $createdAt;
         $this->externalId = $externalId;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
+        $this->primaryEmailAddressId = $primaryEmailAddressId;
+        $this->primaryPhoneNumberId = $primaryPhoneNumberId;
+        $this->primaryWeb3WalletId = $primaryWeb3WalletId;
         $this->username = $username;
         $this->profileImageId = $profileImageId;
         $this->password = $password;
         $this->skipPasswordChecks = $skipPasswordChecks;
         $this->signOutOfOtherSessions = $signOutOfOtherSessions;
+        $this->totpSecret = $totpSecret;
+        $this->publicMetadata = $publicMetadata;
+        $this->privateMetadata = $privateMetadata;
+        $this->unsafeMetadata = $unsafeMetadata;
         $this->deleteSelfEnabled = $deleteSelfEnabled;
         $this->createOrganizationEnabled = $createOrganizationEnabled;
         $this->legalAcceptedAt = $legalAcceptedAt;
         $this->skipLegalChecks = $skipLegalChecks;
         $this->createOrganizationsLimit = $createOrganizationsLimit;
+        $this->createdAt = $createdAt;
         $this->notifyPrimaryEmailAddressChanged = $notifyPrimaryEmailAddressChanged;
     }
 }

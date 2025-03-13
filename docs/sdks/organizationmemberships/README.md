@@ -7,7 +7,6 @@
 
 * [create](#create) - Create a new organization membership
 * [delete](#delete) - Remove a member from an organization
-* [getAll](#getall) - Get a list of all organization memberships within an instance.
 * [list](#list) - Get a list of all members of an organization
 * [update](#update) - Update an organization membership
 * [updateMetadata](#updatemetadata) - Merge and update organization membership metadata
@@ -118,60 +117,7 @@ if ($response->organizationMembership !== null) {
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 401, 404       | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## getAll
-
-Retrieves all organization user memberships for the given instance.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->organizationMemberships->getAll(
-    limit: 10,
-    offset: 0,
-    orderBy: '<value>'
-
-);
-
-if ($response->organizationMemberships !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                                                                          | Type                                                                                                                                                                                                                               | Required                                                                                                                                                                                                                           | Description                                                                                                                                                                                                                        |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `limit`                                                                                                                                                                                                                            | *?int*                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                 | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                                                                                                              |
-| `offset`                                                                                                                                                                                                                           | *?int*                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                 | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`.                                                                                  |
-| `orderBy`                                                                                                                                                                                                                          | *?string*                                                                                                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                                                                                 | Sorts organizations memberships by phone_number, email_address, created_at, first_name, last_name or username.<br/>By prepending one of those values with + or -,<br/>we can choose to sort in ascending (ASC) or descending (DESC) order. |
-
-### Response
-
-**[?Operations\InstanceGetOrganizationMembershipsResponse](../../Models/Operations/InstanceGetOrganizationMembershipsResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 401, 422       | application/json    |
-| Errors\ClerkErrors  | 500                 | application/json    |
+| Errors\ClerkErrors  | 401, 404            | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## list
@@ -186,6 +132,7 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
 
 $sdk = Backend\ClerkBackend::builder()
     ->setSecurity(
@@ -193,14 +140,16 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-
+$request = new Operations\ListOrganizationMembershipsRequest(
+    organizationId: '<id>',
+    lastActiveAtBefore: 1700690400000,
+    lastActiveAtAfter: 1700690400000,
+    createdAtBefore: 1730160000000,
+    createdAtAfter: 1730160000000,
+);
 
 $response = $sdk->organizationMemberships->list(
-    organizationId: '<id>',
-    limit: 10,
-    offset: 0,
-    orderBy: '<value>'
-
+    request: $request
 );
 
 if ($response->organizationMemberships !== null) {
@@ -210,12 +159,9 @@ if ($response->organizationMemberships !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                                           | Type                                                                                                                                                                                                                                | Required                                                                                                                                                                                                                            | Description                                                                                                                                                                                                                         |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `organizationId`                                                                                                                                                                                                                    | *string*                                                                                                                                                                                                                            | :heavy_check_mark:                                                                                                                                                                                                                  | The organization ID.                                                                                                                                                                                                                |
-| `limit`                                                                                                                                                                                                                             | *?int*                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                  | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                                                                                                               |
-| `offset`                                                                                                                                                                                                                            | *?int*                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                  | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`.                                                                                   |
-| `orderBy`                                                                                                                                                                                                                           | *?string*                                                                                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                                                                                  | Sorts organizations memberships by phone_number, email_address, created_at, first_name, last_name or username.<br/>By prepending one of those values with + or -,<br/>we can choose to sort in ascending (ASC) or descending (DESC) order." |
+| Parameter                                                                                                      | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                     | [Operations\ListOrganizationMembershipsRequest](../../Models/Operations/ListOrganizationMembershipsRequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
 
 ### Response
 
@@ -280,7 +226,7 @@ if ($response->organizationMembership !== null) {
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 404, 422       | application/json    |
+| Errors\ClerkErrors  | 404, 422            | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## updateMetadata

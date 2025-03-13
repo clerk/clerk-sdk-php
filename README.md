@@ -31,14 +31,12 @@
 <!-- Start Summary [summary] -->
 ## Summary
 
-Clerk Backend API: The Clerk REST Backend API, meant to be accessed by backend
-servers.
+Clerk Backend API: The Clerk REST Backend API, meant to be accessed by backend servers.
 
 ### Versions
 
 When the API changes in a way that isn't compatible with older versions, a new version is released.
-Each version is identified by its release date, e.g. `2021-02-05`. For more information, please see [Clerk API Versions](https://clerk.com/docs/backend-requests/versioning/overview).
-
+Each version is identified by its release date, e.g. `2024-10-01`. For more information, please see [Clerk API Versions](https://clerk.com/docs/versioning/available-versions).
 
 Please see https://clerk.com/docs for more information.
 
@@ -56,6 +54,7 @@ More information about the API can be found at https://clerk.com/docs
   * [Request Authentication](#request-authentication)
   * [Authentication](#authentication)
   * [Available Resources and Operations](#available-resources-and-operations)
+  * [Retries](#retries)
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
 * [Development](#development)
@@ -98,20 +97,17 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
 
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
+$sdk = Backend\ClerkBackend::builder()->build();
 
+$request = new Operations\GetPublicInterstitialRequest();
 
-
-$response = $sdk->emailAddresses->get(
-    emailAddressId: '<id>'
+$response = $sdk->miscellaneous->getPublicInterstitial(
+    request: $request
 );
 
-if ($response->emailAddress !== null) {
+if ($response->statusCode === 200) {
     // handle response
 }
 ```
@@ -164,6 +160,7 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
 
 $sdk = Backend\ClerkBackend::builder()
     ->setSecurity(
@@ -171,12 +168,10 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
+$request = new Operations\GetPublicInterstitialRequest();
 
-
-$response = $sdk->miscellaneous->getInterstitial(
-    frontendApi: '<value>',
-    publishableKey: '<value>'
-
+$response = $sdk->miscellaneous->getPublicInterstitial(
+    request: $request
 );
 
 if ($response->statusCode === 200) {
@@ -196,25 +191,21 @@ if ($response->statusCode === 200) {
 * [create](docs/sdks/actortokens/README.md#create) - Create actor token
 * [revoke](docs/sdks/actortokens/README.md#revoke) - Revoke actor token
 
-### [allowlistBlocklist](docs/sdks/allowlistblocklist/README.md)
-
-* [createAllowlistIdentifier](docs/sdks/allowlistblocklist/README.md#createallowlistidentifier) - Add identifier to the allow-list
-* [createBlocklistIdentifier](docs/sdks/allowlistblocklist/README.md#createblocklistidentifier) - Add identifier to the block-list
-* [deleteBlocklistIdentifier](docs/sdks/allowlistblocklist/README.md#deleteblocklistidentifier) - Delete identifier from block-list
-* [listAllowlistIdentifiers](docs/sdks/allowlistblocklist/README.md#listallowlistidentifiers) - List all identifiers on the allow-list
-
 ### [allowlistIdentifiers](docs/sdks/allowlistidentifiers/README.md)
 
+* [create](docs/sdks/allowlistidentifiers/README.md#create) - Add identifier to the allow-list
 * [delete](docs/sdks/allowlistidentifiers/README.md#delete) - Delete identifier from allow-list
+* [list](docs/sdks/allowlistidentifiers/README.md#list) - List all identifiers on the allow-list
 
 ### [betaFeatures](docs/sdks/betafeatures/README.md)
 
-* [changeProductionInstanceDomain](docs/sdks/betafeatures/README.md#changeproductioninstancedomain) - Update production instance domain
 * [updateInstanceSettings](docs/sdks/betafeatures/README.md#updateinstancesettings) - Update instance settings
-* [~~updateDomain~~](docs/sdks/betafeatures/README.md#updatedomain) - Update production instance domain :warning: **Deprecated**
+* [~~updateProductionInstanceDomain~~](docs/sdks/betafeatures/README.md#updateproductioninstancedomain) - Update production instance domain :warning: **Deprecated**
 
 ### [blocklistIdentifiers](docs/sdks/blocklistidentifiers/README.md)
 
+* [create](docs/sdks/blocklistidentifiers/README.md#create) - Add identifier to the block-list
+* [delete](docs/sdks/blocklistidentifiers/README.md#delete) - Delete identifier from block-list
 * [list](docs/sdks/blocklistidentifiers/README.md#list) - List all identifiers on the block-list
 
 
@@ -251,21 +242,22 @@ if ($response->statusCode === 200) {
 
 ### [instanceSettings](docs/sdks/instancesettings/README.md)
 
-* [getInstance](docs/sdks/instancesettings/README.md#getinstance) - Fetch the current instance
+* [changeDomain](docs/sdks/instancesettings/README.md#changedomain) - Update production instance domain
+* [get](docs/sdks/instancesettings/README.md#get) - Fetch the current instance
 * [update](docs/sdks/instancesettings/README.md#update) - Update instance settings
 * [updateOrganizationSettings](docs/sdks/instancesettings/README.md#updateorganizationsettings) - Update instance organization settings
 * [updateRestrictions](docs/sdks/instancesettings/README.md#updaterestrictions) - Update instance restrictions
 
 ### [invitations](docs/sdks/invitations/README.md)
 
-* [createBulkInvitations](docs/sdks/invitations/README.md#createbulkinvitations) - Create multiple invitations
+* [bulkCreate](docs/sdks/invitations/README.md#bulkcreate) - Create multiple invitations
 * [create](docs/sdks/invitations/README.md#create) - Create an invitation
 * [list](docs/sdks/invitations/README.md#list) - List all invitations
 * [revoke](docs/sdks/invitations/README.md#revoke) - Revokes an invitation
 
 ### [jwks](docs/sdks/jwks/README.md)
 
-* [get](docs/sdks/jwks/README.md#get) - Retrieve the JSON Web Key Set of the instance
+* [getJWKS](docs/sdks/jwks/README.md#getjwks) - Retrieve the JSON Web Key Set of the instance
 
 ### [jwtTemplates](docs/sdks/jwttemplates/README.md)
 
@@ -277,7 +269,7 @@ if ($response->statusCode === 200) {
 
 ### [miscellaneous](docs/sdks/miscellaneous/README.md)
 
-* [getInterstitial](docs/sdks/miscellaneous/README.md#getinterstitial) - Returns the markup for the interstitial page
+* [getPublicInterstitial](docs/sdks/miscellaneous/README.md#getpublicinterstitial) - Returns the markup for the interstitial page
 
 ### [oauthApplications](docs/sdks/oauthapplications/README.md)
 
@@ -288,15 +280,12 @@ if ($response->statusCode === 200) {
 * [rotateSecret](docs/sdks/oauthapplications/README.md#rotatesecret) - Rotate the client secret of the given OAuth application
 * [update](docs/sdks/oauthapplications/README.md#update) - Update an OAuth application
 
-### [organizationDomain](docs/sdks/organizationdomain/README.md)
-
-* [update](docs/sdks/organizationdomain/README.md#update) - Update an organization domain.
-
 ### [organizationDomains](docs/sdks/organizationdomains/README.md)
 
 * [create](docs/sdks/organizationdomains/README.md#create) - Create a new organization domain.
 * [delete](docs/sdks/organizationdomains/README.md#delete) - Remove a domain from an organization.
 * [list](docs/sdks/organizationdomains/README.md#list) - Get a list of all domains of an organization.
+* [update](docs/sdks/organizationdomains/README.md#update) - Update an organization domain.
 
 ### [organizationInvitations](docs/sdks/organizationinvitations/README.md)
 
@@ -312,7 +301,6 @@ if ($response->statusCode === 200) {
 
 * [create](docs/sdks/organizationmemberships/README.md#create) - Create a new organization membership
 * [delete](docs/sdks/organizationmemberships/README.md#delete) - Remove a member from an organization
-* [getAll](docs/sdks/organizationmemberships/README.md#getall) - Get a list of all organization memberships within an instance.
 * [list](docs/sdks/organizationmemberships/README.md#list) - Get a list of all members of an organization
 * [update](docs/sdks/organizationmemberships/README.md#update) - Update an organization membership
 * [updateMetadata](docs/sdks/organizationmemberships/README.md#updatemetadata) - Merge and update organization membership metadata
@@ -339,14 +327,11 @@ if ($response->statusCode === 200) {
 
 * [verify](docs/sdks/proxychecks/README.md#verify) - Verify the proxy configuration for your domain
 
-### [redirectUrls](docs/sdks/clerkbackendredirecturls/README.md)
+### [redirectUrls](docs/sdks/redirecturls/README.md)
 
-* [create](docs/sdks/clerkbackendredirecturls/README.md#create) - Create a redirect URL
-* [delete](docs/sdks/clerkbackendredirecturls/README.md#delete) - Delete a redirect URL
-* [get](docs/sdks/clerkbackendredirecturls/README.md#get) - Retrieve a redirect URL
-
-### [redirectURLs](docs/sdks/redirecturls/README.md)
-
+* [create](docs/sdks/redirecturls/README.md#create) - Create a redirect URL
+* [delete](docs/sdks/redirecturls/README.md#delete) - Delete a redirect URL
+* [get](docs/sdks/redirecturls/README.md#get) - Retrieve a redirect URL
 * [list](docs/sdks/redirecturls/README.md#list) - List all redirect URLs
 
 ### [samlConnections](docs/sdks/samlconnections/README.md)
@@ -359,13 +344,13 @@ if ($response->statusCode === 200) {
 
 ### [sessions](docs/sdks/sessions/README.md)
 
-* [createSessionToken](docs/sdks/sessions/README.md#createsessiontoken) - Create a session token
+* [createToken](docs/sdks/sessions/README.md#createtoken) - Create a session token
 * [createTokenFromTemplate](docs/sdks/sessions/README.md#createtokenfromtemplate) - Create a session token from a jwt template
 * [get](docs/sdks/sessions/README.md#get) - Retrieve a session
 * [list](docs/sdks/sessions/README.md#list) - List all sessions
 * [revoke](docs/sdks/sessions/README.md#revoke) - Revoke a session
 * [~~verify~~](docs/sdks/sessions/README.md#verify) - Verify a session :warning: **Deprecated**
-* [createSession](docs/sdks/sessions/README.md#createsession) - Create a new active session
+* [create](docs/sdks/sessions/README.md#create) - Create a new active session
 
 ### [signInTokens](docs/sdks/signintokens/README.md)
 
@@ -374,6 +359,7 @@ if ($response->statusCode === 200) {
 
 ### [signUps](docs/sdks/signups/README.md)
 
+* [get](docs/sdks/signups/README.md#get) - Retrieve a sign-up by ID
 * [update](docs/sdks/signups/README.md#update) - Update a sign-up
 
 ### [~~templates~~](docs/sdks/templates/README.md)
@@ -390,14 +376,15 @@ if ($response->statusCode === 200) {
 * [create](docs/sdks/users/README.md#create) - Create a new user
 * [deleteBackupCodes](docs/sdks/users/README.md#deletebackupcodes) - Disable all user's Backup codes
 * [deleteExternalAccount](docs/sdks/users/README.md#deleteexternalaccount) - Delete External Account
-* [deleteTotp](docs/sdks/users/README.md#deletetotp) - Delete all the user's TOTPs
+* [deleteTOTP](docs/sdks/users/README.md#deletetotp) - Delete all the user's TOTPs
 * [delete](docs/sdks/users/README.md#delete) - Delete a user
 * [deleteProfileImage](docs/sdks/users/README.md#deleteprofileimage) - Delete user profile image
-* [disableMFA](docs/sdks/users/README.md#disablemfa) - Disable a user's MFA methods
+* [disableMfa](docs/sdks/users/README.md#disablemfa) - Disable a user's MFA methods
 * [getOAuthAccessToken](docs/sdks/users/README.md#getoauthaccesstoken) - Retrieve the OAuth access token of a user
 * [get](docs/sdks/users/README.md#get) - Retrieve a user
 * [list](docs/sdks/users/README.md#list) - List all users
 * [count](docs/sdks/users/README.md#count) - Count users
+* [getInstanceOrganizationMemberships](docs/sdks/users/README.md#getinstanceorganizationmemberships) - Get a list of all organization memberships within an instance.
 * [lock](docs/sdks/users/README.md#lock) - Lock a user
 * [setProfileImage](docs/sdks/users/README.md#setprofileimage) - Set user profile image
 * [unban](docs/sdks/users/README.md#unban) - Unban a user
@@ -409,12 +396,12 @@ if ($response->statusCode === 200) {
 * [getOrganizationInvitations](docs/sdks/users/README.md#getorganizationinvitations) - Retrieve all invitations for a user
 * [getOrganizationMemberships](docs/sdks/users/README.md#getorganizationmemberships) - Retrieve all memberships for a user
 * [verifyPassword](docs/sdks/users/README.md#verifypassword) - Verify the password of a user
-* [verifyTOTP](docs/sdks/users/README.md#verifytotp) - Verify a TOTP or backup code for a user
+* [verifyTotp](docs/sdks/users/README.md#verifytotp) - Verify a TOTP or backup code for a user
 
 ### [waitlistEntries](docs/sdks/waitlistentries/README.md)
 
-* [createWaitlistEntry](docs/sdks/waitlistentries/README.md#createwaitlistentry) - Create a waitlist entry
-* [listWaitlistEntries](docs/sdks/waitlistentries/README.md#listwaitlistentries) - List all waitlist entries
+* [create](docs/sdks/waitlistentries/README.md#create) - Create a waitlist entry
+* [list](docs/sdks/waitlistentries/README.md#list) - List all waitlist entries
 
 ### [webhooks](docs/sdks/webhooks/README.md)
 
@@ -424,6 +411,76 @@ if ($response->statusCode === 200) {
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
+
+<!-- Start Retries [retries] -->
+## Retries
+
+Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+
+To change the default retry strategy for a single API call, simply provide an `Options` object built with a `RetryConfig` object to the call:
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
+use Clerk\Backend\Utils\Retry;
+
+$sdk = Backend\ClerkBackend::builder()->build();
+
+$request = new Operations\GetPublicInterstitialRequest();
+
+$response = $sdk->miscellaneous->getPublicInterstitial(
+    request: $request,
+    options: Utils\Options->builder()->setRetryConfig(
+        new Retry\RetryConfigBackoff(
+            initialInterval: 1,
+            maxInterval:     50,
+            exponent:        1.1,
+            maxElapsedTime:  100,
+            retryConnectionErrors: false,
+        ))->build()
+);
+
+if ($response->statusCode === 200) {
+    // handle response
+}
+```
+
+If you'd like to override the default retry strategy for all operations that support retries, you can pass a `RetryConfig` object to the `SDKBuilder->setRetryConfig` function when initializing the SDK:
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
+use Clerk\Backend\Utils\Retry;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setRetryConfig(
+        new Retry\RetryConfigBackoff(
+            initialInterval: 1,
+            maxInterval:     50,
+            exponent:        1.1,
+            maxElapsedTime:  100,
+            retryConnectionErrors: false,
+        )
+  )
+    ->build();
+
+$request = new Operations\GetPublicInterstitialRequest();
+
+$response = $sdk->miscellaneous->getPublicInterstitial(
+    request: $request
+);
+
+if ($response->statusCode === 200) {
+    // handle response
+}
+```
+<!-- End Retries [retries] -->
 
 <!-- Start Error Handling [errors] -->
 ## Error Handling
@@ -492,17 +549,16 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
 
 $sdk = Backend\ClerkBackend::builder()
     ->setServerURL('https://api.clerk.com/v1')
     ->build();
 
+$request = new Operations\GetPublicInterstitialRequest();
 
-
-$response = $sdk->miscellaneous->getInterstitial(
-    frontendApi: '<value>',
-    publishableKey: '<value>'
-
+$response = $sdk->miscellaneous->getPublicInterstitial(
+    request: $request
 );
 
 if ($response->statusCode === 200) {

@@ -30,3 +30,12 @@ Components\Admin $value = /* values here */
 Components\FromOAuth $value = /* values here */
 ```
 
+### `Components\Ticket`
+
+```php
+/**
+* @var Components\Ticket
+*/
+Components\Ticket $value = /* values here */
+```
+

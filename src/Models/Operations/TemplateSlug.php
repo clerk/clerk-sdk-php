@@ -9,11 +9,7 @@ declare(strict_types=1);
 namespace Clerk\Backend\Models\Operations;
 
 
-/**
- * The slug of the email template to use for the invitation email.
- *
- * If not provided, the "invitation" template will be used.
- */
+/** The slug of the email template to use for the invitation email. */
 enum TemplateSlug: string
 {
     case Invitation = 'invitation';

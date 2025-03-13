@@ -11,6 +11,8 @@ namespace Clerk\Backend;
 use Clerk\Backend\Hooks\HookContext;
 use Clerk\Backend\Models\Operations;
 use Clerk\Backend\Utils\Options;
+use Clerk\Backend\Utils\Retry;
+use Clerk\Backend\Utils\Retry\RetryUtils;
 
 class Miscellaneous
 {
@@ -49,17 +51,36 @@ class Miscellaneous
      * The Clerk interstitial endpoint serves an html page that loads clerk.js in order to check the user's authentication state.
      * It is used by Clerk SDKs when the user's authentication state cannot be immediately determined.
      *
-     * @param  ?string  $frontendApi
-     * @param  ?string  $publishableKey
+     * @param  ?Operations\GetPublicInterstitialRequest  $request
      * @return Operations\GetPublicInterstitialResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
-    public function getInterstitial(?string $frontendApi = null, ?string $publishableKey = null, ?Options $options = null): Operations\GetPublicInterstitialResponse
+    public function getPublicInterstitial(?Operations\GetPublicInterstitialRequest $request = null, ?Options $options = null): Operations\GetPublicInterstitialResponse
     {
-        $request = new Operations\GetPublicInterstitialRequest(
-            frontendApi: $frontendApi,
-            publishableKey: $publishableKey,
-        );
+        $retryConfig = null;
+        if ($options) {
+            $retryConfig = $options->retryConfig;
+        }
+        if ($retryConfig === null && $this->sdkConfiguration->retryConfig) {
+            $retryConfig = $this->sdkConfiguration->retryConfig;
+        } else {
+            $retryConfig = new Retry\RetryConfigBackoff(
+                initialIntervalMs: 500,
+                maxIntervalMs: 60000,
+                exponent: 1.5,
+                maxElapsedTimeMs: 3600000,
+                retryConnectionErrors: true,
+            );
+        }
+        $retryCodes = null;
+        if ($options) {
+            $retryCodes = $options->retryCodes;
+        }
+        if ($retryCodes === null) {
+            $retryCodes = [
+                '5XX',
+            ];
+        }
         $baseUrl = $this->sdkConfiguration->getServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/public/interstitial');
         $urlOverride = null;
@@ -75,7 +96,7 @@ class Miscellaneous
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+            $httpResponse = RetryUtils::retryWrapper(fn () => $this->sdkConfiguration->client->send($httpRequest, $httpOptions), $retryConfig, $retryCodes);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;

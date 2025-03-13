@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace Clerk\Backend\Models\Components;
 
 
-class LatestActivity
+class SessionActivityResponse
 {
     /**
      *
@@ -27,19 +27,18 @@ class LatestActivity
 
     /**
      *
+     * @var bool $isMobile
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('is_mobile')]
+    public bool $isMobile;
+
+    /**
+     *
      * @var ?string $deviceType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('device_type')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $deviceType = null;
-
-    /**
-     *
-     * @var ?bool $isMobile
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('is_mobile')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $isMobile = null;
 
     /**
      *
@@ -84,8 +83,8 @@ class LatestActivity
     /**
      * @param  string  $object
      * @param  string  $id
+     * @param  bool  $isMobile
      * @param  ?string  $deviceType
-     * @param  ?bool  $isMobile
      * @param  ?string  $browserName
      * @param  ?string  $browserVersion
      * @param  ?string  $ipAddress
@@ -93,12 +92,12 @@ class LatestActivity
      * @param  ?string  $country
      * @phpstan-pure
      */
-    public function __construct(string $object, string $id, ?string $deviceType = null, ?bool $isMobile = null, ?string $browserName = null, ?string $browserVersion = null, ?string $ipAddress = null, ?string $city = null, ?string $country = null)
+    public function __construct(string $object, string $id, bool $isMobile, ?string $deviceType = null, ?string $browserName = null, ?string $browserVersion = null, ?string $ipAddress = null, ?string $city = null, ?string $country = null)
     {
         $this->object = $object;
         $this->id = $id;
-        $this->deviceType = $deviceType;
         $this->isMobile = $isMobile;
+        $this->deviceType = $deviceType;
         $this->browserName = $browserName;
         $this->browserVersion = $browserVersion;
         $this->ipAddress = $ipAddress;

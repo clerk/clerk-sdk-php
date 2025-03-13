@@ -283,9 +283,9 @@ $sdk = Backend\ClerkBackend::builder()
 
 $response = $sdk->organizationInvitations->list(
     organizationId: '<id>',
+    status: Operations\ListOrganizationInvitationsQueryParamStatus::Revoked,
     limit: 10,
-    offset: 0,
-    status: Operations\ListOrganizationInvitationsQueryParamStatus::Revoked
+    offset: 0
 
 );
 
@@ -299,9 +299,9 @@ if ($response->organizationInvitations !== null) {
 | Parameter                                                                                                                                 | Type                                                                                                                                      | Required                                                                                                                                  | Description                                                                                                                               |
 | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | `organizationId`                                                                                                                          | *string*                                                                                                                                  | :heavy_check_mark:                                                                                                                        | The organization ID.                                                                                                                      |
+| `status`                                                                                                                                  | [?Operations\ListOrganizationInvitationsQueryParamStatus](../../Models/Operations/ListOrganizationInvitationsQueryParamStatus.md)         | :heavy_minus_sign:                                                                                                                        | Filter organization invitations based on their status                                                                                     |
 | `limit`                                                                                                                                   | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                     |
 | `offset`                                                                                                                                  | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`. |
-| `status`                                                                                                                                  | [?Operations\ListOrganizationInvitationsQueryParamStatus](../../Models/Operations/ListOrganizationInvitationsQueryParamStatus.md)         | :heavy_minus_sign:                                                                                                                        | Filter organization invitations based on their status                                                                                     |
 
 ### Response
 
