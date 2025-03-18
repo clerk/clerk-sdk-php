@@ -18,7 +18,7 @@ class HooksTest extends TestCase
 {
     private $apiVersion = '2024-10-01';
 
-    public function testGetJwksWithApiVersionHeader(): void
+    public function test_get_jwks_with_api_version_header(): void
     {
         // Create a container to capture the request
         $container = [];
@@ -26,11 +26,11 @@ class HooksTest extends TestCase
 
         // Create a mock response
         $mockResponse = new Response(
-          200,
-          ['Content-Type' => 'application/json'],
-          json_encode([
-            'keys' => []
-          ])
+            200,
+            ['Content-Type' => 'application/json'],
+            json_encode([
+                'keys' => [],
+            ])
         );
 
         $mock = new MockHandler([$mockResponse]);

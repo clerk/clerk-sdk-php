@@ -94,7 +94,7 @@ class AuthenticateRequest
      * @param  mixed  $request  The HTTP request
      * @return string|null The Authorization header, if present
      */
-     private static function getAuthorizationHeader(mixed $request): ?string
+    private static function getAuthorizationHeader(mixed $request): ?string
     {
         if (method_exists($request, 'getHeader')) {
             return $request->hasHeader('Authorization')
@@ -111,7 +111,7 @@ class AuthenticateRequest
      * @param  mixed  $request  The HTTP request
      * @return string|null The Cookie headers, if present
      */
-     private static function getCookieHeader(mixed $request): ?string
+    private static function getCookieHeader(mixed $request): ?string
     {
         if (method_exists($request, 'getHeader')) {
             return $request->hasHeader('Cookie')
