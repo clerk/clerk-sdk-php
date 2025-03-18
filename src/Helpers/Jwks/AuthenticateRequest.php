@@ -67,21 +67,16 @@ class AuthenticateRequest
      */
     private static function getSessionToken(mixed $request): ?string
     {
+        $authorizationHeader = self::getAuthorizationHeader($request);
 
-        if (in_array('getHeader', get_class_methods($request))) {
-            $authorizationHeaders = $request->hasHeader('Authorization') ? $request->getHeader('Authorization')[0] : null;
-            $cookieHeaders = $request->hasHeader('Cookie') ? $request->getHeader('Cookie')[0] : null;
-        } else {
-            $authorizationHeaders = $request->headers->get('Authorization');
-            $cookieHeaders = $request->headers->get('Cookie');
+        if (! empty($authorizationHeader)) {
+            return str_replace('Bearer ', '', $authorizationHeader);
         }
 
-        if (! empty($authorizationHeaders)) {
-            return str_replace('Bearer ', '', $authorizationHeaders);
+        $cookieHeader = self::getCookieHeader($request);
 
-        }
-        if (! empty($cookieHeaders)) {
-            $cookies = array_map('trim', explode(';', $cookieHeaders));
+        if (! empty($cookieHeader)) {
+            $cookies = array_map('trim', explode(';', $cookieHeader));
             foreach ($cookies as $cookie) {
                 [$name, $value] = explode('=', $cookie, 2);
                 if (str_starts_with($name, self::SESSION_COOKIE_NAME)) {
@@ -91,5 +86,39 @@ class AuthenticateRequest
         }
 
         return null;
+    }
+
+    /**
+     * Get Authorization header.
+     *
+     * @param  mixed  $request  The HTTP request
+     * @return string|null The Authorization header, if present
+     */
+     private static function getAuthorizationHeader(mixed $request): ?string
+    {
+        if (method_exists($request, 'getHeader')) {
+            return $request->hasHeader('Authorization')
+                ? ($request->getHeader('Authorization')[0] ?? null)
+                : null;
+        } else {
+            return $request->headers->get('Authorization');
+        }
+    }
+
+    /**
+     * Get Cookie header.
+     *
+     * @param  mixed  $request  The HTTP request
+     * @return string|null The Cookie headers, if present
+     */
+     private static function getCookieHeader(mixed $request): ?string
+    {
+        if (method_exists($request, 'getHeader')) {
+            return $request->hasHeader('Cookie')
+                ? ($request->getHeader('Cookie')[0] ?? null)
+                : null;
+        } else {
+            return $request->headers->get('Cookie');
+        }
     }
 }
