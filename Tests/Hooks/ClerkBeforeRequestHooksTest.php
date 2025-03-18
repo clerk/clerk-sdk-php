@@ -18,7 +18,7 @@ final class ClerkBeforeRequestHooksTest extends TestCase
     {
         // Create a mock for the RequestInterface
         $request = $this->createMock(RequestInterface::class);
-        
+
         // Set up the mock to expect withHeader to be called with the correct parameters
         $request->expects($this->once())
             ->method('withHeader')
@@ -27,19 +27,19 @@ final class ClerkBeforeRequestHooksTest extends TestCase
                 $this->equalTo('2024-10-01')
             )
             ->willReturnSelf();
-        
+
         // Create a mock for the HookContext
         $hookContext = new HookContext('test_operation', null, null);
-        
+
         // Create the BeforeRequestContext with the HookContext
         $context = new BeforeRequestContext($hookContext);
-        
+
         // Create the hook instance
         $hook = new ClerkBeforeRequestHook();
-        
+
         // Call the beforeRequest method
         $result = $hook->beforeRequest($context, $request);
-        
+
         // Assert that the result is the same as the request (since we configured the mock to return itself)
         $this->assertSame($request, $result);
     }
