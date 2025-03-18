@@ -26,31 +26,31 @@ class HooksTest extends TestCase
 
         // Create a mock response
         $mockResponse = new Response(
-          200, 
-          ['Content-Type' => 'application/json'], 
+          200,
+          ['Content-Type' => 'application/json'],
           json_encode([
             'keys' => []
           ])
         );
-        
+
         $mock = new MockHandler([$mockResponse]);
         $handlerStack = HandlerStack::create($mock);
         $handlerStack->push($history);
-        
+
         // Create a client with the mock handler
         $client = new Client(['handler' => $handlerStack]);
-        
+
         // Create SDK with the mock
         $sdk = Backend\ClerkBackend::builder()
             ->setSecurity('sk_test_foo')
             ->setClient($client)
             ->build();
 
-        $sdk->jwks->get();
-                
+        $sdk->jwks->getJWKS();
+
         // Assert we made exactly one request
         $this->assertCount(1, $container);
-        
+
         // Get the request from the container
         $request = $container[0]['request'];
 
