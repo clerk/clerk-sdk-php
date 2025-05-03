@@ -134,7 +134,7 @@ class UserAuthentication
 
         $requestState = AuthenticateRequest::authenticateRequest($request, $options);
 
-        return $requestState.isSignedIn();
+        return $requestState->isSignedIn();
     }
 }
 ```
