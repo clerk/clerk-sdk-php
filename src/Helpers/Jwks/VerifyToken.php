@@ -84,7 +84,7 @@ class VerifyToken
                 $payload->org_slug = $orgClaims->slg;
             }
             if (isset($orgClaims->rol)) {
-                $payload->org_roles = $orgClaims->rol;
+                $payload->org_role = $orgClaims->rol;
             }
 
             // Compute and add org_permissions if features and permissions are present

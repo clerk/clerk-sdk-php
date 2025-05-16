@@ -221,7 +221,7 @@ final class VerifyTokenTest extends TestCase
         
         $this->assertEquals('org_123', $verifiedPayload->org_id);
         $this->assertEquals('test-org', $verifiedPayload->org_slug);
-        $this->assertEquals(['admin', 'member'], $verifiedPayload->org_roles);
+        $this->assertEquals(['admin', 'member'], $verifiedPayload->org_role);
         
         $this->assertIsArray($verifiedPayload->org_permissions);
         
