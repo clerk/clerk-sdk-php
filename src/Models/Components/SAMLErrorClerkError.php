@@ -34,12 +34,12 @@ class SAMLErrorClerkError
 
     /**
      *
-     * @var ?ClerkErrorErrorMeta $meta
+     * @var ?ClerkErrorErrorSAMLAccountMeta $meta
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('meta')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ClerkErrorErrorMeta|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ClerkErrorErrorSAMLAccountMeta|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ClerkErrorErrorMeta $meta = null;
+    public ?ClerkErrorErrorSAMLAccountMeta $meta = null;
 
     /**
      *
@@ -53,11 +53,11 @@ class SAMLErrorClerkError
      * @param  string  $message
      * @param  string  $longMessage
      * @param  string  $code
-     * @param  ?ClerkErrorErrorMeta  $meta
+     * @param  ?ClerkErrorErrorSAMLAccountMeta  $meta
      * @param  ?string  $clerkTraceId
      * @phpstan-pure
      */
-    public function __construct(string $message, string $longMessage, string $code, ?ClerkErrorErrorMeta $meta = null, ?string $clerkTraceId = null)
+    public function __construct(string $message, string $longMessage, string $code, ?ClerkErrorErrorSAMLAccountMeta $meta = null, ?string $clerkTraceId = null)
     {
         $this->message = $message;
         $this->longMessage = $longMessage;

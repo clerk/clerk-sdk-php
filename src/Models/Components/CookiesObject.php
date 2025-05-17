@@ -9,10 +9,8 @@ declare(strict_types=1);
 namespace Clerk\Backend\Models\Components;
 
 
-class ExternalAccounts
+/** String representing the object's type. Objects of the same type share the same value. */
+enum CookiesObject: string
 {
-
-    public function __construct()
-    {
-    }
+    case Cookies = 'cookies';
 }

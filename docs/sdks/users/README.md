@@ -451,7 +451,7 @@ $response = $sdk->users->getOAuthAccessToken(
     request: $request
 );
 
-if ($response->responseBodies !== null) {
+if ($response->oAuthAccessToken !== null) {
     // handle response
 }
 ```

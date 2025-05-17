@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 8c24a12b-d2f1-466a-bdaa-6d83a049a679
 management:
-  docChecksum: 58ad91ea5b9a84daf1a110600dd55581
+  docChecksum: b684ca32bc26235fae342e8e91c51f56
   docVersion: "2024-10-01"
   speakeasyVersion: 1.517.2
   generationVersion: 2.548.5
-  releaseVersion: 0.2.0
-  configChecksum: cede86ab182122600cbd644c2d926fa6
+  releaseVersion: 0.3.0
+  configChecksum: 3c566ba96a539fd6420903ace9d610f7
   repoURL: https://github.com/clerk/clerk-sdk-php.git
   installationURL: https://github.com/clerk/clerk-sdk-php
   published: true
@@ -16,6 +16,7 @@ features:
     constsAndDefaults: 0.2.0
     core: 3.8.0
     deprecations: 2.81.1
+    examples: 2.81.5
     flattening: 2.81.1
     globalSecurity: 2.81.8
     globalSecurityFlattening: 0.1.2
@@ -31,6 +32,8 @@ generatedFiles:
   - .gitattributes
   - USAGE.md
   - composer.json
+  - docs/Models/Components/AccountlessApplication.md
+  - docs/Models/Components/AccountlessApplicationObject.md
   - docs/Models/Components/Actor.md
   - docs/Models/Components/ActorToken.md
   - docs/Models/Components/ActorTokenActor.md
@@ -51,8 +54,12 @@ generatedFiles:
   - docs/Models/Components/CNameTarget.md
   - docs/Models/Components/Claims.md
   - docs/Models/Components/ClerkError.md
+  - docs/Models/Components/ClerkErrorErrorExternalAccountWithVerificationMeta.md
   - docs/Models/Components/ClerkErrorErrorMeta.md
+  - docs/Models/Components/ClerkErrorErrorSAMLAccountMeta.md
   - docs/Models/Components/Client.md
+  - docs/Models/Components/Cookies.md
+  - docs/Models/Components/CookiesObject.md
   - docs/Models/Components/DeletedObject.md
   - docs/Models/Components/Domain.md
   - docs/Models/Components/DomainObject.md
@@ -65,9 +72,16 @@ generatedFiles:
   - docs/Models/Components/ErrorClerkError.md
   - docs/Models/Components/ErrorMeta.md
   - docs/Models/Components/ExternalAccount.md
-  - docs/Models/Components/ExternalAccounts.md
+  - docs/Models/Components/ExternalAccountWithVerification.md
+  - docs/Models/Components/ExternalAccountWithVerificationObject.md
+  - docs/Models/Components/ExternalAccountWithVerificationVerification.md
   - docs/Models/Components/FromOAuth.md
   - docs/Models/Components/FromOAuthVerificationStatus.md
+  - docs/Models/Components/GoogleOneTap.md
+  - docs/Models/Components/GoogleOneTapErrorClerkError.md
+  - docs/Models/Components/GoogleOneTapVerificationError.md
+  - docs/Models/Components/GoogleOneTapVerificationStatus.md
+  - docs/Models/Components/GoogleOneTapVerificationStrategy.md
   - docs/Models/Components/IdentificationLink.md
   - docs/Models/Components/IdentifierType.md
   - docs/Models/Components/Instance.md
@@ -89,6 +103,8 @@ generatedFiles:
   - docs/Models/Components/Meta.md
   - docs/Models/Components/NextAction.md
   - docs/Models/Components/Nonce.md
+  - docs/Models/Components/OAuthAccessToken.md
+  - docs/Models/Components/OAuthAccessTokenObject.md
   - docs/Models/Components/OAuthApplication.md
   - docs/Models/Components/OAuthApplicationObject.md
   - docs/Models/Components/OAuthApplicationWithSecret.md
@@ -96,6 +112,9 @@ generatedFiles:
   - docs/Models/Components/OAuthApplications.md
   - docs/Models/Components/OTPVerificationStatus.md
   - docs/Models/Components/OTPVerificationStrategy.md
+  - docs/Models/Components/Oauth.md
+  - docs/Models/Components/OauthErrorClerkError.md
+  - docs/Models/Components/OauthVerificationStatus.md
   - docs/Models/Components/ObjectT.md
   - docs/Models/Components/Organization.md
   - docs/Models/Components/OrganizationDomain.md
@@ -140,6 +159,7 @@ generatedFiles:
   - docs/Models/Components/SAMLConnectionSAMLConnection.md
   - docs/Models/Components/SAMLConnections.md
   - docs/Models/Components/SAMLErrorClerkError.md
+  - docs/Models/Components/SAMLVerificationError.md
   - docs/Models/Components/SAMLVerificationStatus.md
   - docs/Models/Components/SAMLVerificationStrategy.md
   - docs/Models/Components/Saml.md
@@ -153,6 +173,7 @@ generatedFiles:
   - docs/Models/Components/Session.md
   - docs/Models/Components/SessionActivityResponse.md
   - docs/Models/Components/SessionObject.md
+  - docs/Models/Components/SessionRefresh.md
   - docs/Models/Components/SignInToken.md
   - docs/Models/Components/SignInTokenObject.md
   - docs/Models/Components/SignInTokenStatus.md
@@ -174,6 +195,8 @@ generatedFiles:
   - docs/Models/Components/TicketVerificationSAMLAccountStrategy.md
   - docs/Models/Components/TicketVerificationStatus.md
   - docs/Models/Components/TicketVerificationStrategy.md
+  - docs/Models/Components/Token.md
+  - docs/Models/Components/TokenObject.md
   - docs/Models/Components/TotalCount.md
   - docs/Models/Components/TotalCountObject.md
   - docs/Models/Components/User.md
@@ -211,6 +234,8 @@ generatedFiles:
   - docs/Models/Operations/ChangeProductionInstanceDomainResponse.md
   - docs/Models/Operations/Claims.md
   - docs/Models/Operations/CodeType.md
+  - docs/Models/Operations/CompleteAccountlessApplicationResponse.md
+  - docs/Models/Operations/CreateAccountlessApplicationResponse.md
   - docs/Models/Operations/CreateActorTokenRequestBody.md
   - docs/Models/Operations/CreateActorTokenResponse.md
   - docs/Models/Operations/CreateAllowlistIdentifierRequestBody.md
@@ -309,6 +334,7 @@ generatedFiles:
   - docs/Models/Operations/DisableMFAResponse.md
   - docs/Models/Operations/DisableMFAResponseBody.md
   - docs/Models/Operations/File.md
+  - docs/Models/Operations/Format.md
   - docs/Models/Operations/GenerateSvixAuthURLResponse.md
   - docs/Models/Operations/GetClientListRequest.md
   - docs/Models/Operations/GetClientListResponse.md
@@ -399,8 +425,10 @@ generatedFiles:
   - docs/Models/Operations/PreviewTemplateResponseBody.md
   - docs/Models/Operations/Provider.md
   - docs/Models/Operations/QueryParamStatus.md
+  - docs/Models/Operations/RefreshSessionRequest.md
+  - docs/Models/Operations/RefreshSessionRequestBody.md
+  - docs/Models/Operations/RefreshSessionResponse.md
   - docs/Models/Operations/RequestBody.md
-  - docs/Models/Operations/ResponseBody.md
   - docs/Models/Operations/RevertTemplatePathParamTemplateType.md
   - docs/Models/Operations/RevertTemplateRequest.md
   - docs/Models/Operations/RevertTemplateResponse.md
@@ -523,6 +551,7 @@ generatedFiles:
   - docs/sdks/emailaddresses/README.md
   - docs/sdks/emailandsmstemplates/README.md
   - docs/sdks/emailsmstemplates/README.md
+  - docs/sdks/experimentalaccountlessapplications/README.md
   - docs/sdks/instancesettings/README.md
   - docs/sdks/invitations/README.md
   - docs/sdks/jwks/README.md
@@ -560,6 +589,7 @@ generatedFiles:
   - src/EmailAddresses.php
   - src/EmailAndSmsTemplates.php
   - src/EmailSMSTemplates.php
+  - src/ExperimentalAccountlessApplications.php
   - src/Hooks/AfterErrorContext.php
   - src/Hooks/AfterErrorHook.php
   - src/Hooks/AfterSuccessContext.php
@@ -581,6 +611,8 @@ generatedFiles:
   - src/Jwks.php
   - src/JwtTemplates.php
   - src/Miscellaneous.php
+  - src/Models/Components/AccountlessApplication.php
+  - src/Models/Components/AccountlessApplicationObject.php
   - src/Models/Components/Actor.php
   - src/Models/Components/ActorToken.php
   - src/Models/Components/ActorTokenActor.php
@@ -601,8 +633,12 @@ generatedFiles:
   - src/Models/Components/CNameTarget.php
   - src/Models/Components/Claims.php
   - src/Models/Components/ClerkError.php
+  - src/Models/Components/ClerkErrorErrorExternalAccountWithVerificationMeta.php
   - src/Models/Components/ClerkErrorErrorMeta.php
+  - src/Models/Components/ClerkErrorErrorSAMLAccountMeta.php
   - src/Models/Components/Client.php
+  - src/Models/Components/Cookies.php
+  - src/Models/Components/CookiesObject.php
   - src/Models/Components/DeletedObject.php
   - src/Models/Components/Domain.php
   - src/Models/Components/DomainObject.php
@@ -614,9 +650,14 @@ generatedFiles:
   - src/Models/Components/ErrorClerkError.php
   - src/Models/Components/ErrorMeta.php
   - src/Models/Components/ExternalAccount.php
-  - src/Models/Components/ExternalAccounts.php
+  - src/Models/Components/ExternalAccountWithVerification.php
+  - src/Models/Components/ExternalAccountWithVerificationObject.php
   - src/Models/Components/FromOAuth.php
   - src/Models/Components/FromOAuthVerificationStatus.php
+  - src/Models/Components/GoogleOneTap.php
+  - src/Models/Components/GoogleOneTapErrorClerkError.php
+  - src/Models/Components/GoogleOneTapVerificationStatus.php
+  - src/Models/Components/GoogleOneTapVerificationStrategy.php
   - src/Models/Components/IdentificationLink.php
   - src/Models/Components/IdentifierType.php
   - src/Models/Components/Instance.php
@@ -638,6 +679,8 @@ generatedFiles:
   - src/Models/Components/Meta.php
   - src/Models/Components/NextAction.php
   - src/Models/Components/Nonce.php
+  - src/Models/Components/OAuthAccessToken.php
+  - src/Models/Components/OAuthAccessTokenObject.php
   - src/Models/Components/OAuthApplication.php
   - src/Models/Components/OAuthApplicationObject.php
   - src/Models/Components/OAuthApplicationWithSecret.php
@@ -645,6 +688,9 @@ generatedFiles:
   - src/Models/Components/OAuthApplications.php
   - src/Models/Components/OTPVerificationStatus.php
   - src/Models/Components/OTPVerificationStrategy.php
+  - src/Models/Components/Oauth.php
+  - src/Models/Components/OauthErrorClerkError.php
+  - src/Models/Components/OauthVerificationStatus.php
   - src/Models/Components/ObjectT.php
   - src/Models/Components/Organization.php
   - src/Models/Components/OrganizationDomain.php
@@ -719,6 +765,8 @@ generatedFiles:
   - src/Models/Components/TicketVerificationSAMLAccountStrategy.php
   - src/Models/Components/TicketVerificationStatus.php
   - src/Models/Components/TicketVerificationStrategy.php
+  - src/Models/Components/Token.php
+  - src/Models/Components/TokenObject.php
   - src/Models/Components/TotalCount.php
   - src/Models/Components/TotalCountObject.php
   - src/Models/Components/User.php
@@ -755,6 +803,8 @@ generatedFiles:
   - src/Models/Operations/ChangeProductionInstanceDomainResponse.php
   - src/Models/Operations/Claims.php
   - src/Models/Operations/CodeType.php
+  - src/Models/Operations/CompleteAccountlessApplicationResponse.php
+  - src/Models/Operations/CreateAccountlessApplicationResponse.php
   - src/Models/Operations/CreateActorTokenRequestBody.php
   - src/Models/Operations/CreateActorTokenResponse.php
   - src/Models/Operations/CreateAllowlistIdentifierRequestBody.php
@@ -853,6 +903,7 @@ generatedFiles:
   - src/Models/Operations/DisableMFAResponse.php
   - src/Models/Operations/DisableMFAResponseBody.php
   - src/Models/Operations/File.php
+  - src/Models/Operations/Format.php
   - src/Models/Operations/GenerateSvixAuthURLResponse.php
   - src/Models/Operations/GetClientListRequest.php
   - src/Models/Operations/GetClientListResponse.php
@@ -943,8 +994,10 @@ generatedFiles:
   - src/Models/Operations/PreviewTemplateResponseBody.php
   - src/Models/Operations/Provider.php
   - src/Models/Operations/QueryParamStatus.php
+  - src/Models/Operations/RefreshSessionRequest.php
+  - src/Models/Operations/RefreshSessionRequestBody.php
+  - src/Models/Operations/RefreshSessionResponse.php
   - src/Models/Operations/RequestBody.php
-  - src/Models/Operations/ResponseBody.php
   - src/Models/Operations/RevertTemplatePathParamTemplateType.php
   - src/Models/Operations/RevertTemplateRequest.php
   - src/Models/Operations/RevertTemplateResponse.php
@@ -2427,5 +2480,29 @@ examples:
           application/json: {"object": "sign_up_attempt", "id": "<id>", "status": "abandoned", "required_fields": ["<value>", "<value>"], "optional_fields": ["<value>", "<value>"], "missing_fields": ["<value>", "<value>"], "unverified_fields": ["<value>", "<value>", "<value>"], "verifications": {"email_address": {}, "phone_number": {}, "web3_wallet": {}, "external_account": {}}, "username": "Jade.Gislason", "email_address": "Arielle55@hotmail.com", "phone_number": "1-765-431-2727 x779", "web3_wallet": "<value>", "password_enabled": true, "first_name": "Alexandrine", "last_name": "Kilback-Kassulke", "custom_action": true, "external_id": "<id>", "created_session_id": "<id>", "created_user_id": "<id>", "abandon_at": 1700690400000, "legal_accepted_at": 1700690400000}
         "403":
           application/json: {"errors": []}
+  RefreshSession:
+    speakeasy-default-refresh-session:
+      parameters:
+        path:
+          session_id: "<id>"
+      responses:
+        "200":
+          application/json: {"object": "cookies", "cookies": ["<value>", "<value>", "<value>"]}
+        "400":
+          application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
+  CreateAccountlessApplication:
+    speakeasy-default-create-accountless-application:
+      responses:
+        "200":
+          application/json: {"object": "accountless_application", "publishable_key": "<value>"}
+        "500":
+          application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
+  CompleteAccountlessApplication:
+    speakeasy-default-complete-accountless-application:
+      responses:
+        "200":
+          application/json: {"object": "accountless_application", "publishable_key": "<value>"}
+        "500":
+          application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}, {"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
 examplesVersion: 1.0.0
 generatedTests: {}

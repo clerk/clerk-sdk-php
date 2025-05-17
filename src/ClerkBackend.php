@@ -92,6 +92,8 @@ class ClerkBackend
 
     public WaitlistEntries $waitlistEntries;
 
+    public ExperimentalAccountlessApplications $experimentalAccountlessApplications;
+
     /**
      * Returns a new instance of the SDK builder used to configure and create the SDK instance.
      *
@@ -139,6 +141,7 @@ class ClerkBackend
         $this->samlConnections = new SamlConnections($this->sdkConfiguration);
         $this->testingTokens = new TestingTokens($this->sdkConfiguration);
         $this->waitlistEntries = new WaitlistEntries($this->sdkConfiguration);
+        $this->experimentalAccountlessApplications = new ExperimentalAccountlessApplications($this->sdkConfiguration);
         $this->sdkConfiguration->client = $this->sdkConfiguration->initHooks($this->sdkConfiguration->client);
 
     }

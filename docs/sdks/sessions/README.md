@@ -9,6 +9,7 @@
 * [createTokenFromTemplate](#createtokenfromtemplate) - Create a session token from a jwt template
 * [get](#get) - Retrieve a session
 * [list](#list) - List all sessions
+* [refresh](#refresh) - Refresh a session
 * [revoke](#revoke) - Revoke a session
 * [~~verify~~](#verify) - Verify a session :warning: **Deprecated**
 * [create](#create) - Create a new active session
@@ -213,6 +214,62 @@ if ($response->sessionList !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 400, 401, 422       | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## refresh
+
+Refreshes a session by creating a new session token. A 401 is returned when there
+are validation errors, which signals the SDKs to fallback to the handshake flow.
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+$requestBody = new Operations\RefreshSessionRequestBody(
+    expiredToken: '<value>',
+    refreshToken: '<value>',
+    requestOrigin: '<value>',
+);
+
+$response = $sdk->sessions->refresh(
+    sessionId: '<id>',
+    requestBody: $requestBody
+
+);
+
+if ($response->sessionRefresh !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `sessionId`                                                                                   | *string*                                                                                      | :heavy_check_mark:                                                                            | The ID of the session                                                                         |
+| `requestBody`                                                                                 | [?Operations\RefreshSessionRequestBody](../../Models/Operations/RefreshSessionRequestBody.md) | :heavy_minus_sign:                                                                            | Refresh session parameters                                                                    |
+
+### Response
+
+**[?Operations\RefreshSessionResponse](../../Models/Operations/RefreshSessionResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 401            | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## revoke

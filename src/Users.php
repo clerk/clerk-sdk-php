@@ -960,12 +960,12 @@ class Users
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, 'array<\Clerk\Backend\Models\Operations\ResponseBody>', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, 'array<\Clerk\Backend\Models\Components\OAuthAccessToken>', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\GetOAuthAccessTokenResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
-                    responseBodies: $obj);
+                    oAuthAccessToken: $obj);
 
                 return $response;
             } else {

@@ -97,17 +97,20 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
 
-$sdk = Backend\ClerkBackend::builder()->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
-$request = new Operations\GetPublicInterstitialRequest();
 
-$response = $sdk->miscellaneous->getPublicInterstitial(
-    request: $request
+
+$response = $sdk->emailAddresses->get(
+    emailAddressId: '<id>'
 );
 
-if ($response->statusCode === 200) {
+if ($response->emailAddress !== null) {
     // handle response
 }
 ```
@@ -240,6 +243,11 @@ if ($response->statusCode === 200) {
 * [~~revert~~](docs/sdks/emailsmstemplates/README.md#revert) - Revert a template :warning: **Deprecated**
 * [~~toggleTemplateDelivery~~](docs/sdks/emailsmstemplates/README.md#toggletemplatedelivery) - Toggle the delivery by Clerk for a template of a given type and slug :warning: **Deprecated**
 
+### [experimentalAccountlessApplications](docs/sdks/experimentalaccountlessapplications/README.md)
+
+* [complete](docs/sdks/experimentalaccountlessapplications/README.md#complete) - Complete an accountless application [EXPERIMENTAL]
+* [create](docs/sdks/experimentalaccountlessapplications/README.md#create) - Create an accountless application [EXPERIMENTAL]
+
 ### [instanceSettings](docs/sdks/instancesettings/README.md)
 
 * [changeDomain](docs/sdks/instancesettings/README.md#changedomain) - Update production instance domain
@@ -348,6 +356,7 @@ if ($response->statusCode === 200) {
 * [createTokenFromTemplate](docs/sdks/sessions/README.md#createtokenfromtemplate) - Create a session token from a jwt template
 * [get](docs/sdks/sessions/README.md#get) - Retrieve a session
 * [list](docs/sdks/sessions/README.md#list) - List all sessions
+* [refresh](docs/sdks/sessions/README.md#refresh) - Refresh a session
 * [revoke](docs/sdks/sessions/README.md#revoke) - Revoke a session
 * [~~verify~~](docs/sdks/sessions/README.md#verify) - Verify a session :warning: **Deprecated**
 * [create](docs/sdks/sessions/README.md#create) - Create a new active session
