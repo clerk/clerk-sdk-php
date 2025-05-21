@@ -6,8 +6,8 @@
 ### Available Operations
 
 * [create](#create) - Create a phone number
-* [delete](#delete) - Delete a phone number
 * [get](#get) - Retrieve a phone number
+* [delete](#delete) - Delete a phone number
 * [update](#update) - Update a phone number
 
 ## create
@@ -32,7 +32,7 @@ $sdk = Backend\ClerkBackend::builder()
 
 $request = new Operations\CreatePhoneNumberRequestBody(
     userId: '<id>',
-    phoneNumber: '741.279.0107 x857',
+    phoneNumber: '511.674.7460 x4280',
 );
 
 $response = $sdk->phoneNumbers->create(
@@ -60,53 +60,6 @@ if ($response->phoneNumber !== null) {
 | ----------------------- | ----------------------- | ----------------------- |
 | Errors\ClerkErrors      | 400, 401, 403, 404, 422 | application/json        |
 | Errors\SDKException     | 4XX, 5XX                | \*/\*                   |
-
-## delete
-
-Delete the phone number with the given ID
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->phoneNumbers->delete(
-    phoneNumberId: '<id>'
-);
-
-if ($response->deletedObject !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                            | Type                                 | Required                             | Description                          |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| `phoneNumberId`                      | *string*                             | :heavy_check_mark:                   | The ID of the phone number to delete |
-
-### Response
-
-**[?Operations\DeletePhoneNumberResponse](../../Models/Operations/DeletePhoneNumberResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 401, 403, 404  | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## get
 
@@ -147,6 +100,53 @@ if ($response->phoneNumber !== null) {
 ### Response
 
 **[?Operations\GetPhoneNumberResponse](../../Models/Operations/GetPhoneNumberResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 401, 403, 404  | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## delete
+
+Delete the phone number with the given ID
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->phoneNumbers->delete(
+    phoneNumberId: '<id>'
+);
+
+if ($response->deletedObject !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                            | Type                                 | Required                             | Description                          |
+| ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
+| `phoneNumberId`                      | *string*                             | :heavy_check_mark:                   | The ID of the phone number to delete |
+
+### Response
+
+**[?Operations\DeletePhoneNumberResponse](../../Models/Operations/DeletePhoneNumberResponse.md)**
 
 ### Errors
 

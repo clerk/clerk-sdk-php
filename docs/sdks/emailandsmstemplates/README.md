@@ -32,7 +32,7 @@ $sdk = Backend\ClerkBackend::builder()
 $requestBody = new Operations\UpsertTemplateRequestBody();
 
 $response = $sdk->emailAndSmsTemplates->upsert(
-    templateType: Operations\UpsertTemplatePathParamTemplateType::Sms,
+    templateType: Operations\UpsertTemplatePathParamTemplateType::Email,
     slug: '<value>',
     requestBody: $requestBody
 

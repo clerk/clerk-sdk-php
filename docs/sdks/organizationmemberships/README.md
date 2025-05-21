@@ -6,9 +6,9 @@
 ### Available Operations
 
 * [create](#create) - Create a new organization membership
-* [delete](#delete) - Remove a member from an organization
 * [list](#list) - Get a list of all members of an organization
 * [update](#update) - Update an organization membership
+* [delete](#delete) - Remove a member from an organization
 * [updateMetadata](#updatemetadata) - Merge and update organization membership metadata
 
 ## create
@@ -68,56 +68,6 @@ if ($response->organizationMembership !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 400, 403, 404, 422  | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## delete
-
-Removes the given membership from the organization
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->organizationMemberships->delete(
-    organizationId: '<id>',
-    userId: '<id>'
-
-);
-
-if ($response->organizationMembership !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                            | Type                                                 | Required                                             | Description                                          |
-| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
-| `organizationId`                                     | *string*                                             | :heavy_check_mark:                                   | The ID of the organization the membership belongs to |
-| `userId`                                             | *string*                                             | :heavy_check_mark:                                   | The ID of the user that this membership belongs to   |
-
-### Response
-
-**[?Operations\DeleteOrganizationMembershipResponse](../../Models/Operations/DeleteOrganizationMembershipResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 401, 404            | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## list
@@ -227,6 +177,56 @@ if ($response->organizationMembership !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 404, 422            | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## delete
+
+Removes the given membership from the organization
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->organizationMemberships->delete(
+    organizationId: '<id>',
+    userId: '<id>'
+
+);
+
+if ($response->organizationMembership !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                            | Type                                                 | Required                                             | Description                                          |
+| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| `organizationId`                                     | *string*                                             | :heavy_check_mark:                                   | The ID of the organization the membership belongs to |
+| `userId`                                             | *string*                                             | :heavy_check_mark:                                   | The ID of the user that this membership belongs to   |
+
+### Response
+
+**[?Operations\DeleteOrganizationMembershipResponse](../../Models/Operations/DeleteOrganizationMembershipResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 401, 404            | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## updateMetadata

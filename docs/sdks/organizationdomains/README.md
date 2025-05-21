@@ -6,9 +6,9 @@
 ### Available Operations
 
 * [create](#create) - Create a new organization domain.
-* [delete](#delete) - Remove a domain from an organization.
 * [list](#list) - Get a list of all domains of an organization.
 * [update](#update) - Update an organization domain.
+* [delete](#delete) - Remove a domain from an organization.
 
 ## create
 
@@ -59,56 +59,6 @@ if ($response->organizationDomain !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 400, 403, 404, 422  | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## delete
-
-Removes the given domain from the organization.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->organizationDomains->delete(
-    organizationId: '<id>',
-    domainId: '<id>'
-
-);
-
-if ($response->deletedObject !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                        | Type                                             | Required                                         | Description                                      |
-| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| `organizationId`                                 | *string*                                         | :heavy_check_mark:                               | The ID of the organization the domain belongs to |
-| `domainId`                                       | *string*                                         | :heavy_check_mark:                               | The ID of the domain                             |
-
-### Response
-
-**[?Operations\DeleteOrganizationDomainResponse](../../Models/Operations/DeleteOrganizationDomainResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 401, 404       | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## list
@@ -212,4 +162,54 @@ if ($response->organizationDomain !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 400, 404, 422       | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## delete
+
+Removes the given domain from the organization.
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->organizationDomains->delete(
+    organizationId: '<id>',
+    domainId: '<id>'
+
+);
+
+if ($response->deletedObject !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                        | Type                                             | Required                                         | Description                                      |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| `organizationId`                                 | *string*                                         | :heavy_check_mark:                               | The ID of the organization the domain belongs to |
+| `domainId`                                       | *string*                                         | :heavy_check_mark:                               | The ID of the domain                             |
+
+### Response
+
+**[?Operations\DeleteOrganizationDomainResponse](../../Models/Operations/DeleteOrganizationDomainResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 401, 404       | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |

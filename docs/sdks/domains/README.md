@@ -5,10 +5,51 @@
 
 ### Available Operations
 
+* [list](#list) - List all instance domains
 * [add](#add) - Add a domain
 * [delete](#delete) - Delete a satellite domain
-* [list](#list) - List all instance domains
 * [update](#update) - Update a domain
+
+## list
+
+Use this endpoint to get a list of all domains for an instance.
+The response will contain the primary domain for the instance and any satellite domains. Each domain in the response contains information about the URLs where Clerk operates and the required CNAME targets.
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->domains->list(
+
+);
+
+if ($response->domains !== null) {
+    // handle response
+}
+```
+
+### Response
+
+**[?Operations\ListDomainsResponse](../../Models/Operations/ListDomainsResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## add
 
@@ -111,47 +152,6 @@ if ($response->deletedObject !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 403, 404            | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## list
-
-Use this endpoint to get a list of all domains for an instance.
-The response will contain the primary domain for the instance and any satellite domains. Each domain in the response contains information about the URLs where Clerk operates and the required CNAME targets.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->domains->list(
-
-);
-
-if ($response->domains !== null) {
-    // handle response
-}
-```
-
-### Response
-
-**[?Operations\ListDomainsResponse](../../Models/Operations/ListDomainsResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## update

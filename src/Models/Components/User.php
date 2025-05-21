@@ -152,10 +152,10 @@ class User
     /**
      * $externalAccounts
      *
-     * @var ?array<ExternalAccounts> $externalAccounts
+     * @var ?array<ExternalAccountWithVerification> $externalAccounts
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('external_accounts')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\ExternalAccounts>|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\ExternalAccountWithVerification>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $externalAccounts = null;
 
@@ -405,7 +405,7 @@ class User
      * @param  ?bool  $twoFactorEnabled
      * @param  ?bool  $totpEnabled
      * @param  ?bool  $backupCodeEnabled
-     * @param  ?array<ExternalAccounts>  $externalAccounts
+     * @param  ?array<ExternalAccountWithVerification>  $externalAccounts
      * @param  ?array<SAMLAccount>  $samlAccounts
      * @param  ?bool  $banned
      * @param  ?bool  $locked

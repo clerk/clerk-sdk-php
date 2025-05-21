@@ -5,200 +5,13 @@
 
 ### Available Operations
 
-* [create](#create) - Create and send an organization invitation
-* [bulkCreate](#bulkcreate) - Bulk create and send organization invitations
-* [get](#get) - Retrieve an organization invitation by ID
 * [getAll](#getall) - Get a list of organization invitations for the current instance
+* [create](#create) - Create and send an organization invitation
 * [list](#list) - Get a list of organization invitations
+* [bulkCreate](#bulkcreate) - Bulk create and send organization invitations
 * [~~listPending~~](#listpending) - Get a list of pending organization invitations :warning: **Deprecated**
+* [get](#get) - Retrieve an organization invitation by ID
 * [revoke](#revoke) - Revoke a pending organization invitation
-
-## create
-
-Creates a new organization invitation and sends an email to the provided `email_address` with a link to accept the invitation and join the organization.
-You can specify the `role` for the invited organization member.
-
-New organization invitations get a "pending" status until they are revoked by an organization administrator or accepted by the invitee.
-
-The request body supports passing an optional `redirect_url` parameter.
-When the invited user clicks the link to accept the invitation, they will be redirected to the URL provided.
-Use this parameter to implement a custom invitation acceptance flow.
-
-You can specify the ID of the user that will send the invitation with the `inviter_user_id` parameter.
-That user must be a member with administrator privileges in the organization.
-Only "admin" members can create organization invitations.
-
-You can optionally provide public and private metadata for the organization invitation.
-The public metadata are visible by both the Frontend and the Backend whereas the private ones only by the Backend.
-When the organization invitation is accepted, the metadata will be transferred to the newly created organization membership.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-$requestBody = new Operations\CreateOrganizationInvitationRequestBody(
-    emailAddress: 'Loyal79@yahoo.com',
-    role: '<value>',
-);
-
-$response = $sdk->organizationInvitations->create(
-    organizationId: '<id>',
-    requestBody: $requestBody
-
-);
-
-if ($response->organizationInvitation !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                 | Type                                                                                                                      | Required                                                                                                                  | Description                                                                                                               |
-| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `organizationId`                                                                                                          | *string*                                                                                                                  | :heavy_check_mark:                                                                                                        | The ID of the organization for which to send the invitation                                                               |
-| `requestBody`                                                                                                             | [?Operations\CreateOrganizationInvitationRequestBody](../../Models/Operations/CreateOrganizationInvitationRequestBody.md) | :heavy_minus_sign:                                                                                                        | N/A                                                                                                                       |
-
-### Response
-
-**[?Operations\CreateOrganizationInvitationResponse](../../Models/Operations/CreateOrganizationInvitationResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 403, 404, 422  | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## bulkCreate
-
-Creates new organization invitations in bulk and sends out emails to the provided email addresses with a link to accept the invitation and join the organization.
-You can specify a different `role` for each invited organization member.
-New organization invitations get a "pending" status until they are revoked by an organization administrator or accepted by the invitee.
-The request body supports passing an optional `redirect_url` parameter for each invitation.
-When the invited user clicks the link to accept the invitation, they will be redirected to the provided URL.
-Use this parameter to implement a custom invitation acceptance flow.
-You can specify the ID of the user that will send the invitation with the `inviter_user_id` parameter. Each invitation
-can have a different inviter user.
-Inviter users must be members with administrator privileges in the organization.
-Only "admin" members can create organization invitations.
-You can optionally provide public and private metadata for each organization invitation. The public metadata are visible
-by both the Frontend and the Backend, whereas the private metadata are only visible by the Backend.
-When the organization invitation is accepted, the metadata will be transferred to the newly created organization membership.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->organizationInvitations->bulkCreate(
-    organizationId: '<id>',
-    requestBody: [
-        new Operations\CreateOrganizationInvitationBulkRequestBody(
-            emailAddress: 'Queen25@gmail.com',
-            role: '<value>',
-        ),
-    ]
-
-);
-
-if ($response->organizationInvitations !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                               | Type                                                                                                                                    | Required                                                                                                                                | Description                                                                                                                             |
-| --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `organizationId`                                                                                                                        | *string*                                                                                                                                | :heavy_check_mark:                                                                                                                      | The organization ID.                                                                                                                    |
-| `requestBody`                                                                                                                           | array<[Operations\CreateOrganizationInvitationBulkRequestBody](../../Models/Operations/CreateOrganizationInvitationBulkRequestBody.md)> | :heavy_check_mark:                                                                                                                      | N/A                                                                                                                                     |
-
-### Response
-
-**[?Operations\CreateOrganizationInvitationBulkResponse](../../Models/Operations/CreateOrganizationInvitationBulkResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 403, 404, 422  | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## get
-
-Use this request to get an existing organization invitation by ID.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->organizationInvitations->get(
-    organizationId: '<id>',
-    invitationId: '<id>'
-
-);
-
-if ($response->organizationInvitation !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                       | Type                            | Required                        | Description                     |
-| ------------------------------- | ------------------------------- | ------------------------------- | ------------------------------- |
-| `organizationId`                | *string*                        | :heavy_check_mark:              | The organization ID.            |
-| `invitationId`                  | *string*                        | :heavy_check_mark:              | The organization invitation ID. |
-
-### Response
-
-**[?Operations\GetOrganizationInvitationResponse](../../Models/Operations/GetOrganizationInvitationResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 403, 404       | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## getAll
 
@@ -254,6 +67,75 @@ if ($response->organizationInvitationsWithPublicOrganizationData !== null) {
 | Errors\ClerkErrors  | 500                 | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
+## create
+
+Creates a new organization invitation and sends an email to the provided `email_address` with a link to accept the invitation and join the organization.
+You can specify the `role` for the invited organization member.
+
+New organization invitations get a "pending" status until they are revoked by an organization administrator or accepted by the invitee.
+
+The request body supports passing an optional `redirect_url` parameter.
+When the invited user clicks the link to accept the invitation, they will be redirected to the URL provided.
+Use this parameter to implement a custom invitation acceptance flow.
+
+You can specify the ID of the user that will send the invitation with the `inviter_user_id` parameter.
+That user must be a member with administrator privileges in the organization.
+Only "admin" members can create organization invitations.
+
+You can optionally provide public and private metadata for the organization invitation.
+The public metadata are visible by both the Frontend and the Backend whereas the private ones only by the Backend.
+When the organization invitation is accepted, the metadata will be transferred to the newly created organization membership.
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+$requestBody = new Operations\CreateOrganizationInvitationRequestBody(
+    emailAddress: 'Paige_Runte@yahoo.com',
+    role: '<value>',
+);
+
+$response = $sdk->organizationInvitations->create(
+    organizationId: '<id>',
+    requestBody: $requestBody
+
+);
+
+if ($response->organizationInvitation !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                 | Type                                                                                                                      | Required                                                                                                                  | Description                                                                                                               |
+| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `organizationId`                                                                                                          | *string*                                                                                                                  | :heavy_check_mark:                                                                                                        | The ID of the organization for which to send the invitation                                                               |
+| `requestBody`                                                                                                             | [?Operations\CreateOrganizationInvitationRequestBody](../../Models/Operations/CreateOrganizationInvitationRequestBody.md) | :heavy_minus_sign:                                                                                                        | N/A                                                                                                                       |
+
+### Response
+
+**[?Operations\CreateOrganizationInvitationResponse](../../Models/Operations/CreateOrganizationInvitationResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 403, 404, 422  | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
 ## list
 
 This request returns the list of organization invitations.
@@ -283,7 +165,7 @@ $sdk = Backend\ClerkBackend::builder()
 
 $response = $sdk->organizationInvitations->list(
     organizationId: '<id>',
-    status: Operations\ListOrganizationInvitationsQueryParamStatus::Revoked,
+    status: Operations\ListOrganizationInvitationsQueryParamStatus::Accepted,
     limit: 10,
     offset: 0
 
@@ -312,6 +194,74 @@ if ($response->organizationInvitations !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 400, 404            | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## bulkCreate
+
+Creates new organization invitations in bulk and sends out emails to the provided email addresses with a link to accept the invitation and join the organization.
+You can specify a different `role` for each invited organization member.
+New organization invitations get a "pending" status until they are revoked by an organization administrator or accepted by the invitee.
+The request body supports passing an optional `redirect_url` parameter for each invitation.
+When the invited user clicks the link to accept the invitation, they will be redirected to the provided URL.
+Use this parameter to implement a custom invitation acceptance flow.
+You can specify the ID of the user that will send the invitation with the `inviter_user_id` parameter. Each invitation
+can have a different inviter user.
+Inviter users must be members with administrator privileges in the organization.
+Only "admin" members can create organization invitations.
+You can optionally provide public and private metadata for each organization invitation. The public metadata are visible
+by both the Frontend and the Backend, whereas the private metadata are only visible by the Backend.
+When the organization invitation is accepted, the metadata will be transferred to the newly created organization membership.
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->organizationInvitations->bulkCreate(
+    organizationId: '<id>',
+    requestBody: [
+        new Operations\CreateOrganizationInvitationBulkRequestBody(
+            emailAddress: 'Quinten_Lehner14@hotmail.com',
+            role: '<value>',
+        ),
+    ]
+
+);
+
+if ($response->organizationInvitations !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                               | Type                                                                                                                                    | Required                                                                                                                                | Description                                                                                                                             |
+| --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `organizationId`                                                                                                                        | *string*                                                                                                                                | :heavy_check_mark:                                                                                                                      | The organization ID.                                                                                                                    |
+| `requestBody`                                                                                                                           | array<[Operations\CreateOrganizationInvitationBulkRequestBody](../../Models/Operations/CreateOrganizationInvitationBulkRequestBody.md)> | :heavy_check_mark:                                                                                                                      | N/A                                                                                                                                     |
+
+### Response
+
+**[?Operations\CreateOrganizationInvitationBulkResponse](../../Models/Operations/CreateOrganizationInvitationBulkResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 403, 404, 422  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## ~~listPending~~
@@ -371,6 +321,56 @@ if ($response->organizationInvitations !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 400, 404            | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## get
+
+Use this request to get an existing organization invitation by ID.
+
+### Example Usage
+
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->organizationInvitations->get(
+    organizationId: '<id>',
+    invitationId: '<id>'
+
+);
+
+if ($response->organizationInvitation !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                       | Type                            | Required                        | Description                     |
+| ------------------------------- | ------------------------------- | ------------------------------- | ------------------------------- |
+| `organizationId`                | *string*                        | :heavy_check_mark:              | The organization ID.            |
+| `invitationId`                  | *string*                        | :heavy_check_mark:              | The organization invitation ID. |
+
+### Response
+
+**[?Operations\GetOrganizationInvitationResponse](../../Models/Operations/GetOrganizationInvitationResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 403, 404       | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## revoke
