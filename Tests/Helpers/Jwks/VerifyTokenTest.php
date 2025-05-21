@@ -10,6 +10,9 @@ use Clerk\Backend\Helpers\Jwks\VerifyToken;
 use Clerk\Backend\Helpers\Jwks\VerifyTokenOptions;
 
 use PHPUnit\Framework\TestCase;
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+
 
 final class VerifyTokenTest extends TestCase
 {
@@ -167,6 +170,78 @@ final class VerifyTokenTest extends TestCase
         $this->expectException(TokenVerificationException::class);
         $this->expectExceptionMessage(TokenVerificationErrorReason::$TOKEN_INVALID_AUTHORIZED_PARTIES->getMessage());
         VerifyToken::verifyToken($this->fixture->testToken, $vtOptions);
+    }
+
+    public function test_verify_token_organization_claims()
+    {
+        // Test organization claims with multiple roles and permissions
+        $orgClaims = (object)[
+            'id' => 'org_123',
+            'slg' => 'test-org',
+            'rol' => ['admin', 'member'],
+            'per' => 'read,write,manage',
+            'fpm' => '7,3,1'  // Binary: 111, 011, 001 - testing different permission combinations
+        ];
+        
+        $payload = [
+            'iss' => 'https://test.com',
+            'aud' => $this->fixture->requestUrl,
+            'iat' => (new \DateTimeImmutable('-1 minute'))->getTimestamp(),
+            'nbf' => (new \DateTimeImmutable())->getTimestamp(),
+            'exp' => (new \DateTimeImmutable('+1 minute'))->getTimestamp(),
+            'azp' => $this->fixture->authorizedParty,
+            'v' => '2',
+            'fea' => 'o:feature1,o:feature2,o:feature3',  // Three features to test with fpm
+            'o' => [
+                'id' => 'org_123',
+                'slg' => 'test-org',
+                'rol' => ['admin', 'member'],
+                'per' => 'read,write,manage',
+                'fpm' => '7,3,1'  // Binary: 111, 011, 001
+            ]
+        ];
+        
+        // Create RSA key pair
+        $rsa = \phpseclib3\Crypt\RSA::createKey(2048);
+        $privateKey = $rsa->withPadding(\phpseclib3\Crypt\RSA::SIGNATURE_PKCS1);
+        $publicKey = $privateKey->getPublicKey();
+        
+        // Sign the token with our custom payload
+        $token = JWT::encode($payload, $privateKey, 'RS256', 'ins_abcdefghijklmnopqrstuvwxyz0');
+        
+        $vtOptions = new VerifyTokenOptions(
+            jwtKey: $publicKey->toString('PKCS8')
+        );
+        
+        $verifiedPayload = VerifyToken::verifyToken($token, $vtOptions);
+        
+        $this->assertEquals('2', $verifiedPayload->v);
+        $this->assertEquals($orgClaims, $verifiedPayload->o);
+        $this->assertEquals('o:feature1,o:feature2,o:feature3', $verifiedPayload->fea);
+        
+        $this->assertEquals('org_123', $verifiedPayload->org_id);
+        $this->assertEquals('test-org', $verifiedPayload->org_slug);
+        $this->assertEquals(['admin', 'member'], $verifiedPayload->org_role);
+        
+        $this->assertIsArray($verifiedPayload->org_permissions);
+        
+        // Feature 1 (fpm=7, binary=111): All permissions allowed
+        $this->assertContains('org:feature1:read', $verifiedPayload->org_permissions);
+        $this->assertContains('org:feature1:write', $verifiedPayload->org_permissions);
+        $this->assertContains('org:feature1:manage', $verifiedPayload->org_permissions);
+        
+        // Feature 2 (fpm=3, binary=011): read and write allowed, manage not allowed
+        $this->assertContains('org:feature2:read', $verifiedPayload->org_permissions);
+        $this->assertContains('org:feature2:write', $verifiedPayload->org_permissions);
+        $this->assertNotContains('org:feature2:manage', $verifiedPayload->org_permissions);
+        
+        // Feature 3 (fpm=1, binary=001): only read allowed
+        $this->assertContains('org:feature3:read', $verifiedPayload->org_permissions);
+        $this->assertNotContains('org:feature3:write', $verifiedPayload->org_permissions);
+        $this->assertNotContains('org:feature3:manage', $verifiedPayload->org_permissions);
+        
+        // Verify total number of permissions
+        $this->assertCount(6, $verifiedPayload->org_permissions);
     }
 
     /**
