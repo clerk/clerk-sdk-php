@@ -31,14 +31,14 @@ final class M2MAuthenticationTest extends TestCase
         // Test machine token
         $m2mContext = $this->createHttpContextWithToken('mt_service_token_123');
         $m2mState = AuthenticateRequest::authenticateRequest($m2mContext, $arOptions);
-        
+
         // Should not be rejected due to token type
         $this->assertNotEquals(AuthErrorReason::$TOKEN_TYPE_NOT_SUPPORTED, $m2mState->getErrorReason());
 
         // Test session token
         $sessionContext = $this->createHttpContextWithToken('eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.session');
         $sessionState = AuthenticateRequest::authenticateRequest($sessionContext, $arOptions);
-        
+
         // Should not be rejected due to token type
         $this->assertNotEquals(AuthErrorReason::$TOKEN_TYPE_NOT_SUPPORTED, $sessionState->getErrorReason());
     }
@@ -120,7 +120,7 @@ final class M2MAuthenticationTest extends TestCase
 
         $m2mContext = $this->createHttpContextWithToken('mt_service_token_123');
         $m2mState = AuthenticateRequest::authenticateRequest($m2mContext, $arOptions);
-        
+
         // Should fail due to missing secret key
         $this->assertEquals(AuthErrorReason::$SECRET_KEY_MISSING, $m2mState->getErrorReason());
     }
@@ -165,4 +165,4 @@ final class M2MAuthenticationTest extends TestCase
             'Authorization' => "Bearer $token",
         ]);
     }
-} 
+}

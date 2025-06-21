@@ -18,7 +18,7 @@ class HooksTest extends TestCase
 {
     private $apiVersion = '2024-10-01';
 
-    public function testGetJwksWithApiVersionHeader(): void
+    public function test_get_jwks_with_api_version_header(): void
     {
         // Create a container to capture the request
         $container = [];
@@ -26,20 +26,20 @@ class HooksTest extends TestCase
 
         // Create a mock response
         $mockResponse = new Response(
-          200, 
-          ['Content-Type' => 'application/json'], 
-          json_encode([
-            'keys' => []
-          ])
+            200,
+            ['Content-Type' => 'application/json'],
+            json_encode([
+                'keys' => [],
+            ])
         );
-        
+
         $mock = new MockHandler([$mockResponse]);
         $handlerStack = HandlerStack::create($mock);
         $handlerStack->push($history);
-        
+
         // Create a client with the mock handler
         $client = new Client(['handler' => $handlerStack]);
-        
+
         // Create SDK with the mock
         $sdk = Backend\ClerkBackend::builder()
             ->setSecurity('sk_test_foo')
@@ -47,10 +47,10 @@ class HooksTest extends TestCase
             ->build();
 
         $sdk->jwks->getJWKS();
-                
+
         // Assert we made exactly one request
         $this->assertCount(1, $container);
-        
+
         // Get the request from the container
         $request = $container[0]['request'];
 

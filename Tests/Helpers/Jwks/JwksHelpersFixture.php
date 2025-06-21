@@ -35,7 +35,7 @@ class JwksHelpersFixture
         $this->apiKey = getenv('CLERK_API_KEY') ?: null;
         $this->testAudience = getenv('CLERK_TEST_AUDIENCE') ?: 'test-api';
         $this->enableRealIntegrationTests = strtolower(getenv('ENABLE_REAL_INTEGRATION_TESTS') ?: 'false') === 'true';
-        
+
         $this->audiences = null;
         $this->authorizedParty = getenv('CLERK_TEST_AUTHORIZED_PARTY') ?: $this->requestUrl;
 
@@ -52,12 +52,12 @@ class JwksHelpersFixture
     private function loadEnvironmentVariables(): void
     {
         $currentDir = getcwd();
-        $envPath = $currentDir . '/.env';
+        $envPath = $currentDir.'/.env';
 
         // If .env is not found in current directory, look for it in parent directories
-        while (!file_exists($envPath) && dirname($currentDir) !== $currentDir) {
+        while (! file_exists($envPath) && dirname($currentDir) !== $currentDir) {
             $currentDir = dirname($currentDir);
-            $envPath = $currentDir . '/.env';
+            $envPath = $currentDir.'/.env';
         }
 
         if (file_exists($envPath)) {
@@ -66,19 +66,19 @@ class JwksHelpersFixture
                 if (strpos($line, '#') === 0) {
                     continue; // Skip comments
                 }
-                
+
                 if (strpos($line, '=') !== false) {
                     [$key, $value] = explode('=', $line, 2);
                     $key = trim($key);
                     $value = trim($value);
-                    
+
                     // Remove quotes if present
                     if ((strpos($value, '"') === 0 && strrpos($value, '"') === strlen($value) - 1) ||
                         (strpos($value, "'") === 0 && strrpos($value, "'") === strlen($value) - 1)) {
                         $value = substr($value, 1, -1);
                     }
-                    
-                    if (!getenv($key)) {
+
+                    if (! getenv($key)) {
                         putenv("$key=$value");
                         $_ENV[$key] = $value;
                     }

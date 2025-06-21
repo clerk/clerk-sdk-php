@@ -26,7 +26,7 @@ final class M2MAuthIntegrationTest extends TestCase
      */
     public function test_real_machine_token_authentication()
     {
-        if (!$this->fixture->enableRealIntegrationTests) {
+        if (! $this->fixture->enableRealIntegrationTests) {
             $this->markTestSkipped('Real integration tests are disabled. Set ENABLE_REAL_INTEGRATION_TESTS=true to enable.');
         }
 
@@ -40,14 +40,14 @@ final class M2MAuthIntegrationTest extends TestCase
         );
 
         $request = new Request('GET', $this->fixture->requestUrl, [
-            'Authorization' => 'Bearer ' . $this->fixture->machineToken,
+            'Authorization' => 'Bearer '.$this->fixture->machineToken,
         ]);
 
         $state = AuthenticateRequest::authenticateRequest($request, $arOptions);
 
         // Should not be rejected due to token type
         $this->assertNotEquals(AuthErrorReason::$TOKEN_TYPE_NOT_SUPPORTED, $state->getErrorReason());
-        
+
         // If verification fails, it should be due to token validation, not type checking
         if ($state->isSignedOut()) {
             $this->assertNotEquals(AuthErrorReason::$TOKEN_TYPE_NOT_SUPPORTED, $state->getErrorReason());
@@ -60,7 +60,7 @@ final class M2MAuthIntegrationTest extends TestCase
      */
     public function test_real_oauth_token_authentication()
     {
-        if (!$this->fixture->enableRealIntegrationTests) {
+        if (! $this->fixture->enableRealIntegrationTests) {
             $this->markTestSkipped('Real integration tests are disabled. Set ENABLE_REAL_INTEGRATION_TESTS=true to enable.');
         }
 
@@ -74,14 +74,14 @@ final class M2MAuthIntegrationTest extends TestCase
         );
 
         $request = new Request('GET', $this->fixture->requestUrl, [
-            'Authorization' => 'Bearer ' . $this->fixture->oauthToken,
+            'Authorization' => 'Bearer '.$this->fixture->oauthToken,
         ]);
 
         $state = AuthenticateRequest::authenticateRequest($request, $arOptions);
 
         // Should not be rejected due to token type
         $this->assertNotEquals(AuthErrorReason::$TOKEN_TYPE_NOT_SUPPORTED, $state->getErrorReason());
-        
+
         // If verification fails, it should be due to token validation, not type checking
         if ($state->isSignedOut()) {
             $this->assertNotEquals(AuthErrorReason::$TOKEN_TYPE_NOT_SUPPORTED, $state->getErrorReason());
@@ -94,7 +94,7 @@ final class M2MAuthIntegrationTest extends TestCase
      */
     public function test_real_api_key_authentication()
     {
-        if (!$this->fixture->enableRealIntegrationTests) {
+        if (! $this->fixture->enableRealIntegrationTests) {
             $this->markTestSkipped('Real integration tests are disabled. Set ENABLE_REAL_INTEGRATION_TESTS=true to enable.');
         }
 
@@ -108,14 +108,14 @@ final class M2MAuthIntegrationTest extends TestCase
         );
 
         $request = new Request('GET', $this->fixture->requestUrl, [
-            'Authorization' => 'Bearer ' . $this->fixture->apiKey,
+            'Authorization' => 'Bearer '.$this->fixture->apiKey,
         ]);
 
         $state = AuthenticateRequest::authenticateRequest($request, $arOptions);
 
         // Should not be rejected due to token type
         $this->assertNotEquals(AuthErrorReason::$TOKEN_TYPE_NOT_SUPPORTED, $state->getErrorReason());
-        
+
         // If verification fails, it should be due to token validation, not type checking
         if ($state->isSignedOut()) {
             $this->assertNotEquals(AuthErrorReason::$TOKEN_TYPE_NOT_SUPPORTED, $state->getErrorReason());
@@ -129,7 +129,7 @@ final class M2MAuthIntegrationTest extends TestCase
      */
     public function test_hybrid_authentication_with_real_tokens()
     {
-        if (!$this->fixture->enableRealIntegrationTests) {
+        if (! $this->fixture->enableRealIntegrationTests) {
             $this->markTestSkipped('Real integration tests are disabled. Set ENABLE_REAL_INTEGRATION_TESTS=true to enable.');
         }
 
@@ -144,7 +144,7 @@ final class M2MAuthIntegrationTest extends TestCase
 
         // Test machine token
         $m2mRequest = new Request('GET', $this->fixture->requestUrl, [
-            'Authorization' => 'Bearer ' . $this->fixture->machineToken,
+            'Authorization' => 'Bearer '.$this->fixture->machineToken,
         ]);
 
         $m2mState = AuthenticateRequest::authenticateRequest($m2mRequest, $arOptions);
@@ -152,7 +152,7 @@ final class M2MAuthIntegrationTest extends TestCase
 
         // Test session token
         $sessionRequest = new Request('GET', $this->fixture->requestUrl, [
-            'Authorization' => 'Bearer ' . $this->fixture->sessionToken,
+            'Authorization' => 'Bearer '.$this->fixture->sessionToken,
         ]);
 
         $sessionState = AuthenticateRequest::authenticateRequest($sessionRequest, $arOptions);
@@ -165,7 +165,7 @@ final class M2MAuthIntegrationTest extends TestCase
      */
     public function test_machine_token_rejected_when_not_accepted()
     {
-        if (!$this->fixture->enableRealIntegrationTests) {
+        if (! $this->fixture->enableRealIntegrationTests) {
             $this->markTestSkipped('Real integration tests are disabled. Set ENABLE_REAL_INTEGRATION_TESTS=true to enable.');
         }
 
@@ -180,7 +180,7 @@ final class M2MAuthIntegrationTest extends TestCase
         );
 
         $request = new Request('GET', $this->fixture->requestUrl, [
-            'Authorization' => 'Bearer ' . $this->fixture->machineToken,
+            'Authorization' => 'Bearer '.$this->fixture->machineToken,
         ]);
 
         $state = AuthenticateRequest::authenticateRequest($request, $arOptions);
@@ -195,7 +195,7 @@ final class M2MAuthIntegrationTest extends TestCase
      */
     public function test_session_token_rejected_when_only_m2m_accepted()
     {
-        if (!$this->fixture->enableRealIntegrationTests) {
+        if (! $this->fixture->enableRealIntegrationTests) {
             $this->markTestSkipped('Real integration tests are disabled. Set ENABLE_REAL_INTEGRATION_TESTS=true to enable.');
         }
 
@@ -210,7 +210,7 @@ final class M2MAuthIntegrationTest extends TestCase
         );
 
         $request = new Request('GET', $this->fixture->requestUrl, [
-            'Authorization' => 'Bearer ' . $this->fixture->sessionToken,
+            'Authorization' => 'Bearer '.$this->fixture->sessionToken,
         ]);
 
         $state = AuthenticateRequest::authenticateRequest($request, $arOptions);
@@ -225,7 +225,7 @@ final class M2MAuthIntegrationTest extends TestCase
      */
     public function test_machine_token_requires_secret_key_integration()
     {
-        if (!$this->fixture->enableRealIntegrationTests) {
+        if (! $this->fixture->enableRealIntegrationTests) {
             $this->markTestSkipped('Real integration tests are disabled. Set ENABLE_REAL_INTEGRATION_TESTS=true to enable.');
         }
 
@@ -235,12 +235,12 @@ final class M2MAuthIntegrationTest extends TestCase
 
         // Try to use JWT key only for machine token
         $arOptions = new AuthenticateRequestOptions(
-            jwtKey: $this->fixture->jwtKey, 
+            jwtKey: $this->fixture->jwtKey,
             acceptsToken: ['machine_token']
         );
 
         $request = new Request('GET', $this->fixture->requestUrl, [
-            'Authorization' => 'Bearer ' . $this->fixture->machineToken,
+            'Authorization' => 'Bearer '.$this->fixture->machineToken,
         ]);
 
         $state = AuthenticateRequest::authenticateRequest($request, $arOptions);
@@ -248,4 +248,4 @@ final class M2MAuthIntegrationTest extends TestCase
         // Should fail due to missing secret key
         $this->assertEquals(AuthErrorReason::$SECRET_KEY_MISSING, $state->getErrorReason());
     }
-} 
+}

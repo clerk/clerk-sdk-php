@@ -136,7 +136,7 @@ class SessionAuthObjectV1 implements AuthObject
     public array $claims;
 
     /**
-     * @param array<string, mixed> $payload
+     * @param  array<string, mixed>  $payload
      */
     public function __construct(array $payload)
     {
@@ -169,7 +169,7 @@ class SessionAuthObjectV2 implements AuthObject
     public ?string $azp;
 
     /**
-     * @param array<string, mixed> $payload
+     * @param  array<string, mixed>  $payload
      */
     public function __construct(array $payload)
     {
@@ -201,7 +201,7 @@ class OAuthMachineAuthObject implements AuthObject
     public array $scopes;
 
     /**
-     * @param array<string, mixed> $payload
+     * @param  array<string, mixed>  $payload
      */
     public function __construct(array $payload)
     {
@@ -230,7 +230,7 @@ class APIKeyMachineAuthObject implements AuthObject
     public array $claims;
 
     /**
-     * @param array<string, mixed> $payload
+     * @param  array<string, mixed>  $payload
      */
     public function __construct(array $payload)
     {
@@ -260,7 +260,7 @@ class M2MMachineAuthObject implements AuthObject
     public array $claims;
 
     /**
-     * @param array<string, mixed> $payload
+     * @param  array<string, mixed>  $payload
      */
     public function __construct(array $payload)
     {
