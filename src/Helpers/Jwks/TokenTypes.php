@@ -122,9 +122,18 @@ class SessionAuthObjectV1 implements AuthObject
     public string $user_id;
     public ?string $org_id;
     public ?string $org_role;
-    public ?array $org_permissions;
-    public ?array $factor_verification_age;
-    public ?array $claims;
+    /**
+     * @var array<string>
+     */
+    public array $org_permissions;
+    /**
+     * @var array<int>
+     */
+    public array $factor_verification_age;
+    /**
+     * @var array<string, mixed>
+     */
+    public array $claims;
 
     public function __construct(array $payload)
     {
@@ -148,7 +157,10 @@ class SessionAuthObjectV2 implements AuthObject
     public int $v;
     public ?string $jti;
     public ?string $role;
-    public ?array $fva;
+    /**
+     * @var array<string>
+     */
+    public array $fva;
     public ?int $nbf;
     public ?string $email;
     public ?string $azp;
@@ -177,7 +189,10 @@ class OAuthMachineAuthObject implements AuthObject
     public ?string $user_id;
     public ?string $client_id;
     public ?string $name;
-    public ?array $scopes;
+    /**
+     * @var array<string>
+     */
+    public array $scopes;
 
     public function __construct(array $payload)
     {
@@ -196,8 +211,14 @@ class APIKeyMachineAuthObject implements AuthObject
     public ?string $user_id;
     public ?string $org_id;
     public ?string $name;
-    public ?array $scopes;
-    public ?array $claims;
+    /**
+     * @var array<string>
+     */
+    public array $scopes;
+    /**
+     * @var array<string>
+     */
+    public array $claims;
 
     public function __construct(array $payload)
     {
@@ -217,8 +238,14 @@ class M2MMachineAuthObject implements AuthObject
     public ?string $machine_id;
     public ?string $client_id;
     public ?string $name;
-    public ?array $scopes;
-    public ?array $claims;
+    /**
+     * @var array<string>
+     */
+    public array $scopes;
+    /**
+     * @var array<string, mixed>
+     */
+    public array $claims;
 
     public function __construct(array $payload)
     {
