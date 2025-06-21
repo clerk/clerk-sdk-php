@@ -135,6 +135,9 @@ class SessionAuthObjectV1 implements AuthObject
      */
     public array $claims;
 
+    /**
+     * @param array<string, mixed> $payload
+     */
     public function __construct(array $payload)
     {
         $this->session_id = $payload['sid'] ?? '';
@@ -165,6 +168,9 @@ class SessionAuthObjectV2 implements AuthObject
     public ?string $email;
     public ?string $azp;
 
+    /**
+     * @param array<string, mixed> $payload
+     */
     public function __construct(array $payload)
     {
         $this->exp = $payload['exp'] ?? 0;
@@ -194,6 +200,9 @@ class OAuthMachineAuthObject implements AuthObject
      */
     public array $scopes;
 
+    /**
+     * @param array<string, mixed> $payload
+     */
     public function __construct(array $payload)
     {
         $this->id = $payload['id'] ?? null;
@@ -220,6 +229,9 @@ class APIKeyMachineAuthObject implements AuthObject
      */
     public array $claims;
 
+    /**
+     * @param array<string, mixed> $payload
+     */
     public function __construct(array $payload)
     {
         $this->id = $payload['id'] ?? null;
@@ -247,6 +259,9 @@ class M2MMachineAuthObject implements AuthObject
      */
     public array $claims;
 
+    /**
+     * @param array<string, mixed> $payload
+     */
     public function __construct(array $payload)
     {
         $this->id = $payload['id'] ?? null;
