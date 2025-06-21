@@ -3,6 +3,7 @@
 namespace Clerk\Backend\Tests\Helpers\Jwks;
 
 use Clerk\Backend\Helpers\Jwks\RequestState;
+use Clerk\Backend\Helpers\Jwks\TokenTypes;
 use Clerk\Backend\Helpers\Jwks\TokenVerificationErrorReason;
 use Clerk\Backend\Helpers\Jwks\TokenVerificationException;
 use Clerk\Backend\Helpers\Jwks\VerifyToken;
@@ -27,6 +28,35 @@ class Utils
 
         if (! empty($missingEnvVars)) {
             $test->markTestSkipped('Missing environment variable(s): '.implode(', ', $missingEnvVars).'.');
+        }
+    }
+
+    public static function skipIfRealIntegrationTestsDisabled(TestCase $test): void
+    {
+        $enableRealTests = strtolower(getenv('ENABLE_REAL_INTEGRATION_TESTS') ?: 'false');
+        if ($enableRealTests !== 'true') {
+            $test->markTestSkipped('Real integration tests are disabled. Set ENABLE_REAL_INTEGRATION_TESTS=true to enable.');
+        }
+    }
+
+    public static function skipIfTokenNotSet(TestCase $test, string $tokenEnvVar, string $tokenType): void
+    {
+        $token = getenv($tokenEnvVar);
+        if (empty($token)) {
+            $test->markTestSkipped("$tokenEnvVar environment variable is not set.");
+        }
+
+        // Validate token type
+        $expectedType = match ($tokenType) {
+            'machine_token' => TokenTypes::MACHINE_TOKEN,
+            'oauth_token' => TokenTypes::OAUTH_TOKEN,
+            'api_key' => TokenTypes::API_KEY,
+            'session_token' => TokenTypes::SESSION_TOKEN,
+            default => null
+        };
+
+        if ($expectedType && TokenTypes::getTokenType($token) !== $expectedType) {
+            $test->markTestSkipped("$tokenEnvVar does not contain a valid $tokenType.");
         }
     }
 
@@ -102,5 +132,25 @@ class Utils
             $test->assertNull($state->getPayload());
             echo "WARNING: the provided token is expired!\n";
         }
+    }
+
+    public static function assertTokenTypeAccepted(TestCase $test, RequestState $state): void
+    {
+        // If the state is signed out, it should not be due to token type not supported
+        if ($state->isSignedOut()) {
+            $test->assertNotEquals(
+                'token-type-not-supported',
+                $state->getErrorReason()?->getCode()
+            );
+        }
+    }
+
+    public static function assertTokenTypeRejected(TestCase $test, RequestState $state): void
+    {
+        $test->assertTrue($state->isSignedOut());
+        $test->assertEquals(
+            'token-type-not-supported',
+            $state->getErrorReason()?->getCode()
+        );
     }
 }

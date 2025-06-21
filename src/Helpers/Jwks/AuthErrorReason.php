@@ -9,6 +9,7 @@ class AuthErrorReason
 {
     public static ErrorReason $SESSION_TOKEN_MISSING;
     public static ErrorReason $SECRET_KEY_MISSING;
+    public static ErrorReason $TOKEN_TYPE_NOT_SUPPORTED;
 
     public static function init(): void
     {
@@ -19,6 +20,10 @@ class AuthErrorReason
         self::$SECRET_KEY_MISSING = new ErrorReason(
             'secret-key-missing',
             'Missing Clerk Secret Key. Go to https://dashboard.clerk.com and get your key for your instance.'
+        );
+        self::$TOKEN_TYPE_NOT_SUPPORTED = new ErrorReason(
+            'token-type-not-supported',
+            'The provided token type is not supported. Expected one of: session_token, machine_token, oauth_token, or api_key.'
         );
     }
 }

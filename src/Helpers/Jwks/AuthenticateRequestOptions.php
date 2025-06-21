@@ -13,6 +13,8 @@ class AuthenticateRequestOptions
     /** @var array<string> */
     private array $authorizedParties;
     private int $clockSkewInMs;
+    /** @var array<string> */
+    private array $acceptsToken;
 
     /**
      * Options to configure AuthenticateRequest::authenticateRequest.
@@ -22,6 +24,7 @@ class AuthenticateRequestOptions
      * @param  ?array<string>  $audiences  A list of audiences to verify against.
      * @param  ?array<string>  $authorizedParties  An allowlist of origins to verify against.
      * @param  ?int  $clockSkewInMs  Allowed time difference (in milliseconds) between the Clerk server (which generates the token) and the clock of the user's application server when validating a token. Defaults to 5000 ms.
+     * @param  ?array<string>  $acceptsToken  A list of token types to accept. Defaults to ["any"].
      * @throws AuthenticateRequestException
      */
     public function __construct(
@@ -29,7 +32,8 @@ class AuthenticateRequestOptions
         ?string $jwtKey = null,
         ?array $audiences = null,
         ?array $authorizedParties = null,
-        ?int $clockSkewInMs = null
+        ?int $clockSkewInMs = null,
+        ?array $acceptsToken = null
     ) {
         if (empty($secretKey) && empty($jwtKey)) {
             throw new AuthenticateRequestException(AuthErrorReason::$SECRET_KEY_MISSING);
@@ -40,6 +44,7 @@ class AuthenticateRequestOptions
         $this->audiences = $audiences;
         $this->authorizedParties = $authorizedParties ?? [];
         $this->clockSkewInMs = $clockSkewInMs ?? self::DEFAULT_CLOCK_SKEW_MS;
+        $this->acceptsToken = $acceptsToken ?? ['any'];
     }
 
     public function getSecretKey(): ?string
@@ -71,5 +76,13 @@ class AuthenticateRequestOptions
     public function getClockSkewInMs(): int
     {
         return $this->clockSkewInMs;
+    }
+
+    /**
+     * @return array<string>
+     */
+    public function getAcceptsToken(): array
+    {
+        return $this->acceptsToken;
     }
 }

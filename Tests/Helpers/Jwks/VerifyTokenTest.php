@@ -298,7 +298,7 @@ final class VerifyTokenTest extends TestCase
      */
     public function test_verify_token_local_ok()
     {
-        Utils::skipIfEnvVarsNotSet($this, ['CLERK_SECRET_KEY', 'CLERK_SESSION_TOKEN']);
+        Utils::skipIfEnvVarsNotSet($this, ['CLERK_JWT_KEY', 'CLERK_SESSION_TOKEN']);
 
         $vtOptions = new VerifyTokenOptions(
             jwtKey: $this->fixture->jwtKey,

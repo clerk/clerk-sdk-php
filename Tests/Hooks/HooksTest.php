@@ -46,7 +46,7 @@ class HooksTest extends TestCase
             ->setClient($client)
             ->build();
 
-        $sdk->jwks->get();
+        $sdk->jwks->getJWKS();
                 
         // Assert we made exactly one request
         $this->assertCount(1, $container);

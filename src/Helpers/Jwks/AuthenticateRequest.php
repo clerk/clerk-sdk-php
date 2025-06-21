@@ -33,23 +33,46 @@ class AuthenticateRequest
             return RequestState::signedOut(AuthErrorReason::$SESSION_TOKEN_MISSING);
         }
 
-        if ($options->getJwtKey() !== null) {
+        $tokenType = TokenTypes::getTokenType($sessionToken);
+        $tokenTypeName = TokenTypes::getTokenTypeName($sessionToken);
+
+        // Check if token type is accepted
+        if (!in_array('any', $options->getAcceptsToken()) && !in_array($tokenTypeName, $options->getAcceptsToken())) {
+            return RequestState::signedOut(AuthErrorReason::$TOKEN_TYPE_NOT_SUPPORTED);
+        }
+
+        $verifyTokenOptions = null;
+
+        if (TokenTypes::isMachineToken($sessionToken)) {
+            // Machine tokens require secret key for API verification
+            if ($options->getSecretKey() === null) {
+                return RequestState::signedOut(AuthErrorReason::$SECRET_KEY_MISSING);
+            }
+
             $verifyTokenOptions = new VerifyTokenOptions(
-                jwtKey: $options->getJwtKey(),
-                audiences: $options->getAudiences(),
-                authorizedParties: $options->getAuthorizedParties(),
-                clockSkewInMs: $options->getClockSkewInMs()
-            );
-        } elseif ($options->getSecretKey() !== null) {
-            $verifyTokenOptions = new VerifyTokenOptions(
-                secretKey: $options->getSecretKey(),
-                audiences: $options->getAudiences(),
-                authorizedParties: $options->getAuthorizedParties(),
-                clockSkewInMs: $options->getClockSkewInMs()
+                secretKey: $options->getSecretKey()
             );
         } else {
-            return RequestState::signedOut(AuthErrorReason::$SECRET_KEY_MISSING);
+            // Session tokens can use either JWT key or secret key
+            if ($options->getJwtKey() !== null) {
+                $verifyTokenOptions = new VerifyTokenOptions(
+                    jwtKey: $options->getJwtKey(),
+                    audiences: $options->getAudiences(),
+                    authorizedParties: $options->getAuthorizedParties(),
+                    clockSkewInMs: $options->getClockSkewInMs()
+                );
+            } elseif ($options->getSecretKey() !== null) {
+                $verifyTokenOptions = new VerifyTokenOptions(
+                    secretKey: $options->getSecretKey(),
+                    audiences: $options->getAudiences(),
+                    authorizedParties: $options->getAuthorizedParties(),
+                    clockSkewInMs: $options->getClockSkewInMs()
+                );
+            } else {
+                return RequestState::signedOut(AuthErrorReason::$SECRET_KEY_MISSING);
+            }
         }
+
         try {
             $claims = VerifyToken::verifyToken($sessionToken, $verifyTokenOptions);
 
