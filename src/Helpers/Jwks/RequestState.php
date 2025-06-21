@@ -3,12 +3,6 @@
 namespace Clerk\Backend\Helpers\Jwks;
 
 use stdClass;
-use Clerk\Backend\Helpers\Jwks\AuthObject;
-use Clerk\Backend\Helpers\Jwks\SessionAuthObjectV1;
-use Clerk\Backend\Helpers\Jwks\SessionAuthObjectV2;
-use Clerk\Backend\Helpers\Jwks\OAuthMachineAuthObject;
-use Clerk\Backend\Helpers\Jwks\APIKeyMachineAuthObject;
-use Clerk\Backend\Helpers\Jwks\M2MMachineAuthObject;
 
 /**
  * Authentication State of the request.
@@ -75,7 +69,7 @@ class RequestState
      */
     public function toAuth(): AuthObject
     {
-        if (!$this->isAuthenticated()) {
+        if (! $this->isAuthenticated()) {
             throw new \RuntimeException('Cannot convert to AuthObject in unauthenticated state.');
         }
         $payload = (array) $this->payload;
@@ -85,6 +79,7 @@ class RequestState
                 if (isset($payload['v']) && $payload['v'] === 2) {
                     return new SessionAuthObjectV2($payload);
                 }
+
                 return new SessionAuthObjectV1($payload);
             case TokenTypes::OAUTH_TOKEN:
                 return new OAuthMachineAuthObject($payload);
@@ -93,7 +88,7 @@ class RequestState
             case TokenTypes::MACHINE_TOKEN:
                 return new M2MMachineAuthObject($payload);
             default:
-                throw new \RuntimeException('Unsupported token type: ' . $tokenType);
+                throw new \RuntimeException('Unsupported token type: '.$tokenType);
         }
     }
 

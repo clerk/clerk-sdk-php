@@ -75,7 +75,7 @@ class VerifyToken
         // Process organization claims if present
         if (isset($payload->v) && $payload->v === '2' && isset($payload->o) && is_object($payload->o)) {
             $orgClaims = $payload->o;
-            
+
             // Add derived organization claims
             if (isset($orgClaims->id)) {
                 $payload->org_id = $orgClaims->id;
@@ -92,34 +92,34 @@ class VerifyToken
                 $features = explode(',', $payload->fea);
                 $permissions = explode(',', $orgClaims->per);
                 $mappings = explode(',', $orgClaims->fpm);
-                
+
                 $orgPermissions = [];
                 for ($idx = 0; $idx < count($mappings); $idx++) {
                     $mapping = $mappings[$idx];
                     $featureParts = explode(':', $features[$idx]);
-                    
+
                     if (count($featureParts) !== 2) {
                         continue;
                     }
-                    
+
                     $scope = $featureParts[0];
                     $feature = $featureParts[1];
-                    
-                    if (!str_contains($scope, 'o')) {
+
+                    if (! str_contains($scope, 'o')) {
                         continue;
                     }
-                    
-                    $binary = ltrim(decbin((int)$mapping), '0');
+
+                    $binary = ltrim(decbin((int) $mapping), '0');
                     $reversedBinary = strrev($binary);
-                    
+
                     for ($i = 0; $i < strlen($reversedBinary); $i++) {
                         if ($reversedBinary[$i] === '1' && $i < count($permissions)) {
                             $orgPermissions[] = "org:{$feature}:{$permissions[$i]}";
                         }
                     }
                 }
-                
-                if (!empty($orgPermissions)) {
+
+                if (! empty($orgPermissions)) {
                     $payload->org_permissions = $orgPermissions;
                 }
             }

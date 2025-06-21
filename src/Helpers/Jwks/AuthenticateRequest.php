@@ -37,7 +37,7 @@ class AuthenticateRequest
         $tokenTypeName = TokenTypes::getTokenTypeName($sessionToken);
 
         // Check if token type is accepted
-        if (!in_array('any', $options->getAcceptsToken()) && !in_array($tokenTypeName, $options->getAcceptsToken())) {
+        if (! in_array('any', $options->getAcceptsToken()) && ! in_array($tokenTypeName, $options->getAcceptsToken())) {
             return RequestState::signedOut(AuthErrorReason::$TOKEN_TYPE_NOT_SUPPORTED);
         }
 
