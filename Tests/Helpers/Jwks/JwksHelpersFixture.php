@@ -2,6 +2,8 @@
 
 namespace Clerk\Backend\Tests\Helpers\Jwks;
 
+use Dotenv\Dotenv;
+
 class JwksHelpersFixture
 {
     public string $requestUrl = 'http://localhost:3000';
@@ -61,29 +63,8 @@ class JwksHelpersFixture
         }
 
         if (file_exists($envPath)) {
-            $lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-            foreach ($lines as $line) {
-                if (strpos($line, '#') === 0) {
-                    continue; // Skip comments
-                }
-
-                if (strpos($line, '=') !== false) {
-                    [$key, $value] = explode('=', $line, 2);
-                    $key = trim($key);
-                    $value = trim($value);
-
-                    // Remove quotes if present
-                    if ((strpos($value, '"') === 0 && strrpos($value, '"') === strlen($value) - 1) ||
-                        (strpos($value, "'") === 0 && strrpos($value, "'") === strlen($value) - 1)) {
-                        $value = substr($value, 1, -1);
-                    }
-
-                    if (! getenv($key)) {
-                        putenv("$key=$value");
-                        $_ENV[$key] = $value;
-                    }
-                }
-            }
+            $dotenv = Dotenv::createImmutable(dirname($envPath));
+            $dotenv->load();
         }
     }
 }

@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace Clerk\Backend\Tests\Helpers\Jwks;
 
-use Clerk\Backend\Helpers\Jwks\APIKeyMachineAuthObject;
+use Clerk\Backend\Helpers\Jwks\AuthObject;
 use Clerk\Backend\Helpers\Jwks\AuthErrorReason;
 use Clerk\Backend\Helpers\Jwks\M2MMachineAuthObject;
 use Clerk\Backend\Helpers\Jwks\OAuthMachineAuthObject;
 use Clerk\Backend\Helpers\Jwks\RequestState;
 use Clerk\Backend\Helpers\Jwks\SessionAuthObjectV1;
 use Clerk\Backend\Helpers\Jwks\SessionAuthObjectV2;
+use Clerk\Backend\Helpers\Jwks\APIKeyMachineAuthObject;
 use PHPUnit\Framework\TestCase;
 
 final class RequestStateTest extends TestCase
