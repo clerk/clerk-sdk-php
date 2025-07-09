@@ -9,9 +9,9 @@ use Clerk\Backend\Helpers\Jwks\TokenVerificationException;
 use Clerk\Backend\Helpers\Jwks\VerifyToken;
 use Clerk\Backend\Helpers\Jwks\VerifyTokenOptions;
 
-use PHPUnit\Framework\TestCase;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
+use PHPUnit\Framework\TestCase;
 
 
 final class VerifyTokenTest extends TestCase
@@ -175,14 +175,14 @@ final class VerifyTokenTest extends TestCase
     public function test_verify_token_organization_claims()
     {
         // Test organization claims with multiple roles and permissions
-        $orgClaims = (object)[
+        $orgClaims = (object) [
             'id' => 'org_123',
             'slg' => 'test-org',
             'rol' => ['admin', 'member'],
             'per' => 'read,write,manage',
-            'fpm' => '7,3,1'  // Binary: 111, 011, 001 - testing different permission combinations
+            'fpm' => '7,3,1',  // Binary: 111, 011, 001 - testing different permission combinations
         ];
-        
+
         $payload = [
             'iss' => 'https://test.com',
             'aud' => $this->fixture->requestUrl,
@@ -197,49 +197,49 @@ final class VerifyTokenTest extends TestCase
                 'slg' => 'test-org',
                 'rol' => ['admin', 'member'],
                 'per' => 'read,write,manage',
-                'fpm' => '7,3,1'  // Binary: 111, 011, 001
-            ]
+                'fpm' => '7,3,1',  // Binary: 111, 011, 001
+            ],
         ];
-        
+
         // Create RSA key pair
         $rsa = \phpseclib3\Crypt\RSA::createKey(2048);
         $privateKey = $rsa->withPadding(\phpseclib3\Crypt\RSA::SIGNATURE_PKCS1);
         $publicKey = $privateKey->getPublicKey();
-        
+
         // Sign the token with our custom payload
         $token = JWT::encode($payload, $privateKey, 'RS256', 'ins_abcdefghijklmnopqrstuvwxyz0');
-        
+
         $vtOptions = new VerifyTokenOptions(
             jwtKey: $publicKey->toString('PKCS8')
         );
-        
+
         $verifiedPayload = VerifyToken::verifyToken($token, $vtOptions);
-        
+
         $this->assertEquals('2', $verifiedPayload->v);
         $this->assertEquals($orgClaims, $verifiedPayload->o);
         $this->assertEquals('o:feature1,o:feature2,o:feature3', $verifiedPayload->fea);
-        
+
         $this->assertEquals('org_123', $verifiedPayload->org_id);
         $this->assertEquals('test-org', $verifiedPayload->org_slug);
         $this->assertEquals(['admin', 'member'], $verifiedPayload->org_role);
-        
+
         $this->assertIsArray($verifiedPayload->org_permissions);
-        
+
         // Feature 1 (fpm=7, binary=111): All permissions allowed
         $this->assertContains('org:feature1:read', $verifiedPayload->org_permissions);
         $this->assertContains('org:feature1:write', $verifiedPayload->org_permissions);
         $this->assertContains('org:feature1:manage', $verifiedPayload->org_permissions);
-        
+
         // Feature 2 (fpm=3, binary=011): read and write allowed, manage not allowed
         $this->assertContains('org:feature2:read', $verifiedPayload->org_permissions);
         $this->assertContains('org:feature2:write', $verifiedPayload->org_permissions);
         $this->assertNotContains('org:feature2:manage', $verifiedPayload->org_permissions);
-        
+
         // Feature 3 (fpm=1, binary=001): only read allowed
         $this->assertContains('org:feature3:read', $verifiedPayload->org_permissions);
         $this->assertNotContains('org:feature3:write', $verifiedPayload->org_permissions);
         $this->assertNotContains('org:feature3:manage', $verifiedPayload->org_permissions);
-        
+
         // Verify total number of permissions
         $this->assertCount(6, $verifiedPayload->org_permissions);
     }
@@ -298,7 +298,7 @@ final class VerifyTokenTest extends TestCase
      */
     public function test_verify_token_local_ok()
     {
-        Utils::skipIfEnvVarsNotSet($this, ['CLERK_SECRET_KEY', 'CLERK_SESSION_TOKEN']);
+        Utils::skipIfEnvVarsNotSet($this, ['CLERK_JWT_KEY', 'CLERK_SESSION_TOKEN']);
 
         $vtOptions = new VerifyTokenOptions(
             jwtKey: $this->fixture->jwtKey,
