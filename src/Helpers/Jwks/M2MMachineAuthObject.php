@@ -30,4 +30,4 @@ class M2MMachineAuthObject implements AuthObject
         $this->scopes = $payload['scopes'] ?? null;
         $this->claims = $payload['claims'] ?? null;
     }
-} 
+}

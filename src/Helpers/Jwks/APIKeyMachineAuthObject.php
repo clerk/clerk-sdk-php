@@ -30,4 +30,4 @@ class APIKeyMachineAuthObject implements AuthObject
         $this->scopes = $payload['scopes'] ?? null;
         $this->claims = $payload['claims'] ?? null;
     }
-} 
+}
