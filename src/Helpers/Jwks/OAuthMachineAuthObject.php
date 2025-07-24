@@ -25,4 +25,4 @@ class OAuthMachineAuthObject implements AuthObject
         $this->name = $payload['name'] ?? null;
         $this->scopes = $payload['scopes'] ?? null;
     }
-} 
+}

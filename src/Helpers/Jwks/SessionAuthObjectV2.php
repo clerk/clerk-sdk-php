@@ -38,4 +38,4 @@ class SessionAuthObjectV2 implements AuthObject
         $this->email = $payload['email'] ?? null;
         $this->azp = $payload['azp'] ?? null;
     }
-} 
+}

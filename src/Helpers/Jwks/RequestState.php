@@ -2,12 +2,6 @@
 
 namespace Clerk\Backend\Helpers\Jwks;
 
-use Clerk\Backend\Helpers\Jwks\AuthObject;
-use Clerk\Backend\Helpers\Jwks\SessionAuthObjectV1;
-use Clerk\Backend\Helpers\Jwks\SessionAuthObjectV2;
-use Clerk\Backend\Helpers\Jwks\OAuthMachineAuthObject;
-use Clerk\Backend\Helpers\Jwks\APIKeyMachineAuthObject;
-use Clerk\Backend\Helpers\Jwks\M2MMachineAuthObject;
 use stdClass;
 
 /**

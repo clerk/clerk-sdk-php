@@ -34,4 +34,4 @@ class SessionAuthObjectV1 implements AuthObject
         $this->factor_verification_age = $payload['fva'] ?? null;
         $this->claims = $payload;
     }
-} 
+}
