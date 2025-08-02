@@ -125,6 +125,16 @@ class Session
     public ?SessionActivityResponse $latestActivity = null;
 
     /**
+     * $tasks
+     *
+     * @var ?array<SessionTask> $tasks
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('tasks')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\SessionTask>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $tasks = null;
+
+    /**
      * @param  SessionObject  $object
      * @param  string  $id
      * @param  string  $userId
@@ -138,9 +148,10 @@ class Session
      * @param  ?Actor  $actor
      * @param  ?string  $lastActiveOrganizationId
      * @param  ?SessionActivityResponse  $latestActivity
+     * @param  ?array<SessionTask>  $tasks
      * @phpstan-pure
      */
-    public function __construct(SessionObject $object, string $id, string $userId, string $clientId, Status $status, int $lastActiveAt, int $expireAt, int $abandonAt, int $updatedAt, int $createdAt, ?Actor $actor = null, ?string $lastActiveOrganizationId = null, ?SessionActivityResponse $latestActivity = null)
+    public function __construct(SessionObject $object, string $id, string $userId, string $clientId, Status $status, int $lastActiveAt, int $expireAt, int $abandonAt, int $updatedAt, int $createdAt, ?Actor $actor = null, ?string $lastActiveOrganizationId = null, ?SessionActivityResponse $latestActivity = null, ?array $tasks = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -155,5 +166,6 @@ class Session
         $this->actor = $actor;
         $this->lastActiveOrganizationId = $lastActiveOrganizationId;
         $this->latestActivity = $latestActivity;
+        $this->tasks = $tasks;
     }
 }

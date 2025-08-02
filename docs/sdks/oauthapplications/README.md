@@ -5,12 +5,69 @@
 
 ### Available Operations
 
-* [create](#create) - Create an OAuth application
-* [delete](#delete) - Delete an OAuth application
-* [get](#get) - Retrieve an OAuth application by ID
 * [list](#list) - Get a list of OAuth applications for an instance
-* [rotateSecret](#rotatesecret) - Rotate the client secret of the given OAuth application
+* [create](#create) - Create an OAuth application
+* [get](#get) - Retrieve an OAuth application by ID
 * [update](#update) - Update an OAuth application
+* [delete](#delete) - Delete an OAuth application
+* [rotateSecret](#rotatesecret) - Rotate the client secret of the given OAuth application
+
+## list
+
+This request returns the list of OAuth applications for an instance.
+Results can be paginated using the optional `limit` and `offset` query parameters.
+The OAuth applications are ordered by descending creation date.
+Most recent OAuth applications will be returned first.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="ListOAuthApplications" method="get" path="/oauth_applications" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->oauthApplications->list(
+    limit: 10,
+    offset: 0,
+    orderBy: '+created_at'
+
+);
+
+if ($response->oAuthApplications !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Required                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `limit`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | *?int*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `offset`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | *?int*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `orderBy`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | *?string*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Allows to return OAuth applications in a particular order.<br/>At the moment, you can order the returned OAuth applications by their `created_at` and `name`.<br/>In order to specify the direction, you can use the `+/-` symbols prepended in the property to order by.<br/>For example, if you want OAuth applications to be returned in descending order according to their `created_at` property, you can use `-created_at`.<br/>If you don't use `+` or `-`, then `+` is implied. We only support one `order_by` parameter, and if multiple `order_by` parameters are provided, we will only keep the first one. For example,<br/>if you pass `order_by=name&order_by=created_at`, we will consider only the first `order_by` parameter, which is `name`. The `created_at` parameter will be ignored in this case. |
+| `nameQuery`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | *?string*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Returns OAuth applications with names that match the given query, via case-insensitive partial match.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+
+### Response
+
+**[?Operations\ListOAuthApplicationsResponse](../../Models/Operations/ListOAuthApplicationsResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 403, 422       | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## create
 
@@ -20,6 +77,7 @@ All URL schemes are allowed such as `http://`, `https://`, `myapp://`, etc...
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="CreateOAuthApplication" method="post" path="/oauth_applications" -->
 ```php
 declare(strict_types=1);
 
@@ -36,6 +94,7 @@ $sdk = Backend\ClerkBackend::builder()
 
 $request = new Operations\CreateOAuthApplicationRequestBody(
     name: '<value>',
+    scopes: 'profile email public_metadata',
 );
 
 $response = $sdk->oauthApplications->create(
@@ -64,60 +123,13 @@ if ($response->oAuthApplicationWithSecret !== null) {
 | Errors\ClerkErrors  | 400, 403, 422       | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## delete
-
-Deletes the given OAuth application.
-This is not reversible.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->oauthApplications->delete(
-    oauthApplicationId: '<id>'
-);
-
-if ($response->deletedObject !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                 | Type                                      | Required                                  | Description                               |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| `oauthApplicationId`                      | *string*                                  | :heavy_check_mark:                        | The ID of the OAuth application to delete |
-
-### Response
-
-**[?Operations\DeleteOAuthApplicationResponse](../../Models/Operations/DeleteOAuthApplicationResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 403, 404            | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
 ## get
 
 Fetches the OAuth application whose ID matches the provided `id` in the path.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="GetOAuthApplication" method="get" path="/oauth_applications/{oauth_application_id}" -->
 ```php
 declare(strict_types=1);
 
@@ -159,15 +171,68 @@ if ($response->oAuthApplication !== null) {
 | Errors\ClerkErrors  | 403, 404            | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## list
+## update
 
-This request returns the list of OAuth applications for an instance.
-Results can be paginated using the optional `limit` and `offset` query parameters.
-The OAuth applications are ordered by descending creation date.
-Most recent OAuth applications will be returned first.
+Updates an existing OAuth application
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="UpdateOAuthApplication" method="patch" path="/oauth_applications/{oauth_application_id}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+$requestBody = new Operations\UpdateOAuthApplicationRequestBody(
+    scopes: 'profile email public_metadata private_metadata',
+);
+
+$response = $sdk->oauthApplications->update(
+    oauthApplicationId: '<id>',
+    requestBody: $requestBody
+
+);
+
+if ($response->oAuthApplication !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `oauthApplicationId`                                                                                         | *string*                                                                                                     | :heavy_check_mark:                                                                                           | The ID of the OAuth application to update                                                                    |
+| `requestBody`                                                                                                | [Operations\UpdateOAuthApplicationRequestBody](../../Models/Operations/UpdateOAuthApplicationRequestBody.md) | :heavy_check_mark:                                                                                           | N/A                                                                                                          |
+
+### Response
+
+**[?Operations\UpdateOAuthApplicationResponse](../../Models/Operations/UpdateOAuthApplicationResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 403, 404, 422  | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## delete
+
+Deletes the given OAuth application.
+This is not reversible.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="DeleteOAuthApplication" method="delete" path="/oauth_applications/{oauth_application_id}" -->
 ```php
 declare(strict_types=1);
 
@@ -183,33 +248,30 @@ $sdk = Backend\ClerkBackend::builder()
 
 
 
-$response = $sdk->oauthApplications->list(
-    limit: 10,
-    offset: 0
-
+$response = $sdk->oauthApplications->delete(
+    oauthApplicationId: '<id>'
 );
 
-if ($response->oAuthApplications !== null) {
+if ($response->deletedObject !== null) {
     // handle response
 }
 ```
 
 ### Parameters
 
-| Parameter                                                                                                                                 | Type                                                                                                                                      | Required                                                                                                                                  | Description                                                                                                                               |
-| ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `limit`                                                                                                                                   | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                     |
-| `offset`                                                                                                                                  | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`. |
+| Parameter                                 | Type                                      | Required                                  | Description                               |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| `oauthApplicationId`                      | *string*                                  | :heavy_check_mark:                        | The ID of the OAuth application to delete |
 
 ### Response
 
-**[?Operations\ListOAuthApplicationsResponse](../../Models/Operations/ListOAuthApplicationsResponse.md)**
+**[?Operations\DeleteOAuthApplicationResponse](../../Models/Operations/DeleteOAuthApplicationResponse.md)**
 
 ### Errors
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 403, 422       | application/json    |
+| Errors\ClerkErrors  | 403, 404            | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## rotateSecret
@@ -219,6 +281,7 @@ When the client secret is rotated, make sure to update it in authorized OAuth cl
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="RotateOAuthApplicationSecret" method="post" path="/oauth_applications/{oauth_application_id}/rotate_secret" -->
 ```php
 declare(strict_types=1);
 
@@ -258,55 +321,4 @@ if ($response->oAuthApplicationWithSecret !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 403, 404            | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## update
-
-Updates an existing OAuth application
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-$requestBody = new Operations\UpdateOAuthApplicationRequestBody();
-
-$response = $sdk->oauthApplications->update(
-    oauthApplicationId: '<id>',
-    requestBody: $requestBody
-
-);
-
-if ($response->oAuthApplication !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| `oauthApplicationId`                                                                                         | *string*                                                                                                     | :heavy_check_mark:                                                                                           | The ID of the OAuth application to update                                                                    |
-| `requestBody`                                                                                                | [Operations\UpdateOAuthApplicationRequestBody](../../Models/Operations/UpdateOAuthApplicationRequestBody.md) | :heavy_check_mark:                                                                                           | N/A                                                                                                          |
-
-### Response
-
-**[?Operations\UpdateOAuthApplicationResponse](../../Models/Operations/UpdateOAuthApplicationResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 403, 404, 422  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |

@@ -13,19 +13,28 @@ class VerificationOTP
 {
     /**
      *
-     * @var OTPVerificationStatus $status
+     * @var VerificationOtpVerificationStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OTPVerificationStatus')]
-    public OTPVerificationStatus $status;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationOtpVerificationStatus')]
+    public VerificationOtpVerificationStatus $status;
 
     /**
      *
-     * @var OTPVerificationStrategy $strategy
+     * @var VerificationOtpVerificationStrategy $strategy
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OTPVerificationStrategy')]
-    public OTPVerificationStrategy $strategy;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationOtpVerificationStrategy')]
+    public VerificationOtpVerificationStrategy $strategy;
+
+    /**
+     *
+     * @var ?VerificationOtpVerificationObject $object
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationOtpVerificationObject|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?VerificationOtpVerificationObject $object = null;
 
     /**
      *
@@ -50,17 +59,19 @@ class VerificationOTP
     public ?string $verifiedAtClient = null;
 
     /**
-     * @param  OTPVerificationStatus  $status
-     * @param  OTPVerificationStrategy  $strategy
+     * @param  VerificationOtpVerificationStatus  $status
+     * @param  VerificationOtpVerificationStrategy  $strategy
+     * @param  ?VerificationOtpVerificationObject  $object
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
      * @param  ?string  $verifiedAtClient
      * @phpstan-pure
      */
-    public function __construct(OTPVerificationStatus $status, OTPVerificationStrategy $strategy, ?int $attempts = null, ?int $expireAt = null, ?string $verifiedAtClient = null)
+    public function __construct(VerificationOtpVerificationStatus $status, VerificationOtpVerificationStrategy $strategy, ?VerificationOtpVerificationObject $object = null, ?int $attempts = null, ?int $expireAt = null, ?string $verifiedAtClient = null)
     {
         $this->status = $status;
         $this->strategy = $strategy;
+        $this->object = $object;
         $this->attempts = $attempts;
         $this->expireAt = $expireAt;
         $this->verifiedAtClient = $verifiedAtClient;

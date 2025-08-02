@@ -44,27 +44,17 @@ class UpdateInstanceRestrictionsRequestBody
     public ?bool $blockDisposableEmailDomains = null;
 
     /**
-     *
-     * @var ?bool $ignoreDotsForGmailAddresses
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ignore_dots_for_gmail_addresses')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $ignoreDotsForGmailAddresses = null;
-
-    /**
      * @param  ?bool  $allowlist
      * @param  ?bool  $blocklist
      * @param  ?bool  $blockEmailSubaddresses
      * @param  ?bool  $blockDisposableEmailDomains
-     * @param  ?bool  $ignoreDotsForGmailAddresses
      * @phpstan-pure
      */
-    public function __construct(?bool $allowlist = null, ?bool $blocklist = null, ?bool $blockEmailSubaddresses = null, ?bool $blockDisposableEmailDomains = null, ?bool $ignoreDotsForGmailAddresses = null)
+    public function __construct(?bool $allowlist = null, ?bool $blocklist = null, ?bool $blockEmailSubaddresses = null, ?bool $blockDisposableEmailDomains = null)
     {
         $this->allowlist = $allowlist;
         $this->blocklist = $blocklist;
         $this->blockEmailSubaddresses = $blockEmailSubaddresses;
         $this->blockDisposableEmailDomains = $blockDisposableEmailDomains;
-        $this->ignoreDotsForGmailAddresses = $ignoreDotsForGmailAddresses;
     }
 }
