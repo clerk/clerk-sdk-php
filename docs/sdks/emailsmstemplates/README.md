@@ -5,10 +5,68 @@
 
 ### Available Operations
 
-* [~~get~~](#get) - Retrieve a template :warning: **Deprecated**
 * [~~list~~](#list) - List all templates :warning: **Deprecated**
+* [~~get~~](#get) - Retrieve a template :warning: **Deprecated**
 * [~~revert~~](#revert) - Revert a template :warning: **Deprecated**
 * [~~toggleTemplateDelivery~~](#toggletemplatedelivery) - Toggle the delivery by Clerk for a template of a given type and slug :warning: **Deprecated**
+
+## ~~list~~
+
+Returns a list of all templates.
+The templates are returned sorted by position.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="GetTemplateList" method="get" path="/templates/{template_type}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->emailSMSTemplates->list(
+    templateType: Operations\TemplateType::Email,
+    limit: 10,
+    offset: 0
+
+);
+
+if ($response->templateList !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                 | Type                                                                                                                                      | Required                                                                                                                                  | Description                                                                                                                               |
+| ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `templateType`                                                                                                                            | [Operations\TemplateType](../../Models/Operations/TemplateType.md)                                                                        | :heavy_check_mark:                                                                                                                        | The type of templates to list (email or SMS)                                                                                              |
+| `paginated`                                                                                                                               | *?bool*                                                                                                                                   | :heavy_minus_sign:                                                                                                                        | Whether to paginate the results.<br/>If true, the results will be paginated.<br/>If false, the results will not be paginated.             |
+| `limit`                                                                                                                                   | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                     |
+| `offset`                                                                                                                                  | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`. |
+
+### Response
+
+**[?Operations\GetTemplateListResponse](../../Models/Operations/GetTemplateListResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 401, 422       | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## ~~get~~
 
@@ -18,6 +76,7 @@ Returns the details of a template
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="GetTemplate" method="get" path="/templates/{template_type}/{slug}" -->
 ```php
 declare(strict_types=1);
 
@@ -63,64 +122,6 @@ if ($response->template !== null) {
 | Errors\ClerkErrors  | 400, 401, 404       | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## ~~list~~
-
-Returns a list of all templates.
-The templates are returned sorted by position.
-
-> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->emailSMSTemplates->list(
-    templateType: Operations\TemplateType::Sms,
-    paginated: false,
-    limit: 10,
-    offset: 0
-
-);
-
-if ($response->templateList !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                                 | Type                                                                                                                                      | Required                                                                                                                                  | Description                                                                                                                               |
-| ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `templateType`                                                                                                                            | [Operations\TemplateType](../../Models/Operations/TemplateType.md)                                                                        | :heavy_check_mark:                                                                                                                        | The type of templates to list (email or SMS)                                                                                              |
-| `paginated`                                                                                                                               | *?bool*                                                                                                                                   | :heavy_minus_sign:                                                                                                                        | Whether to paginate the results.<br/>If true, the results will be paginated.<br/>If false, the results will not be paginated.             |
-| `limit`                                                                                                                                   | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                     |
-| `offset`                                                                                                                                  | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`. |
-
-### Response
-
-**[?Operations\GetTemplateListResponse](../../Models/Operations/GetTemplateListResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 401, 422       | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
 ## ~~revert~~
 
 Reverts an updated template to its default state
@@ -129,6 +130,7 @@ Reverts an updated template to its default state
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="RevertTemplate" method="post" path="/templates/{template_type}/{slug}/revert" -->
 ```php
 declare(strict_types=1);
 
@@ -184,6 +186,7 @@ The app developer will need to listen to the `email.created` or `sms.created` we
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="ToggleTemplateDelivery" method="post" path="/templates/{template_type}/{slug}/toggle_delivery" -->
 ```php
 declare(strict_types=1);
 
@@ -198,7 +201,7 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$requestBody = new Operations\ToggleTemplateDeliveryRequestBody();
+
 
 $response = $sdk->emailSMSTemplates->toggleTemplateDelivery(
     templateType: Operations\ToggleTemplateDeliveryPathParamTemplateType::Sms,

@@ -1,0 +1,14 @@
+# ManagementCreateOrganizationRequest
+
+
+## Fields
+
+| Field                                                                     | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `name`                                                                    | *?string*                                                                 | :heavy_minus_sign:                                                        | The name of the organization.                                             |
+| `slug`                                                                    | *string*                                                                  | :heavy_check_mark:                                                        | The slug of the organization.                                             |
+| `createdBy`                                                               | *?string*                                                                 | :heavy_minus_sign:                                                        | The ID of the user who created the organization.                          |
+| `maxAllowedMemberships`                                                   | *?int*                                                                    | :heavy_minus_sign:                                                        | The maximum allowed memberships for the organization.                     |
+| `publicMetadata`                                                          | [?Components\PublicMetadata](../../Models/Components/PublicMetadata.md)   | :heavy_minus_sign:                                                        | Public metadata for the organization.                                     |
+| `privateMetadata`                                                         | [?Components\PrivateMetadata](../../Models/Components/PrivateMetadata.md) | :heavy_minus_sign:                                                        | Private metadata for the organization.                                    |
+| `createdAt`                                                               | [\DateTime](https://www.php.net/manual/en/class.datetime.php)             | :heavy_minus_sign:                                                        | The creation timestamp in RFC3339 format.                                 |

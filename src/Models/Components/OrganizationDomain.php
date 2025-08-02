@@ -106,6 +106,16 @@ class OrganizationDomain
     public ?OrganizationDomainVerification $verification;
 
     /**
+     * Public organization data associated with this domain
+     *
+     * @var ?PublicOrganizationData $publicOrganizationData
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('public_organization_data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\PublicOrganizationData|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?PublicOrganizationData $publicOrganizationData = null;
+
+    /**
      * @param  OrganizationDomainObject  $object
      * @param  string  $id
      * @param  string  $organizationId
@@ -117,9 +127,10 @@ class OrganizationDomain
      * @param  int  $updatedAt
      * @param  ?string  $affiliationEmailAddress
      * @param  ?OrganizationDomainVerification  $verification
+     * @param  ?PublicOrganizationData  $publicOrganizationData
      * @phpstan-pure
      */
-    public function __construct(OrganizationDomainObject $object, string $id, string $organizationId, string $name, EnrollmentMode $enrollmentMode, int $totalPendingInvitations, int $totalPendingSuggestions, int $createdAt, int $updatedAt, ?string $affiliationEmailAddress = null, ?OrganizationDomainVerification $verification = null)
+    public function __construct(OrganizationDomainObject $object, string $id, string $organizationId, string $name, EnrollmentMode $enrollmentMode, int $totalPendingInvitations, int $totalPendingSuggestions, int $createdAt, int $updatedAt, ?string $affiliationEmailAddress = null, ?OrganizationDomainVerification $verification = null, ?PublicOrganizationData $publicOrganizationData = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -132,5 +143,6 @@ class OrganizationDomain
         $this->updatedAt = $updatedAt;
         $this->affiliationEmailAddress = $affiliationEmailAddress;
         $this->verification = $verification;
+        $this->publicOrganizationData = $publicOrganizationData;
     }
 }

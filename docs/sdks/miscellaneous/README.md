@@ -14,17 +14,17 @@ It is used by Clerk SDKs when the user's authentication state cannot be immediat
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="GetPublicInterstitial" method="get" path="/public/interstitial" -->
 ```php
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
 
 $sdk = Backend\ClerkBackend::builder()->build();
 
-$request = new Operations\GetPublicInterstitialRequest();
+
 
 $response = $sdk->miscellaneous->getPublicInterstitial(
     request: $request

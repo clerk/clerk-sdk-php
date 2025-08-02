@@ -1,0 +1,13 @@
+# CNAMEStatus
+
+
+## Fields
+
+| Field                                                                   | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `clerkSubdomain`                                                        | *string*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
+| `from`                                                                  | *string*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
+| `to`                                                                    | *string*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
+| `verified`                                                              | *bool*                                                                  | :heavy_check_mark:                                                      | N/A                                                                     |
+| `required`                                                              | *bool*                                                                  | :heavy_check_mark:                                                      | N/A                                                                     |
+| `failureHints`                                                          | array<[Components\FailureHint](../../Models/Components/FailureHint.md)> | :heavy_check_mark:                                                      | N/A                                                                     |

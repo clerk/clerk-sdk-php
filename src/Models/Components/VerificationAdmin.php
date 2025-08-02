@@ -13,19 +13,28 @@ class VerificationAdmin
 {
     /**
      *
-     * @var AdminVerificationPhoneNumberStatus $status
+     * @var VerificationAdminVerificationPhoneNumberStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\AdminVerificationPhoneNumberStatus')]
-    public AdminVerificationPhoneNumberStatus $status;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationAdminVerificationPhoneNumberStatus')]
+    public VerificationAdminVerificationPhoneNumberStatus $status;
 
     /**
      *
-     * @var AdminVerificationStrategy $strategy
+     * @var VerificationAdminVerificationStrategy $strategy
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\AdminVerificationStrategy')]
-    public AdminVerificationStrategy $strategy;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationAdminVerificationStrategy')]
+    public VerificationAdminVerificationStrategy $strategy;
+
+    /**
+     *
+     * @var ?VerificationAdminVerificationPhoneNumberObject $object
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationAdminVerificationPhoneNumberObject|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?VerificationAdminVerificationPhoneNumberObject $object = null;
 
     /**
      *
@@ -50,17 +59,19 @@ class VerificationAdmin
     public ?string $verifiedAtClient = null;
 
     /**
-     * @param  AdminVerificationPhoneNumberStatus  $status
-     * @param  AdminVerificationStrategy  $strategy
+     * @param  VerificationAdminVerificationPhoneNumberStatus  $status
+     * @param  VerificationAdminVerificationStrategy  $strategy
+     * @param  ?VerificationAdminVerificationPhoneNumberObject  $object
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
      * @param  ?string  $verifiedAtClient
      * @phpstan-pure
      */
-    public function __construct(AdminVerificationPhoneNumberStatus $status, AdminVerificationStrategy $strategy, ?int $attempts = null, ?int $expireAt = null, ?string $verifiedAtClient = null)
+    public function __construct(VerificationAdminVerificationPhoneNumberStatus $status, VerificationAdminVerificationStrategy $strategy, ?VerificationAdminVerificationPhoneNumberObject $object = null, ?int $attempts = null, ?int $expireAt = null, ?string $verifiedAtClient = null)
     {
         $this->status = $status;
         $this->strategy = $strategy;
+        $this->object = $object;
         $this->attempts = $attempts;
         $this->expireAt = $expireAt;
         $this->verifiedAtClient = $verifiedAtClient;

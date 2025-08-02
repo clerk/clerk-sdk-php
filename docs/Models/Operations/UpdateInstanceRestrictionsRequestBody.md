@@ -9,4 +9,3 @@
 | `blocklist`                   | *?bool*                       | :heavy_minus_sign:            | N/A                           |
 | `blockEmailSubaddresses`      | *?bool*                       | :heavy_minus_sign:            | N/A                           |
 | `blockDisposableEmailDomains` | *?bool*                       | :heavy_minus_sign:            | N/A                           |
-| `ignoreDotsForGmailAddresses` | *?bool*                       | :heavy_minus_sign:            | N/A                           |

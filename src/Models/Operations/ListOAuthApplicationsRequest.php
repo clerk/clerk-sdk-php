@@ -12,6 +12,14 @@ use Clerk\Backend\Utils\SpeakeasyMetadata;
 class ListOAuthApplicationsRequest
 {
     /**
+     * Returns OAuth applications with names that match the given query, via case-insensitive partial match.
+     *
+     * @var ?string $nameQuery
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=name_query')]
+    public ?string $nameQuery = null;
+
+    /**
      * Applies a limit to the number of results returned.
      *
      * Can be used for paginating the results together with `offset`.
@@ -33,13 +41,31 @@ class ListOAuthApplicationsRequest
     public ?int $offset = null;
 
     /**
+     * Allows to return OAuth applications in a particular order.
+     *
+     * At the moment, you can order the returned OAuth applications by their `created_at` and `name`.
+     * In order to specify the direction, you can use the `+/-` symbols prepended in the property to order by.
+     * For example, if you want OAuth applications to be returned in descending order according to their `created_at` property, you can use `-created_at`.
+     * If you don't use `+` or `-`, then `+` is implied. We only support one `order_by` parameter, and if multiple `order_by` parameters are provided, we will only keep the first one. For example,
+     * if you pass `order_by=name&order_by=created_at`, we will consider only the first `order_by` parameter, which is `name`. The `created_at` parameter will be ignored in this case.
+     *
+     * @var ?string $orderBy
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=order_by')]
+    public ?string $orderBy = null;
+
+    /**
      * @param  ?int  $limit
      * @param  ?int  $offset
+     * @param  ?string  $orderBy
+     * @param  ?string  $nameQuery
      * @phpstan-pure
      */
-    public function __construct(?int $limit = 10, ?int $offset = 0)
+    public function __construct(?string $nameQuery = null, ?int $limit = 10, ?int $offset = 0, ?string $orderBy = '+created_at')
     {
+        $this->nameQuery = $nameQuery;
         $this->limit = $limit;
         $this->offset = $offset;
+        $this->orderBy = $orderBy;
     }
 }

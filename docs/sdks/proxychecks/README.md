@@ -20,13 +20,13 @@ a different proxy URL than the one provided. It can also be used to re-validate 
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="VerifyDomainProxy" method="post" path="/proxy_checks" -->
 ```php
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
 
 $sdk = Backend\ClerkBackend::builder()
     ->setSecurity(
@@ -34,7 +34,7 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$request = new Operations\VerifyDomainProxyRequestBody();
+
 
 $response = $sdk->proxyChecks->verify(
     request: $request

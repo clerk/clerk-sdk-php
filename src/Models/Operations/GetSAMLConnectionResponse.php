@@ -35,18 +35,18 @@ class GetSAMLConnectionResponse
     /**
      * A SAML Connection
      *
-     * @var ?Components\SchemasSAMLConnection $schemasSAMLConnection
+     * @var Components\One|Components\Two|null $schemasSAMLConnection
      */
-    public ?Components\SchemasSAMLConnection $schemasSAMLConnection = null;
+    public Components\One|Components\Two|null $schemasSAMLConnection = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\SchemasSAMLConnection  $schemasSAMLConnection
+     * @param  Components\One|Components\Two|null  $schemasSAMLConnection
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\SchemasSAMLConnection $schemasSAMLConnection = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, Components\One|Components\Two|null $schemasSAMLConnection = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
