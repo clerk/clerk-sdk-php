@@ -49,6 +49,27 @@ class OAuthApplication
 
     /**
      *
+     * @var bool $dynamicallyRegistered
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('dynamically_registered')]
+    public bool $dynamicallyRegistered;
+
+    /**
+     *
+     * @var bool $consentScreenEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('consent_screen_enabled')]
+    public bool $consentScreenEnabled;
+
+    /**
+     *
+     * @var bool $pkceRequired
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('pkce_required')]
+    public bool $pkceRequired;
+
+    /**
+     *
      * @var bool $public
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('public')]
@@ -137,11 +158,28 @@ class OAuthApplication
     public int $updatedAt;
 
     /**
+     *
+     * @var ?string $clientUri
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('client_uri')]
+    public ?string $clientUri;
+
+    /**
+     *
+     * @var ?string $clientImageUrl
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('client_image_url')]
+    public ?string $clientImageUrl;
+
+    /**
      * @param  OAuthApplicationObject  $object
      * @param  string  $id
      * @param  string  $instanceId
      * @param  string  $name
      * @param  string  $clientId
+     * @param  bool  $dynamicallyRegistered
+     * @param  bool  $consentScreenEnabled
+     * @param  bool  $pkceRequired
      * @param  bool  $public
      * @param  string  $scopes
      * @param  array<string>  $redirectUris
@@ -153,15 +191,20 @@ class OAuthApplication
      * @param  string  $tokenIntrospectionUrl
      * @param  int  $createdAt
      * @param  int  $updatedAt
+     * @param  ?string  $clientUri
+     * @param  ?string  $clientImageUrl
      * @phpstan-pure
      */
-    public function __construct(OAuthApplicationObject $object, string $id, string $instanceId, string $name, string $clientId, bool $public, string $scopes, array $redirectUris, string $callbackUrl, string $authorizeUrl, string $tokenFetchUrl, string $userInfoUrl, string $discoveryUrl, string $tokenIntrospectionUrl, int $createdAt, int $updatedAt)
+    public function __construct(OAuthApplicationObject $object, string $id, string $instanceId, string $name, string $clientId, bool $dynamicallyRegistered, bool $consentScreenEnabled, bool $pkceRequired, bool $public, string $scopes, array $redirectUris, string $callbackUrl, string $authorizeUrl, string $tokenFetchUrl, string $userInfoUrl, string $discoveryUrl, string $tokenIntrospectionUrl, int $createdAt, int $updatedAt, ?string $clientUri = null, ?string $clientImageUrl = null)
     {
         $this->object = $object;
         $this->id = $id;
         $this->instanceId = $instanceId;
         $this->name = $name;
         $this->clientId = $clientId;
+        $this->dynamicallyRegistered = $dynamicallyRegistered;
+        $this->consentScreenEnabled = $consentScreenEnabled;
+        $this->pkceRequired = $pkceRequired;
         $this->public = $public;
         $this->scopes = $scopes;
         $this->redirectUris = $redirectUris;
@@ -173,5 +216,7 @@ class OAuthApplication
         $this->tokenIntrospectionUrl = $tokenIntrospectionUrl;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
+        $this->clientUri = $clientUri;
+        $this->clientImageUrl = $clientImageUrl;
     }
 }

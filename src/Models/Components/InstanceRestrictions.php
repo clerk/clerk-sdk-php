@@ -50,28 +50,19 @@ class InstanceRestrictions
     public bool $blockDisposableEmailDomains;
 
     /**
-     *
-     * @var bool $ignoreDotsForGmailAddresses
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ignore_dots_for_gmail_addresses')]
-    public bool $ignoreDotsForGmailAddresses;
-
-    /**
      * @param  InstanceRestrictionsObject  $object
      * @param  bool  $allowlist
      * @param  bool  $blocklist
      * @param  bool  $blockEmailSubaddresses
      * @param  bool  $blockDisposableEmailDomains
-     * @param  bool  $ignoreDotsForGmailAddresses
      * @phpstan-pure
      */
-    public function __construct(InstanceRestrictionsObject $object, bool $allowlist, bool $blocklist, bool $blockEmailSubaddresses, bool $blockDisposableEmailDomains, bool $ignoreDotsForGmailAddresses)
+    public function __construct(InstanceRestrictionsObject $object, bool $allowlist, bool $blocklist, bool $blockEmailSubaddresses, bool $blockDisposableEmailDomains)
     {
         $this->object = $object;
         $this->allowlist = $allowlist;
         $this->blocklist = $blocklist;
         $this->blockEmailSubaddresses = $blockEmailSubaddresses;
         $this->blockDisposableEmailDomains = $blockDisposableEmailDomains;
-        $this->ignoreDotsForGmailAddresses = $ignoreDotsForGmailAddresses;
     }
 }

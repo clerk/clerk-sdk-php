@@ -80,6 +80,7 @@ class EmailAddress
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Otp|\Clerk\Backend\Models\Components\Admin|\Clerk\Backend\Models\Components\FromOAuth|\Clerk\Backend\Models\Components\Ticket|null')]
+    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'object', map: ['Otp' => '\Clerk\Backend\Models\Components\Otp', 'Admin' => '\Clerk\Backend\Models\Components\Admin', 'FromOAuth' => '\Clerk\Backend\Models\Components\FromOAuth', 'Ticket' => '\Clerk\Backend\Models\Components\Ticket'])]
     public Otp|Admin|FromOAuth|Ticket|null $verification;
 
     /**
