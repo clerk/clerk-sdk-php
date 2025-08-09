@@ -13,11 +13,11 @@ class Admin
 {
     /**
      *
-     * @var AdminVerificationStatus $status
+     * @var VerificationAdminVerificationStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\AdminVerificationStatus')]
-    public AdminVerificationStatus $status;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationAdminVerificationStatus')]
+    public VerificationAdminVerificationStatus $status;
 
     /**
      *
@@ -26,6 +26,15 @@ class Admin
     #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationStrategy')]
     public VerificationStrategy $strategy;
+
+    /**
+     *
+     * @var ?VerificationAdminVerificationObject $object
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationAdminVerificationObject|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?VerificationAdminVerificationObject $object = null;
 
     /**
      *
@@ -50,17 +59,19 @@ class Admin
     public ?string $verifiedAtClient = null;
 
     /**
-     * @param  AdminVerificationStatus  $status
+     * @param  VerificationAdminVerificationStatus  $status
      * @param  VerificationStrategy  $strategy
+     * @param  ?VerificationAdminVerificationObject  $object
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
      * @param  ?string  $verifiedAtClient
      * @phpstan-pure
      */
-    public function __construct(AdminVerificationStatus $status, VerificationStrategy $strategy, ?int $attempts = null, ?int $expireAt = null, ?string $verifiedAtClient = null)
+    public function __construct(VerificationAdminVerificationStatus $status, VerificationStrategy $strategy, ?VerificationAdminVerificationObject $object = null, ?int $attempts = null, ?int $expireAt = null, ?string $verifiedAtClient = null)
     {
         $this->status = $status;
         $this->strategy = $strategy;
+        $this->object = $object;
         $this->attempts = $attempts;
         $this->expireAt = $expireAt;
         $this->verifiedAtClient = $verifiedAtClient;

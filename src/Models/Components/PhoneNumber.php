@@ -96,6 +96,7 @@ class PhoneNumber
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationOTP|\Clerk\Backend\Models\Components\VerificationAdmin|null')]
+    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'object', map: ['VerificationOTP' => '\Clerk\Backend\Models\Components\VerificationOTP', 'VerificationAdmin' => '\Clerk\Backend\Models\Components\VerificationAdmin'])]
     public VerificationOTP|VerificationAdmin|null $verification;
 
     /**

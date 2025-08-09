@@ -13,19 +13,28 @@ class Ticket
 {
     /**
      *
-     * @var TicketVerificationStatus $status
+     * @var VerificationTicketVerificationStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\TicketVerificationStatus')]
-    public TicketVerificationStatus $status;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationTicketVerificationStatus')]
+    public VerificationTicketVerificationStatus $status;
 
     /**
      *
-     * @var TicketVerificationStrategy $strategy
+     * @var VerificationTicketVerificationStrategy $strategy
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\TicketVerificationStrategy')]
-    public TicketVerificationStrategy $strategy;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationTicketVerificationStrategy')]
+    public VerificationTicketVerificationStrategy $strategy;
+
+    /**
+     *
+     * @var ?VerificationTicketVerificationObject $object
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationTicketVerificationObject|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?VerificationTicketVerificationObject $object = null;
 
     /**
      *
@@ -50,17 +59,19 @@ class Ticket
     public ?string $verifiedAtClient = null;
 
     /**
-     * @param  TicketVerificationStatus  $status
-     * @param  TicketVerificationStrategy  $strategy
+     * @param  VerificationTicketVerificationStatus  $status
+     * @param  VerificationTicketVerificationStrategy  $strategy
+     * @param  ?VerificationTicketVerificationObject  $object
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
      * @param  ?string  $verifiedAtClient
      * @phpstan-pure
      */
-    public function __construct(TicketVerificationStatus $status, TicketVerificationStrategy $strategy, ?int $attempts = null, ?int $expireAt = null, ?string $verifiedAtClient = null)
+    public function __construct(VerificationTicketVerificationStatus $status, VerificationTicketVerificationStrategy $strategy, ?VerificationTicketVerificationObject $object = null, ?int $attempts = null, ?int $expireAt = null, ?string $verifiedAtClient = null)
     {
         $this->status = $status;
         $this->strategy = $strategy;
+        $this->object = $object;
         $this->attempts = $attempts;
         $this->expireAt = $expireAt;
         $this->verifiedAtClient = $verifiedAtClient;

@@ -14,17 +14,17 @@ class CreateSessionTokenFromTemplateRequestBody
     /**
      * Use this parameter to override the JWT token lifetime.
      *
-     * @var ?float $expiresInSeconds
+     * @var ?int $expiresInSeconds
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('expires_in_seconds')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?float $expiresInSeconds = null;
+    public ?int $expiresInSeconds = null;
 
     /**
-     * @param  ?float  $expiresInSeconds
+     * @param  ?int  $expiresInSeconds
      * @phpstan-pure
      */
-    public function __construct(?float $expiresInSeconds = null)
+    public function __construct(?int $expiresInSeconds = null)
     {
         $this->expiresInSeconds = $expiresInSeconds;
     }

@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Clerk\Backend\Models\Operations;
 
-
+use Clerk\Backend\Models\Components;
 class GetOAuthAccessTokenResponse
 {
     /**
@@ -33,24 +33,24 @@ class GetOAuthAccessTokenResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
-     * The OAuth access token of the user, if any.
+     * Success
      *
-     * @var ?array<ResponseBody> $responseBodies
+     * @var ?array<Components\OAuthAccessToken> $oAuthAccessToken
      */
-    public ?array $responseBodies = null;
+    public ?array $oAuthAccessToken = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?array<ResponseBody>  $responseBodies
+     * @param  ?array<Components\OAuthAccessToken>  $oAuthAccessToken
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?array $responseBodies = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?array $oAuthAccessToken = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->responseBodies = $responseBodies;
+        $this->oAuthAccessToken = $oAuthAccessToken;
     }
 }

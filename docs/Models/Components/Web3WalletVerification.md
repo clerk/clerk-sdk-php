@@ -12,12 +12,12 @@
 Components\Web3Signature $value = /* values here */
 ```
 
-### `Components\Web3WalletVerificationAdmin`
+### `Components\VerificationAdminVerificationAdmin`
 
 ```php
 /**
-* @var Components\Web3WalletVerificationAdmin
+* @var Components\VerificationAdminVerificationAdmin
 */
-Components\Web3WalletVerificationAdmin $value = /* values here */
+Components\VerificationAdminVerificationAdmin $value = /* values here */
 ```
 

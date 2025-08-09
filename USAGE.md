@@ -5,17 +5,20 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
 
-$sdk = Backend\ClerkBackend::builder()->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
-$request = new Operations\GetPublicInterstitialRequest();
 
-$response = $sdk->miscellaneous->getPublicInterstitial(
-    request: $request
+
+$response = $sdk->emailAddresses->get(
+    emailAddressId: '<id>'
 );
 
-if ($response->statusCode === 200) {
+if ($response->emailAddress !== null) {
     // handle response
 }
 ```

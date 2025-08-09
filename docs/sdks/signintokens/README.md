@@ -16,13 +16,13 @@ You can optionally supply a different duration in seconds using the `expires_in_
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="CreateSignInToken" method="post" path="/sign_in_tokens" -->
 ```php
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
 
 $sdk = Backend\ClerkBackend::builder()
     ->setSecurity(
@@ -30,9 +30,7 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$request = new Operations\CreateSignInTokenRequestBody(
-    userId: '<id>',
-);
+
 
 $response = $sdk->signInTokens->create(
     request: $request
@@ -66,6 +64,7 @@ Revokes a pending sign-in token
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="RevokeSignInToken" method="post" path="/sign_in_tokens/{sign_in_token_id}/revoke" -->
 ```php
 declare(strict_types=1);
 

@@ -1,7 +1,8 @@
+**/.speakeasy/temp/
+**/.speakeasy/logs/
 composer.lock
 vendor
 .DS_Store
-
 # Environment variables
 .env
 .env.local
