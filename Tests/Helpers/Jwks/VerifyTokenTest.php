@@ -204,6 +204,9 @@ final class VerifyTokenTest extends TestCase
         // Create RSA key pair
         $rsa = \phpseclib3\Crypt\RSA::createKey(2048);
         $privateKey = $rsa->withPadding(\phpseclib3\Crypt\RSA::SIGNATURE_PKCS1);
+        if (!($privateKey instanceof \phpseclib3\Crypt\RSA\PrivateKey)) {
+            throw new \RuntimeException('Private key is not an instance of PrivateKey. Check your phpseclib version.');
+        }
         $publicKey = $privateKey->getPublicKey();
 
         // Sign the token with our custom payload
