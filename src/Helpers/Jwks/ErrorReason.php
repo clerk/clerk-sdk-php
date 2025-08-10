@@ -25,4 +25,8 @@ class ErrorReason
     {
         return $this->message;
     }
+    public function getCode(): string
+    {
+        return $this->id;
+    }
 }
