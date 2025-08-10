@@ -70,6 +70,10 @@ class Utils
     ): array {
         $rsa = RSA::createKey(2048);
         $privateKey = $rsa->withPadding(RSA::SIGNATURE_PKCS1);
+        // Ensure $privateKey is an instance of phpseclib3\Crypt\RSA\PrivateKey before calling getPublicKey()
+        if (!($privateKey instanceof \phpseclib3\Crypt\RSA\PrivateKey)) {
+            throw new \RuntimeException('Expected $privateKey to be an instance of phpseclib3\\Crypt\\RSA\\PrivateKey, got ' . (is_object($privateKey) ? get_class($privateKey) : gettype($privateKey)));
+        }
         $publicKey = $privateKey->getPublicKey();
 
         $defaultIssuedAt = (new DateTimeImmutable('-1 minute'))->getTimeStamp();
