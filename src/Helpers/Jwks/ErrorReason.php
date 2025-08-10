@@ -6,6 +6,10 @@ namespace Clerk\Backend\Helpers\Jwks;
  * The reason for a TokenVerificationException or AuthenticateRequestException.
  */
 class ErrorReason
+    /**
+     * Returns the error code (alias for getId()).
+     */
+    
 {
     private string $id;
     private string $message;
@@ -24,5 +28,9 @@ class ErrorReason
     public function getMessage(): string
     {
         return $this->message;
+    }
+    public function getCode(): string
+    {
+        return $this->id;
     }
 }
