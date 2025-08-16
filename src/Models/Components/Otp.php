@@ -29,6 +29,15 @@ class Otp
 
     /**
      *
+     * @var ?VerificationObject $object
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationObject|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?VerificationObject $object = null;
+
+    /**
+     *
      * @var ?int $attempts
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('attempts')]
@@ -52,15 +61,17 @@ class Otp
     /**
      * @param  VerificationStatus  $status
      * @param  Strategy  $strategy
+     * @param  ?VerificationObject  $object
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
      * @param  ?string  $verifiedAtClient
      * @phpstan-pure
      */
-    public function __construct(VerificationStatus $status, Strategy $strategy, ?int $attempts = null, ?int $expireAt = null, ?string $verifiedAtClient = null)
+    public function __construct(VerificationStatus $status, Strategy $strategy, ?VerificationObject $object = null, ?int $attempts = null, ?int $expireAt = null, ?string $verifiedAtClient = null)
     {
         $this->status = $status;
         $this->strategy = $strategy;
+        $this->object = $object;
         $this->attempts = $attempts;
         $this->expireAt = $expireAt;
         $this->verifiedAtClient = $verifiedAtClient;

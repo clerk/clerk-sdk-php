@@ -1,0 +1,9 @@
+# CreateMachineScopeRequest
+
+
+## Fields
+
+| Field                                                                                                 | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
+| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `machineId`                                                                                           | *string*                                                                                              | :heavy_check_mark:                                                                                    | The ID of the machine that will have access to another machine                                        |
+| `requestBody`                                                                                         | [?Operations\CreateMachineScopeRequestBody](../../Models/Operations/CreateMachineScopeRequestBody.md) | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |

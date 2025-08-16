@@ -13,19 +13,28 @@ class VerificationTicket
 {
     /**
      *
-     * @var TicketVerificationSAMLAccountStatus $status
+     * @var VerificationTicketVerificationSAMLAccountStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\TicketVerificationSAMLAccountStatus')]
-    public TicketVerificationSAMLAccountStatus $status;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationTicketVerificationSAMLAccountStatus')]
+    public VerificationTicketVerificationSAMLAccountStatus $status;
 
     /**
      *
-     * @var TicketVerificationSAMLAccountStrategy $strategy
+     * @var VerificationTicketVerificationSAMLAccountStrategy $strategy
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\TicketVerificationSAMLAccountStrategy')]
-    public TicketVerificationSAMLAccountStrategy $strategy;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationTicketVerificationSAMLAccountStrategy')]
+    public VerificationTicketVerificationSAMLAccountStrategy $strategy;
+
+    /**
+     *
+     * @var ?VerificationTicketVerificationSAMLAccountObject $object
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationTicketVerificationSAMLAccountObject|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?VerificationTicketVerificationSAMLAccountObject $object = null;
 
     /**
      *
@@ -50,17 +59,19 @@ class VerificationTicket
     public ?string $verifiedAtClient = null;
 
     /**
-     * @param  TicketVerificationSAMLAccountStatus  $status
-     * @param  TicketVerificationSAMLAccountStrategy  $strategy
+     * @param  VerificationTicketVerificationSAMLAccountStatus  $status
+     * @param  VerificationTicketVerificationSAMLAccountStrategy  $strategy
+     * @param  ?VerificationTicketVerificationSAMLAccountObject  $object
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
      * @param  ?string  $verifiedAtClient
      * @phpstan-pure
      */
-    public function __construct(TicketVerificationSAMLAccountStatus $status, TicketVerificationSAMLAccountStrategy $strategy, ?int $attempts = null, ?int $expireAt = null, ?string $verifiedAtClient = null)
+    public function __construct(VerificationTicketVerificationSAMLAccountStatus $status, VerificationTicketVerificationSAMLAccountStrategy $strategy, ?VerificationTicketVerificationSAMLAccountObject $object = null, ?int $attempts = null, ?int $expireAt = null, ?string $verifiedAtClient = null)
     {
         $this->status = $status;
         $this->strategy = $strategy;
+        $this->object = $object;
         $this->attempts = $attempts;
         $this->expireAt = $expireAt;
         $this->verifiedAtClient = $verifiedAtClient;

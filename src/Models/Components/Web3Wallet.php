@@ -59,11 +59,12 @@ class Web3Wallet
 
     /**
      *
-     * @var Web3Signature|Web3WalletVerificationAdmin|null $verification
+     * @var Web3Signature|VerificationAdminVerificationAdmin|null $verification
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Web3Signature|\Clerk\Backend\Models\Components\Web3WalletVerificationAdmin|null')]
-    public Web3Signature|Web3WalletVerificationAdmin|null $verification;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Web3Signature|\Clerk\Backend\Models\Components\VerificationAdminVerificationAdmin|null')]
+    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'object', map: ['Web3Signature' => '\Clerk\Backend\Models\Components\Web3Signature', 'VerificationAdminVerificationAdmin' => '\Clerk\Backend\Models\Components\VerificationAdminVerificationAdmin'])]
+    public Web3Signature|VerificationAdminVerificationAdmin|null $verification;
 
     /**
      * @param  Web3WalletObject  $object
@@ -71,10 +72,10 @@ class Web3Wallet
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  ?string  $id
-     * @param  Web3Signature|Web3WalletVerificationAdmin|null  $verification
+     * @param  Web3Signature|VerificationAdminVerificationAdmin|null  $verification
      * @phpstan-pure
      */
-    public function __construct(Web3WalletObject $object, string $web3Wallet, int $createdAt, int $updatedAt, ?string $id = null, Web3Signature|Web3WalletVerificationAdmin|null $verification = null)
+    public function __construct(Web3WalletObject $object, string $web3Wallet, int $createdAt, int $updatedAt, ?string $id = null, Web3Signature|VerificationAdminVerificationAdmin|null $verification = null)
     {
         $this->object = $object;
         $this->web3Wallet = $web3Wallet;

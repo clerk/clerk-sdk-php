@@ -3,9 +3,12 @@
 
 ## Supported Types
 
-### `Components\SAMLConnectionSAMLConnection`
+### `Components\SAMLConnection1|Components\SAMLConnection2`
 
 ```php
-Components\SAMLConnectionSAMLConnection $value = /* values here */
+/**
+* @var Components\SAMLConnection1|Components\SAMLConnection2
+*/
+Components\SAMLConnection1|Components\SAMLConnection2 $value = /* values here */
 ```
 
