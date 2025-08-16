@@ -1,4 +1,4 @@
-speakeasyVersion: 1.517.2
+speakeasyVersion: 1.605.0
 sources:
     backend-php:
         sourceNamespace: clerk-openapi
@@ -14,20 +14,20 @@ sources:
             - latest
     clerk-openapi:
         sourceNamespace: clerk-openapi
-        sourceRevisionDigest: sha256:25baabbc7d18e7faaaa3a9e93b39275742087737f7da1726ffad77b59b049f3a
-        sourceBlobDigest: sha256:2b71237f436348d2cd0068137c6eeefa1a61edb8dcba32820d3e6842b48b8c19
+        sourceRevisionDigest: sha256:398c0f69a4aef1375b6667eb0113670df5b700740e98416969501a22bdf54a31
+        sourceBlobDigest: sha256:10176575c682faed8ada6ba2c6ef130fde3fe3b4248f3b0968108600bcbd7f0b
         tags:
             - latest
-            - speakeasy-sdk-regen-1741825842
-            - "2024-10-01"
+            - speakeasy-sdk-regen-1753403775
+            - "2025-04-10"
 targets:
     clerk-php:
         source: clerk-openapi
         sourceNamespace: clerk-openapi
-        sourceRevisionDigest: sha256:25baabbc7d18e7faaaa3a9e93b39275742087737f7da1726ffad77b59b049f3a
-        sourceBlobDigest: sha256:2b71237f436348d2cd0068137c6eeefa1a61edb8dcba32820d3e6842b48b8c19
+        sourceRevisionDigest: sha256:398c0f69a4aef1375b6667eb0113670df5b700740e98416969501a22bdf54a31
+        sourceBlobDigest: sha256:10176575c682faed8ada6ba2c6ef130fde3fe3b4248f3b0968108600bcbd7f0b
         codeSamplesNamespace: clerk-openapi-php-code-samples
-        codeSamplesRevisionDigest: sha256:14f6e7292dc2c9e95214a495070dd8736a79f77b637e13e5341a4cada584ffc0
+        codeSamplesRevisionDigest: sha256:74fe86e2caef53e21a3cabb28e903a3641d4121bd157c3b40cf5a5bbeeb6b697
     my-first-target:
         source: clerk-backend-php
         sourceNamespace: clerk-openapi
@@ -39,7 +39,7 @@ workflow:
     sources:
         clerk-openapi:
             inputs:
-                - location: https://raw.githubusercontent.com/clerk/openapi-specs/refs/heads/main/bapi/2024-10-01.yml
+                - location: https://raw.githubusercontent.com/clerk/openapi-specs/refs/heads/main/bapi/2025-04-10.yml
             overlays:
                 - location: https://raw.githubusercontent.com/clerk/openapi-specs/refs/heads/main/.speakeasy/bapi/fixes.yml
             registry:

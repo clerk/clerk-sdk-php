@@ -86,7 +86,7 @@ class Sessions
             sessionId: $sessionId,
             requestBody: $requestBody,
         );
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/sessions/{session_id}/tokens', Operations\CreateSessionTokenRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -97,7 +97,7 @@ class Sessions
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        $hookContext = new HookContext('CreateSessionToken', null, $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'CreateSessionToken', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -193,7 +193,7 @@ class Sessions
             templateName: $templateName,
             requestBody: $requestBody,
         );
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/sessions/{session_id}/tokens/{template_name}', Operations\CreateSessionTokenFromTemplateRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -204,7 +204,7 @@ class Sessions
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        $hookContext = new HookContext('CreateSessionTokenFromTemplate', null, $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'CreateSessionTokenFromTemplate', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -296,14 +296,14 @@ class Sessions
         $request = new Operations\GetSessionRequest(
             sessionId: $sessionId,
         );
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/sessions/{session_id}', Operations\GetSessionRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $hookContext = new HookContext('GetSession', null, $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'GetSession', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -395,7 +395,7 @@ class Sessions
                 '5XX',
             ];
         }
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/sessions');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -404,7 +404,7 @@ class Sessions
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $hookContext = new HookContext('GetSessionList', null, $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'GetSessionList', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
@@ -440,6 +440,112 @@ class Sessions
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } elseif (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '422'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Errors\ClerkErrors', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['4XX'])) {
+            throw new \Clerk\Backend\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
+            throw new \Clerk\Backend\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } else {
+            throw new \Clerk\Backend\Models\Errors\SDKException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        }
+    }
+
+    /**
+     * Refresh a session
+     *
+     * Refreshes a session by creating a new session token. A 401 is returned when there
+     * are validation errors, which signals the SDKs to fall back to the handshake flow.
+     *
+     * @param  string  $sessionId
+     * @param  ?Operations\RefreshSessionRequestBody  $requestBody
+     * @return Operations\RefreshSessionResponse
+     * @throws \Clerk\Backend\Models\Errors\SDKException
+     */
+    public function refresh(string $sessionId, ?Operations\RefreshSessionRequestBody $requestBody = null, ?Options $options = null): Operations\RefreshSessionResponse
+    {
+        $retryConfig = null;
+        if ($options) {
+            $retryConfig = $options->retryConfig;
+        }
+        if ($retryConfig === null && $this->sdkConfiguration->retryConfig) {
+            $retryConfig = $this->sdkConfiguration->retryConfig;
+        } else {
+            $retryConfig = new Retry\RetryConfigBackoff(
+                initialIntervalMs: 500,
+                maxIntervalMs: 60000,
+                exponent: 1.5,
+                maxElapsedTimeMs: 3600000,
+                retryConnectionErrors: true,
+            );
+        }
+        $retryCodes = null;
+        if ($options) {
+            $retryCodes = $options->retryCodes;
+        }
+        if ($retryCodes === null) {
+            $retryCodes = [
+                '5XX',
+            ];
+        }
+        $request = new Operations\RefreshSessionRequest(
+            sessionId: $sessionId,
+            requestBody: $requestBody,
+        );
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/sessions/{session_id}/refresh', Operations\RefreshSessionRequest::class, $request);
+        $urlOverride = null;
+        $httpOptions = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
+        if ($body !== null) {
+            $httpOptions = array_merge_recursive($httpOptions, $body);
+        }
+        $httpOptions['headers']['Accept'] = 'application/json';
+        $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'RefreshSession', [], $this->sdkConfiguration->securitySource);
+        $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
+        $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
+        $httpRequest = Utils\Utils::removeHeaders($httpRequest);
+        try {
+            $httpResponse = RetryUtils::retryWrapper(fn () => $this->sdkConfiguration->client->send($httpRequest, $httpOptions), $retryConfig, $retryCodes);
+        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
+            $httpResponse = $res;
+        }
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        $statusCode = $httpResponse->getStatusCode();
+        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '4XX', '5XX'])) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
+            $httpResponse = $res;
+        }
+        if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Components\Token|\Clerk\Backend\Models\Components\Cookies', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\RefreshSessionResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    sessionRefresh: $obj);
+
+                return $response;
+            } else {
+                throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['400', '401'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -498,14 +604,14 @@ class Sessions
         $request = new Operations\RevokeSessionRequest(
             sessionId: $sessionId,
         );
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/sessions/{session_id}/revoke', Operations\RevokeSessionRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        $hookContext = new HookContext('RevokeSession', null, $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'RevokeSession', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -540,116 +646,6 @@ class Sessions
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } elseif (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '404'])) {
-            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
-                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
-
-                $serializer = Utils\JSON::createSerializer();
-                $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Errors\ClerkErrors', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                throw $obj->toException();
-            } else {
-                throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
-            }
-        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['4XX'])) {
-            throw new \Clerk\Backend\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
-        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
-            throw new \Clerk\Backend\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
-        } else {
-            throw new \Clerk\Backend\Models\Errors\SDKException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
-        }
-    }
-
-    /**
-     * Verify a session
-     *
-     * Returns the session if it is authenticated, otherwise returns an error.
-     * WARNING: This endpoint is deprecated and will be removed in future versions. We strongly recommend switching to networkless verification using short-lived session tokens,
-     *          which is implemented transparently in all recent SDK versions (e.g. [NodeJS SDK](https://clerk.com/docs/backend-requests/handling/nodejs#clerk-express-require-auth)).
-     *          For more details on how networkless verification works, refer to our [Session Tokens documentation](https://clerk.com/docs/backend-requests/resources/session-tokens).
-     *
-     * @param  string  $sessionId
-     * @param  ?Operations\VerifySessionRequestBody  $requestBody
-     * @return Operations\VerifySessionResponse
-     * @throws \Clerk\Backend\Models\Errors\SDKException
-     * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    public function verify(string $sessionId, ?Operations\VerifySessionRequestBody $requestBody = null, ?Options $options = null): Operations\VerifySessionResponse
-    {
-        trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
-        $retryConfig = null;
-        if ($options) {
-            $retryConfig = $options->retryConfig;
-        }
-        if ($retryConfig === null && $this->sdkConfiguration->retryConfig) {
-            $retryConfig = $this->sdkConfiguration->retryConfig;
-        } else {
-            $retryConfig = new Retry\RetryConfigBackoff(
-                initialIntervalMs: 500,
-                maxIntervalMs: 60000,
-                exponent: 1.5,
-                maxElapsedTimeMs: 3600000,
-                retryConnectionErrors: true,
-            );
-        }
-        $retryCodes = null;
-        if ($options) {
-            $retryCodes = $options->retryCodes;
-        }
-        if ($retryCodes === null) {
-            $retryCodes = [
-                '5XX',
-            ];
-        }
-        $request = new Operations\VerifySessionRequest(
-            sessionId: $sessionId,
-            requestBody: $requestBody,
-        );
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/sessions/{session_id}/verify', Operations\VerifySessionRequest::class, $request);
-        $urlOverride = null;
-        $httpOptions = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
-        if ($body !== null) {
-            $httpOptions = array_merge_recursive($httpOptions, $body);
-        }
-        $httpOptions['headers']['Accept'] = 'application/json';
-        $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
-        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        $hookContext = new HookContext('VerifySession', null, $this->sdkConfiguration->securitySource);
-        $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
-        $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
-        $httpRequest = Utils\Utils::removeHeaders($httpRequest);
-        try {
-            $httpResponse = RetryUtils::retryWrapper(fn () => $this->sdkConfiguration->client->send($httpRequest, $httpOptions), $retryConfig, $retryCodes);
-        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
-            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
-            $httpResponse = $res;
-        }
-        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
-
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '404', '410', '4XX', '5XX'])) {
-            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
-            $httpResponse = $res;
-        }
-        if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
-            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
-                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
-
-                $serializer = Utils\JSON::createSerializer();
-                $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Components\Session', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\VerifySessionResponse(
-                    statusCode: $statusCode,
-                    contentType: $contentType,
-                    rawResponse: $httpResponse,
-                    session: $obj);
-
-                return $response;
-            } else {
-                throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
-            }
-        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '404', '410'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -707,7 +703,7 @@ class Sessions
                 '5XX',
             ];
         }
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/sessions');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
@@ -718,7 +714,7 @@ class Sessions
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        $hookContext = new HookContext('createSession', null, $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'createSession', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);

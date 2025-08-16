@@ -5,157 +5,11 @@
 
 ### Available Operations
 
-* [create](#create) - Create a SAML Connection
-* [delete](#delete) - Delete a SAML Connection
-* [get](#get) - Retrieve a SAML Connection by ID
 * [list](#list) - Get a list of SAML Connections for an instance
+* [create](#create) - Create a SAML Connection
+* [get](#get) - Retrieve a SAML Connection by ID
 * [update](#update) - Update a SAML Connection
-
-## create
-
-Create a new SAML Connection.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-$request = new Operations\CreateSAMLConnectionRequestBody(
-    name: '<value>',
-    domain: 'low-packaging.info',
-    provider: Operations\Provider::SamlCustom,
-);
-
-$response = $sdk->samlConnections->create(
-    request: $request
-);
-
-if ($response->schemasSAMLConnection !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                               | [Operations\CreateSAMLConnectionRequestBody](../../Models/Operations/CreateSAMLConnectionRequestBody.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
-
-### Response
-
-**[?Operations\CreateSAMLConnectionResponse](../../Models/Operations/CreateSAMLConnectionResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 402, 403, 404, 422  | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## delete
-
-Deletes the SAML Connection whose ID matches the provided `id` in the path.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->samlConnections->delete(
-    samlConnectionId: '<id>'
-);
-
-if ($response->deletedObject !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                               | Type                                    | Required                                | Description                             |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| `samlConnectionId`                      | *string*                                | :heavy_check_mark:                      | The ID of the SAML Connection to delete |
-
-### Response
-
-**[?Operations\DeleteSAMLConnectionResponse](../../Models/Operations/DeleteSAMLConnectionResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 402, 403, 404       | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## get
-
-Fetches the SAML Connection whose ID matches the provided `saml_connection_id` in the path.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->samlConnections->get(
-    samlConnectionId: '<id>'
-);
-
-if ($response->schemasSAMLConnection !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                     | Type                          | Required                      | Description                   |
-| ----------------------------- | ----------------------------- | ----------------------------- | ----------------------------- |
-| `samlConnectionId`            | *string*                      | :heavy_check_mark:            | The ID of the SAML Connection |
-
-### Response
-
-**[?Operations\GetSAMLConnectionResponse](../../Models/Operations/GetSAMLConnectionResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 402, 403, 404       | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+* [delete](#delete) - Delete a SAML Connection
 
 ## list
 
@@ -165,6 +19,7 @@ The SAML Connections are ordered by descending creation date and the most recent
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="ListSAMLConnections" method="get" path="/saml_connections" -->
 ```php
 declare(strict_types=1);
 
@@ -207,12 +62,109 @@ if ($response->samlConnections !== null) {
 | Errors\ClerkErrors  | 402, 403, 422       | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
+## create
+
+Create a new SAML Connection.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="CreateSAMLConnection" method="post" path="/saml_connections" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->samlConnections->create(
+    request: $request
+);
+
+if ($response->schemasSAMLConnection !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `$request`                                                                                  | [Operations\One\|Operations\Two](../../Models/Operations/CreateSAMLConnectionRequestBody.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
+
+### Response
+
+**[?Operations\CreateSAMLConnectionResponse](../../Models/Operations/CreateSAMLConnectionResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 402, 403, 404, 422  | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## get
+
+Fetches the SAML Connection whose ID matches the provided `saml_connection_id` in the path.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="GetSAMLConnection" method="get" path="/saml_connections/{saml_connection_id}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->samlConnections->get(
+    samlConnectionId: '<id>'
+);
+
+if ($response->schemasSAMLConnection !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                     | Type                          | Required                      | Description                   |
+| ----------------------------- | ----------------------------- | ----------------------------- | ----------------------------- |
+| `samlConnectionId`            | *string*                      | :heavy_check_mark:            | The ID of the SAML Connection |
+
+### Response
+
+**[?Operations\GetSAMLConnectionResponse](../../Models/Operations/GetSAMLConnectionResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 402, 403, 404       | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
 ## update
 
 Updates the SAML Connection whose ID matches the provided `id` in the path.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="UpdateSAMLConnection" method="patch" path="/saml_connections/{saml_connection_id}" -->
 ```php
 declare(strict_types=1);
 
@@ -256,4 +208,52 @@ if ($response->schemasSAMLConnection !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 402, 403, 404, 422  | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## delete
+
+Deletes the SAML Connection whose ID matches the provided `id` in the path.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="DeleteSAMLConnection" method="delete" path="/saml_connections/{saml_connection_id}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->samlConnections->delete(
+    samlConnectionId: '<id>'
+);
+
+if ($response->deletedObject !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                               | Type                                    | Required                                | Description                             |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| `samlConnectionId`                      | *string*                                | :heavy_check_mark:                      | The ID of the SAML Connection to delete |
+
+### Response
+
+**[?Operations\DeleteSAMLConnectionResponse](../../Models/Operations/DeleteSAMLConnectionResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 402, 403, 404       | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |

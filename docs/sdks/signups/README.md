@@ -14,6 +14,7 @@ Retrieve the details of the sign-up with the given ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="GetSignUp" method="get" path="/sign_ups/{id}" -->
 ```php
 declare(strict_types=1);
 
@@ -61,13 +62,13 @@ Update the sign-up with the given ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="UpdateSignUp" method="patch" path="/sign_ups/{id}" -->
 ```php
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
 
 $sdk = Backend\ClerkBackend::builder()
     ->setSecurity(
@@ -75,7 +76,7 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$requestBody = new Operations\UpdateSignUpRequestBody();
+
 
 $response = $sdk->signUps->update(
     id: '<id>',

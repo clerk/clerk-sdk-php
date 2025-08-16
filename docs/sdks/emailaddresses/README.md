@@ -6,8 +6,8 @@
 ### Available Operations
 
 * [create](#create) - Create an email address
-* [delete](#delete) - Delete an email address
 * [get](#get) - Retrieve an email address
+* [delete](#delete) - Delete an email address
 * [update](#update) - Update an email address
 
 ## create
@@ -16,13 +16,13 @@ Create a new email address
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="CreateEmailAddress" method="post" path="/email_addresses" -->
 ```php
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
 
 $sdk = Backend\ClerkBackend::builder()
     ->setSecurity(
@@ -30,10 +30,7 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$request = new Operations\CreateEmailAddressRequestBody(
-    userId: '<id>',
-    emailAddress: 'Loyal79@yahoo.com',
-);
+
 
 $response = $sdk->emailAddresses->create(
     request: $request
@@ -61,59 +58,13 @@ if ($response->emailAddress !== null) {
 | Errors\ClerkErrors      | 400, 401, 403, 404, 422 | application/json        |
 | Errors\SDKException     | 4XX, 5XX                | \*/\*                   |
 
-## delete
-
-Delete the email address with the given ID
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->emailAddresses->delete(
-    emailAddressId: '<id>'
-);
-
-if ($response->deletedObject !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                             | Type                                  | Required                              | Description                           |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| `emailAddressId`                      | *string*                              | :heavy_check_mark:                    | The ID of the email address to delete |
-
-### Response
-
-**[?Operations\DeleteEmailAddressResponse](../../Models/Operations/DeleteEmailAddressResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 401, 403, 404  | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
 ## get
 
 Returns the details of an email address.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="GetEmailAddress" method="get" path="/email_addresses/{email_address_id}" -->
 ```php
 declare(strict_types=1);
 
@@ -155,19 +106,19 @@ if ($response->emailAddress !== null) {
 | Errors\ClerkErrors  | 400, 401, 403, 404  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## update
+## delete
 
-Updates an email address.
+Delete the email address with the given ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="DeleteEmailAddress" method="delete" path="/email_addresses/{email_address_id}" -->
 ```php
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
 
 $sdk = Backend\ClerkBackend::builder()
     ->setSecurity(
@@ -175,7 +126,55 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$requestBody = new Operations\UpdateEmailAddressRequestBody();
+
+
+$response = $sdk->emailAddresses->delete(
+    emailAddressId: '<id>'
+);
+
+if ($response->deletedObject !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                             | Type                                  | Required                              | Description                           |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| `emailAddressId`                      | *string*                              | :heavy_check_mark:                    | The ID of the email address to delete |
+
+### Response
+
+**[?Operations\DeleteEmailAddressResponse](../../Models/Operations/DeleteEmailAddressResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 401, 403, 404  | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## update
+
+Updates an email address.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="UpdateEmailAddress" method="patch" path="/email_addresses/{email_address_id}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
 
 $response = $sdk->emailAddresses->update(
     emailAddressId: '<id>',

@@ -42,6 +42,20 @@ class OrganizationWithLogo
 
     /**
      *
+     * @var string $imageUrl
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('image_url')]
+    public string $imageUrl;
+
+    /**
+     *
+     * @var bool $hasImage
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('has_image')]
+    public bool $hasImage;
+
+    /**
+     *
      * @var int $maxAllowedMemberships
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('max_allowed_memberships')]
@@ -64,15 +78,6 @@ class OrganizationWithLogo
     public array $publicMetadata;
 
     /**
-     * $privateMetadata
-     *
-     * @var array<string, mixed> $privateMetadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('private_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
-    public array $privateMetadata;
-
-    /**
      * Unix timestamp of creation.
      *
      *
@@ -91,20 +96,6 @@ class OrganizationWithLogo
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
     public int $updatedAt;
-
-    /**
-     *
-     * @var string $imageUrl
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('image_url')]
-    public string $imageUrl;
-
-    /**
-     *
-     * @var bool $hasImage
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('has_image')]
-    public bool $hasImage;
 
     /**
      *
@@ -131,6 +122,16 @@ class OrganizationWithLogo
     public ?int $pendingInvitationsCount = null;
 
     /**
+     * $privateMetadata
+     *
+     * @var ?array<string, mixed> $privateMetadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('private_metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $privateMetadata = null;
+
+    /**
      *
      * @var ?string $createdBy
      */
@@ -152,38 +153,38 @@ class OrganizationWithLogo
      * @param  string  $id
      * @param  string  $name
      * @param  string  $slug
+     * @param  string  $imageUrl
+     * @param  bool  $hasImage
      * @param  int  $maxAllowedMemberships
      * @param  bool  $adminDeleteEnabled
      * @param  array<string, mixed>  $publicMetadata
-     * @param  array<string, mixed>  $privateMetadata
      * @param  int  $createdAt
      * @param  int  $updatedAt
-     * @param  string  $imageUrl
-     * @param  bool  $hasImage
      * @param  ?int  $membersCount
      * @param  ?bool  $missingMemberWithElevatedPermissions
      * @param  ?int  $pendingInvitationsCount
+     * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?string  $createdBy
      * @param  ?string  $logoUrl
      * @phpstan-pure
      */
-    public function __construct(OrganizationWithLogoObject $object, string $id, string $name, string $slug, int $maxAllowedMemberships, bool $adminDeleteEnabled, array $publicMetadata, array $privateMetadata, int $createdAt, int $updatedAt, string $imageUrl, bool $hasImage, ?int $membersCount = null, ?bool $missingMemberWithElevatedPermissions = null, ?int $pendingInvitationsCount = null, ?string $createdBy = null, ?string $logoUrl = null)
+    public function __construct(OrganizationWithLogoObject $object, string $id, string $name, string $slug, string $imageUrl, bool $hasImage, int $maxAllowedMemberships, bool $adminDeleteEnabled, array $publicMetadata, int $createdAt, int $updatedAt, ?int $membersCount = null, ?bool $missingMemberWithElevatedPermissions = null, ?int $pendingInvitationsCount = null, ?array $privateMetadata = null, ?string $createdBy = null, ?string $logoUrl = null)
     {
         $this->object = $object;
         $this->id = $id;
         $this->name = $name;
         $this->slug = $slug;
+        $this->imageUrl = $imageUrl;
+        $this->hasImage = $hasImage;
         $this->maxAllowedMemberships = $maxAllowedMemberships;
         $this->adminDeleteEnabled = $adminDeleteEnabled;
         $this->publicMetadata = $publicMetadata;
-        $this->privateMetadata = $privateMetadata;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
-        $this->imageUrl = $imageUrl;
-        $this->hasImage = $hasImage;
         $this->membersCount = $membersCount;
         $this->missingMemberWithElevatedPermissions = $missingMemberWithElevatedPermissions;
         $this->pendingInvitationsCount = $pendingInvitationsCount;
+        $this->privateMetadata = $privateMetadata;
         $this->createdBy = $createdBy;
         $this->logoUrl = $logoUrl;
     }

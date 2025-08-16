@@ -18,4 +18,5 @@ enum Status: string
     case Removed = 'removed';
     case Abandoned = 'abandoned';
     case Replaced = 'replaced';
+    case Pending = 'pending';
 }

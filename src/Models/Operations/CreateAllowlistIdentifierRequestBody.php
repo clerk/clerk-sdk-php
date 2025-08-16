@@ -14,7 +14,7 @@ class CreateAllowlistIdentifierRequestBody
     /**
      * The identifier to be added in the allow-list.
      *
-     * This can be an email address, a phone number or a web3 wallet.
+     * This can be an email address, a phone number, or a web3 wallet.
      *
      * @var string $identifier
      */

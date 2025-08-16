@@ -3,12 +3,12 @@
 
 ## Supported Types
 
-### `Components\SAMLErrorClerkError`
+### `Components\VerificationOauthErrorClerkError`
 
 ```php
 /**
-* @var Components\SAMLErrorClerkError
+* @var Components\VerificationOauthErrorClerkError
 */
-Components\SAMLErrorClerkError $value = /* values here */
+Components\VerificationOauthErrorClerkError $value = /* values here */
 ```
 

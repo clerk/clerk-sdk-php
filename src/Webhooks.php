@@ -80,14 +80,14 @@ class Webhooks
                 '5XX',
             ];
         }
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/webhooks/svix');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        $hookContext = new HookContext('CreateSvixApp', null, $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'CreateSvixApp', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -175,14 +175,14 @@ class Webhooks
                 '5XX',
             ];
         }
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/webhooks/svix');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('DELETE', $url);
-        $hookContext = new HookContext('DeleteSvixApp', null, $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'DeleteSvixApp', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -261,14 +261,14 @@ class Webhooks
                 '5XX',
             ];
         }
-        $baseUrl = $this->sdkConfiguration->getServerUrl();
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/webhooks/svix_url');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        $hookContext = new HookContext('GenerateSvixAuthURL', null, $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'GenerateSvixAuthURL', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
