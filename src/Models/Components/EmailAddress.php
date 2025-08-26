@@ -76,11 +76,12 @@ class EmailAddress
 
     /**
      *
-     * @var Otp|Admin|FromOAuth|Ticket|null $verification
+     * @var Otp|Admin|FromOAuth|Ticket|Saml|EmailLink|null $verification
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Otp|\Clerk\Backend\Models\Components\Admin|\Clerk\Backend\Models\Components\FromOAuth|\Clerk\Backend\Models\Components\Ticket|null')]
-    public Otp|Admin|FromOAuth|Ticket|null $verification;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Otp|\Clerk\Backend\Models\Components\Admin|\Clerk\Backend\Models\Components\FromOAuth|\Clerk\Backend\Models\Components\Ticket|\Clerk\Backend\Models\Components\Saml|\Clerk\Backend\Models\Components\EmailLink|null')]
+    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'object', map: ['Otp' => '\Clerk\Backend\Models\Components\Otp', 'Admin' => '\Clerk\Backend\Models\Components\Admin', 'FromOAuth' => '\Clerk\Backend\Models\Components\FromOAuth', 'Ticket' => '\Clerk\Backend\Models\Components\Ticket', 'Saml' => '\Clerk\Backend\Models\Components\Saml', 'EmailLink' => '\Clerk\Backend\Models\Components\EmailLink'])]
+    public Otp|Admin|FromOAuth|Ticket|Saml|EmailLink|null $verification;
 
     /**
      * Indicates whether this email address domain matches an active enterprise connection.
@@ -101,11 +102,11 @@ class EmailAddress
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  ?string  $id
-     * @param  Otp|Admin|FromOAuth|Ticket|null  $verification
+     * @param  Otp|Admin|FromOAuth|Ticket|Saml|EmailLink|null  $verification
      * @param  ?bool  $matchesSsoConnection
      * @phpstan-pure
      */
-    public function __construct(EmailAddressObject $object, string $emailAddress, bool $reserved, array $linkedTo, int $createdAt, int $updatedAt, ?string $id = null, Otp|Admin|FromOAuth|Ticket|null $verification = null, ?bool $matchesSsoConnection = null)
+    public function __construct(EmailAddressObject $object, string $emailAddress, bool $reserved, array $linkedTo, int $createdAt, int $updatedAt, ?string $id = null, Otp|Admin|FromOAuth|Ticket|Saml|EmailLink|null $verification = null, ?bool $matchesSsoConnection = null)
     {
         $this->object = $object;
         $this->emailAddress = $emailAddress;

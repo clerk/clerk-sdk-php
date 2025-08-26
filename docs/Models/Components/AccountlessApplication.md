@@ -1,0 +1,14 @@
+# AccountlessApplication
+
+Success
+
+
+## Fields
+
+| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `object`                                                                                           | [Components\AccountlessApplicationObject](../../Models/Components/AccountlessApplicationObject.md) | :heavy_check_mark:                                                                                 | N/A                                                                                                |
+| `publishableKey`                                                                                   | *string*                                                                                           | :heavy_check_mark:                                                                                 | N/A                                                                                                |
+| `secretKey`                                                                                        | *?string*                                                                                          | :heavy_minus_sign:                                                                                 | N/A                                                                                                |
+| `claimUrl`                                                                                         | *?string*                                                                                          | :heavy_minus_sign:                                                                                 | N/A                                                                                                |
+| `apiKeysUrl`                                                                                       | *?string*                                                                                          | :heavy_minus_sign:                                                                                 | N/A                                                                                                |
