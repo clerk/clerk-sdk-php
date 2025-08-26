@@ -14,13 +14,13 @@ Updates the settings of an instance
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="UpdateInstanceAuthConfig" method="patch" path="/beta_features/instance_settings" -->
 ```php
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
 
 $sdk = Backend\ClerkBackend::builder()
     ->setSecurity(
@@ -28,7 +28,7 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$request = new Operations\UpdateInstanceAuthConfigRequestBody();
+
 
 $response = $sdk->betaFeatures->updateInstanceSettings(
     request: $request
@@ -60,7 +60,7 @@ if ($response->instanceSettings !== null) {
 
 Change the domain of a production instance.
 
-Changing the domain requires updating the [DNS records](https://clerk.com/docs/deployments/overview#dns-records) accordingly, deploying new [SSL certificates](https://clerk.com/docs/deployments/overview#deploy), updating your Social Connection's redirect URLs and setting the new keys in your code.
+Changing the domain requires updating the [DNS records](https://clerk.com/docs/deployments/overview#dns-records) accordingly, deploying new [SSL certificates](https://clerk.com/docs/deployments/overview#deploy-certificates), updating your Social Connection's redirect URLs and setting the new keys in your code.
 
 WARNING: Changing your domain will invalidate all current user sessions (i.e. users will be logged out). Also, while your application is being deployed, a small downtime is expected to occur.
 
@@ -68,13 +68,13 @@ WARNING: Changing your domain will invalidate all current user sessions (i.e. us
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="UpdateProductionInstanceDomain" method="put" path="/beta_features/domain" -->
 ```php
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
 
 $sdk = Backend\ClerkBackend::builder()
     ->setSecurity(
@@ -82,7 +82,7 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$request = new Operations\UpdateProductionInstanceDomainRequestBody();
+
 
 $response = $sdk->betaFeatures->updateProductionInstanceDomain(
     request: $request

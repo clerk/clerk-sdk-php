@@ -39,3 +39,21 @@ Components\FromOAuth $value = /* values here */
 Components\Ticket $value = /* values here */
 ```
 
+### `Components\Saml`
+
+```php
+/**
+* @var Components\Saml
+*/
+Components\Saml $value = /* values here */
+```
+
+### `Components\EmailLink`
+
+```php
+/**
+* @var Components\EmailLink
+*/
+Components\EmailLink $value = /* values here */
+```
+

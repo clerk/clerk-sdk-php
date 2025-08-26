@@ -37,6 +37,13 @@ class InstanceRestrictions
 
     /**
      *
+     * @var bool $allowlistBlocklistDisabledOnSignIn
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('allowlist_blocklist_disabled_on_sign_in')]
+    public bool $allowlistBlocklistDisabledOnSignIn;
+
+    /**
+     *
      * @var bool $blockEmailSubaddresses
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('block_email_subaddresses')]
@@ -50,28 +57,21 @@ class InstanceRestrictions
     public bool $blockDisposableEmailDomains;
 
     /**
-     *
-     * @var bool $ignoreDotsForGmailAddresses
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ignore_dots_for_gmail_addresses')]
-    public bool $ignoreDotsForGmailAddresses;
-
-    /**
      * @param  InstanceRestrictionsObject  $object
      * @param  bool  $allowlist
      * @param  bool  $blocklist
+     * @param  bool  $allowlistBlocklistDisabledOnSignIn
      * @param  bool  $blockEmailSubaddresses
      * @param  bool  $blockDisposableEmailDomains
-     * @param  bool  $ignoreDotsForGmailAddresses
      * @phpstan-pure
      */
-    public function __construct(InstanceRestrictionsObject $object, bool $allowlist, bool $blocklist, bool $blockEmailSubaddresses, bool $blockDisposableEmailDomains, bool $ignoreDotsForGmailAddresses)
+    public function __construct(InstanceRestrictionsObject $object, bool $allowlist, bool $blocklist, bool $allowlistBlocklistDisabledOnSignIn, bool $blockEmailSubaddresses, bool $blockDisposableEmailDomains)
     {
         $this->object = $object;
         $this->allowlist = $allowlist;
         $this->blocklist = $blocklist;
+        $this->allowlistBlocklistDisabledOnSignIn = $allowlistBlocklistDisabledOnSignIn;
         $this->blockEmailSubaddresses = $blockEmailSubaddresses;
         $this->blockDisposableEmailDomains = $blockDisposableEmailDomains;
-        $this->ignoreDotsForGmailAddresses = $ignoreDotsForGmailAddresses;
     }
 }

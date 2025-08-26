@@ -43,13 +43,6 @@ class OrganizationSettings
     public int $maxAllowedRoles;
 
     /**
-     *
-     * @var int $maxAllowedPermissions
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('max_allowed_permissions')]
-    public int $maxAllowedPermissions;
-
-    /**
      * The role key that a user will be assigned after creating an organization.
      *
      * @var string $creatorRole
@@ -90,29 +83,39 @@ class OrganizationSettings
     public string $domainsDefaultRole;
 
     /**
+     * max_allowed_permissions is now a no-op, as permissions are now unlimited
+     *
+     * @var ?int $maxAllowedPermissions
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('max_allowed_permissions')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $maxAllowedPermissions = null;
+
+    /**
      * @param  OrganizationSettingsObject  $object
      * @param  bool  $enabled
      * @param  int  $maxAllowedMemberships
      * @param  int  $maxAllowedRoles
-     * @param  int  $maxAllowedPermissions
      * @param  string  $creatorRole
      * @param  bool  $adminDeleteEnabled
      * @param  bool  $domainsEnabled
      * @param  array<DomainsEnrollmentModes>  $domainsEnrollmentModes
      * @param  string  $domainsDefaultRole
+     * @param  ?int  $maxAllowedPermissions
      * @phpstan-pure
      */
-    public function __construct(OrganizationSettingsObject $object, bool $enabled, int $maxAllowedMemberships, int $maxAllowedRoles, int $maxAllowedPermissions, string $creatorRole, bool $adminDeleteEnabled, bool $domainsEnabled, array $domainsEnrollmentModes, string $domainsDefaultRole)
+    public function __construct(OrganizationSettingsObject $object, bool $enabled, int $maxAllowedMemberships, int $maxAllowedRoles, string $creatorRole, bool $adminDeleteEnabled, bool $domainsEnabled, array $domainsEnrollmentModes, string $domainsDefaultRole, ?int $maxAllowedPermissions = null)
     {
         $this->object = $object;
         $this->enabled = $enabled;
         $this->maxAllowedMemberships = $maxAllowedMemberships;
         $this->maxAllowedRoles = $maxAllowedRoles;
-        $this->maxAllowedPermissions = $maxAllowedPermissions;
         $this->creatorRole = $creatorRole;
         $this->adminDeleteEnabled = $adminDeleteEnabled;
         $this->domainsEnabled = $domainsEnabled;
         $this->domainsEnrollmentModes = $domainsEnrollmentModes;
         $this->domainsDefaultRole = $domainsDefaultRole;
+        $this->maxAllowedPermissions = $maxAllowedPermissions;
     }
 }

@@ -5,56 +5,9 @@
 
 ### Available Operations
 
-* [get](#get) - Get a client
 * [~~list~~](#list) - List all clients :warning: **Deprecated**
 * [verify](#verify) - Verify a client
-
-## get
-
-Returns the details of a client.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->clients->get(
-    clientId: '<id>'
-);
-
-if ($response->client !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `clientId`         | *string*           | :heavy_check_mark: | Client ID.         |
-
-### Response
-
-**[?Operations\GetClientResponse](../../Models/Operations/GetClientResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 401, 404       | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+* [get](#get) - Get a client
 
 ## ~~list~~
 
@@ -66,6 +19,7 @@ Warning: the endpoint is being deprecated and will be removed in future versions
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="GetClientList" method="get" path="/clients" -->
 ```php
 declare(strict_types=1);
 
@@ -82,7 +36,6 @@ $sdk = Backend\ClerkBackend::builder()
 
 
 $response = $sdk->clients->list(
-    paginated: false,
     limit: 10,
     offset: 0
 
@@ -118,13 +71,13 @@ Verifies the client in the provided token
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="VerifyClient" method="post" path="/clients/verify" -->
 ```php
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
 
 $sdk = Backend\ClerkBackend::builder()
     ->setSecurity(
@@ -132,9 +85,7 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$request = new Operations\VerifyClientRequestBody(
-    token: '<value>',
-);
+
 
 $response = $sdk->clients->verify(
     request: $request
@@ -154,6 +105,54 @@ if ($response->client !== null) {
 ### Response
 
 **[?Operations\VerifyClientResponse](../../Models/Operations/VerifyClientResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 401, 404       | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## get
+
+Returns the details of a client.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="GetClient" method="get" path="/clients/{client_id}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->clients->get(
+    clientId: '<id>'
+);
+
+if ($response->client !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `clientId`         | *string*           | :heavy_check_mark: | Client ID.         |
+
+### Response
+
+**[?Operations\GetClientResponse](../../Models/Operations/GetClientResponse.md)**
 
 ### Errors
 
