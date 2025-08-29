@@ -15,6 +15,7 @@ The `actor` parameter needs to include at least a "sub" key whose value is the I
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="CreateActorToken" method="post" path="/actor_tokens" -->
 ```php
 declare(strict_types=1);
 
@@ -68,6 +69,7 @@ Revokes a pending actor token.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="RevokeActorToken" method="post" path="/actor_tokens/{actor_token_id}/revoke" -->
 ```php
 declare(strict_types=1);
 

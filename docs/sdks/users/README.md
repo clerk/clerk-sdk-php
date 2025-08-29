@@ -5,44 +5,50 @@
 
 ### Available Operations
 
-* [ban](#ban) - Ban a user
-* [create](#create) - Create a new user
-* [deleteBackupCodes](#deletebackupcodes) - Disable all user's Backup codes
-* [deleteExternalAccount](#deleteexternalaccount) - Delete External Account
-* [deleteTOTP](#deletetotp) - Delete all the user's TOTPs
-* [delete](#delete) - Delete a user
-* [deleteProfileImage](#deleteprofileimage) - Delete user profile image
-* [disableMfa](#disablemfa) - Disable a user's MFA methods
-* [getOAuthAccessToken](#getoauthaccesstoken) - Retrieve the OAuth access token of a user
-* [get](#get) - Retrieve a user
 * [list](#list) - List all users
+* [create](#create) - Create a new user
 * [count](#count) - Count users
-* [getInstanceOrganizationMemberships](#getinstanceorganizationmemberships) - Get a list of all organization memberships within an instance.
-* [lock](#lock) - Lock a user
-* [setProfileImage](#setprofileimage) - Set user profile image
-* [unban](#unban) - Unban a user
-* [unlock](#unlock) - Unlock a user
+* [get](#get) - Retrieve a user
 * [update](#update) - Update a user
+* [delete](#delete) - Delete a user
+* [ban](#ban) - Ban a user
+* [unban](#unban) - Unban a user
+* [bulkBan](#bulkban) - Ban multiple users
+* [bulkUnban](#bulkunban) - Unban multiple users
+* [lock](#lock) - Lock a user
+* [unlock](#unlock) - Unlock a user
+* [setProfileImage](#setprofileimage) - Set user profile image
+* [deleteProfileImage](#deleteprofileimage) - Delete user profile image
 * [updateMetadata](#updatemetadata) - Merge and update a user's metadata
-* [deletePasskey](#deletepasskey) - Delete a user passkey
-* [deleteWeb3Wallet](#deleteweb3wallet) - Delete a user web3 wallet
-* [getOrganizationInvitations](#getorganizationinvitations) - Retrieve all invitations for a user
+* [getBillingSubscription](#getbillingsubscription) - Retrieve a user's billing subscription
+* [getOAuthAccessToken](#getoauthaccesstoken) - Retrieve the OAuth access token of a user
 * [getOrganizationMemberships](#getorganizationmemberships) - Retrieve all memberships for a user
+* [getOrganizationInvitations](#getorganizationinvitations) - Retrieve all invitations for a user
 * [verifyPassword](#verifypassword) - Verify the password of a user
 * [verifyTotp](#verifytotp) - Verify a TOTP or backup code for a user
+* [disableMfa](#disablemfa) - Disable a user's MFA methods
+* [deleteBackupCodes](#deletebackupcodes) - Disable all user's Backup codes
+* [deletePasskey](#deletepasskey) - Delete a user passkey
+* [deleteWeb3Wallet](#deleteweb3wallet) - Delete a user web3 wallet
+* [deleteTOTP](#deletetotp) - Delete all the user's TOTPs
+* [deleteExternalAccount](#deleteexternalaccount) - Delete External Account
+* [getInstanceOrganizationMemberships](#getinstanceorganizationmemberships) - Get a list of all organization memberships within an instance.
 
-## ban
+## list
 
-Marks the given user as banned, which means that all their sessions are revoked and they are not allowed to sign in again.
+Returns a list of all users.
+The users are returned sorted by creation date, with the newest users appearing first.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="GetUserList" method="get" path="/users" -->
 ```php
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
 
 $sdk = Backend\ClerkBackend::builder()
     ->setSecurity(
@@ -50,32 +56,38 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-
-
-$response = $sdk->users->ban(
-    userId: '<id>'
+$request = new Operations\GetUserListRequest(
+    lastActiveAtBefore: 1700690400000,
+    lastActiveAtAfter: 1700690400000,
+    lastActiveAtSince: 1700690400000,
+    createdAtBefore: 1730160000000,
+    createdAtAfter: 1730160000000,
 );
 
-if ($response->user !== null) {
+$response = $sdk->users->list(
+    request: $request
+);
+
+if ($response->userList !== null) {
     // handle response
 }
 ```
 
 ### Parameters
 
-| Parameter                 | Type                      | Required                  | Description               |
-| ------------------------- | ------------------------- | ------------------------- | ------------------------- |
-| `userId`                  | *string*                  | :heavy_check_mark:        | The ID of the user to ban |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `$request`                                                                     | [Operations\GetUserListRequest](../../Models/Operations/GetUserListRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 
 ### Response
 
-**[?Operations\BanUserResponse](../../Models/Operations/BanUserResponse.md)**
+**[?Operations\GetUserListResponse](../../Models/Operations/GetUserListResponse.md)**
 
 ### Errors
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 402                 | application/json    |
+| Errors\ClerkErrors  | 400, 401, 422       | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## create
@@ -86,10 +98,11 @@ Any email address and phone number created using this method will be marked as v
 
 Note: If you are performing a migration, check out our guide on [zero downtime migrations](https://clerk.com/docs/deployments/migrate-overview).
 
-A rate limit rule of 20 requests per 10 seconds is applied to this endpoint.
+The following rate limit rules apply to this endpoint: 1000 requests per 10 seconds for production instances and 100 requests per 10 seconds for development instances
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="CreateUser" method="post" path="/users" -->
 ```php
 declare(strict_types=1);
 
@@ -132,302 +145,13 @@ if ($response->user !== null) {
 | Errors\ClerkErrors  | 400, 401, 403, 422  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## deleteBackupCodes
+## count
 
-Disable all of a user's backup codes.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->users->deleteBackupCodes(
-    userId: '<id>'
-);
-
-if ($response->object !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `userId`                                                 | *string*                                                 | :heavy_check_mark:                                       | The ID of the user whose backup codes are to be deleted. |
-
-### Response
-
-**[?Operations\DeleteBackupCodeResponse](../../Models/Operations/DeleteBackupCodeResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 404                 | application/json    |
-| Errors\ClerkErrors  | 500                 | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## deleteExternalAccount
-
-Delete an external account by ID.
+Returns a total count of all users that match the given filtering criteria.
 
 ### Example Usage
 
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->users->deleteExternalAccount(
-    userId: '<id>',
-    externalAccountId: '<id>'
-
-);
-
-if ($response->deletedObject !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                | Type                                     | Required                                 | Description                              |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `userId`                                 | *string*                                 | :heavy_check_mark:                       | The ID of the user's external account    |
-| `externalAccountId`                      | *string*                                 | :heavy_check_mark:                       | The ID of the external account to delete |
-
-### Response
-
-**[?Operations\DeleteExternalAccountResponse](../../Models/Operations/DeleteExternalAccountResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 403, 404       | application/json    |
-| Errors\ClerkErrors  | 500                 | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## deleteTOTP
-
-Deletes all of the user's TOTPs.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->users->deleteTOTP(
-    userId: '<id>'
-);
-
-if ($response->object !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                        | Type                                             | Required                                         | Description                                      |
-| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| `userId`                                         | *string*                                         | :heavy_check_mark:                               | The ID of the user whose TOTPs are to be deleted |
-
-### Response
-
-**[?Operations\DeleteTOTPResponse](../../Models/Operations/DeleteTOTPResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 404                 | application/json    |
-| Errors\ClerkErrors  | 500                 | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## delete
-
-Delete the specified user
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->users->delete(
-    userId: '<id>'
-);
-
-if ($response->deletedObject !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                    | Type                         | Required                     | Description                  |
-| ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
-| `userId`                     | *string*                     | :heavy_check_mark:           | The ID of the user to delete |
-
-### Response
-
-**[?Operations\DeleteUserResponse](../../Models/Operations/DeleteUserResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 401, 404       | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## deleteProfileImage
-
-Delete a user's profile image
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->users->deleteProfileImage(
-    userId: '<id>'
-);
-
-if ($response->user !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                          | Type                                               | Required                                           | Description                                        |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| `userId`                                           | *string*                                           | :heavy_check_mark:                                 | The ID of the user to delete the profile image for |
-
-### Response
-
-**[?Operations\DeleteUserProfileImageResponse](../../Models/Operations/DeleteUserProfileImageResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 404                 | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## disableMfa
-
-Disable all of a user's MFA methods (e.g. OTP sent via SMS, TOTP on their authenticator app) at once.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->users->disableMfa(
-    userId: '<id>'
-);
-
-if ($response->object !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                               | Type                                                    | Required                                                | Description                                             |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `userId`                                                | *string*                                                | :heavy_check_mark:                                      | The ID of the user whose MFA methods are to be disabled |
-
-### Response
-
-**[?Operations\DisableMFAResponse](../../Models/Operations/DisableMFAResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 404                 | application/json    |
-| Errors\ClerkErrors  | 500                 | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## getOAuthAccessToken
-
-Fetch the corresponding OAuth access token for a user that has previously authenticated with a particular OAuth provider.
-For OAuth 2.0, if the access token has expired and we have a corresponding refresh token, the access token will be refreshed transparently the new one will be returned.
-
-### Example Usage
-
+<!-- UsageSnippet language="php" operationID="GetUsersCount" method="get" path="/users/count" -->
 ```php
 declare(strict_types=1);
 
@@ -442,35 +166,38 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$request = new Operations\GetOAuthAccessTokenRequest(
-    userId: '<id>',
-    provider: '<value>',
+$request = new Operations\GetUsersCountRequest(
+    lastActiveAtBefore: 1700690400000,
+    lastActiveAtAfter: 1700690400000,
+    lastActiveAtSince: 1700690400000,
+    createdAtBefore: 1730160000000,
+    createdAtAfter: 1730160000000,
 );
 
-$response = $sdk->users->getOAuthAccessToken(
+$response = $sdk->users->count(
     request: $request
 );
 
-if ($response->responseBodies !== null) {
+if ($response->totalCount !== null) {
     // handle response
 }
 ```
 
 ### Parameters
 
-| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `$request`                                                                                     | [Operations\GetOAuthAccessTokenRequest](../../Models/Operations/GetOAuthAccessTokenRequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `$request`                                                                         | [Operations\GetUsersCountRequest](../../Models/Operations/GetUsersCountRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 
 ### Response
 
-**[?Operations\GetOAuthAccessTokenResponse](../../Models/Operations/GetOAuthAccessTokenResponse.md)**
+**[?Operations\GetUsersCountResponse](../../Models/Operations/GetUsersCountResponse.md)**
 
 ### Errors
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 404, 422       | application/json    |
+| Errors\ClerkErrors  | 422                 | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## get
@@ -479,6 +206,7 @@ Retrieve the details of a user
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="GetUser" method="get" path="/users/{user_id}" -->
 ```php
 declare(strict_types=1);
 
@@ -520,359 +248,6 @@ if ($response->user !== null) {
 | Errors\ClerkErrors  | 400, 401, 404       | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## list
-
-Returns a list of all users.
-The users are returned sorted by creation date, with the newest users appearing first.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-$request = new Operations\GetUserListRequest(
-    lastActiveAtBefore: 1700690400000,
-    lastActiveAtAfter: 1700690400000,
-    createdAtBefore: 1730160000000,
-    createdAtAfter: 1730160000000,
-);
-
-$response = $sdk->users->list(
-    request: $request
-);
-
-if ($response->userList !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `$request`                                                                     | [Operations\GetUserListRequest](../../Models/Operations/GetUserListRequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-
-### Response
-
-**[?Operations\GetUserListResponse](../../Models/Operations/GetUserListResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 401, 422       | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## count
-
-Returns a total count of all users that match the given filtering criteria.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-$request = new Operations\GetUsersCountRequest(
-    lastActiveAtBefore: 1700690400000,
-    lastActiveAtAfter: 1700690400000,
-    createdAtBefore: 1730160000000,
-    createdAtAfter: 1730160000000,
-);
-
-$response = $sdk->users->count(
-    request: $request
-);
-
-if ($response->totalCount !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `$request`                                                                         | [Operations\GetUsersCountRequest](../../Models/Operations/GetUsersCountRequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-
-### Response
-
-**[?Operations\GetUsersCountResponse](../../Models/Operations/GetUsersCountResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 422                 | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## getInstanceOrganizationMemberships
-
-Retrieves all organization user memberships for the given instance.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->users->getInstanceOrganizationMemberships(
-    orderBy: '<value>',
-    limit: 10,
-    offset: 0
-
-);
-
-if ($response->organizationMemberships !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                                                                          | Type                                                                                                                                                                                                                               | Required                                                                                                                                                                                                                           | Description                                                                                                                                                                                                                        |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `orderBy`                                                                                                                                                                                                                          | *?string*                                                                                                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                                                                                 | Sorts organizations memberships by phone_number, email_address, created_at, first_name, last_name or username.<br/>By prepending one of those values with + or -,<br/>we can choose to sort in ascending (ASC) or descending (DESC) order. |
-| `limit`                                                                                                                                                                                                                            | *?int*                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                 | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                                                                                                              |
-| `offset`                                                                                                                                                                                                                           | *?int*                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                 | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`.                                                                                  |
-
-### Response
-
-**[?Operations\InstanceGetOrganizationMembershipsResponse](../../Models/Operations/InstanceGetOrganizationMembershipsResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 401, 422       | application/json    |
-| Errors\ClerkErrors  | 500                 | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## lock
-
-Marks the given user as locked, which means they are not allowed to sign in again until the lock expires.
-Lock duration can be configured in the instance's restrictions settings.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->users->lock(
-    userId: '<id>'
-);
-
-if ($response->user !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                  | Type                       | Required                   | Description                |
-| -------------------------- | -------------------------- | -------------------------- | -------------------------- |
-| `userId`                   | *string*                   | :heavy_check_mark:         | The ID of the user to lock |
-
-### Response
-
-**[?Operations\LockUserResponse](../../Models/Operations/LockUserResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 403                 | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## setProfileImage
-
-Update a user's profile image
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-$requestBody = new Operations\SetUserProfileImageRequestBody();
-
-$response = $sdk->users->setProfileImage(
-    userId: '<id>',
-    requestBody: $requestBody
-
-);
-
-if ($response->user !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `userId`                                                                                               | *string*                                                                                               | :heavy_check_mark:                                                                                     | The ID of the user to update the profile image for                                                     |
-| `requestBody`                                                                                          | [Operations\SetUserProfileImageRequestBody](../../Models/Operations/SetUserProfileImageRequestBody.md) | :heavy_check_mark:                                                                                     | N/A                                                                                                    |
-
-### Response
-
-**[?Operations\SetUserProfileImageResponse](../../Models/Operations/SetUserProfileImageResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 401, 404       | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## unban
-
-Removes the ban mark from the given user.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->users->unban(
-    userId: '<id>'
-);
-
-if ($response->user !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                   | Type                        | Required                    | Description                 |
-| --------------------------- | --------------------------- | --------------------------- | --------------------------- |
-| `userId`                    | *string*                    | :heavy_check_mark:          | The ID of the user to unban |
-
-### Response
-
-**[?Operations\UnbanUserResponse](../../Models/Operations/UnbanUserResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 402                 | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## unlock
-
-Removes the lock from the given user.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->users->unlock(
-    userId: '<id>'
-);
-
-if ($response->user !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                    | Type                         | Required                     | Description                  |
-| ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
-| `userId`                     | *string*                     | :heavy_check_mark:           | The ID of the user to unlock |
-
-### Response
-
-**[?Operations\UnlockUserResponse](../../Models/Operations/UnlockUserResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 403                 | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
 ## update
 
 Update a user's attributes.
@@ -890,6 +265,7 @@ You can also choose to sign the user out of all their active sessions on any dev
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="UpdateUser" method="patch" path="/users/{user_id}" -->
 ```php
 declare(strict_types=1);
 
@@ -935,19 +311,157 @@ if ($response->user !== null) {
 | Errors\ClerkErrors  | 400, 401, 404, 422  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## updateMetadata
+## delete
 
-Update a user's metadata attributes by merging existing values with the provided parameters.
-
-This endpoint behaves differently than the *Update a user* endpoint.
-Metadata values will not be replaced entirely.
-Instead, a deep merge will be performed.
-Deep means that any nested JSON objects will be merged as well.
-
-You can remove metadata keys at any level by setting their value to `null`.
+Delete the specified user
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="DeleteUser" method="delete" path="/users/{user_id}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->users->delete(
+    userId: '<id>'
+);
+
+if ($response->deletedObject !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                    | Type                         | Required                     | Description                  |
+| ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
+| `userId`                     | *string*                     | :heavy_check_mark:           | The ID of the user to delete |
+
+### Response
+
+**[?Operations\DeleteUserResponse](../../Models/Operations/DeleteUserResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 401, 404       | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## ban
+
+Marks the given user as banned, which means that all their sessions are revoked and they are not allowed to sign in again.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="BanUser" method="post" path="/users/{user_id}/ban" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->users->ban(
+    userId: '<id>'
+);
+
+if ($response->user !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                 | Type                      | Required                  | Description               |
+| ------------------------- | ------------------------- | ------------------------- | ------------------------- |
+| `userId`                  | *string*                  | :heavy_check_mark:        | The ID of the user to ban |
+
+### Response
+
+**[?Operations\BanUserResponse](../../Models/Operations/BanUserResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 402                 | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## unban
+
+Removes the ban mark from the given user.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="UnbanUser" method="post" path="/users/{user_id}/unban" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->users->unban(
+    userId: '<id>'
+);
+
+if ($response->user !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                   | Type                        | Required                    | Description                 |
+| --------------------------- | --------------------------- | --------------------------- | --------------------------- |
+| `userId`                    | *string*                    | :heavy_check_mark:          | The ID of the user to unban |
+
+### Response
+
+**[?Operations\UnbanUserResponse](../../Models/Operations/UnbanUserResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 402                 | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## bulkBan
+
+Marks multiple users as banned, which means that all their sessions are revoked and they are not allowed to sign in again.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="UsersBan" method="post" path="/users/ban" -->
 ```php
 declare(strict_types=1);
 
@@ -962,7 +476,320 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$requestBody = new Operations\UpdateUserMetadataRequestBody();
+$request = new Operations\UsersBanRequestBody(
+    userIds: [
+        '<value 1>',
+        '<value 2>',
+        '<value 3>',
+    ],
+);
+
+$response = $sdk->users->bulkBan(
+    request: $request
+);
+
+if ($response->userList !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `$request`                                                                       | [Operations\UsersBanRequestBody](../../Models/Operations/UsersBanRequestBody.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+
+### Response
+
+**[?Operations\UsersBanResponse](../../Models/Operations/UsersBanResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 402            | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## bulkUnban
+
+Removes the ban mark from multiple users.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="UsersUnban" method="post" path="/users/unban" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+$request = new Operations\UsersUnbanRequestBody(
+    userIds: [
+        '<value 1>',
+        '<value 2>',
+        '<value 3>',
+    ],
+);
+
+$response = $sdk->users->bulkUnban(
+    request: $request
+);
+
+if ($response->userList !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `$request`                                                                           | [Operations\UsersUnbanRequestBody](../../Models/Operations/UsersUnbanRequestBody.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+
+### Response
+
+**[?Operations\UsersUnbanResponse](../../Models/Operations/UsersUnbanResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 402            | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## lock
+
+Marks the given user as locked, which means they are not allowed to sign in again until the lock expires.
+Lock duration can be configured in the instance's restrictions settings.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="LockUser" method="post" path="/users/{user_id}/lock" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->users->lock(
+    userId: '<id>'
+);
+
+if ($response->user !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                  | Type                       | Required                   | Description                |
+| -------------------------- | -------------------------- | -------------------------- | -------------------------- |
+| `userId`                   | *string*                   | :heavy_check_mark:         | The ID of the user to lock |
+
+### Response
+
+**[?Operations\LockUserResponse](../../Models/Operations/LockUserResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 403                 | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## unlock
+
+Removes the lock from the given user.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="UnlockUser" method="post" path="/users/{user_id}/unlock" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->users->unlock(
+    userId: '<id>'
+);
+
+if ($response->user !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                    | Type                         | Required                     | Description                  |
+| ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
+| `userId`                     | *string*                     | :heavy_check_mark:           | The ID of the user to unlock |
+
+### Response
+
+**[?Operations\UnlockUserResponse](../../Models/Operations/UnlockUserResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 403                 | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## setProfileImage
+
+Update a user's profile image
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="SetUserProfileImage" method="post" path="/users/{user_id}/profile_image" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+$requestBody = new Operations\SetUserProfileImageRequestBody();
+
+$response = $sdk->users->setProfileImage(
+    userId: '<id>',
+    requestBody: $requestBody
+
+);
+
+if ($response->user !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `userId`                                                                                               | *string*                                                                                               | :heavy_check_mark:                                                                                     | The ID of the user to update the profile image for                                                     |
+| `requestBody`                                                                                          | [Operations\SetUserProfileImageRequestBody](../../Models/Operations/SetUserProfileImageRequestBody.md) | :heavy_check_mark:                                                                                     | N/A                                                                                                    |
+
+### Response
+
+**[?Operations\SetUserProfileImageResponse](../../Models/Operations/SetUserProfileImageResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 401, 404       | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## deleteProfileImage
+
+Delete a user's profile image
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="DeleteUserProfileImage" method="delete" path="/users/{user_id}/profile_image" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->users->deleteProfileImage(
+    userId: '<id>'
+);
+
+if ($response->user !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                          | Type                                               | Required                                           | Description                                        |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| `userId`                                           | *string*                                           | :heavy_check_mark:                                 | The ID of the user to delete the profile image for |
+
+### Response
+
+**[?Operations\DeleteUserProfileImageResponse](../../Models/Operations/DeleteUserProfileImageResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 404                 | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## updateMetadata
+
+Update a user's metadata attributes by merging existing values with the provided parameters.
+
+This endpoint behaves differently than the *Update a user* endpoint.
+Metadata values will not be replaced entirely.
+Instead, a deep merge will be performed.
+Deep means that any nested JSON objects will be merged as well.
+
+You can remove metadata keys at any level by setting their value to `null`.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="UpdateUserMetadata" method="patch" path="/users/{user_id}/metadata" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
 
 $response = $sdk->users->updateMetadata(
     userId: '<id>',
@@ -993,12 +820,428 @@ if ($response->user !== null) {
 | Errors\ClerkErrors  | 400, 401, 404, 422  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
+## getBillingSubscription
+
+Retrieves the billing subscription for the specified user.
+This includes subscription details, active plans, billing information, and payment status.
+The subscription contains subscription items which represent the individual plans the user is subscribed to.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="GetUserBillingSubscription" method="get" path="/users/{user_id}/billing/subscription" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->users->getBillingSubscription(
+    userId: '<id>'
+);
+
+if ($response->commerceSubscription !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                         | Type                                              | Required                                          | Description                                       |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| `userId`                                          | *string*                                          | :heavy_check_mark:                                | The ID of the user whose subscription to retrieve |
+
+### Response
+
+**[?Operations\GetUserBillingSubscriptionResponse](../../Models/Operations/GetUserBillingSubscriptionResponse.md)**
+
+### Errors
+
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| Errors\ClerkErrors      | 400, 401, 403, 404, 422 | application/json        |
+| Errors\ClerkErrors      | 500                     | application/json        |
+| Errors\SDKException     | 4XX, 5XX                | \*/\*                   |
+
+## getOAuthAccessToken
+
+Fetch the corresponding OAuth access token for a user that has previously authenticated with a particular OAuth provider.
+For OAuth 2.0, if the access token has expired and we have a corresponding refresh token, the access token will be refreshed transparently the new one will be returned.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="GetOAuthAccessToken" method="get" path="/users/{user_id}/oauth_access_tokens/{provider}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+$request = new Operations\GetOAuthAccessTokenRequest(
+    userId: '<id>',
+    provider: '<value>',
+);
+
+$response = $sdk->users->getOAuthAccessToken(
+    request: $request
+);
+
+if ($response->oAuthAccessToken !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `$request`                                                                                     | [Operations\GetOAuthAccessTokenRequest](../../Models/Operations/GetOAuthAccessTokenRequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+
+### Response
+
+**[?Operations\GetOAuthAccessTokenResponse](../../Models/Operations/GetOAuthAccessTokenResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 404, 422       | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## getOrganizationMemberships
+
+Retrieve a paginated list of the user's organization memberships
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="UsersGetOrganizationMemberships" method="get" path="/users/{user_id}/organization_memberships" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->users->getOrganizationMemberships(
+    userId: '<id>',
+    limit: 10,
+    offset: 0
+
+);
+
+if ($response->organizationMemberships !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                 | Type                                                                                                                                      | Required                                                                                                                                  | Description                                                                                                                               |
+| ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `userId`                                                                                                                                  | *string*                                                                                                                                  | :heavy_check_mark:                                                                                                                        | The ID of the user whose organization memberships we want to retrieve                                                                     |
+| `limit`                                                                                                                                   | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                     |
+| `offset`                                                                                                                                  | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`. |
+
+### Response
+
+**[?Operations\UsersGetOrganizationMembershipsResponse](../../Models/Operations/UsersGetOrganizationMembershipsResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 403                 | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## getOrganizationInvitations
+
+Retrieve a paginated list of the user's organization invitations
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="UsersGetOrganizationInvitations" method="get" path="/users/{user_id}/organization_invitations" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->users->getOrganizationInvitations(
+    userId: '<id>',
+    limit: 10,
+    offset: 0
+
+);
+
+if ($response->organizationInvitationsWithPublicOrganizationData !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                 | Type                                                                                                                                      | Required                                                                                                                                  | Description                                                                                                                               |
+| ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `userId`                                                                                                                                  | *string*                                                                                                                                  | :heavy_check_mark:                                                                                                                        | The ID of the user whose organization invitations we want to retrieve                                                                     |
+| `limit`                                                                                                                                   | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                     |
+| `offset`                                                                                                                                  | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`. |
+| `status`                                                                                                                                  | [?Operations\QueryParamStatus](../../Models/Operations/QueryParamStatus.md)                                                               | :heavy_minus_sign:                                                                                                                        | Filter organization invitations based on their status                                                                                     |
+
+### Response
+
+**[?Operations\UsersGetOrganizationInvitationsResponse](../../Models/Operations/UsersGetOrganizationInvitationsResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 403, 404       | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## verifyPassword
+
+Check that the user's password matches the supplied input.
+Useful for custom auth flows and re-verification.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="VerifyPassword" method="post" path="/users/{user_id}/verify_password" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->users->verifyPassword(
+    userId: '<id>',
+    requestBody: $requestBody
+
+);
+
+if ($response->object !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `userId`                                                                                      | *string*                                                                                      | :heavy_check_mark:                                                                            | The ID of the user for whom to verify the password                                            |
+| `requestBody`                                                                                 | [?Operations\VerifyPasswordRequestBody](../../Models/Operations/VerifyPasswordRequestBody.md) | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+
+### Response
+
+**[?Operations\VerifyPasswordResponse](../../Models/Operations/VerifyPasswordResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 500                 | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## verifyTotp
+
+Verify that the provided TOTP or backup code is valid for the user.
+Verifying a backup code will result it in being consumed (i.e. it will
+become invalid).
+Useful for custom auth flows and re-verification.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="VerifyTOTP" method="post" path="/users/{user_id}/verify_totp" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->users->verifyTotp(
+    userId: '<id>',
+    requestBody: $requestBody
+
+);
+
+if ($response->object !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `userId`                                                                              | *string*                                                                              | :heavy_check_mark:                                                                    | The ID of the user for whom to verify the TOTP                                        |
+| `requestBody`                                                                         | [?Operations\VerifyTOTPRequestBody](../../Models/Operations/VerifyTOTPRequestBody.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+
+### Response
+
+**[?Operations\VerifyTOTPResponse](../../Models/Operations/VerifyTOTPResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 500                 | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## disableMfa
+
+Disable all of a user's MFA methods (e.g. OTP sent via SMS, TOTP on their authenticator app) at once.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="DisableMFA" method="delete" path="/users/{user_id}/mfa" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->users->disableMfa(
+    userId: '<id>'
+);
+
+if ($response->object !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                               | Type                                                    | Required                                                | Description                                             |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `userId`                                                | *string*                                                | :heavy_check_mark:                                      | The ID of the user whose MFA methods are to be disabled |
+
+### Response
+
+**[?Operations\DisableMFAResponse](../../Models/Operations/DisableMFAResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 404                 | application/json    |
+| Errors\ClerkErrors  | 500                 | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## deleteBackupCodes
+
+Disable all of a user's backup codes.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="DeleteBackupCode" method="delete" path="/users/{user_id}/backup_code" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->users->deleteBackupCodes(
+    userId: '<id>'
+);
+
+if ($response->object !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `userId`                                                 | *string*                                                 | :heavy_check_mark:                                       | The ID of the user whose backup codes are to be deleted. |
+
+### Response
+
+**[?Operations\DeleteBackupCodeResponse](../../Models/Operations/DeleteBackupCodeResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 404                 | application/json    |
+| Errors\ClerkErrors  | 500                 | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
 ## deletePasskey
 
 Delete the passkey identification for a given user and notify them through email.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="UserPasskeyDelete" method="delete" path="/users/{user_id}/passkeys/{passkey_identification_id}" -->
 ```php
 declare(strict_types=1);
 
@@ -1050,6 +1293,7 @@ Delete the web3 wallet identification for a given user.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="UserWeb3WalletDelete" method="delete" path="/users/{user_id}/web3_wallets/{web3_wallet_identification_id}" -->
 ```php
 declare(strict_types=1);
 
@@ -1095,19 +1339,19 @@ if ($response->deletedObject !== null) {
 | Errors\ClerkErrors  | 500                 | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## getOrganizationInvitations
+## deleteTOTP
 
-Retrieve a paginated list of the user's organization invitations
+Deletes all of the user's TOTPs.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="DeleteTOTP" method="delete" path="/users/{user_id}/totp" -->
 ```php
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
 
 $sdk = Backend\ClerkBackend::builder()
     ->setSecurity(
@@ -1117,45 +1361,40 @@ $sdk = Backend\ClerkBackend::builder()
 
 
 
-$response = $sdk->users->getOrganizationInvitations(
-    userId: '<id>',
-    limit: 10,
-    offset: 0,
-    status: Operations\QueryParamStatus::Pending
-
+$response = $sdk->users->deleteTOTP(
+    userId: '<id>'
 );
 
-if ($response->organizationInvitationsWithPublicOrganizationData !== null) {
+if ($response->object !== null) {
     // handle response
 }
 ```
 
 ### Parameters
 
-| Parameter                                                                                                                                 | Type                                                                                                                                      | Required                                                                                                                                  | Description                                                                                                                               |
-| ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `userId`                                                                                                                                  | *string*                                                                                                                                  | :heavy_check_mark:                                                                                                                        | The ID of the user whose organization invitations we want to retrieve                                                                     |
-| `limit`                                                                                                                                   | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                     |
-| `offset`                                                                                                                                  | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`. |
-| `status`                                                                                                                                  | [?Operations\QueryParamStatus](../../Models/Operations/QueryParamStatus.md)                                                               | :heavy_minus_sign:                                                                                                                        | Filter organization invitations based on their status                                                                                     |
+| Parameter                                        | Type                                             | Required                                         | Description                                      |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| `userId`                                         | *string*                                         | :heavy_check_mark:                               | The ID of the user whose TOTPs are to be deleted |
 
 ### Response
 
-**[?Operations\UsersGetOrganizationInvitationsResponse](../../Models/Operations/UsersGetOrganizationInvitationsResponse.md)**
+**[?Operations\DeleteTOTPResponse](../../Models/Operations/DeleteTOTPResponse.md)**
 
 ### Errors
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 403, 404       | application/json    |
+| Errors\ClerkErrors  | 404                 | application/json    |
+| Errors\ClerkErrors  | 500                 | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## getOrganizationMemberships
+## deleteExternalAccount
 
-Retrieve a paginated list of the user's organization memberships
+Delete an external account by ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="DeleteExternalAccount" method="delete" path="/users/{user_id}/external_accounts/{external_account_id}" -->
 ```php
 declare(strict_types=1);
 
@@ -1171,8 +1410,59 @@ $sdk = Backend\ClerkBackend::builder()
 
 
 
-$response = $sdk->users->getOrganizationMemberships(
+$response = $sdk->users->deleteExternalAccount(
     userId: '<id>',
+    externalAccountId: '<id>'
+
+);
+
+if ($response->deletedObject !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                | Type                                     | Required                                 | Description                              |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `userId`                                 | *string*                                 | :heavy_check_mark:                       | The ID of the user's external account    |
+| `externalAccountId`                      | *string*                                 | :heavy_check_mark:                       | The ID of the external account to delete |
+
+### Response
+
+**[?Operations\DeleteExternalAccountResponse](../../Models/Operations/DeleteExternalAccountResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 403, 404       | application/json    |
+| Errors\ClerkErrors  | 500                 | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## getInstanceOrganizationMemberships
+
+Retrieves all organization user memberships for the given instance.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="InstanceGetOrganizationMemberships" method="get" path="/organization_memberships" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->users->getInstanceOrganizationMemberships(
     limit: 10,
     offset: 0
 
@@ -1185,129 +1475,20 @@ if ($response->organizationMemberships !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                                 | Type                                                                                                                                      | Required                                                                                                                                  | Description                                                                                                                               |
-| ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `userId`                                                                                                                                  | *string*                                                                                                                                  | :heavy_check_mark:                                                                                                                        | The ID of the user whose organization memberships we want to retrieve                                                                     |
-| `limit`                                                                                                                                   | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                     |
-| `offset`                                                                                                                                  | *?int*                                                                                                                                    | :heavy_minus_sign:                                                                                                                        | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`. |
+| Parameter                                                                                                                                                                                                                          | Type                                                                                                                                                                                                                               | Required                                                                                                                                                                                                                           | Description                                                                                                                                                                                                                        |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `orderBy`                                                                                                                                                                                                                          | *?string*                                                                                                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                                                                                 | Sorts organizations memberships by phone_number, email_address, created_at, first_name, last_name or username.<br/>By prepending one of those values with + or -,<br/>we can choose to sort in ascending (ASC) or descending (DESC) order. |
+| `limit`                                                                                                                                                                                                                            | *?int*                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                 | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `offset`.                                                                                                              |
+| `offset`                                                                                                                                                                                                                           | *?int*                                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                                 | Skip the first `offset` results when paginating.<br/>Needs to be an integer greater or equal to zero.<br/>To be used in conjunction with `limit`.                                                                                  |
 
 ### Response
 
-**[?Operations\UsersGetOrganizationMembershipsResponse](../../Models/Operations/UsersGetOrganizationMembershipsResponse.md)**
+**[?Operations\InstanceGetOrganizationMembershipsResponse](../../Models/Operations/InstanceGetOrganizationMembershipsResponse.md)**
 
 ### Errors
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 403                 | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## verifyPassword
-
-Check that the user's password matches the supplied input.
-Useful for custom auth flows and re-verification.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-$requestBody = new Operations\VerifyPasswordRequestBody(
-    password: '1fwgbLjqCRGKsWc',
-);
-
-$response = $sdk->users->verifyPassword(
-    userId: '<id>',
-    requestBody: $requestBody
-
-);
-
-if ($response->object !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
-| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `userId`                                                                                      | *string*                                                                                      | :heavy_check_mark:                                                                            | The ID of the user for whom to verify the password                                            |
-| `requestBody`                                                                                 | [?Operations\VerifyPasswordRequestBody](../../Models/Operations/VerifyPasswordRequestBody.md) | :heavy_minus_sign:                                                                            | N/A                                                                                           |
-
-### Response
-
-**[?Operations\VerifyPasswordResponse](../../Models/Operations/VerifyPasswordResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 500                 | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## verifyTotp
-
-Verify that the provided TOTP or backup code is valid for the user.
-Verifying a backup code will result it in being consumed (i.e. it will
-become invalid).
-Useful for custom auth flows and re-verification.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-$requestBody = new Operations\VerifyTOTPRequestBody(
-    code: '<value>',
-);
-
-$response = $sdk->users->verifyTotp(
-    userId: '<id>',
-    requestBody: $requestBody
-
-);
-
-if ($response->object !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
-| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `userId`                                                                              | *string*                                                                              | :heavy_check_mark:                                                                    | The ID of the user for whom to verify the TOTP                                        |
-| `requestBody`                                                                         | [?Operations\VerifyTOTPRequestBody](../../Models/Operations/VerifyTOTPRequestBody.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |
-
-### Response
-
-**[?Operations\VerifyTOTPResponse](../../Models/Operations/VerifyTOTPResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 401, 422       | application/json    |
 | Errors\ClerkErrors  | 500                 | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |

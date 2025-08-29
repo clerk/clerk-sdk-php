@@ -6,9 +6,9 @@
 ### Available Operations
 
 * [create](#create) - Create a new organization membership
-* [delete](#delete) - Remove a member from an organization
 * [list](#list) - Get a list of all members of an organization
 * [update](#update) - Update an organization membership
+* [delete](#delete) - Remove a member from an organization
 * [updateMetadata](#updatemetadata) - Merge and update organization membership metadata
 
 ## create
@@ -22,6 +22,7 @@ different organization as active before then.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="CreateOrganizationMembership" method="post" path="/organizations/{organization_id}/memberships" -->
 ```php
 declare(strict_types=1);
 
@@ -70,62 +71,13 @@ if ($response->organizationMembership !== null) {
 | Errors\ClerkErrors  | 400, 403, 404, 422  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## delete
-
-Removes the given membership from the organization
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->organizationMemberships->delete(
-    organizationId: '<id>',
-    userId: '<id>'
-
-);
-
-if ($response->organizationMembership !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                            | Type                                                 | Required                                             | Description                                          |
-| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
-| `organizationId`                                     | *string*                                             | :heavy_check_mark:                                   | The ID of the organization the membership belongs to |
-| `userId`                                             | *string*                                             | :heavy_check_mark:                                   | The ID of the user that this membership belongs to   |
-
-### Response
-
-**[?Operations\DeleteOrganizationMembershipResponse](../../Models/Operations/DeleteOrganizationMembershipResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 401, 404            | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
 ## list
 
 Retrieves all user memberships for the given organization
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="ListOrganizationMemberships" method="get" path="/organizations/{organization_id}/memberships" -->
 ```php
 declare(strict_types=1);
 
@@ -180,6 +132,7 @@ Updates the properties of an existing organization membership
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="UpdateOrganizationMembership" method="patch" path="/organizations/{organization_id}/memberships/{user_id}" -->
 ```php
 declare(strict_types=1);
 
@@ -214,7 +167,7 @@ if ($response->organizationMembership !== null) {
 
 | Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `organizationId`                                                                                                         | *string*                                                                                                                 | :heavy_check_mark:                                                                                                       | The ID of the organization the membership belongs to                                                                     |
+| `organizationId`                                                                                                         | *string*                                                                                                                 | :heavy_check_mark:                                                                                                       | The ID of the organization to which the membership belongs                                                               |
 | `userId`                                                                                                                 | *string*                                                                                                                 | :heavy_check_mark:                                                                                                       | The ID of the user that this membership belongs to                                                                       |
 | `requestBody`                                                                                                            | [Operations\UpdateOrganizationMembershipRequestBody](../../Models/Operations/UpdateOrganizationMembershipRequestBody.md) | :heavy_check_mark:                                                                                                       | N/A                                                                                                                      |
 
@@ -229,6 +182,57 @@ if ($response->organizationMembership !== null) {
 | Errors\ClerkErrors  | 404, 422            | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
+## delete
+
+Removes the given membership from the organization
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="DeleteOrganizationMembership" method="delete" path="/organizations/{organization_id}/memberships/{user_id}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->organizationMemberships->delete(
+    organizationId: '<id>',
+    userId: '<id>'
+
+);
+
+if ($response->organizationMembership !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                  | Type                                                       | Required                                                   | Description                                                |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| `organizationId`                                           | *string*                                                   | :heavy_check_mark:                                         | The ID of the organization to which the membership belongs |
+| `userId`                                                   | *string*                                                   | :heavy_check_mark:                                         | The ID of the user that this membership belongs to         |
+
+### Response
+
+**[?Operations\DeleteOrganizationMembershipResponse](../../Models/Operations/DeleteOrganizationMembershipResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 401, 404, 422       | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
 ## updateMetadata
 
 Update an organization membership's metadata attributes by merging existing values with the provided parameters.
@@ -237,13 +241,13 @@ You can remove metadata keys at any level by setting their value to `null`.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="UpdateOrganizationMembershipMetadata" method="patch" path="/organizations/{organization_id}/memberships/{user_id}/metadata" -->
 ```php
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
 
 $sdk = Backend\ClerkBackend::builder()
     ->setSecurity(
@@ -251,7 +255,7 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$requestBody = new Operations\UpdateOrganizationMembershipMetadataRequestBody();
+
 
 $response = $sdk->organizationMemberships->updateMetadata(
     organizationId: '<id>',
@@ -269,7 +273,7 @@ if ($response->organizationMembership !== null) {
 
 | Parameter                                                                                                                                 | Type                                                                                                                                      | Required                                                                                                                                  | Description                                                                                                                               |
 | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `organizationId`                                                                                                                          | *string*                                                                                                                                  | :heavy_check_mark:                                                                                                                        | The ID of the organization the membership belongs to                                                                                      |
+| `organizationId`                                                                                                                          | *string*                                                                                                                                  | :heavy_check_mark:                                                                                                                        | The ID of the organization to which the membership belongs                                                                                |
 | `userId`                                                                                                                                  | *string*                                                                                                                                  | :heavy_check_mark:                                                                                                                        | The ID of the user that this membership belongs to                                                                                        |
 | `requestBody`                                                                                                                             | [?Operations\UpdateOrganizationMembershipMetadataRequestBody](../../Models/Operations/UpdateOrganizationMembershipMetadataRequestBody.md) | :heavy_minus_sign:                                                                                                                        | N/A                                                                                                                                       |
 

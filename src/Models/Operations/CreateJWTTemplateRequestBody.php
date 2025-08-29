@@ -40,20 +40,20 @@ class CreateJWTTemplateRequestBody
     /**
      * JWT token lifetime
      *
-     * @var ?float $lifetime
+     * @var ?int $lifetime
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('lifetime')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?float $lifetime = null;
+    public ?int $lifetime = null;
 
     /**
      * JWT token allowed clock skew
      *
-     * @var ?float $allowedClockSkew
+     * @var ?int $allowedClockSkew
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('allowed_clock_skew')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?float $allowedClockSkew = null;
+    public ?int $allowedClockSkew = null;
 
     /**
      * The custom signing algorithm to use when minting JWTs. Required if `custom_signing_key` is `true`.
@@ -77,13 +77,13 @@ class CreateJWTTemplateRequestBody
      * @param  string  $name
      * @param  Claims  $claims
      * @param  ?bool  $customSigningKey
-     * @param  ?float  $lifetime
-     * @param  ?float  $allowedClockSkew
+     * @param  ?int  $lifetime
+     * @param  ?int  $allowedClockSkew
      * @param  ?string  $signingAlgorithm
      * @param  ?string  $signingKey
      * @phpstan-pure
      */
-    public function __construct(string $name, Claims $claims, ?bool $customSigningKey = null, ?float $lifetime = null, ?float $allowedClockSkew = null, ?string $signingAlgorithm = null, ?string $signingKey = null)
+    public function __construct(string $name, Claims $claims, ?bool $customSigningKey = null, ?int $lifetime = null, ?int $allowedClockSkew = null, ?string $signingAlgorithm = null, ?string $signingKey = null)
     {
         $this->name = $name;
         $this->claims = $claims;

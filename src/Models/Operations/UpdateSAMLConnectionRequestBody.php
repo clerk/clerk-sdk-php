@@ -24,10 +24,21 @@ class UpdateSAMLConnectionRequestBody
      * The domain to use for the new SAML Connection
      *
      * @var ?string $domain
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('domain')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $domain = null;
+
+    /**
+     * A list of the domains on use for the SAML connection
+     *
+     * @var ?array<string> $domains
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('domains')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $domains = null;
 
     /**
      * The entity id as provided by the IdP
@@ -86,12 +97,12 @@ class UpdateSAMLConnectionRequestBody
     /**
      * Define the atrtibute name mapping between Identity Provider and Clerk's user properties
      *
-     * @var ?UpdateSAMLConnectionAttributeMapping $attributeMapping
+     * @var ?AttributeMapping $attributeMapping
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('attribute_mapping')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\UpdateSAMLConnectionAttributeMapping|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\AttributeMapping|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?UpdateSAMLConnectionAttributeMapping $attributeMapping = null;
+    public ?AttributeMapping $attributeMapping = null;
 
     /**
      * Activate or de-activate the SAML Connection
@@ -141,13 +152,14 @@ class UpdateSAMLConnectionRequestBody
     /**
      * @param  ?string  $name
      * @param  ?string  $domain
+     * @param  ?array<string>  $domains
      * @param  ?string  $idpEntityId
      * @param  ?string  $idpSsoUrl
      * @param  ?string  $idpCertificate
      * @param  ?string  $idpMetadataUrl
      * @param  ?string  $idpMetadata
      * @param  ?string  $organizationId
-     * @param  ?UpdateSAMLConnectionAttributeMapping  $attributeMapping
+     * @param  ?AttributeMapping  $attributeMapping
      * @param  ?bool  $active
      * @param  ?bool  $syncUserAttributes
      * @param  ?bool  $allowSubdomains
@@ -155,10 +167,11 @@ class UpdateSAMLConnectionRequestBody
      * @param  ?bool  $disableAdditionalIdentifications
      * @phpstan-pure
      */
-    public function __construct(?string $name = null, ?string $domain = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?UpdateSAMLConnectionAttributeMapping $attributeMapping = null, ?bool $active = null, ?bool $syncUserAttributes = null, ?bool $allowSubdomains = null, ?bool $allowIdpInitiated = null, ?bool $disableAdditionalIdentifications = null)
+    public function __construct(?string $name = null, ?string $domain = null, ?array $domains = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?AttributeMapping $attributeMapping = null, ?bool $active = null, ?bool $syncUserAttributes = null, ?bool $allowSubdomains = null, ?bool $allowIdpInitiated = null, ?bool $disableAdditionalIdentifications = null)
     {
         $this->name = $name;
         $this->domain = $domain;
+        $this->domains = $domains;
         $this->idpEntityId = $idpEntityId;
         $this->idpSsoUrl = $idpSsoUrl;
         $this->idpCertificate = $idpCertificate;

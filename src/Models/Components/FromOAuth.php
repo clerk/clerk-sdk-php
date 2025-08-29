@@ -13,11 +13,11 @@ class FromOAuth
 {
     /**
      *
-     * @var FromOAuthVerificationStatus $status
+     * @var VerificationFromOauthVerificationStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\FromOAuthVerificationStatus')]
-    public FromOAuthVerificationStatus $status;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationFromOauthVerificationStatus')]
+    public VerificationFromOauthVerificationStatus $status;
 
     /**
      *
@@ -25,6 +25,15 @@ class FromOAuth
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
     public string $strategy;
+
+    /**
+     *
+     * @var ?VerificationFromOauthVerificationObject $object
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationFromOauthVerificationObject|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?VerificationFromOauthVerificationObject $object = null;
 
     /**
      *
@@ -58,18 +67,20 @@ class FromOAuth
     public ?string $verifiedAtClient = null;
 
     /**
-     * @param  FromOAuthVerificationStatus  $status
+     * @param  VerificationFromOauthVerificationStatus  $status
      * @param  string  $strategy
+     * @param  ?VerificationFromOauthVerificationObject  $object
      * @param  ?int  $expireAt
      * @param  ?int  $attempts
      * @param  ?ErrorClerkError  $error
      * @param  ?string  $verifiedAtClient
      * @phpstan-pure
      */
-    public function __construct(FromOAuthVerificationStatus $status, string $strategy, ?int $expireAt = null, ?int $attempts = null, ?ErrorClerkError $error = null, ?string $verifiedAtClient = null)
+    public function __construct(VerificationFromOauthVerificationStatus $status, string $strategy, ?VerificationFromOauthVerificationObject $object = null, ?int $expireAt = null, ?int $attempts = null, ?ErrorClerkError $error = null, ?string $verifiedAtClient = null)
     {
         $this->status = $status;
         $this->strategy = $strategy;
+        $this->object = $object;
         $this->expireAt = $expireAt;
         $this->attempts = $attempts;
         $this->error = $error;

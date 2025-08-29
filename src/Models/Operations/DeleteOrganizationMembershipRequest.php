@@ -12,7 +12,7 @@ use Clerk\Backend\Utils\SpeakeasyMetadata;
 class DeleteOrganizationMembershipRequest
 {
     /**
-     * The ID of the organization the membership belongs to
+     * The ID of the organization to which the membership belongs
      *
      * @var string $organizationId
      */

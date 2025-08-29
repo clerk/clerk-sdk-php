@@ -36,7 +36,7 @@ Clerk Backend API: The Clerk REST Backend API, meant to be accessed by backend s
 ### Versions
 
 When the API changes in a way that isn't compatible with older versions, a new version is released.
-Each version is identified by its release date, e.g. `2024-10-01`. For more information, please see [Clerk API Versions](https://clerk.com/docs/versioning/available-versions).
+Each version is identified by its release date, e.g. `2025-04-10`. For more information, please see [Clerk API Versions](https://clerk.com/docs/versioning/available-versions).
 
 Please see https://clerk.com/docs for more information.
 
@@ -97,17 +97,20 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
 
-$sdk = Backend\ClerkBackend::builder()->build();
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
 
-$request = new Operations\GetPublicInterstitialRequest();
 
-$response = $sdk->miscellaneous->getPublicInterstitial(
-    request: $request
+
+$response = $sdk->emailAddresses->get(
+    emailAddressId: '<id>'
 );
 
-if ($response->statusCode === 200) {
+if ($response->emailAddress !== null) {
     // handle response
 }
 ```
@@ -160,7 +163,6 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
 
 $sdk = Backend\ClerkBackend::builder()
     ->setSecurity(
@@ -168,7 +170,7 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$request = new Operations\GetPublicInterstitialRequest();
+
 
 $response = $sdk->miscellaneous->getPublicInterstitial(
     request: $request
@@ -193,9 +195,14 @@ if ($response->statusCode === 200) {
 
 ### [allowlistIdentifiers](docs/sdks/allowlistidentifiers/README.md)
 
+* [list](docs/sdks/allowlistidentifiers/README.md#list) - List all identifiers on the allow-list
 * [create](docs/sdks/allowlistidentifiers/README.md#create) - Add identifier to the allow-list
 * [delete](docs/sdks/allowlistidentifiers/README.md#delete) - Delete identifier from allow-list
-* [list](docs/sdks/allowlistidentifiers/README.md#list) - List all identifiers on the allow-list
+
+### [awsCredentials](docs/sdks/awscredentials/README.md)
+
+* [delete](docs/sdks/awscredentials/README.md#delete) - Delete an AWS Credential
+* [update](docs/sdks/awscredentials/README.md#update) - Update an AWS Credential
 
 ### [betaFeatures](docs/sdks/betafeatures/README.md)
 
@@ -204,29 +211,35 @@ if ($response->statusCode === 200) {
 
 ### [blocklistIdentifiers](docs/sdks/blocklistidentifiers/README.md)
 
+* [list](docs/sdks/blocklistidentifiers/README.md#list) - List all identifiers on the block-list
 * [create](docs/sdks/blocklistidentifiers/README.md#create) - Add identifier to the block-list
 * [delete](docs/sdks/blocklistidentifiers/README.md#delete) - Delete identifier from block-list
-* [list](docs/sdks/blocklistidentifiers/README.md#list) - List all identifiers on the block-list
 
 
 ### [clients](docs/sdks/clients/README.md)
 
-* [get](docs/sdks/clients/README.md#get) - Get a client
 * [~~list~~](docs/sdks/clients/README.md#list) - List all clients :warning: **Deprecated**
 * [verify](docs/sdks/clients/README.md#verify) - Verify a client
+* [get](docs/sdks/clients/README.md#get) - Get a client
+
+### [commerce](docs/sdks/commerce/README.md)
+
+* [listPlans](docs/sdks/commerce/README.md#listplans) - List all commerce plans
+* [listSubscriptionItems](docs/sdks/commerce/README.md#listsubscriptionitems) - List all subscription items
+* [cancelSubscriptionItem](docs/sdks/commerce/README.md#cancelsubscriptionitem) - Cancel a subscription item
 
 ### [domains](docs/sdks/domains/README.md)
 
+* [list](docs/sdks/domains/README.md#list) - List all instance domains
 * [add](docs/sdks/domains/README.md#add) - Add a domain
 * [delete](docs/sdks/domains/README.md#delete) - Delete a satellite domain
-* [list](docs/sdks/domains/README.md#list) - List all instance domains
 * [update](docs/sdks/domains/README.md#update) - Update a domain
 
 ### [emailAddresses](docs/sdks/emailaddresses/README.md)
 
 * [create](docs/sdks/emailaddresses/README.md#create) - Create an email address
-* [delete](docs/sdks/emailaddresses/README.md#delete) - Delete an email address
 * [get](docs/sdks/emailaddresses/README.md#get) - Retrieve an email address
+* [delete](docs/sdks/emailaddresses/README.md#delete) - Delete an email address
 * [update](docs/sdks/emailaddresses/README.md#update) - Update an email address
 
 ### [~~emailAndSmsTemplates~~](docs/sdks/emailandsmstemplates/README.md)
@@ -235,24 +248,29 @@ if ($response->statusCode === 200) {
 
 ### [~~emailSMSTemplates~~](docs/sdks/emailsmstemplates/README.md)
 
-* [~~get~~](docs/sdks/emailsmstemplates/README.md#get) - Retrieve a template :warning: **Deprecated**
 * [~~list~~](docs/sdks/emailsmstemplates/README.md#list) - List all templates :warning: **Deprecated**
+* [~~get~~](docs/sdks/emailsmstemplates/README.md#get) - Retrieve a template :warning: **Deprecated**
 * [~~revert~~](docs/sdks/emailsmstemplates/README.md#revert) - Revert a template :warning: **Deprecated**
 * [~~toggleTemplateDelivery~~](docs/sdks/emailsmstemplates/README.md#toggletemplatedelivery) - Toggle the delivery by Clerk for a template of a given type and slug :warning: **Deprecated**
 
+### [experimentalAccountlessApplications](docs/sdks/experimentalaccountlessapplications/README.md)
+
+* [create](docs/sdks/experimentalaccountlessapplications/README.md#create) - Create an accountless application [EXPERIMENTAL]
+* [complete](docs/sdks/experimentalaccountlessapplications/README.md#complete) - Complete an accountless application [EXPERIMENTAL]
+
 ### [instanceSettings](docs/sdks/instancesettings/README.md)
 
-* [changeDomain](docs/sdks/instancesettings/README.md#changedomain) - Update production instance domain
 * [get](docs/sdks/instancesettings/README.md#get) - Fetch the current instance
 * [update](docs/sdks/instancesettings/README.md#update) - Update instance settings
-* [updateOrganizationSettings](docs/sdks/instancesettings/README.md#updateorganizationsettings) - Update instance organization settings
 * [updateRestrictions](docs/sdks/instancesettings/README.md#updaterestrictions) - Update instance restrictions
+* [changeDomain](docs/sdks/instancesettings/README.md#changedomain) - Update production instance domain
+* [updateOrganizationSettings](docs/sdks/instancesettings/README.md#updateorganizationsettings) - Update instance organization settings
 
 ### [invitations](docs/sdks/invitations/README.md)
 
-* [bulkCreate](docs/sdks/invitations/README.md#bulkcreate) - Create multiple invitations
 * [create](docs/sdks/invitations/README.md#create) - Create an invitation
 * [list](docs/sdks/invitations/README.md#list) - List all invitations
+* [bulkCreate](docs/sdks/invitations/README.md#bulkcreate) - Create multiple invitations
 * [revoke](docs/sdks/invitations/README.md#revoke) - Revokes an invitation
 
 ### [jwks](docs/sdks/jwks/README.md)
@@ -261,66 +279,90 @@ if ($response->statusCode === 200) {
 
 ### [jwtTemplates](docs/sdks/jwttemplates/README.md)
 
-* [create](docs/sdks/jwttemplates/README.md#create) - Create a JWT template
-* [delete](docs/sdks/jwttemplates/README.md#delete) - Delete a Template
-* [get](docs/sdks/jwttemplates/README.md#get) - Retrieve a template
 * [list](docs/sdks/jwttemplates/README.md#list) - List all templates
+* [create](docs/sdks/jwttemplates/README.md#create) - Create a JWT template
+* [get](docs/sdks/jwttemplates/README.md#get) - Retrieve a template
 * [update](docs/sdks/jwttemplates/README.md#update) - Update a JWT template
+* [delete](docs/sdks/jwttemplates/README.md#delete) - Delete a Template
+
+### [m2m](docs/sdks/m2m/README.md)
+
+* [createToken](docs/sdks/m2m/README.md#createtoken) - Create a M2M Token
+* [listTokens](docs/sdks/m2m/README.md#listtokens) - Get M2M Tokens
+* [revokeToken](docs/sdks/m2m/README.md#revoketoken) - Revoke a M2M Token
+* [verifyToken](docs/sdks/m2m/README.md#verifytoken) - Verify a M2M Token
+
+### [machines](docs/sdks/machines/README.md)
+
+* [list](docs/sdks/machines/README.md#list) - Get a list of machines for an instance
+* [create](docs/sdks/machines/README.md#create) - Create a machine
+* [get](docs/sdks/machines/README.md#get) - Retrieve a machine
+* [update](docs/sdks/machines/README.md#update) - Update a machine
+* [delete](docs/sdks/machines/README.md#delete) - Delete a machine
+* [getSecretKey](docs/sdks/machines/README.md#getsecretkey) - Retrieve a machine secret key
+* [createScope](docs/sdks/machines/README.md#createscope) - Create a machine scope
+* [deleteScope](docs/sdks/machines/README.md#deletescope) - Delete a machine scope
 
 ### [miscellaneous](docs/sdks/miscellaneous/README.md)
 
 * [getPublicInterstitial](docs/sdks/miscellaneous/README.md#getpublicinterstitial) - Returns the markup for the interstitial page
 
+### [oauthAccessTokens](docs/sdks/oauthaccesstokens/README.md)
+
+* [verify](docs/sdks/oauthaccesstokens/README.md#verify) - Verify an OAuth Access Token
+
 ### [oauthApplications](docs/sdks/oauthapplications/README.md)
 
-* [create](docs/sdks/oauthapplications/README.md#create) - Create an OAuth application
-* [delete](docs/sdks/oauthapplications/README.md#delete) - Delete an OAuth application
-* [get](docs/sdks/oauthapplications/README.md#get) - Retrieve an OAuth application by ID
 * [list](docs/sdks/oauthapplications/README.md#list) - Get a list of OAuth applications for an instance
-* [rotateSecret](docs/sdks/oauthapplications/README.md#rotatesecret) - Rotate the client secret of the given OAuth application
+* [create](docs/sdks/oauthapplications/README.md#create) - Create an OAuth application
+* [get](docs/sdks/oauthapplications/README.md#get) - Retrieve an OAuth application by ID
 * [update](docs/sdks/oauthapplications/README.md#update) - Update an OAuth application
+* [delete](docs/sdks/oauthapplications/README.md#delete) - Delete an OAuth application
+* [rotateSecret](docs/sdks/oauthapplications/README.md#rotatesecret) - Rotate the client secret of the given OAuth application
 
 ### [organizationDomains](docs/sdks/organizationdomains/README.md)
 
 * [create](docs/sdks/organizationdomains/README.md#create) - Create a new organization domain.
-* [delete](docs/sdks/organizationdomains/README.md#delete) - Remove a domain from an organization.
 * [list](docs/sdks/organizationdomains/README.md#list) - Get a list of all domains of an organization.
 * [update](docs/sdks/organizationdomains/README.md#update) - Update an organization domain.
+* [delete](docs/sdks/organizationdomains/README.md#delete) - Remove a domain from an organization.
+* [listAll](docs/sdks/organizationdomains/README.md#listall) - List all organization domains
 
 ### [organizationInvitations](docs/sdks/organizationinvitations/README.md)
 
-* [create](docs/sdks/organizationinvitations/README.md#create) - Create and send an organization invitation
-* [bulkCreate](docs/sdks/organizationinvitations/README.md#bulkcreate) - Bulk create and send organization invitations
-* [get](docs/sdks/organizationinvitations/README.md#get) - Retrieve an organization invitation by ID
 * [getAll](docs/sdks/organizationinvitations/README.md#getall) - Get a list of organization invitations for the current instance
+* [create](docs/sdks/organizationinvitations/README.md#create) - Create and send an organization invitation
 * [list](docs/sdks/organizationinvitations/README.md#list) - Get a list of organization invitations
+* [bulkCreate](docs/sdks/organizationinvitations/README.md#bulkcreate) - Bulk create and send organization invitations
 * [~~listPending~~](docs/sdks/organizationinvitations/README.md#listpending) - Get a list of pending organization invitations :warning: **Deprecated**
+* [get](docs/sdks/organizationinvitations/README.md#get) - Retrieve an organization invitation by ID
 * [revoke](docs/sdks/organizationinvitations/README.md#revoke) - Revoke a pending organization invitation
 
 ### [organizationMemberships](docs/sdks/organizationmemberships/README.md)
 
 * [create](docs/sdks/organizationmemberships/README.md#create) - Create a new organization membership
-* [delete](docs/sdks/organizationmemberships/README.md#delete) - Remove a member from an organization
 * [list](docs/sdks/organizationmemberships/README.md#list) - Get a list of all members of an organization
 * [update](docs/sdks/organizationmemberships/README.md#update) - Update an organization membership
+* [delete](docs/sdks/organizationmemberships/README.md#delete) - Remove a member from an organization
 * [updateMetadata](docs/sdks/organizationmemberships/README.md#updatemetadata) - Merge and update organization membership metadata
 
 ### [organizations](docs/sdks/organizations/README.md)
 
-* [create](docs/sdks/organizations/README.md#create) - Create an organization
-* [delete](docs/sdks/organizations/README.md#delete) - Delete an organization
-* [deleteLogo](docs/sdks/organizations/README.md#deletelogo) - Delete the organization's logo.
-* [get](docs/sdks/organizations/README.md#get) - Retrieve an organization by ID or slug
 * [list](docs/sdks/organizations/README.md#list) - Get a list of organizations for an instance
-* [mergeMetadata](docs/sdks/organizations/README.md#mergemetadata) - Merge and update metadata for an organization
+* [create](docs/sdks/organizations/README.md#create) - Create an organization
+* [get](docs/sdks/organizations/README.md#get) - Retrieve an organization by ID or slug
 * [update](docs/sdks/organizations/README.md#update) - Update an organization
+* [delete](docs/sdks/organizations/README.md#delete) - Delete an organization
+* [mergeMetadata](docs/sdks/organizations/README.md#mergemetadata) - Merge and update metadata for an organization
 * [uploadLogo](docs/sdks/organizations/README.md#uploadlogo) - Upload a logo for the organization
+* [deleteLogo](docs/sdks/organizations/README.md#deletelogo) - Delete the organization's logo.
+* [getBillingSubscription](docs/sdks/organizations/README.md#getbillingsubscription) - Retrieve an organization's billing subscription
 
 ### [phoneNumbers](docs/sdks/phonenumbers/README.md)
 
 * [create](docs/sdks/phonenumbers/README.md#create) - Create a phone number
-* [delete](docs/sdks/phonenumbers/README.md#delete) - Delete a phone number
 * [get](docs/sdks/phonenumbers/README.md#get) - Retrieve a phone number
+* [delete](docs/sdks/phonenumbers/README.md#delete) - Delete a phone number
 * [update](docs/sdks/phonenumbers/README.md#update) - Update a phone number
 
 ### [proxyChecks](docs/sdks/proxychecks/README.md)
@@ -329,28 +371,28 @@ if ($response->statusCode === 200) {
 
 ### [redirectUrls](docs/sdks/redirecturls/README.md)
 
-* [create](docs/sdks/redirecturls/README.md#create) - Create a redirect URL
-* [delete](docs/sdks/redirecturls/README.md#delete) - Delete a redirect URL
-* [get](docs/sdks/redirecturls/README.md#get) - Retrieve a redirect URL
 * [list](docs/sdks/redirecturls/README.md#list) - List all redirect URLs
+* [create](docs/sdks/redirecturls/README.md#create) - Create a redirect URL
+* [get](docs/sdks/redirecturls/README.md#get) - Retrieve a redirect URL
+* [delete](docs/sdks/redirecturls/README.md#delete) - Delete a redirect URL
 
 ### [samlConnections](docs/sdks/samlconnections/README.md)
 
-* [create](docs/sdks/samlconnections/README.md#create) - Create a SAML Connection
-* [delete](docs/sdks/samlconnections/README.md#delete) - Delete a SAML Connection
-* [get](docs/sdks/samlconnections/README.md#get) - Retrieve a SAML Connection by ID
 * [list](docs/sdks/samlconnections/README.md#list) - Get a list of SAML Connections for an instance
+* [create](docs/sdks/samlconnections/README.md#create) - Create a SAML Connection
+* [get](docs/sdks/samlconnections/README.md#get) - Retrieve a SAML Connection by ID
 * [update](docs/sdks/samlconnections/README.md#update) - Update a SAML Connection
+* [delete](docs/sdks/samlconnections/README.md#delete) - Delete a SAML Connection
 
 ### [sessions](docs/sdks/sessions/README.md)
 
+* [list](docs/sdks/sessions/README.md#list) - List all sessions
+* [create](docs/sdks/sessions/README.md#create) - Create a new active session
+* [get](docs/sdks/sessions/README.md#get) - Retrieve a session
+* [refresh](docs/sdks/sessions/README.md#refresh) - Refresh a session
+* [revoke](docs/sdks/sessions/README.md#revoke) - Revoke a session
 * [createToken](docs/sdks/sessions/README.md#createtoken) - Create a session token
 * [createTokenFromTemplate](docs/sdks/sessions/README.md#createtokenfromtemplate) - Create a session token from a jwt template
-* [get](docs/sdks/sessions/README.md#get) - Retrieve a session
-* [list](docs/sdks/sessions/README.md#list) - List all sessions
-* [revoke](docs/sdks/sessions/README.md#revoke) - Revoke a session
-* [~~verify~~](docs/sdks/sessions/README.md#verify) - Verify a session :warning: **Deprecated**
-* [create](docs/sdks/sessions/README.md#create) - Create a new active session
 
 ### [signInTokens](docs/sdks/signintokens/README.md)
 
@@ -372,36 +414,41 @@ if ($response->statusCode === 200) {
 
 ### [users](docs/sdks/users/README.md)
 
-* [ban](docs/sdks/users/README.md#ban) - Ban a user
-* [create](docs/sdks/users/README.md#create) - Create a new user
-* [deleteBackupCodes](docs/sdks/users/README.md#deletebackupcodes) - Disable all user's Backup codes
-* [deleteExternalAccount](docs/sdks/users/README.md#deleteexternalaccount) - Delete External Account
-* [deleteTOTP](docs/sdks/users/README.md#deletetotp) - Delete all the user's TOTPs
-* [delete](docs/sdks/users/README.md#delete) - Delete a user
-* [deleteProfileImage](docs/sdks/users/README.md#deleteprofileimage) - Delete user profile image
-* [disableMfa](docs/sdks/users/README.md#disablemfa) - Disable a user's MFA methods
-* [getOAuthAccessToken](docs/sdks/users/README.md#getoauthaccesstoken) - Retrieve the OAuth access token of a user
-* [get](docs/sdks/users/README.md#get) - Retrieve a user
 * [list](docs/sdks/users/README.md#list) - List all users
+* [create](docs/sdks/users/README.md#create) - Create a new user
 * [count](docs/sdks/users/README.md#count) - Count users
-* [getInstanceOrganizationMemberships](docs/sdks/users/README.md#getinstanceorganizationmemberships) - Get a list of all organization memberships within an instance.
-* [lock](docs/sdks/users/README.md#lock) - Lock a user
-* [setProfileImage](docs/sdks/users/README.md#setprofileimage) - Set user profile image
-* [unban](docs/sdks/users/README.md#unban) - Unban a user
-* [unlock](docs/sdks/users/README.md#unlock) - Unlock a user
+* [get](docs/sdks/users/README.md#get) - Retrieve a user
 * [update](docs/sdks/users/README.md#update) - Update a user
+* [delete](docs/sdks/users/README.md#delete) - Delete a user
+* [ban](docs/sdks/users/README.md#ban) - Ban a user
+* [unban](docs/sdks/users/README.md#unban) - Unban a user
+* [bulkBan](docs/sdks/users/README.md#bulkban) - Ban multiple users
+* [bulkUnban](docs/sdks/users/README.md#bulkunban) - Unban multiple users
+* [lock](docs/sdks/users/README.md#lock) - Lock a user
+* [unlock](docs/sdks/users/README.md#unlock) - Unlock a user
+* [setProfileImage](docs/sdks/users/README.md#setprofileimage) - Set user profile image
+* [deleteProfileImage](docs/sdks/users/README.md#deleteprofileimage) - Delete user profile image
 * [updateMetadata](docs/sdks/users/README.md#updatemetadata) - Merge and update a user's metadata
-* [deletePasskey](docs/sdks/users/README.md#deletepasskey) - Delete a user passkey
-* [deleteWeb3Wallet](docs/sdks/users/README.md#deleteweb3wallet) - Delete a user web3 wallet
-* [getOrganizationInvitations](docs/sdks/users/README.md#getorganizationinvitations) - Retrieve all invitations for a user
+* [getBillingSubscription](docs/sdks/users/README.md#getbillingsubscription) - Retrieve a user's billing subscription
+* [getOAuthAccessToken](docs/sdks/users/README.md#getoauthaccesstoken) - Retrieve the OAuth access token of a user
 * [getOrganizationMemberships](docs/sdks/users/README.md#getorganizationmemberships) - Retrieve all memberships for a user
+* [getOrganizationInvitations](docs/sdks/users/README.md#getorganizationinvitations) - Retrieve all invitations for a user
 * [verifyPassword](docs/sdks/users/README.md#verifypassword) - Verify the password of a user
 * [verifyTotp](docs/sdks/users/README.md#verifytotp) - Verify a TOTP or backup code for a user
+* [disableMfa](docs/sdks/users/README.md#disablemfa) - Disable a user's MFA methods
+* [deleteBackupCodes](docs/sdks/users/README.md#deletebackupcodes) - Disable all user's Backup codes
+* [deletePasskey](docs/sdks/users/README.md#deletepasskey) - Delete a user passkey
+* [deleteWeb3Wallet](docs/sdks/users/README.md#deleteweb3wallet) - Delete a user web3 wallet
+* [deleteTOTP](docs/sdks/users/README.md#deletetotp) - Delete all the user's TOTPs
+* [deleteExternalAccount](docs/sdks/users/README.md#deleteexternalaccount) - Delete External Account
+* [getInstanceOrganizationMemberships](docs/sdks/users/README.md#getinstanceorganizationmemberships) - Get a list of all organization memberships within an instance.
 
 ### [waitlistEntries](docs/sdks/waitlistentries/README.md)
 
-* [create](docs/sdks/waitlistentries/README.md#create) - Create a waitlist entry
 * [list](docs/sdks/waitlistentries/README.md#list) - List all waitlist entries
+* [create](docs/sdks/waitlistentries/README.md#create) - Create a waitlist entry
+* [invite](docs/sdks/waitlistentries/README.md#invite) - Invite a waitlist entry
+* [reject](docs/sdks/waitlistentries/README.md#reject) - Reject a waitlist entry
 
 ### [webhooks](docs/sdks/webhooks/README.md)
 
@@ -424,12 +471,11 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
 use Clerk\Backend\Utils\Retry;
 
 $sdk = Backend\ClerkBackend::builder()->build();
 
-$request = new Operations\GetPublicInterstitialRequest();
+
 
 $response = $sdk->miscellaneous->getPublicInterstitial(
     request: $request,
@@ -455,7 +501,6 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
 use Clerk\Backend\Utils\Retry;
 
 $sdk = Backend\ClerkBackend::builder()
@@ -470,7 +515,7 @@ $sdk = Backend\ClerkBackend::builder()
   )
     ->build();
 
-$request = new Operations\GetPublicInterstitialRequest();
+
 
 $response = $sdk->miscellaneous->getPublicInterstitial(
     request: $request
@@ -496,12 +541,12 @@ By default an API error will raise a `Errors\SDKException` exception, which has 
 | `$rawResponse` | *?\Psr\Http\Message\ResponseInterface*  | The raw HTTP response |
 | `$body`        | *string*                                | The response content  |
 
-When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `get` method throws the following exceptions:
+When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `delete` method throws the following exceptions:
 
-| Error Type          | Status Code   | Content Type     |
-| ------------------- | ------------- | ---------------- |
-| Errors\ClerkErrors  | 400, 401, 404 | application/json |
-| Errors\SDKException | 4XX, 5XX      | \*/\*            |
+| Error Type          | Status Code        | Content Type     |
+| ------------------- | ------------------ | ---------------- |
+| Errors\ClerkErrors  | 400, 401, 403, 404 | application/json |
+| Errors\SDKException | 4XX, 5XX           | \*/\*            |
 
 ### Example
 
@@ -520,11 +565,11 @@ $sdk = Backend\ClerkBackend::builder()
     ->build();
 
 try {
-    $response = $sdk->clients->get(
-        clientId: '<id>'
+    $response = $sdk->awsCredentials->delete(
+        id: '<id>'
     );
 
-    if ($response->client !== null) {
+    if ($response->deletedObject !== null) {
         // handle response
     }
 } catch (Errors\ClerkErrorsThrowable $e) {
@@ -549,13 +594,12 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
 
 $sdk = Backend\ClerkBackend::builder()
     ->setServerURL('https://api.clerk.com/v1')
     ->build();
 
-$request = new Operations\GetPublicInterstitialRequest();
+
 
 $response = $sdk->miscellaneous->getPublicInterstitial(
     request: $request

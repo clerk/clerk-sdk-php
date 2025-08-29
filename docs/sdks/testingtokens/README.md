@@ -13,6 +13,7 @@ Retrieve a new testing token.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="CreateTestingToken" method="post" path="/testing_tokens" -->
 ```php
 declare(strict_types=1);
 

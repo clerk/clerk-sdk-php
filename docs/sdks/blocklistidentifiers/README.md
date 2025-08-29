@@ -5,23 +5,23 @@
 
 ### Available Operations
 
+* [list](#list) - List all identifiers on the block-list
 * [create](#create) - Add identifier to the block-list
 * [delete](#delete) - Delete identifier from block-list
-* [list](#list) - List all identifiers on the block-list
 
-## create
+## list
 
-Create an identifier that is blocked from accessing an instance
+Get a list of all identifiers which are not allowed to access an instance
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="ListBlocklistIdentifiers" method="get" path="/blocklist_identifiers" -->
 ```php
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
 
 $sdk = Backend\ClerkBackend::builder()
     ->setSecurity(
@@ -29,9 +29,49 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$request = new Operations\CreateBlocklistIdentifierRequestBody(
-    identifier: '<value>',
+
+
+$response = $sdk->blocklistIdentifiers->list(
+
 );
+
+if ($response->blocklistIdentifiers !== null) {
+    // handle response
+}
+```
+
+### Response
+
+**[?Operations\ListBlocklistIdentifiersResponse](../../Models/Operations/ListBlocklistIdentifiersResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 401, 402            | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## create
+
+Create an identifier that is blocked from accessing an instance
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="CreateBlocklistIdentifier" method="post" path="/blocklist_identifiers" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
 
 $response = $sdk->blocklistIdentifiers->create(
     request: $request
@@ -65,6 +105,7 @@ Delete an identifier from the instance block-list
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="DeleteBlocklistIdentifier" method="delete" path="/blocklist_identifiers/{identifier_id}" -->
 ```php
 declare(strict_types=1);
 
@@ -104,45 +145,4 @@ if ($response->deletedObject !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 402, 404            | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
-## list
-
-Get a list of all identifiers which are not allowed to access an instance
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->blocklistIdentifiers->list(
-
-);
-
-if ($response->blocklistIdentifiers !== null) {
-    // handle response
-}
-```
-
-### Response
-
-**[?Operations\ListBlocklistIdentifiersResponse](../../Models/Operations/ListBlocklistIdentifiersResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 401, 402            | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |

@@ -17,7 +17,7 @@ namespace Clerk\Backend;
  * ### Versions
  *
  * When the API changes in a way that isn't compatible with older versions, a new version is released.
- * Each version is identified by its release date, e.g. `2024-10-01`. For more information, please see [Clerk API Versions](https://clerk.com/docs/versioning/available-versions).
+ * Each version is identified by its release date, e.g. `2025-04-10`. For more information, please see [Clerk API Versions](https://clerk.com/docs/versioning/available-versions).
  *
  * Please see https://clerk.com/docs for more information.
  * https://clerk.com/docs
@@ -33,6 +33,8 @@ class ClerkBackend
     public Miscellaneous $miscellaneous;
 
     public Jwks $jwks;
+
+    public AwsCredentials $awsCredentials;
 
     public Clients $clients;
 
@@ -70,6 +72,8 @@ class ClerkBackend
 
     public JwtTemplates $jwtTemplates;
 
+    public Machines $machines;
+
     public Organizations $organizations;
 
     public OrganizationMemberships $organizationMemberships;
@@ -92,6 +96,14 @@ class ClerkBackend
 
     public WaitlistEntries $waitlistEntries;
 
+    public ExperimentalAccountlessApplications $experimentalAccountlessApplications;
+
+    public Commerce $commerce;
+
+    public M2m $m2m;
+
+    public OauthAccessTokens $oauthAccessTokens;
+
     /**
      * Returns a new instance of the SDK builder used to configure and create the SDK instance.
      *
@@ -110,6 +122,7 @@ class ClerkBackend
     ) {
         $this->miscellaneous = new Miscellaneous($this->sdkConfiguration);
         $this->jwks = new Jwks($this->sdkConfiguration);
+        $this->awsCredentials = new AwsCredentials($this->sdkConfiguration);
         $this->clients = new Clients($this->sdkConfiguration);
         $this->emailAddresses = new EmailAddresses($this->sdkConfiguration);
         $this->phoneNumbers = new PhoneNumbers($this->sdkConfiguration);
@@ -128,6 +141,7 @@ class ClerkBackend
         $this->instanceSettings = new InstanceSettings($this->sdkConfiguration);
         $this->webhooks = new Webhooks($this->sdkConfiguration);
         $this->jwtTemplates = new JwtTemplates($this->sdkConfiguration);
+        $this->machines = new Machines($this->sdkConfiguration);
         $this->organizations = new Organizations($this->sdkConfiguration);
         $this->organizationMemberships = new OrganizationMemberships($this->sdkConfiguration);
         $this->organizationDomains = new OrganizationDomains($this->sdkConfiguration);
@@ -139,7 +153,21 @@ class ClerkBackend
         $this->samlConnections = new SamlConnections($this->sdkConfiguration);
         $this->testingTokens = new TestingTokens($this->sdkConfiguration);
         $this->waitlistEntries = new WaitlistEntries($this->sdkConfiguration);
-        $this->sdkConfiguration->client = $this->sdkConfiguration->initHooks($this->sdkConfiguration->client);
+        $this->experimentalAccountlessApplications = new ExperimentalAccountlessApplications($this->sdkConfiguration);
+        $this->commerce = new Commerce($this->sdkConfiguration);
+        $this->m2m = new M2m($this->sdkConfiguration);
+        $this->oauthAccessTokens = new OauthAccessTokens($this->sdkConfiguration);
+        $this->initHooks();
 
+    }
+
+    private function initHooks(): void
+    {
+        $preHooksUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $ret = $this->sdkConfiguration->hooks->sdkInit($preHooksUrl, $this->sdkConfiguration->client);
+        if ($preHooksUrl != $ret->url) {
+            $this->sdkConfiguration->serverUrl = $ret->url;
+        }
+        $this->sdkConfiguration->client = $ret->client;
     }
 }
