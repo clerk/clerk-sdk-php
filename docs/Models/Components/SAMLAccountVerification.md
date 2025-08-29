@@ -3,13 +3,13 @@
 
 ## Supported Types
 
-### `Components\Saml`
+### `Components\VerificationSAML`
 
 ```php
 /**
-* @var Components\Saml
+* @var Components\VerificationSAML
 */
-Components\Saml $value = /* values here */
+Components\VerificationSAML $value = /* values here */
 ```
 
 ### `Components\VerificationTicket`

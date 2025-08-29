@@ -13,19 +13,28 @@ class Web3Signature
 {
     /**
      *
-     * @var Web3SignatureVerificationStatus $status
+     * @var VerificationWeb3VerificationStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Web3SignatureVerificationStatus')]
-    public Web3SignatureVerificationStatus $status;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationWeb3VerificationStatus')]
+    public VerificationWeb3VerificationStatus $status;
 
     /**
      *
-     * @var Web3SignatureVerificationStrategy $strategy
+     * @var VerificationWeb3VerificationStrategy $strategy
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Web3SignatureVerificationStrategy')]
-    public Web3SignatureVerificationStrategy $strategy;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationWeb3VerificationStrategy')]
+    public VerificationWeb3VerificationStrategy $strategy;
+
+    /**
+     *
+     * @var ?VerificationWeb3VerificationObject $object
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationWeb3VerificationObject|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?VerificationWeb3VerificationObject $object = null;
 
     /**
      *
@@ -66,8 +75,9 @@ class Web3Signature
     public ?string $verifiedAtClient = null;
 
     /**
-     * @param  Web3SignatureVerificationStatus  $status
-     * @param  Web3SignatureVerificationStrategy  $strategy
+     * @param  VerificationWeb3VerificationStatus  $status
+     * @param  VerificationWeb3VerificationStrategy  $strategy
+     * @param  ?VerificationWeb3VerificationObject  $object
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
      * @param  ?string  $nonce
@@ -75,10 +85,11 @@ class Web3Signature
      * @param  ?string  $verifiedAtClient
      * @phpstan-pure
      */
-    public function __construct(Web3SignatureVerificationStatus $status, Web3SignatureVerificationStrategy $strategy, ?int $attempts = null, ?int $expireAt = null, ?string $nonce = null, ?string $message = null, ?string $verifiedAtClient = null)
+    public function __construct(VerificationWeb3VerificationStatus $status, VerificationWeb3VerificationStrategy $strategy, ?VerificationWeb3VerificationObject $object = null, ?int $attempts = null, ?int $expireAt = null, ?string $nonce = null, ?string $message = null, ?string $verifiedAtClient = null)
     {
         $this->status = $status;
         $this->strategy = $strategy;
+        $this->object = $object;
         $this->attempts = $attempts;
         $this->expireAt = $expireAt;
         $this->nonce = $nonce;

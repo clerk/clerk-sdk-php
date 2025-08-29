@@ -28,6 +28,28 @@ class ListOrganizationInvitationsRequest
     public ?ListOrganizationInvitationsQueryParamStatus $status = null;
 
     /**
+     * Returns organization invitations inviting the specified email address.
+     *
+     * @var ?string $emailAddress
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=email_address')]
+    public ?string $emailAddress = null;
+
+    /**
+     * Allows to return organization invitations in a particular order.
+     *
+     * You can order the returned organization invitations either by their `created_at` or `email_address`.
+     * In order to specify the direction, you can use the `+/-` symbols prepended in the property to order by.
+     * For example, if you want organization invitations to be returned in descending order according to their `created_at` property, you can use `-created_at`.
+     * If you don't use `+` or `-`, then `+` is implied.
+     * Defaults to `-created_at`.
+     *
+     * @var ?string $orderBy
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=order_by')]
+    public ?string $orderBy = null;
+
+    /**
      * Applies a limit to the number of results returned.
      *
      * Can be used for paginating the results together with `offset`.
@@ -51,14 +73,18 @@ class ListOrganizationInvitationsRequest
     /**
      * @param  string  $organizationId
      * @param  ?ListOrganizationInvitationsQueryParamStatus  $status
+     * @param  ?string  $emailAddress
+     * @param  ?string  $orderBy
      * @param  ?int  $limit
      * @param  ?int  $offset
      * @phpstan-pure
      */
-    public function __construct(string $organizationId, ?ListOrganizationInvitationsQueryParamStatus $status = null, ?int $limit = 10, ?int $offset = 0)
+    public function __construct(string $organizationId, ?ListOrganizationInvitationsQueryParamStatus $status = null, ?string $emailAddress = null, ?string $orderBy = '-created_at', ?int $limit = 10, ?int $offset = 0)
     {
         $this->organizationId = $organizationId;
         $this->status = $status;
+        $this->emailAddress = $emailAddress;
+        $this->orderBy = $orderBy;
         $this->limit = $limit;
         $this->offset = $offset;
     }

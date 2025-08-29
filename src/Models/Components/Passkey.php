@@ -12,78 +12,64 @@ namespace Clerk\Backend\Models\Components;
 class Passkey
 {
     /**
+     * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var PasskeyVerificationStatus $status
+     *
+     *
+     * @var PasskeyObject $object
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\PasskeyVerificationStatus')]
-    public PasskeyVerificationStatus $status;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\PasskeyObject')]
+    public PasskeyObject $object;
 
     /**
      *
-     * @var PasskeyVerificationStrategy $strategy
+     * @var string $name
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\PasskeyVerificationStrategy')]
-    public PasskeyVerificationStrategy $strategy;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
+    public string $name;
+
+    /**
+     * Unix timestamp of when the passkey was last used.
+     *
+     *
+     *
+     * @var int $lastUsedAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('last_used_at')]
+    public int $lastUsedAt;
 
     /**
      *
-     * @var ?Nonce $nonce
+     * @var ?string $id
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('nonce')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Nonce|null')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?Nonce $nonce = null;
+    public ?string $id = null;
 
     /**
      *
-     * @var ?int $attempts
+     * @var ?VerificationPasskey $verification
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('attempts')]
-    public ?int $attempts;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationPasskey|null')]
+    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'object', map: ['VerificationPasskey' => '\Clerk\Backend\Models\Components\VerificationPasskey'])]
+    public ?VerificationPasskey $verification;
 
     /**
-     *
-     * @var ?int $expireAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('expire_at')]
-    public ?int $expireAt;
-
-    /**
-     *
-     * @var ?string $message
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('message')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $message = null;
-
-    /**
-     *
-     * @var ?string $verifiedAtClient
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('verified_at_client')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $verifiedAtClient = null;
-
-    /**
-     * @param  PasskeyVerificationStatus  $status
-     * @param  PasskeyVerificationStrategy  $strategy
-     * @param  ?Nonce  $nonce
-     * @param  ?int  $attempts
-     * @param  ?int  $expireAt
-     * @param  ?string  $message
-     * @param  ?string  $verifiedAtClient
+     * @param  PasskeyObject  $object
+     * @param  string  $name
+     * @param  int  $lastUsedAt
+     * @param  ?string  $id
+     * @param  ?VerificationPasskey  $verification
      * @phpstan-pure
      */
-    public function __construct(PasskeyVerificationStatus $status, PasskeyVerificationStrategy $strategy, ?Nonce $nonce = null, ?int $attempts = null, ?int $expireAt = null, ?string $message = null, ?string $verifiedAtClient = null)
+    public function __construct(PasskeyObject $object, string $name, int $lastUsedAt, ?string $id = null, ?VerificationPasskey $verification = null)
     {
-        $this->status = $status;
-        $this->strategy = $strategy;
-        $this->nonce = $nonce;
-        $this->attempts = $attempts;
-        $this->expireAt = $expireAt;
-        $this->message = $message;
-        $this->verifiedAtClient = $verifiedAtClient;
+        $this->object = $object;
+        $this->name = $name;
+        $this->lastUsedAt = $lastUsedAt;
+        $this->id = $id;
+        $this->verification = $verification;
     }
 }

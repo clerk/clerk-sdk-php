@@ -15,13 +15,13 @@ Returns a preview of a template for a given template_type, slug and body
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="PreviewTemplate" method="post" path="/templates/{template_type}/{slug}/preview" -->
 ```php
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
 
 $sdk = Backend\ClerkBackend::builder()
     ->setSecurity(
@@ -29,7 +29,7 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$requestBody = new Operations\PreviewTemplateRequestBody();
+
 
 $response = $sdk->templates->preview(
     templateType: '<value>',

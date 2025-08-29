@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace Clerk\Backend\Models\Operations;
 
 
-/** AttributeMapping - Define the attribute name mapping between Identity Provider and Clerk's user properties */
+/** AttributeMapping - Define the atrtibute name mapping between Identity Provider and Clerk's user properties */
 class AttributeMapping
 {
     /**

@@ -8,9 +8,9 @@
 declare(strict_types=1);
 
 namespace Clerk\Backend\Hooks;
+
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-
 
 class SDKHooks implements Hooks
 {
