@@ -30,6 +30,11 @@ class VerifyToken
      */
     public static function verifyToken(string $token, VerifyTokenOptions $options): stdClass
     {
+        // Check if this is a machine token that needs API verification
+        if (TokenTypes::isMachineToken($token)) {
+            return self::verifyMachineToken($token, $options);
+        }
+
         $publicKey = $options->getJwtKey() !== null
             ? self::getLocalJwtKey($options->getJwtKey())
             : self::getRemoteJwtKey($token, $options);
@@ -189,15 +194,20 @@ class VerifyToken
 
     private static function fetchJwks(VerifyTokenOptions $options): \Clerk\Backend\Models\Components\Jwks
     {
-        if ($options->getSecretKey() === null) {
+        if ($options->getSecretKey() === null && $options->getMachineSecretKey() === null) {
             throw new TokenVerificationException(TokenVerificationErrorReason::$SECRET_KEY_MISSING);
         }
+
+        // Use machine secret key if available, otherwise fall back to secret key
+        $authKey = $options->getMachineSecretKey() !== null
+            ? $options->getMachineSecretKey()
+            : $options->getSecretKey();
 
         $client = new Client();
         try {
             $response = $client->request('GET', "{$options->getApiUrl()}/{$options->getApiVersion()}/jwks", [
                 'headers' => [
-                    'Authorization' => "Bearer {$options->getSecretKey()}",
+                    'Authorization' => "Bearer {$authKey}",
                 ],
             ]);
         } catch (ClientException $ex) {
@@ -217,5 +227,54 @@ class VerifyToken
         }
 
         return $wellKnownJWKS;
+    }
+
+    /**
+     * Verifies machine tokens via API call to /m2m_tokens/verify endpoint.
+     *
+     * @param  string  $token  The machine token to verify.
+     * @param  VerifyTokenOptions  $options  The options to use for the verification.
+     * @return stdClass The payload of the verified token.
+     *
+     * @throws TokenVerificationException If the token could not be verified.
+     */
+    private static function verifyMachineToken(string $token, VerifyTokenOptions $options): stdClass
+    {
+        // Ensure we have either a secret key or machine secret key
+        if ($options->getSecretKey() === null && $options->getMachineSecretKey() === null) {
+            throw new TokenVerificationException(TokenVerificationErrorReason::$SECRET_KEY_MISSING);
+        }
+
+        // Use machine secret key if available, otherwise fall back to secret key
+        $authKey = $options->getMachineSecretKey() !== null
+            ? $options->getMachineSecretKey()
+            : $options->getSecretKey();
+
+        $client = new Client();
+        try {
+            $response = $client->request('POST', "{$options->getApiUrl()}/{$options->getApiVersion()}/m2m_tokens/verify", [
+                'headers' => [
+                    'Authorization' => "Bearer {$authKey}",
+                    'Content-Type' => 'application/json',
+                ],
+                'json' => [
+                    'token' => $token,
+                ],
+            ]);
+        } catch (ClientException $ex) {
+            throw new TokenVerificationException(TokenVerificationErrorReason::$TOKEN_INVALID, $ex);
+        }
+
+        try {
+            $responseData = json_decode((string) $response->getBody(), true);
+            if ($responseData === null) {
+                throw new TokenVerificationException(TokenVerificationErrorReason::$TOKEN_INVALID);
+            }
+
+            // Convert array to stdClass to match expected return type
+            return (object) $responseData;
+        } catch (Exception $ex) {
+            throw new TokenVerificationException(TokenVerificationErrorReason::$TOKEN_INVALID, $ex);
+        }
     }
 }

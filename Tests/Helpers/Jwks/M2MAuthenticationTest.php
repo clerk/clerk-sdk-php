@@ -125,9 +125,27 @@ final class M2MAuthenticationTest extends TestCase
         $this->assertEquals(AuthErrorReason::$SECRET_KEY_MISSING, $m2mState->getErrorReason());
     }
 
+    public function test_machine_token_accepts_machine_secret_key()
+    {
+        // Machine tokens should accept machine secret key for verification
+        $arOptions = new AuthenticateRequestOptions(
+            machineSecretKey: 'msk_test_machine_secret',
+            acceptsToken: ['machine_token']
+        );
+
+        $m2mContext = $this->createHttpContextWithToken('mt_service_token_123');
+        $m2mState = AuthenticateRequest::authenticateRequest($m2mContext, $arOptions);
+
+        // Should not fail due to missing secret key (will fail on actual verification, but that's expected)
+        $this->assertNotEquals(AuthErrorReason::$SECRET_KEY_MISSING, $m2mState->getErrorReason());
+    }
+
     public function test_token_type_detection()
     {
+        // Test new mt_ prefix
         $this->assertEquals(TokenTypes::MACHINE_TOKEN, TokenTypes::getTokenType('mt_token_123'));
+        // Test legacy m2m_ prefix
+        $this->assertEquals(TokenTypes::MACHINE_TOKEN, TokenTypes::getTokenType('m2m_token_123'));
         $this->assertEquals(TokenTypes::OAUTH_TOKEN, TokenTypes::getTokenType('oat_token_123'));
         $this->assertEquals(TokenTypes::API_KEY, TokenTypes::getTokenType('ak_key_123'));
         $this->assertEquals(TokenTypes::SESSION_TOKEN, TokenTypes::getTokenType('eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.session'));
@@ -137,22 +155,30 @@ final class M2MAuthenticationTest extends TestCase
 
     public function test_token_type_validation_methods()
     {
+        // Test new mt_ prefix
         $this->assertTrue(TokenTypes::isMachineToken('mt_token_123'));
+        // Test legacy m2m_ prefix
+        $this->assertTrue(TokenTypes::isMachineToken('m2m_token_123'));
         $this->assertFalse(TokenTypes::isMachineToken('eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.session'));
 
         $this->assertTrue(TokenTypes::isOAuthToken('oat_token_123'));
         $this->assertFalse(TokenTypes::isOAuthToken('mt_token_123'));
+        $this->assertFalse(TokenTypes::isOAuthToken('m2m_token_123'));
 
         $this->assertTrue(TokenTypes::isApiKey('ak_key_123'));
         $this->assertFalse(TokenTypes::isApiKey('oat_token_123'));
 
         $this->assertTrue(TokenTypes::isSessionToken('eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.session'));
         $this->assertFalse(TokenTypes::isSessionToken('mt_token_123'));
+        $this->assertFalse(TokenTypes::isSessionToken('m2m_token_123'));
     }
 
     public function test_token_type_name_generation()
     {
+        // Test new mt_ prefix
         $this->assertEquals('machine_token', TokenTypes::getTokenTypeName('mt_token_123'));
+        // Test legacy m2m_ prefix
+        $this->assertEquals('machine_token', TokenTypes::getTokenTypeName('m2m_token_123'));
         $this->assertEquals('oauth_token', TokenTypes::getTokenTypeName('oat_token_123'));
         $this->assertEquals('api_key', TokenTypes::getTokenTypeName('ak_key_123'));
         $this->assertEquals('session_token', TokenTypes::getTokenTypeName('eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.session'));

@@ -25,8 +25,8 @@ class TokenTypes
             return self::UNKNOWN;
         }
 
-        // Machine tokens start with 'mt_'
-        if (str_starts_with($token, 'mt_')) {
+        // Machine tokens start with 'mt_' or 'm2m_'
+        if (str_starts_with($token, 'mt_') || str_starts_with($token, 'm2m_')) {
             return self::MACHINE_TOKEN;
         }
 
