@@ -7,6 +7,7 @@ class AuthenticateRequestOptions
     private const DEFAULT_CLOCK_SKEW_MS = 5000;
 
     private ?string $secretKey;
+    private ?string $machineSecretKey;
     private ?string $jwtKey;
     /** @var array<string> */
     private ?array $audiences;
@@ -20,6 +21,7 @@ class AuthenticateRequestOptions
      * Options to configure AuthenticateRequest::authenticateRequest.
      *
      * @param  ?string  $secretKey  The Clerk secret key from the API Keys page in the Clerk Dashboard.
+     * @param  ?string  $machineSecretKey  The Machine secret key for verifying M2M tokens.
      * @param  ?string  $jwtKey  PEM Public String used to verify the session token in a networkless manner.
      * @param  ?array<string>  $audiences  A list of audiences to verify against.
      * @param  ?array<string>  $authorizedParties  An allowlist of origins to verify against.
@@ -29,17 +31,19 @@ class AuthenticateRequestOptions
      */
     public function __construct(
         ?string $secretKey = null,
+        ?string $machineSecretKey = null,
         ?string $jwtKey = null,
         ?array $audiences = null,
         ?array $authorizedParties = null,
         ?int $clockSkewInMs = null,
         ?array $acceptsToken = null
     ) {
-        if (empty($secretKey) && empty($jwtKey)) {
+        if (empty($secretKey) && empty($machineSecretKey) && empty($jwtKey)) {
             throw new AuthenticateRequestException(AuthErrorReason::$SECRET_KEY_MISSING);
         }
 
         $this->secretKey = $secretKey;
+        $this->machineSecretKey = $machineSecretKey;
         $this->jwtKey = $jwtKey;
         $this->audiences = $audiences;
         $this->authorizedParties = $authorizedParties ?? [];
@@ -50,6 +54,11 @@ class AuthenticateRequestOptions
     public function getSecretKey(): ?string
     {
         return $this->secretKey;
+    }
+
+    public function getMachineSecretKey(): ?string
+    {
+        return $this->machineSecretKey;
     }
 
     public function getJwtKey(): ?string

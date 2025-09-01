@@ -44,13 +44,14 @@ class AuthenticateRequest
         $verifyTokenOptions = null;
 
         if (TokenTypes::isMachineToken($sessionToken)) {
-            // Machine tokens require secret key for API verification
-            if ($options->getSecretKey() === null) {
+            // Machine tokens require either secret key or machine secret key for API verification
+            if ($options->getSecretKey() === null && $options->getMachineSecretKey() === null) {
                 return RequestState::signedOut(AuthErrorReason::$SECRET_KEY_MISSING);
             }
 
             $verifyTokenOptions = new VerifyTokenOptions(
-                secretKey: $options->getSecretKey()
+                secretKey: $options->getSecretKey(),
+                machineSecretKey: $options->getMachineSecretKey()
             );
         } else {
             // Session tokens can use either JWT key or secret key

@@ -9,6 +9,7 @@ class VerifyTokenOptions
     private const DEFAULT_API_VERSION = 'v1';
 
     private ?string $secretKey;
+    private ?string $machineSecretKey;
     private ?string $jwtKey;
     /** @var ?array<string> */
     private ?array $audiences;
@@ -22,6 +23,7 @@ class VerifyTokenOptions
      * Options to configure VerifyToken::verifyToken.
      *
      * @param  ?string  $secretKey  The Clerk secret key from the API Keys page in the Clerk Dashboard. (Optional)
+     * @param  ?string  $machineSecretKey  The Machine secret key for verifying M2M tokens. (Optional)
      * @param  ?string  $jwtKey  PEM Public String used to verify the session token in a networkless manner. (Optional)
      * @param  ?array<string>  $audiences  A list of audiences to verify against.
      * @param  ?array<string>  $authorizedParties  An allowlist of origins to verify against.
@@ -33,6 +35,7 @@ class VerifyTokenOptions
      */
     public function __construct(
         ?string $secretKey = null,
+        ?string $machineSecretKey = null,
         ?string $jwtKey = null,
         ?array $audiences = null,
         ?array $authorizedParties = null,
@@ -40,11 +43,12 @@ class VerifyTokenOptions
         ?string $apiUrl = self::DEFAULT_API_URL,
         ?string $apiVersion = self::DEFAULT_API_VERSION
     ) {
-        if (empty($secretKey) && empty($jwtKey)) {
+        if (empty($secretKey) && empty($machineSecretKey) && empty($jwtKey)) {
             throw new TokenVerificationException(TokenVerificationErrorReason::$SECRET_KEY_MISSING);
         }
 
         $this->secretKey = $secretKey;
+        $this->machineSecretKey = $machineSecretKey;
         $this->jwtKey = $jwtKey;
         $this->audiences = $audiences;
         $this->authorizedParties = $authorizedParties;
@@ -56,6 +60,11 @@ class VerifyTokenOptions
     public function getSecretKey(): ?string
     {
         return $this->secretKey;
+    }
+
+    public function getMachineSecretKey(): ?string
+    {
+        return $this->machineSecretKey;
     }
 
     public function getJwtKey(): ?string
