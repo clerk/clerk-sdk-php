@@ -96,6 +96,15 @@ class Template
     public ?bool $canDelete = null;
 
     /**
+     * whether the body of this template can be edited
+     *
+     * @var ?bool $canEditBody
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('can_edit_body')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $canEditBody = null;
+
+    /**
      * whether this template can be enabled or disabled, true only for notification SMS templates
      *
      * @var ?bool $canToggle
@@ -175,6 +184,14 @@ class Template
     public ?bool $enabled = null;
 
     /**
+     *
+     * @var ?bool $flaggedAsSuspicious
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('flagged_as_suspicious')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $flaggedAsSuspicious = null;
+
+    /**
      * Unix timestamp of last update.
      *
      *
@@ -197,7 +214,7 @@ class Template
     public ?int $createdAt = null;
 
     /**
-     * the id of the instance the template belongs to
+     * The id of the instance to which this template belongs
      *
      * @var ?string $instanceId
      */
@@ -224,6 +241,7 @@ class Template
      * @param  ?int  $position
      * @param  ?bool  $canRevert
      * @param  ?bool  $canDelete
+     * @param  ?bool  $canEditBody
      * @param  ?bool  $canToggle
      * @param  ?string  $markup
      * @param  ?string  $body
@@ -233,13 +251,14 @@ class Template
      * @param  ?string  $replyToEmailName
      * @param  ?bool  $deliveredByClerk
      * @param  ?bool  $enabled
+     * @param  ?bool  $flaggedAsSuspicious
      * @param  ?int  $updatedAt
      * @param  ?int  $createdAt
      * @param  ?string  $instanceId
      * @param  ?string  $subject
      * @phpstan-pure
      */
-    public function __construct(?string $id = null, ?TemplateObject $object = null, ?string $resourceType = null, ?string $templateType = null, ?string $name = null, ?string $slug = null, ?int $position = null, ?bool $canRevert = null, ?bool $canDelete = null, ?bool $canToggle = null, ?string $markup = null, ?string $body = null, ?array $availableVariables = null, ?array $requiredVariables = null, ?string $fromEmailName = null, ?string $replyToEmailName = null, ?bool $deliveredByClerk = null, ?bool $enabled = null, ?int $updatedAt = null, ?int $createdAt = null, ?string $instanceId = null, ?string $subject = null)
+    public function __construct(?string $id = null, ?TemplateObject $object = null, ?string $resourceType = null, ?string $templateType = null, ?string $name = null, ?string $slug = null, ?int $position = null, ?bool $canRevert = null, ?bool $canDelete = null, ?bool $canEditBody = null, ?bool $canToggle = null, ?string $markup = null, ?string $body = null, ?array $availableVariables = null, ?array $requiredVariables = null, ?string $fromEmailName = null, ?string $replyToEmailName = null, ?bool $deliveredByClerk = null, ?bool $enabled = null, ?bool $flaggedAsSuspicious = null, ?int $updatedAt = null, ?int $createdAt = null, ?string $instanceId = null, ?string $subject = null)
     {
         $this->id = $id;
         $this->object = $object;
@@ -250,6 +269,7 @@ class Template
         $this->position = $position;
         $this->canRevert = $canRevert;
         $this->canDelete = $canDelete;
+        $this->canEditBody = $canEditBody;
         $this->canToggle = $canToggle;
         $this->markup = $markup;
         $this->body = $body;
@@ -259,6 +279,7 @@ class Template
         $this->replyToEmailName = $replyToEmailName;
         $this->deliveredByClerk = $deliveredByClerk;
         $this->enabled = $enabled;
+        $this->flaggedAsSuspicious = $flaggedAsSuspicious;
         $this->updatedAt = $updatedAt;
         $this->createdAt = $createdAt;
         $this->instanceId = $instanceId;

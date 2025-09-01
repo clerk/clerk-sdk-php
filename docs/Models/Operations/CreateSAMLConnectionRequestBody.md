@@ -1,17 +1,23 @@
 # CreateSAMLConnectionRequestBody
 
 
-## Fields
+## Supported Types
 
-| Field                                                                                                                | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
-| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `name`                                                                                                               | *string*                                                                                                             | :heavy_check_mark:                                                                                                   | The name to use as a label for this SAML Connection                                                                  |
-| `domain`                                                                                                             | *string*                                                                                                             | :heavy_check_mark:                                                                                                   | The domain of your organization. Sign in flows using an email with this domain, will use this SAML Connection.       |
-| `provider`                                                                                                           | [Operations\Provider](../../Models/Operations/Provider.md)                                                           | :heavy_check_mark:                                                                                                   | The IdP provider of the connection.                                                                                  |
-| `idpEntityId`                                                                                                        | *?string*                                                                                                            | :heavy_minus_sign:                                                                                                   | The Entity ID as provided by the IdP                                                                                 |
-| `idpSsoUrl`                                                                                                          | *?string*                                                                                                            | :heavy_minus_sign:                                                                                                   | The Single-Sign On URL as provided by the IdP                                                                        |
-| `idpCertificate`                                                                                                     | *?string*                                                                                                            | :heavy_minus_sign:                                                                                                   | The X.509 certificate as provided by the IdP                                                                         |
-| `idpMetadataUrl`                                                                                                     | *?string*                                                                                                            | :heavy_minus_sign:                                                                                                   | The URL which serves the IdP metadata. If present, it takes priority over the corresponding individual properties    |
-| `idpMetadata`                                                                                                        | *?string*                                                                                                            | :heavy_minus_sign:                                                                                                   | The XML content of the IdP metadata file. If present, it takes priority over the corresponding individual properties |
-| `organizationId`                                                                                                     | *?string*                                                                                                            | :heavy_minus_sign:                                                                                                   | The ID of the organization to which users of this SAML Connection will be added                                      |
-| `attributeMapping`                                                                                                   | [?Operations\AttributeMapping](../../Models/Operations/AttributeMapping.md)                                          | :heavy_minus_sign:                                                                                                   | Define the attribute name mapping between Identity Provider and Clerk's user properties                              |
+### `Operations\One`
+
+```php
+/**
+* @var Operations\One
+*/
+Operations\One $value = /* values here */
+```
+
+### `Operations\Two`
+
+```php
+/**
+* @var Operations\Two
+*/
+Operations\Two $value = /* values here */
+```
+

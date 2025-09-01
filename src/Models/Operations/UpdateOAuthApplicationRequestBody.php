@@ -43,6 +43,24 @@ class UpdateOAuthApplicationRequestBody
     public ?string $callbackUrl = null;
 
     /**
+     * True to enable a consent screen to display in the authentication flow. This cannot be disabled for dynamically registered OAuth Applications.
+     *
+     * @var ?bool $consentScreenEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('consent_screen_enabled')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $consentScreenEnabled = null;
+
+    /**
+     * True to require the Proof Key of Code Exchange (PKCE) flow.
+     *
+     * @var ?bool $pkceRequired
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('pkce_required')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $pkceRequired = null;
+
+    /**
      * If true, this client is public and you can use the Proof Key of Code Exchange (PKCE) flow.
      *
      * @var ?bool $public
@@ -65,14 +83,18 @@ class UpdateOAuthApplicationRequestBody
      * @param  ?array<string>  $redirectUris
      * @param  ?string  $callbackUrl
      * @param  ?string  $scopes
+     * @param  ?bool  $consentScreenEnabled
+     * @param  ?bool  $pkceRequired
      * @param  ?bool  $public
      * @phpstan-pure
      */
-    public function __construct(?string $name = null, ?array $redirectUris = null, ?string $callbackUrl = null, ?bool $public = null, ?string $scopes = 'profile email')
+    public function __construct(?string $name = null, ?array $redirectUris = null, ?string $callbackUrl = null, ?bool $consentScreenEnabled = null, ?bool $pkceRequired = null, ?bool $public = null, ?string $scopes = 'profile email')
     {
         $this->name = $name;
         $this->redirectUris = $redirectUris;
         $this->callbackUrl = $callbackUrl;
+        $this->consentScreenEnabled = $consentScreenEnabled;
+        $this->pkceRequired = $pkceRequired;
         $this->public = $public;
         $this->scopes = $scopes;
     }

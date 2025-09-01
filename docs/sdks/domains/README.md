@@ -5,10 +5,52 @@
 
 ### Available Operations
 
+* [list](#list) - List all instance domains
 * [add](#add) - Add a domain
 * [delete](#delete) - Delete a satellite domain
-* [list](#list) - List all instance domains
 * [update](#update) - Update a domain
+
+## list
+
+Use this endpoint to get a list of all domains for an instance.
+The response will contain the primary domain for the instance and any satellite domains. Each domain in the response contains information about the URLs where Clerk operates and the required CNAME targets.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="ListDomains" method="get" path="/domains" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->domains->list(
+
+);
+
+if ($response->domains !== null) {
+    // handle response
+}
+```
+
+### Response
+
+**[?Operations\ListDomainsResponse](../../Models/Operations/ListDomainsResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## add
 
@@ -20,13 +62,13 @@ If you're planning to configure the new satellite domain to run behind a proxy, 
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="AddDomain" method="post" path="/domains" -->
 ```php
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
 
 $sdk = Backend\ClerkBackend::builder()
     ->setSecurity(
@@ -34,10 +76,7 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$request = new Operations\AddDomainRequestBody(
-    name: '<value>',
-    isSatellite: false,
-);
+
 
 $response = $sdk->domains->add(
     request: $request
@@ -72,6 +111,7 @@ It is currently not possible to delete the instance's primary domain.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="DeleteDomain" method="delete" path="/domains/{domain_id}" -->
 ```php
 declare(strict_types=1);
 
@@ -113,47 +153,6 @@ if ($response->deletedObject !== null) {
 | Errors\ClerkErrors  | 403, 404            | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## list
-
-Use this endpoint to get a list of all domains for an instance.
-The response will contain the primary domain for the instance and any satellite domains. Each domain in the response contains information about the URLs where Clerk operates and the required CNAME targets.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-
-
-$response = $sdk->domains->list(
-
-);
-
-if ($response->domains !== null) {
-    // handle response
-}
-```
-
-### Response
-
-**[?Operations\ListDomainsResponse](../../Models/Operations/ListDomainsResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
-
 ## update
 
 The `proxy_url` can be updated only for production instances.
@@ -167,6 +166,7 @@ update the instance's home origin, affecting the default application paths.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="UpdateDomain" method="patch" path="/domains/{domain_id}" -->
 ```php
 declare(strict_types=1);
 

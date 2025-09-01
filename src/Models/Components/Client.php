@@ -17,11 +17,11 @@ class Client
      *
      *
      *
-     * @var ObjectT $object
+     * @var ClientObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ObjectT')]
-    public ObjectT $object;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ClientObject')]
+    public ClientObject $object;
 
     /**
      * String representing the identifier of the session.
@@ -96,7 +96,7 @@ class Client
     public ?string $lastActiveSessionId;
 
     /**
-     * @param  ObjectT  $object
+     * @param  ClientObject  $object
      * @param  string  $id
      * @param  array<string>  $sessionIds
      * @param  array<Session>  $sessions
@@ -107,7 +107,7 @@ class Client
      * @param  ?string  $lastActiveSessionId
      * @phpstan-pure
      */
-    public function __construct(ObjectT $object, string $id, array $sessionIds, array $sessions, int $updatedAt, int $createdAt, ?string $signInId = null, ?string $signUpId = null, ?string $lastActiveSessionId = null)
+    public function __construct(ClientObject $object, string $id, array $sessionIds, array $sessions, int $updatedAt, int $createdAt, ?string $signInId = null, ?string $signUpId = null, ?string $lastActiveSessionId = null)
     {
         $this->object = $object;
         $this->id = $id;

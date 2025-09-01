@@ -5,65 +5,10 @@
 
 ### Available Operations
 
-* [bulkCreate](#bulkcreate) - Create multiple invitations
 * [create](#create) - Create an invitation
 * [list](#list) - List all invitations
+* [bulkCreate](#bulkcreate) - Create multiple invitations
 * [revoke](#revoke) - Revokes an invitation
-
-## bulkCreate
-
-Use this API operation to create multiple invitations for the provided email addresses. You can choose to send the
-invitations as emails by setting the `notify` parameter to `true`. There cannot be an existing invitation for any
-of the email addresses you provide unless you set `ignore_existing` to `true` for specific email addresses. Please
-note that there must be no existing user for any of the email addresses you provide, and this rule cannot be bypassed.
-
-### Example Usage
-
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
-
-$sdk = Backend\ClerkBackend::builder()
-    ->setSecurity(
-        '<YOUR_BEARER_TOKEN_HERE>'
-    )
-    ->build();
-
-$request = [
-    new Operations\RequestBody(
-        emailAddress: 'Queen25@gmail.com',
-    ),
-];
-
-$response = $sdk->invitations->bulkCreate(
-    request: $request
-);
-
-if ($response->invitationList !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                  | Type                                       | Required                                   | Description                                |
-| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| `$request`                                 | [array<Operations\RequestBody>](../../.md) | :heavy_check_mark:                         | The request object to use for the request. |
-
-### Response
-
-**[?Operations\CreateBulkInvitationsResponse](../../Models/Operations/CreateBulkInvitationsResponse.md)**
-
-### Errors
-
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 422            | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## create
 
@@ -73,13 +18,13 @@ Also, trying to create an invitation for an email address that already exists in
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="CreateInvitation" method="post" path="/invitations" -->
 ```php
 declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
 use Clerk\Backend;
-use Clerk\Backend\Models\Operations;
 
 $sdk = Backend\ClerkBackend::builder()
     ->setSecurity(
@@ -87,9 +32,7 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$request = new Operations\CreateInvitationRequestBody(
-    emailAddress: 'Loyal79@yahoo.com',
-);
+
 
 $response = $sdk->invitations->create(
     request: $request
@@ -123,6 +66,7 @@ Returns all non-revoked invitations for your application, sorted by creation dat
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="ListInvitations" method="get" path="/invitations" -->
 ```php
 declare(strict_types=1);
 
@@ -164,6 +108,57 @@ if ($response->invitationList !== null) {
 | ------------------- | ------------------- | ------------------- |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
+## bulkCreate
+
+Use this API operation to create multiple invitations for the provided email addresses. You can choose to send the
+invitations as emails by setting the `notify` parameter to `true`. There cannot be an existing invitation for any
+of the email addresses you provide unless you set `ignore_existing` to `true` for specific email addresses. Please
+note that there must be no existing user for any of the email addresses you provide, and this rule cannot be bypassed.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="CreateBulkInvitations" method="post" path="/invitations/bulk" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->invitations->bulkCreate(
+    request: $request
+);
+
+if ($response->invitationList !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                  | Type                                       | Required                                   | Description                                |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| `$request`                                 | [array<Operations\RequestBody>](../../.md) | :heavy_check_mark:                         | The request object to use for the request. |
+
+### Response
+
+**[?Operations\CreateBulkInvitationsResponse](../../Models/Operations/CreateBulkInvitationsResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 422            | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
 ## revoke
 
 Revokes the given invitation.
@@ -173,6 +168,7 @@ Only active (i.e. non-revoked) invitations can be revoked.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="RevokeInvitation" method="post" path="/invitations/{invitation_id}/revoke" -->
 ```php
 declare(strict_types=1);
 

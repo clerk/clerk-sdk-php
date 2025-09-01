@@ -13,6 +13,7 @@ Retrieve the JSON Web Key Set of the instance
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="GetJWKS" method="get" path="/jwks" -->
 ```php
 declare(strict_types=1);
 

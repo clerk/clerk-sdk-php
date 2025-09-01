@@ -28,19 +28,6 @@ class ListInvitationsRequest
     public ?string $query = null;
 
     /**
-     * Allows to return organizations in a particular order.
-     *
-     * At the moment, you can order the returned organizations either by their `name`, `created_at` or `members_count`.
-     * In order to specify the direction, you can use the `+/-` symbols prepended in the property to order by.
-     * For example, if you want organizations to be returned in descending order according to their `created_at` property, you can use `-created_at`.
-     * If you don't use `+` or `-`, then `+` is implied.
-     *
-     * @var ?string $orderBy
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=order_by')]
-    public ?string $orderBy = null;
-
-    /**
      * Whether to paginate the results.
      *
      * If true, the results will be paginated.
@@ -50,6 +37,20 @@ class ListInvitationsRequest
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=paginated')]
     public ?bool $paginated = null;
+
+    /**
+     * Allows to return invitations in a particular order.
+     *
+     * At the moment, you can order the returned invitations either by their `created_at`, `email_address` or `expires_at`.
+     * In order to specify the direction, you can use the `+/-` symbols prepended in the property to order by.
+     * For example, if you want invitations to be returned in descending order according to their `created_at` property, you can use `-created_at`.
+     * If you don't use `+` or `-`, then `+` is implied.
+     * Defaults to `-created_at`.
+     *
+     * @var ?string $orderBy
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=order_by')]
+    public ?string $orderBy = null;
 
     /**
      * Applies a limit to the number of results returned.
@@ -81,12 +82,12 @@ class ListInvitationsRequest
      * @param  ?int  $offset
      * @phpstan-pure
      */
-    public function __construct(?ListInvitationsQueryParamStatus $status = null, ?string $query = null, ?string $orderBy = null, ?bool $paginated = null, ?int $limit = 10, ?int $offset = 0)
+    public function __construct(?ListInvitationsQueryParamStatus $status = null, ?string $query = null, ?bool $paginated = null, ?string $orderBy = '-created_at', ?int $limit = 10, ?int $offset = 0)
     {
         $this->status = $status;
         $this->query = $query;
-        $this->orderBy = $orderBy;
         $this->paginated = $paginated;
+        $this->orderBy = $orderBy;
         $this->limit = $limit;
         $this->offset = $offset;
     }

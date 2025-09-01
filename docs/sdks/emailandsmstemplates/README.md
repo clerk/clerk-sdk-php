@@ -15,6 +15,7 @@ Updates the existing template of the given type and slug
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="UpsertTemplate" method="put" path="/templates/{template_type}/{slug}" -->
 ```php
 declare(strict_types=1);
 
@@ -29,10 +30,10 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$requestBody = new Operations\UpsertTemplateRequestBody();
+
 
 $response = $sdk->emailAndSmsTemplates->upsert(
-    templateType: Operations\UpsertTemplatePathParamTemplateType::Sms,
+    templateType: Operations\UpsertTemplatePathParamTemplateType::Email,
     slug: '<value>',
     requestBody: $requestBody
 

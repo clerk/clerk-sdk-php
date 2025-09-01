@@ -13,33 +13,28 @@ class Saml
 {
     /**
      *
-     * @var SAMLVerificationStatus $status
+     * @var VerificationSamlVerificationStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SAMLVerificationStatus')]
-    public SAMLVerificationStatus $status;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationSamlVerificationStatus')]
+    public VerificationSamlVerificationStatus $status;
 
     /**
      *
-     * @var SAMLVerificationStrategy $strategy
+     * @var VerificationSamlVerificationStrategy $strategy
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SAMLVerificationStrategy')]
-    public SAMLVerificationStrategy $strategy;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationSamlVerificationStrategy')]
+    public VerificationSamlVerificationStrategy $strategy;
 
     /**
      *
-     * @var int $expireAt
+     * @var ?VerificationSamlVerificationObject $object
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('expire_at')]
-    public int $expireAt;
-
-    /**
-     *
-     * @var ?string $externalVerificationRedirectUrl
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('external_verification_redirect_url')]
-    public ?string $externalVerificationRedirectUrl;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationSamlVerificationObject|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?VerificationSamlVerificationObject $object = null;
 
     /**
      *
@@ -50,12 +45,28 @@ class Saml
 
     /**
      *
-     * @var ?SAMLErrorClerkError $error
+     * @var ?string $externalVerificationRedirectUrl
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('external_verification_redirect_url')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $externalVerificationRedirectUrl = null;
+
+    /**
+     *
+     * @var ?VerificationSamlErrorClerkError $error
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SAMLErrorClerkError|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationSamlErrorClerkError|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?SAMLErrorClerkError $error = null;
+    public ?VerificationSamlErrorClerkError $error = null;
+
+    /**
+     *
+     * @var ?int $expireAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('expire_at')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $expireAt = null;
 
     /**
      *
@@ -66,23 +77,25 @@ class Saml
     public ?string $verifiedAtClient = null;
 
     /**
-     * @param  SAMLVerificationStatus  $status
-     * @param  SAMLVerificationStrategy  $strategy
-     * @param  int  $expireAt
-     * @param  ?string  $externalVerificationRedirectUrl
+     * @param  VerificationSamlVerificationStatus  $status
+     * @param  VerificationSamlVerificationStrategy  $strategy
+     * @param  ?VerificationSamlVerificationObject  $object
      * @param  ?int  $attempts
-     * @param  ?SAMLErrorClerkError  $error
+     * @param  ?string  $externalVerificationRedirectUrl
+     * @param  ?VerificationSamlErrorClerkError  $error
+     * @param  ?int  $expireAt
      * @param  ?string  $verifiedAtClient
      * @phpstan-pure
      */
-    public function __construct(SAMLVerificationStatus $status, SAMLVerificationStrategy $strategy, int $expireAt, ?string $externalVerificationRedirectUrl = null, ?int $attempts = null, ?SAMLErrorClerkError $error = null, ?string $verifiedAtClient = null)
+    public function __construct(VerificationSamlVerificationStatus $status, VerificationSamlVerificationStrategy $strategy, ?VerificationSamlVerificationObject $object = null, ?int $attempts = null, ?string $externalVerificationRedirectUrl = null, ?VerificationSamlErrorClerkError $error = null, ?int $expireAt = null, ?string $verifiedAtClient = null)
     {
         $this->status = $status;
         $this->strategy = $strategy;
-        $this->expireAt = $expireAt;
-        $this->externalVerificationRedirectUrl = $externalVerificationRedirectUrl;
+        $this->object = $object;
         $this->attempts = $attempts;
+        $this->externalVerificationRedirectUrl = $externalVerificationRedirectUrl;
         $this->error = $error;
+        $this->expireAt = $expireAt;
         $this->verifiedAtClient = $verifiedAtClient;
     }
 }

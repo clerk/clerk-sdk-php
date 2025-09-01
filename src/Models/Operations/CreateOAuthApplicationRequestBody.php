@@ -60,19 +60,41 @@ class CreateOAuthApplicationRequestBody
     public ?string $scopes = null;
 
     /**
+     * True to enable a consent screen to display in the authentication flow.
+     *
+     * @var ?bool $consentScreenEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('consent_screen_enabled')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $consentScreenEnabled = null;
+
+    /**
+     * True to require the Proof Key of Code Exchange (PKCE) flow.
+     *
+     * @var ?bool $pkceRequired
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('pkce_required')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $pkceRequired = null;
+
+    /**
      * @param  string  $name
      * @param  ?array<string>  $redirectUris
      * @param  ?string  $callbackUrl
      * @param  ?string  $scopes
+     * @param  ?bool  $consentScreenEnabled
+     * @param  ?bool  $pkceRequired
      * @param  ?bool  $public
      * @phpstan-pure
      */
-    public function __construct(string $name, ?array $redirectUris = null, ?string $callbackUrl = null, ?bool $public = null, ?string $scopes = 'profile email')
+    public function __construct(string $name, ?array $redirectUris = null, ?string $callbackUrl = null, ?bool $public = null, ?string $scopes = 'profile email', ?bool $consentScreenEnabled = true, ?bool $pkceRequired = false)
     {
         $this->name = $name;
         $this->redirectUris = $redirectUris;
         $this->callbackUrl = $callbackUrl;
         $this->public = $public;
         $this->scopes = $scopes;
+        $this->consentScreenEnabled = $consentScreenEnabled;
+        $this->pkceRequired = $pkceRequired;
     }
 }

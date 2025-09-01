@@ -9,8 +9,19 @@ declare(strict_types=1);
 
 namespace Clerk\Backend\Hooks;
 
+use Clerk\Backend\SDKConfiguration;
+
 class HookContext
 {
+    /** 
+     * @var SDKConfiguration $config
+     */
+    public SDKConfiguration $config;
+
+    /**
+     * @var string $baseURL
+     */
+    public string $baseURL;
     /**
      * @var string $operationID
      */
@@ -29,8 +40,10 @@ class HookContext
      * @param  ?array<string>  $oauth2Scopes
      * @param  ?\Closure(): ?mixed  $securitySource
      */
-    public function __construct(string $operationID, ?array $oauth2Scopes, ?\Closure $securitySource)
+    public function __construct(SDKConfiguration $config, string $baseURL, string $operationID, ?array $oauth2Scopes, ?\Closure $securitySource)
     {
+        $this->config = $config;
+        $this->baseURL = $baseURL;
         $this->operationID = $operationID;
         $this->oauth2Scopes = $oauth2Scopes;
         $this->securitySource = $securitySource;

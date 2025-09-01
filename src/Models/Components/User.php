@@ -14,23 +14,228 @@ class User
 {
     /**
      *
-     * @var ?string $id
+     * @var string $id
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $id = null;
+    public string $id;
 
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
      *
      *
-     * @var ?UserObject $object
+     * @var UserObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\UserObject|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?UserObject $object = null;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\UserObject')]
+    public UserObject $object;
+
+    /**
+     *
+     * @var bool $hasImage
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('has_image')]
+    public bool $hasImage;
+
+    /**
+     * $publicMetadata
+     *
+     * @var array<string, mixed> $publicMetadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>')]
+    public array $publicMetadata;
+
+    /**
+     * $emailAddresses
+     *
+     * @var array<EmailAddress> $emailAddresses
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('email_addresses')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\EmailAddress>')]
+    public array $emailAddresses;
+
+    /**
+     * $phoneNumbers
+     *
+     * @var array<PhoneNumber> $phoneNumbers
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('phone_numbers')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\PhoneNumber>')]
+    public array $phoneNumbers;
+
+    /**
+     * $web3Wallets
+     *
+     * @var array<Web3Wallet> $web3Wallets
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('web3_wallets')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\Web3Wallet>')]
+    public array $web3Wallets;
+
+    /**
+     * $passkeys
+     *
+     * @var array<Passkey> $passkeys
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('passkeys')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\Passkey>')]
+    public array $passkeys;
+
+    /**
+     *
+     * @var bool $passwordEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('password_enabled')]
+    public bool $passwordEnabled;
+
+    /**
+     *
+     * @var bool $twoFactorEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('two_factor_enabled')]
+    public bool $twoFactorEnabled;
+
+    /**
+     *
+     * @var bool $totpEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('totp_enabled')]
+    public bool $totpEnabled;
+
+    /**
+     *
+     * @var bool $backupCodeEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('backup_code_enabled')]
+    public bool $backupCodeEnabled;
+
+    /**
+     * $externalAccounts
+     *
+     * @var array<ExternalAccountWithVerification> $externalAccounts
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('external_accounts')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\ExternalAccountWithVerification>')]
+    public array $externalAccounts;
+
+    /**
+     * $samlAccounts
+     *
+     * @var array<SAMLAccount> $samlAccounts
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('saml_accounts')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\SAMLAccount>')]
+    public array $samlAccounts;
+
+    /**
+     * Flag to denote whether user is banned or not.
+     *
+     *
+     *
+     * @var bool $banned
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('banned')]
+    public bool $banned;
+
+    /**
+     * Flag to denote whether user is currently locked, i.e. restricted from signing in or not.
+     *
+     *
+     *
+     * @var bool $locked
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('locked')]
+    public bool $locked;
+
+    /**
+     * Unix timestamp of last update.
+     *
+     *
+     *
+     * @var int $updatedAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
+    public int $updatedAt;
+
+    /**
+     * Unix timestamp of creation.
+     *
+     *
+     *
+     * @var int $createdAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
+    public int $createdAt;
+
+    /**
+     * If enabled, user can delete themselves via FAPI.
+     *
+     *
+     *
+     * @var bool $deleteSelfEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('delete_self_enabled')]
+    public bool $deleteSelfEnabled;
+
+    /**
+     * If enabled, user can create organizations via FAPI.
+     *
+     *
+     *
+     * @var bool $createOrganizationEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('create_organization_enabled')]
+    public bool $createOrganizationEnabled;
+
+    /**
+     *
+     * @var ?string $externalId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('external_id')]
+    public ?string $externalId;
+
+    /**
+     *
+     * @var ?string $primaryEmailAddressId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('primary_email_address_id')]
+    public ?string $primaryEmailAddressId;
+
+    /**
+     *
+     * @var ?string $primaryPhoneNumberId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('primary_phone_number_id')]
+    public ?string $primaryPhoneNumberId;
+
+    /**
+     *
+     * @var ?string $primaryWeb3WalletId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('primary_web3_wallet_id')]
+    public ?string $primaryWeb3WalletId;
+
+    /**
+     *
+     * @var ?string $username
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('username')]
+    public ?string $username;
+
+    /**
+     *
+     * @var ?string $firstName
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('first_name')]
+    public ?string $firstName;
+
+    /**
+     *
+     * @var ?string $lastName
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('last_name')]
+    public ?string $lastName;
 
     /**
      *
@@ -50,24 +255,6 @@ class User
     public ?string $imageUrl = null;
 
     /**
-     *
-     * @var ?bool $hasImage
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('has_image')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $hasImage = null;
-
-    /**
-     * $publicMetadata
-     *
-     * @var ?array<string, mixed> $publicMetadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $publicMetadata = null;
-
-    /**
      * $unsafeMetadata
      *
      * @var ?array<string, mixed> $unsafeMetadata
@@ -78,218 +265,74 @@ class User
     public ?array $unsafeMetadata = null;
 
     /**
-     * $emailAddresses
+     * Unix timestamp of when MFA was last enabled for this user. It should be noted that this field is not nullified if MFA is disabled.
      *
-     * @var ?array<EmailAddress> $emailAddresses
+     *
+     *
+     * @var ?int $mfaEnabledAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('email_addresses')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\EmailAddress>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $emailAddresses = null;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('mfa_enabled_at')]
+    public ?int $mfaEnabledAt;
 
     /**
-     * $phoneNumbers
+     * Unix timestamp of when MFA was last disabled for this user. It should be noted that this field is not nullified if MFA is enabled again.
      *
-     * @var ?array<PhoneNumber> $phoneNumbers
+     *
+     *
+     * @var ?int $mfaDisabledAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('phone_numbers')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\PhoneNumber>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $phoneNumbers = null;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('mfa_disabled_at')]
+    public ?int $mfaDisabledAt;
 
     /**
-     * $web3Wallets
+     * Unix timestamp of last sign-in.
      *
-     * @var ?array<Web3Wallet> $web3Wallets
+     *
+     *
+     * @var ?int $lastSignInAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('web3_wallets')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\Web3Wallet>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $web3Wallets = null;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('last_sign_in_at')]
+    public ?int $lastSignInAt;
 
     /**
-     * $passkeys
+     * The number of seconds remaining until the lockout period expires for a locked user. A null value for a locked user indicates that lockout never expires.
      *
-     * @var ?array<SchemasPasskey> $passkeys
+     *
+     *
+     * @var ?int $lockoutExpiresInSeconds
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('passkeys')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\SchemasPasskey>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $passkeys = null;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('lockout_expires_in_seconds')]
+    public ?int $lockoutExpiresInSeconds;
 
     /**
+     * The number of verification attempts remaining until the user is locked. Null if account lockout is not enabled. Note: if a user is locked explicitly via the Backend API, they may still have verification attempts remaining.
      *
-     * @var ?bool $passwordEnabled
+     *
+     *
+     * @var ?int $verificationAttemptsRemaining
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('password_enabled')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $passwordEnabled = null;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('verification_attempts_remaining')]
+    public ?int $verificationAttemptsRemaining;
 
     /**
+     * Unix timestamp of the latest session activity, with day precision.
      *
-     * @var ?bool $twoFactorEnabled
+     *
+     *
+     * @var ?int $lastActiveAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('two_factor_enabled')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $twoFactorEnabled = null;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('last_active_at')]
+    public ?int $lastActiveAt;
 
     /**
+     * Unix timestamp of when the user accepted the legal requirements.
      *
-     * @var ?bool $totpEnabled
+     *
+     *
+     * @var ?int $legalAcceptedAt
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('totp_enabled')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $totpEnabled = null;
-
-    /**
-     *
-     * @var ?bool $backupCodeEnabled
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('backup_code_enabled')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $backupCodeEnabled = null;
-
-    /**
-     * $externalAccounts
-     *
-     * @var ?array<ExternalAccounts> $externalAccounts
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('external_accounts')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\ExternalAccounts>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $externalAccounts = null;
-
-    /**
-     * $samlAccounts
-     *
-     * @var ?array<SAMLAccount> $samlAccounts
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('saml_accounts')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\SAMLAccount>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $samlAccounts = null;
-
-    /**
-     * Flag to denote whether user is banned or not.
-     *
-     *
-     *
-     * @var ?bool $banned
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('banned')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $banned = null;
-
-    /**
-     * Flag to denote whether user is currently locked, i.e. restricted from signing in or not.
-     *
-     *
-     *
-     * @var ?bool $locked
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('locked')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $locked = null;
-
-    /**
-     * Unix timestamp of last update.
-     *
-     *
-     *
-     * @var ?int $updatedAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $updatedAt = null;
-
-    /**
-     * Unix timestamp of creation.
-     *
-     *
-     *
-     * @var ?int $createdAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $createdAt = null;
-
-    /**
-     * If enabled, user can delete themselves via FAPI.
-     *
-     *
-     *
-     * @var ?bool $deleteSelfEnabled
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('delete_self_enabled')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $deleteSelfEnabled = null;
-
-    /**
-     * If enabled, user can create organizations via FAPI.
-     *
-     *
-     *
-     * @var ?bool $createOrganizationEnabled
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('create_organization_enabled')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $createOrganizationEnabled = null;
-
-    /**
-     *
-     * @var ?string $externalId
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('external_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $externalId = null;
-
-    /**
-     *
-     * @var ?string $primaryEmailAddressId
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('primary_email_address_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $primaryEmailAddressId = null;
-
-    /**
-     *
-     * @var ?string $primaryPhoneNumberId
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('primary_phone_number_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $primaryPhoneNumberId = null;
-
-    /**
-     *
-     * @var ?string $primaryWeb3WalletId
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('primary_web3_wallet_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $primaryWeb3WalletId = null;
-
-    /**
-     *
-     * @var ?string $username
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('username')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $username = null;
-
-    /**
-     *
-     * @var ?string $firstName
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('first_name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $firstName = null;
-
-    /**
-     *
-     * @var ?string $lastName
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('last_name')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $lastName = null;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('legal_accepted_at')]
+    public ?int $legalAcceptedAt;
 
     /**
      * $privateMetadata
@@ -300,61 +343,6 @@ class User
     #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $privateMetadata = null;
-
-    /**
-     * Unix timestamp of when MFA was last enabled for this user. It should be noted that this field is not nullified if MFA is disabled.
-     *
-     *
-     *
-     * @var ?int $mfaEnabledAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('mfa_enabled_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $mfaEnabledAt = null;
-
-    /**
-     * Unix timestamp of when MFA was last disabled for this user. It should be noted that this field is not nullified if MFA is enabled again.
-     *
-     *
-     *
-     * @var ?int $mfaDisabledAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('mfa_disabled_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $mfaDisabledAt = null;
-
-    /**
-     * Unix timestamp of last sign-in.
-     *
-     *
-     *
-     * @var ?int $lastSignInAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('last_sign_in_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $lastSignInAt = null;
-
-    /**
-     * The number of seconds remaining until the lockout period expires for a locked user. A null value for a locked user indicates that lockout never expires.
-     *
-     *
-     *
-     * @var ?int $lockoutExpiresInSeconds
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('lockout_expires_in_seconds')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $lockoutExpiresInSeconds = null;
-
-    /**
-     * The number of verification attempts remaining until the user is locked. Null if account lockout is not enabled. Note: if a user is locked explicitly via the Backend API, they may still have verification attempts remaining.
-     *
-     *
-     *
-     * @var ?int $verificationAttemptsRemaining
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('verification_attempts_remaining')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $verificationAttemptsRemaining = null;
 
     /**
      * The maximum number of organizations the user can create. 0 means unlimited.
@@ -368,51 +356,26 @@ class User
     public ?int $createOrganizationsLimit = null;
 
     /**
-     * Unix timestamp of the latest session activity, with day precision.
-     *
-     *
-     *
-     * @var ?int $lastActiveAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('last_active_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $lastActiveAt = null;
-
-    /**
-     * Unix timestamp of when the user accepted the legal requirements.
-     *
-     *
-     *
-     * @var ?int $legalAcceptedAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('legal_accepted_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $legalAcceptedAt = null;
-
-    /**
-     * @param  ?string  $id
-     * @param  ?UserObject  $object
-     * @param  ?string  $profileImageUrl
-     * @param  ?string  $imageUrl
-     * @param  ?bool  $hasImage
-     * @param  ?array<string, mixed>  $publicMetadata
-     * @param  ?array<string, mixed>  $unsafeMetadata
-     * @param  ?array<EmailAddress>  $emailAddresses
-     * @param  ?array<PhoneNumber>  $phoneNumbers
-     * @param  ?array<Web3Wallet>  $web3Wallets
-     * @param  ?array<SchemasPasskey>  $passkeys
-     * @param  ?bool  $passwordEnabled
-     * @param  ?bool  $twoFactorEnabled
-     * @param  ?bool  $totpEnabled
-     * @param  ?bool  $backupCodeEnabled
-     * @param  ?array<ExternalAccounts>  $externalAccounts
-     * @param  ?array<SAMLAccount>  $samlAccounts
-     * @param  ?bool  $banned
-     * @param  ?bool  $locked
-     * @param  ?int  $updatedAt
-     * @param  ?int  $createdAt
-     * @param  ?bool  $deleteSelfEnabled
-     * @param  ?bool  $createOrganizationEnabled
+     * @param  string  $id
+     * @param  UserObject  $object
+     * @param  bool  $hasImage
+     * @param  array<string, mixed>  $publicMetadata
+     * @param  array<EmailAddress>  $emailAddresses
+     * @param  array<PhoneNumber>  $phoneNumbers
+     * @param  array<Web3Wallet>  $web3Wallets
+     * @param  array<Passkey>  $passkeys
+     * @param  bool  $passwordEnabled
+     * @param  bool  $twoFactorEnabled
+     * @param  bool  $totpEnabled
+     * @param  bool  $backupCodeEnabled
+     * @param  array<ExternalAccountWithVerification>  $externalAccounts
+     * @param  array<SAMLAccount>  $samlAccounts
+     * @param  bool  $banned
+     * @param  bool  $locked
+     * @param  int  $updatedAt
+     * @param  int  $createdAt
+     * @param  bool  $deleteSelfEnabled
+     * @param  bool  $createOrganizationEnabled
      * @param  ?string  $externalId
      * @param  ?string  $primaryEmailAddressId
      * @param  ?string  $primaryPhoneNumberId
@@ -420,26 +383,26 @@ class User
      * @param  ?string  $username
      * @param  ?string  $firstName
      * @param  ?string  $lastName
-     * @param  ?array<string, mixed>  $privateMetadata
+     * @param  ?string  $profileImageUrl
+     * @param  ?string  $imageUrl
+     * @param  ?array<string, mixed>  $unsafeMetadata
      * @param  ?int  $mfaEnabledAt
      * @param  ?int  $mfaDisabledAt
      * @param  ?int  $lastSignInAt
      * @param  ?int  $lockoutExpiresInSeconds
      * @param  ?int  $verificationAttemptsRemaining
-     * @param  ?int  $createOrganizationsLimit
      * @param  ?int  $lastActiveAt
      * @param  ?int  $legalAcceptedAt
+     * @param  ?array<string, mixed>  $privateMetadata
+     * @param  ?int  $createOrganizationsLimit
      * @phpstan-pure
      */
-    public function __construct(?string $id = null, ?UserObject $object = null, ?string $profileImageUrl = null, ?string $imageUrl = null, ?bool $hasImage = null, ?array $publicMetadata = null, ?array $unsafeMetadata = null, ?array $emailAddresses = null, ?array $phoneNumbers = null, ?array $web3Wallets = null, ?array $passkeys = null, ?bool $passwordEnabled = null, ?bool $twoFactorEnabled = null, ?bool $totpEnabled = null, ?bool $backupCodeEnabled = null, ?array $externalAccounts = null, ?array $samlAccounts = null, ?bool $banned = null, ?bool $locked = null, ?int $updatedAt = null, ?int $createdAt = null, ?bool $deleteSelfEnabled = null, ?bool $createOrganizationEnabled = null, ?string $externalId = null, ?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $username = null, ?string $firstName = null, ?string $lastName = null, ?array $privateMetadata = null, ?int $mfaEnabledAt = null, ?int $mfaDisabledAt = null, ?int $lastSignInAt = null, ?int $lockoutExpiresInSeconds = null, ?int $verificationAttemptsRemaining = null, ?int $createOrganizationsLimit = null, ?int $lastActiveAt = null, ?int $legalAcceptedAt = null)
+    public function __construct(string $id, UserObject $object, bool $hasImage, array $publicMetadata, array $emailAddresses, array $phoneNumbers, array $web3Wallets, array $passkeys, bool $passwordEnabled, bool $twoFactorEnabled, bool $totpEnabled, bool $backupCodeEnabled, array $externalAccounts, array $samlAccounts, bool $banned, bool $locked, int $updatedAt, int $createdAt, bool $deleteSelfEnabled, bool $createOrganizationEnabled, ?string $externalId = null, ?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $username = null, ?string $firstName = null, ?string $lastName = null, ?string $profileImageUrl = null, ?string $imageUrl = null, ?array $unsafeMetadata = null, ?int $mfaEnabledAt = null, ?int $mfaDisabledAt = null, ?int $lastSignInAt = null, ?int $lockoutExpiresInSeconds = null, ?int $verificationAttemptsRemaining = null, ?int $lastActiveAt = null, ?int $legalAcceptedAt = null, ?array $privateMetadata = null, ?int $createOrganizationsLimit = null)
     {
         $this->id = $id;
         $this->object = $object;
-        $this->profileImageUrl = $profileImageUrl;
-        $this->imageUrl = $imageUrl;
         $this->hasImage = $hasImage;
         $this->publicMetadata = $publicMetadata;
-        $this->unsafeMetadata = $unsafeMetadata;
         $this->emailAddresses = $emailAddresses;
         $this->phoneNumbers = $phoneNumbers;
         $this->web3Wallets = $web3Wallets;
@@ -463,14 +426,17 @@ class User
         $this->username = $username;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
-        $this->privateMetadata = $privateMetadata;
+        $this->profileImageUrl = $profileImageUrl;
+        $this->imageUrl = $imageUrl;
+        $this->unsafeMetadata = $unsafeMetadata;
         $this->mfaEnabledAt = $mfaEnabledAt;
         $this->mfaDisabledAt = $mfaDisabledAt;
         $this->lastSignInAt = $lastSignInAt;
         $this->lockoutExpiresInSeconds = $lockoutExpiresInSeconds;
         $this->verificationAttemptsRemaining = $verificationAttemptsRemaining;
-        $this->createOrganizationsLimit = $createOrganizationsLimit;
         $this->lastActiveAt = $lastActiveAt;
         $this->legalAcceptedAt = $legalAcceptedAt;
+        $this->privateMetadata = $privateMetadata;
+        $this->createOrganizationsLimit = $createOrganizationsLimit;
     }
 }
