@@ -8,6 +8,7 @@
 * [listPlans](#listplans) - List all commerce plans
 * [listSubscriptionItems](#listsubscriptionitems) - List all subscription items
 * [cancelSubscriptionItem](#cancelsubscriptionitem) - Cancel a subscription item
+* [extendSubscriptionItemFreeTrial](#extendsubscriptionitemfreetrial) - Extend free trial for a subscription item
 
 ## listPlans
 
@@ -158,6 +159,65 @@ if ($response->commerceSubscriptionItem !== null) {
 ### Response
 
 **[?Operations\CancelCommerceSubscriptionItemResponse](../../Models/Operations/CancelCommerceSubscriptionItemResponse.md)**
+
+### Errors
+
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| Errors\ClerkErrors      | 400, 401, 403, 404, 422 | application/json        |
+| Errors\ClerkErrors      | 500                     | application/json        |
+| Errors\SDKException     | 4XX, 5XX                | \*/\*                   |
+
+## extendSubscriptionItemFreeTrial
+
+Extends the free trial period for a specific subscription item to the specified timestamp.
+The subscription item must be currently in a free trial period, and the plan must support free trials.
+The timestamp must be in the future and not more than 365 days from the end of the current trial period
+This operation is idempotent - repeated requests with the same timestamp will not change the trial period.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="ExtendCommerceSubscriptionItemFreeTrial" method="post" path="/billing/subscription_items/{subscription_item_id}/extend_free_trial" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+use Clerk\Backend\Models\Components;
+use Clerk\Backend\Utils;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+$extendFreeTrialRequest = new Components\ExtendFreeTrialRequest(
+    extendTo: Utils\Utils::parseDateTime('2026-01-08T00:00:00Z'),
+);
+
+$response = $sdk->commerce->extendSubscriptionItemFreeTrial(
+    subscriptionItemId: '<id>',
+    extendFreeTrialRequest: $extendFreeTrialRequest
+
+);
+
+if ($response->commerceSubscriptionItem !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `subscriptionItemId`                                                                   | *string*                                                                               | :heavy_check_mark:                                                                     | The ID of the subscription item to extend the free trial for                           |
+| `extendFreeTrialRequest`                                                               | [Components\ExtendFreeTrialRequest](../../Models/Components/ExtendFreeTrialRequest.md) | :heavy_check_mark:                                                                     | Parameters for extending the free trial                                                |
+
+### Response
+
+**[?Operations\ExtendCommerceSubscriptionItemFreeTrialResponse](../../Models/Operations/ExtendCommerceSubscriptionItemFreeTrialResponse.md)**
 
 ### Errors
 

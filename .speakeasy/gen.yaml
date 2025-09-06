@@ -21,7 +21,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 php:
-  version: 0.3.0
+  version: 0.3.1
   additionalDependencies:
     autoload-dev:
       Clerk\Backend\Tests\: Tests/
