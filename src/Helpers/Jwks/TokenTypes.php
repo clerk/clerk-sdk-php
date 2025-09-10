@@ -25,8 +25,8 @@ class TokenTypes
             return self::UNKNOWN;
         }
 
-        // Machine tokens start with 'mt_'
-        if (str_starts_with($token, 'mt_')) {
+        // Machine tokens start with 'mt_' or 'm2m_'
+        if (str_starts_with($token, 'mt_') || str_starts_with($token, 'm2m_')) {
             return self::MACHINE_TOKEN;
         }
 
@@ -104,7 +104,7 @@ class TokenTypes
 
         return match ($type) {
             self::SESSION_TOKEN => 'session_token',
-            self::MACHINE_TOKEN => 'machine_token',
+            self::MACHINE_TOKEN => 'm2m_token',
             self::OAUTH_TOKEN => 'oauth_token',
             self::API_KEY => 'api_key',
             default => $type

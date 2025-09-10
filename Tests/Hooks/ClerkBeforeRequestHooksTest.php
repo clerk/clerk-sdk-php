@@ -7,9 +7,8 @@ namespace Clerk\Backend\Tests\Hooks;
 use Clerk\Backend\Hooks\BeforeRequestContext;
 use Clerk\Backend\Hooks\ClerkBeforeRequestHook;
 use Clerk\Backend\Hooks\HookContext;
-
+use Clerk\Backend\SDKConfiguration;
 use PHPUnit\Framework\TestCase;
-
 use Psr\Http\Message\RequestInterface;
 
 final class ClerkBeforeRequestHooksTest extends TestCase
@@ -28,8 +27,11 @@ final class ClerkBeforeRequestHooksTest extends TestCase
             )
             ->willReturnSelf();
 
-        // Create a mock for the HookContext
-        $hookContext = new HookContext('test_operation', null, null);
+        // Create a mock SDKConfiguration
+        $sdkConfig = $this->createMock(SDKConfiguration::class);
+
+        // Create a HookContext with proper parameters
+        $hookContext = new HookContext($sdkConfig, 'https://api.clerk.com', 'test_operation', null, null);
 
         // Create the BeforeRequestContext with the HookContext
         $context = new BeforeRequestContext($hookContext);

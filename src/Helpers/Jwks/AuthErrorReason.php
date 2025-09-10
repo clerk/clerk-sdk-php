@@ -23,7 +23,7 @@ class AuthErrorReason
         );
         self::$TOKEN_TYPE_NOT_SUPPORTED = new ErrorReason(
             'token-type-not-supported',
-            'The provided token type is not supported. Expected one of: session_token, machine_token, oauth_token, or api_key.'
+            'The provided token type is not supported. Expected one of: session_token, m2m_token, oauth_token, or api_key.'
         );
     }
 }
