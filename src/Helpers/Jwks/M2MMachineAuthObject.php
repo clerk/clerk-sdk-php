@@ -4,7 +4,7 @@ namespace Clerk\Backend\Helpers\Jwks;
 
 class M2MMachineAuthObject implements AuthObject
 {
-    public string $token_type = 'machine_token';
+    public string $token_type = 'm2m_token';
     public ?string $id;
     public ?string $machine_id;
     public ?string $client_id;

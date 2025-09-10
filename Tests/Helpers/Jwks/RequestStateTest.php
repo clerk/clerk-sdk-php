@@ -148,7 +148,7 @@ final class RequestStateTest extends TestCase
         $auth = $state->toAuth();
 
         $this->assertInstanceOf(M2MMachineAuthObject::class, $auth);
-        $this->assertEquals('machine_token', $auth->token_type);
+        $this->assertEquals('m2m_token', $auth->token_type);
         $this->assertEquals('m2m_123', $auth->id);
         $this->assertEquals('mch_456', $auth->machine_id);
         $this->assertEquals('client_789', $auth->client_id);
@@ -371,7 +371,7 @@ final class RequestStateTest extends TestCase
 
         $authObject = new M2MMachineAuthObject($payload);
 
-        $this->assertEquals('machine_token', $authObject->token_type);
+        $this->assertEquals('m2m_token', $authObject->token_type);
         $this->assertEquals('m2m_123', $authObject->id);
         $this->assertEquals('mch_456', $authObject->machine_id);
         $this->assertEquals('client_789', $authObject->client_id);
@@ -389,7 +389,7 @@ final class RequestStateTest extends TestCase
 
         $authObject = new M2MMachineAuthObject($payload);
 
-        $this->assertEquals('machine_token', $authObject->token_type);
+        $this->assertEquals('m2m_token', $authObject->token_type);
         $this->assertEquals('m2m_123', $authObject->id);
         $this->assertEquals('mch_456', $authObject->machine_id);
         $this->assertNull($authObject->client_id);

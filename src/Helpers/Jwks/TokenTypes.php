@@ -104,7 +104,7 @@ class TokenTypes
 
         return match ($type) {
             self::SESSION_TOKEN => 'session_token',
-            self::MACHINE_TOKEN => 'machine_token',
+            self::MACHINE_TOKEN => 'm2m_token',
             self::OAUTH_TOKEN => 'oauth_token',
             self::API_KEY => 'api_key',
             default => $type

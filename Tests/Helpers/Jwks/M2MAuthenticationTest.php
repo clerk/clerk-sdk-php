@@ -48,7 +48,7 @@ final class M2MAuthenticationTest extends TestCase
         // Scenario: Microservice that only accepts M2M tokens
         $arOptions = new AuthenticateRequestOptions(
             secretKey: 'sk_test_secret',
-            acceptsToken: ['machine_token']
+            acceptsToken: ['m2m_token']
         );
 
         // Should accept M2M token
@@ -91,7 +91,7 @@ final class M2MAuthenticationTest extends TestCase
         // Scenario: API that accepts both session tokens and M2M tokens
         $arOptions = new AuthenticateRequestOptions(
             secretKey: 'sk_test_secret',
-            acceptsToken: ['session_token', 'machine_token']
+            acceptsToken: ['session_token', 'm2m_token']
         );
 
         // Should accept M2M token
@@ -115,7 +115,7 @@ final class M2MAuthenticationTest extends TestCase
         // Machine tokens should require secret key for verification
         $arOptions = new AuthenticateRequestOptions(
             jwtKey: 'jwt_key_only',
-            acceptsToken: ['machine_token']
+            acceptsToken: ['m2m_token']
         );
 
         $m2mContext = $this->createHttpContextWithToken('mt_service_token_123');
@@ -130,7 +130,7 @@ final class M2MAuthenticationTest extends TestCase
         // Machine tokens should accept machine secret key for verification
         $arOptions = new AuthenticateRequestOptions(
             machineSecretKey: 'msk_test_machine_secret',
-            acceptsToken: ['machine_token']
+            acceptsToken: ['m2m_token']
         );
 
         $m2mContext = $this->createHttpContextWithToken('mt_service_token_123');
@@ -176,9 +176,9 @@ final class M2MAuthenticationTest extends TestCase
     public function test_token_type_name_generation()
     {
         // Test new mt_ prefix
-        $this->assertEquals('machine_token', TokenTypes::getTokenTypeName('mt_token_123'));
+        $this->assertEquals('m2m_token', TokenTypes::getTokenTypeName('mt_token_123'));
         // Test legacy m2m_ prefix
-        $this->assertEquals('machine_token', TokenTypes::getTokenTypeName('m2m_token_123'));
+        $this->assertEquals('m2m_token', TokenTypes::getTokenTypeName('m2m_token_123'));
         $this->assertEquals('oauth_token', TokenTypes::getTokenTypeName('oat_token_123'));
         $this->assertEquals('api_key', TokenTypes::getTokenTypeName('ak_key_123'));
         $this->assertEquals('session_token', TokenTypes::getTokenTypeName('eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.session'));

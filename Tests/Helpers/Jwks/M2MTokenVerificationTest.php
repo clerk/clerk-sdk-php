@@ -33,12 +33,12 @@ final class M2MTokenVerificationTest extends TestCase
         // Test old m2m_ prefix
         $this->assertEquals(TokenTypes::MACHINE_TOKEN, TokenTypes::getTokenType('m2m_old_style_token'));
         $this->assertTrue(TokenTypes::isMachineToken('m2m_old_style_token'));
-        $this->assertEquals('machine_token', TokenTypes::getTokenTypeName('m2m_old_style_token'));
+        $this->assertEquals('m2m_token', TokenTypes::getTokenTypeName('m2m_old_style_token'));
 
         // Test new mt_ prefix
         $this->assertEquals(TokenTypes::MACHINE_TOKEN, TokenTypes::getTokenType('mt_new_style_token'));
         $this->assertTrue(TokenTypes::isMachineToken('mt_new_style_token'));
-        $this->assertEquals('machine_token', TokenTypes::getTokenTypeName('mt_new_style_token'));
+        $this->assertEquals('m2m_token', TokenTypes::getTokenTypeName('mt_new_style_token'));
     }
 
     public function test_verify_token_options_supports_machine_secret_key()
@@ -95,7 +95,7 @@ final class M2MTokenVerificationTest extends TestCase
         // Test that machine tokens can be verified with regular secret key
         $arOptions = new AuthenticateRequestOptions(
             secretKey: 'sk_test_secret',
-            acceptsToken: ['machine_token']
+            acceptsToken: ['m2m_token']
         );
 
         // Should accept mt_ token with secret key
@@ -118,7 +118,7 @@ final class M2MTokenVerificationTest extends TestCase
         // Test that machine tokens can be verified with machine secret key
         $arOptions = new AuthenticateRequestOptions(
             machineSecretKey: 'msk_test_machine_secret',
-            acceptsToken: ['machine_token']
+            acceptsToken: ['m2m_token']
         );
 
         // Should accept mt_ token with machine secret key
@@ -135,7 +135,7 @@ final class M2MTokenVerificationTest extends TestCase
         $arOptions = new AuthenticateRequestOptions(
             secretKey: 'sk_test_secret',
             machineSecretKey: 'msk_test_machine_secret',
-            acceptsToken: ['machine_token']
+            acceptsToken: ['m2m_token']
         );
 
         $m2mContext = $this->createHttpContextWithToken('mt_new_token_123');
@@ -150,7 +150,7 @@ final class M2MTokenVerificationTest extends TestCase
         // Test that machine tokens require either secret key or machine secret key
         $arOptions = new AuthenticateRequestOptions(
             jwtKey: 'jwt_key_only',
-            acceptsToken: ['machine_token']
+            acceptsToken: ['m2m_token']
         );
 
         $m2mContext = $this->createHttpContextWithToken('mt_new_token_123');
@@ -218,7 +218,7 @@ final class M2MTokenVerificationTest extends TestCase
         $arOptions = new AuthenticateRequestOptions(
             jwtKey: 'jwt_key_for_sessions',
             machineSecretKey: 'msk_test_machine_secret',
-            acceptsToken: ['session_token', 'machine_token']
+            acceptsToken: ['session_token', 'm2m_token']
         );
 
         // Machine token should use machine secret key
@@ -236,12 +236,12 @@ final class M2MTokenVerificationTest extends TestCase
     {
         // Ensure existing m2m_ tokens still work with the new implementation
         $this->assertTrue(TokenTypes::isMachineToken('m2m_legacy_token_123'));
-        $this->assertEquals('machine_token', TokenTypes::getTokenTypeName('m2m_legacy_token_123'));
+        $this->assertEquals('m2m_token', TokenTypes::getTokenTypeName('m2m_legacy_token_123'));
 
         // Test with authenticate request
         $arOptions = new AuthenticateRequestOptions(
             secretKey: 'sk_test_secret',
-            acceptsToken: ['machine_token']
+            acceptsToken: ['m2m_token']
         );
 
         $legacyContext = $this->createHttpContextWithToken('m2m_legacy_token_123');
@@ -258,7 +258,7 @@ final class M2MTokenVerificationTest extends TestCase
         $arOptions = new AuthenticateRequestOptions(
             secretKey: 'sk_test_secret',
             machineSecretKey: 'msk_test_machine_secret',
-            acceptsToken: ['machine_token']
+            acceptsToken: ['m2m_token']
         );
 
         $m2mContext = $this->createHttpContextWithToken('mt_new_token_123');
