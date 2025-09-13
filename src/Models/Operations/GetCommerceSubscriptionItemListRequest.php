@@ -57,6 +57,22 @@ class GetCommerceSubscriptionItemListRequest
     public ?string $query = null;
 
     /**
+     * Filter subscription items by user ID
+     *
+     * @var ?string $userId
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=user_id')]
+    public ?string $userId = null;
+
+    /**
+     * Filter subscription items by organization ID
+     *
+     * @var ?string $organizationId
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=organization_id')]
+    public ?string $organizationId = null;
+
+    /**
      * Applies a limit to the number of results returned.
      *
      * Can be used for paginating the results together with `offset`.
@@ -94,15 +110,19 @@ class GetCommerceSubscriptionItemListRequest
      * @param  ?string  $planId
      * @param  ?bool  $includeFree
      * @param  ?string  $query
+     * @param  ?string  $userId
+     * @param  ?string  $organizationId
      * @phpstan-pure
      */
-    public function __construct(?bool $paginated = null, ?GetCommerceSubscriptionItemListQueryParamStatus $status = null, ?QueryParamPayerType $payerType = null, ?string $planId = null, ?string $query = null, ?int $limit = 10, ?int $offset = 0, ?bool $includeFree = false)
+    public function __construct(?bool $paginated = null, ?GetCommerceSubscriptionItemListQueryParamStatus $status = null, ?QueryParamPayerType $payerType = null, ?string $planId = null, ?string $query = null, ?string $userId = null, ?string $organizationId = null, ?int $limit = 10, ?int $offset = 0, ?bool $includeFree = false)
     {
         $this->paginated = $paginated;
         $this->status = $status;
         $this->payerType = $payerType;
         $this->planId = $planId;
         $this->query = $query;
+        $this->userId = $userId;
+        $this->organizationId = $organizationId;
         $this->limit = $limit;
         $this->offset = $offset;
         $this->includeFree = $includeFree;
