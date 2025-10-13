@@ -157,10 +157,12 @@ class VerifyToken
 
         $kid = self::parseKid($token);
 
-        // Check cache first
-        $cachedPem = self::$jwkCache->get($kid);
-        if ($cachedPem !== null) {
-            return $cachedPem;
+        if (!$options->getSkipJwksCache()) {    
+            // Check cache first
+            $cachedPem = self::$jwkCache->get($kid);
+            if ($cachedPem !== null) {
+                return $cachedPem;
+            }
         }
 
         // Not in cache, fetch from API
