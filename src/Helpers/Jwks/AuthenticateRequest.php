@@ -51,7 +51,8 @@ class AuthenticateRequest
 
             $verifyTokenOptions = new VerifyTokenOptions(
                 secretKey: $options->getSecretKey(),
-                machineSecretKey: $options->getMachineSecretKey()
+                machineSecretKey: $options->getMachineSecretKey(),
+                skipJwksCache: $options->getSkipJwksCache()
             );
         } else {
             // Session tokens can use either JWT key or secret key
@@ -60,14 +61,16 @@ class AuthenticateRequest
                     jwtKey: $options->getJwtKey(),
                     audiences: $options->getAudiences(),
                     authorizedParties: $options->getAuthorizedParties(),
-                    clockSkewInMs: $options->getClockSkewInMs()
+                    clockSkewInMs: $options->getClockSkewInMs(),
+                    skipJwksCache: $options->getSkipJwksCache()
                 );
             } elseif ($options->getSecretKey() !== null) {
                 $verifyTokenOptions = new VerifyTokenOptions(
                     secretKey: $options->getSecretKey(),
                     audiences: $options->getAudiences(),
                     authorizedParties: $options->getAuthorizedParties(),
-                    clockSkewInMs: $options->getClockSkewInMs()
+                    clockSkewInMs: $options->getClockSkewInMs(),
+                    skipJwksCache: $options->getSkipJwksCache()
                 );
             } else {
                 return RequestState::signedOut(AuthErrorReason::$SECRET_KEY_MISSING);

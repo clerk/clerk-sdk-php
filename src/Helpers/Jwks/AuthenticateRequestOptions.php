@@ -16,7 +16,7 @@ class AuthenticateRequestOptions
     private int $clockSkewInMs;
     /** @var array<string> */
     private array $acceptsToken;
-
+    private bool $skipJwksCache;
     /**
      * Options to configure AuthenticateRequest::authenticateRequest.
      *
@@ -27,6 +27,7 @@ class AuthenticateRequestOptions
      * @param  ?array<string>  $authorizedParties  An allowlist of origins to verify against.
      * @param  ?int  $clockSkewInMs  Allowed time difference (in milliseconds) between the Clerk server (which generates the token) and the clock of the user's application server when validating a token. Defaults to 5000 ms.
      * @param  ?array<string>  $acceptsToken  A list of token types to accept. Defaults to ["any"].
+     * @param  ?bool  $skipJwksCache  Whether to skip the JWKS cache. Defaults to false.
      * @throws AuthenticateRequestException
      */
     public function __construct(
@@ -36,7 +37,8 @@ class AuthenticateRequestOptions
         ?array $audiences = null,
         ?array $authorizedParties = null,
         ?int $clockSkewInMs = null,
-        ?array $acceptsToken = null
+        ?array $acceptsToken = null,
+        ?bool $skipJwksCache = false
     ) {
         if (empty($secretKey) && empty($machineSecretKey) && empty($jwtKey)) {
             throw new AuthenticateRequestException(AuthErrorReason::$SECRET_KEY_MISSING);
@@ -49,6 +51,7 @@ class AuthenticateRequestOptions
         $this->authorizedParties = $authorizedParties ?? [];
         $this->clockSkewInMs = $clockSkewInMs ?? self::DEFAULT_CLOCK_SKEW_MS;
         $this->acceptsToken = $acceptsToken ?? ['any'];
+        $this->skipJwksCache = $skipJwksCache;
     }
 
     public function getSecretKey(): ?string

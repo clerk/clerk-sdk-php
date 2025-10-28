@@ -19,6 +19,8 @@ use stdClass;
 
 class VerifyToken
 {
+    private static ?Cache $jwkCache = null;
+
     /**
      * Verifies the given JWT token.
      *
@@ -148,8 +150,22 @@ class VerifyToken
 
     private static function getRemoteJwtKey(string $token, VerifyTokenOptions $options): string
     {
+        // Initialize cache if needed
+        if (self::$jwkCache === null) {
+            self::$jwkCache = new Cache();
+        }
+
         $kid = self::parseKid($token);
 
+        if (!$options->getSkipJwksCache()) {    
+            // Check cache first
+            $cachedPem = self::$jwkCache->get($kid);
+            if ($cachedPem !== null) {
+                return $cachedPem;
+            }
+        }
+
+        // Not in cache, fetch from API
         $jwks = self::fetchJwks($options);
         if ($jwks->keys === null) {
             throw new TokenVerificationException(TokenVerificationErrorReason::$JWK_REMOTE_INVALID);
@@ -168,7 +184,12 @@ class VerifyToken
                         'e' => new BigInteger($rsaExponent, 256),
                     ]);
 
-                    return $rsaKey->toString('PKCS8');
+                    $pem = $rsaKey->toString('PKCS8');
+
+                    // Cache the PEM
+                    self::$jwkCache->set($kid, $pem);
+
+                    return $pem;
                 } catch (Exception $ex) {
                     throw new TokenVerificationException(TokenVerificationErrorReason::$JWK_FAILED_TO_RESOLVE, $ex);
                 }

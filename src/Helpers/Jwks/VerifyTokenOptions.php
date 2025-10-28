@@ -18,7 +18,7 @@ class VerifyTokenOptions
     private int $clockSkewInMs;
     private string $apiUrl;
     private string $apiVersion;
-
+    private bool $skipJwksCache;
     /**
      * Options to configure VerifyToken::verifyToken.
      *
@@ -30,7 +30,7 @@ class VerifyTokenOptions
      * @param  ?int  $clockSkewInMs  Allowed time difference (in milliseconds) between the Clerk server (which generates the token) and the clock of the user's application server when validating a token. Defaults to 5000 ms.
      * @param  ?string  $apiUrl  The Clerk Backend API endpoint. Defaults to 'https://api.clerk.com'
      * @param  ?string  $apiVersion  The version passed to the Clerk API. Defaults to 'v1'
-
+     * @param  ?bool  $skipJwksCache  Whether to skip the JWKS cache. Defaults to false.
      * @throws TokenVerificationException
      */
     public function __construct(
@@ -41,7 +41,8 @@ class VerifyTokenOptions
         ?array $authorizedParties = null,
         ?int $clockSkewInMs = self::DEFAULT_CLOCK_SKEW_MS,
         ?string $apiUrl = self::DEFAULT_API_URL,
-        ?string $apiVersion = self::DEFAULT_API_VERSION
+        ?string $apiVersion = self::DEFAULT_API_VERSION,
+        ?bool $skipJwksCache = false
     ) {
         if (empty($secretKey) && empty($machineSecretKey) && empty($jwtKey)) {
             throw new TokenVerificationException(TokenVerificationErrorReason::$SECRET_KEY_MISSING);
@@ -55,6 +56,7 @@ class VerifyTokenOptions
         $this->clockSkewInMs = $clockSkewInMs;
         $this->apiUrl = $apiUrl;
         $this->apiVersion = $apiVersion;
+        $this->skipJwksCache = $skipJwksCache;
     }
 
     public function getSecretKey(): ?string
