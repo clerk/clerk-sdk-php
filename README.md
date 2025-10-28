@@ -215,7 +215,6 @@ if ($response->statusCode === 200) {
 * [create](docs/sdks/blocklistidentifiers/README.md#create) - Add identifier to the block-list
 * [delete](docs/sdks/blocklistidentifiers/README.md#delete) - Delete identifier from block-list
 
-
 ### [clients](docs/sdks/clients/README.md)
 
 * [~~list~~](docs/sdks/clients/README.md#list) - List all clients :warning: **Deprecated**
@@ -227,6 +226,7 @@ if ($response->statusCode === 200) {
 * [listPlans](docs/sdks/commerce/README.md#listplans) - List all commerce plans
 * [listSubscriptionItems](docs/sdks/commerce/README.md#listsubscriptionitems) - List all subscription items
 * [cancelSubscriptionItem](docs/sdks/commerce/README.md#cancelsubscriptionitem) - Cancel a subscription item
+* [extendSubscriptionItemFreeTrial](docs/sdks/commerce/README.md#extendsubscriptionitemfreetrial) - Extend free trial for a subscription item
 
 ### [domains](docs/sdks/domains/README.md)
 
@@ -300,6 +300,7 @@ if ($response->statusCode === 200) {
 * [update](docs/sdks/machines/README.md#update) - Update a machine
 * [delete](docs/sdks/machines/README.md#delete) - Delete a machine
 * [getSecretKey](docs/sdks/machines/README.md#getsecretkey) - Retrieve a machine secret key
+* [rotateSecretKey](docs/sdks/machines/README.md#rotatesecretkey) - Rotate a machine's secret key
 * [createScope](docs/sdks/machines/README.md#createscope) - Create a machine scope
 * [deleteScope](docs/sdks/machines/README.md#deletescope) - Delete a machine scope
 
@@ -447,6 +448,7 @@ if ($response->statusCode === 200) {
 
 * [list](docs/sdks/waitlistentries/README.md#list) - List all waitlist entries
 * [create](docs/sdks/waitlistentries/README.md#create) - Create a waitlist entry
+* [delete](docs/sdks/waitlistentries/README.md#delete) - Delete a pending waitlist entry
 * [invite](docs/sdks/waitlistentries/README.md#invite) - Invite a waitlist entry
 * [reject](docs/sdks/waitlistentries/README.md#reject) - Reject a waitlist entry
 

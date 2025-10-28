@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 8c24a12b-d2f1-466a-bdaa-6d83a049a679
 management:
-  docChecksum: aa0e8124d4a66a769e20d3dd3f15430c
+  docChecksum: de1405838dc8c6c096e18a9badd21ac2
   docVersion: "2025-04-10"
-  speakeasyVersion: 1.606.9
-  generationVersion: 2.687.13
-  releaseVersion: 0.3.0
-  configChecksum: 49707dff3f36f9522e0c9e90871d3967
+  speakeasyVersion: 1.640.0
+  generationVersion: 2.730.5
+  releaseVersion: 0.4.0
+  configChecksum: 0f335ba54d0b74afe46a7375b775bdf2
   repoURL: https://github.com/clerk/clerk-sdk-php.git
   installationURL: https://github.com/clerk/clerk-sdk-php
   published: true
@@ -14,19 +14,19 @@ features:
   php:
     additionalProperties: 0.1.0
     constsAndDefaults: 0.2.0
-    core: 3.8.9
+    core: 3.9.0
     deprecations: 2.81.1
     examples: 2.81.6
     flattening: 2.81.1
-    globalSecurity: 2.81.8
+    globalSecurity: 2.81.9
     globalSecurityFlattening: 0.1.2
     globalServerURLs: 2.82.2
-    groups: 2.81.2
+    groups: 2.81.3
     methodArguments: 0.1.0
     nameOverrides: 2.81.2
     nullables: 1.0.1
     responseFormat: 0.1.0
-    retries: 0.1.0
+    retries: 0.1.1
     unions: 0.1.5
 generatedFiles:
   - .gitattributes
@@ -89,6 +89,7 @@ generatedFiles:
   - docs/Models/Components/Error.md
   - docs/Models/Components/ErrorClerkError.md
   - docs/Models/Components/ErrorMeta.md
+  - docs/Models/Components/ExtendFreeTrialRequest.md
   - docs/Models/Components/ExternalAccount.md
   - docs/Models/Components/ExternalAccountWithVerification.md
   - docs/Models/Components/ExternalAccountWithVerificationObject.md
@@ -449,10 +450,14 @@ generatedFiles:
   - docs/Models/Operations/DeleteUserProfileImageResponse.md
   - docs/Models/Operations/DeleteUserRequest.md
   - docs/Models/Operations/DeleteUserResponse.md
+  - docs/Models/Operations/DeleteWaitlistEntryRequest.md
+  - docs/Models/Operations/DeleteWaitlistEntryResponse.md
   - docs/Models/Operations/DisableMFARequest.md
   - docs/Models/Operations/DisableMFAResponse.md
   - docs/Models/Operations/DisableMFAResponseBody.md
   - docs/Models/Operations/EnrollmentMode.md
+  - docs/Models/Operations/ExtendCommerceSubscriptionItemFreeTrialRequest.md
+  - docs/Models/Operations/ExtendCommerceSubscriptionItemFreeTrialResponse.md
   - docs/Models/Operations/File.md
   - docs/Models/Operations/Format.md
   - docs/Models/Operations/GenerateSvixAuthURLResponse.md
@@ -600,6 +605,9 @@ generatedFiles:
   - docs/Models/Operations/RevokeSessionResponse.md
   - docs/Models/Operations/RevokeSignInTokenRequest.md
   - docs/Models/Operations/RevokeSignInTokenResponse.md
+  - docs/Models/Operations/RotateMachineSecretKeyRequest.md
+  - docs/Models/Operations/RotateMachineSecretKeyRequestBody.md
+  - docs/Models/Operations/RotateMachineSecretKeyResponse.md
   - docs/Models/Operations/RotateOAuthApplicationSecretRequest.md
   - docs/Models/Operations/RotateOAuthApplicationSecretResponse.md
   - docs/Models/Operations/SetUserProfileImageRequest.md
@@ -719,7 +727,6 @@ generatedFiles:
   - docs/sdks/awscredentials/README.md
   - docs/sdks/betafeatures/README.md
   - docs/sdks/blocklistidentifiers/README.md
-  - docs/sdks/clerkbackend/README.md
   - docs/sdks/clients/README.md
   - docs/sdks/commerce/README.md
   - docs/sdks/domains/README.md
@@ -849,6 +856,7 @@ generatedFiles:
   - src/Models/Components/EnrollmentMode.php
   - src/Models/Components/ErrorClerkError.php
   - src/Models/Components/ErrorMeta.php
+  - src/Models/Components/ExtendFreeTrialRequest.php
   - src/Models/Components/ExternalAccount.php
   - src/Models/Components/ExternalAccountWithVerification.php
   - src/Models/Components/ExternalAccountWithVerificationObject.php
@@ -1207,10 +1215,14 @@ generatedFiles:
   - src/Models/Operations/DeleteUserProfileImageResponse.php
   - src/Models/Operations/DeleteUserRequest.php
   - src/Models/Operations/DeleteUserResponse.php
+  - src/Models/Operations/DeleteWaitlistEntryRequest.php
+  - src/Models/Operations/DeleteWaitlistEntryResponse.php
   - src/Models/Operations/DisableMFARequest.php
   - src/Models/Operations/DisableMFAResponse.php
   - src/Models/Operations/DisableMFAResponseBody.php
   - src/Models/Operations/EnrollmentMode.php
+  - src/Models/Operations/ExtendCommerceSubscriptionItemFreeTrialRequest.php
+  - src/Models/Operations/ExtendCommerceSubscriptionItemFreeTrialResponse.php
   - src/Models/Operations/File.php
   - src/Models/Operations/Format.php
   - src/Models/Operations/GenerateSvixAuthURLResponse.php
@@ -1358,6 +1370,9 @@ generatedFiles:
   - src/Models/Operations/RevokeSessionResponse.php
   - src/Models/Operations/RevokeSignInTokenRequest.php
   - src/Models/Operations/RevokeSignInTokenResponse.php
+  - src/Models/Operations/RotateMachineSecretKeyRequest.php
+  - src/Models/Operations/RotateMachineSecretKeyRequestBody.php
+  - src/Models/Operations/RotateMachineSecretKeyResponse.php
   - src/Models/Operations/RotateOAuthApplicationSecretRequest.php
   - src/Models/Operations/RotateOAuthApplicationSecretResponse.php
   - src/Models/Operations/SetUserProfileImageRequest.php
@@ -3097,6 +3112,47 @@ examples:
           application/json: {"errors": []}
         "404":
           application/json: {"errors": []}
+  RotateMachineSecretKey:
+    speakeasy-default-rotate-machine-secret-key:
+      parameters:
+        path:
+          machine_id: "<id>"
+      requestBody:
+        application/json: {"previous_token_ttl": 632625}
+      responses:
+        "200":
+          application/json: {"object": "machine_secret_key", "secret": "<value>"}
+        "400":
+          application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
+  DeleteWaitlistEntry:
+    speakeasy-default-delete-waitlist-entry:
+      parameters:
+        path:
+          waitlist_entry_id: "<id>"
+      responses:
+        "200":
+          application/json: {"object": "<value>", "deleted": false}
+        "400":
+          application/json: {"errors": []}
+  ExtendCommerceSubscriptionItemFreeTrial:
+    speakeasy-default-extend-commerce-subscription-item-free-trial:
+      parameters:
+        path:
+          subscription_item_id: "<id>"
+      requestBody:
+        application/json: {"extend_to": "2026-01-08T00:00:00Z"}
+      responses:
+        "200":
+          application/json: {"object": "commerce_subscription_item", "id": "<id>", "instance_id": "<id>", "status": "incomplete", "plan_id": "<id>", "plan": {"object": "commerce_plan", "id": "<id>", "name": "<value>", "fee": {"amount": 246876, "amount_formatted": "<value>", "currency": "Afghani", "currency_symbol": "kr"}, "annual_monthly_fee": {"amount": 802114, "amount_formatted": "<value>", "currency": "Czech Koruna", "currency_symbol": "£"}, "annual_fee": {"amount": 35560, "amount_formatted": "<value>", "currency": "Lek", "currency_symbol": "$U"}, "amount": 547002, "amount_formatted": "<value>", "annual_monthly_amount": 229468, "annual_monthly_amount_formatted": "<value>", "annual_amount": 799095, "annual_amount_formatted": "<value>", "currency_symbol": "₭", "currency": "Cayman Islands Dollar", "description": "under for anenst finally", "product_id": "<id>", "is_default": false, "is_recurring": false, "publicly_visible": false, "has_base_fee": true, "payer_type": ["<value 1>", "<value 2>"], "for_payer_type": "<value>", "slug": "<value>", "avatar_url": "https://thorny-monocle.name", "features": [{"object": "feature", "id": "<id>", "name": "<value>", "description": "tiny among all hopelessly sympathetically up scar", "slug": "<value>", "avatar_url": "https://immediate-equal.com/"}]}, "plan_period": "month", "payment_source_id": "<id>", "payer_id": "<id>", "is_free_trial": false, "proration_date": "<value>", "created_at": 518769, "updated_at": 177754}
+        "400":
+          application/json: {"errors": []}
+        "500":
+          application/json: {"errors": []}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## SDK Changes Detected:\n* `clerkbackend->sessions->createToken()`: \n  *  `requestBody->expiresInSeconds` **Changed** **Breaking** :warning:\n* `clerkbackend->sessions->createTokenFromTemplate()`: \n  *  `requestBody->expiresInSeconds` **Changed** **Breaking** :warning:\n* `clerkbackend->users->list()`:  `response.[]` **Changed** **Breaking** :warning:\n* `clerkbackend->users->create()`:  `response` **Changed** **Breaking** :warning:\n* `clerkbackend->users->get()`:  `response` **Changed** **Breaking** :warning:\n* `clerkbackend->samlconnections->update()`: \n  *  `requestBody->domains` **Added**\n  *  `response` **Changed** **Breaking** :warning:\n* `clerkbackend->samlconnections->get()`:  `response` **Changed** **Breaking** :warning:\n* `clerkbackend->samlconnections->create()`: \n  *  `request` **Changed** **Breaking** :warning:\n  *  `response` **Changed** **Breaking** :warning:\n* `clerkbackend->samlconnections->list()`:  `response.data->[]` **Changed** **Breaking** :warning:\n* `clerkbackend->jwttemplates->update()`:  `requestBody` **Changed** **Breaking** :warning:\n* `clerkbackend->jwttemplates->create()`:  `request` **Changed** **Breaking** :warning:\n* `clerkbackend->instancesettings->updateRestrictions()`: \n  *  `request` **Changed** **Breaking** :warning:\n  *  `response` **Changed** **Breaking** :warning:\n* `clerkbackend->organizationinvitations->list()`: \n  *  `request` **Changed** **Breaking** :warning:\n  *  `error.status[422]` **Added**\n* `clerkbackend->users->getOAuthAccessToken()`:  `response.[]` **Changed** **Breaking** :warning:\n* `clerkbackend->users->updateMetadata()`:  `response` **Changed** **Breaking** :warning:\n* `clerkbackend->users->deleteProfileImage()`:  `response` **Changed** **Breaking** :warning:\n* `clerkbackend->users->setProfileImage()`:  `response` **Changed** **Breaking** :warning:\n* `clerkbackend->users->unlock()`:  `response` **Changed** **Breaking** :warning:\n* `clerkbackend->users->lock()`:  `response` **Changed** **Breaking** :warning:\n* `clerkbackend->users->unban()`:  `response` **Changed** **Breaking** :warning:\n* `clerkbackend->users->ban()`:  `response` **Changed** **Breaking** :warning:\n* `clerkbackend->users->update()`:  `response` **Changed** **Breaking** :warning:\n* `clerkbackend->sessions->revoke()`:  `response.tasks` **Added**\n* `clerkbackend->machines->get()`: **Added**\n* `clerkbackend->experimentalaccountlessapplications->complete()`: **Added**\n* `clerkbackend->commerce->listPlans()`: **Added**\n* `clerkbackend->commerce->listSubscriptionItems()`: **Added**\n* `clerkbackend->commerce->cancelSubscriptionItem()`: **Added**\n* `clerkbackend->m2m->createToken()`: **Added**\n* `clerkbackend->m2m->listTokens()`: **Added**\n* `clerkbackend->m2m->revokeToken()`: **Added**\n* `clerkbackend->m2m->verifyToken()`: **Added**\n* `clerkbackend->oauthaccesstokens->verify()`: **Added**\n* `clerkbackend->sessions->verify()`: **Deleted** **Breaking** :warning:\n* `clerkbackend->clients->list()`:  `response.[]->sessions->[]->tasks` **Added**\n* `clerkbackend->clients->verify()`:  `response.sessions->[]->tasks` **Added**\n* `clerkbackend->clients->get()`:  `response.sessions->[]->tasks` **Added**\n* `clerkbackend->emailaddresses->create()`:  `response.verification` **Changed**\n* `clerkbackend->emailaddresses->get()`:  `response.verification` **Changed**\n* `clerkbackend->emailaddresses->update()`:  `response.verification` **Changed**\n* `clerkbackend->phonenumbers->create()`:  `response.verification` **Changed**\n* `clerkbackend->phonenumbers->get()`:  `response.verification` **Changed**\n* `clerkbackend->phonenumbers->update()`:  `response.verification` **Changed**\n* `clerkbackend->sessions->list()`:  `response.[]->tasks` **Added**\n* `clerkbackend->sessions->create()`:  `response.tasks` **Added**\n* `clerkbackend->sessions->get()`:  `response.tasks` **Added**\n* `clerkbackend->waitlistentries->reject()`: **Added**\n* `clerkbackend->emailsmstemplates->list()`:  `response.[]` **Changed**\n* `clerkbackend->emailsmstemplates->get()`:  `response` **Changed**\n* `clerkbackend->waitlistentries->invite()`: **Added**\n* `clerkbackend->organizationdomains->listAll()`: **Added**\n* `clerkbackend->organizations->getBillingSubscription()`: **Added**\n* `clerkbackend->machines->deleteScope()`: **Added**\n* `clerkbackend->machines->createScope()`: **Added**\n* `clerkbackend->machines->getSecretKey()`: **Added**\n* `clerkbackend->machines->delete()`: **Added**\n* `clerkbackend->machines->update()`: **Added**\n* `clerkbackend->experimentalaccountlessapplications->create()`: **Added**\n* `clerkbackend->emailsmstemplates->revert()`:  `response` **Changed**\n* `clerkbackend->emailsmstemplates->toggleTemplateDelivery()`:  `response` **Changed**\n* `clerkbackend->emailandsmstemplates->upsert()`:  `response` **Changed**\n* `clerkbackend->users->getOrganizationMemberships()`:  `response.data->[]->organization` **Changed**\n* `clerkbackend->users->getInstanceOrganizationMemberships()`:  `response.data->[]->organization` **Changed**\n* `clerkbackend->invitations->list()`: \n  *  `request->orderBy` **Changed**\n* `clerkbackend->machines->create()`: **Added**\n* `clerkbackend->machines->list()`: **Added**\n* `clerkbackend->instancesettings->updateOrganizationSettings()`:  `response.maxAllowedPermissions` **Changed**\n* `clerkbackend->users->getBillingSubscription()`: **Added**\n* `clerkbackend->users->bulkUnban()`: **Added**\n* `clerkbackend->organizations->list()`:  `response.data->[]` **Changed**\n* `clerkbackend->organizations->create()`:  `response` **Changed**\n* `clerkbackend->organizations->get()`:  `response` **Changed**\n* `clerkbackend->organizations->update()`:  `response` **Changed**\n* `clerkbackend->organizations->mergeMetadata()`:  `response` **Changed**\n* `clerkbackend->organizations->uploadLogo()`:  `response.privateMetadata` **Changed**\n* `clerkbackend->organizations->deleteLogo()`:  `response` **Changed**\n* `clerkbackend->organizationmemberships->create()`:  `response.organization` **Changed**\n* `clerkbackend->organizationmemberships->list()`:  `response.data->[]->organization` **Changed**\n* `clerkbackend->organizationmemberships->update()`:  `response.organization` **Changed**\n* `clerkbackend->organizationmemberships->delete()`: \n  *  `response.organization` **Changed**\n  *  `error.status[422]` **Added**\n* `clerkbackend->organizationmemberships->updateMetadata()`:  `response.organization` **Changed**\n* `clerkbackend->organizationdomains->create()`:  `response.publicOrganizationData` **Added**\n* `clerkbackend->organizationdomains->list()`:  `response.data->[]->publicOrganizationData` **Added**\n* `clerkbackend->organizationdomains->update()`:  `response.publicOrganizationData` **Added**\n* `clerkbackend->oauthapplications->list()`: \n  *  `request` **Changed**\n  *  `response.data->[]` **Changed**\n* `clerkbackend->oauthapplications->create()`: \n  *  `request` **Changed**\n  *  `response` **Changed**\n* `clerkbackend->oauthapplications->get()`:  `response` **Changed**\n* `clerkbackend->oauthapplications->update()`: \n  *  `requestBody` **Changed**\n  *  `response` **Changed**\n* `clerkbackend->oauthapplications->rotateSecret()`:  `response` **Changed**\n* `clerkbackend->users->bulkBan()`: **Added**\n* `clerkbackend->sessions->refresh()`: **Added**\n* `clerkbackend->awscredentials->update()`: **Added**\n* `clerkbackend->awscredentials->delete()`: **Added**\n"
+releaseNotes: |
+  ## Php SDK Changes Detected:
+  * `clerkbackend->machines->rotateSecretKey()`: **Added**
+  * `clerkbackend->waitlistentries->delete()`: **Added**
+  * `clerkbackend->commerce->extendSubscriptionItemFreeTrial()`: **Added**
+  * `clerkbackend->commerce->listSubscriptionItems()`:  `request` **Changed**
