@@ -12,7 +12,7 @@ class ClerkBeforeRequestHook implements BeforeRequestHook
     {
         return $request->withHeader(
             'Clerk-API-Version',
-            '2024-10-01'
+            '2025-11-10'
         );
     }
 }
