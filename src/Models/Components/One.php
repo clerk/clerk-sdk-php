@@ -91,6 +91,35 @@ class One
     public bool $syncUserAttributes;
 
     /**
+     *
+     * @var bool $allowSubdomains
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('allow_subdomains')]
+    public bool $allowSubdomains;
+
+    /**
+     *
+     * @var bool $allowIdpInitiated
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('allow_idp_initiated')]
+    public bool $allowIdpInitiated;
+
+    /**
+     *
+     * @var bool $disableAdditionalIdentifications
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('disable_additional_identifications')]
+    public bool $disableAdditionalIdentifications;
+
+    /**
+     * Enable or deactivate ForceAuthn
+     *
+     * @var bool $forceAuthn
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('force_authn')]
+    public bool $forceAuthn;
+
+    /**
      * Unix timestamp of creation.
      *
      *
@@ -152,30 +181,6 @@ class One
 
     /**
      *
-     * @var ?bool $allowSubdomains
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('allow_subdomains')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $allowSubdomains = null;
-
-    /**
-     *
-     * @var ?bool $allowIdpInitiated
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('allow_idp_initiated')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $allowIdpInitiated = null;
-
-    /**
-     *
-     * @var ?bool $disableAdditionalIdentifications
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('disable_additional_identifications')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $disableAdditionalIdentifications = null;
-
-    /**
-     *
      * @var ?string $idpMetadataUrl
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('idp_metadata_url')]
@@ -210,6 +215,10 @@ class One
      * @param  string  $provider
      * @param  int  $userCount
      * @param  bool  $syncUserAttributes
+     * @param  bool  $allowSubdomains
+     * @param  bool  $allowIdpInitiated
+     * @param  bool  $disableAdditionalIdentifications
+     * @param  bool  $forceAuthn
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  ?array<string>  $domains
@@ -217,15 +226,12 @@ class One
      * @param  ?string  $idpSsoUrl
      * @param  ?string  $idpCertificate
      * @param  ?SAMLConnectionAttributeMapping  $attributeMapping
-     * @param  ?bool  $allowSubdomains
-     * @param  ?bool  $allowIdpInitiated
-     * @param  ?bool  $disableAdditionalIdentifications
      * @param  ?string  $idpMetadataUrl
      * @param  ?string  $idpMetadata
      * @param  ?string  $organizationId
      * @phpstan-pure
      */
-    public function __construct(SchemasSAMLConnectionObject $object, string $id, string $name, string $domain, string $acsUrl, string $spEntityId, string $spMetadataUrl, bool $active, string $provider, int $userCount, bool $syncUserAttributes, int $createdAt, int $updatedAt, ?array $domains = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?SAMLConnectionAttributeMapping $attributeMapping = null, ?bool $allowSubdomains = null, ?bool $allowIdpInitiated = null, ?bool $disableAdditionalIdentifications = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null)
+    public function __construct(SchemasSAMLConnectionObject $object, string $id, string $name, string $domain, string $acsUrl, string $spEntityId, string $spMetadataUrl, bool $active, string $provider, int $userCount, bool $syncUserAttributes, bool $allowSubdomains, bool $allowIdpInitiated, bool $disableAdditionalIdentifications, bool $forceAuthn, int $createdAt, int $updatedAt, ?array $domains = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?SAMLConnectionAttributeMapping $attributeMapping = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -238,6 +244,10 @@ class One
         $this->provider = $provider;
         $this->userCount = $userCount;
         $this->syncUserAttributes = $syncUserAttributes;
+        $this->allowSubdomains = $allowSubdomains;
+        $this->allowIdpInitiated = $allowIdpInitiated;
+        $this->disableAdditionalIdentifications = $disableAdditionalIdentifications;
+        $this->forceAuthn = $forceAuthn;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
         $this->domains = $domains;
@@ -245,9 +255,6 @@ class One
         $this->idpSsoUrl = $idpSsoUrl;
         $this->idpCertificate = $idpCertificate;
         $this->attributeMapping = $attributeMapping;
-        $this->allowSubdomains = $allowSubdomains;
-        $this->allowIdpInitiated = $allowIdpInitiated;
-        $this->disableAdditionalIdentifications = $disableAdditionalIdentifications;
         $this->idpMetadataUrl = $idpMetadataUrl;
         $this->idpMetadata = $idpMetadata;
         $this->organizationId = $organizationId;

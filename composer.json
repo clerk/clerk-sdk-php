@@ -20,8 +20,8 @@
     "brick/date-time": ">=0.7.0",
     "phpdocumentor/type-resolver": ">=1.8",
     "brick/math": ">=0.12.1",
-    "firebase/php-jwt": "^6.10",
-    "phpseclib/phpseclib": "^3.0"
+    "phpseclib/phpseclib": "^3.0",
+    "firebase/php-jwt": "^6.10"
   },
   "require-dev": {
     "laravel/pint": ">=1.21.2",

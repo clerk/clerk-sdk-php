@@ -56,6 +56,14 @@ class UpdateInstanceOrganizationSettingsRequestBody
     public ?bool $domainsEnabled = null;
 
     /**
+     *
+     * @var ?bool $slugDisabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('slug_disabled')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $slugDisabled = null;
+
+    /**
      * Specify what the default organization role is for an organization creator.
      *
      * @var ?string $creatorRoleId
@@ -79,17 +87,19 @@ class UpdateInstanceOrganizationSettingsRequestBody
      * @param  ?int  $maxAllowedMemberships
      * @param  ?bool  $adminDeleteEnabled
      * @param  ?bool  $domainsEnabled
+     * @param  ?bool  $slugDisabled
      * @param  ?string  $creatorRoleId
      * @param  ?string  $domainsDefaultRoleId
      * @phpstan-pure
      */
-    public function __construct(?array $domainsEnrollmentModes = null, ?bool $enabled = null, ?int $maxAllowedMemberships = null, ?bool $adminDeleteEnabled = null, ?bool $domainsEnabled = null, ?string $creatorRoleId = null, ?string $domainsDefaultRoleId = null)
+    public function __construct(?array $domainsEnrollmentModes = null, ?bool $enabled = null, ?int $maxAllowedMemberships = null, ?bool $adminDeleteEnabled = null, ?bool $domainsEnabled = null, ?bool $slugDisabled = null, ?string $creatorRoleId = null, ?string $domainsDefaultRoleId = null)
     {
         $this->domainsEnrollmentModes = $domainsEnrollmentModes;
         $this->enabled = $enabled;
         $this->maxAllowedMemberships = $maxAllowedMemberships;
         $this->adminDeleteEnabled = $adminDeleteEnabled;
         $this->domainsEnabled = $domainsEnabled;
+        $this->slugDisabled = $slugDisabled;
         $this->creatorRoleId = $creatorRoleId;
         $this->domainsDefaultRoleId = $domainsDefaultRoleId;
     }

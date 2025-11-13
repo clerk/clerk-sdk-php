@@ -23,7 +23,7 @@ class Token
     public TokenObject $object;
 
     /**
-     * String representing the encoded jwt value.
+     * String representing the encoded JSON Web Token (JWT) value.
      *
      *
      *

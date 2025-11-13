@@ -141,6 +141,15 @@ class CreateUserRequestBody
     public ?string $lastName = null;
 
     /**
+     * The locale to assign to the user (e.g., "en-US", "fr-FR")
+     *
+     * @var ?string $locale
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('locale')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $locale = null;
+
+    /**
      * The username to give to the user.
      *
      * It must be unique across your instance.
@@ -286,6 +295,7 @@ class CreateUserRequestBody
      * @param  ?string  $externalId
      * @param  ?string  $firstName
      * @param  ?string  $lastName
+     * @param  ?string  $locale
      * @param  ?string  $username
      * @param  ?string  $password
      * @param  ?string  $passwordDigest
@@ -300,7 +310,7 @@ class CreateUserRequestBody
      * @param  ?string  $createdAt
      * @phpstan-pure
      */
-    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $web3Wallet = null, ?string $passwordHasher = null, ?array $backupCodes = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $username = null, ?string $password = null, ?string $passwordDigest = null, ?bool $skipPasswordChecks = null, ?bool $skipPasswordRequirement = null, ?string $totpSecret = null, ?bool $deleteSelfEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?bool $createOrganizationEnabled = null, ?int $createOrganizationsLimit = null, ?string $createdAt = null)
+    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $web3Wallet = null, ?string $passwordHasher = null, ?array $backupCodes = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $locale = null, ?string $username = null, ?string $password = null, ?string $passwordDigest = null, ?bool $skipPasswordChecks = null, ?bool $skipPasswordRequirement = null, ?string $totpSecret = null, ?bool $deleteSelfEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?bool $createOrganizationEnabled = null, ?int $createOrganizationsLimit = null, ?string $createdAt = null)
     {
         $this->emailAddress = $emailAddress;
         $this->phoneNumber = $phoneNumber;
@@ -313,6 +323,7 @@ class CreateUserRequestBody
         $this->externalId = $externalId;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
+        $this->locale = $locale;
         $this->username = $username;
         $this->password = $password;
         $this->passwordDigest = $passwordDigest;

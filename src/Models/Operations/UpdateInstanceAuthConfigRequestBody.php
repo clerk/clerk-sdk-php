@@ -33,17 +33,6 @@ class UpdateInstanceAuthConfigRequestBody
     public ?bool $progressiveSignUp = null;
 
     /**
-     * The "enhanced_email_deliverability" feature will send emails from "verifications@clerk.dev" instead of your domain.
-     *
-     * This can be helpful if you do not have a high domain reputation.
-     *
-     * @var ?bool $enhancedEmailDeliverability
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('enhanced_email_deliverability')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $enhancedEmailDeliverability = null;
-
-    /**
      * Toggles test mode for this instance, allowing the use of test email addresses and phone numbers.
      *
      * Defaults to true for development instances.
@@ -67,15 +56,13 @@ class UpdateInstanceAuthConfigRequestBody
      * @param  ?bool  $restrictedToAllowlist
      * @param  ?string  $fromEmailAddress
      * @param  ?bool  $progressiveSignUp
-     * @param  ?bool  $enhancedEmailDeliverability
      * @param  ?bool  $testMode
      * @phpstan-pure
      */
-    public function __construct(?string $fromEmailAddress = null, ?bool $progressiveSignUp = null, ?bool $enhancedEmailDeliverability = null, ?bool $testMode = null, ?bool $restrictedToAllowlist = false)
+    public function __construct(?string $fromEmailAddress = null, ?bool $progressiveSignUp = null, ?bool $testMode = null, ?bool $restrictedToAllowlist = false)
     {
         $this->fromEmailAddress = $fromEmailAddress;
         $this->progressiveSignUp = $progressiveSignUp;
-        $this->enhancedEmailDeliverability = $enhancedEmailDeliverability;
         $this->testMode = $testMode;
         $this->restrictedToAllowlist = $restrictedToAllowlist;
     }

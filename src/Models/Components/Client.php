@@ -17,11 +17,11 @@ class Client
      *
      *
      *
-     * @var ClientObject $object
+     * @var ObjectT $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ClientObject')]
-    public ClientObject $object;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ObjectT')]
+    public ObjectT $object;
 
     /**
      * String representing the identifier of the session.
@@ -96,7 +96,17 @@ class Client
     public ?string $lastActiveSessionId;
 
     /**
-     * @param  ClientObject  $object
+     * The authentication strategy that was last used to authenticate the user on this client.
+     *
+     *
+     *
+     * @var ?string $lastAuthenticationStrategy
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('last_authentication_strategy')]
+    public ?string $lastAuthenticationStrategy;
+
+    /**
+     * @param  ObjectT  $object
      * @param  string  $id
      * @param  array<string>  $sessionIds
      * @param  array<Session>  $sessions
@@ -105,9 +115,10 @@ class Client
      * @param  ?string  $signInId
      * @param  ?string  $signUpId
      * @param  ?string  $lastActiveSessionId
+     * @param  ?string  $lastAuthenticationStrategy
      * @phpstan-pure
      */
-    public function __construct(ClientObject $object, string $id, array $sessionIds, array $sessions, int $updatedAt, int $createdAt, ?string $signInId = null, ?string $signUpId = null, ?string $lastActiveSessionId = null)
+    public function __construct(ObjectT $object, string $id, array $sessionIds, array $sessions, int $updatedAt, int $createdAt, ?string $signInId = null, ?string $signUpId = null, ?string $lastActiveSessionId = null, ?string $lastAuthenticationStrategy = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -118,5 +129,6 @@ class Client
         $this->signInId = $signInId;
         $this->signUpId = $signUpId;
         $this->lastActiveSessionId = $lastActiveSessionId;
+        $this->lastAuthenticationStrategy = $lastAuthenticationStrategy;
     }
 }

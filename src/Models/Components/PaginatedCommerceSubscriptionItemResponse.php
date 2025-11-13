@@ -13,7 +13,7 @@ namespace Clerk\Backend\Models\Components;
 class PaginatedCommerceSubscriptionItemResponse
 {
     /**
-     * Array of commerce subscription items.
+     * Array of subscription items.
      *
      * @var array<CommerceSubscriptionItem> $data
      */
@@ -22,7 +22,7 @@ class PaginatedCommerceSubscriptionItemResponse
     public array $data;
 
     /**
-     * Total number of commerce subscription items.
+     * Total number of subscription items.
      *
      * @var int $totalCount
      */

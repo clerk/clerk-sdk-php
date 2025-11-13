@@ -38,7 +38,7 @@ class UpdateJWTTemplateRequestBody
     public ?bool $customSigningKey = null;
 
     /**
-     * JWT token lifetime
+     * JWT lifetime
      *
      * @var ?int $lifetime
      */
@@ -47,7 +47,7 @@ class UpdateJWTTemplateRequestBody
     public ?int $lifetime = null;
 
     /**
-     * JWT token allowed clock skew
+     * JWT allowed clock skew
      *
      * @var ?int $allowedClockSkew
      */

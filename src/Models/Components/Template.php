@@ -214,7 +214,7 @@ class Template
     public ?int $createdAt = null;
 
     /**
-     * The id of the instance to which this template belongs
+     * The ID of the instance to which the template belongs
      *
      * @var ?string $instanceId
      */

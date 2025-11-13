@@ -16,5 +16,5 @@ namespace Clerk\Backend\Models\Components;
  */
 enum ObjectT: string
 {
-    case AwsCredential = 'aws_credential';
+    case Client = 'client';
 }

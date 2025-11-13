@@ -12,7 +12,7 @@ namespace Clerk\Backend\Models\Operations;
 class CreateSessionTokenFromTemplateRequestBody
 {
     /**
-     * Use this parameter to override the JWT token lifetime.
+     * Use this parameter to override the JWT lifetime.
      *
      * @var ?int $expiresInSeconds
      */

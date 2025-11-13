@@ -43,17 +43,27 @@ class DeletedObject
     public ?string $slug = null;
 
     /**
+     *
+     * @var ?string $externalId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('external_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $externalId = null;
+
+    /**
      * @param  string  $object
      * @param  bool  $deleted
      * @param  ?string  $id
      * @param  ?string  $slug
+     * @param  ?string  $externalId
      * @phpstan-pure
      */
-    public function __construct(string $object, bool $deleted, ?string $id = null, ?string $slug = null)
+    public function __construct(string $object, bool $deleted, ?string $id = null, ?string $slug = null, ?string $externalId = null)
     {
         $this->object = $object;
         $this->deleted = $deleted;
         $this->id = $id;
         $this->slug = $slug;
+        $this->externalId = $externalId;
     }
 }

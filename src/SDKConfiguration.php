@@ -22,13 +22,13 @@ class SDKConfiguration
 
     public string $language = 'php';
 
-    public string $openapiDocVersion = '2025-04-10';
+    public string $openapiDocVersion = '2025-11-10';
 
-    public string $sdkVersion = '0.3.0';
+    public string $sdkVersion = '0.4.0';
 
-    public string $genVersion = '2.687.13';
+    public string $genVersion = '2.753.1';
 
-    public string $userAgent = 'speakeasy-sdk/php 0.3.0 2.687.13 2025-04-10 clerkinc/backend-php';
+    public string $userAgent = 'speakeasy-sdk/php 0.4.0 2.753.1 2025-11-10 clerkinc/backend-php';
 
     public ?RetryConfig $retryConfig = null;
 

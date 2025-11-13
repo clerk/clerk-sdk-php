@@ -153,7 +153,7 @@ if ($response->organizationDomain !== null) {
 
 | Parameter                                                                                                        | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
 | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `organizationId`                                                                                                 | *string*                                                                                                         | :heavy_check_mark:                                                                                               | The ID of the organization the domain belongs to                                                                 |
+| `organizationId`                                                                                                 | *string*                                                                                                         | :heavy_check_mark:                                                                                               | The ID of the organization to which the domain belongs                                                           |
 | `domainId`                                                                                                       | *string*                                                                                                         | :heavy_check_mark:                                                                                               | The ID of the domain                                                                                             |
 | `requestBody`                                                                                                    | [Operations\UpdateOrganizationDomainRequestBody](../../Models/Operations/UpdateOrganizationDomainRequestBody.md) | :heavy_check_mark:                                                                                               | N/A                                                                                                              |
 
@@ -203,10 +203,10 @@ if ($response->deletedObject !== null) {
 
 ### Parameters
 
-| Parameter                                        | Type                                             | Required                                         | Description                                      |
-| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| `organizationId`                                 | *string*                                         | :heavy_check_mark:                               | The ID of the organization the domain belongs to |
-| `domainId`                                       | *string*                                         | :heavy_check_mark:                               | The ID of the domain                             |
+| Parameter                                              | Type                                                   | Required                                               | Description                                            |
+| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
+| `organizationId`                                       | *string*                                               | :heavy_check_mark:                                     | The ID of the organization to which the domain belongs |
+| `domainId`                                             | *string*                                               | :heavy_check_mark:                                     | The ID of the domain                                   |
 
 ### Response
 

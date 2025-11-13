@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace Clerk\Backend\Models\Components;
 
 
-/** The billing period for this subscription. */
+/** The billing period for this subscription item. */
 enum PlanPeriod: string
 {
     case Month = 'month';

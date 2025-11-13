@@ -20,11 +20,22 @@ class CreateSessionRequestBody
     public string $userId;
 
     /**
+     * The ID of the organization to set as active for this session
+     *
+     * @var ?string $activeOrganizationId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('active_organization_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $activeOrganizationId = null;
+
+    /**
      * @param  string  $userId
+     * @param  ?string  $activeOrganizationId
      * @phpstan-pure
      */
-    public function __construct(string $userId)
+    public function __construct(string $userId, ?string $activeOrganizationId = null)
     {
         $this->userId = $userId;
+        $this->activeOrganizationId = $activeOrganizationId;
     }
 }

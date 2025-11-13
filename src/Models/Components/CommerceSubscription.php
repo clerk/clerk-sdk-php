@@ -80,22 +80,12 @@ class CommerceSubscription
     public array $subscriptionItems;
 
     /**
-     *
-     * @var ?CommerceSubscriptionNextPayment $nextPayment
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('next_payment')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceSubscriptionNextPayment|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?CommerceSubscriptionNextPayment $nextPayment = null;
-
-    /**
      * Unix timestamp (milliseconds) when the subscription became active.
      *
      * @var ?int $activeAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('active_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $activeAt = null;
+    public ?int $activeAt;
 
     /**
      * Unix timestamp (milliseconds) when the subscription became past due.
@@ -103,8 +93,16 @@ class CommerceSubscription
      * @var ?int $pastDueAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('past_due_at')]
+    public ?int $pastDueAt;
+
+    /**
+     *
+     * @var ?CommerceSubscriptionNextPayment $nextPayment
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('next_payment')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceSubscriptionNextPayment|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $pastDueAt = null;
+    public ?CommerceSubscriptionNextPayment $nextPayment = null;
 
     /**
      * Whether the payer is eligible for a free trial.
@@ -124,13 +122,13 @@ class CommerceSubscription
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  array<CommerceSubscriptionItem>  $subscriptionItems
-     * @param  ?CommerceSubscriptionNextPayment  $nextPayment
      * @param  ?int  $activeAt
      * @param  ?int  $pastDueAt
+     * @param  ?CommerceSubscriptionNextPayment  $nextPayment
      * @param  ?bool  $eligibleForFreeTrial
      * @phpstan-pure
      */
-    public function __construct(CommerceSubscriptionObject $object, string $id, string $instanceId, CommerceSubscriptionStatus $status, string $payerId, int $createdAt, int $updatedAt, array $subscriptionItems, ?CommerceSubscriptionNextPayment $nextPayment = null, ?int $activeAt = null, ?int $pastDueAt = null, ?bool $eligibleForFreeTrial = null)
+    public function __construct(CommerceSubscriptionObject $object, string $id, string $instanceId, CommerceSubscriptionStatus $status, string $payerId, int $createdAt, int $updatedAt, array $subscriptionItems, ?int $activeAt = null, ?int $pastDueAt = null, ?CommerceSubscriptionNextPayment $nextPayment = null, ?bool $eligibleForFreeTrial = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -140,9 +138,9 @@ class CommerceSubscription
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
         $this->subscriptionItems = $subscriptionItems;
-        $this->nextPayment = $nextPayment;
         $this->activeAt = $activeAt;
         $this->pastDueAt = $pastDueAt;
+        $this->nextPayment = $nextPayment;
         $this->eligibleForFreeTrial = $eligibleForFreeTrial;
     }
 }

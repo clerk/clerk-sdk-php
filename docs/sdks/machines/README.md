@@ -11,6 +11,7 @@
 * [update](#update) - Update a machine
 * [delete](#delete) - Delete a machine
 * [getSecretKey](#getsecretkey) - Retrieve a machine secret key
+* [rotateSecretKey](#rotatesecretkey) - Rotate a machine's secret key
 * [createScope](#createscope) - Create a machine scope
 * [deleteScope](#deletescope) - Delete a machine scope
 
@@ -313,6 +314,62 @@ if ($response->machineSecretKey !== null) {
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 400, 401, 403, 404  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## rotateSecretKey
+
+Rotates the machine's secret key.
+When the secret key is rotated, make sure to update it in your machine/application.
+The previous secret key will remain valid for the duration specified by the previous_token_ttl parameter.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="RotateMachineSecretKey" method="post" path="/machines/{machine_id}/secret_key/rotate" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+$requestBody = new Operations\RotateMachineSecretKeyRequestBody(
+    previousTokenTtl: 632625,
+);
+
+$response = $sdk->machines->rotateSecretKey(
+    machineId: '<id>',
+    requestBody: $requestBody
+
+);
+
+if ($response->machineSecretKey !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `machineId`                                                                                                  | *string*                                                                                                     | :heavy_check_mark:                                                                                           | The ID of the machine to rotate the secret key for                                                           |
+| `requestBody`                                                                                                | [Operations\RotateMachineSecretKeyRequestBody](../../Models/Operations/RotateMachineSecretKeyRequestBody.md) | :heavy_check_mark:                                                                                           | N/A                                                                                                          |
+
+### Response
+
+**[?Operations\RotateMachineSecretKeyResponse](../../Models/Operations/RotateMachineSecretKeyResponse.md)**
+
+### Errors
+
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| Errors\ClerkErrors      | 400, 401, 403, 404, 422 | application/json        |
+| Errors\SDKException     | 4XX, 5XX                | \*/\*                   |
 
 ## createScope
 

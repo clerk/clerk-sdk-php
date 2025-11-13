@@ -15,11 +15,11 @@ class Payer
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var CommerceSubscriptionItemPayerObject $object
+     * @var SchemasCommerceSubscriptionItemPayerObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceSubscriptionItemPayerObject')]
-    public CommerceSubscriptionItemPayerObject $object;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemPayerObject')]
+    public SchemasCommerceSubscriptionItemPayerObject $object;
 
     /**
      * Unique identifier for the payer.
@@ -113,7 +113,7 @@ class Payer
     public ?string $organizationName = null;
 
     /**
-     * @param  CommerceSubscriptionItemPayerObject  $object
+     * @param  SchemasCommerceSubscriptionItemPayerObject  $object
      * @param  string  $id
      * @param  string  $instanceId
      * @param  string  $firstName
@@ -127,7 +127,7 @@ class Payer
      * @param  ?string  $organizationName
      * @phpstan-pure
      */
-    public function __construct(CommerceSubscriptionItemPayerObject $object, string $id, string $instanceId, string $firstName, string $lastName, string $email, string $imageUrl, int $createdAt, int $updatedAt, ?string $userId = null, ?string $organizationId = null, ?string $organizationName = null)
+    public function __construct(SchemasCommerceSubscriptionItemPayerObject $object, string $id, string $instanceId, string $firstName, string $lastName, string $email, string $imageUrl, int $createdAt, int $updatedAt, ?string $userId = null, ?string $organizationId = null, ?string $organizationName = null)
     {
         $this->object = $object;
         $this->id = $id;

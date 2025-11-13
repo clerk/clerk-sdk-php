@@ -21,7 +21,7 @@ class CommercePlan
     public CommercePlanObject $object;
 
     /**
-     * Unique identifier for the commerce plan.
+     * Unique identifier for the plan.
      *
      * @var string $id
      */
@@ -29,7 +29,7 @@ class CommercePlan
     public string $id;
 
     /**
-     * The name of the commerce plan.
+     * The name of the plan.
      *
      * @var string $name
      */
@@ -45,97 +45,10 @@ class CommercePlan
     public CommerceMoneyResponse $fee;
 
     /**
-     *
-     * @var CommerceMoneyResponse $annualMonthlyFee
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('annual_monthly_fee')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
-    public CommerceMoneyResponse $annualMonthlyFee;
-
-    /**
-     *
-     * @var CommerceMoneyResponse $annualFee
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('annual_fee')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
-    public CommerceMoneyResponse $annualFee;
-
-    /**
-     * The amount in cents for the plan.
-     *
-     * @var int $amount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    public int $amount;
-
-    /**
-     * The formatted amount as a string (e.g., "$49.99").
-     *
-     * @var string $amountFormatted
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('amount_formatted')]
-    public string $amountFormatted;
-
-    /**
-     * The monthly amount in cents when billed annually.
-     *
-     * @var int $annualMonthlyAmount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('annual_monthly_amount')]
-    public int $annualMonthlyAmount;
-
-    /**
-     * The formatted annual monthly amount as a string.
-     *
-     * @var string $annualMonthlyAmountFormatted
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('annual_monthly_amount_formatted')]
-    public string $annualMonthlyAmountFormatted;
-
-    /**
-     * The total annual amount in cents.
-     *
-     * @var int $annualAmount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('annual_amount')]
-    public int $annualAmount;
-
-    /**
-     * The formatted annual amount as a string.
-     *
-     * @var string $annualAmountFormatted
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('annual_amount_formatted')]
-    public string $annualAmountFormatted;
-
-    /**
-     * The currency symbol (e.g., "$").
-     *
-     * @var string $currencySymbol
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('currency_symbol')]
-    public string $currencySymbol;
-
-    /**
-     * The currency code (e.g., "USD").
-     *
-     * @var string $currency
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('currency')]
-    public string $currency;
-
-    /**
-     * The description of the commerce plan.
-     *
-     * @var string $description
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
-    public string $description;
-
-    /**
      * The ID of the product this plan belongs to.
      *
      * @var string $productId
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('product_id')]
     public string $productId;
@@ -173,15 +86,6 @@ class CommercePlan
     public bool $hasBaseFee;
 
     /**
-     * The types of payers that can use this plan.
-     *
-     * @var array<string> $payerType
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('payer_type')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>')]
-    public array $payerType;
-
-    /**
      * The payer type this plan is designed for.
      *
      * @var string $forPayerType
@@ -198,48 +102,54 @@ class CommercePlan
     public string $slug;
 
     /**
+     * Whether free trial is enabled for this plan.
+     *
+     * @var bool $freeTrialEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('free_trial_enabled')]
+    public bool $freeTrialEnabled;
+
+    /**
+     *
+     * @var ?AnnualMonthlyFee $annualMonthlyFee
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('annual_monthly_fee')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\AnnualMonthlyFee|null')]
+    public ?AnnualMonthlyFee $annualMonthlyFee;
+
+    /**
+     *
+     * @var ?AnnualFee $annualFee
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('annual_fee')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\AnnualFee|null')]
+    public ?AnnualFee $annualFee;
+
+    /**
+     * The description of the plan.
+     *
+     * @var ?string $description
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
+    public ?string $description;
+
+    /**
      * The URL of the plan's avatar image.
      *
-     * @var string $avatarUrl
+     * @var ?string $avatarUrl
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('avatar_url')]
-    public string $avatarUrl;
+    public ?string $avatarUrl;
 
     /**
      * The features included in this plan.
      *
-     * @var array<FeatureResponse> $features
+     * @var ?array<FeatureResponse> $features
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('features')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\FeatureResponse>')]
-    public array $features;
-
-    /**
-     * The billing period for the plan.
-     *
-     * @var ?string $period
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('period')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\FeatureResponse>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $period = null;
-
-    /**
-     * The billing interval.
-     *
-     * @var ?int $interval
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('interval')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $interval = null;
-
-    /**
-     * Whether free trial is enabled for this plan.
-     *
-     * @var ?bool $freeTrialEnabled
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('free_trial_enabled')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $freeTrialEnabled = null;
+    public ?array $features = null;
 
     /**
      * Number of free trial days for this plan.
@@ -247,71 +157,48 @@ class CommercePlan
      * @var ?int $freeTrialDays
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('free_trial_days')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $freeTrialDays = null;
+    public ?int $freeTrialDays;
 
     /**
      * @param  CommercePlanObject  $object
      * @param  string  $id
      * @param  string  $name
      * @param  CommerceMoneyResponse  $fee
-     * @param  CommerceMoneyResponse  $annualMonthlyFee
-     * @param  CommerceMoneyResponse  $annualFee
-     * @param  int  $amount
-     * @param  string  $amountFormatted
-     * @param  int  $annualMonthlyAmount
-     * @param  string  $annualMonthlyAmountFormatted
-     * @param  int  $annualAmount
-     * @param  string  $annualAmountFormatted
-     * @param  string  $currencySymbol
-     * @param  string  $currency
-     * @param  string  $description
      * @param  string  $productId
      * @param  bool  $isDefault
      * @param  bool  $isRecurring
      * @param  bool  $publiclyVisible
      * @param  bool  $hasBaseFee
-     * @param  array<string>  $payerType
      * @param  string  $forPayerType
      * @param  string  $slug
-     * @param  string  $avatarUrl
-     * @param  array<FeatureResponse>  $features
-     * @param  ?string  $period
-     * @param  ?int  $interval
-     * @param  ?bool  $freeTrialEnabled
+     * @param  bool  $freeTrialEnabled
+     * @param  ?AnnualMonthlyFee  $annualMonthlyFee
+     * @param  ?AnnualFee  $annualFee
+     * @param  ?string  $description
+     * @param  ?string  $avatarUrl
+     * @param  ?array<FeatureResponse>  $features
      * @param  ?int  $freeTrialDays
      * @phpstan-pure
      */
-    public function __construct(CommercePlanObject $object, string $id, string $name, CommerceMoneyResponse $fee, CommerceMoneyResponse $annualMonthlyFee, CommerceMoneyResponse $annualFee, int $amount, string $amountFormatted, int $annualMonthlyAmount, string $annualMonthlyAmountFormatted, int $annualAmount, string $annualAmountFormatted, string $currencySymbol, string $currency, string $description, string $productId, bool $isDefault, bool $isRecurring, bool $publiclyVisible, bool $hasBaseFee, array $payerType, string $forPayerType, string $slug, string $avatarUrl, array $features, ?string $period = null, ?int $interval = null, ?bool $freeTrialEnabled = null, ?int $freeTrialDays = null)
+    public function __construct(CommercePlanObject $object, string $id, string $name, CommerceMoneyResponse $fee, string $productId, bool $isDefault, bool $isRecurring, bool $publiclyVisible, bool $hasBaseFee, string $forPayerType, string $slug, bool $freeTrialEnabled, ?AnnualMonthlyFee $annualMonthlyFee = null, ?AnnualFee $annualFee = null, ?string $description = null, ?string $avatarUrl = null, ?array $features = null, ?int $freeTrialDays = null)
     {
         $this->object = $object;
         $this->id = $id;
         $this->name = $name;
         $this->fee = $fee;
-        $this->annualMonthlyFee = $annualMonthlyFee;
-        $this->annualFee = $annualFee;
-        $this->amount = $amount;
-        $this->amountFormatted = $amountFormatted;
-        $this->annualMonthlyAmount = $annualMonthlyAmount;
-        $this->annualMonthlyAmountFormatted = $annualMonthlyAmountFormatted;
-        $this->annualAmount = $annualAmount;
-        $this->annualAmountFormatted = $annualAmountFormatted;
-        $this->currencySymbol = $currencySymbol;
-        $this->currency = $currency;
-        $this->description = $description;
         $this->productId = $productId;
         $this->isDefault = $isDefault;
         $this->isRecurring = $isRecurring;
         $this->publiclyVisible = $publiclyVisible;
         $this->hasBaseFee = $hasBaseFee;
-        $this->payerType = $payerType;
         $this->forPayerType = $forPayerType;
         $this->slug = $slug;
+        $this->freeTrialEnabled = $freeTrialEnabled;
+        $this->annualMonthlyFee = $annualMonthlyFee;
+        $this->annualFee = $annualFee;
+        $this->description = $description;
         $this->avatarUrl = $avatarUrl;
         $this->features = $features;
-        $this->period = $period;
-        $this->interval = $interval;
-        $this->freeTrialEnabled = $freeTrialEnabled;
         $this->freeTrialDays = $freeTrialDays;
     }
 }

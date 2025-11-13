@@ -12,6 +12,15 @@ namespace Clerk\Backend\Models\Operations;
 class UpdateSAMLConnectionRequestBody
 {
     /**
+     * Enable or deactivate ForceAuthn
+     *
+     * @var ?bool $forceAuthn
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('force_authn')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $forceAuthn = null;
+
+    /**
      * The name of the new SAML Connection
      *
      * @var ?string $name
@@ -41,7 +50,7 @@ class UpdateSAMLConnectionRequestBody
     public ?array $domains = null;
 
     /**
-     * The entity id as provided by the IdP
+     * The Entity ID as provided by the IdP
      *
      * @var ?string $idpEntityId
      */
@@ -50,7 +59,7 @@ class UpdateSAMLConnectionRequestBody
     public ?string $idpEntityId = null;
 
     /**
-     * The SSO url as provided by the IdP
+     * The SSO URL as provided by the IdP
      *
      * @var ?string $idpSsoUrl
      */
@@ -95,7 +104,7 @@ class UpdateSAMLConnectionRequestBody
     public ?string $organizationId = null;
 
     /**
-     * Define the atrtibute name mapping between Identity Provider and Clerk's user properties
+     * Define the attribute name mapping between Identity Provider and Clerk's user properties
      *
      * @var ?AttributeMapping $attributeMapping
      */
@@ -150,6 +159,7 @@ class UpdateSAMLConnectionRequestBody
     public ?bool $disableAdditionalIdentifications = null;
 
     /**
+     * @param  ?bool  $forceAuthn
      * @param  ?string  $name
      * @param  ?string  $domain
      * @param  ?array<string>  $domains
@@ -167,8 +177,9 @@ class UpdateSAMLConnectionRequestBody
      * @param  ?bool  $disableAdditionalIdentifications
      * @phpstan-pure
      */
-    public function __construct(?string $name = null, ?string $domain = null, ?array $domains = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?AttributeMapping $attributeMapping = null, ?bool $active = null, ?bool $syncUserAttributes = null, ?bool $allowSubdomains = null, ?bool $allowIdpInitiated = null, ?bool $disableAdditionalIdentifications = null)
+    public function __construct(?bool $forceAuthn = null, ?string $name = null, ?string $domain = null, ?array $domains = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?AttributeMapping $attributeMapping = null, ?bool $active = null, ?bool $syncUserAttributes = null, ?bool $allowSubdomains = null, ?bool $allowIdpInitiated = null, ?bool $disableAdditionalIdentifications = null)
     {
+        $this->forceAuthn = $forceAuthn;
         $this->name = $name;
         $this->domain = $domain;
         $this->domains = $domains;

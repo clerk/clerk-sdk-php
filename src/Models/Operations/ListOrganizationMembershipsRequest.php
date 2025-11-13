@@ -30,10 +30,10 @@ class ListOrganizationMembershipsRequest
     public ?string $orderBy = null;
 
     /**
-     * Returns users with the user ids specified. For each user id, the `+` and `-` can be
+     * Returns users with the user IDs specified. For each user ID, the `+` and `-` can be
      *
-     * prepended to the id, which denote whether the respective user id should be included or
-     * excluded from the result set. Accepts up to 100 user ids. Any user ids not found are ignored.
+     * prepended to the ID, which denote whether the respective user ID should be included or
+     * excluded from the result set. Accepts up to 100 user IDs. Any user IDs not found are ignored.
      *
      * @var ?array<string> $userId
      */
@@ -71,7 +71,7 @@ class ListOrganizationMembershipsRequest
      * Returns users with the specified web3 wallet addresses.
      *
      * Accepts up to 100 web3 wallet addresses.
-     * Any web3 wallet addressed not found are ignored.
+     * Any web3 wallet addresses not found are ignored.
      *
      * @var ?array<string> $web3Wallet
      */
@@ -89,7 +89,7 @@ class ListOrganizationMembershipsRequest
     /**
      * Returns users that match the given query.
      *
-     * For possible matches, we check the email addresses, phone numbers, usernames, web3 wallets, user ids, first and last names.
+     * For possible matches, we check the email addresses, phone numbers, usernames, web3 wallets, user IDs, first and last names.
      * The query value doesn't need to match the exact value you are looking for, it is capable of partial matches as well.
      *
      * @var ?string $query

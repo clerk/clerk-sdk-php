@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Clerk\Backend\Models\Components;
 
-
+use Brick\DateTime\LocalDate;
 class CommerceSubscriptionItem
 {
     /**
@@ -46,29 +46,13 @@ class CommerceSubscriptionItem
     public CommerceSubscriptionItemStatus $status;
 
     /**
-     * Unique identifier for the associated plan.
-     *
-     * @var string $planId
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('plan_id')]
-    public string $planId;
-
-    /**
-     * The billing period for this subscription.
+     * The billing period for this subscription item.
      *
      * @var PlanPeriod $planPeriod
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('plan_period')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\PlanPeriod')]
     public PlanPeriod $planPeriod;
-
-    /**
-     * Unique identifier for the payment source.
-     *
-     * @var string $paymentSourceId
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('payment_source_id')]
-    public string $paymentSourceId;
 
     /**
      * Unique identifier for the payer.
@@ -79,7 +63,7 @@ class CommerceSubscriptionItem
     public string $payerId;
 
     /**
-     * Whether this subscription is currently on a free trial.
+     * Whether this subscription item includes a free trial.
      *
      * @var bool $isFreeTrial
      */
@@ -87,87 +71,125 @@ class CommerceSubscriptionItem
     public bool $isFreeTrial;
 
     /**
-     * Date used for proration calculations.
+     * Unix timestamp (in milliseconds) when the current period started.
      *
-     * @var string $prorationDate
+     * @var int $periodStart
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('period_start')]
+    public int $periodStart;
+
+    /**
+     *
+     * @var ?CommerceSubscriptionCreditResponse $credit
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('credit')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceSubscriptionCreditResponse|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?CommerceSubscriptionCreditResponse $credit = null;
+
+    /**
+     * Unique identifier for the associated plan.
+     *
+     * @var ?string $planId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('plan_id')]
+    public ?string $planId;
+
+    /**
+     *
+     * @var ?CommercePaymentMethodResponse $paymentMethod
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('payment_method')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommercePaymentMethodResponse|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?CommercePaymentMethodResponse $paymentMethod = null;
+
+    /**
+     *
+     * @var ?CommerceMoneyResponse $lifetimePaid
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('lifetime_paid')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?CommerceMoneyResponse $lifetimePaid = null;
+
+    /**
+     *
+     * @var ?CommercePayerResponse $payer
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('payer')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommercePayerResponse|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?CommercePayerResponse $payer = null;
+
+    /**
+     * Unix timestamp (in milliseconds) when the current period ends.
+     *
+     * @var ?int $periodEnd
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('period_end')]
+    public ?int $periodEnd;
+
+    /**
+     * The day the subscription item was prorated from. Only available in some responses.
+     *
+     * @var ?LocalDate $prorationDate
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('proration_date')]
-    public string $prorationDate;
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?LocalDate $prorationDate = null;
 
     /**
-     * Unix timestamp (in milliseconds) when the subscription was created.
+     * Unix timestamp (in milliseconds) when the subscription item was canceled.
      *
-     * @var int $createdAt
+     * @var ?int $canceledAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('canceled_at')]
+    public ?int $canceledAt;
+
+    /**
+     * Unix timestamp (in milliseconds) when the subscription item became past due.
+     *
+     * @var ?int $pastDueAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('past_due_at')]
+    public ?int $pastDueAt;
+
+    /**
+     * Unix timestamp (in milliseconds) when the subscription item ended.
+     *
+     * @var ?int $endedAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ended_at')]
+    public ?int $endedAt;
+
+    /**
+     * Unix timestamp (in milliseconds) when the subscription item was created.
+     *
+     * @var ?int $createdAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
-    public int $createdAt;
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $createdAt = null;
 
     /**
-     * Unix timestamp (in milliseconds) when the subscription was last updated.
+     * Unix timestamp (in milliseconds) when the subscription item was last updated.
      *
-     * @var int $updatedAt
+     * @var ?int $updatedAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
-    public int $updatedAt;
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $updatedAt = null;
 
     /**
-     * The associated commerce plan.
+     * The associated plan.
      *
      * @var ?Plan $plan
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('plan')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Plan|null')]
-    public ?Plan $plan;
-
-    /**
-     * Credit information (only available in PaymentAttempt events).
-     *
-     * @var ?Credit $credit
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('credit')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Credit|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?Credit $credit = null;
-
-    /**
-     * The payment source associated with this subscription.
-     *
-     * @var ?PaymentSource $paymentSource
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('payment_source')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\PaymentSource|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?PaymentSource $paymentSource = null;
-
-    /**
-     * Total amount paid over the lifetime of this subscription.
-     *
-     * @var ?LifetimePaid $lifetimePaid
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('lifetime_paid')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\LifetimePaid|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?LifetimePaid $lifetimePaid = null;
-
-    /**
-     * Current amount for this subscription.
-     *
-     * @var ?Amount $amount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Amount|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?Amount $amount = null;
-
-    /**
-     * Information about the next invoice.
-     *
-     * @var ?NextInvoice $nextInvoice
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('next_invoice')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\NextInvoice|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?NextInvoice $nextInvoice = null;
+    public ?Plan $plan = null;
 
     /**
      * Information about the next payment.
@@ -180,114 +202,53 @@ class CommerceSubscriptionItem
     public ?NextPayment $nextPayment = null;
 
     /**
-     * The payer associated with this subscription.
-     *
-     * @var ?Payer $payer
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('payer')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Payer|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?Payer $payer = null;
-
-    /**
-     * Unix timestamp (in milliseconds) when the current period started.
-     *
-     * @var ?int $periodStart
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('period_start')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $periodStart = null;
-
-    /**
-     * Unix timestamp (in milliseconds) when the current period ends.
-     *
-     * @var ?int $periodEnd
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('period_end')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $periodEnd = null;
-
-    /**
-     * Unix timestamp (in milliseconds) when the subscription was canceled.
-     *
-     * @var ?int $canceledAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('canceled_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $canceledAt = null;
-
-    /**
-     * Unix timestamp (in milliseconds) when the subscription became past due.
-     *
-     * @var ?int $pastDueAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('past_due_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $pastDueAt = null;
-
-    /**
-     * Unix timestamp (in milliseconds) when the subscription ended.
-     *
-     * @var ?int $endedAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('ended_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $endedAt = null;
-
-    /**
      * @param  CommerceSubscriptionItemObject  $object
      * @param  string  $id
      * @param  string  $instanceId
      * @param  CommerceSubscriptionItemStatus  $status
-     * @param  string  $planId
      * @param  PlanPeriod  $planPeriod
-     * @param  string  $paymentSourceId
      * @param  string  $payerId
      * @param  bool  $isFreeTrial
-     * @param  string  $prorationDate
-     * @param  int  $createdAt
-     * @param  int  $updatedAt
-     * @param  ?Plan  $plan
-     * @param  ?Credit  $credit
-     * @param  ?PaymentSource  $paymentSource
-     * @param  ?LifetimePaid  $lifetimePaid
-     * @param  ?Amount  $amount
-     * @param  ?NextInvoice  $nextInvoice
-     * @param  ?NextPayment  $nextPayment
-     * @param  ?Payer  $payer
-     * @param  ?int  $periodStart
+     * @param  int  $periodStart
+     * @param  ?CommerceSubscriptionCreditResponse  $credit
+     * @param  ?string  $planId
+     * @param  ?CommercePaymentMethodResponse  $paymentMethod
+     * @param  ?CommerceMoneyResponse  $lifetimePaid
+     * @param  ?CommercePayerResponse  $payer
      * @param  ?int  $periodEnd
+     * @param  ?LocalDate  $prorationDate
      * @param  ?int  $canceledAt
      * @param  ?int  $pastDueAt
      * @param  ?int  $endedAt
+     * @param  ?int  $createdAt
+     * @param  ?int  $updatedAt
+     * @param  ?Plan  $plan
+     * @param  ?NextPayment  $nextPayment
      * @phpstan-pure
      */
-    public function __construct(CommerceSubscriptionItemObject $object, string $id, string $instanceId, CommerceSubscriptionItemStatus $status, string $planId, PlanPeriod $planPeriod, string $paymentSourceId, string $payerId, bool $isFreeTrial, string $prorationDate, int $createdAt, int $updatedAt, ?Plan $plan = null, ?Credit $credit = null, ?PaymentSource $paymentSource = null, ?LifetimePaid $lifetimePaid = null, ?Amount $amount = null, ?NextInvoice $nextInvoice = null, ?NextPayment $nextPayment = null, ?Payer $payer = null, ?int $periodStart = null, ?int $periodEnd = null, ?int $canceledAt = null, ?int $pastDueAt = null, ?int $endedAt = null)
+    public function __construct(CommerceSubscriptionItemObject $object, string $id, string $instanceId, CommerceSubscriptionItemStatus $status, PlanPeriod $planPeriod, string $payerId, bool $isFreeTrial, int $periodStart, ?CommerceSubscriptionCreditResponse $credit = null, ?string $planId = null, ?CommercePaymentMethodResponse $paymentMethod = null, ?CommerceMoneyResponse $lifetimePaid = null, ?CommercePayerResponse $payer = null, ?int $periodEnd = null, ?LocalDate $prorationDate = null, ?int $canceledAt = null, ?int $pastDueAt = null, ?int $endedAt = null, ?int $createdAt = null, ?int $updatedAt = null, ?Plan $plan = null, ?NextPayment $nextPayment = null)
     {
         $this->object = $object;
         $this->id = $id;
         $this->instanceId = $instanceId;
         $this->status = $status;
-        $this->planId = $planId;
         $this->planPeriod = $planPeriod;
-        $this->paymentSourceId = $paymentSourceId;
         $this->payerId = $payerId;
         $this->isFreeTrial = $isFreeTrial;
-        $this->prorationDate = $prorationDate;
-        $this->createdAt = $createdAt;
-        $this->updatedAt = $updatedAt;
-        $this->plan = $plan;
-        $this->credit = $credit;
-        $this->paymentSource = $paymentSource;
-        $this->lifetimePaid = $lifetimePaid;
-        $this->amount = $amount;
-        $this->nextInvoice = $nextInvoice;
-        $this->nextPayment = $nextPayment;
-        $this->payer = $payer;
         $this->periodStart = $periodStart;
+        $this->credit = $credit;
+        $this->planId = $planId;
+        $this->paymentMethod = $paymentMethod;
+        $this->lifetimePaid = $lifetimePaid;
+        $this->payer = $payer;
         $this->periodEnd = $periodEnd;
+        $this->prorationDate = $prorationDate;
         $this->canceledAt = $canceledAt;
         $this->pastDueAt = $pastDueAt;
         $this->endedAt = $endedAt;
+        $this->createdAt = $createdAt;
+        $this->updatedAt = $updatedAt;
+        $this->plan = $plan;
+        $this->nextPayment = $nextPayment;
     }
 }

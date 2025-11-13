@@ -9,4 +9,3 @@
 | `longMessage`                                       | *string*                                            | :heavy_check_mark:                                  | N/A                                                 |
 | `code`                                              | *string*                                            | :heavy_check_mark:                                  | N/A                                                 |
 | `meta`                                              | [?Components\Meta](../../Models/Components/Meta.md) | :heavy_minus_sign:                                  | N/A                                                 |
-| `clerkTraceId`                                      | *?string*                                           | :heavy_minus_sign:                                  | N/A                                                 |

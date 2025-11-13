@@ -223,7 +223,7 @@ if ($response->organization !== null) {
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 402, 404, 422       | application/json    |
+| Errors\ClerkErrors  | 402, 403, 404, 422  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## delete

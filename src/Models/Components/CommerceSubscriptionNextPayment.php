@@ -12,14 +12,6 @@ namespace Clerk\Backend\Models\Components;
 class CommerceSubscriptionNextPayment
 {
     /**
-     * Unix timestamp (milliseconds) of the next payment.
-     *
-     * @var int $time
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('time')]
-    public int $time;
-
-    /**
      * Unix timestamp (milliseconds) of the next payment date.
      *
      * @var int $date
@@ -36,14 +28,12 @@ class CommerceSubscriptionNextPayment
     public CommerceMoneyResponse $amount;
 
     /**
-     * @param  int  $time
      * @param  int  $date
      * @param  CommerceMoneyResponse  $amount
      * @phpstan-pure
      */
-    public function __construct(int $time, int $date, CommerceMoneyResponse $amount)
+    public function __construct(int $date, CommerceMoneyResponse $amount)
     {
-        $this->time = $time;
         $this->date = $date;
         $this->amount = $amount;
     }

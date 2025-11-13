@@ -15,11 +15,11 @@ class PaymentSource
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var CommerceSubscriptionItemPaymentSourceObject $object
+     * @var SchemasCommerceSubscriptionItemPaymentSourceObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceSubscriptionItemPaymentSourceObject')]
-    public CommerceSubscriptionItemPaymentSourceObject $object;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemPaymentSourceObject')]
+    public SchemasCommerceSubscriptionItemPaymentSourceObject $object;
 
     /**
      * Unique identifier for the payment source.
@@ -73,11 +73,11 @@ class PaymentSource
     /**
      * Status of the payment source.
      *
-     * @var CommerceSubscriptionItemPaymentSourceStatus $status
+     * @var SchemasCommerceSubscriptionItemPaymentSourceStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceSubscriptionItemPaymentSourceStatus')]
-    public CommerceSubscriptionItemPaymentSourceStatus $status;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemPaymentSourceStatus')]
+    public SchemasCommerceSubscriptionItemPaymentSourceStatus $status;
 
     /**
      * Type of wallet (if applicable).
@@ -157,14 +157,14 @@ class PaymentSource
     public ?bool $isRemovable = null;
 
     /**
-     * @param  CommerceSubscriptionItemPaymentSourceObject  $object
+     * @param  SchemasCommerceSubscriptionItemPaymentSourceObject  $object
      * @param  string  $id
      * @param  string  $payerId
      * @param  PaymentMethod  $paymentMethod
      * @param  string  $gateway
      * @param  string  $gatewayExternalId
      * @param  string  $last4
-     * @param  CommerceSubscriptionItemPaymentSourceStatus  $status
+     * @param  SchemasCommerceSubscriptionItemPaymentSourceStatus  $status
      * @param  string  $walletType
      * @param  string  $cardType
      * @param  int  $createdAt
@@ -176,7 +176,7 @@ class PaymentSource
      * @param  ?bool  $isRemovable
      * @phpstan-pure
      */
-    public function __construct(CommerceSubscriptionItemPaymentSourceObject $object, string $id, string $payerId, PaymentMethod $paymentMethod, string $gateway, string $gatewayExternalId, string $last4, CommerceSubscriptionItemPaymentSourceStatus $status, string $walletType, string $cardType, int $createdAt, int $updatedAt, ?int $expiryYear = null, ?int $expiryMonth = null, ?bool $isDefault = null, ?string $gatewayExternalAccountId = null, ?bool $isRemovable = null)
+    public function __construct(SchemasCommerceSubscriptionItemPaymentSourceObject $object, string $id, string $payerId, PaymentMethod $paymentMethod, string $gateway, string $gatewayExternalId, string $last4, SchemasCommerceSubscriptionItemPaymentSourceStatus $status, string $walletType, string $cardType, int $createdAt, int $updatedAt, ?int $expiryYear = null, ?int $expiryMonth = null, ?bool $isDefault = null, ?string $gatewayExternalAccountId = null, ?bool $isRemovable = null)
     {
         $this->object = $object;
         $this->id = $id;

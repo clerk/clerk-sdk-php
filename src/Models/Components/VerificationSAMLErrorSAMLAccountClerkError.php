@@ -42,27 +42,17 @@ class VerificationSAMLErrorSAMLAccountClerkError
     public ?ClerkErrorErrorSAMLAccountMeta $meta = null;
 
     /**
-     *
-     * @var ?string $clerkTraceId
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('clerk_trace_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $clerkTraceId = null;
-
-    /**
      * @param  string  $message
      * @param  string  $longMessage
      * @param  string  $code
      * @param  ?ClerkErrorErrorSAMLAccountMeta  $meta
-     * @param  ?string  $clerkTraceId
      * @phpstan-pure
      */
-    public function __construct(string $message, string $longMessage, string $code, ?ClerkErrorErrorSAMLAccountMeta $meta = null, ?string $clerkTraceId = null)
+    public function __construct(string $message, string $longMessage, string $code, ?ClerkErrorErrorSAMLAccountMeta $meta = null)
     {
         $this->message = $message;
         $this->longMessage = $longMessage;
         $this->code = $code;
         $this->meta = $meta;
-        $this->clerkTraceId = $clerkTraceId;
     }
 }
