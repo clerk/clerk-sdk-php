@@ -7,6 +7,7 @@ namespace Clerk\Backend\Helpers\Jwks;
  */
 class Cache
 {
+    /** @var array<string, array{value: string, expiration: int}> */
     private array $cache = [];
     private int $expirationTime = 300; // 5 minutes
 

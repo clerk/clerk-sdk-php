@@ -97,4 +97,12 @@ class AuthenticateRequestOptions
     {
         return $this->acceptsToken;
     }
+
+    /**
+     * @return bool
+     */
+    public function getSkipJwksCache(): bool
+    {
+        return $this->skipJwksCache;
+    }
 }

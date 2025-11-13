@@ -23,6 +23,6 @@ class HookRegistration
         // $hooks->registerBeforeRequestHook($myHook);
         // $hooks->registerAfterSuccessHook($myHook);
         // $hooks->registerAfterErrorHook($myHook);
-        $hooks->registerBeforeRequestHook(new ClerkBeforeRequestHooks());
+        $hooks->registerBeforeRequestHook(new ClerkBeforeRequestHook());
     }
 }
