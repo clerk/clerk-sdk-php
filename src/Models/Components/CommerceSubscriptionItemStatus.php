@@ -13,6 +13,8 @@ namespace Clerk\Backend\Models\Components;
 enum CommerceSubscriptionItemStatus: string
 {
     case Active = 'active';
+    case Canceled = 'canceled';
+    case Expired = 'expired';
     case Ended = 'ended';
     case PastDue = 'past_due';
     case Upcoming = 'upcoming';

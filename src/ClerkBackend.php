@@ -34,8 +34,6 @@ class ClerkBackend
 
     public Jwks $jwks;
 
-    public AwsCredentials $awsCredentials;
-
     public Clients $clients;
 
     public EmailAddresses $emailAddresses;
@@ -96,9 +94,7 @@ class ClerkBackend
 
     public WaitlistEntries $waitlistEntries;
 
-    public ExperimentalAccountlessApplications $experimentalAccountlessApplications;
-
-    public Commerce $commerce;
+    public Billing $billing;
 
     public M2m $m2m;
 
@@ -122,7 +118,6 @@ class ClerkBackend
     ) {
         $this->miscellaneous = new Miscellaneous($this->sdkConfiguration);
         $this->jwks = new Jwks($this->sdkConfiguration);
-        $this->awsCredentials = new AwsCredentials($this->sdkConfiguration);
         $this->clients = new Clients($this->sdkConfiguration);
         $this->emailAddresses = new EmailAddresses($this->sdkConfiguration);
         $this->phoneNumbers = new PhoneNumbers($this->sdkConfiguration);
@@ -153,8 +148,7 @@ class ClerkBackend
         $this->samlConnections = new SamlConnections($this->sdkConfiguration);
         $this->testingTokens = new TestingTokens($this->sdkConfiguration);
         $this->waitlistEntries = new WaitlistEntries($this->sdkConfiguration);
-        $this->experimentalAccountlessApplications = new ExperimentalAccountlessApplications($this->sdkConfiguration);
-        $this->commerce = new Commerce($this->sdkConfiguration);
+        $this->billing = new Billing($this->sdkConfiguration);
         $this->m2m = new M2m($this->sdkConfiguration);
         $this->oauthAccessTokens = new OauthAccessTokens($this->sdkConfiguration);
         $this->initHooks();

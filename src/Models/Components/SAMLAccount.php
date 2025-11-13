@@ -94,6 +94,17 @@ class SAMLAccount
     public ?string $providerUserId = null;
 
     /**
+     * Unix timestamp of last authentication.
+     *
+     *
+     *
+     * @var ?int $lastAuthenticatedAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('last_authenticated_at')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $lastAuthenticatedAt = null;
+
+    /**
      *
      * @var SAMLConnection1|SAMLConnection2|null $samlConnection
      */
@@ -113,10 +124,11 @@ class SAMLAccount
      * @param  ?string  $firstName
      * @param  ?string  $lastName
      * @param  ?string  $providerUserId
+     * @param  ?int  $lastAuthenticatedAt
      * @param  SAMLConnection1|SAMLConnection2|null  $samlConnection
      * @phpstan-pure
      */
-    public function __construct(string $id, SAMLAccountObject $object, string $provider, bool $active, string $emailAddress, ?array $publicMetadata = null, VerificationSAML|VerificationTicket|null $verification = null, ?string $firstName = null, ?string $lastName = null, ?string $providerUserId = null, SAMLConnection1|SAMLConnection2|null $samlConnection = null)
+    public function __construct(string $id, SAMLAccountObject $object, string $provider, bool $active, string $emailAddress, ?array $publicMetadata = null, VerificationSAML|VerificationTicket|null $verification = null, ?string $firstName = null, ?string $lastName = null, ?string $providerUserId = null, ?int $lastAuthenticatedAt = null, SAMLConnection1|SAMLConnection2|null $samlConnection = null)
     {
         $this->id = $id;
         $this->object = $object;
@@ -128,6 +140,7 @@ class SAMLAccount
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->providerUserId = $providerUserId;
+        $this->lastAuthenticatedAt = $lastAuthenticatedAt;
         $this->samlConnection = $samlConnection;
     }
 }

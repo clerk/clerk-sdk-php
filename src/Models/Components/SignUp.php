@@ -207,6 +207,15 @@ class SignUp
     public ?SignUpExternalAccount $externalAccount = null;
 
     /**
+     * The user locale preference for the sign-up specified as a BCP-47 language tag.
+     *
+     * @var ?string $locale
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('locale')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $locale = null;
+
+    /**
      * @param  SignUpObject  $object
      * @param  string  $id
      * @param  SignUpStatus  $status
@@ -231,9 +240,10 @@ class SignUp
      * @param  ?string  $createdUserId
      * @param  ?int  $legalAcceptedAt
      * @param  ?SignUpExternalAccount  $externalAccount
+     * @param  ?string  $locale
      * @phpstan-pure
      */
-    public function __construct(SignUpObject $object, string $id, SignUpStatus $status, array $requiredFields, array $optionalFields, array $missingFields, array $unverifiedFields, SignUpVerifications $verifications, bool $passwordEnabled, bool $customAction, int $abandonAt, ?string $username = null, ?string $emailAddress = null, ?string $phoneNumber = null, ?string $web3Wallet = null, ?string $firstName = null, ?string $lastName = null, ?array $unsafeMetadata = null, ?array $publicMetadata = null, ?string $externalId = null, ?string $createdSessionId = null, ?string $createdUserId = null, ?int $legalAcceptedAt = null, ?SignUpExternalAccount $externalAccount = null)
+    public function __construct(SignUpObject $object, string $id, SignUpStatus $status, array $requiredFields, array $optionalFields, array $missingFields, array $unverifiedFields, SignUpVerifications $verifications, bool $passwordEnabled, bool $customAction, int $abandonAt, ?string $username = null, ?string $emailAddress = null, ?string $phoneNumber = null, ?string $web3Wallet = null, ?string $firstName = null, ?string $lastName = null, ?array $unsafeMetadata = null, ?array $publicMetadata = null, ?string $externalId = null, ?string $createdSessionId = null, ?string $createdUserId = null, ?int $legalAcceptedAt = null, ?SignUpExternalAccount $externalAccount = null, ?string $locale = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -259,5 +269,6 @@ class SignUp
         $this->createdUserId = $createdUserId;
         $this->legalAcceptedAt = $legalAcceptedAt;
         $this->externalAccount = $externalAccount;
+        $this->locale = $locale;
     }
 }

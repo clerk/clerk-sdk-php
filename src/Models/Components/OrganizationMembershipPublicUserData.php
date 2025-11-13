@@ -64,6 +64,14 @@ class OrganizationMembershipPublicUserData
     public ?string $identifier = null;
 
     /**
+     *
+     * @var ?string $username
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('username')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $username = null;
+
+    /**
      * @param  string  $userId
      * @param  string  $imageUrl
      * @param  bool  $hasImage
@@ -71,9 +79,10 @@ class OrganizationMembershipPublicUserData
      * @param  ?string  $lastName
      * @param  ?string  $profileImageUrl
      * @param  ?string  $identifier
+     * @param  ?string  $username
      * @phpstan-pure
      */
-    public function __construct(string $userId, string $imageUrl, bool $hasImage, ?string $firstName = null, ?string $lastName = null, ?string $profileImageUrl = null, ?string $identifier = null)
+    public function __construct(string $userId, string $imageUrl, bool $hasImage, ?string $firstName = null, ?string $lastName = null, ?string $profileImageUrl = null, ?string $identifier = null, ?string $username = null)
     {
         $this->userId = $userId;
         $this->imageUrl = $imageUrl;
@@ -82,5 +91,6 @@ class OrganizationMembershipPublicUserData
         $this->lastName = $lastName;
         $this->profileImageUrl = $profileImageUrl;
         $this->identifier = $identifier;
+        $this->username = $username;
     }
 }

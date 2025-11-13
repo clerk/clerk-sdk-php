@@ -12,7 +12,7 @@ use Clerk\Backend\Utils\SpeakeasyMetadata;
 class UpdateOrganizationMembershipMetadataRequest
 {
     /**
-     * The ID of the organization to which the membership belongs
+     * The ID of the organization to which this membership belongs
      *
      * @var string $organizationId
      */
@@ -20,7 +20,7 @@ class UpdateOrganizationMembershipMetadataRequest
     public string $organizationId;
 
     /**
-     * The ID of the user that this membership belongs to
+     * The ID of the user to which this membership belongs
      *
      * @var string $userId
      */

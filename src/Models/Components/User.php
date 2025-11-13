@@ -129,6 +129,15 @@ class User
     public array $samlAccounts;
 
     /**
+     * $enterpriseAccounts
+     *
+     * @var array<EnterpriseAccount> $enterpriseAccounts
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('enterprise_accounts')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\EnterpriseAccount>')]
+    public array $enterpriseAccounts;
+
+    /**
      * Flag to denote whether user is banned or not.
      *
      *
@@ -285,6 +294,16 @@ class User
     public ?int $mfaDisabledAt;
 
     /**
+     * $organizationMemberships
+     *
+     * @var ?array<OrganizationMembership> $organizationMemberships
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('organization_memberships')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\OrganizationMembership>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $organizationMemberships = null;
+
+    /**
      * Unix timestamp of last sign-in.
      *
      *
@@ -335,6 +354,14 @@ class User
     public ?int $legalAcceptedAt;
 
     /**
+     *
+     * @var ?string $locale
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('locale')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $locale = null;
+
+    /**
      * $privateMetadata
      *
      * @var ?array<string, mixed> $privateMetadata
@@ -343,6 +370,17 @@ class User
     #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $privateMetadata = null;
+
+    /**
+     * Unix timestamp of when the user's password was last updated.
+     *
+     *
+     *
+     * @var ?int $passwordLastUpdatedAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('password_last_updated_at')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $passwordLastUpdatedAt = null;
 
     /**
      * The maximum number of organizations the user can create. 0 means unlimited.
@@ -370,6 +408,7 @@ class User
      * @param  bool  $backupCodeEnabled
      * @param  array<ExternalAccountWithVerification>  $externalAccounts
      * @param  array<SAMLAccount>  $samlAccounts
+     * @param  array<EnterpriseAccount>  $enterpriseAccounts
      * @param  bool  $banned
      * @param  bool  $locked
      * @param  int  $updatedAt
@@ -388,16 +427,19 @@ class User
      * @param  ?array<string, mixed>  $unsafeMetadata
      * @param  ?int  $mfaEnabledAt
      * @param  ?int  $mfaDisabledAt
+     * @param  ?array<OrganizationMembership>  $organizationMemberships
      * @param  ?int  $lastSignInAt
      * @param  ?int  $lockoutExpiresInSeconds
      * @param  ?int  $verificationAttemptsRemaining
      * @param  ?int  $lastActiveAt
      * @param  ?int  $legalAcceptedAt
+     * @param  ?string  $locale
      * @param  ?array<string, mixed>  $privateMetadata
+     * @param  ?int  $passwordLastUpdatedAt
      * @param  ?int  $createOrganizationsLimit
      * @phpstan-pure
      */
-    public function __construct(string $id, UserObject $object, bool $hasImage, array $publicMetadata, array $emailAddresses, array $phoneNumbers, array $web3Wallets, array $passkeys, bool $passwordEnabled, bool $twoFactorEnabled, bool $totpEnabled, bool $backupCodeEnabled, array $externalAccounts, array $samlAccounts, bool $banned, bool $locked, int $updatedAt, int $createdAt, bool $deleteSelfEnabled, bool $createOrganizationEnabled, ?string $externalId = null, ?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $username = null, ?string $firstName = null, ?string $lastName = null, ?string $profileImageUrl = null, ?string $imageUrl = null, ?array $unsafeMetadata = null, ?int $mfaEnabledAt = null, ?int $mfaDisabledAt = null, ?int $lastSignInAt = null, ?int $lockoutExpiresInSeconds = null, ?int $verificationAttemptsRemaining = null, ?int $lastActiveAt = null, ?int $legalAcceptedAt = null, ?array $privateMetadata = null, ?int $createOrganizationsLimit = null)
+    public function __construct(string $id, UserObject $object, bool $hasImage, array $publicMetadata, array $emailAddresses, array $phoneNumbers, array $web3Wallets, array $passkeys, bool $passwordEnabled, bool $twoFactorEnabled, bool $totpEnabled, bool $backupCodeEnabled, array $externalAccounts, array $samlAccounts, array $enterpriseAccounts, bool $banned, bool $locked, int $updatedAt, int $createdAt, bool $deleteSelfEnabled, bool $createOrganizationEnabled, ?string $externalId = null, ?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $username = null, ?string $firstName = null, ?string $lastName = null, ?string $profileImageUrl = null, ?string $imageUrl = null, ?array $unsafeMetadata = null, ?int $mfaEnabledAt = null, ?int $mfaDisabledAt = null, ?array $organizationMemberships = null, ?int $lastSignInAt = null, ?int $lockoutExpiresInSeconds = null, ?int $verificationAttemptsRemaining = null, ?int $lastActiveAt = null, ?int $legalAcceptedAt = null, ?string $locale = null, ?array $privateMetadata = null, ?int $passwordLastUpdatedAt = null, ?int $createOrganizationsLimit = null)
     {
         $this->id = $id;
         $this->object = $object;
@@ -413,6 +455,7 @@ class User
         $this->backupCodeEnabled = $backupCodeEnabled;
         $this->externalAccounts = $externalAccounts;
         $this->samlAccounts = $samlAccounts;
+        $this->enterpriseAccounts = $enterpriseAccounts;
         $this->banned = $banned;
         $this->locked = $locked;
         $this->updatedAt = $updatedAt;
@@ -431,12 +474,15 @@ class User
         $this->unsafeMetadata = $unsafeMetadata;
         $this->mfaEnabledAt = $mfaEnabledAt;
         $this->mfaDisabledAt = $mfaDisabledAt;
+        $this->organizationMemberships = $organizationMemberships;
         $this->lastSignInAt = $lastSignInAt;
         $this->lockoutExpiresInSeconds = $lockoutExpiresInSeconds;
         $this->verificationAttemptsRemaining = $verificationAttemptsRemaining;
         $this->lastActiveAt = $lastActiveAt;
         $this->legalAcceptedAt = $legalAcceptedAt;
+        $this->locale = $locale;
         $this->privateMetadata = $privateMetadata;
+        $this->passwordLastUpdatedAt = $passwordLastUpdatedAt;
         $this->createOrganizationsLimit = $createOrganizationsLimit;
     }
 }

@@ -42,17 +42,6 @@ class UpdateInstanceRequestBody
     public ?bool $hibp = null;
 
     /**
-     * The "enhanced_email_deliverability" feature will send emails from "verifications@clerk.dev" instead of your domain.
-     *
-     * This can be helpful if you do not have a high domain reputation.
-     *
-     * @var ?bool $enhancedEmailDeliverability
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('enhanced_email_deliverability')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $enhancedEmailDeliverability = null;
-
-    /**
      *
      * @var ?string $supportEmail
      */
@@ -101,7 +90,6 @@ class UpdateInstanceRequestBody
      * @param  ?array<string>  $allowedOrigins
      * @param  ?bool  $testMode
      * @param  ?bool  $hibp
-     * @param  ?bool  $enhancedEmailDeliverability
      * @param  ?string  $supportEmail
      * @param  ?string  $clerkJsVersion
      * @param  ?string  $developmentOrigin
@@ -109,12 +97,11 @@ class UpdateInstanceRequestBody
      * @param  ?bool  $urlBasedSessionSyncing
      * @phpstan-pure
      */
-    public function __construct(?array $allowedOrigins = null, ?bool $testMode = null, ?bool $hibp = null, ?bool $enhancedEmailDeliverability = null, ?string $supportEmail = null, ?string $clerkJsVersion = null, ?string $developmentOrigin = null, ?bool $cookielessDev = null, ?bool $urlBasedSessionSyncing = null)
+    public function __construct(?array $allowedOrigins = null, ?bool $testMode = null, ?bool $hibp = null, ?string $supportEmail = null, ?string $clerkJsVersion = null, ?string $developmentOrigin = null, ?bool $cookielessDev = null, ?bool $urlBasedSessionSyncing = null)
     {
         $this->allowedOrigins = $allowedOrigins;
         $this->testMode = $testMode;
         $this->hibp = $hibp;
-        $this->enhancedEmailDeliverability = $enhancedEmailDeliverability;
         $this->supportEmail = $supportEmail;
         $this->clerkJsVersion = $clerkJsVersion;
         $this->developmentOrigin = $developmentOrigin;

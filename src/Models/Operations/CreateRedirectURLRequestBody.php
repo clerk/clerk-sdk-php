@@ -12,7 +12,7 @@ namespace Clerk\Backend\Models\Operations;
 class CreateRedirectURLRequestBody
 {
     /**
-     * The full url value prefixed with `https://` or a custom scheme e.g. `"https://my-app.com/oauth-callback"` or `"my-app://oauth-callback"`
+     * The full URL value prefixed with `https://` or a custom scheme e.g. `"https://my-app.com/oauth-callback"` or `"my-app://oauth-callback"`
      *
      * @var string $url
      */

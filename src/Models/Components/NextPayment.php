@@ -15,12 +15,12 @@ class NextPayment
     /**
      * Amount for the next payment.
      *
-     * @var ?CommerceSubscriptionItemNextPaymentAmount $amount
+     * @var ?CommerceSubscriptionItemAmount $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceSubscriptionItemNextPaymentAmount|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceSubscriptionItemAmount|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?CommerceSubscriptionItemNextPaymentAmount $amount = null;
+    public ?CommerceSubscriptionItemAmount $amount = null;
 
     /**
      * Unix timestamp (in milliseconds) for the next payment date.
@@ -32,11 +32,11 @@ class NextPayment
     public ?int $date = null;
 
     /**
-     * @param  ?CommerceSubscriptionItemNextPaymentAmount  $amount
+     * @param  ?CommerceSubscriptionItemAmount  $amount
      * @param  ?int  $date
      * @phpstan-pure
      */
-    public function __construct(?CommerceSubscriptionItemNextPaymentAmount $amount = null, ?int $date = null)
+    public function __construct(?CommerceSubscriptionItemAmount $amount = null, ?int $date = null)
     {
         $this->amount = $amount;
         $this->date = $date;

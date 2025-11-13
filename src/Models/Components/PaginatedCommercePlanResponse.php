@@ -13,7 +13,7 @@ namespace Clerk\Backend\Models\Components;
 class PaginatedCommercePlanResponse
 {
     /**
-     * Array of commerce plans.
+     * Array of plans.
      *
      * @var array<CommercePlan> $data
      */
@@ -22,7 +22,7 @@ class PaginatedCommercePlanResponse
     public array $data;
 
     /**
-     * Total number of commerce plans.
+     * Total number of plans.
      *
      * @var int $totalCount
      */

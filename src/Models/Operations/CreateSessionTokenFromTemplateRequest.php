@@ -20,7 +20,7 @@ class CreateSessionTokenFromTemplateRequest
     public string $sessionId;
 
     /**
-     * The name of the JWT Template defined in your instance (e.g. `custom_hasura`).
+     * The name of the JWT template defined in your instance (e.g. `custom_hasura`).
      *
      * @var string $templateName
      */

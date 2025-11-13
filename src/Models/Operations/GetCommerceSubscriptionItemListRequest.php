@@ -47,9 +47,7 @@ class GetCommerceSubscriptionItemListRequest
     public ?string $planId = null;
 
     /**
-     * Search query to filter subscription items by email, user first name, user last name, or organization name.
-     *
-     * Supports partial matching.
+     * Search query to filter subscription items
      *
      * @var ?string $query
      */

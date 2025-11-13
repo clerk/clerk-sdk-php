@@ -93,6 +93,23 @@ class OrganizationSettings
     public ?int $maxAllowedPermissions = null;
 
     /**
+     *
+     * @var ?bool $slugDisabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('slug_disabled')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $slugDisabled = null;
+
+    /**
+     * The role set key that it will be used to create new organizations.
+     *
+     * @var ?string $initialRoleSetKey
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('initial_role_set_key')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $initialRoleSetKey = null;
+
+    /**
      * @param  OrganizationSettingsObject  $object
      * @param  bool  $enabled
      * @param  int  $maxAllowedMemberships
@@ -103,9 +120,11 @@ class OrganizationSettings
      * @param  array<DomainsEnrollmentModes>  $domainsEnrollmentModes
      * @param  string  $domainsDefaultRole
      * @param  ?int  $maxAllowedPermissions
+     * @param  ?bool  $slugDisabled
+     * @param  ?string  $initialRoleSetKey
      * @phpstan-pure
      */
-    public function __construct(OrganizationSettingsObject $object, bool $enabled, int $maxAllowedMemberships, int $maxAllowedRoles, string $creatorRole, bool $adminDeleteEnabled, bool $domainsEnabled, array $domainsEnrollmentModes, string $domainsDefaultRole, ?int $maxAllowedPermissions = null)
+    public function __construct(OrganizationSettingsObject $object, bool $enabled, int $maxAllowedMemberships, int $maxAllowedRoles, string $creatorRole, bool $adminDeleteEnabled, bool $domainsEnabled, array $domainsEnrollmentModes, string $domainsDefaultRole, ?int $maxAllowedPermissions = null, ?bool $slugDisabled = null, ?string $initialRoleSetKey = null)
     {
         $this->object = $object;
         $this->enabled = $enabled;
@@ -117,5 +136,7 @@ class OrganizationSettings
         $this->domainsEnrollmentModes = $domainsEnrollmentModes;
         $this->domainsDefaultRole = $domainsDefaultRole;
         $this->maxAllowedPermissions = $maxAllowedPermissions;
+        $this->slugDisabled = $slugDisabled;
+        $this->initialRoleSetKey = $initialRoleSetKey;
     }
 }

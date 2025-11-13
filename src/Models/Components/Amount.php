@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace Clerk\Backend\Models\Components;
 
 
-/** Amount - Current amount for this subscription. */
+/** Amount - Credit amount. */
 class Amount
 {
     /**

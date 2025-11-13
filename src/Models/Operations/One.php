@@ -48,6 +48,15 @@ class One
     public ?array $domains = null;
 
     /**
+     * Enable or deactivate ForceAuthn
+     *
+     * @var ?bool $forceAuthn
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('force_authn')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $forceAuthn = null;
+
+    /**
      * The Entity ID as provided by the IdP
      *
      * @var ?string $idpEntityId
@@ -116,6 +125,7 @@ class One
      * @param  string  $domain
      * @param  Provider  $provider
      * @param  ?array<string>  $domains
+     * @param  ?bool  $forceAuthn
      * @param  ?string  $idpEntityId
      * @param  ?string  $idpSsoUrl
      * @param  ?string  $idpCertificate
@@ -125,12 +135,13 @@ class One
      * @param  ?CreateSAMLConnectionRequestBodyAttributeMapping  $attributeMapping
      * @phpstan-pure
      */
-    public function __construct(string $name, string $domain, Provider $provider, ?array $domains = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?CreateSAMLConnectionRequestBodyAttributeMapping $attributeMapping = null)
+    public function __construct(string $name, string $domain, Provider $provider, ?array $domains = null, ?bool $forceAuthn = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?CreateSAMLConnectionRequestBodyAttributeMapping $attributeMapping = null)
     {
         $this->name = $name;
         $this->domain = $domain;
         $this->provider = $provider;
         $this->domains = $domains;
+        $this->forceAuthn = $forceAuthn;
         $this->idpEntityId = $idpEntityId;
         $this->idpSsoUrl = $idpSsoUrl;
         $this->idpCertificate = $idpCertificate;

@@ -82,6 +82,15 @@ class UpdateUserRequestBody
     public ?string $lastName = null;
 
     /**
+     * The locale to assign to the user (e.g., "en-US", "fr-FR")
+     *
+     * @var ?string $locale
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('locale')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $locale = null;
+
+    /**
      * The ID of the email address to set as primary.
      *
      * It must be verified, and present on the current user.
@@ -228,7 +237,7 @@ class UpdateUserRequestBody
     public ?bool $createOrganizationEnabled = null;
 
     /**
-     * A custom timestamps denoting _when_ the user accepted legal requirements, specified in RFC3339 format (e.g. `2012-10-20T07:15:20.902Z`).
+     * A custom timestamp denoting _when_ the user accepted legal requirements, specified in RFC3339 format (e.g. `2012-10-20T07:15:20.902Z`).
      *
      * @var ?string $legalAcceptedAt
      */
@@ -283,6 +292,7 @@ class UpdateUserRequestBody
      * @param  ?string  $externalId
      * @param  ?string  $firstName
      * @param  ?string  $lastName
+     * @param  ?string  $locale
      * @param  ?string  $primaryEmailAddressId
      * @param  ?bool  $notifyPrimaryEmailAddressChanged
      * @param  ?string  $primaryPhoneNumberId
@@ -304,7 +314,7 @@ class UpdateUserRequestBody
      * @param  ?string  $createdAt
      * @phpstan-pure
      */
-    public function __construct(?string $passwordDigest = null, ?string $passwordHasher = null, ?array $backupCodes = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $username = null, ?string $profileImageId = null, ?string $password = null, ?bool $skipPasswordChecks = null, ?bool $signOutOfOtherSessions = null, ?string $totpSecret = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null, ?bool $deleteSelfEnabled = null, ?bool $createOrganizationEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?int $createOrganizationsLimit = null, ?string $createdAt = null, ?bool $notifyPrimaryEmailAddressChanged = false)
+    public function __construct(?string $passwordDigest = null, ?string $passwordHasher = null, ?array $backupCodes = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $locale = null, ?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $username = null, ?string $profileImageId = null, ?string $password = null, ?bool $skipPasswordChecks = null, ?bool $signOutOfOtherSessions = null, ?string $totpSecret = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null, ?bool $deleteSelfEnabled = null, ?bool $createOrganizationEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?int $createOrganizationsLimit = null, ?string $createdAt = null, ?bool $notifyPrimaryEmailAddressChanged = false)
     {
         $this->passwordDigest = $passwordDigest;
         $this->passwordHasher = $passwordHasher;
@@ -312,6 +322,7 @@ class UpdateUserRequestBody
         $this->externalId = $externalId;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
+        $this->locale = $locale;
         $this->primaryEmailAddressId = $primaryEmailAddressId;
         $this->primaryPhoneNumberId = $primaryPhoneNumberId;
         $this->primaryWeb3WalletId = $primaryWeb3WalletId;

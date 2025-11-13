@@ -23,7 +23,7 @@ class RefreshSessionRequestBody
     public string $expiredToken;
 
     /**
-     * The JWT that is sent via the `__session` cookie from your frontend.
+     * The refresh token from the `__refresh` cookie set via FAPI's handshake flow.
      *
      * @var string $refreshToken
      */

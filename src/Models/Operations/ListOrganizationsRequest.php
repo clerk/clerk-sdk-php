@@ -38,9 +38,9 @@ class ListOrganizationsRequest
     public ?string $query = null;
 
     /**
-     * Returns organizations with the user ids specified. Any user ids not found are ignored.
+     * Returns organizations that include any of the specified user IDs as members. Any user IDs not found are ignored.
      *
-     * For each user id, the `+` and `-` can be prepended to the id, which denote whether the
+     * For each user ID, the `+` and `-` can be prepended to the ID, which denote whether the
      * respective organization should be included or excluded from the result set.
      *
      * @var ?array<string> $userId
@@ -49,10 +49,10 @@ class ListOrganizationsRequest
     public ?array $userId = null;
 
     /**
-     * Returns organizations with the organization ids specified. Any organization ids not found are ignored.
+     * Returns organizations with the organization IDs specified. Any organization IDs not found are ignored.
      *
-     * For each organization id, the `+` and `-` can be prepended to the id, which denote whether the
-     * respective organization should be included or excluded from the result set. Accepts up to 100 organization ids.
+     * For each organization ID, the `+` and `-` can be prepended to the ID, which denote whether the
+     * respective organization should be included or excluded from the result set. Accepts up to 100 organization IDs.
      * Example: ?organization_id=+org_1&organization_id=-org_2
      *
      * @var ?array<string> $organizationId

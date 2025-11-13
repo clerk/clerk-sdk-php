@@ -12,7 +12,7 @@ use Clerk\Backend\Utils\SpeakeasyMetadata;
 class UpdateOrganizationDomainRequest
 {
     /**
-     * The ID of the organization the domain belongs to
+     * The ID of the organization to which the domain belongs
      *
      * @var string $organizationId
      */

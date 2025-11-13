@@ -86,6 +86,13 @@ class OrganizationInvitationWithPublicOrganizationData
 
     /**
      *
+     * @var ?string $inviterId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('inviter_id')]
+    public ?string $inviterId;
+
+    /**
+     *
      * @var ?string $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
@@ -136,6 +143,7 @@ class OrganizationInvitationWithPublicOrganizationData
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  ?string  $organizationId
+     * @param  ?string  $inviterId
      * @param  ?string  $status
      * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?string  $url
@@ -143,7 +151,7 @@ class OrganizationInvitationWithPublicOrganizationData
      * @param  ?OrganizationInvitationPublicOrganizationData  $publicOrganizationData
      * @phpstan-pure
      */
-    public function __construct(OrganizationInvitationWithPublicOrganizationDataObject $object, string $id, string $emailAddress, string $role, string $roleName, array $publicMetadata, int $createdAt, int $updatedAt, ?string $organizationId = null, ?string $status = null, ?array $privateMetadata = null, ?string $url = null, ?int $expiresAt = null, ?OrganizationInvitationPublicOrganizationData $publicOrganizationData = null)
+    public function __construct(OrganizationInvitationWithPublicOrganizationDataObject $object, string $id, string $emailAddress, string $role, string $roleName, array $publicMetadata, int $createdAt, int $updatedAt, ?string $organizationId = null, ?string $inviterId = null, ?string $status = null, ?array $privateMetadata = null, ?string $url = null, ?int $expiresAt = null, ?OrganizationInvitationPublicOrganizationData $publicOrganizationData = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -154,6 +162,7 @@ class OrganizationInvitationWithPublicOrganizationData
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
         $this->organizationId = $organizationId;
+        $this->inviterId = $inviterId;
         $this->status = $status;
         $this->privateMetadata = $privateMetadata;
         $this->url = $url;

@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace Clerk\Backend\Models\Components;
 
 
-/** CommerceSubscriptionItemAmount - Credit amount. */
+/** CommerceSubscriptionItemAmount - Amount for the next payment. */
 class CommerceSubscriptionItemAmount
 {
     /**

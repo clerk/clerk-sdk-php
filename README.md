@@ -199,15 +199,20 @@ if ($response->statusCode === 200) {
 * [create](docs/sdks/allowlistidentifiers/README.md#create) - Add identifier to the allow-list
 * [delete](docs/sdks/allowlistidentifiers/README.md#delete) - Delete identifier from allow-list
 
-### [awsCredentials](docs/sdks/awscredentials/README.md)
-
-* [delete](docs/sdks/awscredentials/README.md#delete) - Delete an AWS Credential
-* [update](docs/sdks/awscredentials/README.md#update) - Update an AWS Credential
-
 ### [betaFeatures](docs/sdks/betafeatures/README.md)
 
 * [updateInstanceSettings](docs/sdks/betafeatures/README.md#updateinstancesettings) - Update instance settings
 * [~~updateProductionInstanceDomain~~](docs/sdks/betafeatures/README.md#updateproductioninstancedomain) - Update production instance domain :warning: **Deprecated**
+
+### [billing](docs/sdks/billing/README.md)
+
+* [listPlans](docs/sdks/billing/README.md#listplans) - List all billing plans
+* [listSubscriptionItems](docs/sdks/billing/README.md#listsubscriptionitems) - List all subscription items
+* [cancelSubscriptionItem](docs/sdks/billing/README.md#cancelsubscriptionitem) - Cancel a subscription item
+* [extendSubscriptionItemFreeTrial](docs/sdks/billing/README.md#extendsubscriptionitemfreetrial) - Extend free trial for a subscription item
+* [listStatements](docs/sdks/billing/README.md#liststatements) - List all billing statements
+* [getStatement](docs/sdks/billing/README.md#getstatement) - Retrieve a billing statement
+* [getStatementPaymentAttempts](docs/sdks/billing/README.md#getstatementpaymentattempts) - List payment attempts for a billing statement
 
 ### [blocklistIdentifiers](docs/sdks/blocklistidentifiers/README.md)
 
@@ -215,18 +220,11 @@ if ($response->statusCode === 200) {
 * [create](docs/sdks/blocklistidentifiers/README.md#create) - Add identifier to the block-list
 * [delete](docs/sdks/blocklistidentifiers/README.md#delete) - Delete identifier from block-list
 
-
 ### [clients](docs/sdks/clients/README.md)
 
 * [~~list~~](docs/sdks/clients/README.md#list) - List all clients :warning: **Deprecated**
 * [verify](docs/sdks/clients/README.md#verify) - Verify a client
 * [get](docs/sdks/clients/README.md#get) - Get a client
-
-### [commerce](docs/sdks/commerce/README.md)
-
-* [listPlans](docs/sdks/commerce/README.md#listplans) - List all commerce plans
-* [listSubscriptionItems](docs/sdks/commerce/README.md#listsubscriptionitems) - List all subscription items
-* [cancelSubscriptionItem](docs/sdks/commerce/README.md#cancelsubscriptionitem) - Cancel a subscription item
 
 ### [domains](docs/sdks/domains/README.md)
 
@@ -252,11 +250,6 @@ if ($response->statusCode === 200) {
 * [~~get~~](docs/sdks/emailsmstemplates/README.md#get) - Retrieve a template :warning: **Deprecated**
 * [~~revert~~](docs/sdks/emailsmstemplates/README.md#revert) - Revert a template :warning: **Deprecated**
 * [~~toggleTemplateDelivery~~](docs/sdks/emailsmstemplates/README.md#toggletemplatedelivery) - Toggle the delivery by Clerk for a template of a given type and slug :warning: **Deprecated**
-
-### [experimentalAccountlessApplications](docs/sdks/experimentalaccountlessapplications/README.md)
-
-* [create](docs/sdks/experimentalaccountlessapplications/README.md#create) - Create an accountless application [EXPERIMENTAL]
-* [complete](docs/sdks/experimentalaccountlessapplications/README.md#complete) - Complete an accountless application [EXPERIMENTAL]
 
 ### [instanceSettings](docs/sdks/instancesettings/README.md)
 
@@ -300,6 +293,7 @@ if ($response->statusCode === 200) {
 * [update](docs/sdks/machines/README.md#update) - Update a machine
 * [delete](docs/sdks/machines/README.md#delete) - Delete a machine
 * [getSecretKey](docs/sdks/machines/README.md#getsecretkey) - Retrieve a machine secret key
+* [rotateSecretKey](docs/sdks/machines/README.md#rotatesecretkey) - Rotate a machine's secret key
 * [createScope](docs/sdks/machines/README.md#createscope) - Create a machine scope
 * [deleteScope](docs/sdks/machines/README.md#deletescope) - Delete a machine scope
 
@@ -392,7 +386,7 @@ if ($response->statusCode === 200) {
 * [refresh](docs/sdks/sessions/README.md#refresh) - Refresh a session
 * [revoke](docs/sdks/sessions/README.md#revoke) - Revoke a session
 * [createToken](docs/sdks/sessions/README.md#createtoken) - Create a session token
-* [createTokenFromTemplate](docs/sdks/sessions/README.md#createtokenfromtemplate) - Create a session token from a jwt template
+* [createTokenFromTemplate](docs/sdks/sessions/README.md#createtokenfromtemplate) - Create a session token from a JWT template
 
 ### [signInTokens](docs/sdks/signintokens/README.md)
 
@@ -447,6 +441,7 @@ if ($response->statusCode === 200) {
 
 * [list](docs/sdks/waitlistentries/README.md#list) - List all waitlist entries
 * [create](docs/sdks/waitlistentries/README.md#create) - Create a waitlist entry
+* [delete](docs/sdks/waitlistentries/README.md#delete) - Delete a pending waitlist entry
 * [invite](docs/sdks/waitlistentries/README.md#invite) - Invite a waitlist entry
 * [reject](docs/sdks/waitlistentries/README.md#reject) - Reject a waitlist entry
 
@@ -541,12 +536,12 @@ By default an API error will raise a `Errors\SDKException` exception, which has 
 | `$rawResponse` | *?\Psr\Http\Message\ResponseInterface*  | The raw HTTP response |
 | `$body`        | *string*                                | The response content  |
 
-When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `delete` method throws the following exceptions:
+When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `verify` method throws the following exceptions:
 
-| Error Type          | Status Code        | Content Type     |
-| ------------------- | ------------------ | ---------------- |
-| Errors\ClerkErrors  | 400, 401, 403, 404 | application/json |
-| Errors\SDKException | 4XX, 5XX           | \*/\*            |
+| Error Type          | Status Code   | Content Type     |
+| ------------------- | ------------- | ---------------- |
+| Errors\ClerkErrors  | 400, 401, 404 | application/json |
+| Errors\SDKException | 4XX, 5XX      | \*/\*            |
 
 ### Example
 
@@ -565,11 +560,11 @@ $sdk = Backend\ClerkBackend::builder()
     ->build();
 
 try {
-    $response = $sdk->awsCredentials->delete(
-        id: '<id>'
+    $response = $sdk->clients->verify(
+        request: $request
     );
 
-    if ($response->deletedObject !== null) {
+    if ($response->client !== null) {
         // handle response
     }
 } catch (Errors\ClerkErrorsThrowable $e) {
