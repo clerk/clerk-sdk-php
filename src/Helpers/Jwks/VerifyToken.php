@@ -2,8 +2,6 @@
 
 namespace Clerk\Backend\Helpers\Jwks;
 
-use Clerk\Backend\Models\Components\JWKSRsaPrivateKey;
-use Clerk\Backend\Models\Components\JWKSRsaPublicKey;
 use Clerk\Backend\Utils;
 use Exception;
 use Firebase\JWT\BeforeValidException;
@@ -175,7 +173,7 @@ class VerifyToken
 
         foreach ($jwks->keys as $key) {
             if ($key->kid === $kid) {
-                if (! ($key instanceof JWKSRsaPublicKey) && ! ($key instanceof JWKSRsaPrivateKey)) {
+                if ($key->n === null || $key->e === null) {
                     throw new TokenVerificationException(TokenVerificationErrorReason::$JWK_REMOTE_INVALID);
                 }
                 try {

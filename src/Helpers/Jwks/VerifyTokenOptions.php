@@ -104,4 +104,12 @@ class VerifyTokenOptions
     {
         return $this->apiVersion;
     }
+
+    /**
+     * @return bool
+     */
+    public function getSkipJwksCache(): bool
+    {
+        return $this->skipJwksCache;
+    }
 }
