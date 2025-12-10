@@ -74,6 +74,8 @@ class ClerkBackend
 
     public Organizations $organizations;
 
+    public OrganizationRoles $organizationRoles;
+
     public OrganizationMemberships $organizationMemberships;
 
     public OrganizationDomains $organizationDomains;
@@ -95,6 +97,8 @@ class ClerkBackend
     public WaitlistEntries $waitlistEntries;
 
     public Billing $billing;
+
+    public OrganizationPermissions $organizationPermissions;
 
     public M2m $m2m;
 
@@ -138,6 +142,7 @@ class ClerkBackend
         $this->jwtTemplates = new JwtTemplates($this->sdkConfiguration);
         $this->machines = new Machines($this->sdkConfiguration);
         $this->organizations = new Organizations($this->sdkConfiguration);
+        $this->organizationRoles = new OrganizationRoles($this->sdkConfiguration);
         $this->organizationMemberships = new OrganizationMemberships($this->sdkConfiguration);
         $this->organizationDomains = new OrganizationDomains($this->sdkConfiguration);
         $this->proxyChecks = new ProxyChecks($this->sdkConfiguration);
@@ -149,6 +154,7 @@ class ClerkBackend
         $this->testingTokens = new TestingTokens($this->sdkConfiguration);
         $this->waitlistEntries = new WaitlistEntries($this->sdkConfiguration);
         $this->billing = new Billing($this->sdkConfiguration);
+        $this->organizationPermissions = new OrganizationPermissions($this->sdkConfiguration);
         $this->m2m = new M2m($this->sdkConfiguration);
         $this->oauthAccessTokens = new OauthAccessTokens($this->sdkConfiguration);
         $this->initHooks();

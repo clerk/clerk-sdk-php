@@ -66,7 +66,7 @@ class SAMLAccount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationSAML|\Clerk\Backend\Models\Components\VerificationTicket|null')]
-    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'object', map: ['VerificationSAML' => '\Clerk\Backend\Models\Components\VerificationSAML', 'VerificationTicket' => '\Clerk\Backend\Models\Components\VerificationTicket'])]
+    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'object', map: ['verification_saml' => '\Clerk\Backend\Models\Components\VerificationSAML', 'verification_ticket' => '\Clerk\Backend\Models\Components\VerificationTicket'])]
     public VerificationSAML|VerificationTicket|null $verification;
 
     /**

@@ -30,13 +30,37 @@ class CreateOrganizationMembershipRequestBody
     public string $role;
 
     /**
+     * Metadata saved on the organization membership, that is visible to both your frontend and backend.
+     *
+     * @var ?array<string, mixed> $publicMetadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $publicMetadata = null;
+
+    /**
+     * Metadata saved on the organization membership that is only visible to your backend.
+     *
+     * @var ?array<string, mixed> $privateMetadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('private_metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $privateMetadata = null;
+
+    /**
      * @param  string  $userId
      * @param  string  $role
+     * @param  ?array<string, mixed>  $publicMetadata
+     * @param  ?array<string, mixed>  $privateMetadata
      * @phpstan-pure
      */
-    public function __construct(string $userId, string $role)
+    public function __construct(string $userId, string $role, ?array $publicMetadata = null, ?array $privateMetadata = null)
     {
         $this->userId = $userId;
         $this->role = $role;
+        $this->publicMetadata = $publicMetadata;
+        $this->privateMetadata = $privateMetadata;
     }
 }

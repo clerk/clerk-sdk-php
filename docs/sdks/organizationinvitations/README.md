@@ -1,5 +1,4 @@
 # OrganizationInvitations
-(*organizationInvitations*)
 
 ## Overview
 

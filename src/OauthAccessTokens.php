@@ -114,12 +114,12 @@ class OauthAccessTokens
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Operations\VerifyOAuthAccessTokenResponseBody', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Operations\ResponseBody1|\Clerk\Backend\Models\Operations\ResponseBody2', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\VerifyOAuthAccessTokenResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
-                    object: $obj);
+                    oneOf: $obj);
 
                 return $response;
             } else {

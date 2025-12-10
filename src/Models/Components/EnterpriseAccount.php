@@ -78,7 +78,7 @@ class EnterpriseAccount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationTicketVerificationTicket|\Clerk\Backend\Models\Components\VerificationSAMLVerificationSAML|\Clerk\Backend\Models\Components\VerificationOauth|null')]
-    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'object', map: ['VerificationTicketVerificationTicket' => '\Clerk\Backend\Models\Components\VerificationTicketVerificationTicket', 'VerificationSAMLVerificationSAML' => '\Clerk\Backend\Models\Components\VerificationSAMLVerificationSAML', 'VerificationOauth' => '\Clerk\Backend\Models\Components\VerificationOauth'])]
+    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'object', map: ['verification_ticket' => '\Clerk\Backend\Models\Components\VerificationTicketVerificationTicket', 'verification_saml' => '\Clerk\Backend\Models\Components\VerificationSAMLVerificationSAML', 'verification_oauth' => '\Clerk\Backend\Models\Components\VerificationOauth'])]
     public VerificationTicketVerificationTicket|VerificationSAMLVerificationSAML|VerificationOauth|null $verification;
 
     /**

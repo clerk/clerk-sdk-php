@@ -92,6 +92,15 @@ class OrganizationInvitation
     public ?string $inviterId;
 
     /**
+     * An organization inviter's public user data
+     *
+     * @var ?OrganizationInvitationPublicUserData $publicInviterData
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('public_inviter_data')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationInvitationPublicUserData|null')]
+    public ?OrganizationInvitationPublicUserData $publicInviterData;
+
+    /**
      *
      * @var ?string $status
      */
@@ -135,13 +144,14 @@ class OrganizationInvitation
      * @param  int  $updatedAt
      * @param  ?string  $organizationId
      * @param  ?string  $inviterId
+     * @param  ?OrganizationInvitationPublicUserData  $publicInviterData
      * @param  ?string  $status
      * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?string  $url
      * @param  ?int  $expiresAt
      * @phpstan-pure
      */
-    public function __construct(OrganizationInvitationObject $object, string $id, string $emailAddress, string $role, string $roleName, array $publicMetadata, int $createdAt, int $updatedAt, ?string $organizationId = null, ?string $inviterId = null, ?string $status = null, ?array $privateMetadata = null, ?string $url = null, ?int $expiresAt = null)
+    public function __construct(OrganizationInvitationObject $object, string $id, string $emailAddress, string $role, string $roleName, array $publicMetadata, int $createdAt, int $updatedAt, ?string $organizationId = null, ?string $inviterId = null, ?OrganizationInvitationPublicUserData $publicInviterData = null, ?string $status = null, ?array $privateMetadata = null, ?string $url = null, ?int $expiresAt = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -153,6 +163,7 @@ class OrganizationInvitation
         $this->updatedAt = $updatedAt;
         $this->organizationId = $organizationId;
         $this->inviterId = $inviterId;
+        $this->publicInviterData = $publicInviterData;
         $this->status = $status;
         $this->privateMetadata = $privateMetadata;
         $this->url = $url;
