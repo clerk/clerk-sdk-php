@@ -35,22 +35,22 @@ class VerifyOAuthAccessTokenResponse
     /**
      * 200 OK
      *
-     * @var ?VerifyOAuthAccessTokenResponseBody $object
+     * @var ResponseBody1|ResponseBody2|null $oneOf
      */
-    public ?VerifyOAuthAccessTokenResponseBody $object = null;
+    public ResponseBody1|ResponseBody2|null $oneOf = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?VerifyOAuthAccessTokenResponseBody  $object
+     * @param  ResponseBody1|ResponseBody2|null  $oneOf
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?VerifyOAuthAccessTokenResponseBody $object = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ResponseBody1|ResponseBody2|null $oneOf = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->object = $object;
+        $this->oneOf = $oneOf;
     }
 }

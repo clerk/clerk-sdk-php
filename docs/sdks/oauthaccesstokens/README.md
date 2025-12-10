@@ -1,5 +1,4 @@
 # OauthAccessTokens
-(*oauthAccessTokens*)
 
 ## Overview
 
@@ -36,7 +35,7 @@ $response = $sdk->oauthAccessTokens->verify(
     request: $request
 );
 
-if ($response->object !== null) {
+if ($response->oneOf !== null) {
     // handle response
 }
 ```

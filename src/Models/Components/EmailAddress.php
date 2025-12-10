@@ -80,7 +80,7 @@ class EmailAddress
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Otp|\Clerk\Backend\Models\Components\Admin|\Clerk\Backend\Models\Components\FromOAuth|\Clerk\Backend\Models\Components\Ticket|\Clerk\Backend\Models\Components\Saml|\Clerk\Backend\Models\Components\EmailLink|null')]
-    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'object', map: ['Otp' => '\Clerk\Backend\Models\Components\Otp', 'Admin' => '\Clerk\Backend\Models\Components\Admin', 'FromOAuth' => '\Clerk\Backend\Models\Components\FromOAuth', 'Ticket' => '\Clerk\Backend\Models\Components\Ticket', 'Saml' => '\Clerk\Backend\Models\Components\Saml', 'EmailLink' => '\Clerk\Backend\Models\Components\EmailLink'])]
+    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'object', map: ['verification_otp' => '\Clerk\Backend\Models\Components\Otp', 'verification_admin' => '\Clerk\Backend\Models\Components\Admin', 'verification_from_oauth' => '\Clerk\Backend\Models\Components\FromOAuth', 'verification_ticket' => '\Clerk\Backend\Models\Components\Ticket', 'verification_saml' => '\Clerk\Backend\Models\Components\Saml', 'verification_email_link' => '\Clerk\Backend\Models\Components\EmailLink'])]
     public Otp|Admin|FromOAuth|Ticket|Saml|EmailLink|null $verification;
 
     /**

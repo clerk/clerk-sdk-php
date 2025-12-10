@@ -1,0 +1,16 @@
+# Role
+
+
+## Fields
+
+| Field                                                                 | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `object`                                                              | [Components\RoleObject](../../Models/Components/RoleObject.md)        | :heavy_check_mark:                                                    | N/A                                                                   |
+| `id`                                                                  | *string*                                                              | :heavy_check_mark:                                                    | N/A                                                                   |
+| `name`                                                                | *string*                                                              | :heavy_check_mark:                                                    | N/A                                                                   |
+| `key`                                                                 | *string*                                                              | :heavy_check_mark:                                                    | N/A                                                                   |
+| `description`                                                         | *string*                                                              | :heavy_check_mark:                                                    | N/A                                                                   |
+| `isCreatorEligible`                                                   | *bool*                                                                | :heavy_check_mark:                                                    | Whether this role is eligible to be an organization creator role      |
+| `permissions`                                                         | array<[Components\Permission](../../Models/Components/Permission.md)> | :heavy_check_mark:                                                    | N/A                                                                   |
+| `createdAt`                                                           | *int*                                                                 | :heavy_check_mark:                                                    | Unix timestamp of creation.<br/>                                      |
+| `updatedAt`                                                           | *int*                                                                 | :heavy_check_mark:                                                    | Unix timestamp of last update.<br/>                                   |

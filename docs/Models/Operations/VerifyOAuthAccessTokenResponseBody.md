@@ -3,18 +3,23 @@
 200 OK
 
 
-## Fields
+## Supported Types
 
-| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        | Example                                                                                            |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `object`                                                                                           | [Operations\VerifyOAuthAccessTokenObject](../../Models/Operations/VerifyOAuthAccessTokenObject.md) | :heavy_check_mark:                                                                                 | N/A                                                                                                | clerk_idp_oauth_access_token                                                                       |
-| `id`                                                                                               | *string*                                                                                           | :heavy_check_mark:                                                                                 | N/A                                                                                                | oat_0ef5a7a33d87ed87ee7954c845d80450                                                               |
-| `clientId`                                                                                         | *string*                                                                                           | :heavy_check_mark:                                                                                 | N/A                                                                                                | client_2xhFjEI5X2qWRvtV13BzSj8H6Dk                                                                 |
-| `subject`                                                                                          | *string*                                                                                           | :heavy_check_mark:                                                                                 | N/A                                                                                                | user_2xhFjEI5X2qWRvtV13BzSj8H6Dk                                                                   |
-| `scopes`                                                                                           | array<*string*>                                                                                    | :heavy_check_mark:                                                                                 | N/A                                                                                                | [<br/>"read",<br/>"write"<br/>]                                                                    |
-| `revoked`                                                                                          | *bool*                                                                                             | :heavy_check_mark:                                                                                 | N/A                                                                                                | false                                                                                              |
-| `revocationReason`                                                                                 | *string*                                                                                           | :heavy_check_mark:                                                                                 | N/A                                                                                                | Revoked by user                                                                                    |
-| `expired`                                                                                          | *bool*                                                                                             | :heavy_check_mark:                                                                                 | N/A                                                                                                | false                                                                                              |
-| `expiration`                                                                                       | *float*                                                                                            | :heavy_check_mark:                                                                                 | N/A                                                                                                | 1716883200                                                                                         |
-| `createdAt`                                                                                        | *float*                                                                                            | :heavy_check_mark:                                                                                 | N/A                                                                                                | 1716883200                                                                                         |
-| `updatedAt`                                                                                        | *float*                                                                                            | :heavy_check_mark:                                                                                 | N/A                                                                                                | 1716883200                                                                                         |
+### `Operations\ResponseBody1`
+
+```php
+/**
+* @var Operations\ResponseBody1
+*/
+Operations\ResponseBody1 $value = /* values here */
+```
+
+### `Operations\ResponseBody2`
+
+```php
+/**
+* @var Operations\ResponseBody2
+*/
+Operations\ResponseBody2 $value = /* values here */
+```
+

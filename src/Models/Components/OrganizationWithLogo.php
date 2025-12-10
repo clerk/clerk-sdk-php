@@ -140,6 +140,17 @@ class OrganizationWithLogo
     public ?string $createdBy = null;
 
     /**
+     * Unix timestamp of last activity.
+     *
+     *
+     *
+     * @var ?int $lastActiveAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('last_active_at')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $lastActiveAt = null;
+
+    /**
      *
      * @var ?string $logoUrl
      * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -165,10 +176,11 @@ class OrganizationWithLogo
      * @param  ?int  $pendingInvitationsCount
      * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?string  $createdBy
+     * @param  ?int  $lastActiveAt
      * @param  ?string  $logoUrl
      * @phpstan-pure
      */
-    public function __construct(OrganizationWithLogoObject $object, string $id, string $name, string $slug, string $imageUrl, bool $hasImage, int $maxAllowedMemberships, bool $adminDeleteEnabled, array $publicMetadata, int $createdAt, int $updatedAt, ?int $membersCount = null, ?bool $missingMemberWithElevatedPermissions = null, ?int $pendingInvitationsCount = null, ?array $privateMetadata = null, ?string $createdBy = null, ?string $logoUrl = null)
+    public function __construct(OrganizationWithLogoObject $object, string $id, string $name, string $slug, string $imageUrl, bool $hasImage, int $maxAllowedMemberships, bool $adminDeleteEnabled, array $publicMetadata, int $createdAt, int $updatedAt, ?int $membersCount = null, ?bool $missingMemberWithElevatedPermissions = null, ?int $pendingInvitationsCount = null, ?array $privateMetadata = null, ?string $createdBy = null, ?int $lastActiveAt = null, ?string $logoUrl = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -186,6 +198,7 @@ class OrganizationWithLogo
         $this->pendingInvitationsCount = $pendingInvitationsCount;
         $this->privateMetadata = $privateMetadata;
         $this->createdBy = $createdBy;
+        $this->lastActiveAt = $lastActiveAt;
         $this->logoUrl = $logoUrl;
     }
 }

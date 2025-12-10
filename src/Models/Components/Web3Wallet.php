@@ -63,7 +63,7 @@ class Web3Wallet
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Web3Signature|\Clerk\Backend\Models\Components\VerificationAdminVerificationAdmin|null')]
-    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'object', map: ['Web3Signature' => '\Clerk\Backend\Models\Components\Web3Signature', 'VerificationAdminVerificationAdmin' => '\Clerk\Backend\Models\Components\VerificationAdminVerificationAdmin'])]
+    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'object', map: ['verification_web3' => '\Clerk\Backend\Models\Components\Web3Signature', 'verification_admin' => '\Clerk\Backend\Models\Components\VerificationAdminVerificationAdmin'])]
     public Web3Signature|VerificationAdminVerificationAdmin|null $verification;
 
     /**

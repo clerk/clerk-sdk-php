@@ -53,7 +53,7 @@ class Passkey
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationPasskey|null')]
-    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'object', map: ['VerificationPasskey' => '\Clerk\Backend\Models\Components\VerificationPasskey'])]
+    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'object', map: ['verification_passkey' => '\Clerk\Backend\Models\Components\VerificationPasskey'])]
     public ?VerificationPasskey $verification;
 
     /**

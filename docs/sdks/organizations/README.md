@@ -1,5 +1,4 @@
 # Organizations
-(*organizations*)
 
 ## Overview
 
@@ -231,6 +230,9 @@ if ($response->organization !== null) {
 Deletes the given organization.
 Please note that deleting an organization will also delete all memberships and invitations.
 This is not reversible.
+
+After the organization is deleted, any user's active sessions that contain the deleted
+organization will be cleared.
 
 ### Example Usage
 

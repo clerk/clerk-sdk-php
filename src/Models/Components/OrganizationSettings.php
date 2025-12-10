@@ -83,6 +83,14 @@ class OrganizationSettings
     public string $domainsDefaultRole;
 
     /**
+     *
+     * @var ?int $maxRoleSetsAllowed
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('max_role_sets_allowed')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $maxRoleSetsAllowed = null;
+
+    /**
      * max_allowed_permissions is now a no-op, as permissions are now unlimited
      *
      * @var ?int $maxAllowedPermissions
@@ -119,12 +127,13 @@ class OrganizationSettings
      * @param  bool  $domainsEnabled
      * @param  array<DomainsEnrollmentModes>  $domainsEnrollmentModes
      * @param  string  $domainsDefaultRole
+     * @param  ?int  $maxRoleSetsAllowed
      * @param  ?int  $maxAllowedPermissions
      * @param  ?bool  $slugDisabled
      * @param  ?string  $initialRoleSetKey
      * @phpstan-pure
      */
-    public function __construct(OrganizationSettingsObject $object, bool $enabled, int $maxAllowedMemberships, int $maxAllowedRoles, string $creatorRole, bool $adminDeleteEnabled, bool $domainsEnabled, array $domainsEnrollmentModes, string $domainsDefaultRole, ?int $maxAllowedPermissions = null, ?bool $slugDisabled = null, ?string $initialRoleSetKey = null)
+    public function __construct(OrganizationSettingsObject $object, bool $enabled, int $maxAllowedMemberships, int $maxAllowedRoles, string $creatorRole, bool $adminDeleteEnabled, bool $domainsEnabled, array $domainsEnrollmentModes, string $domainsDefaultRole, ?int $maxRoleSetsAllowed = null, ?int $maxAllowedPermissions = null, ?bool $slugDisabled = null, ?string $initialRoleSetKey = null)
     {
         $this->object = $object;
         $this->enabled = $enabled;
@@ -135,6 +144,7 @@ class OrganizationSettings
         $this->domainsEnabled = $domainsEnabled;
         $this->domainsEnrollmentModes = $domainsEnrollmentModes;
         $this->domainsDefaultRole = $domainsDefaultRole;
+        $this->maxRoleSetsAllowed = $maxRoleSetsAllowed;
         $this->maxAllowedPermissions = $maxAllowedPermissions;
         $this->slugDisabled = $slugDisabled;
         $this->initialRoleSetKey = $initialRoleSetKey;

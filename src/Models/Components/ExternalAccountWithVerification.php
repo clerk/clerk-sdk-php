@@ -122,7 +122,7 @@ class ExternalAccountWithVerification
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Oauth|\Clerk\Backend\Models\Components\GoogleOneTap|null')]
-    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'object', map: ['Oauth' => '\Clerk\Backend\Models\Components\Oauth', 'GoogleOneTap' => '\Clerk\Backend\Models\Components\GoogleOneTap'])]
+    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'object', map: ['verification_oauth' => '\Clerk\Backend\Models\Components\Oauth', 'verification_google_one_tap' => '\Clerk\Backend\Models\Components\GoogleOneTap'])]
     public Oauth|GoogleOneTap|null $verification;
 
     /**
