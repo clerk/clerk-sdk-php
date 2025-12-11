@@ -209,10 +209,10 @@ class SchemasCommerceSubscriptionItemPlan
     /**
      * The features included in this plan.
      *
-     * @var array<FeatureResponse> $features
+     * @var array<SchemasFeatureResponse> $features
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('features')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\FeatureResponse>')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\SchemasFeatureResponse>')]
     public array $features;
 
     /**
@@ -276,7 +276,7 @@ class SchemasCommerceSubscriptionItemPlan
      * @param  string  $forPayerType
      * @param  string  $slug
      * @param  string  $avatarUrl
-     * @param  array<FeatureResponse>  $features
+     * @param  array<SchemasFeatureResponse>  $features
      * @param  ?string  $period
      * @param  ?int  $interval
      * @param  ?bool  $freeTrialEnabled

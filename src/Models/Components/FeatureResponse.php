@@ -37,14 +37,6 @@ class FeatureResponse
     public string $name;
 
     /**
-     * The description of the feature.
-     *
-     * @var string $description
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
-    public string $description;
-
-    /**
      * The URL-friendly slug for the feature.
      *
      * @var string $slug
@@ -53,29 +45,37 @@ class FeatureResponse
     public string $slug;
 
     /**
+     * The description of the feature.
+     *
+     * @var ?string $description
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
+    public ?string $description;
+
+    /**
      * The URL of the feature's avatar image.
      *
-     * @var string $avatarUrl
+     * @var ?string $avatarUrl
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('avatar_url')]
-    public string $avatarUrl;
+    public ?string $avatarUrl;
 
     /**
      * @param  FeatureResponseObject  $object
      * @param  string  $id
      * @param  string  $name
-     * @param  string  $description
      * @param  string  $slug
-     * @param  string  $avatarUrl
+     * @param  ?string  $description
+     * @param  ?string  $avatarUrl
      * @phpstan-pure
      */
-    public function __construct(FeatureResponseObject $object, string $id, string $name, string $description, string $slug, string $avatarUrl)
+    public function __construct(FeatureResponseObject $object, string $id, string $name, string $slug, ?string $description = null, ?string $avatarUrl = null)
     {
         $this->object = $object;
         $this->id = $id;
         $this->name = $name;
-        $this->description = $description;
         $this->slug = $slug;
+        $this->description = $description;
         $this->avatarUrl = $avatarUrl;
     }
 }
