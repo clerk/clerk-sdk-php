@@ -199,6 +199,17 @@ if ($response->statusCode === 200) {
 * [create](docs/sdks/allowlistidentifiers/README.md#create) - Add identifier to the allow-list
 * [delete](docs/sdks/allowlistidentifiers/README.md#delete) - Delete identifier from allow-list
 
+### [APIKeys](docs/sdks/apikeys/README.md)
+
+* [createApiKey](docs/sdks/apikeys/README.md#createapikey) - Create an API Key
+* [getApiKeys](docs/sdks/apikeys/README.md#getapikeys) - Get API Keys
+* [getApiKey](docs/sdks/apikeys/README.md#getapikey) - Get an API Key by ID
+* [updateApiKey](docs/sdks/apikeys/README.md#updateapikey) - Update an API Key
+* [deleteApiKey](docs/sdks/apikeys/README.md#deleteapikey) - Delete an API Key
+* [getApiKeySecret](docs/sdks/apikeys/README.md#getapikeysecret) - Get an API Key Secret
+* [revokeApiKey](docs/sdks/apikeys/README.md#revokeapikey) - Revoke an API Key
+* [verifyApiKey](docs/sdks/apikeys/README.md#verifyapikey) - Verify an API Key
+
 ### [BetaFeatures](docs/sdks/betafeatures/README.md)
 
 * [updateInstanceSettings](docs/sdks/betafeatures/README.md#updateinstancesettings) - Update instance settings

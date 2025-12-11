@@ -204,6 +204,14 @@ class One
     public ?string $organizationId = null;
 
     /**
+     *
+     * @var ?string $enterpriseConnectionId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('enterprise_connection_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $enterpriseConnectionId = null;
+
+    /**
      * @param  SchemasSAMLConnectionObject  $object
      * @param  string  $id
      * @param  string  $name
@@ -229,9 +237,10 @@ class One
      * @param  ?string  $idpMetadataUrl
      * @param  ?string  $idpMetadata
      * @param  ?string  $organizationId
+     * @param  ?string  $enterpriseConnectionId
      * @phpstan-pure
      */
-    public function __construct(SchemasSAMLConnectionObject $object, string $id, string $name, string $domain, string $acsUrl, string $spEntityId, string $spMetadataUrl, bool $active, string $provider, int $userCount, bool $syncUserAttributes, bool $allowSubdomains, bool $allowIdpInitiated, bool $disableAdditionalIdentifications, bool $forceAuthn, int $createdAt, int $updatedAt, ?array $domains = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?SAMLConnectionAttributeMapping $attributeMapping = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null)
+    public function __construct(SchemasSAMLConnectionObject $object, string $id, string $name, string $domain, string $acsUrl, string $spEntityId, string $spMetadataUrl, bool $active, string $provider, int $userCount, bool $syncUserAttributes, bool $allowSubdomains, bool $allowIdpInitiated, bool $disableAdditionalIdentifications, bool $forceAuthn, int $createdAt, int $updatedAt, ?array $domains = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?SAMLConnectionAttributeMapping $attributeMapping = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?string $enterpriseConnectionId = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -258,5 +267,6 @@ class One
         $this->idpMetadataUrl = $idpMetadataUrl;
         $this->idpMetadata = $idpMetadata;
         $this->organizationId = $organizationId;
+        $this->enterpriseConnectionId = $enterpriseConnectionId;
     }
 }

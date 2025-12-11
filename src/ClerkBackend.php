@@ -100,6 +100,13 @@ class ClerkBackend
 
     public OrganizationPermissions $organizationPermissions;
 
+    /**
+     * Endpoints for managing API Keys
+     *
+     * @var APIKeys $$apiKeys
+     */
+    public APIKeys $apiKeys;
+
     public M2m $m2m;
 
     public OauthAccessTokens $oauthAccessTokens;
@@ -155,6 +162,7 @@ class ClerkBackend
         $this->waitlistEntries = new WaitlistEntries($this->sdkConfiguration);
         $this->billing = new Billing($this->sdkConfiguration);
         $this->organizationPermissions = new OrganizationPermissions($this->sdkConfiguration);
+        $this->apiKeys = new APIKeys($this->sdkConfiguration);
         $this->m2m = new M2m($this->sdkConfiguration);
         $this->oauthAccessTokens = new OauthAccessTokens($this->sdkConfiguration);
         $this->initHooks();

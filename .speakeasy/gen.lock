@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 8c24a12b-d2f1-466a-bdaa-6d83a049a679
 management:
-  docChecksum: 2a852a9184cca3c050de29ab7c27d824
+  docChecksum: 85977b233780e1e09646dacc926243c6
   docVersion: "2025-11-10"
-  speakeasyVersion: 1.675.1
-  generationVersion: 2.778.0
-  releaseVersion: 0.4.1
-  configChecksum: 3166acca86122f77a6cb770b4825b8ae
+  speakeasyVersion: 1.675.4
+  generationVersion: 2.779.2
+  releaseVersion: 0.5.0
+  configChecksum: d1ea24a13b8c60acbb3c7a20f1e50ab8
   repoURL: https://github.com/clerk/clerk-sdk-php.git
   installationURL: https://github.com/clerk/clerk-sdk-php
   published: true
 persistentEdits:
-  generation_id: a3068b05-1ea6-4040-a2a9-4f0fe69409c2
-  pristine_commit_hash: 0f8442e4d23a2de04e52c3c772a8cdda917512c6
-  pristine_tree_hash: f1a1f4cc896de3ca3243551d76b507068a04d171
+  generation_id: d7ce5fd0-16ba-42a0-9f55-8e50933b1a87
+  pristine_commit_hash: 638e21c662410ccd85574251f3dee8cd2b726cf1
+  pristine_tree_hash: 2da73d163a75fb790615deaa746b956dd1d0b877
 features:
   php:
     additionalProperties: 0.1.0
@@ -31,7 +31,7 @@ features:
     nullables: 1.0.1
     responseFormat: 0.1.0
     retries: 0.1.1
-    unions: 0.1.6
+    unions: 0.1.7
 trackedFiles:
   .gitattributes:
     id: 24139dae6567
@@ -575,8 +575,8 @@ trackedFiles:
     pristine_git_object: cf1f1d197927e1c021d4e7bc99ef80e173b0bcba
   docs/Models/Components/One.md:
     id: 37e74752e70f
-    last_write_checksum: sha1:b48911225f2952baa4d4746c9491c6b062b694c8
-    pristine_git_object: 8e4abe92c1c5defecf71bec1e9abb122807da780
+    last_write_checksum: sha1:37e89c2c5e549c9698db6e0411bb3fb11aaadec2
+    pristine_git_object: f18eb132a366cb9c29b0934d0e4f8e651302f16e
   docs/Models/Components/Organization.md:
     id: 4313ecadad22
     last_write_checksum: sha1:a7792572c53ee90e2eb7bcef19b68a7a5e729ac1
@@ -883,8 +883,8 @@ trackedFiles:
     pristine_git_object: 801142e05e9734130c50b2d82d5a7a22785f4954
   docs/Models/Components/SchemasCommerceSubscriptionItemPlan.md:
     id: a19dc1a8f166
-    last_write_checksum: sha1:385a35a4848367014092e7f5fee6e450b95d4117
-    pristine_git_object: e691287fce351b492b8178d9bf47b0264090fdaa
+    last_write_checksum: sha1:a3dfef9d993d162909a99845fac1ef04f9c73b0d
+    pristine_git_object: b91333b41a3d0ce34f4c42fff7dff2883fa4a424
   docs/Models/Components/SchemasCommerceSubscriptionItemPlanObject.md:
     id: 0ec9b918d562
     last_write_checksum: sha1:021f0bb00f3cb4b107a3dccc74e2f6b90bd02ce6
@@ -897,6 +897,14 @@ trackedFiles:
     id: 2baca81e3e10
     last_write_checksum: sha1:677fb8a9ff5db4e066603d1fc3d34a636cce4f55
     pristine_git_object: 1e005bd78d302c596c0951df1ba1ffb382958bb1
+  docs/Models/Components/SchemasFeatureResponse.md:
+    id: 927d659f67b8
+    last_write_checksum: sha1:fedf03ef17cd26ea0174e4bcc47fccaa619f17c5
+    pristine_git_object: 601015c19ac13a55cb1225536f661583c1c98e51
+  docs/Models/Components/SchemasFeatureResponseObject.md:
+    id: 1c282620f53f
+    last_write_checksum: sha1:2fe1d045831852912eac899381276e666b94fbff
+    pristine_git_object: 10e00fa72af90fb18041ab858a5672ef683d484b
   docs/Models/Components/SchemasSAMLConnection.md:
     id: 6b492d93b871
     last_write_checksum: sha1:bdb95499e48ed1438abd2cb7608e0f2abea76afc
@@ -1027,12 +1035,12 @@ trackedFiles:
     pristine_git_object: 1ef17f1223156c97f996e77d870a689d610a0762
   docs/Models/Components/Two.md:
     id: 24784dbdaa65
-    last_write_checksum: sha1:e4f6568f9ac8f5d90ecb7d39a5b32151a3b25b9c
-    pristine_git_object: 129a95163ffff91d1e54ba96010678487b89ae10
+    last_write_checksum: sha1:c15223ef8a5801ce31ed41f1988fe510a6d8b741
+    pristine_git_object: 72ea8c4a4b07a0a07b097014941799155951a11d
   docs/Models/Components/User.md:
     id: d91a5ce53244
-    last_write_checksum: sha1:89d7b623595a1e8a3199000527d37bf62e807f6a
-    pristine_git_object: 597ff212bb3d634221a53e260a8413ea4bd27f88
+    last_write_checksum: sha1:5ffb14fadc921b5fa6b76edbce6e23dfa87edf2d
+    pristine_git_object: 822ec7cf6a5a6e88040262455cab4265f5bc66f2
   docs/Models/Components/UserObject.md:
     id: 0418e26a1b47
     last_write_checksum: sha1:0e435eee059de3b9ba7f6cd730476105e76ccd1d
@@ -1323,8 +1331,8 @@ trackedFiles:
     pristine_git_object: 5d017d55125c40bed4466d89db383afb476bdd3b
   docs/Models/Components/VerificationWeb3VerificationStrategy.md:
     id: ce5e778cb4d8
-    last_write_checksum: sha1:a7bb2241c6f443716072f7678b45635f31aa2af2
-    pristine_git_object: 9f67eb40e723245401e54f39c3ec72656461df10
+    last_write_checksum: sha1:0defa396e3d4ba16603d6586057c971d0701e69e
+    pristine_git_object: 86710dc68b69ee2f2b5e35be45d5310a0c8998a1
   docs/Models/Components/WaitlistEntries.md:
     id: 0ad60d2e3b29
     last_write_checksum: sha1:11ea2bd2609514adb39bc542016a4bf3661dfb86
@@ -1373,22 +1381,102 @@ trackedFiles:
     id: dc0a314b72b1
     last_write_checksum: sha1:7467f2bdc8f7dadf5f82540f1786005b5805545a
     pristine_git_object: 3a2011ca390d7199c8d62e9ca19d5a76f9ef1a50
+  docs/Models/Errors/CreateAPIKeyAPIKeysResponseBody.md:
+    id: 16f209eb4cd1
+    last_write_checksum: sha1:a894c70e5ffb43cdcba9e42e1029b5a49135e624
+    pristine_git_object: b1fc64efc4fce9f182c26a7d5f698f97af3a28c5
+  docs/Models/Errors/CreateApiKeyErrors.md:
+    id: b301ae7fe559
+    last_write_checksum: sha1:2432f491b6d216d152ee022678693b17b5d90195
+    pristine_git_object: a9b7b45f52911dedf42561fc1ee3ea4d8d8b1eb6
+  docs/Models/Errors/CreateApiKeyResponseBody.md:
+    id: 680a0d564823
+    last_write_checksum: sha1:3512a22dd97f546191623c935c1b4bcd0c6e735f
+    pristine_git_object: 54e9fb2078f4b8a45879df31de6b8c2f912b994b
   docs/Models/Errors/CreateM2MTokenErrors.md:
     id: 153fe417456a
-    last_write_checksum: sha1:a5b37f44753e4d2d9a634bd4553c920fac50fca4
-    pristine_git_object: 74a2839caf00df88d1457dd8b7d00907d40e9b6e
+    last_write_checksum: sha1:7498c17fb8e00705839f34cc07cf9a38ad73f8ad
+    pristine_git_object: dbab937db6fdcc64a6625840cfa52c4bfe3aaed7
+  docs/Models/Errors/CreateM2MTokenM2mErrors.md:
+    id: 13aaede4b863
+    last_write_checksum: sha1:9df763620e136d3e8606cc6d1811d11dac00f41a
+    pristine_git_object: b3811428775b78ee9507dcde6470399bf42e3d16
   docs/Models/Errors/CreateM2MTokenM2mResponseBody.md:
     id: be72f8154d36
-    last_write_checksum: sha1:6e91b928f7e8116598b8451c55509dad4ef0197a
-    pristine_git_object: ef020be43b0368487de264bda9d5a45a2ce9e087
+    last_write_checksum: sha1:85215ddd6e94817df2dd1b0d880714f9bb7b2a22
+    pristine_git_object: 533396e63927750074b59cce602a30d92848cbfb
   docs/Models/Errors/CreateM2MTokenResponseBody.md:
     id: 2bc1a3b301df
-    last_write_checksum: sha1:3ad18b97d6aba945f21994a30edc795cb9de442a
-    pristine_git_object: 36ae940efbfc2465f58d5dc67a03919a1b90ff27
+    last_write_checksum: sha1:af45b9e9a193cbad739a0b76c6e7df24b3f196b3
+    pristine_git_object: 9dc148fa7adb059519c45fb528a4e97d1d423b7b
+  docs/Models/Errors/DeleteAPIKeyAPIKeysErrors.md:
+    id: ae7a089feff0
+    last_write_checksum: sha1:1f22d517451e2268a7d88353e93cac851f7c9833
+    pristine_git_object: 704f3bfa691a1f886d7f04e1cd8aec8e887a535d
+  docs/Models/Errors/DeleteAPIKeyAPIKeysResponseBody.md:
+    id: 8be1b5807767
+    last_write_checksum: sha1:7699c94110c6226fdd7b84c48b75cef76958bcd5
+    pristine_git_object: e99fddc3cdacbddee7051ddd27fd2afcabddd1bf
+  docs/Models/Errors/DeleteApiKeyErrors.md:
+    id: 1f00ca4091b4
+    last_write_checksum: sha1:cefa5942436f42ee5972acb6b64e6672e7cd6933
+    pristine_git_object: fd08e836fafa62a6ef16ec1e965973e8b709e36d
+  docs/Models/Errors/DeleteApiKeyResponseBody.md:
+    id: 6c17f9c7114d
+    last_write_checksum: sha1:d5cc1fa397d4acc28cfa1ac896b0c05a7260bc96
+    pristine_git_object: ae9712f27d3e9d417296dbda9e543f1db2eaab87
   docs/Models/Errors/Errors.md:
     id: f89a07622654
     last_write_checksum: sha1:7a32c37b7dd46d4467a41dfc92ec0868d2952b3c
     pristine_git_object: f52e78e1b699c27850224491557061b61e019416
+  docs/Models/Errors/GetAPIKeyAPIKeysErrors.md:
+    id: 38db9eed9ca3
+    last_write_checksum: sha1:ccfd828306834fb84c7ee96b98cc2f2a573afc34
+    pristine_git_object: c812fe62e7516e2e1287663413a319eb8691e173
+  docs/Models/Errors/GetAPIKeyAPIKeysResponseBody.md:
+    id: 1d071312f29d
+    last_write_checksum: sha1:35db31449f093974664057b7a99d0636784b5e88
+    pristine_git_object: dc82596513a13a500ee06ac803ac9e7c87759a56
+  docs/Models/Errors/GetAPIKeySecretAPIKeysErrors.md:
+    id: 50648d5c910f
+    last_write_checksum: sha1:bce90effe821237e259f4c4f3d92a3385fa5c853
+    pristine_git_object: 6b9c50722fdd7798dafa50659dcc8a39e22c34ac
+  docs/Models/Errors/GetAPIKeySecretAPIKeysResponseBody.md:
+    id: 714a05c18383
+    last_write_checksum: sha1:95923ca85c06fbb2ec19f2a292fd4432de60838a
+    pristine_git_object: 6dabbc274c9fe7c1c1d4c090e4dc90cc784d4a08
+  docs/Models/Errors/GetAPIKeysAPIKeysErrors.md:
+    id: dd4bdf2eb1bf
+    last_write_checksum: sha1:25ad32e143ee65848dfba3619f901d84caee4842
+    pristine_git_object: 18a68c617dca29f31a919840a000fc5d3f431bc7
+  docs/Models/Errors/GetAPIKeysAPIKeysResponseBody.md:
+    id: e73ac20081ae
+    last_write_checksum: sha1:fb11a9d5dbc66543faa30d1f4066e005c1c1dbba
+    pristine_git_object: cb587e3dc3e9255010c61119ab5604d1ff4e8e87
+  docs/Models/Errors/GetApiKeyErrors.md:
+    id: 6d19c5522752
+    last_write_checksum: sha1:b20c95943692d5d70b8bfb1b80f8c9e5c3492a29
+    pristine_git_object: 8d040b5b1634ddef1dd24cd1526bcc519545c81c
+  docs/Models/Errors/GetApiKeyResponseBody.md:
+    id: 104939e2c622
+    last_write_checksum: sha1:f83063f0cf4f54b46b5bcb2ff271b8c59fdafede
+    pristine_git_object: ea728a214c9ca98d9c55c2f41fe8f1a59d34846b
+  docs/Models/Errors/GetApiKeySecretErrors.md:
+    id: 7254854d017c
+    last_write_checksum: sha1:4d3ffbef0d47cacfe5272f09971c4af1c036f874
+    pristine_git_object: cae7cfc6d804e60793175f93f14145ef9bdf93a6
+  docs/Models/Errors/GetApiKeySecretResponseBody.md:
+    id: ee272222d15d
+    last_write_checksum: sha1:f9b525386a5759782c7d0fa2512ea01af58130e1
+    pristine_git_object: 4803d594a7fe1609cbc4f430becf75a10409024f
+  docs/Models/Errors/GetApiKeysErrors.md:
+    id: daf8a7e72752
+    last_write_checksum: sha1:0e7c84ef93ba91479e198e70da7972ba4abd0616
+    pristine_git_object: 6720d9bc12f700703b9efeced6a39c2e0d174a0b
+  docs/Models/Errors/GetApiKeysResponseBody.md:
+    id: fb1b925b6dcc
+    last_write_checksum: sha1:4e08a67ea9dd8e4d133b711eefff2c1a98e43e56
+    pristine_git_object: ec3d903e57db5a934fafaf397d999c53e8702413
   docs/Models/Errors/GetM2MTokensErrors.md:
     id: d361e6382682
     last_write_checksum: sha1:858ac12b0778b72f17394c80c0d8056f2c6660cb
@@ -1417,6 +1505,22 @@ trackedFiles:
     id: 66367fb8578a
     last_write_checksum: sha1:15ebd1eb87ca29dca40f7a85b187c7119e9bc5f8
     pristine_git_object: 93f98d6ad4d1504e6a3849971be592f31f4eea76
+  docs/Models/Errors/RevokeAPIKeyAPIKeysErrors.md:
+    id: bf572dc6d81c
+    last_write_checksum: sha1:510d0b9e01823a9974ba2a47183e69480f6ba10b
+    pristine_git_object: 58cdf6423595a7835e62724024c170c861b63975
+  docs/Models/Errors/RevokeAPIKeyAPIKeysResponseBody.md:
+    id: eee601ac577a
+    last_write_checksum: sha1:9de85997714161c8c8714634e47e58497d45aaac
+    pristine_git_object: f835acfe738db7b8b5858773f8735a69c5ec5355
+  docs/Models/Errors/RevokeApiKeyErrors.md:
+    id: 25fe09207920
+    last_write_checksum: sha1:e3fa28d80bb614897a05ff88b5f23ec4b35075d7
+    pristine_git_object: edd8d7678aa8eec7a98579e9d2bcdaf28512e54e
+  docs/Models/Errors/RevokeApiKeyResponseBody.md:
+    id: 877c50139959
+    last_write_checksum: sha1:2325a41375ef180b62c0a03e01254ff752c30567
+    pristine_git_object: 93d99711ef15caf032086a7c2ef037fc424af13c
   docs/Models/Errors/RevokeM2MTokenErrors.md:
     id: b25839107d74
     last_write_checksum: sha1:b679e082fc89f49213c599b3c10b89556551810b
@@ -1433,6 +1537,38 @@ trackedFiles:
     id: 7662c0879f9f
     last_write_checksum: sha1:f5b19d5e60a27bb4632104ab24d2356394d161c4
     pristine_git_object: a7aa7b0dcaea5041065f9366fb84a265029370bf
+  docs/Models/Errors/UpdateAPIKeyAPIKeysErrors.md:
+    id: f465aaec67f2
+    last_write_checksum: sha1:6e241012012b7faf530d7a1ebbbc3f15e639a72a
+    pristine_git_object: 775172231c3264a06960b0b1b552209be51c7513
+  docs/Models/Errors/UpdateAPIKeyAPIKeysResponseBody.md:
+    id: c4dc72b800c4
+    last_write_checksum: sha1:31c4769edcc754de7e8147b04177d05647742351
+    pristine_git_object: e574c6472caf6a0056a85f8b19eab8f4b42cfead
+  docs/Models/Errors/UpdateApiKeyErrors.md:
+    id: c6c8dca6f869
+    last_write_checksum: sha1:30847f6fac1d5b30e1c051e4d91d1bf92673aa6b
+    pristine_git_object: c29b5b53f21330b73d78d48082d270736353366e
+  docs/Models/Errors/UpdateApiKeyResponseBody.md:
+    id: 83d4a2b37049
+    last_write_checksum: sha1:b2b0cad0b772a04ccb965328a5b944a733739988
+    pristine_git_object: 7f58b88cc95106f8773e927b3d8e64a55c7c3e8d
+  docs/Models/Errors/VerifyAPIKeyAPIKeysErrors.md:
+    id: 94709329dca5
+    last_write_checksum: sha1:dd7002e10e95645974416685d2772ec122c38254
+    pristine_git_object: daf5217530d4d8f47145f41caa5cf12bf3bfec85
+  docs/Models/Errors/VerifyAPIKeyAPIKeysResponseBody.md:
+    id: 399fd6b40269
+    last_write_checksum: sha1:7b54670fe68c4c7b460d25a0ced5899419f9c6d5
+    pristine_git_object: cb656e550a21f3c5b0c5da0f8ace16b6f0a4fe23
+  docs/Models/Errors/VerifyApiKeyErrors.md:
+    id: 79aa450d21a1
+    last_write_checksum: sha1:84a6c9110885b208ab9245549fcbd10bc6f61ca8
+    pristine_git_object: 8a060649753f2db2f93c41f34b967af3688c5358
+  docs/Models/Errors/VerifyApiKeyResponseBody.md:
+    id: 9307f676ee75
+    last_write_checksum: sha1:addb0fa4dcd1e7e9c290539c06f3c6e89f08ec8a
+    pristine_git_object: b69f82907c5b99214944fad7e4ab9616bd32cf52
   docs/Models/Errors/VerifyM2MTokenErrors.md:
     id: 78f460dd2221
     last_write_checksum: sha1:ed9d126b6a46ebca5f56a6eb86f6c4fe9db27c2a
@@ -1537,6 +1673,22 @@ trackedFiles:
     id: 4db95911f6f9
     last_write_checksum: sha1:f916f4eb18e4c9aa50522b228cb5876a3c7ca8fb
     pristine_git_object: 2bab58a253113865fbc602564bfe8967b055d975
+  docs/Models/Operations/CreateApiKeyObject.md:
+    id: 6ed7ac4ba26e
+    last_write_checksum: sha1:995ae73f9f43ad34f3f28748aa219a2f0c3cfd4b
+    pristine_git_object: 5ec6a3df5ca6afcdd867af9f88ba9cee78bbbe8c
+  docs/Models/Operations/CreateApiKeyRequestBody.md:
+    id: 9c7c1d0b161f
+    last_write_checksum: sha1:b097d031eb988f96c18e2f4972b747ec444de04c
+    pristine_git_object: 572ce6dde428298ff72fd003ce1a66601bbc430d
+  docs/Models/Operations/CreateApiKeyResponse.md:
+    id: 986539af5047
+    last_write_checksum: sha1:682d9af0291f9d8ce7d04fd255b195ebd3ae0ca5
+    pristine_git_object: fae4f0a75d291a12ab3dbe2eb08f27d69e811b83
+  docs/Models/Operations/CreateApiKeyResponseBody.md:
+    id: 18e1c4109a72
+    last_write_checksum: sha1:9ce8c907c30ca1d85553eff0cf368bc9d6e8a09c
+    pristine_git_object: a4df29d3619a99e5e5ae7850a3ebe20cecae7551
   docs/Models/Operations/CreateBlocklistIdentifierRequestBody.md:
     id: a1d7ba461cfb
     last_write_checksum: sha1:c79f47b754cc4e6d4783c1b11c88167be8535466
@@ -1783,8 +1935,8 @@ trackedFiles:
     pristine_git_object: 8bf2ef20cffbdc59d64f916fc9961098700a05ae
   docs/Models/Operations/CreateUserRequestBody.md:
     id: 1f74c33c7c3f
-    last_write_checksum: sha1:a2d75980ea4fa4e2a39a39ceae5e292a85884d0b
-    pristine_git_object: d395b671bf2e08adf5c16b93168e36d6096de3e7
+    last_write_checksum: sha1:6ec0881e66e52bd304acd070ed97b8651715a0fc
+    pristine_git_object: 10e6a09b820eeda84a01bd8a1893a9d0e5201a7b
   docs/Models/Operations/CreateUserResponse.md:
     id: 4490ee2fe986
     last_write_checksum: sha1:41e08ee84698f00eedcc0b71efb4c51e3665bb0f
@@ -1797,6 +1949,10 @@ trackedFiles:
     id: abd0feb0349c
     last_write_checksum: sha1:2333bac70268a06be11536e6eaa9955dd2f894b5
     pristine_git_object: 750ad8f6d8493cee9937f09fcb5a0433921358ad
+  docs/Models/Operations/Data.md:
+    id: 7f376962768c
+    last_write_checksum: sha1:66d8c48d3424148f20189756fe3232ac06a3fd15
+    pristine_git_object: c62a3b0c647fd38c1b2313641e0ed45965de20d4
   docs/Models/Operations/DeleteAllowlistIdentifierRequest.md:
     id: 9f0cbed3d2d7
     last_write_checksum: sha1:4d2f04ccdac66c12686ade198ddafc8c4937c588
@@ -1805,6 +1961,22 @@ trackedFiles:
     id: 2c6fcffb8723
     last_write_checksum: sha1:1f4d0e9a0097c791e40508468d636c91aca2a1be
     pristine_git_object: 489df1d39942a7a46db5dfefcc2d50a9f1a252a3
+  docs/Models/Operations/DeleteApiKeyObject.md:
+    id: 9e52bddd4af5
+    last_write_checksum: sha1:7868724486d341c771405b1030ebdd88934ebbf5
+    pristine_git_object: 35f17b815e87ac8fa5fe0de21025e6ad07098d89
+  docs/Models/Operations/DeleteApiKeyRequest.md:
+    id: f69d58acb29d
+    last_write_checksum: sha1:98e703044bb003b46dfbe5f95b062d6edd59b40f
+    pristine_git_object: aacf85b8c3494d7c489eb2056f00d59008998a11
+  docs/Models/Operations/DeleteApiKeyResponse.md:
+    id: 81ed41308e83
+    last_write_checksum: sha1:b3ad6af1fba90d19d228a572246a59856fb98663
+    pristine_git_object: 8f7d1753df6dcde65adb08537be96941782bf8d8
+  docs/Models/Operations/DeleteApiKeyResponseBody.md:
+    id: 6d7c65b27c8b
+    last_write_checksum: sha1:4ebaf63a7e1e1979820f1a3f1072e1ed298f8fc0
+    pristine_git_object: 48b7e56ce0e72233245e6358c39ffbeaa4ffb1cd
   docs/Models/Operations/DeleteBackupCodeRequest.md:
     id: 722b87046983
     last_write_checksum: sha1:9c1e003d0fdac662fc7d5c777caeee1ebcf40ef0
@@ -2029,6 +2201,50 @@ trackedFiles:
     id: 9fc8071c27e9
     last_write_checksum: sha1:b578e922d1c4c677ac2739b171ba75d6021bcc75
     pristine_git_object: 2d314d3cb16d4b5ba15c66c6e8cc049c839dd9ad
+  docs/Models/Operations/GetApiKeyObject.md:
+    id: 1691a222d1d6
+    last_write_checksum: sha1:95ba48c2a55203690d3eff176253d7738502abc5
+    pristine_git_object: 8743c0936390882100169b550ac11f7a41f8004c
+  docs/Models/Operations/GetApiKeyRequest.md:
+    id: e5e57e8dbb0c
+    last_write_checksum: sha1:2f0012aac7de4f0ee01b4f54c76a6d4f22bda74c
+    pristine_git_object: 34cd214675b3e0917511c05de2954a007756bbc2
+  docs/Models/Operations/GetApiKeyResponse.md:
+    id: c62f70fcba0c
+    last_write_checksum: sha1:84dbc2c46590575ef65eb35420874ab80346ade0
+    pristine_git_object: 2eda516c90a7637decf67901daf2b880e29bfc2c
+  docs/Models/Operations/GetApiKeyResponseBody.md:
+    id: 291a2cd83fe4
+    last_write_checksum: sha1:5a1db963f1f134c2035cc710eb7a441f5b6405dc
+    pristine_git_object: f3c0cdb8d95f50e6b494a06afc8617db64e51ec7
+  docs/Models/Operations/GetApiKeySecretRequest.md:
+    id: e6e89d86e8b3
+    last_write_checksum: sha1:1d12a00e6ac5df986b4bbd1c91e150d0645a777d
+    pristine_git_object: f05c76248671b1485a013635c26f0f61918a0770
+  docs/Models/Operations/GetApiKeySecretResponse.md:
+    id: 9d01f367edf2
+    last_write_checksum: sha1:4f53ebe7edf8dfbc351b4c8a3c2a0c612db2bca6
+    pristine_git_object: 0a90e3de667ff5f72774764a368ef55df1bdf867
+  docs/Models/Operations/GetApiKeySecretResponseBody.md:
+    id: eda96a2fa08f
+    last_write_checksum: sha1:264dce6c58964335cf5bc31b2995cb56dfe62aca
+    pristine_git_object: c0499dfe8f28816826ea68134e93d885495b4c7c
+  docs/Models/Operations/GetApiKeysObject.md:
+    id: f241d1682021
+    last_write_checksum: sha1:cfb6d4362bc17534d7d0bab0a29a2096e3388159
+    pristine_git_object: ccb8d33ff63de141425207e3322e8bdb0d20addd
+  docs/Models/Operations/GetApiKeysRequest.md:
+    id: 34b9db0c7ae8
+    last_write_checksum: sha1:5f872d95b727ff2dcbcecb19863a23da3791b790
+    pristine_git_object: 2cd3dbe2ed152699d8ada0d862bdb9b4bc93377b
+  docs/Models/Operations/GetApiKeysResponse.md:
+    id: d43955b395d2
+    last_write_checksum: sha1:775e2914d036c9b2fe2fb569cae3a7177142d0b4
+    pristine_git_object: 4a01b84f67e1c2fd01cc8407bab99e0fa2848b24
+  docs/Models/Operations/GetApiKeysResponseBody.md:
+    id: 24bbaf683324
+    last_write_checksum: sha1:68dae3dc472d140f86f7c44271b74d67b2b66791
+    pristine_git_object: 5ff197463cda2c4e0a7e7814b95b758f0bad2e53
   docs/Models/Operations/GetBillingStatementListRequest.md:
     id: 2bccc33fd9f8
     last_write_checksum: sha1:bc893f74214da3d15beadca43fd699d63d8d5366
@@ -2305,6 +2521,10 @@ trackedFiles:
     id: a2ad442bf011
     last_write_checksum: sha1:c90afaa955ba51e6398a7e8612603032df925798
     pristine_git_object: 6f21893ce98280619158160fd54f23c63ca5750e
+  docs/Models/Operations/IncludeInvalid.md:
+    id: 70f238ec4514
+    last_write_checksum: sha1:a81ce345824f2a7d668e38af1c36cae0ce1cd841
+    pristine_git_object: b44116097244358d604a0f85d1c4ccdf5460b9e0
   docs/Models/Operations/InstanceGetOrganizationMembershipsRequest.md:
     id: 6b9e8b4c0761
     last_write_checksum: sha1:e6dc45b0ac96e637686b71b71cf86d748eb251c1
@@ -2625,6 +2845,26 @@ trackedFiles:
     id: d6b7dee28cb3
     last_write_checksum: sha1:f67cd5b5c5202324a0669a0be08916c2d709d7f3
     pristine_git_object: 11550cea5b8fcd7a4cd8a1d68cca1f76acb082b1
+  docs/Models/Operations/RevokeApiKeyObject.md:
+    id: fc91dbcb6e62
+    last_write_checksum: sha1:eec3432a0329d81cc490e2e188805b0af96951be
+    pristine_git_object: 9e9f8b1ce438cb055ba3744ef90d587d641edd8b
+  docs/Models/Operations/RevokeApiKeyRequest.md:
+    id: 1158a1c53a54
+    last_write_checksum: sha1:bc7f90e7443f92018ad7db6c922684421fc7269c
+    pristine_git_object: eebdc40729a1c1afb16979cd60cad56179acabd9
+  docs/Models/Operations/RevokeApiKeyRequestBody.md:
+    id: 1284d4cdb967
+    last_write_checksum: sha1:32dc78ac5918507110585f300dad471cdac473e9
+    pristine_git_object: 6b0cedd3c9d22f55b516953ccd767d4e51ab6e40
+  docs/Models/Operations/RevokeApiKeyResponse.md:
+    id: 9a508c38f651
+    last_write_checksum: sha1:34d57a7a153412e5c94ff9535d3f26276a15fc0a
+    pristine_git_object: f12c03507adf1a76e98b533c80ba7489627e5fef
+  docs/Models/Operations/RevokeApiKeyResponseBody.md:
+    id: 02b03fe6d235
+    last_write_checksum: sha1:8d88e83625f71aa7b0d6572a3f9dd4d18e73e5cd
+    pristine_git_object: e0da7fd2536f927efc9ac0914413c062cbfc2adb
   docs/Models/Operations/RevokeInvitationRequest.md:
     id: 480ff1908b0c
     last_write_checksum: sha1:694c4670f6e254725015f185287c1d58a97e7f0b
@@ -2761,6 +3001,26 @@ trackedFiles:
     id: 7a8a4e1dd04a
     last_write_checksum: sha1:f4450129de8872b98f7a75fda1807c5ad4b74ba6
     pristine_git_object: d00655cea83f23a52dcb611671404e2b3adb41cc
+  docs/Models/Operations/UpdateApiKeyObject.md:
+    id: 25d0ee99b505
+    last_write_checksum: sha1:555637c2528a593ce031a3dc8a25247673810c8b
+    pristine_git_object: 0331f05095a398f59c5741108b0b590cb4045fe0
+  docs/Models/Operations/UpdateApiKeyRequest.md:
+    id: fb04c683590d
+    last_write_checksum: sha1:4d26d01f19dd414986505debe96a36d513f8279b
+    pristine_git_object: b1cdda9d00002de4242cd366f9d94da8c96f3e08
+  docs/Models/Operations/UpdateApiKeyRequestBody.md:
+    id: 781e72dac0e5
+    last_write_checksum: sha1:1184f29c5d6417bb9f77f8f26a9465208304bb81
+    pristine_git_object: a27f3a5d5fe06c4e0d70ab009545cdfa055ccc03
+  docs/Models/Operations/UpdateApiKeyResponse.md:
+    id: c39773854284
+    last_write_checksum: sha1:698a95a540538fd90dda9414ac031d78b29d9031
+    pristine_git_object: fd06d208f51059fdf9e57d7dc98f55ea52095a4b
+  docs/Models/Operations/UpdateApiKeyResponseBody.md:
+    id: 31a6b4758dce
+    last_write_checksum: sha1:91406abb03451ba151df4e1c7ba06766eb142427
+    pristine_git_object: 2378178b67531ad7752d76fdb6f56d0cec927436
   docs/Models/Operations/UpdateDomainRequest.md:
     id: 3df9133e514d
     last_write_checksum: sha1:f807eb31e86051a0bab0ba61a2d1aba7ebf7a02b
@@ -2991,8 +3251,8 @@ trackedFiles:
     pristine_git_object: 49614481410576bb443196a7878bdc702ad0c3ba
   docs/Models/Operations/UpdateUserRequestBody.md:
     id: 4429bfefc479
-    last_write_checksum: sha1:19ee781faf1166dddc86ec004cc75ebbbc80befb
-    pristine_git_object: 4ed45043e48fe62256fa2200eeac0f5818d0b9db
+    last_write_checksum: sha1:5d05b7a0d564d73dad9b6e1361bd20c56ccc5b99
+    pristine_git_object: 8d447017ebb6579d15660501f80d7989c68937c2
   docs/Models/Operations/UpdateUserResponse.md:
     id: a82e80e06c51
     last_write_checksum: sha1:8ceb6b3a698174cd757170597d11c62d829f22a3
@@ -3081,6 +3341,22 @@ trackedFiles:
     id: 86c74311d8ff
     last_write_checksum: sha1:fbddd3b01c09a02cc691d5d55adfdacd35b23a36
     pristine_git_object: bb097ece61f58ae7d04e81318e0b126474f52e76
+  docs/Models/Operations/VerifyApiKeyObject.md:
+    id: cf1af0f41d2d
+    last_write_checksum: sha1:3f5dddf184a233a238b271e6acc1d89f4c3b9415
+    pristine_git_object: 4c69fe3587c22f3b3c87b52f4a71b75c8e7371cf
+  docs/Models/Operations/VerifyApiKeyRequestBody.md:
+    id: d0e319e764f2
+    last_write_checksum: sha1:f349d22380552077b9ab7f9341a8f2f6d9998e12
+    pristine_git_object: 30cdbe352f122f97c05f40789c72359876fd9a9e
+  docs/Models/Operations/VerifyApiKeyResponse.md:
+    id: dbbb11af8db1
+    last_write_checksum: sha1:92e1ababf033425f1499287a7c96926df504402a
+    pristine_git_object: 0d313736a85bc7c26b9db776619027c8c1568f2e
+  docs/Models/Operations/VerifyApiKeyResponseBody.md:
+    id: 1428acc2127a
+    last_write_checksum: sha1:ed3ef2d0cc3ccea468970c4aa5a7f0e306d1a55f
+    pristine_git_object: 423d30e7eaeca73885f60b70319c4462ea07b012
   docs/Models/Operations/VerifyClientRequestBody.md:
     id: 18402325c04f
     last_write_checksum: sha1:df467fa553b7690731b849379a14621f47b92086
@@ -3165,6 +3441,10 @@ trackedFiles:
     id: e8a186582c92
     last_write_checksum: sha1:e25390534e7ddd77c14a05f82309eec6f8a7efec
     pristine_git_object: c79b2aad6980234237e6711432bbe0f02a735831
+  docs/sdks/apikeys/README.md:
+    id: e2bd25998427
+    last_write_checksum: sha1:e6292d1861a236571dd392e9d06e6c3dbba70a42
+    pristine_git_object: a3481e04a45686b24df44d0be28f6bc43ff1b9b2
   docs/sdks/betafeatures/README.md:
     id: 5e45db496005
     last_write_checksum: sha1:65b3a2cc7cdaf3a4912c39ea36e1b3d9c6a12ad7
@@ -3321,6 +3601,10 @@ trackedFiles:
     id: 6615ad7e99dd
     last_write_checksum: sha1:2c0586f29783d1cdf80ea09f3ed0f4693329f3e6
     pristine_git_object: 40eb9bfbea10383ae16ce195da9113bb2abfc586
+  src/APIKeys.php:
+    id: caa88f97fb20
+    last_write_checksum: sha1:9100f719a97cd2d0a87e99e22855d0d44e825b42
+    pristine_git_object: b15fa769acf1eac6bff39319cb3520660755c26c
   src/ActorTokens.php:
     id: f7fc10be451a
     last_write_checksum: sha1:e31d565ee55b41e73499c44941a30b18d92b73d5
@@ -3343,8 +3627,8 @@ trackedFiles:
     pristine_git_object: 26308f433af34d1626cc4d4d9d6b0485beebcaaf
   src/ClerkBackend.php:
     id: c0fcc5b8ff86
-    last_write_checksum: sha1:9ee5c30ea170b78cf8962c11c48126043c1c137c
-    pristine_git_object: 7e299f9e0da05a2af426b8f8c62930ac9064a849
+    last_write_checksum: sha1:7161b47a6ae67a7e6ada8b1b49e434e937fdb716
+    pristine_git_object: ce7972b11ab899749ba61d1fc983c957f94fc64f
   src/ClerkBackendBuilder.php:
     id: 4cc002882c8d
     last_write_checksum: sha1:65fe8da54a71b3bae1eaf166a6c30a93e6cb6141
@@ -3759,8 +4043,8 @@ trackedFiles:
     pristine_git_object: 6e4e0883abe4010746d940450b6bfda49e7f906e
   src/Models/Components/FeatureResponse.php:
     id: dbc06cb1faa8
-    last_write_checksum: sha1:789f3e373ba7ec3ab0612d64201de0b70b784974
-    pristine_git_object: 2a9d9a302ce3dcb50341b89518b499bdd3dbcba2
+    last_write_checksum: sha1:d20c47171c787268e43dd66836a8bd100f98b9f9
+    pristine_git_object: abf2dfa7ff42c97f139b77066ca3d5f43f072497
   src/Models/Components/FeatureResponseObject.php:
     id: 0e2f82a588bf
     last_write_checksum: sha1:784d53346e1b23d646c34c6c334f55540a61b601
@@ -3971,8 +4255,8 @@ trackedFiles:
     pristine_git_object: 569fa4baa749579a87a5963a34dcbd5c3ea21a23
   src/Models/Components/One.php:
     id: 5601016c5a2c
-    last_write_checksum: sha1:3a8c61db8e6ce492cf4fb96379052f44ad7f3073
-    pristine_git_object: b7b420f4d6039b36ee2549f23a455af134aac11c
+    last_write_checksum: sha1:2388673e5e286eb5c35540befa0ac21e0b6104c7
+    pristine_git_object: db103a286e73d5516e83ce472d031a13140177b6
   src/Models/Components/Organization.php:
     id: c7417346b9ba
     last_write_checksum: sha1:5db2ba987089d16345d47799f9934d3c772c4816
@@ -4259,8 +4543,8 @@ trackedFiles:
     pristine_git_object: 38c256eb0200bad43d05a24153f9dddfefa5f2a9
   src/Models/Components/SchemasCommerceSubscriptionItemPlan.php:
     id: 2734f4f31adf
-    last_write_checksum: sha1:639bd4957b2c30317c5c9356bfc36ee011314e56
-    pristine_git_object: 502ac4faa1f283fb616d7db6da749d55dee88be7
+    last_write_checksum: sha1:d0c16ea12f8aaf5c4cf5c9e75a57c0926ff362c1
+    pristine_git_object: b7aaa63b7663948039c68d4c0ca1be9f05140c9d
   src/Models/Components/SchemasCommerceSubscriptionItemPlanObject.php:
     id: 1eb4e60504a1
     last_write_checksum: sha1:4dd38b5293601d0991663ba8404d72c358db4acd
@@ -4273,6 +4557,14 @@ trackedFiles:
     id: a5569d3126db
     last_write_checksum: sha1:a7845cc8468a72ae4a0a10578d78924ac5ddeee2
     pristine_git_object: 484aba2d29a191ec20b5c6488c3f9275d2ab830e
+  src/Models/Components/SchemasFeatureResponse.php:
+    id: 9225e27f65f6
+    last_write_checksum: sha1:1288b709f5e033a900bc01dc1174497a3070ed15
+    pristine_git_object: 97fe16bd506093ee0dffa3b17eca92cf0476a12c
+  src/Models/Components/SchemasFeatureResponseObject.php:
+    id: b8a35c3af284
+    last_write_checksum: sha1:a23c5117d1d56522f1e93853b8010ac2f54d491a
+    pristine_git_object: 08147285c63846418c465575a3f4e6c16288266a
   src/Models/Components/SchemasSAMLConnection2Object.php:
     id: 99fec46cede7
     last_write_checksum: sha1:25c172ade7d1fcdb551a8fed9a81e5c829e5e48a
@@ -4395,12 +4687,12 @@ trackedFiles:
     pristine_git_object: 89fdc7404545b9a4aba9bad5877f8eabd6dcce63
   src/Models/Components/Two.php:
     id: 11012d9ce7f0
-    last_write_checksum: sha1:be5e9fc885a515132f8fe32c170220c7da39bc20
-    pristine_git_object: 22559943d13b064f06cea4eeaab87491e3a8a322
+    last_write_checksum: sha1:0a0ce759c780701d4675ae379fbc6b51c657ccfc
+    pristine_git_object: 689bcd5dccda832eec95e99d8ce565560bfcf767
   src/Models/Components/User.php:
     id: 0b144258882a
-    last_write_checksum: sha1:8e713993aa6a0db3e97aab418a25ab49392a74b4
-    pristine_git_object: df2be27930166ef05b9dfa52613dca18dfd67101
+    last_write_checksum: sha1:8dc32b62d836e9e89803214d2d1382c1a53c5c57
+    pristine_git_object: 35f8ea0b14c0a275ec3fe23ef721a776091c1acd
   src/Models/Components/UserObject.php:
     id: 59bda5d02d2c
     last_write_checksum: sha1:7e33bb1313cb92a0d2eea080a306371da9859830
@@ -4663,8 +4955,8 @@ trackedFiles:
     pristine_git_object: 6933c1da58023ceda4d9fb258b0d159c7241035a
   src/Models/Components/VerificationWeb3VerificationStrategy.php:
     id: 3249ee71ec55
-    last_write_checksum: sha1:a51741c0da69c1fbf235fff474bc7128e8cba6fc
-    pristine_git_object: eebbd54b926a1a8c216ed5d8ff3941c44d65e5a8
+    last_write_checksum: sha1:0da9b553ce36cac60ec3db4b536d00333bb75fcf
+    pristine_git_object: 8b3c1559b7961d1c865128d0996b122043ad3af8
   src/Models/Components/WaitlistEntries.php:
     id: 40cff22b3ea5
     last_write_checksum: sha1:ad63c249f3f637351ebadcf5bf76c2ca750299b1
@@ -4713,30 +5005,150 @@ trackedFiles:
     id: 919b82798257
     last_write_checksum: sha1:a2b06c7a7fbca23c34742cafc9e149011443bd25
     pristine_git_object: 83f163a6669388c29a941f4439982341a12e0025
+  src/Models/Errors/CreateAPIKeyAPIKeysResponseBody.php:
+    id: 5b4c07c5478a
+    last_write_checksum: sha1:165ed3ae2b14db72a257bc49ac7bd4af6d5c8f16
+    pristine_git_object: af2b2c878d092e7d9868050232109ee66773772f
+  src/Models/Errors/CreateAPIKeyAPIKeysResponseBodyThrowable.php:
+    id: cf9a281b2c26
+    last_write_checksum: sha1:0930224a159c658a75aea5d3de529780bd3f5626
+    pristine_git_object: d2e47d94bae7b4ac423d3d6445797af0f82f782e
+  src/Models/Errors/CreateApiKeyErrors.php:
+    id: 69768701add2
+    last_write_checksum: sha1:9e7206baf945fb1d56d0b171fd3cdcb8348ab640
+    pristine_git_object: ad22a57293de59cc9a5b9cf7f10139af09405861
+  src/Models/Errors/CreateApiKeyResponseBody.php:
+    id: f5c90a511972
+    last_write_checksum: sha1:607366dfc933b4b2e4dbc4ae5749b7e4f238c695
+    pristine_git_object: 31ccfaf96facd68439c92f18f9263f66ee5501cb
+  src/Models/Errors/CreateApiKeyResponseBodyThrowable.php:
+    id: 0ce39a447826
+    last_write_checksum: sha1:0ad2f65dda23e93508d365a57491963a3c545231
+    pristine_git_object: a6b96aae5cfcf2f8b3dfcc5628ecefa212e8036d
   src/Models/Errors/CreateM2MTokenErrors.php:
     id: a0cceb02c750
     last_write_checksum: sha1:3017854f82237705848c5879d3416f840254e703
     pristine_git_object: 540cb1feece3af458f11b220412a3790f5bfee46
+  src/Models/Errors/CreateM2MTokenM2mErrors.php:
+    id: 6361d2c7f8a5
+    last_write_checksum: sha1:3aedbbd9b78bea2ede03bd9c47b9c87e8b6fa4ca
+    pristine_git_object: 9ddc0716b547d5e8449a2ab233734edaf5110a4b
   src/Models/Errors/CreateM2MTokenM2mResponseBody.php:
     id: 83fa847d5ff1
-    last_write_checksum: sha1:597d7318b3c1d7d9338647cbcb4e3a88915f521a
-    pristine_git_object: 57f1bedd6c19c02c124c09241eb28df6bd8db2fb
+    last_write_checksum: sha1:5ea8b9ab3105bab09b467fdae8fcc9a70e132eb9
+    pristine_git_object: 4303c180d3723f4ebf04b98340b291a34c8d9a5c
   src/Models/Errors/CreateM2MTokenM2mResponseBodyThrowable.php:
     id: e208ac55d0a7
     last_write_checksum: sha1:750fc0ceeb5c17a23240fea33f17a4602e601273
     pristine_git_object: 42680904aa1b943af8e793c1cf69cc9bee2e7496
   src/Models/Errors/CreateM2MTokenResponseBody.php:
     id: db573d0f4531
-    last_write_checksum: sha1:64bbf8cbeb74d024b14670d7cece5765ade40995
-    pristine_git_object: 98026bd37cdc0603713919322484bdae10b6f320
+    last_write_checksum: sha1:1c032bdc854b3befeb9f9bd1a5b5b1f078a57db8
+    pristine_git_object: 3853d3b8d768a28e14c323814fd18587680bd09a
   src/Models/Errors/CreateM2MTokenResponseBodyThrowable.php:
     id: 10eaa94c896f
     last_write_checksum: sha1:0526064151c3631abe9266aaaa87e4341672483e
     pristine_git_object: 892f62a3f195f52b7f02cc01095f03654fa01713
+  src/Models/Errors/DeleteAPIKeyAPIKeysErrors.php:
+    id: 768a4b802cff
+    last_write_checksum: sha1:9d2606e8dd6e255e8d90273c61b2f88b00c40404
+    pristine_git_object: 3c3db7c44878bc28ebf247165901816e30d3242a
+  src/Models/Errors/DeleteAPIKeyAPIKeysResponseBody.php:
+    id: a0f6b7889a8a
+    last_write_checksum: sha1:50c3348cf86ac864d9603a7c0a65dad5e90fb835
+    pristine_git_object: f822d6381baea596ace5e0449a26cec9d0a0aca6
+  src/Models/Errors/DeleteAPIKeyAPIKeysResponseBodyThrowable.php:
+    id: c3fe1adf1b9a
+    last_write_checksum: sha1:0b152f04f2027163a524797244da0c7a51efe664
+    pristine_git_object: 133ac69904e4d056ec4adbc85e69d66238b741cf
+  src/Models/Errors/DeleteApiKeyErrors.php:
+    id: 2eb0b1f35a22
+    last_write_checksum: sha1:8e2d5c5604c23deebe681cc43cad4025422143eb
+    pristine_git_object: 13a9116b2eb079f7087d59e3a9b2325353f8c8e6
+  src/Models/Errors/DeleteApiKeyResponseBody.php:
+    id: 3ba6cb4376b2
+    last_write_checksum: sha1:edc13270994e9d8a4e9ca518a9b49ecaecf87bf0
+    pristine_git_object: e25efae6e5848fbab63a4f25d0c75bc95b83804e
+  src/Models/Errors/DeleteApiKeyResponseBodyThrowable.php:
+    id: 994fa487e6ab
+    last_write_checksum: sha1:09558ec254ee290c151ccc303b45708045f08496
+    pristine_git_object: c3731c74d41078f0d18d54276f441aee614313c7
   src/Models/Errors/Errors.php:
     id: 58db553cc9fe
     last_write_checksum: sha1:c3e43668d664eac30efcc7b6e2f3d356c0b663cc
     pristine_git_object: 5e94a176de183b6832b9052c355994d446bce5af
+  src/Models/Errors/GetAPIKeyAPIKeysErrors.php:
+    id: cbabac823ed1
+    last_write_checksum: sha1:aac9d4fb796cbeb6928708b1ebeb0dcd1d3b39db
+    pristine_git_object: 707efb81ca5692d7568671f3aeea056602a05afe
+  src/Models/Errors/GetAPIKeyAPIKeysResponseBody.php:
+    id: 61a939aceef2
+    last_write_checksum: sha1:83464311a5e7d639e6b6d83d2a116f4e12ce7b2b
+    pristine_git_object: 94c42368ac0ad221f6262178f31adbbb7e11f2a1
+  src/Models/Errors/GetAPIKeyAPIKeysResponseBodyThrowable.php:
+    id: 476103b01483
+    last_write_checksum: sha1:ddb03be5a91d8d3bed9397fe229ef298332b6667
+    pristine_git_object: e25794a54654e77c6b82576507c34dcf98bb8829
+  src/Models/Errors/GetAPIKeySecretAPIKeysErrors.php:
+    id: 03ab64308ed3
+    last_write_checksum: sha1:c8a432b82c761087ecb350812e3fa8583ab21973
+    pristine_git_object: 535283b9b1c45b38581e06108b582e21016758f0
+  src/Models/Errors/GetAPIKeySecretAPIKeysResponseBody.php:
+    id: b9c782678e0f
+    last_write_checksum: sha1:4c1b4cd3ae012169896870aba76cfa99e9d5a94f
+    pristine_git_object: 386173df5457a86337482e4311bb4c7d2ca3bde6
+  src/Models/Errors/GetAPIKeySecretAPIKeysResponseBodyThrowable.php:
+    id: a826e7015ac2
+    last_write_checksum: sha1:e193e0ac08de3228b6c2927e1adff6b8904b034a
+    pristine_git_object: bd77ff68b92006c6d81641ae97bc8d040c04acd1
+  src/Models/Errors/GetAPIKeysAPIKeysErrors.php:
+    id: 101850522f79
+    last_write_checksum: sha1:0c6a68c9b3640fdb7816f660af6d824e6eb68227
+    pristine_git_object: 294d9802e9223d51b50bd3cb649804209c278e50
+  src/Models/Errors/GetAPIKeysAPIKeysResponseBody.php:
+    id: 40ff76c54837
+    last_write_checksum: sha1:2bf16ccacaa3ce5b793f9dc21d10d9c376912132
+    pristine_git_object: bf220e71b13b1c341b72cf688b299538fd8444ea
+  src/Models/Errors/GetAPIKeysAPIKeysResponseBodyThrowable.php:
+    id: e4b6fff7f692
+    last_write_checksum: sha1:0bf4c6d8b2734bf840b0bd9de9b89665ebc499da
+    pristine_git_object: 59c81bfefa0b4e4fe8a636bf126d3f3791c313f4
+  src/Models/Errors/GetApiKeyErrors.php:
+    id: 5ae2ef966503
+    last_write_checksum: sha1:e262f34ea9497ca5577bb1d7b56193c51b31061c
+    pristine_git_object: 664a626cf9df738617d2de7a48f1a504ec9174a5
+  src/Models/Errors/GetApiKeyResponseBody.php:
+    id: d70fc76e2627
+    last_write_checksum: sha1:51ee1ea7a2195f70b0bd36c2fcf0e72152f595a8
+    pristine_git_object: 6c379e133360863a68a15fb627ba9caed1c081ee
+  src/Models/Errors/GetApiKeyResponseBodyThrowable.php:
+    id: b009a07cf2c7
+    last_write_checksum: sha1:58d57a65b18b0a0fc6e9e08505507e09fac2ceaa
+    pristine_git_object: 67d9ea2308e3108a39e4783ceca8435c12b707e6
+  src/Models/Errors/GetApiKeySecretErrors.php:
+    id: 18fb108468ce
+    last_write_checksum: sha1:a78cd31a1af07f9b5d7869ffc83798690b2d2362
+    pristine_git_object: 8f454b3e6dcacd2d0993b5ae3ed5d0ab8e2f52e1
+  src/Models/Errors/GetApiKeySecretResponseBody.php:
+    id: 14b4f88449e5
+    last_write_checksum: sha1:299b4f7ddc881b8bc1a19661521daa4603e71f05
+    pristine_git_object: 7af0db0eef918ef981620265be653bc7541a6507
+  src/Models/Errors/GetApiKeySecretResponseBodyThrowable.php:
+    id: c32ac1cd6a25
+    last_write_checksum: sha1:fb6d83835df51f692ee8d8745763b9e3b413a777
+    pristine_git_object: f48041caab9b934ffd43a36fa772f9e36caca185
+  src/Models/Errors/GetApiKeysErrors.php:
+    id: fcff49e20aad
+    last_write_checksum: sha1:894a72d4edc1f22d179adf0fde9d593454784967
+    pristine_git_object: 2e2f3e9b09f6d1b8d5b491a18da53307081e00f4
+  src/Models/Errors/GetApiKeysResponseBody.php:
+    id: 6f98dd187953
+    last_write_checksum: sha1:ad5b89706986d05dd8be7b134b35a6186d2e003f
+    pristine_git_object: 496293c2b1db3ae78b6a8dc2c63cd3bdc3809215
+  src/Models/Errors/GetApiKeysResponseBodyThrowable.php:
+    id: e868ab5dceb3
+    last_write_checksum: sha1:9ea13f3c4ff3596b969a6af86f9825788faf17e9
+    pristine_git_object: 05789fae44da31747f005ac9438044f538e6c0a7
   src/Models/Errors/GetM2MTokensErrors.php:
     id: deb6120f197e
     last_write_checksum: sha1:447f116eb72a3d2907cdcd9d6416aefd27ec3bef
@@ -4777,6 +5189,30 @@ trackedFiles:
     id: 1ac0a4b39621
     last_write_checksum: sha1:84cc4d5a838a1bbed9daa7450d8964828e771787
     pristine_git_object: 4d07ddad57cf45f5e87fafaf4a4323adcff7b653
+  src/Models/Errors/RevokeAPIKeyAPIKeysErrors.php:
+    id: 40cc2411932f
+    last_write_checksum: sha1:10f98ca5dd311cec3c69c6086df35e217fb01e1a
+    pristine_git_object: 0b58d60ec35d7c536eb1bab6fa6aac558c419f2c
+  src/Models/Errors/RevokeAPIKeyAPIKeysResponseBody.php:
+    id: 2388ab5c34d5
+    last_write_checksum: sha1:d95e1db68a9647e9a72a746a9612347ffb3b3f66
+    pristine_git_object: 046f39bcbc2975003c9148217a42571a76933cfe
+  src/Models/Errors/RevokeAPIKeyAPIKeysResponseBodyThrowable.php:
+    id: 0ebfe0f36988
+    last_write_checksum: sha1:6888007fd4ebc531e063339d631dee4599a54363
+    pristine_git_object: f4b24fad8320cb6dd15ca05912edb08e239a4d30
+  src/Models/Errors/RevokeApiKeyErrors.php:
+    id: b9aa6c092543
+    last_write_checksum: sha1:b60767944b9c7c1c7b48dbb2ea6ed3e15c8dcc5c
+    pristine_git_object: f8ab4e0c2039119e1493c5a62848cf058b04b60f
+  src/Models/Errors/RevokeApiKeyResponseBody.php:
+    id: 4f53d9bcdb57
+    last_write_checksum: sha1:69eb07f6875b9b39ba20ba8ff0225f7087a4b7ef
+    pristine_git_object: cb6ff2ddfe921604e2d7929437795d4b0fd3d22f
+  src/Models/Errors/RevokeApiKeyResponseBodyThrowable.php:
+    id: 91b9365893d2
+    last_write_checksum: sha1:c75be2a3751c82d4ce30a246ccf621c6ba45125f
+    pristine_git_object: aee23ff7ff628b13275888556248182bee5dbad2
   src/Models/Errors/RevokeM2MTokenErrors.php:
     id: d234bb096dea
     last_write_checksum: sha1:6ecfa5dbe82ebe70b3a3d940c4c18d4f3d4b31e4
@@ -4805,6 +5241,54 @@ trackedFiles:
     id: 8c2f5d533ad4
     last_write_checksum: sha1:6c2a766e29484e8cee654da691214fa8829f3254
     pristine_git_object: d75f87322eab18d4275f83493549debbe1638f19
+  src/Models/Errors/UpdateAPIKeyAPIKeysErrors.php:
+    id: 22304c2e05c1
+    last_write_checksum: sha1:ab7ee145b03360929b6b556a6374ecba4d4888dd
+    pristine_git_object: a9569944eedb20773d027d4149a645538712af00
+  src/Models/Errors/UpdateAPIKeyAPIKeysResponseBody.php:
+    id: 53dc58d59d37
+    last_write_checksum: sha1:95e5ca8c0ec78988b4a6ecff629425a4a43ac9c6
+    pristine_git_object: 3974beb8d40adcf7a1219598dd2661371b711d7c
+  src/Models/Errors/UpdateAPIKeyAPIKeysResponseBodyThrowable.php:
+    id: cce51930d4cd
+    last_write_checksum: sha1:a7a699dced1e391ccb0659ac752482f001810765
+    pristine_git_object: 9b546f326d70b8765b2368a4e2eba0c01deb2285
+  src/Models/Errors/UpdateApiKeyErrors.php:
+    id: 44a5563867a1
+    last_write_checksum: sha1:07a71b4eb7e3ef7bb1b85d2f0a5da6e218952e9d
+    pristine_git_object: a9f3a6632eccce49b5f95eaa863f32fc41770b34
+  src/Models/Errors/UpdateApiKeyResponseBody.php:
+    id: 1614860f3e03
+    last_write_checksum: sha1:e83549f280195a2c2e44b70486d97e2274822148
+    pristine_git_object: 3dbe22362b7c20493e1838862ef4f13fe19918bf
+  src/Models/Errors/UpdateApiKeyResponseBodyThrowable.php:
+    id: e7366dbe6a10
+    last_write_checksum: sha1:04bc292a19b620fabd8cbf7b3182a1c0346ae14d
+    pristine_git_object: 9dc2ca4da4568b94f115611fa970d0e97a6eb6f4
+  src/Models/Errors/VerifyAPIKeyAPIKeysErrors.php:
+    id: f43f72594445
+    last_write_checksum: sha1:8266e15ea0f14244215fa8be75ae3686dcb9cb78
+    pristine_git_object: 9fe7145bed8bcbdf7b2ace0b211930694d03525e
+  src/Models/Errors/VerifyAPIKeyAPIKeysResponseBody.php:
+    id: c451f6ccc5e1
+    last_write_checksum: sha1:a7b06fa301e16aad43293edd5a0cfedd78a1836d
+    pristine_git_object: 51f0a7a0fcb5357f8620aef9c57a00ef8bc31a6b
+  src/Models/Errors/VerifyAPIKeyAPIKeysResponseBodyThrowable.php:
+    id: 9ce4b7824dc8
+    last_write_checksum: sha1:bbf5771e75fa6b53c292d4c539912780e3381816
+    pristine_git_object: 2beeee61f26493aee136a25915d4f504391f77a4
+  src/Models/Errors/VerifyApiKeyErrors.php:
+    id: 6acfad10009c
+    last_write_checksum: sha1:5341ff627efb1d6f7b03f56eb79d74eb710d9b45
+    pristine_git_object: 78c37b8b1114d250dbdcc83cabbc321da6a6ef9e
+  src/Models/Errors/VerifyApiKeyResponseBody.php:
+    id: e5bcae6b5a52
+    last_write_checksum: sha1:e74e3d9cdacdbdc34e594286cafcea76fe3a2b39
+    pristine_git_object: 170fc38b058d181a87b6c91153468959b9451186
+  src/Models/Errors/VerifyApiKeyResponseBodyThrowable.php:
+    id: 51a965201b3d
+    last_write_checksum: sha1:9eb585ec3e725f8d0070bcd19f8801ffa5cf0312
+    pristine_git_object: 165493f9381a6944983ad9560924daf09de94ed3
   src/Models/Errors/VerifyM2MTokenErrors.php:
     id: cdefdfd85b95
     last_write_checksum: sha1:25b14a7595ed622fbfbc739871cdc44590d13b4b
@@ -4925,6 +5409,22 @@ trackedFiles:
     id: 7bf3ca6ac8d4
     last_write_checksum: sha1:4652a35c2525cc8c563eb12516dfd7d3e5a12dd1
     pristine_git_object: 66289f3d7fe6849e2a0c77892b2a2ac865877cc2
+  src/Models/Operations/CreateApiKeyObject.php:
+    id: 3ea73777775d
+    last_write_checksum: sha1:b58f8da6c255d0e41f6cb30108b2068250c8fa6c
+    pristine_git_object: 6830c5fbc053bd04f203ac7b16161d80aacfdbad
+  src/Models/Operations/CreateApiKeyRequestBody.php:
+    id: d668b9902a92
+    last_write_checksum: sha1:0e30354e7aa43a4b3f255e7ec52822b67f38df72
+    pristine_git_object: 4836315829f5de1ba09a94f52aed23f07823129d
+  src/Models/Operations/CreateApiKeyResponse.php:
+    id: d19bc6060c3e
+    last_write_checksum: sha1:b1994c1dec75c6c5fb9c997f56f245200fd22d2d
+    pristine_git_object: 08a7a667e24a45d80612f935e72ef8b280902385
+  src/Models/Operations/CreateApiKeyResponseBody.php:
+    id: f09d1ff95d60
+    last_write_checksum: sha1:3366419619c4e082f1060902c23d5be5341a18f0
+    pristine_git_object: 689e7aabbee60cd47454fc8050e75c4466fe79f4
   src/Models/Operations/CreateBlocklistIdentifierRequestBody.php:
     id: 8d6a166f6485
     last_write_checksum: sha1:2db7227deae88e0f92086a04dbf584df97bbc8d5
@@ -5167,8 +5667,8 @@ trackedFiles:
     pristine_git_object: 2affb349bac2b5bb7b81addd0847ed715a1c049c
   src/Models/Operations/CreateUserRequestBody.php:
     id: 6c4f817bb6ed
-    last_write_checksum: sha1:ff31032746b4a5c841dae8f6c8f2665048cc02e4
-    pristine_git_object: adefd08ae9c9e8c05105be68877c914124d4b0a8
+    last_write_checksum: sha1:1354aa6d5b35d04449e88d0719bb5c2b1399a3fa
+    pristine_git_object: 392304ff5ae90277f071d59f04748eb93a405d3d
   src/Models/Operations/CreateUserResponse.php:
     id: 6733bb8ef597
     last_write_checksum: sha1:e6e083b575e4810a492eeb7f91d09965d143dae3
@@ -5181,6 +5681,10 @@ trackedFiles:
     id: f78d4b6c3f05
     last_write_checksum: sha1:542c6be591e46032a6d5091a24a070093e720241
     pristine_git_object: f0a492a696ba9983438867be68ebee91772720b7
+  src/Models/Operations/Data.php:
+    id: b8cc221abf9d
+    last_write_checksum: sha1:849dd364db01d27264ae8c3227827903eb43db25
+    pristine_git_object: dfc91ac96b5f8cf3984d362b796671c7ca624ade
   src/Models/Operations/DeleteAllowlistIdentifierRequest.php:
     id: 0250e5f4e495
     last_write_checksum: sha1:31687b00ae144ac993933d527f192fe4a0b8325e
@@ -5189,6 +5693,22 @@ trackedFiles:
     id: ca0581c18a6b
     last_write_checksum: sha1:d9758f11c0bb9db8e5f409c507638a6c484e5cd5
     pristine_git_object: 06a9fc745ede5673966dd3879e52f7f50e9954f4
+  src/Models/Operations/DeleteApiKeyObject.php:
+    id: 9d7c232a8b14
+    last_write_checksum: sha1:af07bb119c3260061e5514370bc96233f9699ebe
+    pristine_git_object: c8bb90bc22108d051d9c31ec67b44b9f4de25473
+  src/Models/Operations/DeleteApiKeyRequest.php:
+    id: 28840d3fd721
+    last_write_checksum: sha1:a3ebad28100712e7c108c6b66600ddffea75e712
+    pristine_git_object: af3f59f45a75867e1b122119c4de934984ceb035
+  src/Models/Operations/DeleteApiKeyResponse.php:
+    id: c84890d15ad2
+    last_write_checksum: sha1:9ec11fe7331f996791de7f19cbb56d043cc7cb4e
+    pristine_git_object: d65ec7fb1d9075a13f3fd4a6aee0c4c8466073a9
+  src/Models/Operations/DeleteApiKeyResponseBody.php:
+    id: 3bff8c88e338
+    last_write_checksum: sha1:7e4100cbc680ad17c68b8a6a82d11634cbfcbe01
+    pristine_git_object: 899197e82e1b6803c9125b9096eae2e03ef22058
   src/Models/Operations/DeleteBackupCodeRequest.php:
     id: f3c2d670255e
     last_write_checksum: sha1:25b7ad925fd346707f35080e97fd9337a86ae788
@@ -5413,6 +5933,50 @@ trackedFiles:
     id: 9cfa04f3a902
     last_write_checksum: sha1:0782ca918d84f922b0a3dd6790428523f50c8bab
     pristine_git_object: d39028b9bb2e0ad3b965200ede42c11cc5453564
+  src/Models/Operations/GetApiKeyObject.php:
+    id: 5d083b276fb3
+    last_write_checksum: sha1:5b54626f3c290cf550ff42c52982594490716b3e
+    pristine_git_object: d9e4764ef06453d4c06568a556c1edb692331141
+  src/Models/Operations/GetApiKeyRequest.php:
+    id: cbf469507e95
+    last_write_checksum: sha1:f5120c6b5b2bd831ed279ff006cb9f53553a7a9a
+    pristine_git_object: 66559c90116f18e21ed59f74b29b7df7d93a5fef
+  src/Models/Operations/GetApiKeyResponse.php:
+    id: 00c89549b6af
+    last_write_checksum: sha1:a14a49b189bf1395bfd508d41ef09af5341c58d3
+    pristine_git_object: 76ba321bd68dff19e2ce58b98eea7cf976a9d29f
+  src/Models/Operations/GetApiKeyResponseBody.php:
+    id: 878e51c1b22e
+    last_write_checksum: sha1:3de8e20c66c9e10b69848363456d20e977f73e74
+    pristine_git_object: 28b74cc6da9bfe8a431caaf5e78f7e2c2c00f0e3
+  src/Models/Operations/GetApiKeySecretRequest.php:
+    id: 2aa13e3f8245
+    last_write_checksum: sha1:8141a5b6cf6d95e58bd0d93a67e01cce18145200
+    pristine_git_object: bb1bc9d9fd1dc8baf2673373f34cfdb8b0668e40
+  src/Models/Operations/GetApiKeySecretResponse.php:
+    id: 22faf5d20259
+    last_write_checksum: sha1:a1153c3e8850bd02ad480f4beeb553af29bcfee1
+    pristine_git_object: 806b9d872c318f0b3e8d798baec5776d6d52ef25
+  src/Models/Operations/GetApiKeySecretResponseBody.php:
+    id: da954bde23ce
+    last_write_checksum: sha1:e03b7a726f96fcaaaa7c56621feb94f6087505eb
+    pristine_git_object: bc3d78e87f9fb906b0e25b2b8ee0ca76172c4e03
+  src/Models/Operations/GetApiKeysObject.php:
+    id: fda9e49fedd2
+    last_write_checksum: sha1:7df5f0bec74bc827ed6af2964e8ca0f520d4fe32
+    pristine_git_object: 90ee5bb36a6bddea467a6956e8691e56393c145e
+  src/Models/Operations/GetApiKeysRequest.php:
+    id: 874bd999cf68
+    last_write_checksum: sha1:dc87a61bfdeb3164884d9798d7723f806acebbd3
+    pristine_git_object: d34f5c90f76f6d9c97d16d36da38a1d6a3f74692
+  src/Models/Operations/GetApiKeysResponse.php:
+    id: d27fb051dd65
+    last_write_checksum: sha1:3a66e9c451e4bfa59cd6776f39120d84cab55d0e
+    pristine_git_object: c90c8807fb314064ad81311798080a18f4a00cd0
+  src/Models/Operations/GetApiKeysResponseBody.php:
+    id: e467065aea6a
+    last_write_checksum: sha1:e59c46544ec03ae2ae0e0d42b5efc613a4a39cc9
+    pristine_git_object: 2e90191376641acd05d8e7d33da48407d48df429
   src/Models/Operations/GetBillingStatementListRequest.php:
     id: 8685ae4b7260
     last_write_checksum: sha1:bc1deab564b8de444216a6ab039496d1697fdf02
@@ -5689,6 +6253,10 @@ trackedFiles:
     id: 18f635799c81
     last_write_checksum: sha1:0923aa7d5a8093eb81f4f10e6f1b019246946476
     pristine_git_object: 7936cb8afacb9b350904063908c0423241803f11
+  src/Models/Operations/IncludeInvalid.php:
+    id: 68abc0c004fa
+    last_write_checksum: sha1:ea628c979e1e048fbb6098fbd7f3751e6009368e
+    pristine_git_object: 70e8a5d6397d16f140d7ca06538c98dbeec11e7a
   src/Models/Operations/InstanceGetOrganizationMembershipsRequest.php:
     id: 9c5828716c2b
     last_write_checksum: sha1:e47631a040b906e5a4d23f5bc9f19e49345cce2f
@@ -6009,6 +6577,26 @@ trackedFiles:
     id: 0c11b684527a
     last_write_checksum: sha1:67d980c1bed2e1165e7b3ddbdd686d7e30251480
     pristine_git_object: e07dd11f1587b32ab2cac9ac4ee5405a488e98dd
+  src/Models/Operations/RevokeApiKeyObject.php:
+    id: 88c48637c59b
+    last_write_checksum: sha1:09b9b2734c9e91d0310a5754ea7ccfcb6de89586
+    pristine_git_object: 8eef4cd17934b9fd6ee225e772fadff8d471aa62
+  src/Models/Operations/RevokeApiKeyRequest.php:
+    id: 53be2b4237fc
+    last_write_checksum: sha1:1b0d6e1e51389c7668e7ae8779ebd689a0bb820c
+    pristine_git_object: 867a75f18265d5942a09872a50d86d697353c809
+  src/Models/Operations/RevokeApiKeyRequestBody.php:
+    id: 65aee2213c4c
+    last_write_checksum: sha1:b35fe7853d5cc64ee390cd5aefbbf39dc393425d
+    pristine_git_object: e8692aa15f15e437e55c14aeaae7faa89a2ff3f8
+  src/Models/Operations/RevokeApiKeyResponse.php:
+    id: 841d1bd60d01
+    last_write_checksum: sha1:f6ab2b2fe623694b0404814d885ef53ab7ed6c63
+    pristine_git_object: 61c21b581be9cc75ffe853d43ed3b65ba0fc7296
+  src/Models/Operations/RevokeApiKeyResponseBody.php:
+    id: dee3396b6d8c
+    last_write_checksum: sha1:bdda8e9b893c50d8dad83639e8c14323e0506bf1
+    pristine_git_object: ef426e940bbf6862dbbdeb85540ca8834eda8bd7
   src/Models/Operations/RevokeInvitationRequest.php:
     id: 62fcb0bed030
     last_write_checksum: sha1:d214a6133f1fa3886896ea56a3ad3b61a0025506
@@ -6145,6 +6733,26 @@ trackedFiles:
     id: 752685c6283c
     last_write_checksum: sha1:231c01f572e560078455079b3a7ce5725bb5f8c3
     pristine_git_object: 5ba64fb2af8ec6f2ddbc91dc06ffbc1c60f91b89
+  src/Models/Operations/UpdateApiKeyObject.php:
+    id: 8ae5163a32db
+    last_write_checksum: sha1:640851729a1724c67a8b715d573b7b12d35029a7
+    pristine_git_object: bbd90e7ebdf2d158a51ccea97e6c7580daf4e1d8
+  src/Models/Operations/UpdateApiKeyRequest.php:
+    id: 814a10ba0b50
+    last_write_checksum: sha1:65425a4240797c0f3c4f52bd68794ad65d451081
+    pristine_git_object: 244dad5236275265b40d82b018245a509a9632c7
+  src/Models/Operations/UpdateApiKeyRequestBody.php:
+    id: 0f8c52d8650c
+    last_write_checksum: sha1:cf53fd4807a7064391c000697d3bc3a5fdb0ee7c
+    pristine_git_object: bcdf9b1be99c62944284185026d04a3f638cd0b5
+  src/Models/Operations/UpdateApiKeyResponse.php:
+    id: f58aa70df855
+    last_write_checksum: sha1:e66cd6ed5a5e9f4582cc5e494c988ee0a2db2b69
+    pristine_git_object: 8bb33508d21207c24fadabf3a4ee71a1594c049a
+  src/Models/Operations/UpdateApiKeyResponseBody.php:
+    id: af9ba53a98f8
+    last_write_checksum: sha1:a45e4e1b38d0061324575f8b2908ed3e26022a42
+    pristine_git_object: a2fb49b411668d2391a38bc8d92139c3ea27f865
   src/Models/Operations/UpdateDomainRequest.php:
     id: c4ab993a0668
     last_write_checksum: sha1:4ac8926fe7dc69d1a00f16516d35fc7ca126117a
@@ -6375,8 +6983,8 @@ trackedFiles:
     pristine_git_object: f1700d37b0d7fb6433c9694aa55c3131262ab4f3
   src/Models/Operations/UpdateUserRequestBody.php:
     id: 68e7ab6f0ae1
-    last_write_checksum: sha1:9207c12e610f728de25cb8a36517d3089b34615f
-    pristine_git_object: 292b1819c35fcbadde1a64ed452fe5aad8f3ba34
+    last_write_checksum: sha1:1552fa8fb5c0203c090d83b3d057c8317d446862
+    pristine_git_object: 9b0aed35d7cce418c3a7efdda73e474e4c28d5d7
   src/Models/Operations/UpdateUserResponse.php:
     id: 57705583906a
     last_write_checksum: sha1:488583d10bff2fcf073a0fee3605344e985d831b
@@ -6465,6 +7073,22 @@ trackedFiles:
     id: 6a257d62d89c
     last_write_checksum: sha1:13364c4c2b76ed85a10bb859fb85608e5b1ab0ab
     pristine_git_object: c31190ac9e0bc344ba65170354fa5154134f080f
+  src/Models/Operations/VerifyApiKeyObject.php:
+    id: 422585ceb4b3
+    last_write_checksum: sha1:feba0e421cabe4ac011fae5faf3b2e344a3eff1a
+    pristine_git_object: c0bf0c9258840a506914bc7a625586298d59283f
+  src/Models/Operations/VerifyApiKeyRequestBody.php:
+    id: 35fa72141a97
+    last_write_checksum: sha1:34e5e71f5b44e95c07930d0bd8c08cb1b97ce52c
+    pristine_git_object: 916a32eb1b8be3a44d40390af3534df9fe3212d3
+  src/Models/Operations/VerifyApiKeyResponse.php:
+    id: c7ab7a04388c
+    last_write_checksum: sha1:863ef6ececb55ed53becc98baae9b695d851164a
+    pristine_git_object: ef70304f287c82a5a1b39e8522e4a17811512f9d
+  src/Models/Operations/VerifyApiKeyResponseBody.php:
+    id: 1076cd7c606d
+    last_write_checksum: sha1:9372f91406739f600f925c2790f182dccb14c21c
+    pristine_git_object: 52df2a8568d8e53c47c1f78ca607de0eb87fcfe2
   src/Models/Operations/VerifyClientRequestBody.php:
     id: 7fd3bc5e95ec
     last_write_checksum: sha1:8d5dc51dc41e2b3e193ee0a5779c2eeb4e5851d5
@@ -6583,8 +7207,8 @@ trackedFiles:
     pristine_git_object: d7ddb9bcc57c0f458f7df1958aeeef5f93761d09
   src/SDKConfiguration.php:
     id: 9d60ab0bec0b
-    last_write_checksum: sha1:23862e60ffd8a725fdeac2a0b49e65ee229ae282
-    pristine_git_object: cd728afd96e79e6b0c0584ccb41253440c6e2ab2
+    last_write_checksum: sha1:74b313039133179754e18c52a34b78e434e4570f
+    pristine_git_object: 776742d454a649faa0fb3a7c9c0d11ef837e8333
   src/SamlConnections.php:
     id: 473af6fe9f80
     last_write_checksum: sha1:90f5a9ce76b173a893d0941ef473f0f29076a486
@@ -6747,8 +7371,8 @@ trackedFiles:
     pristine_git_object: afaecbe7cdf643193fe7770316010a89491f4bc7
   src/Utils/UnionHandler.php:
     id: 5a76a946fe85
-    last_write_checksum: sha1:89f84e2ba9c40126c88bc115cf83fef493ebf2dd
-    pristine_git_object: 1d51a656326a068ac5c402c5f50ab1a12e0377b5
+    last_write_checksum: sha1:bf0bf1156eeffe9650c01df2707b08ace3b7a901
+    pristine_git_object: 1345cab1b124e412fce33cc45656da6e9f362c29
   src/Utils/Utils.php:
     id: c902f57e2422
     last_write_checksum: sha1:8200563db8fd115627a2ff6ea4e9f71772025260
@@ -7040,7 +7664,7 @@ examples:
           order_by: "-created_at"
       responses:
         "200":
-          application/json: [{"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": "<id>", "primary_phone_number_id": "<id>", "primary_web3_wallet_id": "<id>", "username": "Margie23", "first_name": "Kendall", "last_name": "Armstrong", "has_image": false, "public_metadata": {"key": "<value>", "key1": "<value>"}, "email_addresses": [{"object": "email_address", "email_address": "Linnea_Herzog@gmail.com", "reserved": false, "verification": {"object": "verification_email_link", "status": "unverified", "strategy": "email_link", "attempts": 171073, "expire_at": 208253}, "linked_to": [], "created_at": 280885, "updated_at": 470136}], "phone_numbers": [{"object": "phone_number", "phone_number": "(825) 228-5341 x019", "reserved": true, "verification": {"object": "verification_admin", "status": "verified", "strategy": "admin", "attempts": null, "expire_at": 682430}, "linked_to": [], "created_at": 419582, "updated_at": 365714}], "web3_wallets": [{"object": "web3_wallet", "web3_wallet": "<value>", "verification": null, "created_at": 103773, "updated_at": 320938}], "passkeys": [{"object": "passkey", "name": "<value>", "last_used_at": 435647, "verification": {"object": "verification_passkey", "status": "verified", "strategy": "passkey", "attempts": 757692, "expire_at": 419762}}], "password_enabled": true, "two_factor_enabled": true, "totp_enabled": true, "backup_code_enabled": true, "mfa_enabled_at": 36065, "mfa_disabled_at": 187325, "external_accounts": [{"object": "facebook_account", "id": "<id>", "provider": "<value>", "identification_id": "<id>", "provider_user_id": "<id>", "approved_scopes": "<value>", "email_address": "Luz_Roob@hotmail.com", "first_name": "Rosendo", "last_name": "Zemlak", "public_metadata": {}, "created_at": 728522, "updated_at": 40651, "verification": {"object": "verification_oauth", "status": "failed", "strategy": "<value>", "expire_at": 657035, "attempts": 157386}}], "saml_accounts": [{"id": "<id>", "object": "saml_account", "provider": "<value>", "active": false, "email_address": "Peggie_Rice@hotmail.com", "verification": null}], "enterprise_accounts": [], "last_sign_in_at": 970002, "banned": true, "locked": false, "lockout_expires_in_seconds": 275825, "verification_attempts_remaining": 812188, "updated_at": 623168, "created_at": 51668, "delete_self_enabled": false, "create_organization_enabled": false, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000}]
+          application/json: [{"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": "<id>", "primary_phone_number_id": "<id>", "primary_web3_wallet_id": "<id>", "username": "Margie23", "first_name": "Kendall", "last_name": "Armstrong", "has_image": false, "public_metadata": {"key": "<value>", "key1": "<value>"}, "email_addresses": [{"object": "email_address", "email_address": "Linnea_Herzog@gmail.com", "reserved": false, "verification": {"object": "verification_email_link", "status": "unverified", "strategy": "email_link", "attempts": 171073, "expire_at": 208253}, "linked_to": [], "created_at": 280885, "updated_at": 470136}], "phone_numbers": [{"object": "phone_number", "phone_number": "(825) 228-5341 x019", "reserved": true, "verification": {"object": "verification_admin", "status": "verified", "strategy": "admin", "attempts": null, "expire_at": 682430}, "linked_to": [], "created_at": 419582, "updated_at": 365714}], "web3_wallets": [{"object": "web3_wallet", "web3_wallet": "<value>", "verification": null, "created_at": 103773, "updated_at": 320938}], "passkeys": [{"object": "passkey", "name": "<value>", "last_used_at": 435647, "verification": {"object": "verification_passkey", "status": "verified", "strategy": "passkey", "attempts": 757692, "expire_at": 419762}}], "password_enabled": true, "two_factor_enabled": true, "totp_enabled": true, "backup_code_enabled": true, "mfa_enabled_at": 36065, "mfa_disabled_at": 187325, "external_accounts": [{"object": "facebook_account", "id": "<id>", "provider": "<value>", "identification_id": "<id>", "provider_user_id": "<id>", "approved_scopes": "<value>", "email_address": "Luz_Roob@hotmail.com", "first_name": "Rosendo", "last_name": "Zemlak", "public_metadata": {}, "created_at": 728522, "updated_at": 40651, "verification": {"object": "verification_oauth", "status": "failed", "strategy": "<value>", "expire_at": 657035, "attempts": 157386}}], "saml_accounts": [{"id": "<id>", "object": "saml_account", "provider": "<value>", "active": false, "email_address": "Peggie_Rice@hotmail.com", "verification": null}], "enterprise_accounts": [], "last_sign_in_at": 970002, "banned": true, "locked": false, "lockout_expires_in_seconds": 275825, "verification_attempts_remaining": 812188, "updated_at": 623168, "created_at": 51668, "delete_self_enabled": false, "create_organization_enabled": false, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000, "bypass_client_trust": false}]
         "400":
           application/json: {"errors": []}
   CreateUser:
@@ -7049,7 +7673,7 @@ examples:
         application/json: {}
       responses:
         "200":
-          application/json: {"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": null, "primary_phone_number_id": "<id>", "primary_web3_wallet_id": "<id>", "username": "Alford_Bode", "first_name": "Rowland", "last_name": "Mante", "has_image": false, "public_metadata": {"key": "<value>", "key1": "<value>"}, "email_addresses": [{"object": "email_address", "email_address": "Kendrick48@yahoo.com", "reserved": false, "verification": null, "linked_to": [], "created_at": 570870, "updated_at": 793877}], "phone_numbers": [{"object": "phone_number", "phone_number": "709-601-1972", "reserved": true, "verification": {"object": "verification_otp", "status": "expired", "strategy": "phone_code", "attempts": 283286, "expire_at": 622304}, "linked_to": [], "created_at": 869610, "updated_at": 476222}], "web3_wallets": [{"object": "web3_wallet", "web3_wallet": "<value>", "verification": {"object": "verification_web3", "status": "verified", "strategy": "web3_okx_wallet_signature", "attempts": 894102, "expire_at": 541064}, "created_at": 88493, "updated_at": 396087}], "passkeys": [], "password_enabled": true, "two_factor_enabled": true, "totp_enabled": true, "backup_code_enabled": false, "mfa_enabled_at": 161636, "mfa_disabled_at": 346920, "external_accounts": [{"object": "google_account", "id": "<id>", "provider": "<value>", "identification_id": "<id>", "provider_user_id": "<id>", "approved_scopes": "<value>", "email_address": "Kade_Mante@yahoo.com", "first_name": "Aiyana", "last_name": "Wuckert", "public_metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "created_at": 949233, "updated_at": 396112, "verification": {"object": "verification_google_one_tap", "status": "unverified", "strategy": "google_one_tap", "expire_at": 154446, "attempts": 857359}}], "saml_accounts": [{"id": "<id>", "object": "saml_account", "provider": "<value>", "active": false, "email_address": "Leatha50@hotmail.com", "verification": {"object": "verification_saml", "status": "verified", "strategy": "saml", "attempts": 74699}}], "enterprise_accounts": [{"id": "<id>", "object": "enterprise_account", "provider": "<value>", "active": true, "email_address": "Lilyan8@yahoo.com", "verification": {"object": "verification_saml", "status": "verified", "strategy": "saml", "attempts": 963304}}], "last_sign_in_at": 873253, "banned": false, "locked": false, "lockout_expires_in_seconds": 385134, "verification_attempts_remaining": 327762, "updated_at": 173353, "created_at": 493210, "delete_self_enabled": true, "create_organization_enabled": true, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000}
+          application/json: {"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": null, "primary_phone_number_id": "<id>", "primary_web3_wallet_id": "<id>", "username": "Alford_Bode", "first_name": "Rowland", "last_name": "Mante", "has_image": false, "public_metadata": {"key": "<value>", "key1": "<value>"}, "email_addresses": [{"object": "email_address", "email_address": "Kendrick48@yahoo.com", "reserved": false, "verification": null, "linked_to": [], "created_at": 570870, "updated_at": 793877}], "phone_numbers": [{"object": "phone_number", "phone_number": "709-601-1972", "reserved": true, "verification": {"object": "verification_otp", "status": "expired", "strategy": "phone_code", "attempts": 283286, "expire_at": 622304}, "linked_to": [], "created_at": 869610, "updated_at": 476222}], "web3_wallets": [{"object": "web3_wallet", "web3_wallet": "<value>", "verification": {"object": "verification_web3", "status": "verified", "strategy": "web3_okx_wallet_signature", "attempts": 894102, "expire_at": 541064}, "created_at": 88493, "updated_at": 396087}], "passkeys": [], "password_enabled": true, "two_factor_enabled": true, "totp_enabled": true, "backup_code_enabled": false, "mfa_enabled_at": 161636, "mfa_disabled_at": 346920, "external_accounts": [{"object": "google_account", "id": "<id>", "provider": "<value>", "identification_id": "<id>", "provider_user_id": "<id>", "approved_scopes": "<value>", "email_address": "Kade_Mante@yahoo.com", "first_name": "Aiyana", "last_name": "Wuckert", "public_metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "created_at": 949233, "updated_at": 396112, "verification": {"object": "verification_google_one_tap", "status": "unverified", "strategy": "google_one_tap", "expire_at": 154446, "attempts": 857359}}], "saml_accounts": [{"id": "<id>", "object": "saml_account", "provider": "<value>", "active": false, "email_address": "Leatha50@hotmail.com", "verification": {"object": "verification_saml", "status": "verified", "strategy": "saml", "attempts": 74699}}], "enterprise_accounts": [{"id": "<id>", "object": "enterprise_account", "provider": "<value>", "active": true, "email_address": "Lilyan8@yahoo.com", "verification": {"object": "verification_saml", "status": "verified", "strategy": "saml", "attempts": 963304}}], "last_sign_in_at": 873253, "banned": false, "locked": false, "lockout_expires_in_seconds": 385134, "verification_attempts_remaining": 327762, "updated_at": 173353, "created_at": 493210, "delete_self_enabled": true, "create_organization_enabled": true, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000, "bypass_client_trust": false}
         "400":
           application/json: {"errors": []}
   GetUsersCount:
@@ -7072,7 +7696,7 @@ examples:
           user_id: "<id>"
       responses:
         "200":
-          application/json: {"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": "<id>", "primary_phone_number_id": "<id>", "primary_web3_wallet_id": "<id>", "username": "Ned.Nicolas", "first_name": "Vinnie", "last_name": "Casper", "has_image": true, "public_metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "email_addresses": [], "phone_numbers": [], "web3_wallets": [{"object": "web3_wallet", "web3_wallet": "<value>", "verification": {"object": "verification_web3", "status": "failed", "strategy": "web3_coinbase_wallet_signature", "attempts": null, "expire_at": 707537}, "created_at": 706654, "updated_at": 870907}], "passkeys": [], "password_enabled": false, "two_factor_enabled": true, "totp_enabled": true, "backup_code_enabled": false, "mfa_enabled_at": 879970, "mfa_disabled_at": null, "external_accounts": [{"object": "google_account", "id": "<id>", "provider": "<value>", "identification_id": "<id>", "provider_user_id": "<id>", "approved_scopes": "<value>", "email_address": "Rosalyn54@gmail.com", "first_name": "Blaze", "last_name": "Hintz", "public_metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "created_at": 664608, "updated_at": 57580, "verification": {"object": "verification_google_one_tap", "status": "unverified", "strategy": "google_one_tap", "expire_at": 283892, "attempts": null}}], "saml_accounts": [{"id": "<id>", "object": "saml_account", "provider": "<value>", "active": false, "email_address": "Aniya_Dare@hotmail.com", "verification": {"object": "verification_saml", "status": "verified", "strategy": "saml", "attempts": 459440}}], "enterprise_accounts": [{"id": "<id>", "object": "enterprise_account", "provider": "<value>", "active": false, "email_address": "Katheryn_Rogahn63@hotmail.com", "verification": {"object": "verification_saml", "status": "failed", "strategy": "saml", "attempts": 960027}}], "last_sign_in_at": 28584, "banned": false, "locked": false, "lockout_expires_in_seconds": 62016, "verification_attempts_remaining": null, "updated_at": 84483, "created_at": 969449, "delete_self_enabled": false, "create_organization_enabled": true, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000}
+          application/json: {"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": "<id>", "primary_phone_number_id": "<id>", "primary_web3_wallet_id": "<id>", "username": "Ned.Nicolas", "first_name": "Vinnie", "last_name": "Casper", "has_image": true, "public_metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "email_addresses": [], "phone_numbers": [], "web3_wallets": [{"object": "web3_wallet", "web3_wallet": "<value>", "verification": {"object": "verification_web3", "status": "failed", "strategy": "web3_coinbase_wallet_signature", "attempts": null, "expire_at": 707537}, "created_at": 706654, "updated_at": 870907}], "passkeys": [], "password_enabled": false, "two_factor_enabled": true, "totp_enabled": true, "backup_code_enabled": false, "mfa_enabled_at": 879970, "mfa_disabled_at": null, "external_accounts": [{"object": "google_account", "id": "<id>", "provider": "<value>", "identification_id": "<id>", "provider_user_id": "<id>", "approved_scopes": "<value>", "email_address": "Rosalyn54@gmail.com", "first_name": "Blaze", "last_name": "Hintz", "public_metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "created_at": 664608, "updated_at": 57580, "verification": {"object": "verification_google_one_tap", "status": "unverified", "strategy": "google_one_tap", "expire_at": 283892, "attempts": null}}], "saml_accounts": [{"id": "<id>", "object": "saml_account", "provider": "<value>", "active": false, "email_address": "Aniya_Dare@hotmail.com", "verification": {"object": "verification_saml", "status": "verified", "strategy": "saml", "attempts": 459440}}], "enterprise_accounts": [{"id": "<id>", "object": "enterprise_account", "provider": "<value>", "active": false, "email_address": "Katheryn_Rogahn63@hotmail.com", "verification": {"object": "verification_saml", "status": "failed", "strategy": "saml", "attempts": 960027}}], "last_sign_in_at": 28584, "banned": false, "locked": false, "lockout_expires_in_seconds": 62016, "verification_attempts_remaining": null, "updated_at": 84483, "created_at": 969449, "delete_self_enabled": false, "create_organization_enabled": true, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000, "bypass_client_trust": false}
         "400":
           application/json: {"errors": []}
   UpdateUser:
@@ -7084,7 +7708,7 @@ examples:
         application/json: {"notify_primary_email_address_changed": false}
       responses:
         "200":
-          application/json: {"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": "<id>", "primary_phone_number_id": "<id>", "primary_web3_wallet_id": "<id>", "username": "Katheryn_Schuppe20", "first_name": "Olen", "last_name": "Hermiston", "has_image": true, "public_metadata": {"key": "<value>", "key1": "<value>"}, "email_addresses": [{"object": "email_address", "email_address": "Kenyon22@gmail.com", "reserved": true, "verification": {"object": "verification_email_link", "status": "expired", "strategy": "email_link", "attempts": 671573, "expire_at": 428976}, "linked_to": [], "created_at": 954996, "updated_at": 606432}], "phone_numbers": [], "web3_wallets": [{"object": "web3_wallet", "web3_wallet": "<value>", "verification": {"object": "verification_admin", "status": "verified", "strategy": "admin", "attempts": 954036, "expire_at": 477428}, "created_at": 713891, "updated_at": 906707}], "passkeys": [], "password_enabled": true, "two_factor_enabled": false, "totp_enabled": true, "backup_code_enabled": false, "mfa_enabled_at": null, "mfa_disabled_at": 940474, "external_accounts": [{"object": "google_account", "id": "<id>", "provider": "<value>", "identification_id": "<id>", "provider_user_id": "<id>", "approved_scopes": "<value>", "email_address": "Una_Bartell73@hotmail.com", "first_name": "Veronica", "last_name": "Reichel", "public_metadata": {"key": "<value>"}, "created_at": 141525, "updated_at": 920530, "verification": {"object": "verification_google_one_tap", "status": "verified", "strategy": "google_one_tap", "expire_at": 829477, "attempts": 355623}}], "saml_accounts": [{"id": "<id>", "object": "saml_account", "provider": "<value>", "active": false, "email_address": "Herminia82@hotmail.com", "verification": {"object": "verification_saml", "status": "verified", "strategy": "saml", "attempts": 694777}}], "enterprise_accounts": [], "last_sign_in_at": 269889, "banned": true, "locked": true, "lockout_expires_in_seconds": 240444, "verification_attempts_remaining": 630714, "updated_at": 894867, "created_at": 897464, "delete_self_enabled": true, "create_organization_enabled": true, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000}
+          application/json: {"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": "<id>", "primary_phone_number_id": "<id>", "primary_web3_wallet_id": "<id>", "username": "Katheryn_Schuppe20", "first_name": "Olen", "last_name": "Hermiston", "has_image": true, "public_metadata": {"key": "<value>", "key1": "<value>"}, "email_addresses": [{"object": "email_address", "email_address": "Kenyon22@gmail.com", "reserved": true, "verification": {"object": "verification_email_link", "status": "expired", "strategy": "email_link", "attempts": 671573, "expire_at": 428976}, "linked_to": [], "created_at": 954996, "updated_at": 606432}], "phone_numbers": [], "web3_wallets": [{"object": "web3_wallet", "web3_wallet": "<value>", "verification": {"object": "verification_admin", "status": "verified", "strategy": "admin", "attempts": 954036, "expire_at": 477428}, "created_at": 713891, "updated_at": 906707}], "passkeys": [], "password_enabled": true, "two_factor_enabled": false, "totp_enabled": true, "backup_code_enabled": false, "mfa_enabled_at": null, "mfa_disabled_at": 940474, "external_accounts": [{"object": "google_account", "id": "<id>", "provider": "<value>", "identification_id": "<id>", "provider_user_id": "<id>", "approved_scopes": "<value>", "email_address": "Una_Bartell73@hotmail.com", "first_name": "Veronica", "last_name": "Reichel", "public_metadata": {"key": "<value>"}, "created_at": 141525, "updated_at": 920530, "verification": {"object": "verification_google_one_tap", "status": "verified", "strategy": "google_one_tap", "expire_at": 829477, "attempts": 355623}}], "saml_accounts": [{"id": "<id>", "object": "saml_account", "provider": "<value>", "active": false, "email_address": "Herminia82@hotmail.com", "verification": {"object": "verification_saml", "status": "verified", "strategy": "saml", "attempts": 694777}}], "enterprise_accounts": [], "last_sign_in_at": 269889, "banned": true, "locked": true, "lockout_expires_in_seconds": 240444, "verification_attempts_remaining": 630714, "updated_at": 894867, "created_at": 897464, "delete_self_enabled": true, "create_organization_enabled": true, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000, "bypass_client_trust": false}
         "400":
           application/json: {"errors": []}
   DeleteUser:
@@ -7104,7 +7728,7 @@ examples:
           user_id: "<id>"
       responses:
         "200":
-          application/json: {"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": null, "primary_phone_number_id": "<id>", "primary_web3_wallet_id": "<id>", "username": "Dameon_McKenzie1", "first_name": "Cyrus", "last_name": "Emmerich", "has_image": true, "public_metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "email_addresses": [], "phone_numbers": [], "web3_wallets": [{"object": "web3_wallet", "web3_wallet": "<value>", "verification": {"object": "verification_admin", "status": "verified", "strategy": "admin", "attempts": 383637, "expire_at": 230067}, "created_at": 427369, "updated_at": 15811}], "passkeys": [], "password_enabled": false, "two_factor_enabled": true, "totp_enabled": false, "backup_code_enabled": true, "mfa_enabled_at": 27551, "mfa_disabled_at": 198918, "external_accounts": [{"object": "external_account", "id": "<id>", "provider": "<value>", "identification_id": "<id>", "provider_user_id": "<id>", "approved_scopes": "<value>", "email_address": "Halie.Armstrong@gmail.com", "first_name": "Glennie", "last_name": "Conroy", "public_metadata": {"key": "<value>", "key1": "<value>"}, "created_at": 829365, "updated_at": 679400, "verification": {"object": "verification_google_one_tap", "status": "unverified", "strategy": "google_one_tap", "expire_at": null, "attempts": null}}], "saml_accounts": [{"id": "<id>", "object": "saml_account", "provider": "<value>", "active": false, "email_address": "Randi76@hotmail.com", "verification": {"object": "verification_saml", "status": "transferable", "strategy": "saml", "attempts": 814743}}], "enterprise_accounts": [{"id": "<id>", "object": "enterprise_account", "provider": "<value>", "active": true, "email_address": "Beverly58@yahoo.com", "verification": null}], "last_sign_in_at": 704966, "banned": true, "locked": true, "lockout_expires_in_seconds": 417872, "verification_attempts_remaining": null, "updated_at": 139828, "created_at": 285155, "delete_self_enabled": false, "create_organization_enabled": true, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000}
+          application/json: {"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": null, "primary_phone_number_id": "<id>", "primary_web3_wallet_id": "<id>", "username": "Dameon_McKenzie1", "first_name": "Cyrus", "last_name": "Emmerich", "has_image": true, "public_metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "email_addresses": [], "phone_numbers": [], "web3_wallets": [{"object": "web3_wallet", "web3_wallet": "<value>", "verification": {"object": "verification_admin", "status": "verified", "strategy": "admin", "attempts": 383637, "expire_at": 230067}, "created_at": 427369, "updated_at": 15811}], "passkeys": [], "password_enabled": false, "two_factor_enabled": true, "totp_enabled": false, "backup_code_enabled": true, "mfa_enabled_at": 27551, "mfa_disabled_at": 198918, "external_accounts": [{"object": "external_account", "id": "<id>", "provider": "<value>", "identification_id": "<id>", "provider_user_id": "<id>", "approved_scopes": "<value>", "email_address": "Halie.Armstrong@gmail.com", "first_name": "Glennie", "last_name": "Conroy", "public_metadata": {"key": "<value>", "key1": "<value>"}, "created_at": 829365, "updated_at": 679400, "verification": {"object": "verification_google_one_tap", "status": "unverified", "strategy": "google_one_tap", "expire_at": null, "attempts": null}}], "saml_accounts": [{"id": "<id>", "object": "saml_account", "provider": "<value>", "active": false, "email_address": "Randi76@hotmail.com", "verification": {"object": "verification_saml", "status": "transferable", "strategy": "saml", "attempts": 814743}}], "enterprise_accounts": [{"id": "<id>", "object": "enterprise_account", "provider": "<value>", "active": true, "email_address": "Beverly58@yahoo.com", "verification": null}], "last_sign_in_at": 704966, "banned": true, "locked": true, "lockout_expires_in_seconds": 417872, "verification_attempts_remaining": null, "updated_at": 139828, "created_at": 285155, "delete_self_enabled": false, "create_organization_enabled": true, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000, "bypass_client_trust": false}
         "402":
           application/json: {"errors": []}
   UnbanUser:
@@ -7114,7 +7738,7 @@ examples:
           user_id: "<id>"
       responses:
         "200":
-          application/json: {"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": "<id>", "primary_phone_number_id": "<id>", "primary_web3_wallet_id": "<id>", "username": "Deion_Shanahan88", "first_name": "Willa", "last_name": "O'Kon", "has_image": true, "public_metadata": {"key": "<value>", "key1": "<value>"}, "email_addresses": [{"object": "email_address", "email_address": "Cristobal_Yost-Schinner31@gmail.com", "reserved": false, "verification": {"object": "verification_email_link", "status": "verified", "strategy": "email_link", "attempts": 371956, "expire_at": 430959}, "linked_to": [{"type": "<value>", "id": "<id>"}], "created_at": 554894, "updated_at": 590282}], "phone_numbers": [{"object": "phone_number", "phone_number": "1-554-571-5107 x820", "reserved": true, "verification": {"object": "verification_admin", "status": "verified", "strategy": "admin", "attempts": 217884, "expire_at": 946029}, "linked_to": [], "created_at": 550147, "updated_at": 57122}], "web3_wallets": [], "passkeys": [], "password_enabled": false, "two_factor_enabled": true, "totp_enabled": false, "backup_code_enabled": false, "mfa_enabled_at": null, "mfa_disabled_at": 494862, "external_accounts": [{"object": "facebook_account", "id": "<id>", "provider": "<value>", "identification_id": "<id>", "provider_user_id": "<id>", "approved_scopes": "<value>", "email_address": "Kaleb88@gmail.com", "first_name": "Denis", "last_name": "Roob", "public_metadata": {"key": "<value>", "key1": "<value>"}, "created_at": 427350, "updated_at": 917270, "verification": {"object": "verification_google_one_tap", "status": "unverified", "strategy": "google_one_tap", "expire_at": 900437, "attempts": 57266}}], "saml_accounts": [], "enterprise_accounts": [], "last_sign_in_at": 345903, "banned": true, "locked": false, "lockout_expires_in_seconds": 183404, "verification_attempts_remaining": 520280, "updated_at": 835720, "created_at": 556936, "delete_self_enabled": true, "create_organization_enabled": true, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000}
+          application/json: {"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": "<id>", "primary_phone_number_id": "<id>", "primary_web3_wallet_id": "<id>", "username": "Deion_Shanahan88", "first_name": "Willa", "last_name": "O'Kon", "has_image": true, "public_metadata": {"key": "<value>", "key1": "<value>"}, "email_addresses": [{"object": "email_address", "email_address": "Cristobal_Yost-Schinner31@gmail.com", "reserved": false, "verification": {"object": "verification_email_link", "status": "verified", "strategy": "email_link", "attempts": 371956, "expire_at": 430959}, "linked_to": [{"type": "<value>", "id": "<id>"}], "created_at": 554894, "updated_at": 590282}], "phone_numbers": [{"object": "phone_number", "phone_number": "1-554-571-5107 x820", "reserved": true, "verification": {"object": "verification_admin", "status": "verified", "strategy": "admin", "attempts": 217884, "expire_at": 946029}, "linked_to": [], "created_at": 550147, "updated_at": 57122}], "web3_wallets": [], "passkeys": [], "password_enabled": false, "two_factor_enabled": true, "totp_enabled": false, "backup_code_enabled": false, "mfa_enabled_at": null, "mfa_disabled_at": 494862, "external_accounts": [{"object": "facebook_account", "id": "<id>", "provider": "<value>", "identification_id": "<id>", "provider_user_id": "<id>", "approved_scopes": "<value>", "email_address": "Kaleb88@gmail.com", "first_name": "Denis", "last_name": "Roob", "public_metadata": {"key": "<value>", "key1": "<value>"}, "created_at": 427350, "updated_at": 917270, "verification": {"object": "verification_google_one_tap", "status": "unverified", "strategy": "google_one_tap", "expire_at": 900437, "attempts": 57266}}], "saml_accounts": [], "enterprise_accounts": [], "last_sign_in_at": 345903, "banned": true, "locked": false, "lockout_expires_in_seconds": 183404, "verification_attempts_remaining": 520280, "updated_at": 835720, "created_at": 556936, "delete_self_enabled": true, "create_organization_enabled": true, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000, "bypass_client_trust": false}
         "402":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
   UsersBan:
@@ -7123,7 +7747,7 @@ examples:
         application/json: {"user_ids": ["<value 1>", "<value 2>", "<value 3>"]}
       responses:
         "200":
-          application/json: [{"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": "<id>", "primary_phone_number_id": "<id>", "primary_web3_wallet_id": null, "username": "Melody48", "first_name": "Felicia", "last_name": "Jakubowski", "has_image": true, "public_metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "email_addresses": [], "phone_numbers": [], "web3_wallets": [{"object": "web3_wallet", "web3_wallet": "<value>", "verification": {"object": "verification_web3", "status": "failed", "strategy": "web3_okx_wallet_signature", "attempts": 598545, "expire_at": 959813}, "created_at": 243637, "updated_at": 33571}], "passkeys": [], "password_enabled": false, "two_factor_enabled": true, "totp_enabled": false, "backup_code_enabled": true, "mfa_enabled_at": 620490, "mfa_disabled_at": 725618, "external_accounts": [], "saml_accounts": [{"id": "<id>", "object": "saml_account", "provider": "<value>", "active": false, "email_address": "Abdullah.Wisozk-Schmitt93@gmail.com", "verification": {"object": "verification_saml", "status": "unverified", "strategy": "saml", "attempts": 62911}}], "enterprise_accounts": [{"id": "<id>", "object": "enterprise_account", "provider": "<value>", "active": false, "email_address": "Horacio_Gutkowski3@yahoo.com", "verification": null}], "last_sign_in_at": 765569, "banned": false, "locked": true, "lockout_expires_in_seconds": 305814, "verification_attempts_remaining": 276631, "updated_at": 15742, "created_at": 356726, "delete_self_enabled": true, "create_organization_enabled": true, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000}]
+          application/json: [{"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": "<id>", "primary_phone_number_id": "<id>", "primary_web3_wallet_id": null, "username": "Melody48", "first_name": "Felicia", "last_name": "Jakubowski", "has_image": true, "public_metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "email_addresses": [], "phone_numbers": [], "web3_wallets": [{"object": "web3_wallet", "web3_wallet": "<value>", "verification": {"object": "verification_web3", "status": "failed", "strategy": "web3_okx_wallet_signature", "attempts": 598545, "expire_at": 959813}, "created_at": 243637, "updated_at": 33571}], "passkeys": [], "password_enabled": false, "two_factor_enabled": true, "totp_enabled": false, "backup_code_enabled": true, "mfa_enabled_at": 620490, "mfa_disabled_at": 725618, "external_accounts": [], "saml_accounts": [{"id": "<id>", "object": "saml_account", "provider": "<value>", "active": false, "email_address": "Abdullah.Wisozk-Schmitt93@gmail.com", "verification": {"object": "verification_saml", "status": "unverified", "strategy": "saml", "attempts": 62911}}], "enterprise_accounts": [{"id": "<id>", "object": "enterprise_account", "provider": "<value>", "active": false, "email_address": "Horacio_Gutkowski3@yahoo.com", "verification": null}], "last_sign_in_at": 765569, "banned": false, "locked": true, "lockout_expires_in_seconds": 305814, "verification_attempts_remaining": 276631, "updated_at": 15742, "created_at": 356726, "delete_self_enabled": true, "create_organization_enabled": true, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000, "bypass_client_trust": false}]
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
   UsersUnban:
@@ -7132,7 +7756,7 @@ examples:
         application/json: {"user_ids": ["<value 1>", "<value 2>", "<value 3>"]}
       responses:
         "200":
-          application/json: [{"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": "<id>", "primary_phone_number_id": "<id>", "primary_web3_wallet_id": "<id>", "username": null, "first_name": "Estella", "last_name": "Abbott", "has_image": true, "public_metadata": {"key": "<value>"}, "email_addresses": [], "phone_numbers": [], "web3_wallets": [{"object": "web3_wallet", "web3_wallet": "<value>", "verification": {"object": "verification_admin", "status": "verified", "strategy": "admin", "attempts": 602166, "expire_at": 755931}, "created_at": 138607, "updated_at": 872873}], "passkeys": [], "password_enabled": true, "two_factor_enabled": false, "totp_enabled": false, "backup_code_enabled": true, "mfa_enabled_at": 787261, "mfa_disabled_at": 532670, "external_accounts": [{"object": "external_account", "id": "<id>", "provider": "<value>", "identification_id": "<id>", "provider_user_id": "<id>", "approved_scopes": "<value>", "email_address": "Buddy.Davis32@yahoo.com", "first_name": "Jon", "last_name": "Aufderhar", "public_metadata": {"key": "<value>", "key1": "<value>"}, "created_at": 288253, "updated_at": 486887, "verification": {"object": "verification_oauth", "status": "expired", "strategy": "<value>", "expire_at": 129576, "attempts": null}}], "saml_accounts": [{"id": "<id>", "object": "saml_account", "provider": "<value>", "active": false, "email_address": "Ola.Koch@hotmail.com", "verification": {"object": "verification_saml", "status": "expired", "strategy": "saml", "attempts": 321485}}], "enterprise_accounts": [{"id": "<id>", "object": "enterprise_account", "provider": "<value>", "active": true, "email_address": "Toni_Baumbach33@yahoo.com", "verification": {"object": "verification_ticket", "status": "unverified", "strategy": "ticket", "attempts": 332407, "expire_at": 503363}}], "last_sign_in_at": 235112, "banned": true, "locked": true, "lockout_expires_in_seconds": 486916, "verification_attempts_remaining": 632513, "updated_at": 604095, "created_at": 459828, "delete_self_enabled": false, "create_organization_enabled": false, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000}]
+          application/json: [{"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": "<id>", "primary_phone_number_id": "<id>", "primary_web3_wallet_id": "<id>", "username": null, "first_name": "Estella", "last_name": "Abbott", "has_image": true, "public_metadata": {"key": "<value>"}, "email_addresses": [], "phone_numbers": [], "web3_wallets": [{"object": "web3_wallet", "web3_wallet": "<value>", "verification": {"object": "verification_admin", "status": "verified", "strategy": "admin", "attempts": 602166, "expire_at": 755931}, "created_at": 138607, "updated_at": 872873}], "passkeys": [], "password_enabled": true, "two_factor_enabled": false, "totp_enabled": false, "backup_code_enabled": true, "mfa_enabled_at": 787261, "mfa_disabled_at": 532670, "external_accounts": [{"object": "external_account", "id": "<id>", "provider": "<value>", "identification_id": "<id>", "provider_user_id": "<id>", "approved_scopes": "<value>", "email_address": "Buddy.Davis32@yahoo.com", "first_name": "Jon", "last_name": "Aufderhar", "public_metadata": {"key": "<value>", "key1": "<value>"}, "created_at": 288253, "updated_at": 486887, "verification": {"object": "verification_oauth", "status": "expired", "strategy": "<value>", "expire_at": 129576, "attempts": null}}], "saml_accounts": [{"id": "<id>", "object": "saml_account", "provider": "<value>", "active": false, "email_address": "Ola.Koch@hotmail.com", "verification": {"object": "verification_saml", "status": "expired", "strategy": "saml", "attempts": 321485}}], "enterprise_accounts": [{"id": "<id>", "object": "enterprise_account", "provider": "<value>", "active": true, "email_address": "Toni_Baumbach33@yahoo.com", "verification": {"object": "verification_ticket", "status": "unverified", "strategy": "ticket", "attempts": 332407, "expire_at": 503363}}], "last_sign_in_at": 235112, "banned": true, "locked": true, "lockout_expires_in_seconds": 486916, "verification_attempts_remaining": 632513, "updated_at": 604095, "created_at": 459828, "delete_self_enabled": false, "create_organization_enabled": false, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000, "bypass_client_trust": false}]
         "400":
           application/json: {"errors": []}
   LockUser:
@@ -7142,7 +7766,7 @@ examples:
           user_id: "<id>"
       responses:
         "200":
-          application/json: {"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": "<id>", "primary_phone_number_id": "<id>", "primary_web3_wallet_id": "<id>", "username": "Paige_Keeling", "first_name": "Danny", "last_name": "West", "has_image": true, "public_metadata": {"key": "<value>", "key1": "<value>"}, "email_addresses": [], "phone_numbers": [], "web3_wallets": [{"object": "web3_wallet", "web3_wallet": "<value>", "verification": {"object": "verification_admin", "status": "verified", "strategy": "admin", "attempts": 529039, "expire_at": 323423}, "created_at": 612221, "updated_at": 958342}], "passkeys": [], "password_enabled": false, "two_factor_enabled": true, "totp_enabled": false, "backup_code_enabled": false, "mfa_enabled_at": null, "mfa_disabled_at": 869240, "external_accounts": [{"object": "google_account", "id": "<id>", "provider": "<value>", "identification_id": "<id>", "provider_user_id": "<id>", "approved_scopes": "<value>", "email_address": "Jamie_Harris11@hotmail.com", "first_name": "Terrill", "last_name": "McKenzie", "public_metadata": {}, "created_at": 799820, "updated_at": 825654, "verification": {"object": "verification_oauth", "status": "failed", "strategy": "<value>", "expire_at": 408253, "attempts": 360777}}], "saml_accounts": [], "enterprise_accounts": [], "last_sign_in_at": 840821, "banned": false, "locked": true, "lockout_expires_in_seconds": null, "verification_attempts_remaining": 353855, "updated_at": 766507, "created_at": 26564, "delete_self_enabled": false, "create_organization_enabled": false, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000}
+          application/json: {"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": "<id>", "primary_phone_number_id": "<id>", "primary_web3_wallet_id": "<id>", "username": "Paige_Keeling", "first_name": "Danny", "last_name": "West", "has_image": true, "public_metadata": {"key": "<value>", "key1": "<value>"}, "email_addresses": [], "phone_numbers": [], "web3_wallets": [{"object": "web3_wallet", "web3_wallet": "<value>", "verification": {"object": "verification_admin", "status": "verified", "strategy": "admin", "attempts": 529039, "expire_at": 323423}, "created_at": 612221, "updated_at": 958342}], "passkeys": [], "password_enabled": false, "two_factor_enabled": true, "totp_enabled": false, "backup_code_enabled": false, "mfa_enabled_at": null, "mfa_disabled_at": 869240, "external_accounts": [{"object": "google_account", "id": "<id>", "provider": "<value>", "identification_id": "<id>", "provider_user_id": "<id>", "approved_scopes": "<value>", "email_address": "Jamie_Harris11@hotmail.com", "first_name": "Terrill", "last_name": "McKenzie", "public_metadata": {}, "created_at": 799820, "updated_at": 825654, "verification": {"object": "verification_oauth", "status": "failed", "strategy": "<value>", "expire_at": 408253, "attempts": 360777}}], "saml_accounts": [], "enterprise_accounts": [], "last_sign_in_at": 840821, "banned": false, "locked": true, "lockout_expires_in_seconds": null, "verification_attempts_remaining": 353855, "updated_at": 766507, "created_at": 26564, "delete_self_enabled": false, "create_organization_enabled": false, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000, "bypass_client_trust": false}
         "403":
           application/json: {"errors": []}
   UnlockUser:
@@ -7152,7 +7776,7 @@ examples:
           user_id: "<id>"
       responses:
         "200":
-          application/json: {"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": "<id>", "primary_phone_number_id": "<id>", "primary_web3_wallet_id": "<id>", "username": "Trisha_Schimmel", "first_name": "Golden", "last_name": "Bechtelar-Bartoletti", "has_image": true, "public_metadata": {"key": "<value>", "key1": "<value>"}, "email_addresses": [], "phone_numbers": [], "web3_wallets": [], "passkeys": [{"object": "passkey", "name": "<value>", "last_used_at": 99223, "verification": {"object": "verification_passkey", "status": "verified", "strategy": "passkey", "attempts": 621194, "expire_at": 883397}}], "password_enabled": true, "two_factor_enabled": false, "totp_enabled": true, "backup_code_enabled": true, "mfa_enabled_at": 982099, "mfa_disabled_at": 365844, "external_accounts": [], "saml_accounts": [{"id": "<id>", "object": "saml_account", "provider": "<value>", "active": true, "email_address": "Rosina_Considine@gmail.com", "verification": {"object": "verification_ticket", "status": "verified", "strategy": "ticket", "attempts": 453080, "expire_at": null}}], "enterprise_accounts": [], "last_sign_in_at": 780728, "banned": false, "locked": false, "lockout_expires_in_seconds": 436504, "verification_attempts_remaining": 686618, "updated_at": 478655, "created_at": 716859, "delete_self_enabled": false, "create_organization_enabled": false, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000}
+          application/json: {"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": "<id>", "primary_phone_number_id": "<id>", "primary_web3_wallet_id": "<id>", "username": "Trisha_Schimmel", "first_name": "Golden", "last_name": "Bechtelar-Bartoletti", "has_image": true, "public_metadata": {"key": "<value>", "key1": "<value>"}, "email_addresses": [], "phone_numbers": [], "web3_wallets": [], "passkeys": [{"object": "passkey", "name": "<value>", "last_used_at": 99223, "verification": {"object": "verification_passkey", "status": "verified", "strategy": "passkey", "attempts": 621194, "expire_at": 883397}}], "password_enabled": true, "two_factor_enabled": false, "totp_enabled": true, "backup_code_enabled": true, "mfa_enabled_at": 982099, "mfa_disabled_at": 365844, "external_accounts": [], "saml_accounts": [{"id": "<id>", "object": "saml_account", "provider": "<value>", "active": true, "email_address": "Rosina_Considine@gmail.com", "verification": {"object": "verification_ticket", "status": "verified", "strategy": "ticket", "attempts": 453080, "expire_at": null}}], "enterprise_accounts": [], "last_sign_in_at": 780728, "banned": false, "locked": false, "lockout_expires_in_seconds": 436504, "verification_attempts_remaining": 686618, "updated_at": 478655, "created_at": 716859, "delete_self_enabled": false, "create_organization_enabled": false, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000, "bypass_client_trust": false}
         "403":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
   SetUserProfileImage:
@@ -7164,7 +7788,7 @@ examples:
         multipart/form-data: {}
       responses:
         "200":
-          application/json: {"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": "<id>", "primary_phone_number_id": "<id>", "primary_web3_wallet_id": "<id>", "username": "Anita.McCullough", "first_name": "Evalyn", "last_name": "Buckridge", "has_image": true, "public_metadata": {}, "email_addresses": [{"object": "email_address", "email_address": "Josefina_Leffler@yahoo.com", "reserved": false, "verification": {"object": "verification_from_oauth", "status": "verified", "strategy": "<value>", "expire_at": 674502, "attempts": 795457}, "linked_to": [], "created_at": 663113, "updated_at": 947362}], "phone_numbers": [], "web3_wallets": [], "passkeys": [], "password_enabled": true, "two_factor_enabled": true, "totp_enabled": true, "backup_code_enabled": true, "mfa_enabled_at": 625839, "mfa_disabled_at": 655961, "external_accounts": [{"object": "external_account", "id": "<id>", "provider": "<value>", "identification_id": "<id>", "provider_user_id": "<id>", "approved_scopes": "<value>", "email_address": "Shawna_Labadie15@hotmail.com", "first_name": "Cassidy", "last_name": "Keeling", "public_metadata": {}, "created_at": 492807, "updated_at": 540171, "verification": {"object": "verification_google_one_tap", "status": "unverified", "strategy": "google_one_tap", "expire_at": 547177, "attempts": 229980}}], "saml_accounts": [], "enterprise_accounts": [{"id": "<id>", "object": "enterprise_account", "provider": "<value>", "active": false, "email_address": "Raquel_Bergnaum58@gmail.com", "verification": {"object": "verification_saml", "status": "expired", "strategy": "saml", "attempts": 976448}}], "last_sign_in_at": 379079, "banned": false, "locked": false, "lockout_expires_in_seconds": 232012, "verification_attempts_remaining": 273070, "updated_at": 243972, "created_at": 59747, "delete_self_enabled": false, "create_organization_enabled": false, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000}
+          application/json: {"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": "<id>", "primary_phone_number_id": "<id>", "primary_web3_wallet_id": "<id>", "username": "Anita.McCullough", "first_name": "Evalyn", "last_name": "Buckridge", "has_image": true, "public_metadata": {}, "email_addresses": [{"object": "email_address", "email_address": "Josefina_Leffler@yahoo.com", "reserved": false, "verification": {"object": "verification_from_oauth", "status": "verified", "strategy": "<value>", "expire_at": 674502, "attempts": 795457}, "linked_to": [], "created_at": 663113, "updated_at": 947362}], "phone_numbers": [], "web3_wallets": [], "passkeys": [], "password_enabled": true, "two_factor_enabled": true, "totp_enabled": true, "backup_code_enabled": true, "mfa_enabled_at": 625839, "mfa_disabled_at": 655961, "external_accounts": [{"object": "external_account", "id": "<id>", "provider": "<value>", "identification_id": "<id>", "provider_user_id": "<id>", "approved_scopes": "<value>", "email_address": "Shawna_Labadie15@hotmail.com", "first_name": "Cassidy", "last_name": "Keeling", "public_metadata": {}, "created_at": 492807, "updated_at": 540171, "verification": {"object": "verification_google_one_tap", "status": "unverified", "strategy": "google_one_tap", "expire_at": 547177, "attempts": 229980}}], "saml_accounts": [], "enterprise_accounts": [{"id": "<id>", "object": "enterprise_account", "provider": "<value>", "active": false, "email_address": "Raquel_Bergnaum58@gmail.com", "verification": {"object": "verification_saml", "status": "expired", "strategy": "saml", "attempts": 976448}}], "last_sign_in_at": 379079, "banned": false, "locked": false, "lockout_expires_in_seconds": 232012, "verification_attempts_remaining": 273070, "updated_at": 243972, "created_at": 59747, "delete_self_enabled": false, "create_organization_enabled": false, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000, "bypass_client_trust": false}
         "400":
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
   DeleteUserProfileImage:
@@ -7174,7 +7798,7 @@ examples:
           user_id: "<id>"
       responses:
         "200":
-          application/json: {"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": "<id>", "primary_phone_number_id": "<id>", "primary_web3_wallet_id": "<id>", "username": "Troy90", "first_name": "Tess", "last_name": "Feeney", "has_image": true, "public_metadata": {"key": "<value>"}, "email_addresses": [{"object": "email_address", "email_address": "Marian.Wolf25@hotmail.com", "reserved": true, "verification": {"object": "verification_ticket", "status": "unverified", "strategy": "ticket", "attempts": 711911, "expire_at": 613422}, "linked_to": [], "created_at": 464532, "updated_at": 558346}], "phone_numbers": [], "web3_wallets": [{"object": "web3_wallet", "web3_wallet": "<value>", "verification": {"object": "verification_web3", "status": "failed", "strategy": "web3_metamask_signature", "attempts": 776566, "expire_at": null}, "created_at": 143938, "updated_at": 864712}], "passkeys": [], "password_enabled": true, "two_factor_enabled": false, "totp_enabled": false, "backup_code_enabled": true, "mfa_enabled_at": null, "mfa_disabled_at": 819643, "external_accounts": [{"object": "external_account", "id": "<id>", "provider": "<value>", "identification_id": "<id>", "provider_user_id": "<id>", "approved_scopes": "<value>", "email_address": "Kory92@hotmail.com", "first_name": "Lilliana", "last_name": "Toy", "public_metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "created_at": 498460, "updated_at": 472188, "verification": {"object": "verification_oauth", "status": "verified", "strategy": "<value>", "expire_at": 84430, "attempts": 555452}}], "saml_accounts": [], "enterprise_accounts": [{"id": "<id>", "object": "enterprise_account", "provider": "<value>", "active": true, "email_address": "Cayla7@hotmail.com", "verification": {"object": "verification_oauth", "status": "expired", "strategy": "<value>", "expire_at": 918977, "attempts": 437499}}], "last_sign_in_at": 878536, "banned": true, "locked": true, "lockout_expires_in_seconds": 608359, "verification_attempts_remaining": null, "updated_at": 770154, "created_at": 421918, "delete_self_enabled": true, "create_organization_enabled": true, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000}
+          application/json: {"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": "<id>", "primary_phone_number_id": "<id>", "primary_web3_wallet_id": "<id>", "username": "Troy90", "first_name": "Tess", "last_name": "Feeney", "has_image": true, "public_metadata": {"key": "<value>"}, "email_addresses": [{"object": "email_address", "email_address": "Marian.Wolf25@hotmail.com", "reserved": true, "verification": {"object": "verification_ticket", "status": "unverified", "strategy": "ticket", "attempts": 711911, "expire_at": 613422}, "linked_to": [], "created_at": 464532, "updated_at": 558346}], "phone_numbers": [], "web3_wallets": [{"object": "web3_wallet", "web3_wallet": "<value>", "verification": {"object": "verification_web3", "status": "failed", "strategy": "web3_metamask_signature", "attempts": 776566, "expire_at": null}, "created_at": 143938, "updated_at": 864712}], "passkeys": [], "password_enabled": true, "two_factor_enabled": false, "totp_enabled": false, "backup_code_enabled": true, "mfa_enabled_at": null, "mfa_disabled_at": 819643, "external_accounts": [{"object": "external_account", "id": "<id>", "provider": "<value>", "identification_id": "<id>", "provider_user_id": "<id>", "approved_scopes": "<value>", "email_address": "Kory92@hotmail.com", "first_name": "Lilliana", "last_name": "Toy", "public_metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "created_at": 498460, "updated_at": 472188, "verification": {"object": "verification_oauth", "status": "verified", "strategy": "<value>", "expire_at": 84430, "attempts": 555452}}], "saml_accounts": [], "enterprise_accounts": [{"id": "<id>", "object": "enterprise_account", "provider": "<value>", "active": true, "email_address": "Cayla7@hotmail.com", "verification": {"object": "verification_oauth", "status": "expired", "strategy": "<value>", "expire_at": 918977, "attempts": 437499}}], "last_sign_in_at": 878536, "banned": true, "locked": true, "lockout_expires_in_seconds": 608359, "verification_attempts_remaining": null, "updated_at": 770154, "created_at": 421918, "delete_self_enabled": true, "create_organization_enabled": true, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000, "bypass_client_trust": false}
         "404":
           application/json: {"errors": []}
   UpdateUserMetadata:
@@ -7184,7 +7808,7 @@ examples:
           user_id: "<id>"
       responses:
         "200":
-          application/json: {"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": "<id>", "primary_phone_number_id": "<id>", "primary_web3_wallet_id": "<id>", "username": "Sylvia89", "first_name": "Mya", "last_name": "Torphy", "has_image": true, "public_metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "email_addresses": [{"object": "email_address", "email_address": "Lucas.Effertz@yahoo.com", "reserved": true, "verification": {"object": "verification_email_link", "status": "verified", "strategy": "email_link", "attempts": null, "expire_at": 590543}, "linked_to": [{"type": "<value>", "id": "<id>"}], "created_at": 596616, "updated_at": 533152}], "phone_numbers": [], "web3_wallets": [], "passkeys": [], "password_enabled": false, "two_factor_enabled": false, "totp_enabled": true, "backup_code_enabled": true, "mfa_enabled_at": 569522, "mfa_disabled_at": 665231, "external_accounts": [], "saml_accounts": [], "enterprise_accounts": [], "last_sign_in_at": 101183, "banned": false, "locked": true, "lockout_expires_in_seconds": 346858, "verification_attempts_remaining": null, "updated_at": 30684, "created_at": 26864, "delete_self_enabled": true, "create_organization_enabled": false, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000}
+          application/json: {"id": "<id>", "object": "user", "external_id": "<id>", "primary_email_address_id": "<id>", "primary_phone_number_id": "<id>", "primary_web3_wallet_id": "<id>", "username": "Sylvia89", "first_name": "Mya", "last_name": "Torphy", "has_image": true, "public_metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "email_addresses": [{"object": "email_address", "email_address": "Lucas.Effertz@yahoo.com", "reserved": true, "verification": {"object": "verification_email_link", "status": "verified", "strategy": "email_link", "attempts": null, "expire_at": 590543}, "linked_to": [{"type": "<value>", "id": "<id>"}], "created_at": 596616, "updated_at": 533152}], "phone_numbers": [], "web3_wallets": [], "passkeys": [], "password_enabled": false, "two_factor_enabled": false, "totp_enabled": true, "backup_code_enabled": true, "mfa_enabled_at": 569522, "mfa_disabled_at": 665231, "external_accounts": [], "saml_accounts": [], "enterprise_accounts": [], "last_sign_in_at": 101183, "banned": false, "locked": true, "lockout_expires_in_seconds": 346858, "verification_attempts_remaining": null, "updated_at": 30684, "created_at": 26864, "delete_self_enabled": true, "create_organization_enabled": false, "last_active_at": 1700690400000, "legal_accepted_at": 1700690400000, "bypass_client_trust": false}
         "400":
           application/json: {"errors": []}
   GetUserBillingSubscription:
@@ -8535,9 +9159,111 @@ examples:
           application/json: {"object": "<value>", "deleted": false}
         "401":
           application/json: {"errors": []}
+  createApiKey:
+    speakeasy-default-create-api-key:
+      requestBody:
+        application/json: {"type": "api_key", "name": "<value>", "subject": "<value>"}
+      responses:
+        "200":
+          application/json: {"object": "api_key", "id": "ak_3beecc9c60adb5f9b850e91a8ee1e992", "type": "api_key", "subject": "user_2xhFjEI5X2qWRvtV13BzSj8H6Dk", "name": "MY_SERVICE_API_KEY", "description": "This is my API Key", "claims": {"foo": "bar"}, "scopes": ["read", "write"], "secret": "ak_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "revoked": false, "revocation_reason": "Revoked by user", "expired": false, "expiration": 1716883200, "created_by": "user_2xhFjEI5X2qWRvtV13BzSj8H6Dk", "last_used_at": 1716883200, "created_at": 1716883200, "updated_at": 1716883200}
+        "400":
+          application/json: {"errors": [{"message": "Bad Request", "long_message": "Invalid 'url_parameter.example': Failed regex check", "code": "bad_request"}]}
+        "409":
+          application/json: {"errors": []}
+  getApiKeys:
+    speakeasy-default-get-api-keys:
+      parameters:
+        query:
+          type: "api_key"
+          subject: "<value>"
+          include_invalid: "false"
+          limit: 10
+          offset: 0
+      responses:
+        "200":
+          application/json: {"data": [{"object": "api_key", "id": "ak_3beecc9c60adb5f9b850e91a8ee1e992", "type": "api_key", "subject": "user_2xhFjEI5X2qWRvtV13BzSj8H6Dk", "name": "MY_SERVICE_API_KEY", "description": "This is my API Key", "claims": {"foo": "bar"}, "scopes": ["read", "write"], "revoked": false, "revocation_reason": "Revoked by user", "expired": false, "expiration": 1716883200, "created_by": "user_2xhFjEI5X2qWRvtV13BzSj8H6Dk", "last_used_at": 1716883200, "created_at": 1716883200, "updated_at": 1716883200}], "total_count": 1709.37}
+        "400":
+          application/json: {"errors": [{"message": "Bad Request", "long_message": "Invalid 'url_parameter.example': Failed regex check", "code": "bad_request"}]}
+        "404":
+          application/json: {"errors": [{"message": "some details about the error", "long_message": "some details about the error", "code": "some_error_code"}]}
+  getApiKey:
+    speakeasy-default-get-api-key:
+      parameters:
+        path:
+          apiKeyID: "<id>"
+      responses:
+        "200":
+          application/json: {"object": "api_key", "id": "ak_3beecc9c60adb5f9b850e91a8ee1e992", "type": "api_key", "subject": "user_2xhFjEI5X2qWRvtV13BzSj8H6Dk", "name": "MY_SERVICE_API_KEY", "description": "This is my API Key", "claims": {"foo": "bar"}, "scopes": ["read", "write"], "revoked": false, "revocation_reason": "Revoked by user", "expired": false, "expiration": 1716883200, "created_by": "user_2xhFjEI5X2qWRvtV13BzSj8H6Dk", "last_used_at": 1716883200, "created_at": 1716883200, "updated_at": 1716883200}
+        "400":
+          application/json: {"errors": [{"message": "Bad Request", "long_message": "Invalid 'url_parameter.example': Failed regex check", "code": "bad_request"}]}
+        "404":
+          application/json: {"errors": [{"message": "some details about the error", "long_message": "some details about the error", "code": "some_error_code"}]}
+  updateApiKey:
+    speakeasy-default-update-api-key:
+      parameters:
+        path:
+          apiKeyID: "<id>"
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: {"object": "api_key", "id": "ak_3beecc9c60adb5f9b850e91a8ee1e992", "type": "api_key", "subject": "user_2xhFjEI5X2qWRvtV13BzSj8H6Dk", "name": "MY_SERVICE_API_KEY", "description": "This is my API Key", "claims": {"foo": "bar"}, "scopes": ["read", "write"], "revoked": false, "revocation_reason": "Revoked by user", "expired": false, "expiration": 1716883200, "created_by": "user_2xhFjEI5X2qWRvtV13BzSj8H6Dk", "last_used_at": 1716883200, "created_at": 1716883200, "updated_at": 1716883200}
+        "400":
+          application/json: {"errors": []}
+        "404":
+          application/json: {"errors": []}
+  deleteApiKey:
+    speakeasy-default-delete-api-key:
+      parameters:
+        path:
+          apiKeyID: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "ak_3beecc9c60adb5f9b850e91a8ee1e992", "object": "api_key", "deleted": false}
+        "400":
+          application/json: {"errors": [{"message": "Bad Request", "long_message": "Invalid 'url_parameter.example': Failed regex check", "code": "bad_request"}]}
+        "404":
+          application/json: {"errors": []}
+  getApiKeySecret:
+    speakeasy-default-get-api-key-secret:
+      parameters:
+        path:
+          apiKeyID: "<id>"
+      responses:
+        "200":
+          application/json: {"secret": "<value>"}
+        "400":
+          application/json: {"errors": [{"message": "Bad Request", "long_message": "Invalid 'url_parameter.example': Failed regex check", "code": "bad_request"}]}
+        "404":
+          application/json: {"errors": []}
+  revokeApiKey:
+    speakeasy-default-revoke-api-key:
+      parameters:
+        path:
+          apiKeyID: "<id>"
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: {"object": "api_key", "id": "ak_3beecc9c60adb5f9b850e91a8ee1e992", "type": "api_key", "subject": "user_2xhFjEI5X2qWRvtV13BzSj8H6Dk", "name": "MY_SERVICE_API_KEY", "description": "This is my API Key", "claims": {"foo": "bar"}, "scopes": ["read", "write"], "revoked": false, "revocation_reason": "Revoked by user", "expired": false, "expiration": 1716883200, "created_by": "user_2xhFjEI5X2qWRvtV13BzSj8H6Dk", "last_used_at": 1716883200, "created_at": 1716883200, "updated_at": 1716883200}
+        "400":
+          application/json: {"errors": [{"message": "Bad Request", "long_message": "Invalid 'url_parameter.example': Failed regex check", "code": "bad_request"}]}
+        "404":
+          application/json: {"errors": [{"message": "some details about the error", "long_message": "some details about the error", "code": "some_error_code"}]}
+  verifyApiKey:
+    speakeasy-default-verify-api-key:
+      requestBody:
+        application/json: {"secret": "<value>"}
+      responses:
+        "200":
+          application/json: {"object": "api_key", "id": "ak_3beecc9c60adb5f9b850e91a8ee1e992", "type": "api_key", "subject": "user_2xhFjEI5X2qWRvtV13BzSj8H6Dk", "name": "MY_SERVICE_API_KEY", "description": "This is my API Key", "claims": {"foo": "bar"}, "scopes": ["read", "write"], "revoked": false, "revocation_reason": "Revoked by user", "expired": false, "expiration": 1716883200, "created_by": "user_2xhFjEI5X2qWRvtV13BzSj8H6Dk", "last_used_at": 1716883200, "created_at": 1716883200, "updated_at": 1716883200}
+        "400":
+          application/json: {"errors": [{"message": "Bad Request", "long_message": "Invalid 'url_parameter.example': Failed regex check", "code": "bad_request"}]}
+        "404":
+          application/json: {"errors": [{"message": "some details about the error", "long_message": "some details about the error", "code": "some_error_code"}]}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Php SDK Changes:\n* `clerkbackend->oauthaccesstokens->verify()`:  `response` **Changed** **Breaking** :warning:\n* `clerkbackend->users->updateMetadata()`:  `response.organizationMemberships->[]->organization->lastActiveAt` **Added**\n* `clerkbackend->organizationpermissions->delete()`: **Added**\n* `clerkbackend->organizationroles->update()`: **Added**\n* `clerkbackend->organizationroles->delete()`: **Added**\n* `clerkbackend->organizationroles->assignPermission()`: **Added**\n* `clerkbackend->organizationroles->removePermission()`: **Added**\n* `clerkbackend->organizationpermissions->list()`: **Added**\n* `clerkbackend->organizationpermissions->create()`: **Added**\n* `clerkbackend->organizationpermissions->get()`: **Added**\n* `clerkbackend->users->getOrganizationMemberships()`:  `response.data->[]->organization->lastActiveAt` **Added**\n* `clerkbackend->organizationroles->list()`: **Added**\n* `clerkbackend->users->list()`:  `response.[]->organizationMemberships->[]->organization->lastActiveAt` **Added**\n* `clerkbackend->users->create()`:  `response.organizationMemberships->[]->organization->lastActiveAt` **Added**\n* `clerkbackend->users->get()`:  `response.organizationMemberships->[]->organization->lastActiveAt` **Added**\n* `clerkbackend->users->update()`:  `response.organizationMemberships->[]->organization->lastActiveAt` **Added**\n* `clerkbackend->users->ban()`:  `response.organizationMemberships->[]->organization->lastActiveAt` **Added**\n* `clerkbackend->users->unban()`:  `response.organizationMemberships->[]->organization->lastActiveAt` **Added**\n* `clerkbackend->users->bulkBan()`:  `response.[]->organizationMemberships->[]->organization->lastActiveAt` **Added**\n* `clerkbackend->users->bulkUnban()`:  `response.[]->organizationMemberships->[]->organization->lastActiveAt` **Added**\n* `clerkbackend->users->lock()`:  `response.organizationMemberships->[]->organization->lastActiveAt` **Added**\n* `clerkbackend->users->unlock()`:  `response.organizationMemberships->[]->organization->lastActiveAt` **Added**\n* `clerkbackend->users->setProfileImage()`:  `response.organizationMemberships->[]->organization->lastActiveAt` **Added**\n* `clerkbackend->organizationroles->get()`: **Added**\n* `clerkbackend->users->deleteProfileImage()`:  `response.organizationMemberships->[]->organization->lastActiveAt` **Added**\n* `clerkbackend->organizationpermissions->update()`: **Added**\n* `clerkbackend->users->getOrganizationInvitations()`:  `response.data->[]->publicInviterData` **Added**\n* `clerkbackend->users->getInstanceOrganizationMemberships()`:  `response.data->[]->organization->lastActiveAt` **Added**\n* `clerkbackend->organizationinvitations->getAll()`:  `response.data->[]->publicInviterData` **Added**\n* `clerkbackend->organizationinvitations->create()`:  `response.publicInviterData` **Added**\n* `clerkbackend->organizationinvitations->list()`:  `response.data->[]->publicInviterData` **Added**\n* `clerkbackend->organizationinvitations->bulkCreate()`:  `response.data->[]->publicInviterData` **Added**\n* `clerkbackend->organizationinvitations->listPending()`:  `response.data->[]->publicInviterData` **Added**\n* `clerkbackend->organizationinvitations->get()`:  `response.publicInviterData` **Added**\n* `clerkbackend->organizationinvitations->revoke()`:  `response.publicInviterData` **Added**\n* `clerkbackend->instancesettings->updateOrganizationSettings()`:  `response.maxRoleSetsAllowed` **Added**\n* `clerkbackend->organizations->list()`:  `response.data->[]->lastActiveAt` **Added**\n* `clerkbackend->organizations->create()`:  `response.lastActiveAt` **Added**\n* `clerkbackend->organizations->get()`:  `response.lastActiveAt` **Added**\n* `clerkbackend->organizations->update()`:  `response.lastActiveAt` **Added**\n* `clerkbackend->organizations->mergeMetadata()`:  `response.lastActiveAt` **Added**\n* `clerkbackend->organizations->uploadLogo()`:  `response.lastActiveAt` **Added**\n* `clerkbackend->organizations->deleteLogo()`:  `response.lastActiveAt` **Added**\n* `clerkbackend->organizationmemberships->create()`: \n  *  `requestBody` **Changed**\n  *  `response.organization->lastActiveAt` **Added**\n* `clerkbackend->organizationmemberships->list()`:  `response.data->[]->organization->lastActiveAt` **Added**\n* `clerkbackend->organizationmemberships->update()`:  `response.organization->lastActiveAt` **Added**\n* `clerkbackend->organizationmemberships->delete()`:  `response.organization->lastActiveAt` **Added**\n* `clerkbackend->organizationmemberships->updateMetadata()`:  `response.organization->lastActiveAt` **Added**\n* `clerkbackend->organizationroles->create()`: **Added**\n"
+releaseNotes: "## Php SDK Changes:\n* `clerkbackend->users->getBillingSubscription()`:  `response.subscriptionItems->[]->plan->features->[]` **Changed** **Breaking** :warning:\n* `clerkbackend->billing->cancelSubscriptionItem()`:  `response.plan->features->[]` **Changed** **Breaking** :warning:\n* `clerkbackend->billing->listSubscriptionItems()`:  `response.data->[]->plan->features->[]` **Changed** **Breaking** :warning:\n* `clerkbackend->billing->listPlans()`:  `response.data->[]->features->[]` **Changed** **Breaking** :warning:\n* `clerkbackend->organizations->getBillingSubscription()`:  `response.subscriptionItems->[]->plan->features->[]` **Changed** **Breaking** :warning:\n* `clerkbackend->api keys->verifyApiKey()`: **Added**\n* `clerkbackend->users->setProfileImage()`:  `response.bypassClientTrust` **Added**\n* `clerkbackend->api keys->createApiKey()`: **Added**\n* `clerkbackend->users->list()`:  `response.[]->bypassClientTrust` **Added**\n* `clerkbackend->users->create()`: \n  *  `request->bypassClientTrust` **Added**\n  *  `response.bypassClientTrust` **Added**\n* `clerkbackend->users->get()`:  `response.bypassClientTrust` **Added**\n* `clerkbackend->users->update()`: \n  *  `requestBody->bypassClientTrust` **Added**\n  *  `response.bypassClientTrust` **Added**\n* `clerkbackend->users->ban()`:  `response.bypassClientTrust` **Added**\n* `clerkbackend->users->unban()`:  `response.bypassClientTrust` **Added**\n* `clerkbackend->users->bulkBan()`:  `response.[]->bypassClientTrust` **Added**\n* `clerkbackend->users->bulkUnban()`:  `response.[]->bypassClientTrust` **Added**\n* `clerkbackend->users->lock()`:  `response.bypassClientTrust` **Added**\n* `clerkbackend->users->unlock()`:  `response.bypassClientTrust` **Added**\n* `clerkbackend->api keys->revokeApiKey()`: **Added**\n* `clerkbackend->users->deleteProfileImage()`:  `response.bypassClientTrust` **Added**\n* `clerkbackend->users->updateMetadata()`:  `response.bypassClientTrust` **Added**\n* `clerkbackend->api keys->getApiKeySecret()`: **Added**\n* `clerkbackend->api keys->deleteApiKey()`: **Added**\n* `clerkbackend->samlconnections->list()`:  `response.data->[]` **Changed**\n* `clerkbackend->samlconnections->create()`:  `response` **Changed**\n* `clerkbackend->samlconnections->get()`:  `response` **Changed**\n* `clerkbackend->samlconnections->update()`:  `response` **Changed**\n* `clerkbackend->api keys->updateApiKey()`: **Added**\n* `clerkbackend->api keys->getApiKey()`: **Added**\n* `clerkbackend->api keys->getApiKeys()`: **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

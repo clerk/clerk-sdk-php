@@ -394,6 +394,15 @@ class User
     public ?int $createOrganizationsLimit = null;
 
     /**
+     * When set to `true`, the user will bypass client trust checks during sign-in.
+     *
+     * @var ?bool $bypassClientTrust
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('bypass_client_trust')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $bypassClientTrust = null;
+
+    /**
      * @param  string  $id
      * @param  UserObject  $object
      * @param  bool  $hasImage
@@ -433,13 +442,14 @@ class User
      * @param  ?int  $verificationAttemptsRemaining
      * @param  ?int  $lastActiveAt
      * @param  ?int  $legalAcceptedAt
+     * @param  ?bool  $bypassClientTrust
      * @param  ?string  $locale
      * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?int  $passwordLastUpdatedAt
      * @param  ?int  $createOrganizationsLimit
      * @phpstan-pure
      */
-    public function __construct(string $id, UserObject $object, bool $hasImage, array $publicMetadata, array $emailAddresses, array $phoneNumbers, array $web3Wallets, array $passkeys, bool $passwordEnabled, bool $twoFactorEnabled, bool $totpEnabled, bool $backupCodeEnabled, array $externalAccounts, array $samlAccounts, array $enterpriseAccounts, bool $banned, bool $locked, int $updatedAt, int $createdAt, bool $deleteSelfEnabled, bool $createOrganizationEnabled, ?string $externalId = null, ?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $username = null, ?string $firstName = null, ?string $lastName = null, ?string $profileImageUrl = null, ?string $imageUrl = null, ?array $unsafeMetadata = null, ?int $mfaEnabledAt = null, ?int $mfaDisabledAt = null, ?array $organizationMemberships = null, ?int $lastSignInAt = null, ?int $lockoutExpiresInSeconds = null, ?int $verificationAttemptsRemaining = null, ?int $lastActiveAt = null, ?int $legalAcceptedAt = null, ?string $locale = null, ?array $privateMetadata = null, ?int $passwordLastUpdatedAt = null, ?int $createOrganizationsLimit = null)
+    public function __construct(string $id, UserObject $object, bool $hasImage, array $publicMetadata, array $emailAddresses, array $phoneNumbers, array $web3Wallets, array $passkeys, bool $passwordEnabled, bool $twoFactorEnabled, bool $totpEnabled, bool $backupCodeEnabled, array $externalAccounts, array $samlAccounts, array $enterpriseAccounts, bool $banned, bool $locked, int $updatedAt, int $createdAt, bool $deleteSelfEnabled, bool $createOrganizationEnabled, ?string $externalId = null, ?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $username = null, ?string $firstName = null, ?string $lastName = null, ?string $profileImageUrl = null, ?string $imageUrl = null, ?array $unsafeMetadata = null, ?int $mfaEnabledAt = null, ?int $mfaDisabledAt = null, ?array $organizationMemberships = null, ?int $lastSignInAt = null, ?int $lockoutExpiresInSeconds = null, ?int $verificationAttemptsRemaining = null, ?int $lastActiveAt = null, ?int $legalAcceptedAt = null, ?string $locale = null, ?array $privateMetadata = null, ?int $passwordLastUpdatedAt = null, ?int $createOrganizationsLimit = null, ?bool $bypassClientTrust = false)
     {
         $this->id = $id;
         $this->object = $object;
@@ -484,5 +494,6 @@ class User
         $this->privateMetadata = $privateMetadata;
         $this->passwordLastUpdatedAt = $passwordLastUpdatedAt;
         $this->createOrganizationsLimit = $createOrganizationsLimit;
+        $this->bypassClientTrust = $bypassClientTrust;
     }
 }

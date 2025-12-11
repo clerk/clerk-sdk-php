@@ -388,6 +388,8 @@ final class UnionHandler implements SubscribingHandlerInterface
             if ($param['name'] === 'union') {
                 $innerTypes = array_map(fn ($t) => $t['name'], $param['params']);
                 $typeNames[] = $typeToTry = implode('|', $innerTypes);
+            } elseif ($param['name'] === 'enum') {
+                $typeNames[] = $param['params'][0]['name'];
             } else {
                 $typeNames[] = $param['name'];
             }

@@ -275,6 +275,15 @@ class UpdateUserRequestBody
     public ?string $createdAt = null;
 
     /**
+     * When set to `true`, the user will bypass client trust checks during sign-in.
+     *
+     * @var ?bool $bypassClientTrust
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('bypass_client_trust')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $bypassClientTrust = null;
+
+    /**
      * If set to `true`, the user will be notified that their primary email address has changed.
      *
      * By default, no notification is sent.
@@ -312,9 +321,10 @@ class UpdateUserRequestBody
      * @param  ?bool  $skipLegalChecks
      * @param  ?int  $createOrganizationsLimit
      * @param  ?string  $createdAt
+     * @param  ?bool  $bypassClientTrust
      * @phpstan-pure
      */
-    public function __construct(?string $passwordDigest = null, ?string $passwordHasher = null, ?array $backupCodes = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $locale = null, ?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $username = null, ?string $profileImageId = null, ?string $password = null, ?bool $skipPasswordChecks = null, ?bool $signOutOfOtherSessions = null, ?string $totpSecret = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null, ?bool $deleteSelfEnabled = null, ?bool $createOrganizationEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?int $createOrganizationsLimit = null, ?string $createdAt = null, ?bool $notifyPrimaryEmailAddressChanged = false)
+    public function __construct(?string $passwordDigest = null, ?string $passwordHasher = null, ?array $backupCodes = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $locale = null, ?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $username = null, ?string $profileImageId = null, ?string $password = null, ?bool $skipPasswordChecks = null, ?bool $signOutOfOtherSessions = null, ?string $totpSecret = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null, ?bool $deleteSelfEnabled = null, ?bool $createOrganizationEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?int $createOrganizationsLimit = null, ?string $createdAt = null, ?bool $bypassClientTrust = null, ?bool $notifyPrimaryEmailAddressChanged = false)
     {
         $this->passwordDigest = $passwordDigest;
         $this->passwordHasher = $passwordHasher;
@@ -341,6 +351,7 @@ class UpdateUserRequestBody
         $this->skipLegalChecks = $skipLegalChecks;
         $this->createOrganizationsLimit = $createOrganizationsLimit;
         $this->createdAt = $createdAt;
+        $this->bypassClientTrust = $bypassClientTrust;
         $this->notifyPrimaryEmailAddressChanged = $notifyPrimaryEmailAddressChanged;
     }
 }

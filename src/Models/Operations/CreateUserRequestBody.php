@@ -284,6 +284,15 @@ class CreateUserRequestBody
     public ?string $createdAt = null;
 
     /**
+     * When set to `true`, the user will bypass client trust checks during sign-in.
+     *
+     * @var ?bool $bypassClientTrust
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('bypass_client_trust')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $bypassClientTrust = null;
+
+    /**
      * @param  ?array<string>  $emailAddress
      * @param  ?array<string>  $phoneNumber
      * @param  ?array<string>  $web3Wallet
@@ -308,9 +317,10 @@ class CreateUserRequestBody
      * @param  ?bool  $createOrganizationEnabled
      * @param  ?int  $createOrganizationsLimit
      * @param  ?string  $createdAt
+     * @param  ?bool  $bypassClientTrust
      * @phpstan-pure
      */
-    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $web3Wallet = null, ?string $passwordHasher = null, ?array $backupCodes = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $locale = null, ?string $username = null, ?string $password = null, ?string $passwordDigest = null, ?bool $skipPasswordChecks = null, ?bool $skipPasswordRequirement = null, ?string $totpSecret = null, ?bool $deleteSelfEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?bool $createOrganizationEnabled = null, ?int $createOrganizationsLimit = null, ?string $createdAt = null)
+    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $web3Wallet = null, ?string $passwordHasher = null, ?array $backupCodes = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $locale = null, ?string $username = null, ?string $password = null, ?string $passwordDigest = null, ?bool $skipPasswordChecks = null, ?bool $skipPasswordRequirement = null, ?string $totpSecret = null, ?bool $deleteSelfEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?bool $createOrganizationEnabled = null, ?int $createOrganizationsLimit = null, ?string $createdAt = null, ?bool $bypassClientTrust = null)
     {
         $this->emailAddress = $emailAddress;
         $this->phoneNumber = $phoneNumber;
@@ -336,5 +346,6 @@ class CreateUserRequestBody
         $this->createOrganizationEnabled = $createOrganizationEnabled;
         $this->createOrganizationsLimit = $createOrganizationsLimit;
         $this->createdAt = $createdAt;
+        $this->bypassClientTrust = $bypassClientTrust;
     }
 }

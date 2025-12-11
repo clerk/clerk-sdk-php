@@ -15,4 +15,5 @@ enum VerificationWeb3VerificationStrategy: string
     case Web3BaseSignature = 'web3_base_signature';
     case Web3CoinbaseWalletSignature = 'web3_coinbase_wallet_signature';
     case Web3OkxWalletSignature = 'web3_okx_wallet_signature';
+    case Web3SolanaSignature = 'web3_solana_signature';
 }
