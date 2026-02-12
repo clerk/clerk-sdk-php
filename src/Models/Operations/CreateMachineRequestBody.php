@@ -20,7 +20,7 @@ class CreateMachineRequestBody
     public string $name;
 
     /**
-     * Array of machine IDs that this machine will have access to. Maximum of 25 scopes per machine.
+     * Array of machine IDs that this machine will have access to. Maximum of 150 scopes per machine.
      *
      * @var ?array<string> $scopedMachines
      */

@@ -72,6 +72,7 @@ class RevokeApiKeyResponseBody
     public bool $expired;
 
     /**
+     * The timestamp for when the API key was created, in milliseconds
      *
      * @var float $createdAt
      */
@@ -79,6 +80,7 @@ class RevokeApiKeyResponseBody
     public float $createdAt;
 
     /**
+     * The timestamp for when the API key was last updated, in milliseconds
      *
      * @var float $updatedAt
      */
@@ -101,6 +103,7 @@ class RevokeApiKeyResponseBody
     public ?string $revocationReason;
 
     /**
+     * The timestamp for when the API key will expire, in milliseconds
      *
      * @var ?float $expiration
      */
@@ -115,6 +118,7 @@ class RevokeApiKeyResponseBody
     public ?string $createdBy;
 
     /**
+     * The timestamp for when the API key was last used, in milliseconds
      *
      * @var ?float $lastUsedAt
      */

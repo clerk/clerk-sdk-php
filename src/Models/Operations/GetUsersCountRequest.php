@@ -201,6 +201,51 @@ class GetUsersCountRequest
     public ?int $createdAtAfter = null;
 
     /**
+     * Counts users whose last sign-in was before the given date (with millisecond precision).
+     *
+     * Example: use 1700690400000 to count users whose last sign-in was before 2023-11-23.
+     *
+     * @var ?int $lastSignInAtBefore
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=last_sign_in_at_before')]
+    public ?int $lastSignInAtBefore = null;
+
+    /**
+     * Counts users whose last sign-in was after the given date (with millisecond precision).
+     *
+     * Example: use 1700690400000 to count users whose last sign-in was after 2023-11-23.
+     *
+     * @var ?int $lastSignInAtAfter
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=last_sign_in_at_after')]
+    public ?int $lastSignInAtAfter = null;
+
+    /**
+     * Counts users with external accounts for the specified OAuth provider.
+     *
+     * Must be used in combination with the `provider_user_id` parameter.
+     * For example, use `provider=oauth_google&provider_user_id=12345` to count users with Google provider user ID 12345.
+     * Accepts up to 100 providers.
+     *
+     * @var ?string $provider
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=provider')]
+    public ?string $provider = null;
+
+    /**
+     * Counts users with the specified provider user IDs for a specific provider.
+     *
+     * Must be used in combination with the `provider` parameter.
+     * For example, use `provider=oauth_google&provider_user_id=12345` to count users with Google provider user ID 12345.
+     * Accepts up to 100 provider user IDs.
+     * Any provider user IDs not found are ignored.
+     *
+     * @var ?array<string> $providerUserId
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=provider_user_id')]
+    public ?array $providerUserId = null;
+
+    /**
      * @param  ?array<string>  $emailAddress
      * @param  ?array<string>  $phoneNumber
      * @param  ?array<string>  $externalId
@@ -219,9 +264,13 @@ class GetUsersCountRequest
      * @param  ?int  $lastActiveAtSince
      * @param  ?int  $createdAtBefore
      * @param  ?int  $createdAtAfter
+     * @param  ?int  $lastSignInAtBefore
+     * @param  ?int  $lastSignInAtAfter
+     * @param  ?string  $provider
+     * @param  ?array<string>  $providerUserId
      * @phpstan-pure
      */
-    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $externalId = null, ?array $username = null, ?array $web3Wallet = null, ?array $userId = null, ?array $organizationId = null, ?string $query = null, ?string $emailAddressQuery = null, ?string $phoneNumberQuery = null, ?string $usernameQuery = null, ?string $nameQuery = null, ?bool $banned = null, ?int $lastActiveAtBefore = null, ?int $lastActiveAtAfter = null, ?int $lastActiveAtSince = null, ?int $createdAtBefore = null, ?int $createdAtAfter = null)
+    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $externalId = null, ?array $username = null, ?array $web3Wallet = null, ?array $userId = null, ?array $organizationId = null, ?string $query = null, ?string $emailAddressQuery = null, ?string $phoneNumberQuery = null, ?string $usernameQuery = null, ?string $nameQuery = null, ?bool $banned = null, ?int $lastActiveAtBefore = null, ?int $lastActiveAtAfter = null, ?int $lastActiveAtSince = null, ?int $createdAtBefore = null, ?int $createdAtAfter = null, ?int $lastSignInAtBefore = null, ?int $lastSignInAtAfter = null, ?string $provider = null, ?array $providerUserId = null)
     {
         $this->emailAddress = $emailAddress;
         $this->phoneNumber = $phoneNumber;
@@ -241,5 +290,9 @@ class GetUsersCountRequest
         $this->lastActiveAtSince = $lastActiveAtSince;
         $this->createdAtBefore = $createdAtBefore;
         $this->createdAtAfter = $createdAtAfter;
+        $this->lastSignInAtBefore = $lastSignInAtBefore;
+        $this->lastSignInAtAfter = $lastSignInAtAfter;
+        $this->provider = $provider;
+        $this->providerUserId = $providerUserId;
     }
 }

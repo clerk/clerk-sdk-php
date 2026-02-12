@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace Clerk\Backend\Models\Components;
 
 
-/** OrganizationMembership - Hello world */
+/** OrganizationMembership - A user's membership in an organization */
 class OrganizationMembership
 {
     /**

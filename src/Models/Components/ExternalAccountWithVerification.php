@@ -136,6 +136,17 @@ class ExternalAccountWithVerification
     public ?array $additionalProperties = null;
 
     /**
+     * Whether the email was verified by the OAuth provider at creation time. null = unknown (pre-migration data or custom OAuth providers), true = provider confirmed email was verified, false = provider confirmed email was NOT verified
+     *
+     *
+     *
+     * @var ?bool $emailAddressVerified
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('email_address_verified')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $emailAddressVerified = null;
+
+    /**
      *
      * @var ?string $imageUrl
      */
@@ -183,13 +194,14 @@ class ExternalAccountWithVerification
      * @param  ?string  $avatarUrl
      * @param  Oauth|GoogleOneTap|null  $verification
      * @param  ?array<string, mixed>  $additionalProperties
+     * @param  ?bool  $emailAddressVerified
      * @param  ?string  $imageUrl
      * @param  ?string  $username
      * @param  ?string  $phoneNumber
      * @param  ?string  $label
      * @phpstan-pure
      */
-    public function __construct(ExternalAccountWithVerificationObject $object, string $id, string $provider, string $identificationId, string $providerUserId, string $approvedScopes, string $emailAddress, string $firstName, string $lastName, array $publicMetadata, int $createdAt, int $updatedAt, ?string $avatarUrl = null, Oauth|GoogleOneTap|null $verification = null, ?array $additionalProperties = null, ?string $imageUrl = null, ?string $username = null, ?string $phoneNumber = null, ?string $label = null)
+    public function __construct(ExternalAccountWithVerificationObject $object, string $id, string $provider, string $identificationId, string $providerUserId, string $approvedScopes, string $emailAddress, string $firstName, string $lastName, array $publicMetadata, int $createdAt, int $updatedAt, ?string $avatarUrl = null, Oauth|GoogleOneTap|null $verification = null, ?array $additionalProperties = null, ?bool $emailAddressVerified = null, ?string $imageUrl = null, ?string $username = null, ?string $phoneNumber = null, ?string $label = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -206,6 +218,7 @@ class ExternalAccountWithVerification
         $this->avatarUrl = $avatarUrl;
         $this->verification = $verification;
         $this->additionalProperties = $additionalProperties;
+        $this->emailAddressVerified = $emailAddressVerified;
         $this->imageUrl = $imageUrl;
         $this->username = $username;
         $this->phoneNumber = $phoneNumber;

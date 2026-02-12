@@ -31,6 +31,8 @@
 * [deleteWeb3Wallet](#deleteweb3wallet) - Delete a user web3 wallet
 * [deleteTOTP](#deletetotp) - Delete all the user's TOTPs
 * [deleteExternalAccount](#deleteexternalaccount) - Delete External Account
+* [setPasswordCompromised](#setpasswordcompromised) - Set a user's password as compromised
+* [unsetPasswordCompromised](#unsetpasswordcompromised) - Unset a user's password as compromised
 * [getInstanceOrganizationMemberships](#getinstanceorganizationmemberships) - Get a list of all organization memberships within an instance.
 
 ## list
@@ -61,6 +63,8 @@ $request = new Operations\GetUserListRequest(
     lastActiveAtSince: 1700690400000,
     createdAtBefore: 1730160000000,
     createdAtAfter: 1730160000000,
+    lastSignInAtBefore: 1700690400000,
+    lastSignInAtAfter: 1700690400000,
 );
 
 $response = $sdk->users->list(
@@ -171,6 +175,8 @@ $request = new Operations\GetUsersCountRequest(
     lastActiveAtSince: 1700690400000,
     createdAtBefore: 1730160000000,
     createdAtAfter: 1730160000000,
+    lastSignInAtBefore: 1700690400000,
+    lastSignInAtAfter: 1700690400000,
 );
 
 $response = $sdk->users->count(
@@ -1438,6 +1444,105 @@ if ($response->deletedObject !== null) {
 | Errors\ClerkErrors  | 400, 403, 404       | application/json    |
 | Errors\ClerkErrors  | 500                 | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## setPasswordCompromised
+
+Sets the given user's password as compromised. The user will be prompted to reset their password on their next sign-in.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="SetUserPasswordCompromised" method="post" path="/users/{user_id}/password/set_compromised" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->users->setPasswordCompromised(
+    userId: '<id>',
+    requestBody: $requestBody
+
+);
+
+if ($response->user !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                             | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           |
+| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `userId`                                                                                                              | *string*                                                                                                              | :heavy_check_mark:                                                                                                    | The ID of the user to set the password as compromised                                                                 |
+| `requestBody`                                                                                                         | [?Operations\SetUserPasswordCompromisedRequestBody](../../Models/Operations/SetUserPasswordCompromisedRequestBody.md) | :heavy_minus_sign:                                                                                                    | N/A                                                                                                                   |
+
+### Response
+
+**[?Operations\SetUserPasswordCompromisedResponse](../../Models/Operations/SetUserPasswordCompromisedResponse.md)**
+
+### Errors
+
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| Errors\ClerkErrors      | 400, 401, 403, 404, 422 | application/json        |
+| Errors\SDKException     | 4XX, 5XX                | \*/\*                   |
+
+## unsetPasswordCompromised
+
+Sets the given user's password as no longer compromised. The user will no longer be prompted to reset their password on their next sign-in.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="UnsetUserPasswordCompromised" method="post" path="/users/{user_id}/password/unset_compromised" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->users->unsetPasswordCompromised(
+    userId: '<id>'
+);
+
+if ($response->user !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                              | Type                                                   | Required                                               | Description                                            |
+| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
+| `userId`                                               | *string*                                               | :heavy_check_mark:                                     | The ID of the user to unset the compromised status for |
+
+### Response
+
+**[?Operations\UnsetUserPasswordCompromisedResponse](../../Models/Operations/UnsetUserPasswordCompromisedResponse.md)**
+
+### Errors
+
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| Errors\ClerkErrors      | 400, 401, 403, 404, 422 | application/json        |
+| Errors\SDKException     | 4XX, 5XX                | \*/\*                   |
 
 ## getInstanceOrganizationMemberships
 

@@ -96,6 +96,15 @@ class CommerceSubscriptionItem
     public ?string $planId;
 
     /**
+     * Unique identifier for the associated price
+     *
+     * @var ?string $priceId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('price_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $priceId = null;
+
+    /**
      *
      * @var ?CommercePaymentMethodResponse $paymentMethod
      */
@@ -212,6 +221,7 @@ class CommerceSubscriptionItem
      * @param  int  $periodStart
      * @param  ?CommerceSubscriptionCreditResponse  $credit
      * @param  ?string  $planId
+     * @param  ?string  $priceId
      * @param  ?CommercePaymentMethodResponse  $paymentMethod
      * @param  ?CommerceMoneyResponse  $lifetimePaid
      * @param  ?CommercePayerResponse  $payer
@@ -226,7 +236,7 @@ class CommerceSubscriptionItem
      * @param  ?NextPayment  $nextPayment
      * @phpstan-pure
      */
-    public function __construct(CommerceSubscriptionItemObject $object, string $id, string $instanceId, CommerceSubscriptionItemStatus $status, PlanPeriod $planPeriod, string $payerId, bool $isFreeTrial, int $periodStart, ?CommerceSubscriptionCreditResponse $credit = null, ?string $planId = null, ?CommercePaymentMethodResponse $paymentMethod = null, ?CommerceMoneyResponse $lifetimePaid = null, ?CommercePayerResponse $payer = null, ?int $periodEnd = null, ?LocalDate $prorationDate = null, ?int $canceledAt = null, ?int $pastDueAt = null, ?int $endedAt = null, ?int $createdAt = null, ?int $updatedAt = null, ?Plan $plan = null, ?NextPayment $nextPayment = null)
+    public function __construct(CommerceSubscriptionItemObject $object, string $id, string $instanceId, CommerceSubscriptionItemStatus $status, PlanPeriod $planPeriod, string $payerId, bool $isFreeTrial, int $periodStart, ?CommerceSubscriptionCreditResponse $credit = null, ?string $planId = null, ?string $priceId = null, ?CommercePaymentMethodResponse $paymentMethod = null, ?CommerceMoneyResponse $lifetimePaid = null, ?CommercePayerResponse $payer = null, ?int $periodEnd = null, ?LocalDate $prorationDate = null, ?int $canceledAt = null, ?int $pastDueAt = null, ?int $endedAt = null, ?int $createdAt = null, ?int $updatedAt = null, ?Plan $plan = null, ?NextPayment $nextPayment = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -238,6 +248,7 @@ class CommerceSubscriptionItem
         $this->periodStart = $periodStart;
         $this->credit = $credit;
         $this->planId = $planId;
+        $this->priceId = $priceId;
         $this->paymentMethod = $paymentMethod;
         $this->lifetimePaid = $lifetimePaid;
         $this->payer = $payer;

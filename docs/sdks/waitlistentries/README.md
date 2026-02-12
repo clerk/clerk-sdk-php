@@ -6,6 +6,7 @@
 
 * [list](#list) - List all waitlist entries
 * [create](#create) - Create a waitlist entry
+* [bulkCreate](#bulkcreate) - Create multiple waitlist entries
 * [delete](#delete) - Delete a pending waitlist entry
 * [invite](#invite) - Invite a waitlist entry
 * [reject](#reject) - Reject a waitlist entry
@@ -101,6 +102,61 @@ if ($response->waitlistEntry !== null) {
 ### Response
 
 **[?Operations\CreateWaitlistEntryResponse](../../Models/Operations/CreateWaitlistEntryResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 422            | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## bulkCreate
+
+Creates multiple waitlist entries for the provided email addresses.
+You can choose whether to send confirmation emails by setting the `notify` parameter to `true` or `false` for each entry.
+If the `notify` parameter is omitted, it defaults to `true`.
+
+If an email address is already on the waitlist, no new entry will be created and the existing waitlist entry will be returned.
+Duplicate email addresses within the same request are not allowed.
+
+This endpoint is limited to a maximum of 50 entries per API call. If you need to add more entries, please make multiple requests.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="CreateBulkWaitlistEntries" method="post" path="/waitlist_entries/bulk" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->waitlistEntries->bulkCreate(
+    request: $request
+);
+
+if ($response->waitlistEntryList !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `$request`                                                          | [array<Operations\CreateBulkWaitlistEntriesRequestBody>](../../.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+
+### Response
+
+**[?Operations\CreateBulkWaitlistEntriesResponse](../../Models/Operations/CreateBulkWaitlistEntriesResponse.md)**
 
 ### Errors
 

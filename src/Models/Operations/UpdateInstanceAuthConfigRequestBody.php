@@ -24,7 +24,7 @@ class UpdateInstanceAuthConfigRequestBody
     public ?string $fromEmailAddress = null;
 
     /**
-     * Enable the Progressive Sign Up algorithm. Refer to the [docs](https://clerk.com/docs/upgrade-guides/progressive-sign-up) for more info.
+     * Enable the Progressive Sign Up algorithm. This feature is deprecated, please contact support if you need assistance.
      *
      * @var ?bool $progressiveSignUp
      */

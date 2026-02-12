@@ -2,6 +2,8 @@
 
 ## Overview
 
+Modify the settings of your instance.
+
 ### Available Operations
 
 * [get](#get) - Fetch the current instance
@@ -9,6 +11,8 @@
 * [updateRestrictions](#updaterestrictions) - Update instance restrictions
 * [changeDomain](#changedomain) - Update production instance domain
 * [updateOrganizationSettings](#updateorganizationsettings) - Update instance organization settings
+* [getInstanceProtect](#getinstanceprotect) - Get instance protect settings
+* [updateInstanceProtect](#updateinstanceprotect) - Update instance protect settings
 
 ## get
 
@@ -245,4 +249,93 @@ if ($response->organizationSettings !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 400, 402, 404, 422  | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## getInstanceProtect
+
+Get instance protect settings
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="GetInstanceProtect" method="get" path="/instance/protect" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->instanceSettings->getInstanceProtect(
+
+);
+
+if ($response->instanceProtect !== null) {
+    // handle response
+}
+```
+
+### Response
+
+**[?Operations\GetInstanceProtectResponse](../../Models/Operations/GetInstanceProtectResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## updateInstanceProtect
+
+Update instance protect settings
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="UpdateInstanceProtect" method="patch" path="/instance/protect" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->instanceSettings->updateInstanceProtect(
+    request: $request
+);
+
+if ($response->instanceProtect !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                 | [Operations\UpdateInstanceProtectRequestBody](../../Models/Operations/UpdateInstanceProtectRequestBody.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+
+### Response
+
+**[?Operations\UpdateInstanceProtectResponse](../../Models/Operations/UpdateInstanceProtectResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 422                 | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |

@@ -57,7 +57,7 @@ class CreateUserRequestBody
      * The algorithms we support at the moment are [`bcrypt`](https://en.wikipedia.org/wiki/Bcrypt), [`bcrypt_sha256_django`](https://docs.djangoproject.com/en/4.0/topics/auth/passwords/), [`md5`](https://en.wikipedia.org/wiki/MD5), `pbkdf2_sha1`, `pbkdf2_sha256`, [`pbkdf2_sha256_django`](https://docs.djangoproject.com/en/4.0/topics/auth/passwords/),
      * [`phpass`](https://www.openwall.com/phpass/), `md5_phpass`, [`scrypt_firebase`](https://firebaseopensource.com/projects/firebase/scrypt/),
      * [`scrypt_werkzeug`](https://werkzeug.palletsprojects.com/en/3.0.x/utils/#werkzeug.security.generate_password_hash), [`sha256`](https://en.wikipedia.org/wiki/SHA-2),
-     * [`ldap_ssha`](https://www.openldap.org/faq/data/cache/347.html) and the [`argon2`](https://argon2.online/) variants: `argon2i` and `argon2id`.
+     * [`ldap_ssha`](https://www.openldap.org/faq/data/cache/347.html), the [`argon2`](https://argon2.online/) variants: `argon2i` and `argon2id`, and `sha512_symfony`, the SHA-512 variant of the [Symfony](https://symfony.com/doc/current/security/passwords.html) legacy hasher.
      *
      * Each of the supported hashers expects the incoming digest to be in a particular format. See the [Clerk docs](https://clerk.com/docs/references/backend/user/create-user) for more information.
      *
@@ -253,6 +253,19 @@ class CreateUserRequestBody
     public ?bool $skipLegalChecks = null;
 
     /**
+     * When set to `true`, identification types are not enforced.
+     *
+     * At least one identification type must be enabled and provided on your instance (email, phone, web3 wallet, or username).
+     * Users created without required identification types cannot use those authentication strategies
+     * It is not recommended to use this flag unless you need to allow Clerk UI components to prompt for required fields while BAPI creates users with minimal data, or for migration a user to Clerk.
+     *
+     * @var ?bool $skipUserRequirement
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('skip_user_requirement')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $skipUserRequirement = null;
+
+    /**
      * If enabled, user can create organizations via FAPI.
      *
      *
@@ -314,13 +327,14 @@ class CreateUserRequestBody
      * @param  ?bool  $deleteSelfEnabled
      * @param  ?string  $legalAcceptedAt
      * @param  ?bool  $skipLegalChecks
+     * @param  ?bool  $skipUserRequirement
      * @param  ?bool  $createOrganizationEnabled
      * @param  ?int  $createOrganizationsLimit
      * @param  ?string  $createdAt
      * @param  ?bool  $bypassClientTrust
      * @phpstan-pure
      */
-    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $web3Wallet = null, ?string $passwordHasher = null, ?array $backupCodes = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $locale = null, ?string $username = null, ?string $password = null, ?string $passwordDigest = null, ?bool $skipPasswordChecks = null, ?bool $skipPasswordRequirement = null, ?string $totpSecret = null, ?bool $deleteSelfEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?bool $createOrganizationEnabled = null, ?int $createOrganizationsLimit = null, ?string $createdAt = null, ?bool $bypassClientTrust = null)
+    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $web3Wallet = null, ?string $passwordHasher = null, ?array $backupCodes = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $locale = null, ?string $username = null, ?string $password = null, ?string $passwordDigest = null, ?bool $skipPasswordChecks = null, ?bool $skipPasswordRequirement = null, ?string $totpSecret = null, ?bool $deleteSelfEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?bool $skipUserRequirement = null, ?bool $createOrganizationEnabled = null, ?int $createOrganizationsLimit = null, ?string $createdAt = null, ?bool $bypassClientTrust = null)
     {
         $this->emailAddress = $emailAddress;
         $this->phoneNumber = $phoneNumber;
@@ -343,6 +357,7 @@ class CreateUserRequestBody
         $this->deleteSelfEnabled = $deleteSelfEnabled;
         $this->legalAcceptedAt = $legalAcceptedAt;
         $this->skipLegalChecks = $skipLegalChecks;
+        $this->skipUserRequirement = $skipUserRequirement;
         $this->createOrganizationEnabled = $createOrganizationEnabled;
         $this->createOrganizationsLimit = $createOrganizationsLimit;
         $this->createdAt = $createdAt;
