@@ -218,9 +218,12 @@ if ($response->statusCode === 200) {
 ### [Billing](docs/sdks/billing/README.md)
 
 * [listPlans](docs/sdks/billing/README.md#listplans) - List all billing plans
+* [listPrices](docs/sdks/billing/README.md#listprices) - List all billing prices
+* [createPrice](docs/sdks/billing/README.md#createprice) - Create a custom billing price
 * [listSubscriptionItems](docs/sdks/billing/README.md#listsubscriptionitems) - List all subscription items
 * [cancelSubscriptionItem](docs/sdks/billing/README.md#cancelsubscriptionitem) - Cancel a subscription item
 * [extendSubscriptionItemFreeTrial](docs/sdks/billing/README.md#extendsubscriptionitemfreetrial) - Extend free trial for a subscription item
+* [createPriceTransition](docs/sdks/billing/README.md#createpricetransition) - Create a price transition for a subscription item
 * [listStatements](docs/sdks/billing/README.md#liststatements) - List all billing statements
 * [getStatement](docs/sdks/billing/README.md#getstatement) - Retrieve a billing statement
 * [getStatementPaymentAttempts](docs/sdks/billing/README.md#getstatementpaymentattempts) - List payment attempts for a billing statement
@@ -269,6 +272,8 @@ if ($response->statusCode === 200) {
 * [updateRestrictions](docs/sdks/instancesettings/README.md#updaterestrictions) - Update instance restrictions
 * [changeDomain](docs/sdks/instancesettings/README.md#changedomain) - Update production instance domain
 * [updateOrganizationSettings](docs/sdks/instancesettings/README.md#updateorganizationsettings) - Update instance organization settings
+* [getInstanceProtect](docs/sdks/instancesettings/README.md#getinstanceprotect) - Get instance protect settings
+* [updateInstanceProtect](docs/sdks/instancesettings/README.md#updateinstanceprotect) - Update instance protect settings
 
 ### [Invitations](docs/sdks/invitations/README.md)
 
@@ -399,6 +404,16 @@ if ($response->statusCode === 200) {
 * [get](docs/sdks/redirecturls/README.md#get) - Retrieve a redirect URL
 * [delete](docs/sdks/redirecturls/README.md#delete) - Delete a redirect URL
 
+### [RoleSets](docs/sdks/rolesets/README.md)
+
+* [list](docs/sdks/rolesets/README.md#list) - Get a list of role sets
+* [create](docs/sdks/rolesets/README.md#create) - Create a role set
+* [get](docs/sdks/rolesets/README.md#get) - Retrieve a role set
+* [update](docs/sdks/rolesets/README.md#update) - Update a role set
+* [replace](docs/sdks/rolesets/README.md#replace) - Replace a role set
+* [addRoles](docs/sdks/rolesets/README.md#addroles) - Add roles to a role set
+* [replaceRole](docs/sdks/rolesets/README.md#replacerole) - Replace a role in a role set
+
 ### [SamlConnections](docs/sdks/samlconnections/README.md)
 
 * [list](docs/sdks/samlconnections/README.md#list) - Get a list of SAML Connections for an instance
@@ -464,12 +479,15 @@ if ($response->statusCode === 200) {
 * [deleteWeb3Wallet](docs/sdks/users/README.md#deleteweb3wallet) - Delete a user web3 wallet
 * [deleteTOTP](docs/sdks/users/README.md#deletetotp) - Delete all the user's TOTPs
 * [deleteExternalAccount](docs/sdks/users/README.md#deleteexternalaccount) - Delete External Account
+* [setPasswordCompromised](docs/sdks/users/README.md#setpasswordcompromised) - Set a user's password as compromised
+* [unsetPasswordCompromised](docs/sdks/users/README.md#unsetpasswordcompromised) - Unset a user's password as compromised
 * [getInstanceOrganizationMemberships](docs/sdks/users/README.md#getinstanceorganizationmemberships) - Get a list of all organization memberships within an instance.
 
 ### [WaitlistEntries](docs/sdks/waitlistentries/README.md)
 
 * [list](docs/sdks/waitlistentries/README.md#list) - List all waitlist entries
 * [create](docs/sdks/waitlistentries/README.md#create) - Create a waitlist entry
+* [bulkCreate](docs/sdks/waitlistentries/README.md#bulkcreate) - Create multiple waitlist entries
 * [delete](docs/sdks/waitlistentries/README.md#delete) - Delete a pending waitlist entry
 * [invite](docs/sdks/waitlistentries/README.md#invite) - Invite a waitlist entry
 * [reject](docs/sdks/waitlistentries/README.md#reject) - Reject a waitlist entry

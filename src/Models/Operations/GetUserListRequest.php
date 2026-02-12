@@ -210,6 +210,50 @@ class GetUserListRequest
     public ?int $createdAtAfter = null;
 
     /**
+     * Returns users whose last sign-in was before the given date (with millisecond precision).
+     *
+     * Example: use 1700690400000 to retrieve users whose last sign-in was before 2023-11-23.
+     *
+     * @var ?int $lastSignInAtBefore
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=last_sign_in_at_before')]
+    public ?int $lastSignInAtBefore = null;
+
+    /**
+     * Returns users whose last sign-in was after the given date (with millisecond precision).
+     *
+     * Example: use 1700690400000 to retrieve users whose last sign-in was after 2023-11-23.
+     *
+     * @var ?int $lastSignInAtAfter
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=last_sign_in_at_after')]
+    public ?int $lastSignInAtAfter = null;
+
+    /**
+     * Returns users with external accounts for the specified OAuth provider.
+     *
+     * Must be used in combination with the `provider_user_id` parameter.
+     * For example, use `provider=oauth_google&provider_user_id=12345` to retrieve a user with Google provider user ID 12345.
+     *
+     * @var ?string $provider
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=provider')]
+    public ?string $provider = null;
+
+    /**
+     * Returns users with the specified provider user IDs for a specific provider.
+     *
+     * Must be used in combination with the `provider` parameter.
+     * For example, use `provider=oauth_google&provider_user_id=12345` to retrieve a user with Google provider user ID 12345.
+     * Accepts up to 100 provider user IDs.
+     * Any provider user IDs not found are ignored.
+     *
+     * @var ?array<string> $providerUserId
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=provider_user_id')]
+    public ?array $providerUserId = null;
+
+    /**
      * Applies a limit to the number of results returned.
      *
      * Can be used for paginating the results together with `offset`.
@@ -263,12 +307,16 @@ class GetUserListRequest
      * @param  ?int  $lastActiveAtSince
      * @param  ?int  $createdAtBefore
      * @param  ?int  $createdAtAfter
+     * @param  ?int  $lastSignInAtBefore
+     * @param  ?int  $lastSignInAtAfter
+     * @param  ?string  $provider
+     * @param  ?array<string>  $providerUserId
      * @param  ?int  $limit
      * @param  ?int  $offset
      * @param  ?string  $orderBy
      * @phpstan-pure
      */
-    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $externalId = null, ?array $username = null, ?array $web3Wallet = null, ?array $userId = null, ?array $organizationId = null, ?string $query = null, ?string $emailAddressQuery = null, ?string $phoneNumberQuery = null, ?string $usernameQuery = null, ?string $nameQuery = null, ?bool $banned = null, ?int $lastActiveAtBefore = null, ?int $lastActiveAtAfter = null, ?int $lastActiveAtSince = null, ?int $createdAtBefore = null, ?int $createdAtAfter = null, ?int $limit = 10, ?int $offset = 0, ?string $orderBy = '-created_at')
+    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $externalId = null, ?array $username = null, ?array $web3Wallet = null, ?array $userId = null, ?array $organizationId = null, ?string $query = null, ?string $emailAddressQuery = null, ?string $phoneNumberQuery = null, ?string $usernameQuery = null, ?string $nameQuery = null, ?bool $banned = null, ?int $lastActiveAtBefore = null, ?int $lastActiveAtAfter = null, ?int $lastActiveAtSince = null, ?int $createdAtBefore = null, ?int $createdAtAfter = null, ?int $lastSignInAtBefore = null, ?int $lastSignInAtAfter = null, ?string $provider = null, ?array $providerUserId = null, ?int $limit = 10, ?int $offset = 0, ?string $orderBy = '-created_at')
     {
         $this->emailAddress = $emailAddress;
         $this->phoneNumber = $phoneNumber;
@@ -288,6 +336,10 @@ class GetUserListRequest
         $this->lastActiveAtSince = $lastActiveAtSince;
         $this->createdAtBefore = $createdAtBefore;
         $this->createdAtAfter = $createdAtAfter;
+        $this->lastSignInAtBefore = $lastSignInAtBefore;
+        $this->lastSignInAtAfter = $lastSignInAtAfter;
+        $this->provider = $provider;
+        $this->providerUserId = $providerUserId;
         $this->limit = $limit;
         $this->offset = $offset;
         $this->orderBy = $orderBy;

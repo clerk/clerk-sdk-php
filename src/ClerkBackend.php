@@ -64,6 +64,11 @@ class ClerkBackend
 
     public Domains $domains;
 
+    /**
+     * Modify the settings of your instance.
+     *
+     * @var InstanceSettings $$instanceSettings
+     */
     public InstanceSettings $instanceSettings;
 
     public Webhooks $webhooks;
@@ -99,6 +104,8 @@ class ClerkBackend
     public Billing $billing;
 
     public OrganizationPermissions $organizationPermissions;
+
+    public RoleSets $roleSets;
 
     /**
      * Endpoints for managing API Keys
@@ -162,6 +169,7 @@ class ClerkBackend
         $this->waitlistEntries = new WaitlistEntries($this->sdkConfiguration);
         $this->billing = new Billing($this->sdkConfiguration);
         $this->organizationPermissions = new OrganizationPermissions($this->sdkConfiguration);
+        $this->roleSets = new RoleSets($this->sdkConfiguration);
         $this->apiKeys = new APIKeys($this->sdkConfiguration);
         $this->m2m = new M2m($this->sdkConfiguration);
         $this->oauthAccessTokens = new OauthAccessTokens($this->sdkConfiguration);

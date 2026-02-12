@@ -1,0 +1,9 @@
+# ReplaceRoleInRoleSetRequest
+
+
+## Fields
+
+| Field                                                                                                    | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `roleSetKeyOrId`                                                                                         | *string*                                                                                                 | :heavy_check_mark:                                                                                       | The key or ID of the role set                                                                            |
+| `requestBody`                                                                                            | [Operations\ReplaceRoleInRoleSetRequestBody](../../Models/Operations/ReplaceRoleInRoleSetRequestBody.md) | :heavy_check_mark:                                                                                       | N/A                                                                                                      |

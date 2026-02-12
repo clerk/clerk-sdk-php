@@ -150,7 +150,7 @@ class Machines
      * Create a machine scope
      *
      * Creates a new machine scope, allowing the specified machine to access another machine.
-     * Maximum of 25 scopes per machine.
+     * Maximum of 150 scopes per machine.
      *
      * @param  string  $machineId
      * @param  ?Operations\CreateMachineScopeRequestBody  $requestBody

@@ -1,0 +1,12 @@
+# CommercePriceTransitionResponse
+
+A commerce price transition.
+
+
+## Fields
+
+| Field                                                                                                                | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `object`                                                                                                             | [Components\CommercePriceTransitionResponseObject](../../Models/Components/CommercePriceTransitionResponseObject.md) | :heavy_check_mark:                                                                                                   | String representing the object's type. Objects of the same type share the same value.                                |
+| `subscriptionItem`                                                                                                   | [Components\SchemasCommerceSubscriptionItem](../../Models/Components/SchemasCommerceSubscriptionItem.md)             | :heavy_check_mark:                                                                                                   | N/A                                                                                                                  |
+| `transition`                                                                                                         | [Components\CommercePriceTransitionDetails](../../Models/Components/CommercePriceTransitionDetails.md)               | :heavy_check_mark:                                                                                                   | N/A                                                                                                                  |

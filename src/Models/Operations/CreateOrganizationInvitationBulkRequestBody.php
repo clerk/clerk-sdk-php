@@ -81,6 +81,17 @@ class CreateOrganizationInvitationBulkRequestBody
     public ?int $expiresInDays = null;
 
     /**
+     * Optional flag which denotes whether an email invitation should be sent to the given email address.
+     *
+     * Defaults to `true`.
+     *
+     * @var ?bool $notify
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('notify')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $notify = null;
+
+    /**
      * @param  string  $emailAddress
      * @param  string  $role
      * @param  ?string  $inviterUserId
@@ -88,9 +99,10 @@ class CreateOrganizationInvitationBulkRequestBody
      * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?string  $redirectUrl
      * @param  ?int  $expiresInDays
+     * @param  ?bool  $notify
      * @phpstan-pure
      */
-    public function __construct(string $emailAddress, string $role, ?string $inviterUserId = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?string $redirectUrl = null, ?int $expiresInDays = null)
+    public function __construct(string $emailAddress, string $role, ?string $inviterUserId = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?string $redirectUrl = null, ?int $expiresInDays = null, ?bool $notify = true)
     {
         $this->emailAddress = $emailAddress;
         $this->role = $role;
@@ -99,5 +111,6 @@ class CreateOrganizationInvitationBulkRequestBody
         $this->privateMetadata = $privateMetadata;
         $this->redirectUrl = $redirectUrl;
         $this->expiresInDays = $expiresInDays;
+        $this->notify = $notify;
     }
 }

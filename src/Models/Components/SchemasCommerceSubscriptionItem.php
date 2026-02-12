@@ -112,6 +112,15 @@ class SchemasCommerceSubscriptionItem
     public int $updatedAt;
 
     /**
+     * Unique identifier for the associated price
+     *
+     * @var ?string $priceId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('price_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $priceId = null;
+
+    /**
      * The associated commerce plan.
      *
      * @var ?SchemasCommerceSubscriptionItemPlan $plan
@@ -248,6 +257,7 @@ class SchemasCommerceSubscriptionItem
      * @param  string  $prorationDate
      * @param  int  $createdAt
      * @param  int  $updatedAt
+     * @param  ?string  $priceId
      * @param  ?SchemasCommerceSubscriptionItemPlan  $plan
      * @param  ?Credit  $credit
      * @param  ?PaymentSource  $paymentSource
@@ -263,7 +273,7 @@ class SchemasCommerceSubscriptionItem
      * @param  ?int  $endedAt
      * @phpstan-pure
      */
-    public function __construct(SchemasCommerceSubscriptionItemObject $object, string $id, string $instanceId, SchemasCommerceSubscriptionItemStatus $status, string $planId, SchemasCommerceSubscriptionItemPlanPeriod $planPeriod, string $paymentSourceId, string $payerId, bool $isFreeTrial, string $prorationDate, int $createdAt, int $updatedAt, ?SchemasCommerceSubscriptionItemPlan $plan = null, ?Credit $credit = null, ?PaymentSource $paymentSource = null, ?LifetimePaid $lifetimePaid = null, ?SchemasCommerceSubscriptionItemAmount $amount = null, ?NextInvoice $nextInvoice = null, ?SchemasCommerceSubscriptionItemNextPayment $nextPayment = null, ?Payer $payer = null, ?int $periodStart = null, ?int $periodEnd = null, ?int $canceledAt = null, ?int $pastDueAt = null, ?int $endedAt = null)
+    public function __construct(SchemasCommerceSubscriptionItemObject $object, string $id, string $instanceId, SchemasCommerceSubscriptionItemStatus $status, string $planId, SchemasCommerceSubscriptionItemPlanPeriod $planPeriod, string $paymentSourceId, string $payerId, bool $isFreeTrial, string $prorationDate, int $createdAt, int $updatedAt, ?string $priceId = null, ?SchemasCommerceSubscriptionItemPlan $plan = null, ?Credit $credit = null, ?PaymentSource $paymentSource = null, ?LifetimePaid $lifetimePaid = null, ?SchemasCommerceSubscriptionItemAmount $amount = null, ?NextInvoice $nextInvoice = null, ?SchemasCommerceSubscriptionItemNextPayment $nextPayment = null, ?Payer $payer = null, ?int $periodStart = null, ?int $periodEnd = null, ?int $canceledAt = null, ?int $pastDueAt = null, ?int $endedAt = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -277,6 +287,7 @@ class SchemasCommerceSubscriptionItem
         $this->prorationDate = $prorationDate;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
+        $this->priceId = $priceId;
         $this->plan = $plan;
         $this->credit = $credit;
         $this->paymentSource = $paymentSource;

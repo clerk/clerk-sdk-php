@@ -63,7 +63,7 @@ class RequestBodies
 
         $options = [];
 
-        if (preg_match('/(application|text)\/.*?\+*json.*/', $mediaType)) {
+        if (preg_match('/^(application|text)\/([^+]+\+)*json.*/', $mediaType)) {
             $serializer = JSON::createSerializer();
             $options['body'] = $serializer->serialize($value, 'json');
             $options['headers']['content-type'] = $mediaType;

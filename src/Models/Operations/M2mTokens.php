@@ -48,6 +48,7 @@ class M2mTokens
     public bool $expired;
 
     /**
+     * The timestamp for when the token was created, in milliseconds
      *
      * @var float $createdAt
      */
@@ -55,6 +56,7 @@ class M2mTokens
     public float $createdAt;
 
     /**
+     * The timestamp for when the token was last updated, in milliseconds
      *
      * @var float $updatedAt
      */
@@ -79,6 +81,7 @@ class M2mTokens
     public ?string $revocationReason;
 
     /**
+     * The timestamp for when the token will expire, in milliseconds
      *
      * @var ?float $expiration
      */
@@ -86,6 +89,7 @@ class M2mTokens
     public ?float $expiration;
 
     /**
+     * The timestamp for when the token was last used, in milliseconds
      *
      * @var ?float $lastUsedAt
      */

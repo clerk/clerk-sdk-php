@@ -87,6 +87,15 @@ class OAuthAccessToken
     public ?array $scopes = null;
 
     /**
+     * The ID token retrieved from the OIDC provider. Only present for OIDC-compliant OAuth 2.0 providers when available.
+     *
+     * @var ?string $idToken
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id_token')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $idToken = null;
+
+    /**
      * The token secret. Only present for OAuth 1.0 tokens.
      *
      * @var ?string $tokenSecret
@@ -105,10 +114,11 @@ class OAuthAccessToken
      * @param  ?int  $expiresAt
      * @param  ?string  $label
      * @param  ?array<string>  $scopes
+     * @param  ?string  $idToken
      * @param  ?string  $tokenSecret
      * @phpstan-pure
      */
-    public function __construct(OAuthAccessTokenObject $object, string $externalAccountId, string $providerUserId, string $token, string $provider, array $publicMetadata, ?int $expiresAt = null, ?string $label = null, ?array $scopes = null, ?string $tokenSecret = null)
+    public function __construct(OAuthAccessTokenObject $object, string $externalAccountId, string $providerUserId, string $token, string $provider, array $publicMetadata, ?int $expiresAt = null, ?string $label = null, ?array $scopes = null, ?string $idToken = null, ?string $tokenSecret = null)
     {
         $this->object = $object;
         $this->externalAccountId = $externalAccountId;
@@ -119,6 +129,7 @@ class OAuthAccessToken
         $this->expiresAt = $expiresAt;
         $this->label = $label;
         $this->scopes = $scopes;
+        $this->idToken = $idToken;
         $this->tokenSecret = $tokenSecret;
     }
 }
