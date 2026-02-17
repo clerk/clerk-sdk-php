@@ -152,6 +152,17 @@ class OrganizationMembershipOrganization
     public ?int $lastActiveAt = null;
 
     /**
+     * The key of the [role set](https://clerk.com/docs/guides/organizations/control-access/role-sets) assigned to this organization.
+     *
+     *
+     *
+     * @var ?string $roleSetKey
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('role_set_key')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $roleSetKey = null;
+
+    /**
      * @param  OrganizationMembershipOrganizationObject  $object
      * @param  string  $id
      * @param  string  $name
@@ -169,9 +180,10 @@ class OrganizationMembershipOrganization
      * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?string  $createdBy
      * @param  ?int  $lastActiveAt
+     * @param  ?string  $roleSetKey
      * @phpstan-pure
      */
-    public function __construct(OrganizationMembershipOrganizationObject $object, string $id, string $name, string $slug, bool $hasImage, int $maxAllowedMemberships, bool $adminDeleteEnabled, array $publicMetadata, int $createdAt, int $updatedAt, ?string $imageUrl = null, ?int $membersCount = null, ?bool $missingMemberWithElevatedPermissions = null, ?int $pendingInvitationsCount = null, ?array $privateMetadata = null, ?string $createdBy = null, ?int $lastActiveAt = null)
+    public function __construct(OrganizationMembershipOrganizationObject $object, string $id, string $name, string $slug, bool $hasImage, int $maxAllowedMemberships, bool $adminDeleteEnabled, array $publicMetadata, int $createdAt, int $updatedAt, ?string $imageUrl = null, ?int $membersCount = null, ?bool $missingMemberWithElevatedPermissions = null, ?int $pendingInvitationsCount = null, ?array $privateMetadata = null, ?string $createdBy = null, ?int $lastActiveAt = null, ?string $roleSetKey = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -190,5 +202,6 @@ class OrganizationMembershipOrganization
         $this->privateMetadata = $privateMetadata;
         $this->createdBy = $createdBy;
         $this->lastActiveAt = $lastActiveAt;
+        $this->roleSetKey = $roleSetKey;
     }
 }
