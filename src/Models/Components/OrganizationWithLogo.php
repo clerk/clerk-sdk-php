@@ -160,6 +160,17 @@ class OrganizationWithLogo
     public ?string $logoUrl = null;
 
     /**
+     * The key of the [role set](https://clerk.com/docs/guides/organizations/control-access/role-sets) assigned to this organization.
+     *
+     *
+     *
+     * @var ?string $roleSetKey
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('role_set_key')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $roleSetKey = null;
+
+    /**
      * @param  OrganizationWithLogoObject  $object
      * @param  string  $id
      * @param  string  $name
@@ -178,9 +189,10 @@ class OrganizationWithLogo
      * @param  ?string  $createdBy
      * @param  ?int  $lastActiveAt
      * @param  ?string  $logoUrl
+     * @param  ?string  $roleSetKey
      * @phpstan-pure
      */
-    public function __construct(OrganizationWithLogoObject $object, string $id, string $name, string $slug, string $imageUrl, bool $hasImage, int $maxAllowedMemberships, bool $adminDeleteEnabled, array $publicMetadata, int $createdAt, int $updatedAt, ?int $membersCount = null, ?bool $missingMemberWithElevatedPermissions = null, ?int $pendingInvitationsCount = null, ?array $privateMetadata = null, ?string $createdBy = null, ?int $lastActiveAt = null, ?string $logoUrl = null)
+    public function __construct(OrganizationWithLogoObject $object, string $id, string $name, string $slug, string $imageUrl, bool $hasImage, int $maxAllowedMemberships, bool $adminDeleteEnabled, array $publicMetadata, int $createdAt, int $updatedAt, ?int $membersCount = null, ?bool $missingMemberWithElevatedPermissions = null, ?int $pendingInvitationsCount = null, ?array $privateMetadata = null, ?string $createdBy = null, ?int $lastActiveAt = null, ?string $logoUrl = null, ?string $roleSetKey = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -200,5 +212,6 @@ class OrganizationWithLogo
         $this->createdBy = $createdBy;
         $this->lastActiveAt = $lastActiveAt;
         $this->logoUrl = $logoUrl;
+        $this->roleSetKey = $roleSetKey;
     }
 }

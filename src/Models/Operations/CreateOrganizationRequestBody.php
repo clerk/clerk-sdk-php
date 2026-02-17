@@ -83,6 +83,15 @@ class CreateOrganizationRequestBody
     public ?string $createdAt = null;
 
     /**
+     * The key of the [role set](https://clerk.com/docs/guides/organizations/control-access/role-sets) to assign to this organization.
+     *
+     * @var ?string $roleSetKey
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('role_set_key')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $roleSetKey = null;
+
+    /**
      * @param  string  $name
      * @param  ?string  $createdBy
      * @param  ?array<string, mixed>  $privateMetadata
@@ -90,9 +99,10 @@ class CreateOrganizationRequestBody
      * @param  ?string  $slug
      * @param  ?int  $maxAllowedMemberships
      * @param  ?string  $createdAt
+     * @param  ?string  $roleSetKey
      * @phpstan-pure
      */
-    public function __construct(string $name, ?string $createdBy = null, ?array $privateMetadata = null, ?array $publicMetadata = null, ?string $slug = null, ?int $maxAllowedMemberships = null, ?string $createdAt = null)
+    public function __construct(string $name, ?string $createdBy = null, ?array $privateMetadata = null, ?array $publicMetadata = null, ?string $slug = null, ?int $maxAllowedMemberships = null, ?string $createdAt = null, ?string $roleSetKey = null)
     {
         $this->name = $name;
         $this->createdBy = $createdBy;
@@ -101,5 +111,6 @@ class CreateOrganizationRequestBody
         $this->slug = $slug;
         $this->maxAllowedMemberships = $maxAllowedMemberships;
         $this->createdAt = $createdAt;
+        $this->roleSetKey = $roleSetKey;
     }
 }

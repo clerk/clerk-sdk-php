@@ -80,6 +80,15 @@ class UpdateOrganizationRequestBody
     public ?string $createdAt = null;
 
     /**
+     * The key of the [role set](https://clerk.com/docs/guides/organizations/control-access/role-sets) to assign to this organization.
+     *
+     * @var ?string $roleSetKey
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('role_set_key')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $roleSetKey = null;
+
+    /**
      * @param  ?array<string, mixed>  $publicMetadata
      * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?string  $name
@@ -87,9 +96,10 @@ class UpdateOrganizationRequestBody
      * @param  ?int  $maxAllowedMemberships
      * @param  ?bool  $adminDeleteEnabled
      * @param  ?string  $createdAt
+     * @param  ?string  $roleSetKey
      * @phpstan-pure
      */
-    public function __construct(?array $publicMetadata = null, ?array $privateMetadata = null, ?string $name = null, ?string $slug = null, ?int $maxAllowedMemberships = null, ?bool $adminDeleteEnabled = null, ?string $createdAt = null)
+    public function __construct(?array $publicMetadata = null, ?array $privateMetadata = null, ?string $name = null, ?string $slug = null, ?int $maxAllowedMemberships = null, ?bool $adminDeleteEnabled = null, ?string $createdAt = null, ?string $roleSetKey = null)
     {
         $this->publicMetadata = $publicMetadata;
         $this->privateMetadata = $privateMetadata;
@@ -98,5 +108,6 @@ class UpdateOrganizationRequestBody
         $this->maxAllowedMemberships = $maxAllowedMemberships;
         $this->adminDeleteEnabled = $adminDeleteEnabled;
         $this->createdAt = $createdAt;
+        $this->roleSetKey = $roleSetKey;
     }
 }

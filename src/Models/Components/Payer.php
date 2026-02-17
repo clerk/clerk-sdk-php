@@ -113,6 +113,15 @@ class Payer
     public ?string $organizationName = null;
 
     /**
+     *
+     * @var ?CommerceMoneyResponse $creditsBalance
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('credits_balance')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?CommerceMoneyResponse $creditsBalance = null;
+
+    /**
      * @param  SchemasCommerceSubscriptionItemPayerObject  $object
      * @param  string  $id
      * @param  string  $instanceId
@@ -125,9 +134,10 @@ class Payer
      * @param  ?string  $userId
      * @param  ?string  $organizationId
      * @param  ?string  $organizationName
+     * @param  ?CommerceMoneyResponse  $creditsBalance
      * @phpstan-pure
      */
-    public function __construct(SchemasCommerceSubscriptionItemPayerObject $object, string $id, string $instanceId, string $firstName, string $lastName, string $email, string $imageUrl, int $createdAt, int $updatedAt, ?string $userId = null, ?string $organizationId = null, ?string $organizationName = null)
+    public function __construct(SchemasCommerceSubscriptionItemPayerObject $object, string $id, string $instanceId, string $firstName, string $lastName, string $email, string $imageUrl, int $createdAt, int $updatedAt, ?string $userId = null, ?string $organizationId = null, ?string $organizationName = null, ?CommerceMoneyResponse $creditsBalance = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -141,5 +151,6 @@ class Payer
         $this->userId = $userId;
         $this->organizationId = $organizationId;
         $this->organizationName = $organizationName;
+        $this->creditsBalance = $creditsBalance;
     }
 }

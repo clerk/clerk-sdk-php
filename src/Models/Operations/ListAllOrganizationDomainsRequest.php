@@ -50,6 +50,14 @@ class ListAllOrganizationDomainsRequest
     public ?string $query = null;
 
     /**
+     * Filter by exact domain names. Accepts multiple values (e.g. domains=example.com&domains=test.org).
+     *
+     * @var ?array<string> $domains
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=domains')]
+    public ?array $domains = null;
+
+    /**
      * Allows to return organization domains in a particular order.
      *
      * At the moment, you can order the returned domains by their `name` or `created_at`.
@@ -90,17 +98,19 @@ class ListAllOrganizationDomainsRequest
      * @param  ?Verified  $verified
      * @param  ?array<EnrollmentMode>  $enrollmentMode
      * @param  ?string  $query
+     * @param  ?array<string>  $domains
      * @param  ?string  $orderBy
      * @param  ?int  $offset
      * @param  ?int  $limit
      * @phpstan-pure
      */
-    public function __construct(?string $organizationId = null, ?Verified $verified = null, ?array $enrollmentMode = null, ?string $query = null, ?string $orderBy = '-created_at', ?int $offset = 0, ?int $limit = 10)
+    public function __construct(?string $organizationId = null, ?Verified $verified = null, ?array $enrollmentMode = null, ?string $query = null, ?array $domains = null, ?string $orderBy = '-created_at', ?int $offset = 0, ?int $limit = 10)
     {
         $this->organizationId = $organizationId;
         $this->verified = $verified;
         $this->enrollmentMode = $enrollmentMode;
         $this->query = $query;
+        $this->domains = $domains;
         $this->orderBy = $orderBy;
         $this->offset = $offset;
         $this->limit = $limit;

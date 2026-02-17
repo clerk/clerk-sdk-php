@@ -46,6 +46,15 @@ class CommercePayerResponse
     public ?string $imageUrl = null;
 
     /**
+     *
+     * @var ?CommerceMoneyResponse $creditsBalance
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('credits_balance')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?CommerceMoneyResponse $creditsBalance = null;
+
+    /**
      * Unix timestamp (in milliseconds) when the payer was created.
      *
      * @var ?int $createdAt
@@ -122,6 +131,7 @@ class CommercePayerResponse
      * @param  string  $id
      * @param  string  $instanceId
      * @param  ?string  $imageUrl
+     * @param  ?CommerceMoneyResponse  $creditsBalance
      * @param  ?int  $createdAt
      * @param  ?int  $updatedAt
      * @param  ?string  $userId
@@ -132,12 +142,13 @@ class CommercePayerResponse
      * @param  ?string  $organizationName
      * @phpstan-pure
      */
-    public function __construct(CommercePayerResponseObject $object, string $id, string $instanceId, ?string $imageUrl = null, ?int $createdAt = null, ?int $updatedAt = null, ?string $userId = null, ?string $firstName = null, ?string $lastName = null, ?string $email = null, ?string $organizationId = null, ?string $organizationName = null)
+    public function __construct(CommercePayerResponseObject $object, string $id, string $instanceId, ?string $imageUrl = null, ?CommerceMoneyResponse $creditsBalance = null, ?int $createdAt = null, ?int $updatedAt = null, ?string $userId = null, ?string $firstName = null, ?string $lastName = null, ?string $email = null, ?string $organizationId = null, ?string $organizationName = null)
     {
         $this->object = $object;
         $this->id = $id;
         $this->instanceId = $instanceId;
         $this->imageUrl = $imageUrl;
+        $this->creditsBalance = $creditsBalance;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
         $this->userId = $userId;
