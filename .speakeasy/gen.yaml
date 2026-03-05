@@ -33,7 +33,7 @@ php:
     autoload-dev:
       Clerk\Backend\Tests\: Tests/
     require:
-      firebase/php-jwt: ^6.10
+      firebase/php-jwt: ^7.0
       phpseclib/phpseclib: ^3.0
   baseErrorName: ClerkBackendException
   clientServerStatusCodesAsErrors: true
