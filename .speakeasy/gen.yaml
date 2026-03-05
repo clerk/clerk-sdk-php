@@ -14,6 +14,7 @@ generation:
     securityFeb2025: false
     sharedErrorComponentsApr2025: false
     sharedNestedComponentsJan2026: false
+    nameOverrideFeb2026: false
   auth:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
@@ -28,13 +29,15 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 php:
-  version: 0.5.2
+  version: 0.6.0
   additionalDependencies:
+    autoload: {}
     autoload-dev:
       Clerk\Backend\Tests\: Tests/
     require:
       firebase/php-jwt: ^7.0
       phpseclib/phpseclib: ^3.0
+    require-dev: {}
   baseErrorName: ClerkBackendException
   clientServerStatusCodesAsErrors: true
   defaultErrorName: SDKException

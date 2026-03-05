@@ -3,7 +3,8 @@
 
 ## Fields
 
-| Field                    | Type                     | Required                 | Description              |
-| ------------------------ | ------------------------ | ------------------------ | ------------------------ |
-| `secondsUntilExpiration` | *?float*                 | :heavy_minus_sign:       | N/A                      |
-| `claims`                 | *mixed*                  | :heavy_minus_sign:       | N/A                      |
+| Field                                                             | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `tokenFormat`                                                     | [?Operations\TokenFormat](../../Models/Operations/TokenFormat.md) | :heavy_minus_sign:                                                | N/A                                                               |
+| `secondsUntilExpiration`                                          | *?float*                                                          | :heavy_minus_sign:                                                | N/A                                                               |
+| `claims`                                                          | *mixed*                                                           | :heavy_minus_sign:                                                | N/A                                                               |

@@ -29,13 +29,24 @@ class CreateM2MTokenRequestBody
     public mixed $claims = null;
 
     /**
+     *
+     * @var ?TokenFormat $tokenFormat
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('token_format')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\TokenFormat|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?TokenFormat $tokenFormat = null;
+
+    /**
+     * @param  ?TokenFormat  $tokenFormat
      * @param  ?float  $secondsUntilExpiration
      * @param  mixed  $claims
      * @phpstan-pure
      */
-    public function __construct(?float $secondsUntilExpiration = null, mixed $claims = null)
+    public function __construct(?float $secondsUntilExpiration = null, mixed $claims = null, ?TokenFormat $tokenFormat = TokenFormat::Opaque)
     {
         $this->secondsUntilExpiration = $secondsUntilExpiration;
         $this->claims = $claims;
+        $this->tokenFormat = $tokenFormat;
     }
 }

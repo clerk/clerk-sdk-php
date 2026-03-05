@@ -93,6 +93,14 @@ class BillingPriceResponse
     public CommerceMoneyResponse $annualMonthlyFee;
 
     /**
+     * Whether this price is the default price for its plan.
+     *
+     * @var bool $isDefault
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('is_default')]
+    public bool $isDefault;
+
+    /**
      * Unix timestamp (milliseconds) of creation.
      *
      * @var int $createdAt
@@ -120,11 +128,12 @@ class BillingPriceResponse
      * @param  int  $annualMonthlyAmount
      * @param  CommerceMoneyResponse  $fee
      * @param  CommerceMoneyResponse  $annualMonthlyFee
+     * @param  bool  $isDefault
      * @param  int  $createdAt
      * @param  ?string  $description
      * @phpstan-pure
      */
-    public function __construct(BillingPriceResponseObject $object, string $id, string $planId, string $instanceId, string $currency, string $currencySymbol, int $amount, int $annualMonthlyAmount, CommerceMoneyResponse $fee, CommerceMoneyResponse $annualMonthlyFee, int $createdAt, ?string $description = null)
+    public function __construct(BillingPriceResponseObject $object, string $id, string $planId, string $instanceId, string $currency, string $currencySymbol, int $amount, int $annualMonthlyAmount, CommerceMoneyResponse $fee, CommerceMoneyResponse $annualMonthlyFee, bool $isDefault, int $createdAt, ?string $description = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -136,6 +145,7 @@ class BillingPriceResponse
         $this->annualMonthlyAmount = $annualMonthlyAmount;
         $this->fee = $fee;
         $this->annualMonthlyFee = $annualMonthlyFee;
+        $this->isDefault = $isDefault;
         $this->createdAt = $createdAt;
         $this->description = $description;
     }
