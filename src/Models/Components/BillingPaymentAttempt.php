@@ -194,6 +194,16 @@ class BillingPaymentAttempt
     public ?int $failedAt;
 
     /**
+     * Totals breakdown for this payment attempt.
+     *
+     * @var ?BillingPaymentAttemptTotals $totals
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('totals')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\BillingPaymentAttemptTotals|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?BillingPaymentAttemptTotals $totals = null;
+
+    /**
      * @param  BillingPaymentAttemptObject  $object
      * @param  string  $id
      * @param  string  $paymentId
@@ -216,9 +226,10 @@ class BillingPaymentAttempt
      * @param  ?string  $gatewayExternalUrl
      * @param  ?int  $paidAt
      * @param  ?int  $failedAt
+     * @param  ?BillingPaymentAttemptTotals  $totals
      * @phpstan-pure
      */
-    public function __construct(BillingPaymentAttemptObject $object, string $id, string $paymentId, string $instanceId, string $chargeType, string $payeeId, Payee $payee, string $payerId, CommercePayerResponse $payer, CommerceMoneyResponse $amount, string $paymentMethodId, CommercePaymentMethodResponse $paymentMethod, string $statementId, BillingPaymentAttemptStatus $status, int $createdAt, int $updatedAt, ?string $subscriptionItemId = null, ?SubscriptionItem $subscriptionItem = null, ?string $gatewayExternalId = null, ?string $gatewayExternalUrl = null, ?int $paidAt = null, ?int $failedAt = null)
+    public function __construct(BillingPaymentAttemptObject $object, string $id, string $paymentId, string $instanceId, string $chargeType, string $payeeId, Payee $payee, string $payerId, CommercePayerResponse $payer, CommerceMoneyResponse $amount, string $paymentMethodId, CommercePaymentMethodResponse $paymentMethod, string $statementId, BillingPaymentAttemptStatus $status, int $createdAt, int $updatedAt, ?string $subscriptionItemId = null, ?SubscriptionItem $subscriptionItem = null, ?string $gatewayExternalId = null, ?string $gatewayExternalUrl = null, ?int $paidAt = null, ?int $failedAt = null, ?BillingPaymentAttemptTotals $totals = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -242,5 +253,6 @@ class BillingPaymentAttempt
         $this->gatewayExternalUrl = $gatewayExternalUrl;
         $this->paidAt = $paidAt;
         $this->failedAt = $failedAt;
+        $this->totals = $totals;
     }
 }

@@ -9,6 +9,8 @@ Modify the settings of your instance.
 * [get](#get) - Fetch the current instance
 * [update](#update) - Update instance settings
 * [updateRestrictions](#updaterestrictions) - Update instance restrictions
+* [getOAuthApplicationSettings](#getoauthapplicationsettings) - Get OAuth application settings
+* [updateOAuthApplicationSettings](#updateoauthapplicationsettings) - Update OAuth application settings
 * [changeDomain](#changedomain) - Update production instance domain
 * [updateOrganizationSettings](#updateorganizationsettings) - Update instance organization settings
 * [getInstanceProtect](#getinstanceprotect) - Get instance protect settings
@@ -149,6 +151,95 @@ if ($response->instanceRestrictions !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 402, 422            | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## getOAuthApplicationSettings
+
+Retrieves the settings for OAuth applications for the instance (dynamic client registration, JWT access tokens, etc.).
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="GetInstanceOAuthApplicationSettings" method="get" path="/instance/oauth_application_settings" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->instanceSettings->getOAuthApplicationSettings(
+
+);
+
+if ($response->oAuthApplicationSettings !== null) {
+    // handle response
+}
+```
+
+### Response
+
+**[?Operations\GetInstanceOAuthApplicationSettingsResponse](../../Models/Operations/GetInstanceOAuthApplicationSettingsResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## updateOAuthApplicationSettings
+
+Updates the OAuth application settings for the instance.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="UpdateInstanceOAuthApplicationSettings" method="patch" path="/instance/oauth_application_settings" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->instanceSettings->updateOAuthApplicationSettings(
+    request: $request
+);
+
+if ($response->oAuthApplicationSettings !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                    | Type                                                                                                                                         | Required                                                                                                                                     | Description                                                                                                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                                                   | [Operations\UpdateInstanceOAuthApplicationSettingsRequestBody](../../Models/Operations/UpdateInstanceOAuthApplicationSettingsRequestBody.md) | :heavy_check_mark:                                                                                                                           | The request object to use for the request.                                                                                                   |
+
+### Response
+
+**[?Operations\UpdateInstanceOAuthApplicationSettingsResponse](../../Models/Operations/UpdateInstanceOAuthApplicationSettingsResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 422                 | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## changeDomain

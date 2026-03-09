@@ -9,17 +9,9 @@ declare(strict_types=1);
 namespace Clerk\Backend\Models\Components;
 
 
-/** Totals - Totals for the statement. */
+/** Totals - Totals for this subscription item. */
 class Totals
 {
-    /**
-     *
-     * @var CommerceMoneyResponse $grandTotal
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('grand_total')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
-    public CommerceMoneyResponse $grandTotal;
-
     /**
      *
      * @var CommerceMoneyResponse $subtotal
@@ -30,6 +22,14 @@ class Totals
 
     /**
      *
+     * @var CommerceMoneyResponse $baseFee
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('base_fee')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
+    public CommerceMoneyResponse $baseFee;
+
+    /**
+     *
      * @var CommerceMoneyResponse $taxTotal
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_total')]
@@ -37,15 +37,48 @@ class Totals
     public CommerceMoneyResponse $taxTotal;
 
     /**
-     * @param  CommerceMoneyResponse  $grandTotal
+     *
+     * @var CommerceMoneyResponse $grandTotal
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('grand_total')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
+    public CommerceMoneyResponse $grandTotal;
+
+    /**
+     * $perUnitTotals
+     *
+     * @var ?array<CommercePerUnitTotal> $perUnitTotals
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('per_unit_totals')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\CommercePerUnitTotal>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $perUnitTotals = null;
+
+    /**
+     *
+     * @var ?CommerceSubscriptionItemCredits $credits
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('credits')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceSubscriptionItemCredits|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?CommerceSubscriptionItemCredits $credits = null;
+
+    /**
      * @param  CommerceMoneyResponse  $subtotal
+     * @param  CommerceMoneyResponse  $baseFee
      * @param  CommerceMoneyResponse  $taxTotal
+     * @param  CommerceMoneyResponse  $grandTotal
+     * @param  ?array<CommercePerUnitTotal>  $perUnitTotals
+     * @param  ?CommerceSubscriptionItemCredits  $credits
      * @phpstan-pure
      */
-    public function __construct(CommerceMoneyResponse $grandTotal, CommerceMoneyResponse $subtotal, CommerceMoneyResponse $taxTotal)
+    public function __construct(CommerceMoneyResponse $subtotal, CommerceMoneyResponse $baseFee, CommerceMoneyResponse $taxTotal, CommerceMoneyResponse $grandTotal, ?array $perUnitTotals = null, ?CommerceSubscriptionItemCredits $credits = null)
     {
-        $this->grandTotal = $grandTotal;
         $this->subtotal = $subtotal;
+        $this->baseFee = $baseFee;
         $this->taxTotal = $taxTotal;
+        $this->grandTotal = $grandTotal;
+        $this->perUnitTotals = $perUnitTotals;
+        $this->credits = $credits;
     }
 }

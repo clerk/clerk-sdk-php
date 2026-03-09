@@ -191,6 +191,16 @@ class CommerceSubscriptionItem
     public ?int $updatedAt = null;
 
     /**
+     * Unified credits breakdown for this subscription item.
+     *
+     * @var ?Credits $credits
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('credits')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Credits|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?Credits $credits = null;
+
+    /**
      * The associated plan.
      *
      * @var ?Plan $plan
@@ -209,6 +219,26 @@ class CommerceSubscriptionItem
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\NextPayment|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?NextPayment $nextPayment = null;
+
+    /**
+     * Seat quantity for seat-based billing.
+     *
+     * @var ?Seats $seats
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('seats')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Seats|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?Seats $seats = null;
+
+    /**
+     * Totals for this subscription item.
+     *
+     * @var ?Totals $totals
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('totals')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Totals|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?Totals $totals = null;
 
     /**
      * @param  CommerceSubscriptionItemObject  $object
@@ -232,11 +262,14 @@ class CommerceSubscriptionItem
      * @param  ?int  $endedAt
      * @param  ?int  $createdAt
      * @param  ?int  $updatedAt
+     * @param  ?Credits  $credits
      * @param  ?Plan  $plan
      * @param  ?NextPayment  $nextPayment
+     * @param  ?Seats  $seats
+     * @param  ?Totals  $totals
      * @phpstan-pure
      */
-    public function __construct(CommerceSubscriptionItemObject $object, string $id, string $instanceId, CommerceSubscriptionItemStatus $status, PlanPeriod $planPeriod, string $payerId, bool $isFreeTrial, int $periodStart, ?CommerceSubscriptionCreditResponse $credit = null, ?string $planId = null, ?string $priceId = null, ?CommercePaymentMethodResponse $paymentMethod = null, ?CommerceMoneyResponse $lifetimePaid = null, ?CommercePayerResponse $payer = null, ?int $periodEnd = null, ?LocalDate $prorationDate = null, ?int $canceledAt = null, ?int $pastDueAt = null, ?int $endedAt = null, ?int $createdAt = null, ?int $updatedAt = null, ?Plan $plan = null, ?NextPayment $nextPayment = null)
+    public function __construct(CommerceSubscriptionItemObject $object, string $id, string $instanceId, CommerceSubscriptionItemStatus $status, PlanPeriod $planPeriod, string $payerId, bool $isFreeTrial, int $periodStart, ?CommerceSubscriptionCreditResponse $credit = null, ?string $planId = null, ?string $priceId = null, ?CommercePaymentMethodResponse $paymentMethod = null, ?CommerceMoneyResponse $lifetimePaid = null, ?CommercePayerResponse $payer = null, ?int $periodEnd = null, ?LocalDate $prorationDate = null, ?int $canceledAt = null, ?int $pastDueAt = null, ?int $endedAt = null, ?int $createdAt = null, ?int $updatedAt = null, ?Credits $credits = null, ?Plan $plan = null, ?NextPayment $nextPayment = null, ?Seats $seats = null, ?Totals $totals = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -259,7 +292,10 @@ class CommerceSubscriptionItem
         $this->endedAt = $endedAt;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
+        $this->credits = $credits;
         $this->plan = $plan;
         $this->nextPayment = $nextPayment;
+        $this->seats = $seats;
+        $this->totals = $totals;
     }
 }

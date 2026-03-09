@@ -1,0 +1,11 @@
+# Proration
+
+
+## Fields
+
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `amount`                                                                             | [Components\CommerceMoneyResponse](../../Models/Components/CommerceMoneyResponse.md) | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| `cycleDaysRemaining`                                                                 | *int*                                                                                | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| `cycleDaysTotal`                                                                     | *int*                                                                                | :heavy_check_mark:                                                                   | N/A                                                                                  |
+| `cycleRemainingPercent`                                                              | *float*                                                                              | :heavy_check_mark:                                                                   | N/A                                                                                  |

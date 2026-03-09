@@ -64,11 +64,11 @@ class BillingStatement
     /**
      * Totals for the statement.
      *
-     * @var Totals $totals
+     * @var BillingStatementTotals $totals
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('totals')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Totals')]
-    public Totals $totals;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\BillingStatementTotals')]
+    public BillingStatementTotals $totals;
 
     /**
      * Array of statement groups.
@@ -86,11 +86,11 @@ class BillingStatement
      * @param  int  $timestamp
      * @param  CommercePayerResponse  $payer
      * @param  BillingStatementStatus  $status
-     * @param  Totals  $totals
+     * @param  BillingStatementTotals  $totals
      * @param  array<Groups>  $groups
      * @phpstan-pure
      */
-    public function __construct(BillingStatementObject $object, string $id, string $instanceId, int $timestamp, CommercePayerResponse $payer, BillingStatementStatus $status, Totals $totals, array $groups)
+    public function __construct(BillingStatementObject $object, string $id, string $instanceId, int $timestamp, CommercePayerResponse $payer, BillingStatementStatus $status, BillingStatementTotals $totals, array $groups)
     {
         $this->object = $object;
         $this->id = $id;

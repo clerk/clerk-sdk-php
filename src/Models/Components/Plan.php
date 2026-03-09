@@ -161,6 +161,16 @@ class Plan
     public ?int $freeTrialDays;
 
     /**
+     * Per-unit pricing tiers for this plan (for example, seats)
+     *
+     * @var ?array<CommercePlanUnitPrice> $unitPrices
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('unit_prices')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\CommercePlanUnitPrice>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $unitPrices = null;
+
+    /**
      * @param  CommerceSubscriptionItemPlanObject  $object
      * @param  string  $id
      * @param  string  $name
@@ -179,9 +189,10 @@ class Plan
      * @param  ?string  $avatarUrl
      * @param  ?array<FeatureResponse>  $features
      * @param  ?int  $freeTrialDays
+     * @param  ?array<CommercePlanUnitPrice>  $unitPrices
      * @phpstan-pure
      */
-    public function __construct(CommerceSubscriptionItemPlanObject $object, string $id, string $name, CommerceMoneyResponse $fee, string $productId, bool $isDefault, bool $isRecurring, bool $publiclyVisible, bool $hasBaseFee, string $forPayerType, string $slug, bool $freeTrialEnabled, ?CommerceSubscriptionItemAnnualMonthlyFee $annualMonthlyFee = null, ?CommerceSubscriptionItemAnnualFee $annualFee = null, ?string $description = null, ?string $avatarUrl = null, ?array $features = null, ?int $freeTrialDays = null)
+    public function __construct(CommerceSubscriptionItemPlanObject $object, string $id, string $name, CommerceMoneyResponse $fee, string $productId, bool $isDefault, bool $isRecurring, bool $publiclyVisible, bool $hasBaseFee, string $forPayerType, string $slug, bool $freeTrialEnabled, ?CommerceSubscriptionItemAnnualMonthlyFee $annualMonthlyFee = null, ?CommerceSubscriptionItemAnnualFee $annualFee = null, ?string $description = null, ?string $avatarUrl = null, ?array $features = null, ?int $freeTrialDays = null, ?array $unitPrices = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -201,5 +212,6 @@ class Plan
         $this->avatarUrl = $avatarUrl;
         $this->features = $features;
         $this->freeTrialDays = $freeTrialDays;
+        $this->unitPrices = $unitPrices;
     }
 }

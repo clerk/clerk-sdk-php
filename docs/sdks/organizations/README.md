@@ -13,6 +13,8 @@
 * [uploadLogo](#uploadlogo) - Upload a logo for the organization
 * [deleteLogo](#deletelogo) - Delete the organization's logo.
 * [getBillingSubscription](#getbillingsubscription) - Retrieve an organization's billing subscription
+* [getBillingCreditBalance](#getbillingcreditbalance) - Retrieve an organization's credit balance
+* [adjustBillingCreditBalance](#adjustbillingcreditbalance) - Adjust an organization's credit balance
 
 ## list
 
@@ -220,10 +222,10 @@ if ($response->organization !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 402, 403, 404, 422  | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| Errors\ClerkErrors      | 400, 402, 403, 404, 422 | application/json        |
+| Errors\SDKException     | 4XX, 5XX                | \*/\*                   |
 
 ## delete
 
@@ -485,3 +487,112 @@ if ($response->commerceSubscription !== null) {
 | Errors\ClerkErrors      | 400, 401, 403, 404, 422 | application/json        |
 | Errors\ClerkErrors      | 500                     | application/json        |
 | Errors\SDKException     | 4XX, 5XX                | \*/\*                   |
+
+## getBillingCreditBalance
+
+Retrieves the current credit balance for the specified organization.
+Credits can be applied during checkout to reduce the charge or automatically applied to upcoming recurring charges.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="GetOrganizationBillingCreditBalance" method="get" path="/organizations/{organization_id}/billing/credits" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->organizations->getBillingCreditBalance(
+    organizationId: '<id>'
+);
+
+if ($response->commerceCreditBalanceResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `organizationId`                                            | *string*                                                    | :heavy_check_mark:                                          | The ID of the organization whose credit balance to retrieve |
+
+### Response
+
+**[?Operations\GetOrganizationBillingCreditBalanceResponse](../../Models/Operations/GetOrganizationBillingCreditBalanceResponse.md)**
+
+### Errors
+
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| Errors\ClerkErrors      | 400, 401, 403, 404, 422 | application/json        |
+| Errors\ClerkErrors      | 500                     | application/json        |
+| Errors\SDKException     | 4XX, 5XX                | \*/\*                   |
+
+## adjustBillingCreditBalance
+
+Increases or decreases the credit balance for the specified organization.
+Each adjustment is recorded as a ledger entry. The idempotency_key parameter
+ensures that duplicate requests are safely handled.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="AdjustOrganizationBillingCreditBalance" method="post" path="/organizations/{organization_id}/billing/credits" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+use Clerk\Backend\Models\Components;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+$adjustCreditBalanceRequest = new Components\AdjustCreditBalanceRequest(
+    amount: 245081,
+    action: Components\Action::Increase,
+    idempotencyKey: '<value>',
+);
+
+$response = $sdk->organizations->adjustBillingCreditBalance(
+    organizationId: '<id>',
+    adjustCreditBalanceRequest: $adjustCreditBalanceRequest
+
+);
+
+if ($response->commerceCreditLedgerResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `organizationId`                                                                               | *string*                                                                                       | :heavy_check_mark:                                                                             | The ID of the organization whose credit balance to adjust                                      |
+| `adjustCreditBalanceRequest`                                                                   | [Components\AdjustCreditBalanceRequest](../../Models/Components/AdjustCreditBalanceRequest.md) | :heavy_check_mark:                                                                             | Parameters for the credit balance adjustment                                                   |
+
+### Response
+
+**[?Operations\AdjustOrganizationBillingCreditBalanceResponse](../../Models/Operations/AdjustOrganizationBillingCreditBalanceResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\ClerkErrors           | 400, 401, 403, 404, 409, 422 | application/json             |
+| Errors\ClerkErrors           | 500                          | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |

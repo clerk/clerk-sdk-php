@@ -1,0 +1,18 @@
+# CommerceCreditLedgerResponse
+
+A credit ledger entry.
+
+
+## Fields
+
+| Field                                                                     | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `object`                                                                  | *string*                                                                  | :heavy_check_mark:                                                        | String representing the object's type. Always "commerce_credit_ledger".   |
+| `id`                                                                      | *string*                                                                  | :heavy_check_mark:                                                        | Unique identifier for the ledger entry.                                   |
+| `payerId`                                                                 | *string*                                                                  | :heavy_check_mark:                                                        | The ID of the payer whose balance was adjusted.                           |
+| `amount`                                                                  | *int*                                                                     | :heavy_check_mark:                                                        | The signed credit amount. Positive for increases, negative for decreases. |
+| `currency`                                                                | *string*                                                                  | :heavy_check_mark:                                                        | The currency code of the credit adjustment.                               |
+| `sourceType`                                                              | *string*                                                                  | :heavy_check_mark:                                                        | The type of source that originated the adjustment (e.g. "grant").         |
+| `sourceId`                                                                | *string*                                                                  | :heavy_check_mark:                                                        | The ID of the source that originated the adjustment.                      |
+| `note`                                                                    | *?string*                                                                 | :heavy_minus_sign:                                                        | An optional note attached to the ledger entry.                            |
+| `createdAt`                                                               | [\DateTime](https://www.php.net/manual/en/class.datetime.php)             | :heavy_check_mark:                                                        | Timestamp when the ledger entry was created.                              |
