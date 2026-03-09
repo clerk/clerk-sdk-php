@@ -1,0 +1,10 @@
+# CommercePerUnitTotal
+
+
+## Fields
+
+| Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `name`                                                                                            | *string*                                                                                          | :heavy_check_mark:                                                                                | Name of the billable unit (for example, seats)                                                    |
+| `blockSize`                                                                                       | *int*                                                                                             | :heavy_check_mark:                                                                                | Number of units included in each pricing block                                                    |
+| `tiers`                                                                                           | array<[Components\CommercePerUnitTotalTier](../../Models/Components/CommercePerUnitTotalTier.md)> | :heavy_check_mark:                                                                                | Computed totals for each pricing tier                                                             |

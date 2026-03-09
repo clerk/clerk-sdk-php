@@ -99,6 +99,8 @@ class ClerkBackend
 
     public TestingTokens $testingTokens;
 
+    public AgentTasks $agentTasks;
+
     public WaitlistEntries $waitlistEntries;
 
     public Billing $billing;
@@ -166,6 +168,7 @@ class ClerkBackend
         $this->oauthApplications = new OauthApplications($this->sdkConfiguration);
         $this->samlConnections = new SamlConnections($this->sdkConfiguration);
         $this->testingTokens = new TestingTokens($this->sdkConfiguration);
+        $this->agentTasks = new AgentTasks($this->sdkConfiguration);
         $this->waitlistEntries = new WaitlistEntries($this->sdkConfiguration);
         $this->billing = new Billing($this->sdkConfiguration);
         $this->organizationPermissions = new OrganizationPermissions($this->sdkConfiguration);

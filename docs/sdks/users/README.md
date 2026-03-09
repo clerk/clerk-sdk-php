@@ -20,6 +20,8 @@
 * [deleteProfileImage](#deleteprofileimage) - Delete user profile image
 * [updateMetadata](#updatemetadata) - Merge and update a user's metadata
 * [getBillingSubscription](#getbillingsubscription) - Retrieve a user's billing subscription
+* [getBillingCreditBalance](#getbillingcreditbalance) - Retrieve a user's credit balance
+* [adjustBillingCreditBalance](#adjustbillingcreditbalance) - Adjust a user's credit balance
 * [getOAuthAccessToken](#getoauthaccesstoken) - Retrieve the OAuth access token of a user
 * [getOrganizationMemberships](#getorganizationmemberships) - Retrieve all memberships for a user
 * [getOrganizationInvitations](#getorganizationinvitations) - Retrieve all invitations for a user
@@ -875,6 +877,115 @@ if ($response->commerceSubscription !== null) {
 | Errors\ClerkErrors      | 400, 401, 403, 404, 422 | application/json        |
 | Errors\ClerkErrors      | 500                     | application/json        |
 | Errors\SDKException     | 4XX, 5XX                | \*/\*                   |
+
+## getBillingCreditBalance
+
+Retrieves the current credit balance for the specified user.
+Credits can be applied during checkout to reduce the charge or automatically applied to upcoming recurring charges
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="GetUserBillingCreditBalance" method="get" path="/users/{user_id}/billing/credits" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->users->getBillingCreditBalance(
+    userId: '<id>'
+);
+
+if ($response->commerceCreditBalanceResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                           | Type                                                | Required                                            | Description                                         |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| `userId`                                            | *string*                                            | :heavy_check_mark:                                  | The ID of the user whose credit balance to retrieve |
+
+### Response
+
+**[?Operations\GetUserBillingCreditBalanceResponse](../../Models/Operations/GetUserBillingCreditBalanceResponse.md)**
+
+### Errors
+
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| Errors\ClerkErrors      | 400, 401, 403, 404, 422 | application/json        |
+| Errors\ClerkErrors      | 500                     | application/json        |
+| Errors\SDKException     | 4XX, 5XX                | \*/\*                   |
+
+## adjustBillingCreditBalance
+
+Increases or decreases the credit balance for the specified user.
+Each adjustment is recorded as a ledger entry. The idempotency_key parameter
+ensures that duplicate requests are safely handled.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="AdjustUserBillingCreditBalance" method="post" path="/users/{user_id}/billing/credits" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+use Clerk\Backend\Models\Components;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+$adjustCreditBalanceRequest = new Components\AdjustCreditBalanceRequest(
+    amount: 562473,
+    action: Components\Action::Decrease,
+    idempotencyKey: '<value>',
+);
+
+$response = $sdk->users->adjustBillingCreditBalance(
+    userId: '<id>',
+    adjustCreditBalanceRequest: $adjustCreditBalanceRequest
+
+);
+
+if ($response->commerceCreditLedgerResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `userId`                                                                                       | *string*                                                                                       | :heavy_check_mark:                                                                             | The ID of the user whose credit balance to adjust                                              |
+| `adjustCreditBalanceRequest`                                                                   | [Components\AdjustCreditBalanceRequest](../../Models/Components/AdjustCreditBalanceRequest.md) | :heavy_check_mark:                                                                             | Parameters for the credit balance adjustment                                                   |
+
+### Response
+
+**[?Operations\AdjustUserBillingCreditBalanceResponse](../../Models/Operations/AdjustUserBillingCreditBalanceResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\ClerkErrors           | 400, 401, 403, 404, 409, 422 | application/json             |
+| Errors\ClerkErrors           | 500                          | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## getOAuthAccessToken
 

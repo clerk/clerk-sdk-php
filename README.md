@@ -193,6 +193,11 @@ if ($response->statusCode === 200) {
 * [create](docs/sdks/actortokens/README.md#create) - Create actor token
 * [revoke](docs/sdks/actortokens/README.md#revoke) - Revoke actor token
 
+### [AgentTasks](docs/sdks/agenttasks/README.md)
+
+* [create](docs/sdks/agenttasks/README.md#create) - Create agent task
+* [revoke](docs/sdks/agenttasks/README.md#revoke) - Revoke agent task
+
 ### [AllowlistIdentifiers](docs/sdks/allowlistidentifiers/README.md)
 
 * [list](docs/sdks/allowlistidentifiers/README.md#list) - List all identifiers on the allow-list
@@ -270,6 +275,8 @@ if ($response->statusCode === 200) {
 * [get](docs/sdks/instancesettings/README.md#get) - Fetch the current instance
 * [update](docs/sdks/instancesettings/README.md#update) - Update instance settings
 * [updateRestrictions](docs/sdks/instancesettings/README.md#updaterestrictions) - Update instance restrictions
+* [getOAuthApplicationSettings](docs/sdks/instancesettings/README.md#getoauthapplicationsettings) - Get OAuth application settings
+* [updateOAuthApplicationSettings](docs/sdks/instancesettings/README.md#updateoauthapplicationsettings) - Update OAuth application settings
 * [changeDomain](docs/sdks/instancesettings/README.md#changedomain) - Update production instance domain
 * [updateOrganizationSettings](docs/sdks/instancesettings/README.md#updateorganizationsettings) - Update instance organization settings
 * [getInstanceProtect](docs/sdks/instancesettings/README.md#getinstanceprotect) - Get instance protect settings
@@ -385,6 +392,8 @@ if ($response->statusCode === 200) {
 * [uploadLogo](docs/sdks/organizations/README.md#uploadlogo) - Upload a logo for the organization
 * [deleteLogo](docs/sdks/organizations/README.md#deletelogo) - Delete the organization's logo.
 * [getBillingSubscription](docs/sdks/organizations/README.md#getbillingsubscription) - Retrieve an organization's billing subscription
+* [getBillingCreditBalance](docs/sdks/organizations/README.md#getbillingcreditbalance) - Retrieve an organization's credit balance
+* [adjustBillingCreditBalance](docs/sdks/organizations/README.md#adjustbillingcreditbalance) - Adjust an organization's credit balance
 
 ### [PhoneNumbers](docs/sdks/phonenumbers/README.md)
 
@@ -468,6 +477,8 @@ if ($response->statusCode === 200) {
 * [deleteProfileImage](docs/sdks/users/README.md#deleteprofileimage) - Delete user profile image
 * [updateMetadata](docs/sdks/users/README.md#updatemetadata) - Merge and update a user's metadata
 * [getBillingSubscription](docs/sdks/users/README.md#getbillingsubscription) - Retrieve a user's billing subscription
+* [getBillingCreditBalance](docs/sdks/users/README.md#getbillingcreditbalance) - Retrieve a user's credit balance
+* [adjustBillingCreditBalance](docs/sdks/users/README.md#adjustbillingcreditbalance) - Adjust a user's credit balance
 * [getOAuthAccessToken](docs/sdks/users/README.md#getoauthaccesstoken) - Retrieve the OAuth access token of a user
 * [getOrganizationMemberships](docs/sdks/users/README.md#getorganizationmemberships) - Retrieve all memberships for a user
 * [getOrganizationInvitations](docs/sdks/users/README.md#getorganizationinvitations) - Retrieve all invitations for a user
