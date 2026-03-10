@@ -1,6 +1,6 @@
-# Provider
+# CreateSAMLConnectionRequestBodyProvider
 
-The identity provider (e.g. saml_custom, oidc_custom)
+The IdP provider of the connection.
 
 
 ## Values
@@ -11,4 +11,3 @@ The identity provider (e.g. saml_custom, oidc_custom)
 | `SamlOkta`      | saml_okta       |
 | `SamlGoogle`    | saml_google     |
 | `SamlMicrosoft` | saml_microsoft  |
-| `OidcCustom`    | oidc_custom     |

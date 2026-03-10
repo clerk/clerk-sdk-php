@@ -15,7 +15,7 @@ use Clerk\Backend\Utils\Retry;
 use Clerk\Backend\Utils\Retry\RetryUtils;
 use Speakeasy\Serializer\DeserializationContext;
 
-class SamlConnections
+class EnterpriseConnections
 {
     private SDKConfiguration $sdkConfiguration;
     /**
@@ -47,19 +47,16 @@ class SamlConnections
     }
 
     /**
-     * Create a SAML Connection
+     * Create an enterprise connection
      *
-     * Create a new SAML Connection.
-     * Deprecated: Use the Enterprise Connections API instead. This endpoint will be removed in future versions.
+     * Create a new enterprise connection.
      *
-     * @param  Operations\One|Operations\Two|null  $request
-     * @return Operations\CreateSAMLConnectionResponse
+     * @param  ?Operations\CreateEnterpriseConnectionRequestBody  $request
+     * @return Operations\CreateEnterpriseConnectionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
-     * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    public function create(Operations\One|Operations\Two|null $request = null, ?Options $options = null): Operations\CreateSAMLConnectionResponse
+    public function create(?Operations\CreateEnterpriseConnectionRequestBody $request = null, ?Options $options = null): Operations\CreateEnterpriseConnectionResponse
     {
-        trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
         $retryConfig = null;
         if ($options) {
             $retryConfig = $options->retryConfig;
@@ -85,7 +82,7 @@ class SamlConnections
             ];
         }
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/saml_connections');
+        $url = Utils\Utils::generateUrl($baseUrl, '/enterprise_connections');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
@@ -95,7 +92,7 @@ class SamlConnections
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'CreateSAMLConnection', null, $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'CreateEnterpriseConnection', null, $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -112,18 +109,18 @@ class SamlConnections
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
-        if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
+        if (Utils\Utils::matchStatusCodes($statusCode, ['201'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Components\One|\Clerk\Backend\Models\Components\Two', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\CreateSAMLConnectionResponse(
+                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Components\SchemasEnterpriseConnection', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\CreateEnterpriseConnectionResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
-                    schemasSAMLConnection: $obj);
+                    schemasEnterpriseConnection: $obj);
 
                 return $response;
             } else {
@@ -150,19 +147,16 @@ class SamlConnections
     }
 
     /**
-     * Delete a SAML Connection
+     * Delete an enterprise connection
      *
-     * Deletes the SAML Connection whose ID matches the provided `id` in the path.
-     * Deprecated: Use the Enterprise Connections API instead. This endpoint will be removed in future versions.
+     * Deletes the enterprise connection whose ID matches the provided `enterprise_connection_id` in the path.
      *
-     * @param  string  $samlConnectionId
-     * @return Operations\DeleteSAMLConnectionResponse
+     * @param  string  $enterpriseConnectionId
+     * @return Operations\DeleteEnterpriseConnectionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
-     * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    public function delete(string $samlConnectionId, ?Options $options = null): Operations\DeleteSAMLConnectionResponse
+    public function delete(string $enterpriseConnectionId, ?Options $options = null): Operations\DeleteEnterpriseConnectionResponse
     {
-        trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
         $retryConfig = null;
         if ($options) {
             $retryConfig = $options->retryConfig;
@@ -187,17 +181,17 @@ class SamlConnections
                 '5XX',
             ];
         }
-        $request = new Operations\DeleteSAMLConnectionRequest(
-            samlConnectionId: $samlConnectionId,
+        $request = new Operations\DeleteEnterpriseConnectionRequest(
+            enterpriseConnectionId: $enterpriseConnectionId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/saml_connections/{saml_connection_id}', Operations\DeleteSAMLConnectionRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/enterprise_connections/{enterprise_connection_id}', Operations\DeleteEnterpriseConnectionRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('DELETE', $url);
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'DeleteSAMLConnection', null, $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'DeleteEnterpriseConnection', null, $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -221,7 +215,7 @@ class SamlConnections
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
                 $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Components\DeletedObject', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\DeleteSAMLConnectionResponse(
+                $response = new Operations\DeleteEnterpriseConnectionResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
@@ -252,19 +246,16 @@ class SamlConnections
     }
 
     /**
-     * Retrieve a SAML Connection by ID
+     * Retrieve an enterprise connection
      *
-     * Fetches the SAML Connection whose ID matches the provided `saml_connection_id` in the path.
-     * Deprecated: Use the Enterprise Connections API instead. This endpoint will be removed in future versions.
+     * Fetches the enterprise connection whose ID matches the provided `enterprise_connection_id` in the path.
      *
-     * @param  string  $samlConnectionId
-     * @return Operations\GetSAMLConnectionResponse
+     * @param  string  $enterpriseConnectionId
+     * @return Operations\GetEnterpriseConnectionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
-     * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    public function get(string $samlConnectionId, ?Options $options = null): Operations\GetSAMLConnectionResponse
+    public function get(string $enterpriseConnectionId, ?Options $options = null): Operations\GetEnterpriseConnectionResponse
     {
-        trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
         $retryConfig = null;
         if ($options) {
             $retryConfig = $options->retryConfig;
@@ -289,17 +280,17 @@ class SamlConnections
                 '5XX',
             ];
         }
-        $request = new Operations\GetSAMLConnectionRequest(
-            samlConnectionId: $samlConnectionId,
+        $request = new Operations\GetEnterpriseConnectionRequest(
+            enterpriseConnectionId: $enterpriseConnectionId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/saml_connections/{saml_connection_id}', Operations\GetSAMLConnectionRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/enterprise_connections/{enterprise_connection_id}', Operations\GetEnterpriseConnectionRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'GetSAMLConnection', null, $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'GetEnterpriseConnection', null, $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -322,12 +313,12 @@ class SamlConnections
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Components\One|\Clerk\Backend\Models\Components\Two', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\GetSAMLConnectionResponse(
+                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Components\SchemasEnterpriseConnection', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\GetEnterpriseConnectionResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
-                    schemasSAMLConnection: $obj);
+                    schemasEnterpriseConnection: $obj);
 
                 return $response;
             } else {
@@ -354,21 +345,20 @@ class SamlConnections
     }
 
     /**
-     * Get a list of SAML Connections for an instance
+     * List enterprise connections
      *
-     * Returns the list of SAML Connections for an instance.
+     * Returns the list of enterprise connections for the instance.
      * Results can be paginated using the optional `limit` and `offset` query parameters.
-     * The SAML Connections are ordered by descending creation date and the most recent will be returned first.
-     * Deprecated: Use the Enterprise Connections API instead. This endpoint will be removed in future versions.
      *
-     * @param  ?Operations\ListSAMLConnectionsRequest  $request
-     * @return Operations\ListSAMLConnectionsResponse
+     * @param  ?int  $limit
+     * @param  ?int  $offset
+     * @param  ?string  $organizationId
+     * @param  ?bool  $active
+     * @return Operations\ListEnterpriseConnectionsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
-     * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    public function list(?Operations\ListSAMLConnectionsRequest $request = null, ?Options $options = null): Operations\ListSAMLConnectionsResponse
+    public function list(?int $limit = null, ?int $offset = null, ?string $organizationId = null, ?bool $active = null, ?Options $options = null): Operations\ListEnterpriseConnectionsResponse
     {
-        trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
         $retryConfig = null;
         if ($options) {
             $retryConfig = $options->retryConfig;
@@ -393,16 +383,22 @@ class SamlConnections
                 '5XX',
             ];
         }
+        $request = new Operations\ListEnterpriseConnectionsRequest(
+            limit: $limit,
+            offset: $offset,
+            organizationId: $organizationId,
+            active: $active,
+        );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/saml_connections');
+        $url = Utils\Utils::generateUrl($baseUrl, '/enterprise_connections');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
 
-        $qp = Utils\Utils::getQueryParams(Operations\ListSAMLConnectionsRequest::class, $request, $urlOverride);
+        $qp = Utils\Utils::getQueryParams(Operations\ListEnterpriseConnectionsRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'ListSAMLConnections', null, $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'ListEnterpriseConnections', null, $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
@@ -426,12 +422,12 @@ class SamlConnections
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Components\SAMLConnections', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\ListSAMLConnectionsResponse(
+                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Components\EnterpriseConnections', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\ListEnterpriseConnectionsResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
-                    samlConnections: $obj);
+                    enterpriseConnections: $obj);
 
                 return $response;
             } else {
@@ -458,20 +454,18 @@ class SamlConnections
     }
 
     /**
-     * Update a SAML Connection
+     * Update an enterprise connection
      *
-     * Updates the SAML Connection whose ID matches the provided `id` in the path.
-     * Deprecated: Use the Enterprise Connections API instead. This endpoint will be removed in future versions.
+     * Updates the enterprise connection whose ID matches the provided `enterprise_connection_id` in the path.
+     * When enabling the connection (setting `active` to true), any existing verified organization domains that match the connection's domains (e.g. used for enrollment modes like automatic invitation) may be deleted so the connection can be enabled.
      *
-     * @param  Operations\UpdateSAMLConnectionRequestBody  $requestBody
-     * @param  string  $samlConnectionId
-     * @return Operations\UpdateSAMLConnectionResponse
+     * @param  Operations\UpdateEnterpriseConnectionRequestBody  $requestBody
+     * @param  string  $enterpriseConnectionId
+     * @return Operations\UpdateEnterpriseConnectionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
-     * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
-    public function update(Operations\UpdateSAMLConnectionRequestBody $requestBody, string $samlConnectionId, ?Options $options = null): Operations\UpdateSAMLConnectionResponse
+    public function update(Operations\UpdateEnterpriseConnectionRequestBody $requestBody, string $enterpriseConnectionId, ?Options $options = null): Operations\UpdateEnterpriseConnectionResponse
     {
-        trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
         $retryConfig = null;
         if ($options) {
             $retryConfig = $options->retryConfig;
@@ -496,12 +490,12 @@ class SamlConnections
                 '5XX',
             ];
         }
-        $request = new Operations\UpdateSAMLConnectionRequest(
-            samlConnectionId: $samlConnectionId,
+        $request = new Operations\UpdateEnterpriseConnectionRequest(
+            enterpriseConnectionId: $enterpriseConnectionId,
             requestBody: $requestBody,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/saml_connections/{saml_connection_id}', Operations\UpdateSAMLConnectionRequest::class, $request);
+        $url = Utils\Utils::generateUrl($baseUrl, '/enterprise_connections/{enterprise_connection_id}', Operations\UpdateEnterpriseConnectionRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
@@ -512,7 +506,7 @@ class SamlConnections
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('PATCH', $url);
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'UpdateSAMLConnection', null, $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'UpdateEnterpriseConnection', null, $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -525,7 +519,7 @@ class SamlConnections
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['402', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '402', '403', '404', '422', '4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
@@ -535,18 +529,18 @@ class SamlConnections
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Components\One|\Clerk\Backend\Models\Components\Two', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
-                $response = new Operations\UpdateSAMLConnectionResponse(
+                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Components\SchemasEnterpriseConnection', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\UpdateEnterpriseConnectionResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
-                    schemasSAMLConnection: $obj);
+                    schemasEnterpriseConnection: $obj);
 
                 return $response;
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
-        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['402', '403', '404', '422'])) {
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['400', '402', '403', '404', '422'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 

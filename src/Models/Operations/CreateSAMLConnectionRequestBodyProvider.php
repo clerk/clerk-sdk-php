@@ -9,12 +9,11 @@ declare(strict_types=1);
 namespace Clerk\Backend\Models\Operations;
 
 
-/** The identity provider (e.g. saml_custom, oidc_custom) */
-enum Provider: string
+/** The IdP provider of the connection. */
+enum CreateSAMLConnectionRequestBodyProvider: string
 {
     case SamlCustom = 'saml_custom';
     case SamlOkta = 'saml_okta';
     case SamlGoogle = 'saml_google';
     case SamlMicrosoft = 'saml_microsoft';
-    case OidcCustom = 'oidc_custom';
 }
