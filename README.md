@@ -532,7 +532,7 @@ $sdk = Backend\ClerkBackend::builder()->build();
 
 $response = $sdk->miscellaneous->getPublicInterstitial(
     request: $request,
-    options: Utils\Options->builder()->setRetryConfig(
+    options: Utils\Options::builder()->setRetryConfig(
         new Retry\RetryConfigBackoff(
             initialInterval: 1,
             maxInterval:     50,
