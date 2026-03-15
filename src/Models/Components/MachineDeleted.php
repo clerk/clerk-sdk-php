@@ -43,7 +43,7 @@ class MachineDeleted
      * @param  bool  $deleted
      * @phpstan-pure
      */
-    public function __construct(MachineDeletedObject $object, string $id, bool $deleted)
+    public function __construct(MachineDeletedObject $object, string $id, bool $deleted = true)
     {
         $this->object = $object;
         $this->id = $id;

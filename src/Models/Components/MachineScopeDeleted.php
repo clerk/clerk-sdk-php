@@ -52,7 +52,7 @@ class MachineScopeDeleted
      * @param  bool  $deleted
      * @phpstan-pure
      */
-    public function __construct(MachineScopeDeletedObject $object, string $fromMachineId, string $toMachineId, bool $deleted)
+    public function __construct(MachineScopeDeletedObject $object, string $fromMachineId, string $toMachineId, bool $deleted = true)
     {
         $this->object = $object;
         $this->fromMachineId = $fromMachineId;
