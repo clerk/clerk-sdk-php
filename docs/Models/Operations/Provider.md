@@ -1,6 +1,6 @@
 # Provider
 
-The IdP provider of the connection.
+The identity provider (e.g. saml_custom, oidc_custom)
 
 
 ## Values
@@ -11,3 +11,4 @@ The IdP provider of the connection.
 | `SamlOkta`      | saml_okta       |
 | `SamlGoogle`    | saml_google     |
 | `SamlMicrosoft` | saml_microsoft  |
+| `OidcCustom`    | oidc_custom     |
