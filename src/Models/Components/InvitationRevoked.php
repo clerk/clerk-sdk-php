@@ -73,14 +73,6 @@ class InvitationRevoked
 
     /**
      *
-     * @var ?bool $revoked
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('revoked')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $revoked = null;
-
-    /**
-     *
      * @var ?string $url
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('url')]
@@ -99,6 +91,14 @@ class InvitationRevoked
     public ?int $expiresAt = null;
 
     /**
+     *
+     * @var ?bool $revoked
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('revoked')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $revoked = null;
+
+    /**
      * @param  InvitationRevokedObject  $object
      * @param  string  $id
      * @param  string  $emailAddress
@@ -111,7 +111,7 @@ class InvitationRevoked
      * @param  ?int  $expiresAt
      * @phpstan-pure
      */
-    public function __construct(InvitationRevokedObject $object, string $id, string $emailAddress, array $publicMetadata, InvitationRevokedStatus $status, int $createdAt, int $updatedAt, ?bool $revoked = null, ?string $url = null, ?int $expiresAt = null)
+    public function __construct(InvitationRevokedObject $object, string $id, string $emailAddress, array $publicMetadata, InvitationRevokedStatus $status, int $createdAt, int $updatedAt, ?string $url = null, ?int $expiresAt = null, ?bool $revoked = true)
     {
         $this->object = $object;
         $this->id = $id;
@@ -120,8 +120,8 @@ class InvitationRevoked
         $this->status = $status;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
-        $this->revoked = $revoked;
         $this->url = $url;
         $this->expiresAt = $expiresAt;
+        $this->revoked = $revoked;
     }
 }
