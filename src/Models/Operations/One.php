@@ -31,11 +31,11 @@ class One
     /**
      * The IdP provider of the connection.
      *
-     * @var Provider $provider
+     * @var CreateSAMLConnectionRequestBodyProvider $provider
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\Provider')]
-    public Provider $provider;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\CreateSAMLConnectionRequestBodyProvider')]
+    public CreateSAMLConnectionRequestBodyProvider $provider;
 
     /**
      * The domains of your organization. Sign in flows using an email with one of these domains, will use this SAML Connection.
@@ -123,7 +123,7 @@ class One
     /**
      * @param  string  $name
      * @param  string  $domain
-     * @param  Provider  $provider
+     * @param  CreateSAMLConnectionRequestBodyProvider  $provider
      * @param  ?array<string>  $domains
      * @param  ?bool  $forceAuthn
      * @param  ?string  $idpEntityId
@@ -135,7 +135,7 @@ class One
      * @param  ?CreateSAMLConnectionRequestBodyAttributeMapping  $attributeMapping
      * @phpstan-pure
      */
-    public function __construct(string $name, string $domain, Provider $provider, ?array $domains = null, ?bool $forceAuthn = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?CreateSAMLConnectionRequestBodyAttributeMapping $attributeMapping = null)
+    public function __construct(string $name, string $domain, CreateSAMLConnectionRequestBodyProvider $provider, ?array $domains = null, ?bool $forceAuthn = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?CreateSAMLConnectionRequestBodyAttributeMapping $attributeMapping = null)
     {
         $this->name = $name;
         $this->domain = $domain;

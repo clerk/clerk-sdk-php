@@ -112,6 +112,13 @@ class One
     public bool $disableAdditionalIdentifications;
 
     /**
+     *
+     * @var bool $allowOrganizationAccountLinking
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('allow_organization_account_linking')]
+    public bool $allowOrganizationAccountLinking;
+
+    /**
      * Enable or deactivate ForceAuthn
      *
      * @var bool $forceAuthn
@@ -226,6 +233,7 @@ class One
      * @param  bool  $allowSubdomains
      * @param  bool  $allowIdpInitiated
      * @param  bool  $disableAdditionalIdentifications
+     * @param  bool  $allowOrganizationAccountLinking
      * @param  bool  $forceAuthn
      * @param  int  $createdAt
      * @param  int  $updatedAt
@@ -240,7 +248,7 @@ class One
      * @param  ?string  $enterpriseConnectionId
      * @phpstan-pure
      */
-    public function __construct(SchemasSAMLConnectionObject $object, string $id, string $name, string $domain, string $acsUrl, string $spEntityId, string $spMetadataUrl, bool $active, string $provider, int $userCount, bool $syncUserAttributes, bool $allowSubdomains, bool $allowIdpInitiated, bool $disableAdditionalIdentifications, bool $forceAuthn, int $createdAt, int $updatedAt, ?array $domains = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?SAMLConnectionAttributeMapping $attributeMapping = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?string $enterpriseConnectionId = null)
+    public function __construct(SchemasSAMLConnectionObject $object, string $id, string $name, string $domain, string $acsUrl, string $spEntityId, string $spMetadataUrl, bool $active, string $provider, int $userCount, bool $syncUserAttributes, bool $allowSubdomains, bool $allowIdpInitiated, bool $disableAdditionalIdentifications, bool $allowOrganizationAccountLinking, bool $forceAuthn, int $createdAt, int $updatedAt, ?array $domains = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?SAMLConnectionAttributeMapping $attributeMapping = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?string $enterpriseConnectionId = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -256,6 +264,7 @@ class One
         $this->allowSubdomains = $allowSubdomains;
         $this->allowIdpInitiated = $allowIdpInitiated;
         $this->disableAdditionalIdentifications = $disableAdditionalIdentifications;
+        $this->allowOrganizationAccountLinking = $allowOrganizationAccountLinking;
         $this->forceAuthn = $forceAuthn;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;

@@ -37,30 +37,6 @@ class SchemasCommercePlan
     public string $name;
 
     /**
-     *
-     * @var CommerceMoneyResponse $fee
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('fee')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
-    public CommerceMoneyResponse $fee;
-
-    /**
-     *
-     * @var CommerceMoneyResponse $annualMonthlyFee
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('annual_monthly_fee')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
-    public CommerceMoneyResponse $annualMonthlyFee;
-
-    /**
-     *
-     * @var CommerceMoneyResponse $annualFee
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('annual_fee')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
-    public CommerceMoneyResponse $annualFee;
-
-    /**
      * The amount in cents for the plan.
      *
      * @var int $amount
@@ -215,6 +191,30 @@ class SchemasCommercePlan
     public array $features;
 
     /**
+     *
+     * @var ?SchemasCommercePlanFee $fee
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('fee')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasCommercePlanFee|null')]
+    public ?SchemasCommercePlanFee $fee;
+
+    /**
+     *
+     * @var ?SchemasCommercePlanAnnualMonthlyFee $annualMonthlyFee
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('annual_monthly_fee')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasCommercePlanAnnualMonthlyFee|null')]
+    public ?SchemasCommercePlanAnnualMonthlyFee $annualMonthlyFee;
+
+    /**
+     *
+     * @var ?SchemasCommercePlanAnnualFee $annualFee
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('annual_fee')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasCommercePlanAnnualFee|null')]
+    public ?SchemasCommercePlanAnnualFee $annualFee;
+
+    /**
      * The billing period for the plan.
      *
      * @var ?string $period
@@ -254,9 +254,6 @@ class SchemasCommercePlan
      * @param  SchemasCommercePlanObject  $object
      * @param  string  $id
      * @param  string  $name
-     * @param  CommerceMoneyResponse  $fee
-     * @param  CommerceMoneyResponse  $annualMonthlyFee
-     * @param  CommerceMoneyResponse  $annualFee
      * @param  int  $amount
      * @param  string  $amountFormatted
      * @param  int  $annualMonthlyAmount
@@ -276,20 +273,20 @@ class SchemasCommercePlan
      * @param  string  $slug
      * @param  string  $avatarUrl
      * @param  array<SchemasFeatureResponse>  $features
+     * @param  ?SchemasCommercePlanFee  $fee
+     * @param  ?SchemasCommercePlanAnnualMonthlyFee  $annualMonthlyFee
+     * @param  ?SchemasCommercePlanAnnualFee  $annualFee
      * @param  ?string  $period
      * @param  ?int  $interval
      * @param  ?bool  $freeTrialEnabled
      * @param  ?int  $freeTrialDays
      * @phpstan-pure
      */
-    public function __construct(SchemasCommercePlanObject $object, string $id, string $name, CommerceMoneyResponse $fee, CommerceMoneyResponse $annualMonthlyFee, CommerceMoneyResponse $annualFee, int $amount, string $amountFormatted, int $annualMonthlyAmount, string $annualMonthlyAmountFormatted, int $annualAmount, string $annualAmountFormatted, string $currencySymbol, string $currency, string $description, string $productId, bool $isDefault, bool $isRecurring, bool $publiclyVisible, bool $hasBaseFee, array $payerType, string $forPayerType, string $slug, string $avatarUrl, array $features, ?string $period = null, ?int $interval = null, ?bool $freeTrialEnabled = null, ?int $freeTrialDays = null)
+    public function __construct(SchemasCommercePlanObject $object, string $id, string $name, int $amount, string $amountFormatted, int $annualMonthlyAmount, string $annualMonthlyAmountFormatted, int $annualAmount, string $annualAmountFormatted, string $currencySymbol, string $currency, string $description, string $productId, bool $isDefault, bool $isRecurring, bool $publiclyVisible, bool $hasBaseFee, array $payerType, string $forPayerType, string $slug, string $avatarUrl, array $features, ?SchemasCommercePlanFee $fee = null, ?SchemasCommercePlanAnnualMonthlyFee $annualMonthlyFee = null, ?SchemasCommercePlanAnnualFee $annualFee = null, ?string $period = null, ?int $interval = null, ?bool $freeTrialEnabled = null, ?int $freeTrialDays = null)
     {
         $this->object = $object;
         $this->id = $id;
         $this->name = $name;
-        $this->fee = $fee;
-        $this->annualMonthlyFee = $annualMonthlyFee;
-        $this->annualFee = $annualFee;
         $this->amount = $amount;
         $this->amountFormatted = $amountFormatted;
         $this->annualMonthlyAmount = $annualMonthlyAmount;
@@ -309,6 +306,9 @@ class SchemasCommercePlan
         $this->slug = $slug;
         $this->avatarUrl = $avatarUrl;
         $this->features = $features;
+        $this->fee = $fee;
+        $this->annualMonthlyFee = $annualMonthlyFee;
+        $this->annualFee = $annualFee;
         $this->period = $period;
         $this->interval = $interval;
         $this->freeTrialEnabled = $freeTrialEnabled;

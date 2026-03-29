@@ -23,7 +23,7 @@ class ResponseBody2
      * @param  bool  $active
      * @phpstan-pure
      */
-    public function __construct(bool $active)
+    public function __construct(bool $active = false)
     {
         $this->active = $active;
     }
