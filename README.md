@@ -270,6 +270,14 @@ if ($response->statusCode === 200) {
 * [~~revert~~](docs/sdks/emailsmstemplates/README.md#revert) - Revert a template :warning: **Deprecated**
 * [~~toggleTemplateDelivery~~](docs/sdks/emailsmstemplates/README.md#toggletemplatedelivery) - Toggle the delivery by Clerk for a template of a given type and slug :warning: **Deprecated**
 
+### [EnterpriseConnections](docs/sdks/enterpriseconnections/README.md)
+
+* [list](docs/sdks/enterpriseconnections/README.md#list) - List enterprise connections
+* [create](docs/sdks/enterpriseconnections/README.md#create) - Create an enterprise connection
+* [get](docs/sdks/enterpriseconnections/README.md#get) - Retrieve an enterprise connection
+* [update](docs/sdks/enterpriseconnections/README.md#update) - Update an enterprise connection
+* [delete](docs/sdks/enterpriseconnections/README.md#delete) - Delete an enterprise connection
+
 ### [InstanceSettings](docs/sdks/instancesettings/README.md)
 
 * [get](docs/sdks/instancesettings/README.md#get) - Fetch the current instance
@@ -423,13 +431,13 @@ if ($response->statusCode === 200) {
 * [addRoles](docs/sdks/rolesets/README.md#addroles) - Add roles to a role set
 * [replaceRole](docs/sdks/rolesets/README.md#replacerole) - Replace a role in a role set
 
-### [SamlConnections](docs/sdks/samlconnections/README.md)
+### [~~SamlConnections~~](docs/sdks/samlconnections/README.md)
 
-* [list](docs/sdks/samlconnections/README.md#list) - Get a list of SAML Connections for an instance
-* [create](docs/sdks/samlconnections/README.md#create) - Create a SAML Connection
-* [get](docs/sdks/samlconnections/README.md#get) - Retrieve a SAML Connection by ID
-* [update](docs/sdks/samlconnections/README.md#update) - Update a SAML Connection
-* [delete](docs/sdks/samlconnections/README.md#delete) - Delete a SAML Connection
+* [~~list~~](docs/sdks/samlconnections/README.md#list) - Get a list of SAML Connections for an instance :warning: **Deprecated**
+* [~~create~~](docs/sdks/samlconnections/README.md#create) - Create a SAML Connection :warning: **Deprecated**
+* [~~get~~](docs/sdks/samlconnections/README.md#get) - Retrieve a SAML Connection by ID :warning: **Deprecated**
+* [~~update~~](docs/sdks/samlconnections/README.md#update) - Update a SAML Connection :warning: **Deprecated**
+* [~~delete~~](docs/sdks/samlconnections/README.md#delete) - Delete a SAML Connection :warning: **Deprecated**
 
 ### [Sessions](docs/sdks/sessions/README.md)
 

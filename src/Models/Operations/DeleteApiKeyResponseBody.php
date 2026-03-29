@@ -40,7 +40,7 @@ class DeleteApiKeyResponseBody
      * @param  bool  $deleted
      * @phpstan-pure
      */
-    public function __construct(string $id, DeleteApiKeyObject $object, bool $deleted)
+    public function __construct(string $id, DeleteApiKeyObject $object, bool $deleted = true)
     {
         $this->id = $id;
         $this->object = $object;

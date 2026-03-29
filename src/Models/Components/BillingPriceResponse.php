@@ -77,22 +77,6 @@ class BillingPriceResponse
     public int $annualMonthlyAmount;
 
     /**
-     *
-     * @var CommerceMoneyResponse $fee
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('fee')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
-    public CommerceMoneyResponse $fee;
-
-    /**
-     *
-     * @var CommerceMoneyResponse $annualMonthlyFee
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('annual_monthly_fee')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
-    public CommerceMoneyResponse $annualMonthlyFee;
-
-    /**
      * Whether this price is the default price for its plan.
      *
      * @var bool $isDefault
@@ -107,6 +91,22 @@ class BillingPriceResponse
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
     public int $createdAt;
+
+    /**
+     *
+     * @var ?BillingPriceResponseFee $fee
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('fee')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\BillingPriceResponseFee|null')]
+    public ?BillingPriceResponseFee $fee;
+
+    /**
+     *
+     * @var ?BillingPriceResponseAnnualMonthlyFee $annualMonthlyFee
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('annual_monthly_fee')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\BillingPriceResponseAnnualMonthlyFee|null')]
+    public ?BillingPriceResponseAnnualMonthlyFee $annualMonthlyFee;
 
     /**
      * The description of the price.
@@ -126,14 +126,14 @@ class BillingPriceResponse
      * @param  string  $currencySymbol
      * @param  int  $amount
      * @param  int  $annualMonthlyAmount
-     * @param  CommerceMoneyResponse  $fee
-     * @param  CommerceMoneyResponse  $annualMonthlyFee
      * @param  bool  $isDefault
      * @param  int  $createdAt
+     * @param  ?BillingPriceResponseFee  $fee
+     * @param  ?BillingPriceResponseAnnualMonthlyFee  $annualMonthlyFee
      * @param  ?string  $description
      * @phpstan-pure
      */
-    public function __construct(BillingPriceResponseObject $object, string $id, string $planId, string $instanceId, string $currency, string $currencySymbol, int $amount, int $annualMonthlyAmount, CommerceMoneyResponse $fee, CommerceMoneyResponse $annualMonthlyFee, bool $isDefault, int $createdAt, ?string $description = null)
+    public function __construct(BillingPriceResponseObject $object, string $id, string $planId, string $instanceId, string $currency, string $currencySymbol, int $amount, int $annualMonthlyAmount, bool $isDefault, int $createdAt, ?BillingPriceResponseFee $fee = null, ?BillingPriceResponseAnnualMonthlyFee $annualMonthlyFee = null, ?string $description = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -143,10 +143,10 @@ class BillingPriceResponse
         $this->currencySymbol = $currencySymbol;
         $this->amount = $amount;
         $this->annualMonthlyAmount = $annualMonthlyAmount;
-        $this->fee = $fee;
-        $this->annualMonthlyFee = $annualMonthlyFee;
         $this->isDefault = $isDefault;
         $this->createdAt = $createdAt;
+        $this->fee = $fee;
+        $this->annualMonthlyFee = $annualMonthlyFee;
         $this->description = $description;
     }
 }

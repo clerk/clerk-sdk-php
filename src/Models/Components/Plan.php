@@ -38,14 +38,6 @@ class Plan
     public string $name;
 
     /**
-     *
-     * @var CommerceMoneyResponse $fee
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('fee')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
-    public CommerceMoneyResponse $fee;
-
-    /**
      * The ID of the product this plan belongs to.
      *
      * @var string $productId
@@ -112,6 +104,14 @@ class Plan
 
     /**
      *
+     * @var ?CommerceSubscriptionItemFee $fee
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('fee')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceSubscriptionItemFee|null')]
+    public ?CommerceSubscriptionItemFee $fee;
+
+    /**
+     *
      * @var ?CommerceSubscriptionItemAnnualMonthlyFee $annualMonthlyFee
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('annual_monthly_fee')]
@@ -174,7 +174,6 @@ class Plan
      * @param  CommerceSubscriptionItemPlanObject  $object
      * @param  string  $id
      * @param  string  $name
-     * @param  CommerceMoneyResponse  $fee
      * @param  string  $productId
      * @param  bool  $isDefault
      * @param  bool  $isRecurring
@@ -183,6 +182,7 @@ class Plan
      * @param  string  $forPayerType
      * @param  string  $slug
      * @param  bool  $freeTrialEnabled
+     * @param  ?CommerceSubscriptionItemFee  $fee
      * @param  ?CommerceSubscriptionItemAnnualMonthlyFee  $annualMonthlyFee
      * @param  ?CommerceSubscriptionItemAnnualFee  $annualFee
      * @param  ?string  $description
@@ -192,12 +192,11 @@ class Plan
      * @param  ?array<CommercePlanUnitPrice>  $unitPrices
      * @phpstan-pure
      */
-    public function __construct(CommerceSubscriptionItemPlanObject $object, string $id, string $name, CommerceMoneyResponse $fee, string $productId, bool $isDefault, bool $isRecurring, bool $publiclyVisible, bool $hasBaseFee, string $forPayerType, string $slug, bool $freeTrialEnabled, ?CommerceSubscriptionItemAnnualMonthlyFee $annualMonthlyFee = null, ?CommerceSubscriptionItemAnnualFee $annualFee = null, ?string $description = null, ?string $avatarUrl = null, ?array $features = null, ?int $freeTrialDays = null, ?array $unitPrices = null)
+    public function __construct(CommerceSubscriptionItemPlanObject $object, string $id, string $name, string $productId, bool $isDefault, bool $isRecurring, bool $publiclyVisible, bool $hasBaseFee, string $forPayerType, string $slug, bool $freeTrialEnabled, ?CommerceSubscriptionItemFee $fee = null, ?CommerceSubscriptionItemAnnualMonthlyFee $annualMonthlyFee = null, ?CommerceSubscriptionItemAnnualFee $annualFee = null, ?string $description = null, ?string $avatarUrl = null, ?array $features = null, ?int $freeTrialDays = null, ?array $unitPrices = null)
     {
         $this->object = $object;
         $this->id = $id;
         $this->name = $name;
-        $this->fee = $fee;
         $this->productId = $productId;
         $this->isDefault = $isDefault;
         $this->isRecurring = $isRecurring;
@@ -206,6 +205,7 @@ class Plan
         $this->forPayerType = $forPayerType;
         $this->slug = $slug;
         $this->freeTrialEnabled = $freeTrialEnabled;
+        $this->fee = $fee;
         $this->annualMonthlyFee = $annualMonthlyFee;
         $this->annualFee = $annualFee;
         $this->description = $description;

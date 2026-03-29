@@ -159,6 +159,15 @@ class UpdateSAMLConnectionRequestBody
     public ?bool $disableAdditionalIdentifications = null;
 
     /**
+     * Whether this connection supports account linking via organization membership
+     *
+     * @var ?bool $allowOrganizationAccountLinking
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('allow_organization_account_linking')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $allowOrganizationAccountLinking = null;
+
+    /**
      * When enabling the connection, controls behavior when verified domains used for enrollment modes like automatic invitation or automatic suggestion already exist for the same domain. If true, those verified domains are removed and the connection is enabled. If false or omitted, the request fails when any such verified domain exists.
      *
      * @var ?bool $consentVerifiedDomainsDeletion
@@ -184,10 +193,11 @@ class UpdateSAMLConnectionRequestBody
      * @param  ?bool  $allowSubdomains
      * @param  ?bool  $allowIdpInitiated
      * @param  ?bool  $disableAdditionalIdentifications
+     * @param  ?bool  $allowOrganizationAccountLinking
      * @param  ?bool  $consentVerifiedDomainsDeletion
      * @phpstan-pure
      */
-    public function __construct(?bool $forceAuthn = null, ?string $name = null, ?string $domain = null, ?array $domains = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?AttributeMapping $attributeMapping = null, ?bool $active = null, ?bool $syncUserAttributes = null, ?bool $allowSubdomains = null, ?bool $allowIdpInitiated = null, ?bool $disableAdditionalIdentifications = null, ?bool $consentVerifiedDomainsDeletion = null)
+    public function __construct(?bool $forceAuthn = null, ?string $name = null, ?string $domain = null, ?array $domains = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?AttributeMapping $attributeMapping = null, ?bool $active = null, ?bool $syncUserAttributes = null, ?bool $allowSubdomains = null, ?bool $allowIdpInitiated = null, ?bool $disableAdditionalIdentifications = null, ?bool $allowOrganizationAccountLinking = null, ?bool $consentVerifiedDomainsDeletion = null)
     {
         $this->forceAuthn = $forceAuthn;
         $this->name = $name;
@@ -205,6 +215,7 @@ class UpdateSAMLConnectionRequestBody
         $this->allowSubdomains = $allowSubdomains;
         $this->allowIdpInitiated = $allowIdpInitiated;
         $this->disableAdditionalIdentifications = $disableAdditionalIdentifications;
+        $this->allowOrganizationAccountLinking = $allowOrganizationAccountLinking;
         $this->consentVerifiedDomainsDeletion = $consentVerifiedDomainsDeletion;
     }
 }
