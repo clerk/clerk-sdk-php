@@ -13,7 +13,7 @@ class MachineWithoutScopedMachines
 {
     /**
      *
-     * @var MachineWithoutScopedMachinesObject $object
+     * @var \Clerk\Backend\Models\Components\MachineWithoutScopedMachinesObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\MachineWithoutScopedMachinesObject')]
@@ -69,7 +69,7 @@ class MachineWithoutScopedMachines
     public ?int $defaultTokenTtl = null;
 
     /**
-     * @param  MachineWithoutScopedMachinesObject  $object
+     * @param  \Clerk\Backend\Models\Components\MachineWithoutScopedMachinesObject  $object
      * @param  string  $id
      * @param  string  $name
      * @param  string  $instanceId

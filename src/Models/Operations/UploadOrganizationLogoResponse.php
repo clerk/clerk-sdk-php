@@ -35,7 +35,7 @@ class UploadOrganizationLogoResponse
     /**
      * An organization with a logo URL.
      *
-     * @var ?Components\OrganizationWithLogo $organizationWithLogo
+     * @var ?\Clerk\Backend\Models\Components\OrganizationWithLogo $organizationWithLogo
      */
     public ?Components\OrganizationWithLogo $organizationWithLogo = null;
 
@@ -43,7 +43,7 @@ class UploadOrganizationLogoResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\OrganizationWithLogo  $organizationWithLogo
+     * @param  ?\Clerk\Backend\Models\Components\OrganizationWithLogo  $organizationWithLogo
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\OrganizationWithLogo $organizationWithLogo = null)

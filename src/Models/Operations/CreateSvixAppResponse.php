@@ -35,7 +35,7 @@ class CreateSvixAppResponse
     /**
      * Response that contains a temporary Svix URL to access management dashboard
      *
-     * @var ?Components\SvixURL $svixURL
+     * @var ?\Clerk\Backend\Models\Components\SvixURL $svixURL
      */
     public ?Components\SvixURL $svixURL = null;
 
@@ -43,7 +43,7 @@ class CreateSvixAppResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\SvixURL  $svixURL
+     * @param  ?\Clerk\Backend\Models\Components\SvixURL  $svixURL
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\SvixURL $svixURL = null)

@@ -13,7 +13,7 @@ class Permission
 {
     /**
      *
-     * @var PermissionObject $object
+     * @var \Clerk\Backend\Models\Components\PermissionObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\PermissionObject')]
@@ -75,7 +75,7 @@ class Permission
     public int $updatedAt;
 
     /**
-     * @param  PermissionObject  $object
+     * @param  \Clerk\Backend\Models\Components\PermissionObject  $object
      * @param  string  $id
      * @param  string  $name
      * @param  string  $key

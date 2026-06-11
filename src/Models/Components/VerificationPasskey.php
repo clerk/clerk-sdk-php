@@ -13,7 +13,7 @@ class VerificationPasskey
 {
     /**
      *
-     * @var VerificationPasskeyVerificationStatus $status
+     * @var \Clerk\Backend\Models\Components\VerificationPasskeyVerificationStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationPasskeyVerificationStatus')]
@@ -21,7 +21,7 @@ class VerificationPasskey
 
     /**
      *
-     * @var VerificationPasskeyVerificationStrategy $strategy
+     * @var \Clerk\Backend\Models\Components\VerificationPasskeyVerificationStrategy $strategy
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationPasskeyVerificationStrategy')]
@@ -29,7 +29,7 @@ class VerificationPasskey
 
     /**
      *
-     * @var ?VerificationPasskeyVerificationObject $object
+     * @var ?\Clerk\Backend\Models\Components\VerificationPasskeyVerificationObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationPasskeyVerificationObject|null')]
@@ -38,7 +38,7 @@ class VerificationPasskey
 
     /**
      *
-     * @var ?Nonce $nonce
+     * @var ?\Clerk\Backend\Models\Components\Nonce $nonce
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('nonce')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Nonce|null')]
@@ -76,10 +76,10 @@ class VerificationPasskey
     public ?string $verifiedAtClient = null;
 
     /**
-     * @param  VerificationPasskeyVerificationStatus  $status
-     * @param  VerificationPasskeyVerificationStrategy  $strategy
-     * @param  ?VerificationPasskeyVerificationObject  $object
-     * @param  ?Nonce  $nonce
+     * @param  \Clerk\Backend\Models\Components\VerificationPasskeyVerificationStatus  $status
+     * @param  \Clerk\Backend\Models\Components\VerificationPasskeyVerificationStrategy  $strategy
+     * @param  ?\Clerk\Backend\Models\Components\VerificationPasskeyVerificationObject  $object
+     * @param  ?\Clerk\Backend\Models\Components\Nonce  $nonce
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
      * @param  ?string  $message

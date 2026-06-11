@@ -34,7 +34,7 @@ class VerificationOauthErrorClerkError
 
     /**
      *
-     * @var ?ClerkErrorErrorExternalAccountWithVerificationMeta $meta
+     * @var ?\Clerk\Backend\Models\Components\ClerkErrorErrorExternalAccountWithVerificationMeta $meta
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('meta')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ClerkErrorErrorExternalAccountWithVerificationMeta|null')]
@@ -45,7 +45,7 @@ class VerificationOauthErrorClerkError
      * @param  string  $message
      * @param  string  $longMessage
      * @param  string  $code
-     * @param  ?ClerkErrorErrorExternalAccountWithVerificationMeta  $meta
+     * @param  ?\Clerk\Backend\Models\Components\ClerkErrorErrorExternalAccountWithVerificationMeta  $meta
      * @phpstan-pure
      */
     public function __construct(string $message, string $longMessage, string $code, ?ClerkErrorErrorExternalAccountWithVerificationMeta $meta = null)

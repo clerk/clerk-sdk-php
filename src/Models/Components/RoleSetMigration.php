@@ -14,7 +14,7 @@ class RoleSetMigration
 {
     /**
      *
-     * @var RoleSetRoleSetMigrationObject $object
+     * @var \Clerk\Backend\Models\Components\RoleSetRoleSetMigrationObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\RoleSetRoleSetMigrationObject')]
@@ -131,7 +131,7 @@ class RoleSetMigration
     public ?int $completedAt = null;
 
     /**
-     * @param  RoleSetRoleSetMigrationObject  $object
+     * @param  \Clerk\Backend\Models\Components\RoleSetRoleSetMigrationObject  $object
      * @param  string  $id
      * @param  string  $instanceId
      * @param  string  $sourceRoleSetId

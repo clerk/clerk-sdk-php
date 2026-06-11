@@ -35,7 +35,7 @@ class DisableMFAResponse
     /**
      * Successful operation.
      *
-     * @var ?DisableMFAResponseBody $object
+     * @var ?\Clerk\Backend\Models\Operations\DisableMFAResponseBody $object
      */
     public ?DisableMFAResponseBody $object = null;
 
@@ -43,7 +43,7 @@ class DisableMFAResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?DisableMFAResponseBody  $object
+     * @param  ?\Clerk\Backend\Models\Operations\DisableMFAResponseBody  $object
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?DisableMFAResponseBody $object = null)

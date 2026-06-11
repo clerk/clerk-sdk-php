@@ -30,7 +30,9 @@ $sdk = Backend\ClerkBackend::builder()
     )
     ->build();
 
-$request = new Operations\CreateM2MTokenRequestBody();
+$request = new Operations\CreateM2MTokenRequestBody(
+    minRemainingTtlSeconds: 240,
+);
 
 $response = $sdk->m2m->createToken(
     request: $request

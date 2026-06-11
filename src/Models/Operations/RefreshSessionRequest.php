@@ -22,14 +22,14 @@ class RefreshSessionRequest
     /**
      * Refresh session parameters
      *
-     * @var ?RefreshSessionRequestBody $requestBody
+     * @var ?\Clerk\Backend\Models\Operations\RefreshSessionRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?RefreshSessionRequestBody $requestBody = null;
 
     /**
      * @param  string  $sessionId
-     * @param  ?RefreshSessionRequestBody  $requestBody
+     * @param  ?\Clerk\Backend\Models\Operations\RefreshSessionRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $sessionId, ?RefreshSessionRequestBody $requestBody = null)

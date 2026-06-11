@@ -14,7 +14,7 @@ class CommerceSubscriptionItem
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var CommerceSubscriptionItemObject $object
+     * @var \Clerk\Backend\Models\Components\CommerceSubscriptionItemObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceSubscriptionItemObject')]
@@ -39,7 +39,7 @@ class CommerceSubscriptionItem
     /**
      * Current status of the subscription item.
      *
-     * @var CommerceSubscriptionItemStatus $status
+     * @var \Clerk\Backend\Models\Components\CommerceSubscriptionItemStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceSubscriptionItemStatus')]
@@ -48,7 +48,7 @@ class CommerceSubscriptionItem
     /**
      * The billing period for this subscription item.
      *
-     * @var PlanPeriod $planPeriod
+     * @var \Clerk\Backend\Models\Components\PlanPeriod $planPeriod
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('plan_period')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\PlanPeriod')]
@@ -80,7 +80,7 @@ class CommerceSubscriptionItem
 
     /**
      *
-     * @var ?CommerceSubscriptionCreditResponse $credit
+     * @var ?\Clerk\Backend\Models\Components\CommerceSubscriptionCreditResponse $credit
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('credit')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceSubscriptionCreditResponse|null')]
@@ -106,7 +106,7 @@ class CommerceSubscriptionItem
 
     /**
      *
-     * @var ?CommercePaymentMethodResponse $paymentMethod
+     * @var ?\Clerk\Backend\Models\Components\CommercePaymentMethodResponse $paymentMethod
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('payment_method')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommercePaymentMethodResponse|null')]
@@ -115,7 +115,7 @@ class CommerceSubscriptionItem
 
     /**
      *
-     * @var ?CommerceMoneyResponse $lifetimePaid
+     * @var ?\Clerk\Backend\Models\Components\CommerceMoneyResponse $lifetimePaid
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('lifetime_paid')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse|null')]
@@ -124,7 +124,7 @@ class CommerceSubscriptionItem
 
     /**
      *
-     * @var ?CommercePayerResponse $payer
+     * @var ?\Clerk\Backend\Models\Components\CommercePayerResponse $payer
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('payer')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommercePayerResponse|null')]
@@ -193,7 +193,7 @@ class CommerceSubscriptionItem
     /**
      * Unified credits breakdown for this subscription item.
      *
-     * @var ?Credits $credits
+     * @var ?\Clerk\Backend\Models\Components\Credits $credits
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('credits')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Credits|null')]
@@ -203,7 +203,7 @@ class CommerceSubscriptionItem
     /**
      * The associated plan.
      *
-     * @var ?Plan $plan
+     * @var ?\Clerk\Backend\Models\Components\Plan $plan
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('plan')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Plan|null')]
@@ -213,7 +213,7 @@ class CommerceSubscriptionItem
     /**
      * Information about the next payment.
      *
-     * @var ?NextPayment $nextPayment
+     * @var ?\Clerk\Backend\Models\Components\NextPayment $nextPayment
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('next_payment')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\NextPayment|null')]
@@ -223,7 +223,7 @@ class CommerceSubscriptionItem
     /**
      * Seat quantity for seat-based billing.
      *
-     * @var ?Seats $seats
+     * @var ?\Clerk\Backend\Models\Components\Seats $seats
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('seats')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Seats|null')]
@@ -233,7 +233,7 @@ class CommerceSubscriptionItem
     /**
      * Totals for this subscription item.
      *
-     * @var ?Totals $totals
+     * @var ?\Clerk\Backend\Models\Components\Totals $totals
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('totals')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Totals|null')]
@@ -241,20 +241,20 @@ class CommerceSubscriptionItem
     public ?Totals $totals = null;
 
     /**
-     * @param  CommerceSubscriptionItemObject  $object
+     * @param  \Clerk\Backend\Models\Components\CommerceSubscriptionItemObject  $object
      * @param  string  $id
      * @param  string  $instanceId
-     * @param  CommerceSubscriptionItemStatus  $status
-     * @param  PlanPeriod  $planPeriod
+     * @param  \Clerk\Backend\Models\Components\CommerceSubscriptionItemStatus  $status
+     * @param  \Clerk\Backend\Models\Components\PlanPeriod  $planPeriod
      * @param  string  $payerId
      * @param  bool  $isFreeTrial
      * @param  int  $periodStart
-     * @param  ?CommerceSubscriptionCreditResponse  $credit
+     * @param  ?\Clerk\Backend\Models\Components\CommerceSubscriptionCreditResponse  $credit
      * @param  ?string  $planId
      * @param  ?string  $priceId
-     * @param  ?CommercePaymentMethodResponse  $paymentMethod
-     * @param  ?CommerceMoneyResponse  $lifetimePaid
-     * @param  ?CommercePayerResponse  $payer
+     * @param  ?\Clerk\Backend\Models\Components\CommercePaymentMethodResponse  $paymentMethod
+     * @param  ?\Clerk\Backend\Models\Components\CommerceMoneyResponse  $lifetimePaid
+     * @param  ?\Clerk\Backend\Models\Components\CommercePayerResponse  $payer
      * @param  ?int  $periodEnd
      * @param  ?LocalDate  $prorationDate
      * @param  ?int  $canceledAt
@@ -262,11 +262,11 @@ class CommerceSubscriptionItem
      * @param  ?int  $endedAt
      * @param  ?int  $createdAt
      * @param  ?int  $updatedAt
-     * @param  ?Credits  $credits
-     * @param  ?Plan  $plan
-     * @param  ?NextPayment  $nextPayment
-     * @param  ?Seats  $seats
-     * @param  ?Totals  $totals
+     * @param  ?\Clerk\Backend\Models\Components\Credits  $credits
+     * @param  ?\Clerk\Backend\Models\Components\Plan  $plan
+     * @param  ?\Clerk\Backend\Models\Components\NextPayment  $nextPayment
+     * @param  ?\Clerk\Backend\Models\Components\Seats  $seats
+     * @param  ?\Clerk\Backend\Models\Components\Totals  $totals
      * @phpstan-pure
      */
     public function __construct(CommerceSubscriptionItemObject $object, string $id, string $instanceId, CommerceSubscriptionItemStatus $status, PlanPeriod $planPeriod, string $payerId, bool $isFreeTrial, int $periodStart, ?CommerceSubscriptionCreditResponse $credit = null, ?string $planId = null, ?string $priceId = null, ?CommercePaymentMethodResponse $paymentMethod = null, ?CommerceMoneyResponse $lifetimePaid = null, ?CommercePayerResponse $payer = null, ?int $periodEnd = null, ?LocalDate $prorationDate = null, ?int $canceledAt = null, ?int $pastDueAt = null, ?int $endedAt = null, ?int $createdAt = null, ?int $updatedAt = null, ?Credits $credits = null, ?Plan $plan = null, ?NextPayment $nextPayment = null, ?Seats $seats = null, ?Totals $totals = null)

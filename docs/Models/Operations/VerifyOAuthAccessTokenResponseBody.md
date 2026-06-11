@@ -9,7 +9,7 @@
 
 ```php
 /**
-* @var Operations\ResponseBody1
+* @var \Clerk\Backend\Models\Operations\ResponseBody1
 */
 Operations\ResponseBody1 $value = /* values here */
 ```
@@ -18,7 +18,7 @@ Operations\ResponseBody1 $value = /* values here */
 
 ```php
 /**
-* @var Operations\ResponseBody2
+* @var \Clerk\Backend\Models\Operations\ResponseBody2
 */
 Operations\ResponseBody2 $value = /* values here */
 ```

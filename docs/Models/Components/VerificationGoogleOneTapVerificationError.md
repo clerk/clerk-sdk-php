@@ -7,7 +7,7 @@
 
 ```php
 /**
-* @var Components\VerificationGoogleOneTapErrorClerkError
+* @var \Clerk\Backend\Models\Components\VerificationGoogleOneTapErrorClerkError
 */
 Components\VerificationGoogleOneTapErrorClerkError $value = /* values here */
 ```

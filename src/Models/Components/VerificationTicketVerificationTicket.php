@@ -13,7 +13,7 @@ class VerificationTicketVerificationTicket
 {
     /**
      *
-     * @var VerificationTicketVerificationEnterpriseAccountStatus $status
+     * @var \Clerk\Backend\Models\Components\VerificationTicketVerificationEnterpriseAccountStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationTicketVerificationEnterpriseAccountStatus')]
@@ -21,7 +21,7 @@ class VerificationTicketVerificationTicket
 
     /**
      *
-     * @var VerificationTicketVerificationEnterpriseAccountStrategy $strategy
+     * @var \Clerk\Backend\Models\Components\VerificationTicketVerificationEnterpriseAccountStrategy $strategy
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationTicketVerificationEnterpriseAccountStrategy')]
@@ -29,7 +29,7 @@ class VerificationTicketVerificationTicket
 
     /**
      *
-     * @var ?VerificationTicketVerificationEnterpriseAccountObject $object
+     * @var ?\Clerk\Backend\Models\Components\VerificationTicketVerificationEnterpriseAccountObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationTicketVerificationEnterpriseAccountObject|null')]
@@ -59,9 +59,9 @@ class VerificationTicketVerificationTicket
     public ?string $verifiedAtClient = null;
 
     /**
-     * @param  VerificationTicketVerificationEnterpriseAccountStatus  $status
-     * @param  VerificationTicketVerificationEnterpriseAccountStrategy  $strategy
-     * @param  ?VerificationTicketVerificationEnterpriseAccountObject  $object
+     * @param  \Clerk\Backend\Models\Components\VerificationTicketVerificationEnterpriseAccountStatus  $status
+     * @param  \Clerk\Backend\Models\Components\VerificationTicketVerificationEnterpriseAccountStrategy  $strategy
+     * @param  ?\Clerk\Backend\Models\Components\VerificationTicketVerificationEnterpriseAccountObject  $object
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
      * @param  ?string  $verifiedAtClient

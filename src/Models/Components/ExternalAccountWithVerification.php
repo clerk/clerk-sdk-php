@@ -14,7 +14,7 @@ class ExternalAccountWithVerification
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var ExternalAccountWithVerificationObject $object
+     * @var \Clerk\Backend\Models\Components\ExternalAccountWithVerificationObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ExternalAccountWithVerificationObject')]
@@ -118,12 +118,12 @@ class ExternalAccountWithVerification
 
     /**
      *
-     * @var Oauth|GoogleOneTap|null $verification
+     * @var \Clerk\Backend\Models\Components\VerificationOauthVerificationOauth|\Clerk\Backend\Models\Components\GoogleOneTap|null $verification
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Oauth|\Clerk\Backend\Models\Components\GoogleOneTap|null')]
-    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'object', map: ['verification_oauth' => '\Clerk\Backend\Models\Components\Oauth', 'verification_google_one_tap' => '\Clerk\Backend\Models\Components\GoogleOneTap'])]
-    public Oauth|GoogleOneTap|null $verification;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationOauthVerificationOauth|\Clerk\Backend\Models\Components\GoogleOneTap|null')]
+    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'object', map: ['verification_oauth' => '\Clerk\Backend\Models\Components\VerificationOauthVerificationOauth', 'verification_google_one_tap' => '\Clerk\Backend\Models\Components\GoogleOneTap'])]
+    public VerificationOauthVerificationOauth|GoogleOneTap|null $verification;
 
     /**
      * $additionalProperties
@@ -179,7 +179,7 @@ class ExternalAccountWithVerification
     public ?string $label = null;
 
     /**
-     * @param  ExternalAccountWithVerificationObject  $object
+     * @param  \Clerk\Backend\Models\Components\ExternalAccountWithVerificationObject  $object
      * @param  string  $id
      * @param  string  $provider
      * @param  string  $identificationId
@@ -192,7 +192,7 @@ class ExternalAccountWithVerification
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  ?string  $avatarUrl
-     * @param  Oauth|GoogleOneTap|null  $verification
+     * @param  \Clerk\Backend\Models\Components\VerificationOauthVerificationOauth|\Clerk\Backend\Models\Components\GoogleOneTap|null  $verification
      * @param  ?array<string, mixed>  $additionalProperties
      * @param  ?bool  $emailAddressVerified
      * @param  ?string  $imageUrl
@@ -201,7 +201,7 @@ class ExternalAccountWithVerification
      * @param  ?string  $label
      * @phpstan-pure
      */
-    public function __construct(ExternalAccountWithVerificationObject $object, string $id, string $provider, string $identificationId, string $providerUserId, string $approvedScopes, string $emailAddress, string $firstName, string $lastName, array $publicMetadata, int $createdAt, int $updatedAt, ?string $avatarUrl = null, Oauth|GoogleOneTap|null $verification = null, ?array $additionalProperties = null, ?bool $emailAddressVerified = null, ?string $imageUrl = null, ?string $username = null, ?string $phoneNumber = null, ?string $label = null)
+    public function __construct(ExternalAccountWithVerificationObject $object, string $id, string $provider, string $identificationId, string $providerUserId, string $approvedScopes, string $emailAddress, string $firstName, string $lastName, array $publicMetadata, int $createdAt, int $updatedAt, ?string $avatarUrl = null, VerificationOauthVerificationOauth|GoogleOneTap|null $verification = null, ?array $additionalProperties = null, ?bool $emailAddressVerified = null, ?string $imageUrl = null, ?string $username = null, ?string $phoneNumber = null, ?string $label = null)
     {
         $this->object = $object;
         $this->id = $id;

@@ -14,7 +14,7 @@ class ToggleTemplateDeliveryRequest
     /**
      * The type of template to toggle delivery for
      *
-     * @var ToggleTemplateDeliveryPathParamTemplateType $templateType
+     * @var \Clerk\Backend\Models\Operations\ToggleTemplateDeliveryPathParamTemplateType $templateType
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=template_type')]
     public ToggleTemplateDeliveryPathParamTemplateType $templateType;
@@ -29,15 +29,15 @@ class ToggleTemplateDeliveryRequest
 
     /**
      *
-     * @var ?ToggleTemplateDeliveryRequestBody $requestBody
+     * @var ?\Clerk\Backend\Models\Operations\ToggleTemplateDeliveryRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?ToggleTemplateDeliveryRequestBody $requestBody = null;
 
     /**
-     * @param  ToggleTemplateDeliveryPathParamTemplateType  $templateType
+     * @param  \Clerk\Backend\Models\Operations\ToggleTemplateDeliveryPathParamTemplateType  $templateType
      * @param  string  $slug
-     * @param  ?ToggleTemplateDeliveryRequestBody  $requestBody
+     * @param  ?\Clerk\Backend\Models\Operations\ToggleTemplateDeliveryRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(ToggleTemplateDeliveryPathParamTemplateType $templateType, string $slug, ?ToggleTemplateDeliveryRequestBody $requestBody = null)

@@ -15,7 +15,7 @@ class BlocklistIdentifiers
     /**
      * $data
      *
-     * @var array<BlocklistIdentifier> $data
+     * @var array<\Clerk\Backend\Models\Components\BlocklistIdentifier> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\BlocklistIdentifier>')]
@@ -32,7 +32,7 @@ class BlocklistIdentifiers
     public int $totalCount;
 
     /**
-     * @param  array<BlocklistIdentifier>  $data
+     * @param  array<\Clerk\Backend\Models\Components\BlocklistIdentifier>  $data
      * @param  int  $totalCount
      * @phpstan-pure
      */

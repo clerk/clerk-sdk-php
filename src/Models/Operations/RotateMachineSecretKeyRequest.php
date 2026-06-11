@@ -21,14 +21,14 @@ class RotateMachineSecretKeyRequest
 
     /**
      *
-     * @var RotateMachineSecretKeyRequestBody $requestBody
+     * @var \Clerk\Backend\Models\Operations\RotateMachineSecretKeyRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public RotateMachineSecretKeyRequestBody $requestBody;
 
     /**
      * @param  string  $machineId
-     * @param  RotateMachineSecretKeyRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\RotateMachineSecretKeyRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $machineId, RotateMachineSecretKeyRequestBody $requestBody)

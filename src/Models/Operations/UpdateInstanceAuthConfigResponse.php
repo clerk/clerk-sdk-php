@@ -35,7 +35,7 @@ class UpdateInstanceAuthConfigResponse
     /**
      * InstanceSettings Server API
      *
-     * @var ?Components\InstanceSettings $instanceSettings
+     * @var ?\Clerk\Backend\Models\Components\InstanceSettings $instanceSettings
      */
     public ?Components\InstanceSettings $instanceSettings = null;
 
@@ -43,7 +43,7 @@ class UpdateInstanceAuthConfigResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\InstanceSettings  $instanceSettings
+     * @param  ?\Clerk\Backend\Models\Components\InstanceSettings  $instanceSettings
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\InstanceSettings $instanceSettings = null)

@@ -17,7 +17,7 @@ class OrganizationInvitationWithPublicOrganizationData
      *
      *
      *
-     * @var OrganizationInvitationWithPublicOrganizationDataObject $object
+     * @var \Clerk\Backend\Models\Components\OrganizationInvitationWithPublicOrganizationDataObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationInvitationWithPublicOrganizationDataObject')]
@@ -94,7 +94,7 @@ class OrganizationInvitationWithPublicOrganizationData
     /**
      * An organization inviter's public user data
      *
-     * @var ?OrganizationInvitationPublicUserData $publicInviterData
+     * @var ?\Clerk\Backend\Models\Components\OrganizationInvitationPublicUserData $publicInviterData
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('public_inviter_data')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationInvitationPublicUserData|null')]
@@ -135,7 +135,7 @@ class OrganizationInvitationWithPublicOrganizationData
 
     /**
      *
-     * @var ?OrganizationInvitationPublicOrganizationData $publicOrganizationData
+     * @var ?\Clerk\Backend\Models\Components\OrganizationInvitationPublicOrganizationData $publicOrganizationData
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('public_organization_data')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationInvitationPublicOrganizationData|null')]
@@ -143,7 +143,7 @@ class OrganizationInvitationWithPublicOrganizationData
     public ?OrganizationInvitationPublicOrganizationData $publicOrganizationData = null;
 
     /**
-     * @param  OrganizationInvitationWithPublicOrganizationDataObject  $object
+     * @param  \Clerk\Backend\Models\Components\OrganizationInvitationWithPublicOrganizationDataObject  $object
      * @param  string  $id
      * @param  string  $emailAddress
      * @param  string  $role
@@ -153,12 +153,12 @@ class OrganizationInvitationWithPublicOrganizationData
      * @param  int  $updatedAt
      * @param  ?string  $organizationId
      * @param  ?string  $inviterId
-     * @param  ?OrganizationInvitationPublicUserData  $publicInviterData
+     * @param  ?\Clerk\Backend\Models\Components\OrganizationInvitationPublicUserData  $publicInviterData
      * @param  ?string  $status
      * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?string  $url
      * @param  ?int  $expiresAt
-     * @param  ?OrganizationInvitationPublicOrganizationData  $publicOrganizationData
+     * @param  ?\Clerk\Backend\Models\Components\OrganizationInvitationPublicOrganizationData  $publicOrganizationData
      * @phpstan-pure
      */
     public function __construct(OrganizationInvitationWithPublicOrganizationDataObject $object, string $id, string $emailAddress, string $role, string $roleName, array $publicMetadata, int $createdAt, int $updatedAt, ?string $organizationId = null, ?string $inviterId = null, ?OrganizationInvitationPublicUserData $publicInviterData = null, ?string $status = null, ?array $privateMetadata = null, ?string $url = null, ?int $expiresAt = null, ?OrganizationInvitationPublicOrganizationData $publicOrganizationData = null)

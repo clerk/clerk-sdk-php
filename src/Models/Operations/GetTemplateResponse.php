@@ -35,7 +35,7 @@ class GetTemplateResponse
     /**
      * Success
      *
-     * @var ?Components\Template $template
+     * @var ?\Clerk\Backend\Models\Components\Template $template
      */
     public ?Components\Template $template = null;
 
@@ -43,7 +43,7 @@ class GetTemplateResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\Template  $template
+     * @param  ?\Clerk\Backend\Models\Components\Template  $template
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\Template $template = null)

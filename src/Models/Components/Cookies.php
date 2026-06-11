@@ -14,7 +14,7 @@ class Cookies
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var CookiesObject $object
+     * @var \Clerk\Backend\Models\Components\CookiesObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CookiesObject')]
@@ -30,7 +30,7 @@ class Cookies
     public array $cookies;
 
     /**
-     * @param  CookiesObject  $object
+     * @param  \Clerk\Backend\Models\Components\CookiesObject  $object
      * @param  array<string>  $cookies
      * @phpstan-pure
      */

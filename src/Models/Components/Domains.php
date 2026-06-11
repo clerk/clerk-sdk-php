@@ -15,7 +15,7 @@ class Domains
     /**
      * $data
      *
-     * @var array<Domain> $data
+     * @var array<\Clerk\Backend\Models\Components\Domain> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\Domain>')]
@@ -32,7 +32,7 @@ class Domains
     public int $totalCount;
 
     /**
-     * @param  array<Domain>  $data
+     * @param  array<\Clerk\Backend\Models\Components\Domain>  $data
      * @param  int  $totalCount
      * @phpstan-pure
      */

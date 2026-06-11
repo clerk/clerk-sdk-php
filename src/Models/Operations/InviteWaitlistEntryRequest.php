@@ -21,14 +21,14 @@ class InviteWaitlistEntryRequest
 
     /**
      *
-     * @var ?InviteWaitlistEntryRequestBody $requestBody
+     * @var ?\Clerk\Backend\Models\Operations\InviteWaitlistEntryRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?InviteWaitlistEntryRequestBody $requestBody = null;
 
     /**
      * @param  string  $waitlistEntryId
-     * @param  ?InviteWaitlistEntryRequestBody  $requestBody
+     * @param  ?\Clerk\Backend\Models\Operations\InviteWaitlistEntryRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $waitlistEntryId, ?InviteWaitlistEntryRequestBody $requestBody = null)

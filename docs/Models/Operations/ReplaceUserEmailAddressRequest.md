@@ -1,0 +1,9 @@
+# ReplaceUserEmailAddressRequest
+
+
+## Fields
+
+| Field                                                                                                          | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `userId`                                                                                                       | *string*                                                                                                       | :heavy_check_mark:                                                                                             | The ID of the user whose email address to replace                                                              |
+| `requestBody`                                                                                                  | [Operations\ReplaceUserEmailAddressRequestBody](../../Models/Operations/ReplaceUserEmailAddressRequestBody.md) | :heavy_check_mark:                                                                                             | N/A                                                                                                            |

@@ -13,7 +13,7 @@ class WaitlistEntry
 {
     /**
      *
-     * @var WaitlistEntryObject $object
+     * @var \Clerk\Backend\Models\Components\WaitlistEntryObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\WaitlistEntryObject')]
@@ -35,7 +35,7 @@ class WaitlistEntry
 
     /**
      *
-     * @var WaitlistEntryStatus $status
+     * @var \Clerk\Backend\Models\Components\WaitlistEntryStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\WaitlistEntryStatus')]
@@ -74,7 +74,7 @@ class WaitlistEntry
 
     /**
      *
-     * @var ?WaitlistEntryInvitation $invitation
+     * @var ?\Clerk\Backend\Models\Components\WaitlistEntryInvitation $invitation
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('invitation')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\WaitlistEntryInvitation|null')]
@@ -82,14 +82,14 @@ class WaitlistEntry
     public ?WaitlistEntryInvitation $invitation = null;
 
     /**
-     * @param  WaitlistEntryObject  $object
+     * @param  \Clerk\Backend\Models\Components\WaitlistEntryObject  $object
      * @param  string  $id
      * @param  string  $emailAddress
-     * @param  WaitlistEntryStatus  $status
+     * @param  \Clerk\Backend\Models\Components\WaitlistEntryStatus  $status
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  ?bool  $isLocked
-     * @param  ?WaitlistEntryInvitation  $invitation
+     * @param  ?\Clerk\Backend\Models\Components\WaitlistEntryInvitation  $invitation
      * @phpstan-pure
      */
     public function __construct(WaitlistEntryObject $object, string $id, string $emailAddress, WaitlistEntryStatus $status, int $createdAt, int $updatedAt, ?bool $isLocked = null, ?WaitlistEntryInvitation $invitation = null)

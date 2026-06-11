@@ -35,7 +35,7 @@ class GetOrganizationBillingSubscriptionResponse
     /**
      * A commerce subscription.
      *
-     * @var ?Components\CommerceSubscription $commerceSubscription
+     * @var ?\Clerk\Backend\Models\Components\CommerceSubscription $commerceSubscription
      */
     public ?Components\CommerceSubscription $commerceSubscription = null;
 
@@ -43,7 +43,7 @@ class GetOrganizationBillingSubscriptionResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\CommerceSubscription  $commerceSubscription
+     * @param  ?\Clerk\Backend\Models\Components\CommerceSubscription  $commerceSubscription
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\CommerceSubscription $commerceSubscription = null)

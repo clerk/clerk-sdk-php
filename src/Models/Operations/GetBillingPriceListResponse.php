@@ -35,7 +35,7 @@ class GetBillingPriceListResponse
     /**
      * A list of billing prices.
      *
-     * @var ?Components\PaginatedBillingPriceResponse $paginatedBillingPriceResponse
+     * @var ?\Clerk\Backend\Models\Components\PaginatedBillingPriceResponse $paginatedBillingPriceResponse
      */
     public ?Components\PaginatedBillingPriceResponse $paginatedBillingPriceResponse = null;
 
@@ -43,7 +43,7 @@ class GetBillingPriceListResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\PaginatedBillingPriceResponse  $paginatedBillingPriceResponse
+     * @param  ?\Clerk\Backend\Models\Components\PaginatedBillingPriceResponse  $paginatedBillingPriceResponse
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\PaginatedBillingPriceResponse $paginatedBillingPriceResponse = null)

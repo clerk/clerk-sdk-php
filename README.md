@@ -193,6 +193,11 @@ if ($response->statusCode === 200) {
 * [create](docs/sdks/actortokens/README.md#create) - Create actor token
 * [revoke](docs/sdks/actortokens/README.md#revoke) - Revoke actor token
 
+### [AdminPortalLinkTokens](docs/sdks/adminportallinktokens/README.md)
+
+* [createAdminPortalLinkToken](docs/sdks/adminportallinktokens/README.md#createadminportallinktoken) - Create an Admin Portal Link Token
+* [revokeAdminPortalLinkToken](docs/sdks/adminportallinktokens/README.md#revokeadminportallinktoken) - Revoke an Admin Portal Link Token
+
 ### [AgentTasks](docs/sdks/agenttasks/README.md)
 
 * [create](docs/sdks/agenttasks/README.md#create) - Create agent task
@@ -258,6 +263,9 @@ if ($response->statusCode === 200) {
 * [get](docs/sdks/emailaddresses/README.md#get) - Retrieve an email address
 * [delete](docs/sdks/emailaddresses/README.md#delete) - Delete an email address
 * [update](docs/sdks/emailaddresses/README.md#update) - Update an email address
+* [prepareVerification](docs/sdks/emailaddresses/README.md#prepareverification) - Send a verification code to an email address
+* [attemptVerification](docs/sdks/emailaddresses/README.md#attemptverification) - Verify a code sent to an email address
+* [replaceForUser](docs/sdks/emailaddresses/README.md#replaceforuser) - Replace a user's email address
 
 ### [~~EmailAndSmsTemplates~~](docs/sdks/emailandsmstemplates/README.md)
 
@@ -270,14 +278,27 @@ if ($response->statusCode === 200) {
 * [~~revert~~](docs/sdks/emailsmstemplates/README.md#revert) - Revert a template :warning: **Deprecated**
 * [~~toggleTemplateDelivery~~](docs/sdks/emailsmstemplates/README.md#toggletemplatedelivery) - Toggle the delivery by Clerk for a template of a given type and slug :warning: **Deprecated**
 
+### [EnterpriseConnections](docs/sdks/enterpriseconnections/README.md)
+
+* [list](docs/sdks/enterpriseconnections/README.md#list) - List enterprise connections
+* [create](docs/sdks/enterpriseconnections/README.md#create) - Create an enterprise connection
+* [get](docs/sdks/enterpriseconnections/README.md#get) - Retrieve an enterprise connection
+* [update](docs/sdks/enterpriseconnections/README.md#update) - Update an enterprise connection
+* [delete](docs/sdks/enterpriseconnections/README.md#delete) - Delete an enterprise connection
+* [listTestRuns](docs/sdks/enterpriseconnections/README.md#listtestruns) - List enterprise connection test runs
+* [createTestRun](docs/sdks/enterpriseconnections/README.md#createtestrun) - Create an enterprise connection test run
+
 ### [InstanceSettings](docs/sdks/instancesettings/README.md)
 
 * [get](docs/sdks/instancesettings/README.md#get) - Fetch the current instance
 * [update](docs/sdks/instancesettings/README.md#update) - Update instance settings
 * [updateRestrictions](docs/sdks/instancesettings/README.md#updaterestrictions) - Update instance restrictions
+* [getCommunication](docs/sdks/instancesettings/README.md#getcommunication) - Get instance communication settings
+* [updateCommunication](docs/sdks/instancesettings/README.md#updatecommunication) - Update instance communication settings
 * [getOAuthApplicationSettings](docs/sdks/instancesettings/README.md#getoauthapplicationsettings) - Get OAuth application settings
 * [updateOAuthApplicationSettings](docs/sdks/instancesettings/README.md#updateoauthapplicationsettings) - Update OAuth application settings
 * [changeDomain](docs/sdks/instancesettings/README.md#changedomain) - Update production instance domain
+* [getOrganizationSettings](docs/sdks/instancesettings/README.md#getorganizationsettings) - Get instance organization settings
 * [updateOrganizationSettings](docs/sdks/instancesettings/README.md#updateorganizationsettings) - Update instance organization settings
 * [getInstanceProtect](docs/sdks/instancesettings/README.md#getinstanceprotect) - Get instance protect settings
 * [updateInstanceProtect](docs/sdks/instancesettings/README.md#updateinstanceprotect) - Update instance protect settings
@@ -335,6 +356,7 @@ if ($response->statusCode === 200) {
 * [get](docs/sdks/oauthapplications/README.md#get) - Retrieve an OAuth application by ID
 * [update](docs/sdks/oauthapplications/README.md#update) - Update an OAuth application
 * [delete](docs/sdks/oauthapplications/README.md#delete) - Delete an OAuth application
+* [uploadLogo](docs/sdks/oauthapplications/README.md#uploadlogo) - Upload a logo for the OAuth application
 * [rotateSecret](docs/sdks/oauthapplications/README.md#rotatesecret) - Rotate the client secret of the given OAuth application
 
 ### [OrganizationDomains](docs/sdks/organizationdomains/README.md)
@@ -343,6 +365,7 @@ if ($response->statusCode === 200) {
 * [list](docs/sdks/organizationdomains/README.md#list) - Get a list of all domains of an organization.
 * [update](docs/sdks/organizationdomains/README.md#update) - Update an organization domain.
 * [delete](docs/sdks/organizationdomains/README.md#delete) - Remove a domain from an organization.
+* [verifyOwnership](docs/sdks/organizationdomains/README.md#verifyownership) - Mark an organization domain's ownership as verified
 * [listAll](docs/sdks/organizationdomains/README.md#listall) - List all organization domains
 
 ### [OrganizationInvitations](docs/sdks/organizationinvitations/README.md)
@@ -389,6 +412,7 @@ if ($response->statusCode === 200) {
 * [update](docs/sdks/organizations/README.md#update) - Update an organization
 * [delete](docs/sdks/organizations/README.md#delete) - Delete an organization
 * [mergeMetadata](docs/sdks/organizations/README.md#mergemetadata) - Merge and update metadata for an organization
+* [replaceMetadata](docs/sdks/organizations/README.md#replacemetadata) - Replace metadata for an organization
 * [uploadLogo](docs/sdks/organizations/README.md#uploadlogo) - Upload a logo for the organization
 * [deleteLogo](docs/sdks/organizations/README.md#deletelogo) - Delete the organization's logo.
 * [getBillingSubscription](docs/sdks/organizations/README.md#getbillingsubscription) - Retrieve an organization's billing subscription
@@ -401,6 +425,9 @@ if ($response->statusCode === 200) {
 * [get](docs/sdks/phonenumbers/README.md#get) - Retrieve a phone number
 * [delete](docs/sdks/phonenumbers/README.md#delete) - Delete a phone number
 * [update](docs/sdks/phonenumbers/README.md#update) - Update a phone number
+* [prepareVerification](docs/sdks/phonenumbers/README.md#prepareverification) - Send a verification code to a phone number
+* [attemptVerification](docs/sdks/phonenumbers/README.md#attemptverification) - Verify a code sent to a phone number
+* [replaceForUser](docs/sdks/phonenumbers/README.md#replaceforuser) - Replace a user's phone number
 
 ### [ProxyChecks](docs/sdks/proxychecks/README.md)
 
@@ -423,13 +450,13 @@ if ($response->statusCode === 200) {
 * [addRoles](docs/sdks/rolesets/README.md#addroles) - Add roles to a role set
 * [replaceRole](docs/sdks/rolesets/README.md#replacerole) - Replace a role in a role set
 
-### [SamlConnections](docs/sdks/samlconnections/README.md)
+### [~~SamlConnections~~](docs/sdks/samlconnections/README.md)
 
-* [list](docs/sdks/samlconnections/README.md#list) - Get a list of SAML Connections for an instance
-* [create](docs/sdks/samlconnections/README.md#create) - Create a SAML Connection
-* [get](docs/sdks/samlconnections/README.md#get) - Retrieve a SAML Connection by ID
-* [update](docs/sdks/samlconnections/README.md#update) - Update a SAML Connection
-* [delete](docs/sdks/samlconnections/README.md#delete) - Delete a SAML Connection
+* [~~list~~](docs/sdks/samlconnections/README.md#list) - Get a list of SAML Connections for an instance :warning: **Deprecated**
+* [~~create~~](docs/sdks/samlconnections/README.md#create) - Create a SAML Connection :warning: **Deprecated**
+* [~~get~~](docs/sdks/samlconnections/README.md#get) - Retrieve a SAML Connection by ID :warning: **Deprecated**
+* [~~update~~](docs/sdks/samlconnections/README.md#update) - Update a SAML Connection :warning: **Deprecated**
+* [~~delete~~](docs/sdks/samlconnections/README.md#delete) - Delete a SAML Connection :warning: **Deprecated**
 
 ### [Sessions](docs/sdks/sessions/README.md)
 
@@ -476,6 +503,7 @@ if ($response->statusCode === 200) {
 * [setProfileImage](docs/sdks/users/README.md#setprofileimage) - Set user profile image
 * [deleteProfileImage](docs/sdks/users/README.md#deleteprofileimage) - Delete user profile image
 * [updateMetadata](docs/sdks/users/README.md#updatemetadata) - Merge and update a user's metadata
+* [replaceMetadata](docs/sdks/users/README.md#replacemetadata) - Replace a user's metadata
 * [getBillingSubscription](docs/sdks/users/README.md#getbillingsubscription) - Retrieve a user's billing subscription
 * [getBillingCreditBalance](docs/sdks/users/README.md#getbillingcreditbalance) - Retrieve a user's credit balance
 * [adjustBillingCreditBalance](docs/sdks/users/README.md#adjustbillingcreditbalance) - Adjust a user's credit balance

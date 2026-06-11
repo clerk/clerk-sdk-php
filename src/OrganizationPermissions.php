@@ -51,8 +51,8 @@ class OrganizationPermissions
      *
      * Creates a new organization permission for the given instance.
      *
-     * @param  Operations\CreateOrganizationPermissionRequestBody  $request
-     * @return Operations\CreateOrganizationPermissionResponse
+     * @param  \Clerk\Backend\Models\Operations\CreateOrganizationPermissionRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\CreateOrganizationPermissionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function create(Operations\CreateOrganizationPermissionRequestBody $request, ?Options $options = null): Operations\CreateOrganizationPermissionResponse
@@ -105,11 +105,12 @@ class OrganizationPermissions
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '402', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -154,7 +155,7 @@ class OrganizationPermissions
      * System permissions cannot be deleted.
      *
      * @param  string  $permissionId
-     * @return Operations\DeleteOrganizationPermissionResponse
+     * @return \Clerk\Backend\Models\Operations\DeleteOrganizationPermissionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function delete(string $permissionId, ?Options $options = null): Operations\DeleteOrganizationPermissionResponse
@@ -205,11 +206,12 @@ class OrganizationPermissions
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '403', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -253,7 +255,7 @@ class OrganizationPermissions
      * Retrieves the details of an organization permission.
      *
      * @param  string  $permissionId
-     * @return Operations\GetOrganizationPermissionResponse
+     * @return \Clerk\Backend\Models\Operations\GetOrganizationPermissionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function get(string $permissionId, ?Options $options = null): Operations\GetOrganizationPermissionResponse
@@ -304,11 +306,12 @@ class OrganizationPermissions
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -355,7 +358,7 @@ class OrganizationPermissions
      * @param  ?string  $orderBy
      * @param  ?int  $limit
      * @param  ?int  $offset
-     * @return Operations\ListOrganizationPermissionsResponse
+     * @return \Clerk\Backend\Models\Operations\ListOrganizationPermissionsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function list(?string $query = null, ?string $orderBy = null, ?int $limit = null, ?int $offset = null, ?Options $options = null): Operations\ListOrganizationPermissionsResponse
@@ -412,11 +415,12 @@ class OrganizationPermissions
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -460,9 +464,9 @@ class OrganizationPermissions
      * Updates the properties of an existing organization permission.
      * System permissions cannot be updated.
      *
-     * @param  Operations\UpdateOrganizationPermissionRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\UpdateOrganizationPermissionRequestBody  $requestBody
      * @param  string  $permissionId
-     * @return Operations\UpdateOrganizationPermissionResponse
+     * @return \Clerk\Backend\Models\Operations\UpdateOrganizationPermissionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function update(Operations\UpdateOrganizationPermissionRequestBody $requestBody, string $permissionId, ?Options $options = null): Operations\UpdateOrganizationPermissionResponse
@@ -519,11 +523,12 @@ class OrganizationPermissions
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

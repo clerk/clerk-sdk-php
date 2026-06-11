@@ -29,7 +29,7 @@ class CreateSessionTokenFromTemplateRequest
 
     /**
      *
-     * @var ?CreateSessionTokenFromTemplateRequestBody $requestBody
+     * @var ?\Clerk\Backend\Models\Operations\CreateSessionTokenFromTemplateRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?CreateSessionTokenFromTemplateRequestBody $requestBody = null;
@@ -37,7 +37,7 @@ class CreateSessionTokenFromTemplateRequest
     /**
      * @param  string  $sessionId
      * @param  string  $templateName
-     * @param  ?CreateSessionTokenFromTemplateRequestBody  $requestBody
+     * @param  ?\Clerk\Backend\Models\Operations\CreateSessionTokenFromTemplateRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $sessionId, string $templateName, ?CreateSessionTokenFromTemplateRequestBody $requestBody = null)

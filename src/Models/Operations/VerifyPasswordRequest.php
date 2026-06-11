@@ -21,14 +21,14 @@ class VerifyPasswordRequest
 
     /**
      *
-     * @var ?VerifyPasswordRequestBody $requestBody
+     * @var ?\Clerk\Backend\Models\Operations\VerifyPasswordRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?VerifyPasswordRequestBody $requestBody = null;
 
     /**
      * @param  string  $userId
-     * @param  ?VerifyPasswordRequestBody  $requestBody
+     * @param  ?\Clerk\Backend\Models\Operations\VerifyPasswordRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $userId, ?VerifyPasswordRequestBody $requestBody = null)

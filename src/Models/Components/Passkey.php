@@ -16,7 +16,7 @@ class Passkey
      *
      *
      *
-     * @var PasskeyObject $object
+     * @var \Clerk\Backend\Models\Components\PasskeyObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\PasskeyObject')]
@@ -49,7 +49,7 @@ class Passkey
 
     /**
      *
-     * @var ?VerificationPasskey $verification
+     * @var ?\Clerk\Backend\Models\Components\VerificationPasskey $verification
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationPasskey|null')]
@@ -57,11 +57,11 @@ class Passkey
     public ?VerificationPasskey $verification;
 
     /**
-     * @param  PasskeyObject  $object
+     * @param  \Clerk\Backend\Models\Components\PasskeyObject  $object
      * @param  string  $name
      * @param  int  $lastUsedAt
      * @param  ?string  $id
-     * @param  ?VerificationPasskey  $verification
+     * @param  ?\Clerk\Backend\Models\Components\VerificationPasskey  $verification
      * @phpstan-pure
      */
     public function __construct(PasskeyObject $object, string $name, int $lastUsedAt, ?string $id = null, ?VerificationPasskey $verification = null)

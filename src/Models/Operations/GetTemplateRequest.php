@@ -14,7 +14,7 @@ class GetTemplateRequest
     /**
      * The type of templates to retrieve (email or SMS)
      *
-     * @var PathParamTemplateType $templateType
+     * @var \Clerk\Backend\Models\Operations\PathParamTemplateType $templateType
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=template_type')]
     public PathParamTemplateType $templateType;
@@ -28,7 +28,7 @@ class GetTemplateRequest
     public string $slug;
 
     /**
-     * @param  PathParamTemplateType  $templateType
+     * @param  \Clerk\Backend\Models\Operations\PathParamTemplateType  $templateType
      * @param  string  $slug
      * @phpstan-pure
      */

@@ -15,7 +15,7 @@ class Instance
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var InstanceObject $object
+     * @var \Clerk\Backend\Models\Components\InstanceObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\InstanceObject')]
@@ -45,7 +45,7 @@ class Instance
     public ?array $allowedOrigins;
 
     /**
-     * @param  InstanceObject  $object
+     * @param  \Clerk\Backend\Models\Components\InstanceObject  $object
      * @param  string  $id
      * @param  string  $environmentType
      * @param  ?array<string>  $allowedOrigins

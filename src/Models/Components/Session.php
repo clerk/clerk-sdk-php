@@ -16,7 +16,7 @@ class Session
      *
      *
      *
-     * @var SessionObject $object
+     * @var \Clerk\Backend\Models\Components\SessionObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SessionObject')]
@@ -45,7 +45,7 @@ class Session
 
     /**
      *
-     * @var Status $status
+     * @var \Clerk\Backend\Models\Components\Status $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Status')]
@@ -100,7 +100,7 @@ class Session
 
     /**
      *
-     * @var ?Actor $actor
+     * @var ?\Clerk\Backend\Models\Components\Actor $actor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('actor')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Actor|null')]
@@ -117,7 +117,7 @@ class Session
 
     /**
      *
-     * @var ?SessionActivityResponse $latestActivity
+     * @var ?\Clerk\Backend\Models\Components\SessionActivityResponse $latestActivity
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('latest_activity')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SessionActivityResponse|null')]
@@ -127,7 +127,7 @@ class Session
     /**
      * $tasks
      *
-     * @var ?array<SessionTask> $tasks
+     * @var ?array<\Clerk\Backend\Models\Components\SessionTask> $tasks
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tasks')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\SessionTask>|null')]
@@ -135,20 +135,20 @@ class Session
     public ?array $tasks = null;
 
     /**
-     * @param  SessionObject  $object
+     * @param  \Clerk\Backend\Models\Components\SessionObject  $object
      * @param  string  $id
      * @param  string  $userId
      * @param  string  $clientId
-     * @param  Status  $status
+     * @param  \Clerk\Backend\Models\Components\Status  $status
      * @param  int  $lastActiveAt
      * @param  int  $expireAt
      * @param  int  $abandonAt
      * @param  int  $updatedAt
      * @param  int  $createdAt
-     * @param  ?Actor  $actor
+     * @param  ?\Clerk\Backend\Models\Components\Actor  $actor
      * @param  ?string  $lastActiveOrganizationId
-     * @param  ?SessionActivityResponse  $latestActivity
-     * @param  ?array<SessionTask>  $tasks
+     * @param  ?\Clerk\Backend\Models\Components\SessionActivityResponse  $latestActivity
+     * @param  ?array<\Clerk\Backend\Models\Components\SessionTask>  $tasks
      * @phpstan-pure
      */
     public function __construct(SessionObject $object, string $id, string $userId, string $clientId, Status $status, int $lastActiveAt, int $expireAt, int $abandonAt, int $updatedAt, int $createdAt, ?Actor $actor = null, ?string $lastActiveOrganizationId = null, ?SessionActivityResponse $latestActivity = null, ?array $tasks = null)

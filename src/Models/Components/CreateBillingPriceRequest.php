@@ -20,21 +20,12 @@ class CreateBillingPriceRequest
     public string $planId;
 
     /**
-     * The amount in cents for the price. Must be at least $1 (100 cents).
+     * The monthly amount in cents. Must be at least $1 (100 cents) if not null.
      *
-     * @var int $amount
+     * @var ?int $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    public int $amount;
-
-    /**
-     * The monthly amount in cents when billed annually. Optional.
-     *
-     * @var ?int $annualMonthlyAmount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('annual_monthly_amount')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $annualMonthlyAmount = null;
+    public ?int $amount;
 
     /**
      * An optional description for this custom price.
@@ -44,6 +35,25 @@ class CreateBillingPriceRequest
     #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $description = null;
+
+    /**
+     * Which billing periods this price supports. Inferred from amounts if omitted.
+     *
+     * @var ?\Clerk\Backend\Models\Components\CreateBillingPriceRequestSupportedBillingPeriods $supportedBillingPeriods
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('supported_billing_periods')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CreateBillingPriceRequestSupportedBillingPeriods|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?CreateBillingPriceRequestSupportedBillingPeriods $supportedBillingPeriods = null;
+
+    /**
+     * The monthly amount in cents when billed annually. Must be at least $1 (100 cents) if not null.
+     *
+     * @var ?int $annualMonthlyAmount
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('annual_monthly_amount')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $annualMonthlyAmount = null;
 
     /**
      * The currency code (e.g., "USD"). Defaults to USD.
@@ -56,18 +66,20 @@ class CreateBillingPriceRequest
 
     /**
      * @param  string  $planId
-     * @param  int  $amount
      * @param  ?string  $currency
-     * @param  ?int  $annualMonthlyAmount
+     * @param  ?int  $amount
      * @param  ?string  $description
+     * @param  ?\Clerk\Backend\Models\Components\CreateBillingPriceRequestSupportedBillingPeriods  $supportedBillingPeriods
+     * @param  ?int  $annualMonthlyAmount
      * @phpstan-pure
      */
-    public function __construct(string $planId, int $amount, ?int $annualMonthlyAmount = null, ?string $description = null, ?string $currency = 'USD')
+    public function __construct(string $planId, ?int $amount = null, ?string $description = null, ?CreateBillingPriceRequestSupportedBillingPeriods $supportedBillingPeriods = null, ?int $annualMonthlyAmount = null, ?string $currency = 'USD')
     {
         $this->planId = $planId;
         $this->amount = $amount;
-        $this->annualMonthlyAmount = $annualMonthlyAmount;
         $this->description = $description;
+        $this->supportedBillingPeriods = $supportedBillingPeriods;
+        $this->annualMonthlyAmount = $annualMonthlyAmount;
         $this->currency = $currency;
     }
 }

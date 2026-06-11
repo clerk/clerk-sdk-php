@@ -15,7 +15,7 @@ class PaymentSource
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var SchemasCommerceSubscriptionItemPaymentSourceObject $object
+     * @var \Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemPaymentSourceObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemPaymentSourceObject')]
@@ -40,7 +40,7 @@ class PaymentSource
     /**
      * The payment method type.
      *
-     * @var PaymentMethod $paymentMethod
+     * @var \Clerk\Backend\Models\Components\PaymentMethod $paymentMethod
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('payment_method')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\PaymentMethod')]
@@ -73,7 +73,7 @@ class PaymentSource
     /**
      * Status of the payment source.
      *
-     * @var SchemasCommerceSubscriptionItemPaymentSourceStatus $status
+     * @var \Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemPaymentSourceStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemPaymentSourceStatus')]
@@ -157,14 +157,14 @@ class PaymentSource
     public ?bool $isRemovable = null;
 
     /**
-     * @param  SchemasCommerceSubscriptionItemPaymentSourceObject  $object
+     * @param  \Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemPaymentSourceObject  $object
      * @param  string  $id
      * @param  string  $payerId
-     * @param  PaymentMethod  $paymentMethod
+     * @param  \Clerk\Backend\Models\Components\PaymentMethod  $paymentMethod
      * @param  string  $gateway
      * @param  string  $gatewayExternalId
      * @param  string  $last4
-     * @param  SchemasCommerceSubscriptionItemPaymentSourceStatus  $status
+     * @param  \Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemPaymentSourceStatus  $status
      * @param  string  $walletType
      * @param  string  $cardType
      * @param  int  $createdAt

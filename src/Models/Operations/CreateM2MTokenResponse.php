@@ -35,7 +35,7 @@ class CreateM2MTokenResponse
     /**
      * 201 Created
      *
-     * @var ?CreateM2MTokenResponseBody $object
+     * @var ?\Clerk\Backend\Models\Operations\CreateM2MTokenResponseBody $object
      */
     public ?CreateM2MTokenResponseBody $object = null;
 
@@ -43,7 +43,7 @@ class CreateM2MTokenResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?CreateM2MTokenResponseBody  $object
+     * @param  ?\Clerk\Backend\Models\Operations\CreateM2MTokenResponseBody  $object
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?CreateM2MTokenResponseBody $object = null)

@@ -7,7 +7,7 @@
 
 ```php
 /**
-* @var Components\VerificationTicketVerificationTicket
+* @var \Clerk\Backend\Models\Components\VerificationTicketVerificationTicket
 */
 Components\VerificationTicketVerificationTicket $value = /* values here */
 ```
@@ -16,7 +16,7 @@ Components\VerificationTicketVerificationTicket $value = /* values here */
 
 ```php
 /**
-* @var Components\VerificationSAMLVerificationSAML
+* @var \Clerk\Backend\Models\Components\VerificationSAMLVerificationSAML
 */
 Components\VerificationSAMLVerificationSAML $value = /* values here */
 ```
@@ -25,7 +25,7 @@ Components\VerificationSAMLVerificationSAML $value = /* values here */
 
 ```php
 /**
-* @var Components\VerificationOauth
+* @var \Clerk\Backend\Models\Components\VerificationOauth
 */
 Components\VerificationOauth $value = /* values here */
 ```

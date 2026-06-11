@@ -35,7 +35,7 @@ class GetInstanceResponse
     /**
      * Success
      *
-     * @var ?Components\Instance $instance
+     * @var ?\Clerk\Backend\Models\Components\Instance $instance
      */
     public ?Components\Instance $instance = null;
 
@@ -43,7 +43,7 @@ class GetInstanceResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\Instance  $instance
+     * @param  ?\Clerk\Backend\Models\Components\Instance  $instance
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\Instance $instance = null)

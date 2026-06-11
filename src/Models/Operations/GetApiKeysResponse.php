@@ -35,7 +35,7 @@ class GetApiKeysResponse
     /**
      * 200 OK
      *
-     * @var ?GetApiKeysResponseBody $object
+     * @var ?\Clerk\Backend\Models\Operations\GetApiKeysResponseBody $object
      */
     public ?GetApiKeysResponseBody $object = null;
 
@@ -43,7 +43,7 @@ class GetApiKeysResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?GetApiKeysResponseBody  $object
+     * @param  ?\Clerk\Backend\Models\Operations\GetApiKeysResponseBody  $object
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?GetApiKeysResponseBody $object = null)

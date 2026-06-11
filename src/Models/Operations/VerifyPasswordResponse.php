@@ -35,7 +35,7 @@ class VerifyPasswordResponse
     /**
      * The provided password was correct.
      *
-     * @var ?VerifyPasswordResponseBody $object
+     * @var ?\Clerk\Backend\Models\Operations\VerifyPasswordResponseBody $object
      */
     public ?VerifyPasswordResponseBody $object = null;
 
@@ -43,7 +43,7 @@ class VerifyPasswordResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?VerifyPasswordResponseBody  $object
+     * @param  ?\Clerk\Backend\Models\Operations\VerifyPasswordResponseBody  $object
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?VerifyPasswordResponseBody $object = null)

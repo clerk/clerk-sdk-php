@@ -13,7 +13,7 @@ class VerificationOauth
 {
     /**
      *
-     * @var VerificationOauthVerificationEnterpriseAccountStatus $status
+     * @var \Clerk\Backend\Models\Components\VerificationOauthVerificationEnterpriseAccountStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationOauthVerificationEnterpriseAccountStatus')]
@@ -35,7 +35,7 @@ class VerificationOauth
 
     /**
      *
-     * @var ?VerificationOauthVerificationEnterpriseAccountObject $object
+     * @var ?\Clerk\Backend\Models\Components\VerificationOauthVerificationEnterpriseAccountObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationOauthVerificationEnterpriseAccountObject|null')]
@@ -59,7 +59,7 @@ class VerificationOauth
 
     /**
      *
-     * @var ?VerificationOauthErrorEnterpriseAccountClerkError $error
+     * @var ?\Clerk\Backend\Models\Components\VerificationOauthErrorEnterpriseAccountClerkError $error
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationOauthErrorEnterpriseAccountClerkError|null')]
@@ -75,13 +75,13 @@ class VerificationOauth
     public ?string $verifiedAtClient = null;
 
     /**
-     * @param  VerificationOauthVerificationEnterpriseAccountStatus  $status
+     * @param  \Clerk\Backend\Models\Components\VerificationOauthVerificationEnterpriseAccountStatus  $status
      * @param  string  $strategy
      * @param  int  $expireAt
-     * @param  ?VerificationOauthVerificationEnterpriseAccountObject  $object
+     * @param  ?\Clerk\Backend\Models\Components\VerificationOauthVerificationEnterpriseAccountObject  $object
      * @param  ?string  $externalVerificationRedirectUrl
      * @param  ?int  $attempts
-     * @param  ?VerificationOauthErrorEnterpriseAccountClerkError  $error
+     * @param  ?\Clerk\Backend\Models\Components\VerificationOauthErrorEnterpriseAccountClerkError  $error
      * @param  ?string  $verifiedAtClient
      * @phpstan-pure
      */

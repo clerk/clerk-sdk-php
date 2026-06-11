@@ -35,7 +35,7 @@ class AdjustUserBillingCreditBalanceResponse
     /**
      * A credit ledger entry.
      *
-     * @var ?Components\CommerceCreditLedgerResponse $commerceCreditLedgerResponse
+     * @var ?\Clerk\Backend\Models\Components\CommerceCreditLedgerResponse $commerceCreditLedgerResponse
      */
     public ?Components\CommerceCreditLedgerResponse $commerceCreditLedgerResponse = null;
 
@@ -43,7 +43,7 @@ class AdjustUserBillingCreditBalanceResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\CommerceCreditLedgerResponse  $commerceCreditLedgerResponse
+     * @param  ?\Clerk\Backend\Models\Components\CommerceCreditLedgerResponse  $commerceCreditLedgerResponse
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\CommerceCreditLedgerResponse $commerceCreditLedgerResponse = null)

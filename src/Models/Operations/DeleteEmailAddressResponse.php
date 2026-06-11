@@ -35,7 +35,7 @@ class DeleteEmailAddressResponse
     /**
      * Deleted Object
      *
-     * @var ?Components\DeletedObject $deletedObject
+     * @var ?\Clerk\Backend\Models\Components\DeletedObject $deletedObject
      */
     public ?Components\DeletedObject $deletedObject = null;
 
@@ -43,7 +43,7 @@ class DeleteEmailAddressResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\DeletedObject  $deletedObject
+     * @param  ?\Clerk\Backend\Models\Components\DeletedObject  $deletedObject
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\DeletedObject $deletedObject = null)

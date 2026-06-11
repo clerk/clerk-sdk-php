@@ -15,7 +15,7 @@ class Organizations
     /**
      * $data
      *
-     * @var array<Organization> $data
+     * @var array<\Clerk\Backend\Models\Components\Organization> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\Organization>')]
@@ -32,7 +32,7 @@ class Organizations
     public int $totalCount;
 
     /**
-     * @param  array<Organization>  $data
+     * @param  array<\Clerk\Backend\Models\Components\Organization>  $data
      * @param  int  $totalCount
      * @phpstan-pure
      */

@@ -17,7 +17,7 @@ class TotalCount
      *
      *
      *
-     * @var TotalCountObject $object
+     * @var \Clerk\Backend\Models\Components\TotalCountObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\TotalCountObject')]
@@ -31,7 +31,7 @@ class TotalCount
     public int $totalCount;
 
     /**
-     * @param  TotalCountObject  $object
+     * @param  \Clerk\Backend\Models\Components\TotalCountObject  $object
      * @param  int  $totalCount
      * @phpstan-pure
      */

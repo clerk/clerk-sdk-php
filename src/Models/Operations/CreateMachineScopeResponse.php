@@ -35,7 +35,7 @@ class CreateMachineScopeResponse
     /**
      * Machine scope created successfully for a machine
      *
-     * @var ?Components\MachineScope $machineScope
+     * @var ?\Clerk\Backend\Models\Components\MachineScope $machineScope
      */
     public ?Components\MachineScope $machineScope = null;
 
@@ -43,7 +43,7 @@ class CreateMachineScopeResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\MachineScope  $machineScope
+     * @param  ?\Clerk\Backend\Models\Components\MachineScope  $machineScope
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\MachineScope $machineScope = null)

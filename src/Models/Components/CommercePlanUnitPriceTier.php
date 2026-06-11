@@ -21,7 +21,7 @@ class CommercePlanUnitPriceTier
 
     /**
      *
-     * @var CommerceMoneyResponse $feePerBlock
+     * @var \Clerk\Backend\Models\Components\CommerceMoneyResponse $feePerBlock
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('fee_per_block')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
@@ -38,7 +38,7 @@ class CommercePlanUnitPriceTier
 
     /**
      * @param  int  $startsAtBlock
-     * @param  CommerceMoneyResponse  $feePerBlock
+     * @param  \Clerk\Backend\Models\Components\CommerceMoneyResponse  $feePerBlock
      * @param  ?int  $endsAfterBlock
      * @phpstan-pure
      */

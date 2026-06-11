@@ -35,22 +35,22 @@ class UpdateSAMLConnectionResponse
     /**
      * A SAML Connection
      *
-     * @var Components\One|Components\Two|null $schemasSAMLConnection
+     * @var \Clerk\Backend\Models\Components\One|\Clerk\Backend\Models\Components\Two|null $samlConnection
      */
-    public Components\One|Components\Two|null $schemasSAMLConnection = null;
+    public Components\One|Components\Two|null $samlConnection = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  Components\One|Components\Two|null  $schemasSAMLConnection
+     * @param  \Clerk\Backend\Models\Components\One|\Clerk\Backend\Models\Components\Two|null  $samlConnection
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, Components\One|Components\Two|null $schemasSAMLConnection = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, Components\One|Components\Two|null $samlConnection = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->schemasSAMLConnection = $schemasSAMLConnection;
+        $this->samlConnection = $samlConnection;
     }
 }

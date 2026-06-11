@@ -35,7 +35,7 @@ class ListJWTTemplatesResponse
     /**
      * List of JWT templates
      *
-     * @var ?array<Components\JWTTemplate> $jwtTemplateList
+     * @var ?array<\Clerk\Backend\Models\Components\JWTTemplate> $jwtTemplateList
      */
     public ?array $jwtTemplateList = null;
 
@@ -43,7 +43,7 @@ class ListJWTTemplatesResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?array<Components\JWTTemplate>  $jwtTemplateList
+     * @param  ?array<\Clerk\Backend\Models\Components\JWTTemplate>  $jwtTemplateList
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?array $jwtTemplateList = null)

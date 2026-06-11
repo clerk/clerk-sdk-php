@@ -13,7 +13,7 @@ class FromOAuth
 {
     /**
      *
-     * @var VerificationFromOauthVerificationStatus $status
+     * @var \Clerk\Backend\Models\Components\VerificationFromOauthVerificationStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationFromOauthVerificationStatus')]
@@ -28,7 +28,7 @@ class FromOAuth
 
     /**
      *
-     * @var ?VerificationFromOauthVerificationObject $object
+     * @var ?\Clerk\Backend\Models\Components\VerificationFromOauthVerificationObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationFromOauthVerificationObject|null')]
@@ -51,7 +51,7 @@ class FromOAuth
 
     /**
      *
-     * @var ?ErrorClerkError $error
+     * @var ?\Clerk\Backend\Models\Components\ErrorClerkError $error
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ErrorClerkError|null')]
@@ -67,12 +67,12 @@ class FromOAuth
     public ?string $verifiedAtClient = null;
 
     /**
-     * @param  VerificationFromOauthVerificationStatus  $status
+     * @param  \Clerk\Backend\Models\Components\VerificationFromOauthVerificationStatus  $status
      * @param  string  $strategy
-     * @param  ?VerificationFromOauthVerificationObject  $object
+     * @param  ?\Clerk\Backend\Models\Components\VerificationFromOauthVerificationObject  $object
      * @param  ?int  $expireAt
      * @param  ?int  $attempts
-     * @param  ?ErrorClerkError  $error
+     * @param  ?\Clerk\Backend\Models\Components\ErrorClerkError  $error
      * @param  ?string  $verifiedAtClient
      * @phpstan-pure
      */

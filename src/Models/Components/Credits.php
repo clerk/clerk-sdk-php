@@ -14,7 +14,7 @@ class Credits
 {
     /**
      *
-     * @var CommerceMoneyResponse $total
+     * @var \Clerk\Backend\Models\Components\CommerceMoneyResponse $total
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('total')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
@@ -22,7 +22,7 @@ class Credits
 
     /**
      *
-     * @var ?Proration $proration
+     * @var ?\Clerk\Backend\Models\Components\Proration $proration
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('proration')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Proration|null')]
@@ -30,16 +30,16 @@ class Credits
 
     /**
      *
-     * @var ?CommerceSubscriptionItemPayer $payer
+     * @var ?\Clerk\Backend\Models\Components\CommerceSubscriptionItemPayer $payer
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('payer')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceSubscriptionItemPayer|null')]
     public ?CommerceSubscriptionItemPayer $payer;
 
     /**
-     * @param  CommerceMoneyResponse  $total
-     * @param  ?Proration  $proration
-     * @param  ?CommerceSubscriptionItemPayer  $payer
+     * @param  \Clerk\Backend\Models\Components\CommerceMoneyResponse  $total
+     * @param  ?\Clerk\Backend\Models\Components\Proration  $proration
+     * @param  ?\Clerk\Backend\Models\Components\CommerceSubscriptionItemPayer  $payer
      * @phpstan-pure
      */
     public function __construct(CommerceMoneyResponse $total, ?Proration $proration = null, ?CommerceSubscriptionItemPayer $payer = null)

@@ -21,14 +21,14 @@ class UpdateSignUpRequest
 
     /**
      *
-     * @var ?UpdateSignUpRequestBody $requestBody
+     * @var ?\Clerk\Backend\Models\Operations\UpdateSignUpRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?UpdateSignUpRequestBody $requestBody = null;
 
     /**
      * @param  string  $id
-     * @param  ?UpdateSignUpRequestBody  $requestBody
+     * @param  ?\Clerk\Backend\Models\Operations\UpdateSignUpRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $id, ?UpdateSignUpRequestBody $requestBody = null)

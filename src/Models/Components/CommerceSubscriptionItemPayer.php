@@ -13,7 +13,7 @@ class CommerceSubscriptionItemPayer
 {
     /**
      *
-     * @var CommerceMoneyResponse $remainingBalance
+     * @var \Clerk\Backend\Models\Components\CommerceMoneyResponse $remainingBalance
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('remaining_balance')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
@@ -21,15 +21,15 @@ class CommerceSubscriptionItemPayer
 
     /**
      *
-     * @var CommerceMoneyResponse $appliedAmount
+     * @var \Clerk\Backend\Models\Components\CommerceMoneyResponse $appliedAmount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('applied_amount')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
     public CommerceMoneyResponse $appliedAmount;
 
     /**
-     * @param  CommerceMoneyResponse  $remainingBalance
-     * @param  CommerceMoneyResponse  $appliedAmount
+     * @param  \Clerk\Backend\Models\Components\CommerceMoneyResponse  $remainingBalance
+     * @param  \Clerk\Backend\Models\Components\CommerceMoneyResponse  $appliedAmount
      * @phpstan-pure
      */
     public function __construct(CommerceMoneyResponse $remainingBalance, CommerceMoneyResponse $appliedAmount)

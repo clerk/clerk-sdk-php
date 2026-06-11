@@ -14,7 +14,7 @@ class RoleSet
 {
     /**
      *
-     * @var RoleSetObject $object
+     * @var \Clerk\Backend\Models\Components\RoleSetObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\RoleSetObject')]
@@ -47,7 +47,7 @@ class RoleSet
     /**
      * The list of roles in this role set
      *
-     * @var array<RoleSetItem> $roles
+     * @var array<\Clerk\Backend\Models\Components\RoleSetItem> $roles
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('roles')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\RoleSetItem>')]
@@ -56,7 +56,7 @@ class RoleSet
     /**
      * The type of the role set ("initial" or "custom")
      *
-     * @var Type $type
+     * @var \Clerk\Backend\Models\Components\Type $type
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Type')]
@@ -89,7 +89,7 @@ class RoleSet
     /**
      * The default role assigned to new organization members
      *
-     * @var ?DefaultRole $defaultRole
+     * @var ?\Clerk\Backend\Models\Components\DefaultRole $defaultRole
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('default_role')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\DefaultRole|null')]
@@ -99,7 +99,7 @@ class RoleSet
     /**
      * The role assigned to the creator of an organization
      *
-     * @var ?CreatorRole $creatorRole
+     * @var ?\Clerk\Backend\Models\Components\CreatorRole $creatorRole
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('creator_role')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CreatorRole|null')]
@@ -109,7 +109,7 @@ class RoleSet
     /**
      * Active migration information, only present when status is "enqueued" or "in_progress"
      *
-     * @var ?RoleSetMigration $roleSetMigration
+     * @var ?\Clerk\Backend\Models\Components\RoleSetMigration $roleSetMigration
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('role_set_migration')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\RoleSetMigration|null')]
@@ -117,18 +117,18 @@ class RoleSet
     public ?RoleSetMigration $roleSetMigration = null;
 
     /**
-     * @param  RoleSetObject  $object
+     * @param  \Clerk\Backend\Models\Components\RoleSetObject  $object
      * @param  string  $id
      * @param  string  $name
      * @param  string  $key
-     * @param  array<RoleSetItem>  $roles
-     * @param  Type  $type
+     * @param  array<\Clerk\Backend\Models\Components\RoleSetItem>  $roles
+     * @param  \Clerk\Backend\Models\Components\Type  $type
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  ?string  $description
-     * @param  ?DefaultRole  $defaultRole
-     * @param  ?CreatorRole  $creatorRole
-     * @param  ?RoleSetMigration  $roleSetMigration
+     * @param  ?\Clerk\Backend\Models\Components\DefaultRole  $defaultRole
+     * @param  ?\Clerk\Backend\Models\Components\CreatorRole  $creatorRole
+     * @param  ?\Clerk\Backend\Models\Components\RoleSetMigration  $roleSetMigration
      * @phpstan-pure
      */
     public function __construct(RoleSetObject $object, string $id, string $name, string $key, array $roles, Type $type, int $createdAt, int $updatedAt, ?string $description = null, ?DefaultRole $defaultRole = null, ?CreatorRole $creatorRole = null, ?RoleSetMigration $roleSetMigration = null)

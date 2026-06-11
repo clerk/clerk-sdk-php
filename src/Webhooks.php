@@ -51,7 +51,7 @@ class Webhooks
      *
      * Create a Svix app and associate it with the current instance
      *
-     * @return Operations\CreateSvixAppResponse
+     * @return \Clerk\Backend\Models\Operations\CreateSvixAppResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function createSvixApp(?Options $options = null): Operations\CreateSvixAppResponse
@@ -99,11 +99,12 @@ class Webhooks
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -146,7 +147,7 @@ class Webhooks
      *
      * Delete a Svix app and disassociate it from the current instance
      *
-     * @return Operations\DeleteSvixAppResponse
+     * @return \Clerk\Backend\Models\Operations\DeleteSvixAppResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function deleteSvixApp(?Options $options = null): Operations\DeleteSvixAppResponse
@@ -194,11 +195,12 @@ class Webhooks
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -232,7 +234,7 @@ class Webhooks
      *
      * Generate a new URL for accessing the Svix's management dashboard for that particular instance
      *
-     * @return Operations\GenerateSvixAuthURLResponse
+     * @return \Clerk\Backend\Models\Operations\GenerateSvixAuthURLResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function generateSvixAuthURL(?Options $options = null): Operations\GenerateSvixAuthURLResponse
@@ -280,11 +282,12 @@ class Webhooks
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

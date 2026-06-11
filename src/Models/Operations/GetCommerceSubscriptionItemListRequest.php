@@ -25,7 +25,7 @@ class GetCommerceSubscriptionItemListRequest
     /**
      * Filter subscription items by status
      *
-     * @var ?GetCommerceSubscriptionItemListQueryParamStatus $status
+     * @var ?\Clerk\Backend\Models\Operations\GetCommerceSubscriptionItemListQueryParamStatus $status
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status')]
     public ?GetCommerceSubscriptionItemListQueryParamStatus $status = null;
@@ -33,7 +33,7 @@ class GetCommerceSubscriptionItemListRequest
     /**
      * Filter subscription items by payer type
      *
-     * @var ?QueryParamPayerType $payerType
+     * @var ?\Clerk\Backend\Models\Operations\QueryParamPayerType $payerType
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=payer_type')]
     public ?QueryParamPayerType $payerType = null;
@@ -87,8 +87,8 @@ class GetCommerceSubscriptionItemListRequest
      * @param  ?bool  $paginated
      * @param  ?int  $limit
      * @param  ?int  $offset
-     * @param  ?GetCommerceSubscriptionItemListQueryParamStatus  $status
-     * @param  ?QueryParamPayerType  $payerType
+     * @param  ?\Clerk\Backend\Models\Operations\GetCommerceSubscriptionItemListQueryParamStatus  $status
+     * @param  ?\Clerk\Backend\Models\Operations\QueryParamPayerType  $payerType
      * @param  ?string  $planId
      * @param  ?bool  $includeFree
      * @param  ?string  $query

@@ -15,7 +15,7 @@ class OAuthApplicationSettings
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var OAuthApplicationSettingsObject $object
+     * @var \Clerk\Backend\Models\Components\OAuthApplicationSettingsObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OAuthApplicationSettingsObject')]
@@ -38,7 +38,7 @@ class OAuthApplicationSettings
     public bool $oauthJwtAccessTokens;
 
     /**
-     * @param  OAuthApplicationSettingsObject  $object
+     * @param  \Clerk\Backend\Models\Components\OAuthApplicationSettingsObject  $object
      * @param  bool  $dynamicOauthClientRegistration
      * @param  bool  $oauthJwtAccessTokens
      * @phpstan-pure

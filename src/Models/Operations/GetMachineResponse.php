@@ -35,7 +35,7 @@ class GetMachineResponse
     /**
      * Success
      *
-     * @var ?Components\Machine $machine
+     * @var ?\Clerk\Backend\Models\Components\Machine $machine
      */
     public ?Components\Machine $machine = null;
 
@@ -43,7 +43,7 @@ class GetMachineResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\Machine  $machine
+     * @param  ?\Clerk\Backend\Models\Components\Machine  $machine
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\Machine $machine = null)

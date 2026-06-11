@@ -15,7 +15,7 @@ class Payer
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var SchemasCommerceSubscriptionItemPayerObject $object
+     * @var \Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemPayerObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemPayerObject')]
@@ -114,7 +114,7 @@ class Payer
 
     /**
      *
-     * @var ?CommerceMoneyResponse $creditsBalance
+     * @var ?\Clerk\Backend\Models\Components\CommerceMoneyResponse $creditsBalance
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('credits_balance')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse|null')]
@@ -122,7 +122,7 @@ class Payer
     public ?CommerceMoneyResponse $creditsBalance = null;
 
     /**
-     * @param  SchemasCommerceSubscriptionItemPayerObject  $object
+     * @param  \Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemPayerObject  $object
      * @param  string  $id
      * @param  string  $instanceId
      * @param  string  $firstName
@@ -134,7 +134,7 @@ class Payer
      * @param  ?string  $userId
      * @param  ?string  $organizationId
      * @param  ?string  $organizationName
-     * @param  ?CommerceMoneyResponse  $creditsBalance
+     * @param  ?\Clerk\Backend\Models\Components\CommerceMoneyResponse  $creditsBalance
      * @phpstan-pure
      */
     public function __construct(SchemasCommerceSubscriptionItemPayerObject $object, string $id, string $instanceId, string $firstName, string $lastName, string $email, string $imageUrl, int $createdAt, int $updatedAt, ?string $userId = null, ?string $organizationId = null, ?string $organizationName = null, ?CommerceMoneyResponse $creditsBalance = null)

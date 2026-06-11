@@ -15,7 +15,7 @@ class RoleSets
     /**
      * $data
      *
-     * @var array<RoleSet> $data
+     * @var array<\Clerk\Backend\Models\Components\RoleSet> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\RoleSet>')]
@@ -30,7 +30,7 @@ class RoleSets
     public int $totalCount;
 
     /**
-     * @param  array<RoleSet>  $data
+     * @param  array<\Clerk\Backend\Models\Components\RoleSet>  $data
      * @param  int  $totalCount
      * @phpstan-pure
      */

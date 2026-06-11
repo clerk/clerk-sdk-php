@@ -35,7 +35,7 @@ class VerifyDomainProxyResponse
     /**
      * Health check information about a domain's proxy configuration validation attempt.
      *
-     * @var ?Components\ProxyCheck $proxyCheck
+     * @var ?\Clerk\Backend\Models\Components\ProxyCheck $proxyCheck
      */
     public ?Components\ProxyCheck $proxyCheck = null;
 
@@ -43,7 +43,7 @@ class VerifyDomainProxyResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\ProxyCheck  $proxyCheck
+     * @param  ?\Clerk\Backend\Models\Components\ProxyCheck  $proxyCheck
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\ProxyCheck $proxyCheck = null)

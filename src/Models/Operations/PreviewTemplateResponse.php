@@ -35,7 +35,7 @@ class PreviewTemplateResponse
     /**
      * OK
      *
-     * @var ?PreviewTemplateResponseBody $object
+     * @var ?\Clerk\Backend\Models\Operations\PreviewTemplateResponseBody $object
      */
     public ?PreviewTemplateResponseBody $object = null;
 
@@ -43,7 +43,7 @@ class PreviewTemplateResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?PreviewTemplateResponseBody  $object
+     * @param  ?\Clerk\Backend\Models\Operations\PreviewTemplateResponseBody  $object
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?PreviewTemplateResponseBody $object = null)

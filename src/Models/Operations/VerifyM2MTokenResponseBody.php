@@ -14,7 +14,7 @@ class VerifyM2MTokenResponseBody
 {
     /**
      *
-     * @var VerifyM2MTokenObject $object
+     * @var \Clerk\Backend\Models\Operations\VerifyM2MTokenObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\VerifyM2MTokenObject')]
@@ -107,7 +107,7 @@ class VerifyM2MTokenResponseBody
     public mixed $claims = null;
 
     /**
-     * @param  VerifyM2MTokenObject  $object
+     * @param  \Clerk\Backend\Models\Operations\VerifyM2MTokenObject  $object
      * @param  string  $id
      * @param  string  $subject
      * @param  bool  $revoked

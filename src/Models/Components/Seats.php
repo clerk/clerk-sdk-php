@@ -21,11 +21,23 @@ class Seats
     public ?int $quantity;
 
     /**
+     * Per-unit cost breakdown by pricing tier
+     *
+     * @var ?array<\Clerk\Backend\Models\Components\SchemasCommercePerUnitTotalTier> $tiers
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('tiers')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\SchemasCommercePerUnitTotalTier>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $tiers = null;
+
+    /**
      * @param  ?int  $quantity
+     * @param  ?array<\Clerk\Backend\Models\Components\SchemasCommercePerUnitTotalTier>  $tiers
      * @phpstan-pure
      */
-    public function __construct(?int $quantity = null)
+    public function __construct(?int $quantity = null, ?array $tiers = null)
     {
         $this->quantity = $quantity;
+        $this->tiers = $tiers;
     }
 }

@@ -13,7 +13,7 @@ class VerificationSAMLVerificationSAML
 {
     /**
      *
-     * @var VerificationSamlVerificationEnterpriseAccountStatus $status
+     * @var \Clerk\Backend\Models\Components\VerificationSamlVerificationEnterpriseAccountStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationSamlVerificationEnterpriseAccountStatus')]
@@ -21,7 +21,7 @@ class VerificationSAMLVerificationSAML
 
     /**
      *
-     * @var VerificationSamlVerificationEnterpriseAccountStrategy $strategy
+     * @var \Clerk\Backend\Models\Components\VerificationSamlVerificationEnterpriseAccountStrategy $strategy
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationSamlVerificationEnterpriseAccountStrategy')]
@@ -29,7 +29,7 @@ class VerificationSAMLVerificationSAML
 
     /**
      *
-     * @var ?VerificationSamlVerificationEnterpriseAccountObject $object
+     * @var ?\Clerk\Backend\Models\Components\VerificationSamlVerificationEnterpriseAccountObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationSamlVerificationEnterpriseAccountObject|null')]
@@ -53,7 +53,7 @@ class VerificationSAMLVerificationSAML
 
     /**
      *
-     * @var ?VerificationSamlErrorEnterpriseAccountClerkError $error
+     * @var ?\Clerk\Backend\Models\Components\VerificationSamlErrorEnterpriseAccountClerkError $error
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationSamlErrorEnterpriseAccountClerkError|null')]
@@ -77,12 +77,12 @@ class VerificationSAMLVerificationSAML
     public ?string $verifiedAtClient = null;
 
     /**
-     * @param  VerificationSamlVerificationEnterpriseAccountStatus  $status
-     * @param  VerificationSamlVerificationEnterpriseAccountStrategy  $strategy
-     * @param  ?VerificationSamlVerificationEnterpriseAccountObject  $object
+     * @param  \Clerk\Backend\Models\Components\VerificationSamlVerificationEnterpriseAccountStatus  $status
+     * @param  \Clerk\Backend\Models\Components\VerificationSamlVerificationEnterpriseAccountStrategy  $strategy
+     * @param  ?\Clerk\Backend\Models\Components\VerificationSamlVerificationEnterpriseAccountObject  $object
      * @param  ?int  $attempts
      * @param  ?string  $externalVerificationRedirectUrl
-     * @param  ?VerificationSamlErrorEnterpriseAccountClerkError  $error
+     * @param  ?\Clerk\Backend\Models\Components\VerificationSamlErrorEnterpriseAccountClerkError  $error
      * @param  ?int  $expireAt
      * @param  ?string  $verifiedAtClient
      * @phpstan-pure

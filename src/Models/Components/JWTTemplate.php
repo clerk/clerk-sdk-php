@@ -14,7 +14,7 @@ class JWTTemplate
 {
     /**
      *
-     * @var JWTTemplateObject $object
+     * @var \Clerk\Backend\Models\Components\JWTTemplateObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\JWTTemplateObject')]
@@ -36,7 +36,7 @@ class JWTTemplate
 
     /**
      *
-     * @var Claims $claims
+     * @var \Clerk\Backend\Models\Components\Claims $claims
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('claims')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Claims')]
@@ -91,10 +91,10 @@ class JWTTemplate
     public int $updatedAt;
 
     /**
-     * @param  JWTTemplateObject  $object
+     * @param  \Clerk\Backend\Models\Components\JWTTemplateObject  $object
      * @param  string  $id
      * @param  string  $name
-     * @param  Claims  $claims
+     * @param  \Clerk\Backend\Models\Components\Claims  $claims
      * @param  int  $lifetime
      * @param  int  $allowedClockSkew
      * @param  bool  $customSigningKey

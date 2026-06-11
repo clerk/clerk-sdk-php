@@ -3,20 +3,20 @@
 
 ## Supported Types
 
-### `Components\Oauth`
+### `Components\VerificationOauthVerificationOauth`
 
 ```php
 /**
-* @var Components\Oauth
+* @var \Clerk\Backend\Models\Components\VerificationOauthVerificationOauth
 */
-Components\Oauth $value = /* values here */
+Components\VerificationOauthVerificationOauth $value = /* values here */
 ```
 
 ### `Components\GoogleOneTap`
 
 ```php
 /**
-* @var Components\GoogleOneTap
+* @var \Clerk\Backend\Models\Components\GoogleOneTap
 */
 Components\GoogleOneTap $value = /* values here */
 ```

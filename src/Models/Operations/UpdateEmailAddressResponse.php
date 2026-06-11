@@ -35,7 +35,7 @@ class UpdateEmailAddressResponse
     /**
      * Success
      *
-     * @var ?Components\EmailAddress $emailAddress
+     * @var ?\Clerk\Backend\Models\Components\EmailAddress $emailAddress
      */
     public ?Components\EmailAddress $emailAddress = null;
 
@@ -43,7 +43,7 @@ class UpdateEmailAddressResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\EmailAddress  $emailAddress
+     * @param  ?\Clerk\Backend\Models\Components\EmailAddress  $emailAddress
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\EmailAddress $emailAddress = null)

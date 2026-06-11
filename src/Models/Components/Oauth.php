@@ -9,91 +9,43 @@ declare(strict_types=1);
 namespace Clerk\Backend\Models\Components;
 
 
+/** Oauth - OAuth-specific metadata, present for OIDC connections */
 class Oauth
 {
     /**
      *
-     * @var VerificationOauthVerificationStatus $status
+     * @var ?string $idToken
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationOauthVerificationStatus')]
-    public VerificationOauthVerificationStatus $status;
-
-    /**
-     *
-     * @var string $strategy
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
-    public string $strategy;
-
-    /**
-     *
-     * @var int $expireAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('expire_at')]
-    public int $expireAt;
-
-    /**
-     *
-     * @var ?VerificationOauthVerificationObject $object
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationOauthVerificationObject|null')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('id_token')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?VerificationOauthVerificationObject $object = null;
+    public ?string $idToken = null;
 
     /**
      *
-     * @var ?string $externalVerificationRedirectUrl
+     * @var ?string $accessToken
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('external_verification_redirect_url')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('access_token')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $externalVerificationRedirectUrl = null;
+    public ?string $accessToken = null;
 
     /**
      *
-     * @var ?int $attempts
+     * @var ?string $userInfo
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('attempts')]
-    public ?int $attempts;
-
-    /**
-     *
-     * @var ?VerificationOauthErrorClerkError $error
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationOauthErrorClerkError|null')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('user_info')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?VerificationOauthErrorClerkError $error = null;
+    public ?string $userInfo = null;
 
     /**
-     *
-     * @var ?string $verifiedAtClient
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('verified_at_client')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $verifiedAtClient = null;
-
-    /**
-     * @param  VerificationOauthVerificationStatus  $status
-     * @param  string  $strategy
-     * @param  int  $expireAt
-     * @param  ?VerificationOauthVerificationObject  $object
-     * @param  ?string  $externalVerificationRedirectUrl
-     * @param  ?int  $attempts
-     * @param  ?VerificationOauthErrorClerkError  $error
-     * @param  ?string  $verifiedAtClient
+     * @param  ?string  $idToken
+     * @param  ?string  $accessToken
+     * @param  ?string  $userInfo
      * @phpstan-pure
      */
-    public function __construct(VerificationOauthVerificationStatus $status, string $strategy, int $expireAt, ?VerificationOauthVerificationObject $object = null, ?string $externalVerificationRedirectUrl = null, ?int $attempts = null, ?VerificationOauthErrorClerkError $error = null, ?string $verifiedAtClient = null)
+    public function __construct(?string $idToken = null, ?string $accessToken = null, ?string $userInfo = null)
     {
-        $this->status = $status;
-        $this->strategy = $strategy;
-        $this->expireAt = $expireAt;
-        $this->object = $object;
-        $this->externalVerificationRedirectUrl = $externalVerificationRedirectUrl;
-        $this->attempts = $attempts;
-        $this->error = $error;
-        $this->verifiedAtClient = $verifiedAtClient;
+        $this->idToken = $idToken;
+        $this->accessToken = $accessToken;
+        $this->userInfo = $userInfo;
     }
 }

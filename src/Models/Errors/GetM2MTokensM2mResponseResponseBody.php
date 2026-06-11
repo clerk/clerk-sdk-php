@@ -15,7 +15,7 @@ class GetM2MTokensM2mResponseResponseBody
     /**
      * $errors
      *
-     * @var array<GetM2MTokensM2mResponseErrors> $errors
+     * @var array<\Clerk\Backend\Models\Errors\GetM2MTokensM2mResponseErrors> $errors
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('errors')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Errors\GetM2MTokensM2mResponseErrors>')]
@@ -31,7 +31,7 @@ class GetM2MTokensM2mResponseResponseBody
     public ?\Psr\Http\Message\ResponseInterface $rawResponse = null;
 
     /**
-     * @param  array<GetM2MTokensM2mResponseErrors>  $errors
+     * @param  array<\Clerk\Backend\Models\Errors\GetM2MTokensM2mResponseErrors>  $errors
      * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
      * @phpstan-pure
      */

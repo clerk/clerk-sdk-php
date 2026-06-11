@@ -16,7 +16,7 @@ class Token
      *
      *
      *
-     * @var TokenObject $object
+     * @var \Clerk\Backend\Models\Components\TokenObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\TokenObject')]
@@ -33,7 +33,7 @@ class Token
     public string $jwt;
 
     /**
-     * @param  TokenObject  $object
+     * @param  \Clerk\Backend\Models\Components\TokenObject  $object
      * @param  string  $jwt
      * @phpstan-pure
      */

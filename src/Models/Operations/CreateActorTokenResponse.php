@@ -35,7 +35,7 @@ class CreateActorTokenResponse
     /**
      * Success
      *
-     * @var ?Components\ActorToken $actorToken
+     * @var ?\Clerk\Backend\Models\Components\ActorToken $actorToken
      */
     public ?Components\ActorToken $actorToken = null;
 
@@ -43,7 +43,7 @@ class CreateActorTokenResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\ActorToken  $actorToken
+     * @param  ?\Clerk\Backend\Models\Components\ActorToken  $actorToken
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\ActorToken $actorToken = null)

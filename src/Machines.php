@@ -51,8 +51,8 @@ class Machines
      *
      * Creates a new machine.
      *
-     * @param  ?Operations\CreateMachineRequestBody  $request
-     * @return Operations\CreateMachineResponse
+     * @param  ?\Clerk\Backend\Models\Operations\CreateMachineRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\CreateMachineResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function create(?Operations\CreateMachineRequestBody $request = null, ?Options $options = null): Operations\CreateMachineResponse
@@ -104,11 +104,12 @@ class Machines
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -153,8 +154,8 @@ class Machines
      * Maximum of 150 scopes per machine.
      *
      * @param  string  $machineId
-     * @param  ?Operations\CreateMachineScopeRequestBody  $requestBody
-     * @return Operations\CreateMachineScopeResponse
+     * @param  ?\Clerk\Backend\Models\Operations\CreateMachineScopeRequestBody  $requestBody
+     * @return \Clerk\Backend\Models\Operations\CreateMachineScopeResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function createScope(string $machineId, ?Operations\CreateMachineScopeRequestBody $requestBody = null, ?Options $options = null): Operations\CreateMachineScopeResponse
@@ -210,11 +211,12 @@ class Machines
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '404', '409', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -258,7 +260,7 @@ class Machines
      * Deletes a machine.
      *
      * @param  string  $machineId
-     * @return Operations\DeleteMachineResponse
+     * @return \Clerk\Backend\Models\Operations\DeleteMachineResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function delete(string $machineId, ?Options $options = null): Operations\DeleteMachineResponse
@@ -309,11 +311,12 @@ class Machines
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -358,7 +361,7 @@ class Machines
      *
      * @param  string  $machineId
      * @param  string  $otherMachineId
-     * @return Operations\DeleteMachineScopeResponse
+     * @return \Clerk\Backend\Models\Operations\DeleteMachineScopeResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function deleteScope(string $machineId, string $otherMachineId, ?Options $options = null): Operations\DeleteMachineScopeResponse
@@ -410,11 +413,12 @@ class Machines
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -458,7 +462,7 @@ class Machines
      * Returns the details of a machine.
      *
      * @param  string  $machineId
-     * @return Operations\GetMachineResponse
+     * @return \Clerk\Backend\Models\Operations\GetMachineResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function get(string $machineId, ?Options $options = null): Operations\GetMachineResponse
@@ -509,11 +513,12 @@ class Machines
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -557,7 +562,7 @@ class Machines
      * Returns the secret key for a machine.
      *
      * @param  string  $machineId
-     * @return Operations\GetMachineSecretKeyResponse
+     * @return \Clerk\Backend\Models\Operations\GetMachineSecretKeyResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function getSecretKey(string $machineId, ?Options $options = null): Operations\GetMachineSecretKeyResponse
@@ -608,11 +613,12 @@ class Machines
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -661,7 +667,7 @@ class Machines
      * @param  ?int  $offset
      * @param  ?string  $query
      * @param  ?string  $orderBy
-     * @return Operations\ListMachinesResponse
+     * @return \Clerk\Backend\Models\Operations\ListMachinesResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function list(?int $limit = null, ?int $offset = null, ?string $query = null, ?string $orderBy = null, ?Options $options = null): Operations\ListMachinesResponse
@@ -718,11 +724,12 @@ class Machines
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -767,9 +774,9 @@ class Machines
      * When the secret key is rotated, make sure to update it in your machine/application.
      * The previous secret key will remain valid for the duration specified by the previous_token_ttl parameter.
      *
-     * @param  Operations\RotateMachineSecretKeyRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\RotateMachineSecretKeyRequestBody  $requestBody
      * @param  string  $machineId
-     * @return Operations\RotateMachineSecretKeyResponse
+     * @return \Clerk\Backend\Models\Operations\RotateMachineSecretKeyResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function rotateSecretKey(Operations\RotateMachineSecretKeyRequestBody $requestBody, string $machineId, ?Options $options = null): Operations\RotateMachineSecretKeyResponse
@@ -826,11 +833,12 @@ class Machines
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -875,8 +883,8 @@ class Machines
      * Only the provided fields will be updated.
      *
      * @param  string  $machineId
-     * @param  ?Operations\UpdateMachineRequestBody  $requestBody
-     * @return Operations\UpdateMachineResponse
+     * @param  ?\Clerk\Backend\Models\Operations\UpdateMachineRequestBody  $requestBody
+     * @return \Clerk\Backend\Models\Operations\UpdateMachineResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function update(string $machineId, ?Operations\UpdateMachineRequestBody $requestBody = null, ?Options $options = null): Operations\UpdateMachineResponse
@@ -932,11 +940,12 @@ class Machines
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

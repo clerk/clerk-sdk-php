@@ -14,7 +14,7 @@ class CommercePlan
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var CommercePlanObject $object
+     * @var \Clerk\Backend\Models\Components\CommercePlanObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommercePlanObject')]
@@ -35,14 +35,6 @@ class CommercePlan
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
-
-    /**
-     *
-     * @var CommerceMoneyResponse $fee
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('fee')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
-    public CommerceMoneyResponse $fee;
 
     /**
      * The ID of the product this plan belongs to.
@@ -111,7 +103,15 @@ class CommercePlan
 
     /**
      *
-     * @var ?AnnualMonthlyFee $annualMonthlyFee
+     * @var ?\Clerk\Backend\Models\Components\Fee $fee
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('fee')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Fee|null')]
+    public ?Fee $fee;
+
+    /**
+     *
+     * @var ?\Clerk\Backend\Models\Components\AnnualMonthlyFee $annualMonthlyFee
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('annual_monthly_fee')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\AnnualMonthlyFee|null')]
@@ -119,7 +119,7 @@ class CommercePlan
 
     /**
      *
-     * @var ?AnnualFee $annualFee
+     * @var ?\Clerk\Backend\Models\Components\AnnualFee $annualFee
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('annual_fee')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\AnnualFee|null')]
@@ -144,7 +144,7 @@ class CommercePlan
     /**
      * The features included in this plan.
      *
-     * @var ?array<FeatureResponse> $features
+     * @var ?array<\Clerk\Backend\Models\Components\FeatureResponse> $features
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('features')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\FeatureResponse>|null')]
@@ -162,7 +162,7 @@ class CommercePlan
     /**
      * Per-unit pricing tiers for this plan (for example, seats)
      *
-     * @var ?array<CommercePlanUnitPrice> $unitPrices
+     * @var ?array<\Clerk\Backend\Models\Components\CommercePlanUnitPrice> $unitPrices
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('unit_prices')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\CommercePlanUnitPrice>|null')]
@@ -170,10 +170,9 @@ class CommercePlan
     public ?array $unitPrices = null;
 
     /**
-     * @param  CommercePlanObject  $object
+     * @param  \Clerk\Backend\Models\Components\CommercePlanObject  $object
      * @param  string  $id
      * @param  string  $name
-     * @param  CommerceMoneyResponse  $fee
      * @param  string  $productId
      * @param  bool  $isDefault
      * @param  bool  $isRecurring
@@ -182,21 +181,21 @@ class CommercePlan
      * @param  string  $forPayerType
      * @param  string  $slug
      * @param  bool  $freeTrialEnabled
-     * @param  ?AnnualMonthlyFee  $annualMonthlyFee
-     * @param  ?AnnualFee  $annualFee
+     * @param  ?\Clerk\Backend\Models\Components\Fee  $fee
+     * @param  ?\Clerk\Backend\Models\Components\AnnualMonthlyFee  $annualMonthlyFee
+     * @param  ?\Clerk\Backend\Models\Components\AnnualFee  $annualFee
      * @param  ?string  $description
      * @param  ?string  $avatarUrl
-     * @param  ?array<FeatureResponse>  $features
+     * @param  ?array<\Clerk\Backend\Models\Components\FeatureResponse>  $features
      * @param  ?int  $freeTrialDays
-     * @param  ?array<CommercePlanUnitPrice>  $unitPrices
+     * @param  ?array<\Clerk\Backend\Models\Components\CommercePlanUnitPrice>  $unitPrices
      * @phpstan-pure
      */
-    public function __construct(CommercePlanObject $object, string $id, string $name, CommerceMoneyResponse $fee, string $productId, bool $isDefault, bool $isRecurring, bool $publiclyVisible, bool $hasBaseFee, string $forPayerType, string $slug, bool $freeTrialEnabled, ?AnnualMonthlyFee $annualMonthlyFee = null, ?AnnualFee $annualFee = null, ?string $description = null, ?string $avatarUrl = null, ?array $features = null, ?int $freeTrialDays = null, ?array $unitPrices = null)
+    public function __construct(CommercePlanObject $object, string $id, string $name, string $productId, bool $isDefault, bool $isRecurring, bool $publiclyVisible, bool $hasBaseFee, string $forPayerType, string $slug, bool $freeTrialEnabled, ?Fee $fee = null, ?AnnualMonthlyFee $annualMonthlyFee = null, ?AnnualFee $annualFee = null, ?string $description = null, ?string $avatarUrl = null, ?array $features = null, ?int $freeTrialDays = null, ?array $unitPrices = null)
     {
         $this->object = $object;
         $this->id = $id;
         $this->name = $name;
-        $this->fee = $fee;
         $this->productId = $productId;
         $this->isDefault = $isDefault;
         $this->isRecurring = $isRecurring;
@@ -205,6 +204,7 @@ class CommercePlan
         $this->forPayerType = $forPayerType;
         $this->slug = $slug;
         $this->freeTrialEnabled = $freeTrialEnabled;
+        $this->fee = $fee;
         $this->annualMonthlyFee = $annualMonthlyFee;
         $this->annualFee = $annualFee;
         $this->description = $description;

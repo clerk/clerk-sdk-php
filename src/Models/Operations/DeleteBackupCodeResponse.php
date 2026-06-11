@@ -35,7 +35,7 @@ class DeleteBackupCodeResponse
     /**
      * Successful operation.
      *
-     * @var ?DeleteBackupCodeResponseBody $object
+     * @var ?\Clerk\Backend\Models\Operations\DeleteBackupCodeResponseBody $object
      */
     public ?DeleteBackupCodeResponseBody $object = null;
 
@@ -43,7 +43,7 @@ class DeleteBackupCodeResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?DeleteBackupCodeResponseBody  $object
+     * @param  ?\Clerk\Backend\Models\Operations\DeleteBackupCodeResponseBody  $object
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?DeleteBackupCodeResponseBody $object = null)

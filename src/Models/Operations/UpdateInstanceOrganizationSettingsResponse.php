@@ -35,7 +35,7 @@ class UpdateInstanceOrganizationSettingsResponse
     /**
      * Success
      *
-     * @var ?Components\OrganizationSettings $organizationSettings
+     * @var ?\Clerk\Backend\Models\Components\OrganizationSettings $organizationSettings
      */
     public ?Components\OrganizationSettings $organizationSettings = null;
 
@@ -43,7 +43,7 @@ class UpdateInstanceOrganizationSettingsResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\OrganizationSettings  $organizationSettings
+     * @param  ?\Clerk\Backend\Models\Components\OrganizationSettings  $organizationSettings
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\OrganizationSettings $organizationSettings = null)

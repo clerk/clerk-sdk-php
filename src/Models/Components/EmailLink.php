@@ -13,7 +13,7 @@ class EmailLink
 {
     /**
      *
-     * @var VerificationEmailLinkVerificationStatus $status
+     * @var \Clerk\Backend\Models\Components\VerificationEmailLinkVerificationStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationEmailLinkVerificationStatus')]
@@ -21,7 +21,7 @@ class EmailLink
 
     /**
      *
-     * @var VerificationEmailLinkVerificationStrategy $strategy
+     * @var \Clerk\Backend\Models\Components\VerificationEmailLinkVerificationStrategy $strategy
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationEmailLinkVerificationStrategy')]
@@ -29,7 +29,7 @@ class EmailLink
 
     /**
      *
-     * @var ?VerificationEmailLinkVerificationObject $object
+     * @var ?\Clerk\Backend\Models\Components\VerificationEmailLinkVerificationObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationEmailLinkVerificationObject|null')]
@@ -59,9 +59,9 @@ class EmailLink
     public ?string $verifiedAtClient = null;
 
     /**
-     * @param  VerificationEmailLinkVerificationStatus  $status
-     * @param  VerificationEmailLinkVerificationStrategy  $strategy
-     * @param  ?VerificationEmailLinkVerificationObject  $object
+     * @param  \Clerk\Backend\Models\Components\VerificationEmailLinkVerificationStatus  $status
+     * @param  \Clerk\Backend\Models\Components\VerificationEmailLinkVerificationStrategy  $strategy
+     * @param  ?\Clerk\Backend\Models\Components\VerificationEmailLinkVerificationObject  $object
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
      * @param  ?string  $verifiedAtClient

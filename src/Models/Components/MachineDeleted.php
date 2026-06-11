@@ -15,7 +15,7 @@ class MachineDeleted
     /**
      * String representing the object's type.
      *
-     * @var MachineDeletedObject $object
+     * @var \Clerk\Backend\Models\Components\MachineDeletedObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\MachineDeletedObject')]
@@ -38,12 +38,12 @@ class MachineDeleted
     public bool $deleted;
 
     /**
-     * @param  MachineDeletedObject  $object
+     * @param  \Clerk\Backend\Models\Components\MachineDeletedObject  $object
      * @param  string  $id
      * @param  bool  $deleted
      * @phpstan-pure
      */
-    public function __construct(MachineDeletedObject $object, string $id, bool $deleted)
+    public function __construct(MachineDeletedObject $object, string $id, bool $deleted = true)
     {
         $this->object = $object;
         $this->id = $id;

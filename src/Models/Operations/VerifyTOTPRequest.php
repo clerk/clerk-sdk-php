@@ -21,14 +21,14 @@ class VerifyTOTPRequest
 
     /**
      *
-     * @var ?VerifyTOTPRequestBody $requestBody
+     * @var ?\Clerk\Backend\Models\Operations\VerifyTOTPRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?VerifyTOTPRequestBody $requestBody = null;
 
     /**
      * @param  string  $userId
-     * @param  ?VerifyTOTPRequestBody  $requestBody
+     * @param  ?\Clerk\Backend\Models\Operations\VerifyTOTPRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $userId, ?VerifyTOTPRequestBody $requestBody = null)

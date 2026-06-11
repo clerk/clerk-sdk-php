@@ -35,7 +35,7 @@ class CreateOrganizationDomainResponse
     /**
      * An organization domain
      *
-     * @var ?Components\OrganizationDomain $organizationDomain
+     * @var ?\Clerk\Backend\Models\Components\OrganizationDomain $organizationDomain
      */
     public ?Components\OrganizationDomain $organizationDomain = null;
 
@@ -43,7 +43,7 @@ class CreateOrganizationDomainResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\OrganizationDomain  $organizationDomain
+     * @param  ?\Clerk\Backend\Models\Components\OrganizationDomain  $organizationDomain
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\OrganizationDomain $organizationDomain = null)

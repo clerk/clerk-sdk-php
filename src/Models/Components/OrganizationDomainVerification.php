@@ -9,17 +9,22 @@ declare(strict_types=1);
 namespace Clerk\Backend\Models\Components;
 
 
-/** OrganizationDomainVerification - Verification details for the domain */
+/**
+ * OrganizationDomainVerification - Deprecated alias for `affiliation_verification`. Kept for backward compatibility on the current API version; will be removed in the next API version. Prefer `affiliation_verification`.
+ *
+ *
+ *
+ * @deprecated  class: This will be removed in a future release, please migrate away from it as soon as possible.
+ */
 class OrganizationDomainVerification
 {
     /**
-     * Status of the verification. It can be `unverified` or `verified`
+     * Status of the verification. It can be `unverified`, `verified`, `failed`, or `expired`.
      *
-     * @var OrganizationDomainStatus $status
+     * @var string $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationDomainStatus')]
-    public OrganizationDomainStatus $status;
+    public string $status;
 
     /**
      * Name of the strategy used to verify the domain
@@ -46,17 +51,29 @@ class OrganizationDomainVerification
     public ?int $expireAt;
 
     /**
-     * @param  OrganizationDomainStatus  $status
+     * Unix timestamp of when ownership was verified. Only populated on `ownership_verification`; null on `affiliation_verification`.
+     *
+     *
+     *
+     * @var ?int $verifiedAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('verified_at')]
+    public ?int $verifiedAt;
+
+    /**
+     * @param  string  $status
      * @param  string  $strategy
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
+     * @param  ?int  $verifiedAt
      * @phpstan-pure
      */
-    public function __construct(OrganizationDomainStatus $status, string $strategy, ?int $attempts = null, ?int $expireAt = null)
+    public function __construct(string $status, string $strategy, ?int $attempts = null, ?int $expireAt = null, ?int $verifiedAt = null)
     {
         $this->status = $status;
         $this->strategy = $strategy;
         $this->attempts = $attempts;
         $this->expireAt = $expireAt;
+        $this->verifiedAt = $verifiedAt;
     }
 }

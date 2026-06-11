@@ -14,7 +14,7 @@ class CommercePaymentMethodResponse
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var CommercePaymentMethodResponseObject $object
+     * @var \Clerk\Backend\Models\Components\CommercePaymentMethodResponseObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommercePaymentMethodResponseObject')]
@@ -39,7 +39,7 @@ class CommercePaymentMethodResponse
     /**
      * The payment method type.
      *
-     * @var PaymentType $paymentType
+     * @var \Clerk\Backend\Models\Components\PaymentType $paymentType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('payment_type')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\PaymentType')]
@@ -64,7 +64,7 @@ class CommercePaymentMethodResponse
     /**
      * Status of the payment method.
      *
-     * @var CommercePaymentMethodResponseStatus $status
+     * @var \Clerk\Backend\Models\Components\CommercePaymentMethodResponseStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommercePaymentMethodResponseStatus')]
@@ -158,13 +158,13 @@ class CommercePaymentMethodResponse
     public ?int $expiryMonth = null;
 
     /**
-     * @param  CommercePaymentMethodResponseObject  $object
+     * @param  \Clerk\Backend\Models\Components\CommercePaymentMethodResponseObject  $object
      * @param  string  $id
      * @param  string  $payerId
-     * @param  PaymentType  $paymentType
+     * @param  \Clerk\Backend\Models\Components\PaymentType  $paymentType
      * @param  string  $gateway
      * @param  string  $gatewayExternalId
-     * @param  CommercePaymentMethodResponseStatus  $status
+     * @param  \Clerk\Backend\Models\Components\CommercePaymentMethodResponseStatus  $status
      * @param  ?bool  $isDefault
      * @param  ?string  $gatewayExternalAccountId
      * @param  ?string  $last4

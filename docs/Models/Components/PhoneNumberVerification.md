@@ -7,7 +7,7 @@
 
 ```php
 /**
-* @var Components\VerificationOTP
+* @var \Clerk\Backend\Models\Components\VerificationOTP
 */
 Components\VerificationOTP $value = /* values here */
 ```
@@ -16,7 +16,7 @@ Components\VerificationOTP $value = /* values here */
 
 ```php
 /**
-* @var Components\VerificationAdmin
+* @var \Clerk\Backend\Models\Components\VerificationAdmin
 */
 Components\VerificationAdmin $value = /* values here */
 ```

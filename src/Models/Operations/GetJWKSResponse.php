@@ -35,7 +35,7 @@ class GetJWKSResponse
     /**
      * Get the JSON Web Key Set
      *
-     * @var ?Components\Jwks $jwks
+     * @var ?\Clerk\Backend\Models\Components\Jwks $jwks
      */
     public ?Components\Jwks $jwks = null;
 
@@ -43,7 +43,7 @@ class GetJWKSResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\Jwks  $jwks
+     * @param  ?\Clerk\Backend\Models\Components\Jwks  $jwks
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\Jwks $jwks = null)

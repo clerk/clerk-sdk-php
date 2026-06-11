@@ -52,9 +52,9 @@ class RoleSets
      * Adds one or more roles to an existing role set.
      * You can optionally update the default role or creator role when adding new roles.
      *
-     * @param  Operations\AddRolesToRoleSetRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\AddRolesToRoleSetRequestBody  $requestBody
      * @param  string  $roleSetKeyOrId
-     * @return Operations\AddRolesToRoleSetResponse
+     * @return \Clerk\Backend\Models\Operations\AddRolesToRoleSetResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function addRoles(Operations\AddRolesToRoleSetRequestBody $requestBody, string $roleSetKeyOrId, ?Options $options = null): Operations\AddRolesToRoleSetResponse
@@ -111,11 +111,12 @@ class RoleSets
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -160,8 +161,8 @@ class RoleSets
      * The key must be unique for the instance and start with the 'role_set:' prefix, followed by lowercase alphanumeric characters and underscores only.
      * You must provide at least one role and specify a default role key and creator role key.
      *
-     * @param  Operations\CreateRoleSetRequestBody  $request
-     * @return Operations\CreateRoleSetResponse
+     * @param  \Clerk\Backend\Models\Operations\CreateRoleSetRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\CreateRoleSetResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function create(Operations\CreateRoleSetRequestBody $request, ?Options $options = null): Operations\CreateRoleSetResponse
@@ -214,11 +215,12 @@ class RoleSets
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '402', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -262,7 +264,7 @@ class RoleSets
      * Retrieves an existing role set by its key or ID.
      *
      * @param  string  $roleSetKeyOrId
-     * @return Operations\GetRoleSetResponse
+     * @return \Clerk\Backend\Models\Operations\GetRoleSetResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function get(string $roleSetKeyOrId, ?Options $options = null): Operations\GetRoleSetResponse
@@ -313,11 +315,12 @@ class RoleSets
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '403', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -366,7 +369,7 @@ class RoleSets
      * @param  ?string  $orderBy
      * @param  ?int  $limit
      * @param  ?int  $offset
-     * @return Operations\ListRoleSetsResponse
+     * @return \Clerk\Backend\Models\Operations\ListRoleSetsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function list(?string $query = null, ?string $orderBy = null, ?int $limit = null, ?int $offset = null, ?Options $options = null): Operations\ListRoleSetsResponse
@@ -423,11 +426,12 @@ class RoleSets
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -471,9 +475,9 @@ class RoleSets
      * Replaces a role in a role set with another role. This atomically removes
      * the source role and reassigns any members to the destination role.
      *
-     * @param  Operations\ReplaceRoleInRoleSetRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\ReplaceRoleInRoleSetRequestBody  $requestBody
      * @param  string  $roleSetKeyOrId
-     * @return Operations\ReplaceRoleInRoleSetResponse
+     * @return \Clerk\Backend\Models\Operations\ReplaceRoleInRoleSetResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function replaceRole(Operations\ReplaceRoleInRoleSetRequestBody $requestBody, string $roleSetKeyOrId, ?Options $options = null): Operations\ReplaceRoleInRoleSetResponse
@@ -530,11 +534,12 @@ class RoleSets
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -579,9 +584,9 @@ class RoleSets
      * the role set but allows for atomic replacement with migration support.
      * Organizations using this role set will be migrated to the destination role set.
      *
-     * @param  Operations\ReplaceRoleSetRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\ReplaceRoleSetRequestBody  $requestBody
      * @param  string  $roleSetKeyOrId
-     * @return Operations\ReplaceRoleSetResponse
+     * @return \Clerk\Backend\Models\Operations\ReplaceRoleSetResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function replace(Operations\ReplaceRoleSetRequestBody $requestBody, string $roleSetKeyOrId, ?Options $options = null): Operations\ReplaceRoleSetResponse
@@ -638,11 +643,12 @@ class RoleSets
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -687,9 +693,9 @@ class RoleSets
      * You can update the name, key, description, type, default role, or creator role.
      * All parameters are optional - you can update only the fields you want to change.
      *
-     * @param  Operations\UpdateRoleSetRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\UpdateRoleSetRequestBody  $requestBody
      * @param  string  $roleSetKeyOrId
-     * @return Operations\UpdateRoleSetResponse
+     * @return \Clerk\Backend\Models\Operations\UpdateRoleSetResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function update(Operations\UpdateRoleSetRequestBody $requestBody, string $roleSetKeyOrId, ?Options $options = null): Operations\UpdateRoleSetResponse
@@ -746,11 +752,12 @@ class RoleSets
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

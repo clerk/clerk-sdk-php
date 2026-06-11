@@ -13,7 +13,7 @@ class WaitlistEntryInvitation
 {
     /**
      *
-     * @var WaitlistEntryInvitationObject $object
+     * @var \Clerk\Backend\Models\Components\WaitlistEntryInvitationObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\WaitlistEntryInvitationObject')]
@@ -44,7 +44,7 @@ class WaitlistEntryInvitation
 
     /**
      *
-     * @var WaitlistEntryInvitationStatus $status
+     * @var \Clerk\Backend\Models\Components\WaitlistEntryInvitationStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\WaitlistEntryInvitationStatus')]
@@ -98,11 +98,11 @@ class WaitlistEntryInvitation
     public ?int $expiresAt = null;
 
     /**
-     * @param  WaitlistEntryInvitationObject  $object
+     * @param  \Clerk\Backend\Models\Components\WaitlistEntryInvitationObject  $object
      * @param  string  $id
      * @param  string  $emailAddress
      * @param  array<string, mixed>  $publicMetadata
-     * @param  WaitlistEntryInvitationStatus  $status
+     * @param  \Clerk\Backend\Models\Components\WaitlistEntryInvitationStatus  $status
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  ?bool  $revoked

@@ -23,14 +23,14 @@ class CreateBillingPriceTransitionRequest
     /**
      * Parameters for the price transition
      *
-     * @var Components\PriceTransitionRequest $priceTransitionRequest
+     * @var \Clerk\Backend\Models\Components\PriceTransitionRequest $priceTransitionRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public Components\PriceTransitionRequest $priceTransitionRequest;
 
     /**
      * @param  string  $subscriptionItemId
-     * @param  Components\PriceTransitionRequest  $priceTransitionRequest
+     * @param  \Clerk\Backend\Models\Components\PriceTransitionRequest  $priceTransitionRequest
      * @phpstan-pure
      */
     public function __construct(string $subscriptionItemId, Components\PriceTransitionRequest $priceTransitionRequest)

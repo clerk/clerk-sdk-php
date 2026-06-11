@@ -1,11 +1,23 @@
-# SamlConnection
+# SAMLConnection
 
 
 ## Supported Types
 
-### `Components\SAMLConnectionSAMLConnection`
+### `Components\One`
 
 ```php
-Components\SAMLConnectionSAMLConnection $value = /* values here */
+/**
+* @var \Clerk\Backend\Models\Components\One
+*/
+Components\One $value = /* values here */
+```
+
+### `Components\Two`
+
+```php
+/**
+* @var \Clerk\Backend\Models\Components\Two
+*/
+Components\Two $value = /* values here */
 ```
 

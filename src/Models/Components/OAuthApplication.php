@@ -13,7 +13,7 @@ class OAuthApplication
 {
     /**
      *
-     * @var OAuthApplicationObject $object
+     * @var \Clerk\Backend\Models\Components\OAuthApplicationObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OAuthApplicationObject')]
@@ -172,7 +172,7 @@ class OAuthApplication
     public ?string $clientImageUrl;
 
     /**
-     * @param  OAuthApplicationObject  $object
+     * @param  \Clerk\Backend\Models\Components\OAuthApplicationObject  $object
      * @param  string  $id
      * @param  string  $instanceId
      * @param  string  $name

@@ -14,7 +14,7 @@ class UpsertTemplateRequest
     /**
      * The type of template to update
      *
-     * @var UpsertTemplatePathParamTemplateType $templateType
+     * @var \Clerk\Backend\Models\Operations\UpsertTemplatePathParamTemplateType $templateType
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=template_type')]
     public UpsertTemplatePathParamTemplateType $templateType;
@@ -29,15 +29,15 @@ class UpsertTemplateRequest
 
     /**
      *
-     * @var ?UpsertTemplateRequestBody $requestBody
+     * @var ?\Clerk\Backend\Models\Operations\UpsertTemplateRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?UpsertTemplateRequestBody $requestBody = null;
 
     /**
-     * @param  UpsertTemplatePathParamTemplateType  $templateType
+     * @param  \Clerk\Backend\Models\Operations\UpsertTemplatePathParamTemplateType  $templateType
      * @param  string  $slug
-     * @param  ?UpsertTemplateRequestBody  $requestBody
+     * @param  ?\Clerk\Backend\Models\Operations\UpsertTemplateRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(UpsertTemplatePathParamTemplateType $templateType, string $slug, ?UpsertTemplateRequestBody $requestBody = null)

@@ -13,7 +13,7 @@ class Ticket
 {
     /**
      *
-     * @var VerificationTicketVerificationStatus $status
+     * @var \Clerk\Backend\Models\Components\VerificationTicketVerificationStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationTicketVerificationStatus')]
@@ -21,7 +21,7 @@ class Ticket
 
     /**
      *
-     * @var VerificationTicketVerificationStrategy $strategy
+     * @var \Clerk\Backend\Models\Components\VerificationTicketVerificationStrategy $strategy
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationTicketVerificationStrategy')]
@@ -29,7 +29,7 @@ class Ticket
 
     /**
      *
-     * @var ?VerificationTicketVerificationObject $object
+     * @var ?\Clerk\Backend\Models\Components\VerificationTicketVerificationObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationTicketVerificationObject|null')]
@@ -59,9 +59,9 @@ class Ticket
     public ?string $verifiedAtClient = null;
 
     /**
-     * @param  VerificationTicketVerificationStatus  $status
-     * @param  VerificationTicketVerificationStrategy  $strategy
-     * @param  ?VerificationTicketVerificationObject  $object
+     * @param  \Clerk\Backend\Models\Components\VerificationTicketVerificationStatus  $status
+     * @param  \Clerk\Backend\Models\Components\VerificationTicketVerificationStrategy  $strategy
+     * @param  ?\Clerk\Backend\Models\Components\VerificationTicketVerificationObject  $object
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
      * @param  ?string  $verifiedAtClient

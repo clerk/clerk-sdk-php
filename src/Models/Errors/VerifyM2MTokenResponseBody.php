@@ -15,7 +15,7 @@ class VerifyM2MTokenResponseBody
     /**
      * $errors
      *
-     * @var array<VerifyM2MTokenErrors> $errors
+     * @var array<\Clerk\Backend\Models\Errors\VerifyM2MTokenErrors> $errors
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('errors')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Errors\VerifyM2MTokenErrors>')]
@@ -31,7 +31,7 @@ class VerifyM2MTokenResponseBody
     public ?\Psr\Http\Message\ResponseInterface $rawResponse = null;
 
     /**
-     * @param  array<VerifyM2MTokenErrors>  $errors
+     * @param  array<\Clerk\Backend\Models\Errors\VerifyM2MTokenErrors>  $errors
      * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
      * @phpstan-pure
      */

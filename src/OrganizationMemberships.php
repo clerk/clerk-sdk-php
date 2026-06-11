@@ -56,9 +56,9 @@ class OrganizationMemberships
      * the next time they create a session, presuming they don't explicitly set a
      * different organization as active before then.
      *
-     * @param  Operations\CreateOrganizationMembershipRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\CreateOrganizationMembershipRequestBody  $requestBody
      * @param  string  $organizationId
-     * @return Operations\CreateOrganizationMembershipResponse
+     * @return \Clerk\Backend\Models\Operations\CreateOrganizationMembershipResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function create(Operations\CreateOrganizationMembershipRequestBody $requestBody, string $organizationId, ?Options $options = null): Operations\CreateOrganizationMembershipResponse
@@ -115,11 +115,12 @@ class OrganizationMemberships
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -164,7 +165,7 @@ class OrganizationMemberships
      *
      * @param  string  $organizationId
      * @param  string  $userId
-     * @return Operations\DeleteOrganizationMembershipResponse
+     * @return \Clerk\Backend\Models\Operations\DeleteOrganizationMembershipResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function delete(string $organizationId, string $userId, ?Options $options = null): Operations\DeleteOrganizationMembershipResponse
@@ -216,11 +217,12 @@ class OrganizationMemberships
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -263,8 +265,8 @@ class OrganizationMemberships
      *
      * Retrieves all user memberships for the given organization
      *
-     * @param  Operations\ListOrganizationMembershipsRequest  $request
-     * @return Operations\ListOrganizationMembershipsResponse
+     * @param  \Clerk\Backend\Models\Operations\ListOrganizationMembershipsRequest  $request
+     * @return \Clerk\Backend\Models\Operations\ListOrganizationMembershipsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function list(Operations\ListOrganizationMembershipsRequest $request, ?Options $options = null): Operations\ListOrganizationMembershipsResponse
@@ -315,11 +317,12 @@ class OrganizationMemberships
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -362,10 +365,10 @@ class OrganizationMemberships
      *
      * Updates the properties of an existing organization membership
      *
-     * @param  Operations\UpdateOrganizationMembershipRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\UpdateOrganizationMembershipRequestBody  $requestBody
      * @param  string  $organizationId
      * @param  string  $userId
-     * @return Operations\UpdateOrganizationMembershipResponse
+     * @return \Clerk\Backend\Models\Operations\UpdateOrganizationMembershipResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function update(Operations\UpdateOrganizationMembershipRequestBody $requestBody, string $organizationId, string $userId, ?Options $options = null): Operations\UpdateOrganizationMembershipResponse
@@ -423,11 +426,12 @@ class OrganizationMemberships
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -474,8 +478,8 @@ class OrganizationMemberships
      *
      * @param  string  $organizationId
      * @param  string  $userId
-     * @param  ?Operations\UpdateOrganizationMembershipMetadataRequestBody  $requestBody
-     * @return Operations\UpdateOrganizationMembershipMetadataResponse
+     * @param  ?\Clerk\Backend\Models\Operations\UpdateOrganizationMembershipMetadataRequestBody  $requestBody
+     * @return \Clerk\Backend\Models\Operations\UpdateOrganizationMembershipMetadataResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function updateMetadata(string $organizationId, string $userId, ?Operations\UpdateOrganizationMembershipMetadataRequestBody $requestBody = null, ?Options $options = null): Operations\UpdateOrganizationMembershipMetadataResponse
@@ -532,11 +536,12 @@ class OrganizationMemberships
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

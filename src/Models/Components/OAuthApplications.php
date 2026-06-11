@@ -15,7 +15,7 @@ class OAuthApplications
     /**
      * $data
      *
-     * @var array<OAuthApplication> $data
+     * @var array<\Clerk\Backend\Models\Components\OAuthApplication> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\OAuthApplication>')]
@@ -32,7 +32,7 @@ class OAuthApplications
     public int $totalCount;
 
     /**
-     * @param  array<OAuthApplication>  $data
+     * @param  array<\Clerk\Backend\Models\Components\OAuthApplication>  $data
      * @param  int  $totalCount
      * @phpstan-pure
      */

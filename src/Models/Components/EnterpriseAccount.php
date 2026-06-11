@@ -23,7 +23,7 @@ class EnterpriseAccount
      *
      *
      *
-     * @var EnterpriseAccountObject $object
+     * @var \Clerk\Backend\Models\Components\EnterpriseAccountObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\EnterpriseAccountObject')]
@@ -55,7 +55,7 @@ class EnterpriseAccount
      *
      *
      *
-     * @var ?Protocol $protocol
+     * @var ?\Clerk\Backend\Models\Components\Protocol $protocol
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('protocol')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Protocol|null')]
@@ -74,7 +74,7 @@ class EnterpriseAccount
 
     /**
      *
-     * @var VerificationTicketVerificationTicket|VerificationSAMLVerificationSAML|VerificationOauth|null $verification
+     * @var \Clerk\Backend\Models\Components\VerificationTicketVerificationTicket|\Clerk\Backend\Models\Components\VerificationSAMLVerificationSAML|\Clerk\Backend\Models\Components\VerificationOauth|null $verification
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationTicketVerificationTicket|\Clerk\Backend\Models\Components\VerificationSAMLVerificationSAML|\Clerk\Backend\Models\Components\VerificationOauth|null')]
@@ -116,12 +116,12 @@ class EnterpriseAccount
 
     /**
      *
-     * @var EnterpriseConnection1|EnterpriseConnection2|null $enterpriseConnection
+     * @var \Clerk\Backend\Models\Components\EnterpriseAccountConnection1|\Clerk\Backend\Models\Components\EnterpriseAccountConnection2|null $enterpriseConnection
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('enterprise_connection')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\EnterpriseConnection1|\Clerk\Backend\Models\Components\EnterpriseConnection2|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\EnterpriseAccountConnection1|\Clerk\Backend\Models\Components\EnterpriseAccountConnection2|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public EnterpriseConnection1|EnterpriseConnection2|null $enterpriseConnection = null;
+    public EnterpriseAccountConnection1|EnterpriseAccountConnection2|null $enterpriseConnection = null;
 
     /**
      * Unix timestamp of last authentication.
@@ -136,22 +136,22 @@ class EnterpriseAccount
 
     /**
      * @param  string  $id
-     * @param  EnterpriseAccountObject  $object
+     * @param  \Clerk\Backend\Models\Components\EnterpriseAccountObject  $object
      * @param  string  $provider
      * @param  bool  $active
      * @param  string  $emailAddress
-     * @param  ?Protocol  $protocol
+     * @param  ?\Clerk\Backend\Models\Components\Protocol  $protocol
      * @param  ?array<string, mixed>  $publicMetadata
-     * @param  VerificationTicketVerificationTicket|VerificationSAMLVerificationSAML|VerificationOauth|null  $verification
+     * @param  \Clerk\Backend\Models\Components\VerificationTicketVerificationTicket|\Clerk\Backend\Models\Components\VerificationSAMLVerificationSAML|\Clerk\Backend\Models\Components\VerificationOauth|null  $verification
      * @param  ?string  $firstName
      * @param  ?string  $lastName
      * @param  ?string  $providerUserId
      * @param  ?string  $enterpriseConnectionId
-     * @param  EnterpriseConnection1|EnterpriseConnection2|null  $enterpriseConnection
+     * @param  \Clerk\Backend\Models\Components\EnterpriseAccountConnection1|\Clerk\Backend\Models\Components\EnterpriseAccountConnection2|null  $enterpriseConnection
      * @param  ?int  $lastAuthenticatedAt
      * @phpstan-pure
      */
-    public function __construct(string $id, EnterpriseAccountObject $object, string $provider, bool $active, string $emailAddress, ?Protocol $protocol = null, ?array $publicMetadata = null, VerificationTicketVerificationTicket|VerificationSAMLVerificationSAML|VerificationOauth|null $verification = null, ?string $firstName = null, ?string $lastName = null, ?string $providerUserId = null, ?string $enterpriseConnectionId = null, EnterpriseConnection1|EnterpriseConnection2|null $enterpriseConnection = null, ?int $lastAuthenticatedAt = null)
+    public function __construct(string $id, EnterpriseAccountObject $object, string $provider, bool $active, string $emailAddress, ?Protocol $protocol = null, ?array $publicMetadata = null, VerificationTicketVerificationTicket|VerificationSAMLVerificationSAML|VerificationOauth|null $verification = null, ?string $firstName = null, ?string $lastName = null, ?string $providerUserId = null, ?string $enterpriseConnectionId = null, EnterpriseAccountConnection1|EnterpriseAccountConnection2|null $enterpriseConnection = null, ?int $lastAuthenticatedAt = null)
     {
         $this->id = $id;
         $this->object = $object;

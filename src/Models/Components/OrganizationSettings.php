@@ -15,7 +15,7 @@ class OrganizationSettings
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var OrganizationSettingsObject $object
+     * @var \Clerk\Backend\Models\Components\OrganizationSettingsObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationSettingsObject')]
@@ -43,6 +43,13 @@ class OrganizationSettings
     public int $maxAllowedRoles;
 
     /**
+     *
+     * @var int $maxAllowedDomains
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('max_allowed_domains')]
+    public int $maxAllowedDomains;
+
+    /**
      * The role key that a user will be assigned after creating an organization.
      *
      * @var string $creatorRole
@@ -68,7 +75,7 @@ class OrganizationSettings
     /**
      * $domainsEnrollmentModes
      *
-     * @var array<DomainsEnrollmentModes> $domainsEnrollmentModes
+     * @var array<\Clerk\Backend\Models\Components\DomainsEnrollmentModes> $domainsEnrollmentModes
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('domains_enrollment_modes')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\DomainsEnrollmentModes>')]
@@ -118,14 +125,15 @@ class OrganizationSettings
     public ?string $initialRoleSetKey = null;
 
     /**
-     * @param  OrganizationSettingsObject  $object
+     * @param  \Clerk\Backend\Models\Components\OrganizationSettingsObject  $object
      * @param  bool  $enabled
      * @param  int  $maxAllowedMemberships
      * @param  int  $maxAllowedRoles
+     * @param  int  $maxAllowedDomains
      * @param  string  $creatorRole
      * @param  bool  $adminDeleteEnabled
      * @param  bool  $domainsEnabled
-     * @param  array<DomainsEnrollmentModes>  $domainsEnrollmentModes
+     * @param  array<\Clerk\Backend\Models\Components\DomainsEnrollmentModes>  $domainsEnrollmentModes
      * @param  string  $domainsDefaultRole
      * @param  ?int  $maxRoleSetsAllowed
      * @param  ?int  $maxAllowedPermissions
@@ -133,12 +141,13 @@ class OrganizationSettings
      * @param  ?string  $initialRoleSetKey
      * @phpstan-pure
      */
-    public function __construct(OrganizationSettingsObject $object, bool $enabled, int $maxAllowedMemberships, int $maxAllowedRoles, string $creatorRole, bool $adminDeleteEnabled, bool $domainsEnabled, array $domainsEnrollmentModes, string $domainsDefaultRole, ?int $maxRoleSetsAllowed = null, ?int $maxAllowedPermissions = null, ?bool $slugDisabled = null, ?string $initialRoleSetKey = null)
+    public function __construct(OrganizationSettingsObject $object, bool $enabled, int $maxAllowedMemberships, int $maxAllowedRoles, int $maxAllowedDomains, string $creatorRole, bool $adminDeleteEnabled, bool $domainsEnabled, array $domainsEnrollmentModes, string $domainsDefaultRole, ?int $maxRoleSetsAllowed = null, ?int $maxAllowedPermissions = null, ?bool $slugDisabled = null, ?string $initialRoleSetKey = null)
     {
         $this->object = $object;
         $this->enabled = $enabled;
         $this->maxAllowedMemberships = $maxAllowedMemberships;
         $this->maxAllowedRoles = $maxAllowedRoles;
+        $this->maxAllowedDomains = $maxAllowedDomains;
         $this->creatorRole = $creatorRole;
         $this->adminDeleteEnabled = $adminDeleteEnabled;
         $this->domainsEnabled = $domainsEnabled;

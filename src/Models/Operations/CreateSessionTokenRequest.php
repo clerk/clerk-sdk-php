@@ -21,14 +21,14 @@ class CreateSessionTokenRequest
 
     /**
      *
-     * @var ?CreateSessionTokenRequestBody $requestBody
+     * @var ?\Clerk\Backend\Models\Operations\CreateSessionTokenRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?CreateSessionTokenRequestBody $requestBody = null;
 
     /**
      * @param  string  $sessionId
-     * @param  ?CreateSessionTokenRequestBody  $requestBody
+     * @param  ?\Clerk\Backend\Models\Operations\CreateSessionTokenRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $sessionId, ?CreateSessionTokenRequestBody $requestBody = null)

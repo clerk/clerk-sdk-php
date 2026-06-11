@@ -35,7 +35,7 @@ class CreateBillingPriceTransitionResponse
     /**
      * A commerce price transition.
      *
-     * @var ?Components\CommercePriceTransitionResponse $commercePriceTransitionResponse
+     * @var ?\Clerk\Backend\Models\Components\CommercePriceTransitionResponse $commercePriceTransitionResponse
      */
     public ?Components\CommercePriceTransitionResponse $commercePriceTransitionResponse = null;
 
@@ -43,7 +43,7 @@ class CreateBillingPriceTransitionResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\CommercePriceTransitionResponse  $commercePriceTransitionResponse
+     * @param  ?\Clerk\Backend\Models\Components\CommercePriceTransitionResponse  $commercePriceTransitionResponse
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\CommercePriceTransitionResponse $commercePriceTransitionResponse = null)

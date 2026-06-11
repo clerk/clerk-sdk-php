@@ -17,7 +17,7 @@ class EmailAddress
      *
      *
      *
-     * @var EmailAddressObject $object
+     * @var \Clerk\Backend\Models\Components\EmailAddressObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\EmailAddressObject')]
@@ -40,7 +40,7 @@ class EmailAddress
     /**
      * $linkedTo
      *
-     * @var array<IdentificationLink> $linkedTo
+     * @var array<\Clerk\Backend\Models\Components\IdentificationLink> $linkedTo
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('linked_to')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\IdentificationLink>')]
@@ -76,12 +76,12 @@ class EmailAddress
 
     /**
      *
-     * @var Otp|Admin|FromOAuth|Ticket|Saml|EmailLink|null $verification
+     * @var \Clerk\Backend\Models\Components\Otp|\Clerk\Backend\Models\Components\Admin|\Clerk\Backend\Models\Components\FromOAuth|\Clerk\Backend\Models\Components\Ticket|\Clerk\Backend\Models\Components\VerificationSAMLVerificationEmailAddressSAML|\Clerk\Backend\Models\Components\EmailLink|\Clerk\Backend\Models\Components\VerificationSCIM|null $verification
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Otp|\Clerk\Backend\Models\Components\Admin|\Clerk\Backend\Models\Components\FromOAuth|\Clerk\Backend\Models\Components\Ticket|\Clerk\Backend\Models\Components\Saml|\Clerk\Backend\Models\Components\EmailLink|null')]
-    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'object', map: ['verification_otp' => '\Clerk\Backend\Models\Components\Otp', 'verification_admin' => '\Clerk\Backend\Models\Components\Admin', 'verification_from_oauth' => '\Clerk\Backend\Models\Components\FromOAuth', 'verification_ticket' => '\Clerk\Backend\Models\Components\Ticket', 'verification_saml' => '\Clerk\Backend\Models\Components\Saml', 'verification_email_link' => '\Clerk\Backend\Models\Components\EmailLink'])]
-    public Otp|Admin|FromOAuth|Ticket|Saml|EmailLink|null $verification;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Otp|\Clerk\Backend\Models\Components\Admin|\Clerk\Backend\Models\Components\FromOAuth|\Clerk\Backend\Models\Components\Ticket|\Clerk\Backend\Models\Components\VerificationSAMLVerificationEmailAddressSAML|\Clerk\Backend\Models\Components\EmailLink|\Clerk\Backend\Models\Components\VerificationSCIM|null')]
+    #[\Speakeasy\Serializer\Annotation\UnionDiscriminator(field: 'object', map: ['verification_otp' => '\Clerk\Backend\Models\Components\Otp', 'verification_admin' => '\Clerk\Backend\Models\Components\Admin', 'verification_from_oauth' => '\Clerk\Backend\Models\Components\FromOAuth', 'verification_ticket' => '\Clerk\Backend\Models\Components\Ticket', 'verification_saml' => '\Clerk\Backend\Models\Components\VerificationSAMLVerificationEmailAddressSAML', 'verification_email_link' => '\Clerk\Backend\Models\Components\EmailLink', 'verification_scim' => '\Clerk\Backend\Models\Components\VerificationSCIM'])]
+    public Otp|Admin|FromOAuth|Ticket|VerificationSAMLVerificationEmailAddressSAML|EmailLink|VerificationSCIM|null $verification;
 
     /**
      * Indicates whether this email address domain matches an active enterprise connection.
@@ -95,18 +95,18 @@ class EmailAddress
     public ?bool $matchesSsoConnection = null;
 
     /**
-     * @param  EmailAddressObject  $object
+     * @param  \Clerk\Backend\Models\Components\EmailAddressObject  $object
      * @param  string  $emailAddress
      * @param  bool  $reserved
-     * @param  array<IdentificationLink>  $linkedTo
+     * @param  array<\Clerk\Backend\Models\Components\IdentificationLink>  $linkedTo
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  ?string  $id
-     * @param  Otp|Admin|FromOAuth|Ticket|Saml|EmailLink|null  $verification
+     * @param  \Clerk\Backend\Models\Components\Otp|\Clerk\Backend\Models\Components\Admin|\Clerk\Backend\Models\Components\FromOAuth|\Clerk\Backend\Models\Components\Ticket|\Clerk\Backend\Models\Components\VerificationSAMLVerificationEmailAddressSAML|\Clerk\Backend\Models\Components\EmailLink|\Clerk\Backend\Models\Components\VerificationSCIM|null  $verification
      * @param  ?bool  $matchesSsoConnection
      * @phpstan-pure
      */
-    public function __construct(EmailAddressObject $object, string $emailAddress, bool $reserved, array $linkedTo, int $createdAt, int $updatedAt, ?string $id = null, Otp|Admin|FromOAuth|Ticket|Saml|EmailLink|null $verification = null, ?bool $matchesSsoConnection = null)
+    public function __construct(EmailAddressObject $object, string $emailAddress, bool $reserved, array $linkedTo, int $createdAt, int $updatedAt, ?string $id = null, Otp|Admin|FromOAuth|Ticket|VerificationSAMLVerificationEmailAddressSAML|EmailLink|VerificationSCIM|null $verification = null, ?bool $matchesSsoConnection = null)
     {
         $this->object = $object;
         $this->emailAddress = $emailAddress;

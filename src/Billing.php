@@ -54,7 +54,7 @@ class Billing
      *
      * @param  string  $subscriptionItemId
      * @param  ?bool  $endNow
-     * @return Operations\CancelCommerceSubscriptionItemResponse
+     * @return \Clerk\Backend\Models\Operations\CancelCommerceSubscriptionItemResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function cancelSubscriptionItem(string $subscriptionItemId, ?bool $endNow = null, ?Options $options = null): Operations\CancelCommerceSubscriptionItemResponse
@@ -109,11 +109,12 @@ class Billing
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -168,8 +169,8 @@ class Billing
      * Creates a custom price for a billing plan. Custom prices allow you to offer different pricing
      * to specific customers while maintaining the same plan structure.
      *
-     * @param  Components\CreateBillingPriceRequest  $request
-     * @return Operations\CreateBillingPriceResponse
+     * @param  \Clerk\Backend\Models\Components\CreateBillingPriceRequest  $request
+     * @return \Clerk\Backend\Models\Operations\CreateBillingPriceResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function createPrice(Components\CreateBillingPriceRequest $request, ?Options $options = null): Operations\CreateBillingPriceResponse
@@ -222,11 +223,12 @@ class Billing
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -281,9 +283,9 @@ class Billing
      * Creates a price transition for the specified subscription item.
      * This may create an upcoming subscription item or activate immediately depending on plan and payer rules.
      *
-     * @param  Components\PriceTransitionRequest  $priceTransitionRequest
+     * @param  \Clerk\Backend\Models\Components\PriceTransitionRequest  $priceTransitionRequest
      * @param  string  $subscriptionItemId
-     * @return Operations\CreateBillingPriceTransitionResponse
+     * @return \Clerk\Backend\Models\Operations\CreateBillingPriceTransitionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function createPriceTransition(Components\PriceTransitionRequest $priceTransitionRequest, string $subscriptionItemId, ?Options $options = null): Operations\CreateBillingPriceTransitionResponse
@@ -340,11 +342,12 @@ class Billing
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '404', '409', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -401,9 +404,9 @@ class Billing
      * The timestamp must be in the future and not more than 365 days from the end of the current trial period
      * This operation is idempotent - repeated requests with the same timestamp will not change the trial period.
      *
-     * @param  Components\ExtendFreeTrialRequest  $extendFreeTrialRequest
+     * @param  \Clerk\Backend\Models\Components\ExtendFreeTrialRequest  $extendFreeTrialRequest
      * @param  string  $subscriptionItemId
-     * @return Operations\ExtendBillingSubscriptionItemFreeTrialResponse
+     * @return \Clerk\Backend\Models\Operations\ExtendBillingSubscriptionItemFreeTrialResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function extendSubscriptionItemFreeTrial(Components\ExtendFreeTrialRequest $extendFreeTrialRequest, string $subscriptionItemId, ?Options $options = null): Operations\ExtendBillingSubscriptionItemFreeTrialResponse
@@ -460,11 +463,12 @@ class Billing
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -523,7 +527,7 @@ class Billing
      * @param  ?int  $limit
      * @param  ?int  $offset
      * @param  ?string  $planId
-     * @return Operations\GetBillingPriceListResponse
+     * @return \Clerk\Backend\Models\Operations\GetBillingPriceListResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function listPrices(?bool $paginated = null, ?int $limit = null, ?int $offset = null, ?string $planId = null, ?Options $options = null): Operations\GetBillingPriceListResponse
@@ -580,11 +584,12 @@ class Billing
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -639,7 +644,7 @@ class Billing
      * Retrieves the details of a billing statement.
      *
      * @param  string  $statementID
-     * @return Operations\GetBillingStatementResponse
+     * @return \Clerk\Backend\Models\Operations\GetBillingStatementResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function getStatement(string $statementID, ?Options $options = null): Operations\GetBillingStatementResponse
@@ -690,11 +695,12 @@ class Billing
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -752,7 +758,7 @@ class Billing
      * @param  ?bool  $paginated
      * @param  ?int  $limit
      * @param  ?int  $offset
-     * @return Operations\GetBillingStatementListResponse
+     * @return \Clerk\Backend\Models\Operations\GetBillingStatementListResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function listStatements(?bool $paginated = null, ?int $limit = null, ?int $offset = null, ?Options $options = null): Operations\GetBillingStatementListResponse
@@ -808,11 +814,12 @@ class Billing
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -871,7 +878,7 @@ class Billing
      * @param  ?bool  $paginated
      * @param  ?int  $limit
      * @param  ?int  $offset
-     * @return Operations\GetBillingStatementPaymentAttemptsResponse
+     * @return \Clerk\Backend\Models\Operations\GetBillingStatementPaymentAttemptsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function getStatementPaymentAttempts(string $statementID, ?bool $paginated = null, ?int $limit = null, ?int $offset = null, ?Options $options = null): Operations\GetBillingStatementPaymentAttemptsResponse
@@ -928,11 +935,12 @@ class Billing
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -990,8 +998,8 @@ class Billing
      * @param  ?bool  $paginated
      * @param  ?int  $limit
      * @param  ?int  $offset
-     * @param  ?Operations\PayerType  $payerType
-     * @return Operations\GetCommercePlanListResponse
+     * @param  ?\Clerk\Backend\Models\Operations\PayerType  $payerType
+     * @return \Clerk\Backend\Models\Operations\GetCommercePlanListResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function listPlans(?bool $paginated = null, ?int $limit = null, ?int $offset = null, ?Operations\PayerType $payerType = null, ?Options $options = null): Operations\GetCommercePlanListResponse
@@ -1048,11 +1056,12 @@ class Billing
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1107,8 +1116,8 @@ class Billing
      * Returns a list of all subscription items for the instance. The subscription items are returned sorted by creation date,
      * with the newest appearing first. This includes subscriptions for both users and organizations. Pagination is supported.
      *
-     * @param  ?Operations\GetCommerceSubscriptionItemListRequest  $request
-     * @return Operations\GetCommerceSubscriptionItemListResponse
+     * @param  ?\Clerk\Backend\Models\Operations\GetCommerceSubscriptionItemListRequest  $request
+     * @return \Clerk\Backend\Models\Operations\GetCommerceSubscriptionItemListResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function listSubscriptionItems(?Operations\GetCommerceSubscriptionItemListRequest $request = null, ?Options $options = null): Operations\GetCommerceSubscriptionItemListResponse
@@ -1159,11 +1168,12 @@ class Billing
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

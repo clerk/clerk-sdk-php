@@ -13,7 +13,7 @@ class OrganizationMembershipOrganization
 {
     /**
      *
-     * @var OrganizationMembershipOrganizationObject $object
+     * @var \Clerk\Backend\Models\Components\OrganizationMembershipOrganizationObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationMembershipOrganizationObject')]
@@ -163,7 +163,7 @@ class OrganizationMembershipOrganization
     public ?string $roleSetKey = null;
 
     /**
-     * @param  OrganizationMembershipOrganizationObject  $object
+     * @param  \Clerk\Backend\Models\Components\OrganizationMembershipOrganizationObject  $object
      * @param  string  $id
      * @param  string  $name
      * @param  string  $slug

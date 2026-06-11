@@ -13,7 +13,7 @@ class VerificationAdminVerificationAdmin
 {
     /**
      *
-     * @var VerificationAdminVerificationWeb3WalletStatus $status
+     * @var \Clerk\Backend\Models\Components\VerificationAdminVerificationWeb3WalletStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationAdminVerificationWeb3WalletStatus')]
@@ -21,7 +21,7 @@ class VerificationAdminVerificationAdmin
 
     /**
      *
-     * @var VerificationAdminVerificationWeb3WalletStrategy $strategy
+     * @var \Clerk\Backend\Models\Components\VerificationAdminVerificationWeb3WalletStrategy $strategy
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationAdminVerificationWeb3WalletStrategy')]
@@ -29,7 +29,7 @@ class VerificationAdminVerificationAdmin
 
     /**
      *
-     * @var ?VerificationAdminVerificationWeb3WalletObject $object
+     * @var ?\Clerk\Backend\Models\Components\VerificationAdminVerificationWeb3WalletObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationAdminVerificationWeb3WalletObject|null')]
@@ -59,9 +59,9 @@ class VerificationAdminVerificationAdmin
     public ?string $verifiedAtClient = null;
 
     /**
-     * @param  VerificationAdminVerificationWeb3WalletStatus  $status
-     * @param  VerificationAdminVerificationWeb3WalletStrategy  $strategy
-     * @param  ?VerificationAdminVerificationWeb3WalletObject  $object
+     * @param  \Clerk\Backend\Models\Components\VerificationAdminVerificationWeb3WalletStatus  $status
+     * @param  \Clerk\Backend\Models\Components\VerificationAdminVerificationWeb3WalletStrategy  $strategy
+     * @param  ?\Clerk\Backend\Models\Components\VerificationAdminVerificationWeb3WalletObject  $object
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
      * @param  ?string  $verifiedAtClient

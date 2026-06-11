@@ -15,7 +15,7 @@ class MachineSecretKey
     /**
      * String representing the object's type.
      *
-     * @var MachineSecretKeyObject $object
+     * @var \Clerk\Backend\Models\Components\MachineSecretKeyObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\MachineSecretKeyObject')]
@@ -30,7 +30,7 @@ class MachineSecretKey
     public string $secret;
 
     /**
-     * @param  MachineSecretKeyObject  $object
+     * @param  \Clerk\Backend\Models\Components\MachineSecretKeyObject  $object
      * @param  string  $secret
      * @phpstan-pure
      */

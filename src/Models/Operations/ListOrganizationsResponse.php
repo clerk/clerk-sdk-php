@@ -35,7 +35,7 @@ class ListOrganizationsResponse
     /**
      * A list of organizations
      *
-     * @var ?Components\Organizations $organizations
+     * @var ?\Clerk\Backend\Models\Components\Organizations $organizations
      */
     public ?Components\Organizations $organizations = null;
 
@@ -43,7 +43,7 @@ class ListOrganizationsResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\Organizations  $organizations
+     * @param  ?\Clerk\Backend\Models\Components\Organizations  $organizations
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\Organizations $organizations = null)

@@ -14,7 +14,7 @@ class RevertTemplateRequest
     /**
      * The type of template to revert
      *
-     * @var RevertTemplatePathParamTemplateType $templateType
+     * @var \Clerk\Backend\Models\Operations\RevertTemplatePathParamTemplateType $templateType
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=template_type')]
     public RevertTemplatePathParamTemplateType $templateType;
@@ -28,7 +28,7 @@ class RevertTemplateRequest
     public string $slug;
 
     /**
-     * @param  RevertTemplatePathParamTemplateType  $templateType
+     * @param  \Clerk\Backend\Models\Operations\RevertTemplatePathParamTemplateType  $templateType
      * @param  string  $slug
      * @phpstan-pure
      */

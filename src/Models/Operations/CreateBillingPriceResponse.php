@@ -35,7 +35,7 @@ class CreateBillingPriceResponse
     /**
      * A billing price.
      *
-     * @var ?Components\BillingPriceResponse $billingPriceResponse
+     * @var ?\Clerk\Backend\Models\Components\BillingPriceResponse $billingPriceResponse
      */
     public ?Components\BillingPriceResponse $billingPriceResponse = null;
 
@@ -43,7 +43,7 @@ class CreateBillingPriceResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\BillingPriceResponse  $billingPriceResponse
+     * @param  ?\Clerk\Backend\Models\Components\BillingPriceResponse  $billingPriceResponse
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\BillingPriceResponse $billingPriceResponse = null)

@@ -21,14 +21,14 @@ class UpdateUserRequest
 
     /**
      *
-     * @var UpdateUserRequestBody $requestBody
+     * @var \Clerk\Backend\Models\Operations\UpdateUserRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public UpdateUserRequestBody $requestBody;
 
     /**
      * @param  string  $userId
-     * @param  UpdateUserRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\UpdateUserRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $userId, UpdateUserRequestBody $requestBody)

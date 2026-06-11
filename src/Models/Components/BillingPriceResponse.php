@@ -14,7 +14,7 @@ class BillingPriceResponse
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var BillingPriceResponseObject $object
+     * @var \Clerk\Backend\Models\Components\BillingPriceResponseObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\BillingPriceResponseObject')]
@@ -77,22 +77,6 @@ class BillingPriceResponse
     public int $annualMonthlyAmount;
 
     /**
-     *
-     * @var CommerceMoneyResponse $fee
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('fee')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
-    public CommerceMoneyResponse $fee;
-
-    /**
-     *
-     * @var CommerceMoneyResponse $annualMonthlyFee
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('annual_monthly_fee')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
-    public CommerceMoneyResponse $annualMonthlyFee;
-
-    /**
      * Whether this price is the default price for its plan.
      *
      * @var bool $isDefault
@@ -109,6 +93,31 @@ class BillingPriceResponse
     public int $createdAt;
 
     /**
+     * Which billing periods this price supports.
+     *
+     * @var \Clerk\Backend\Models\Components\SupportedBillingPeriods $supportedBillingPeriods
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('supported_billing_periods')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SupportedBillingPeriods')]
+    public SupportedBillingPeriods $supportedBillingPeriods;
+
+    /**
+     *
+     * @var ?\Clerk\Backend\Models\Components\BillingPriceResponseFee $fee
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('fee')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\BillingPriceResponseFee|null')]
+    public ?BillingPriceResponseFee $fee;
+
+    /**
+     *
+     * @var ?\Clerk\Backend\Models\Components\BillingPriceResponseAnnualMonthlyFee $annualMonthlyFee
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('annual_monthly_fee')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\BillingPriceResponseAnnualMonthlyFee|null')]
+    public ?BillingPriceResponseAnnualMonthlyFee $annualMonthlyFee;
+
+    /**
      * The description of the price.
      *
      * @var ?string $description
@@ -118,7 +127,7 @@ class BillingPriceResponse
     public ?string $description = null;
 
     /**
-     * @param  BillingPriceResponseObject  $object
+     * @param  \Clerk\Backend\Models\Components\BillingPriceResponseObject  $object
      * @param  string  $id
      * @param  string  $planId
      * @param  string  $instanceId
@@ -126,14 +135,15 @@ class BillingPriceResponse
      * @param  string  $currencySymbol
      * @param  int  $amount
      * @param  int  $annualMonthlyAmount
-     * @param  CommerceMoneyResponse  $fee
-     * @param  CommerceMoneyResponse  $annualMonthlyFee
      * @param  bool  $isDefault
      * @param  int  $createdAt
+     * @param  \Clerk\Backend\Models\Components\SupportedBillingPeriods  $supportedBillingPeriods
+     * @param  ?\Clerk\Backend\Models\Components\BillingPriceResponseFee  $fee
+     * @param  ?\Clerk\Backend\Models\Components\BillingPriceResponseAnnualMonthlyFee  $annualMonthlyFee
      * @param  ?string  $description
      * @phpstan-pure
      */
-    public function __construct(BillingPriceResponseObject $object, string $id, string $planId, string $instanceId, string $currency, string $currencySymbol, int $amount, int $annualMonthlyAmount, CommerceMoneyResponse $fee, CommerceMoneyResponse $annualMonthlyFee, bool $isDefault, int $createdAt, ?string $description = null)
+    public function __construct(BillingPriceResponseObject $object, string $id, string $planId, string $instanceId, string $currency, string $currencySymbol, int $amount, int $annualMonthlyAmount, bool $isDefault, int $createdAt, SupportedBillingPeriods $supportedBillingPeriods, ?BillingPriceResponseFee $fee = null, ?BillingPriceResponseAnnualMonthlyFee $annualMonthlyFee = null, ?string $description = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -143,10 +153,11 @@ class BillingPriceResponse
         $this->currencySymbol = $currencySymbol;
         $this->amount = $amount;
         $this->annualMonthlyAmount = $annualMonthlyAmount;
-        $this->fee = $fee;
-        $this->annualMonthlyFee = $annualMonthlyFee;
         $this->isDefault = $isDefault;
         $this->createdAt = $createdAt;
+        $this->supportedBillingPeriods = $supportedBillingPeriods;
+        $this->fee = $fee;
+        $this->annualMonthlyFee = $annualMonthlyFee;
         $this->description = $description;
     }
 }

@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace Clerk\Backend\Models\Components;
 
 
-/** SchemasCommerceSubscriptionItemNextPaymentAmount - Amount for the next payment. */
+/** SchemasCommerceSubscriptionItemNextPaymentAmount - Base plan fee for the next payment. Does not include per-unit (e.g. seat) charges; see `totals.grand_total` for the full amount. */
 class SchemasCommerceSubscriptionItemNextPaymentAmount
 {
     /**

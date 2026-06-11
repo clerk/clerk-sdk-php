@@ -35,7 +35,7 @@ class ExtendBillingSubscriptionItemFreeTrialResponse
     /**
      * A commerce subscription item.
      *
-     * @var ?Components\SchemasCommerceSubscriptionItem $schemasCommerceSubscriptionItem
+     * @var ?\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItem $schemasCommerceSubscriptionItem
      */
     public ?Components\SchemasCommerceSubscriptionItem $schemasCommerceSubscriptionItem = null;
 
@@ -43,7 +43,7 @@ class ExtendBillingSubscriptionItemFreeTrialResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\SchemasCommerceSubscriptionItem  $schemasCommerceSubscriptionItem
+     * @param  ?\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItem  $schemasCommerceSubscriptionItem
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\SchemasCommerceSubscriptionItem $schemasCommerceSubscriptionItem = null)

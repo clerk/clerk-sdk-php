@@ -21,14 +21,14 @@ class UpdateSAMLConnectionRequest
 
     /**
      *
-     * @var UpdateSAMLConnectionRequestBody $requestBody
+     * @var \Clerk\Backend\Models\Operations\UpdateSAMLConnectionRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public UpdateSAMLConnectionRequestBody $requestBody;
 
     /**
      * @param  string  $samlConnectionId
-     * @param  UpdateSAMLConnectionRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\UpdateSAMLConnectionRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $samlConnectionId, UpdateSAMLConnectionRequestBody $requestBody)

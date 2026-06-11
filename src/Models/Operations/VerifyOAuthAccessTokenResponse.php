@@ -35,7 +35,7 @@ class VerifyOAuthAccessTokenResponse
     /**
      * 200 OK
      *
-     * @var ResponseBody1|ResponseBody2|null $oneOf
+     * @var \Clerk\Backend\Models\Operations\ResponseBody1|\Clerk\Backend\Models\Operations\ResponseBody2|null $oneOf
      */
     public ResponseBody1|ResponseBody2|null $oneOf = null;
 
@@ -43,7 +43,7 @@ class VerifyOAuthAccessTokenResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ResponseBody1|ResponseBody2|null  $oneOf
+     * @param  \Clerk\Backend\Models\Operations\ResponseBody1|\Clerk\Backend\Models\Operations\ResponseBody2|null  $oneOf
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ResponseBody1|ResponseBody2|null $oneOf = null)

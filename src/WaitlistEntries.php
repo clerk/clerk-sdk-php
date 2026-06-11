@@ -58,8 +58,8 @@ class WaitlistEntries
      *
      * This endpoint is limited to a maximum of 50 entries per API call. If you need to add more entries, please make multiple requests.
      *
-     * @param  ?array<Operations\CreateBulkWaitlistEntriesRequestBody>  $request
-     * @return Operations\CreateBulkWaitlistEntriesResponse
+     * @param  ?array<\Clerk\Backend\Models\Operations\CreateBulkWaitlistEntriesRequestBody>  $request
+     * @return \Clerk\Backend\Models\Operations\CreateBulkWaitlistEntriesResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function bulkCreate(?array $request = null, ?Options $options = null): Operations\CreateBulkWaitlistEntriesResponse
@@ -111,11 +111,12 @@ class WaitlistEntries
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -159,8 +160,8 @@ class WaitlistEntries
      * Creates a new waitlist entry for the given email address.
      * If the email address is already on the waitlist, no new entry will be created and the existing waitlist entry will be returned.
      *
-     * @param  ?Operations\CreateWaitlistEntryRequestBody  $request
-     * @return Operations\CreateWaitlistEntryResponse
+     * @param  ?\Clerk\Backend\Models\Operations\CreateWaitlistEntryRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\CreateWaitlistEntryResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function create(?Operations\CreateWaitlistEntryRequestBody $request = null, ?Options $options = null): Operations\CreateWaitlistEntryResponse
@@ -212,11 +213,12 @@ class WaitlistEntries
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -260,7 +262,7 @@ class WaitlistEntries
      * Delete a pending waitlist entry.
      *
      * @param  string  $waitlistEntryId
-     * @return Operations\DeleteWaitlistEntryResponse
+     * @return \Clerk\Backend\Models\Operations\DeleteWaitlistEntryResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function delete(string $waitlistEntryId, ?Options $options = null): Operations\DeleteWaitlistEntryResponse
@@ -311,11 +313,12 @@ class WaitlistEntries
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '404', '409', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -359,8 +362,8 @@ class WaitlistEntries
      * Send an invite to the email address in a waitlist entry.
      *
      * @param  string  $waitlistEntryId
-     * @param  ?Operations\InviteWaitlistEntryRequestBody  $requestBody
-     * @return Operations\InviteWaitlistEntryResponse
+     * @param  ?\Clerk\Backend\Models\Operations\InviteWaitlistEntryRequestBody  $requestBody
+     * @return \Clerk\Backend\Models\Operations\InviteWaitlistEntryResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function invite(string $waitlistEntryId, ?Operations\InviteWaitlistEntryRequestBody $requestBody = null, ?Options $options = null): Operations\InviteWaitlistEntryResponse
@@ -416,11 +419,12 @@ class WaitlistEntries
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '404', '409', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -465,8 +469,8 @@ class WaitlistEntries
      * Entries are ordered by creation date in descending order by default.
      * Supports filtering by email address or status and pagination with limit and offset parameters.
      *
-     * @param  ?Operations\ListWaitlistEntriesRequest  $request
-     * @return Operations\ListWaitlistEntriesResponse
+     * @param  ?\Clerk\Backend\Models\Operations\ListWaitlistEntriesRequest  $request
+     * @return \Clerk\Backend\Models\Operations\ListWaitlistEntriesResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function list(?Operations\ListWaitlistEntriesRequest $request = null, ?Options $options = null): Operations\ListWaitlistEntriesResponse
@@ -517,11 +521,12 @@ class WaitlistEntries
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -554,7 +559,7 @@ class WaitlistEntries
      * Reject a waitlist entry.
      *
      * @param  string  $waitlistEntryId
-     * @return Operations\RejectWaitlistEntryResponse
+     * @return \Clerk\Backend\Models\Operations\RejectWaitlistEntryResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function reject(string $waitlistEntryId, ?Options $options = null): Operations\RejectWaitlistEntryResponse
@@ -605,11 +610,12 @@ class WaitlistEntries
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '404', '409', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

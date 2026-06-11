@@ -14,7 +14,7 @@ class OAuthAccessToken
 {
     /**
      *
-     * @var OAuthAccessTokenObject $object
+     * @var \Clerk\Backend\Models\Components\OAuthAccessTokenObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OAuthAccessTokenObject')]
@@ -105,7 +105,7 @@ class OAuthAccessToken
     public ?string $tokenSecret = null;
 
     /**
-     * @param  OAuthAccessTokenObject  $object
+     * @param  \Clerk\Backend\Models\Components\OAuthAccessTokenObject  $object
      * @param  string  $externalAccountId
      * @param  string  $providerUserId
      * @param  string  $token

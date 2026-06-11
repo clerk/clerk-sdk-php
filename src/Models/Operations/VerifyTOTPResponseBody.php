@@ -22,7 +22,7 @@ class VerifyTOTPResponseBody
 
     /**
      *
-     * @var ?CodeType $codeType
+     * @var ?\Clerk\Backend\Models\Operations\CodeType $codeType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('code_type')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\CodeType|null')]
@@ -31,7 +31,7 @@ class VerifyTOTPResponseBody
 
     /**
      * @param  ?bool  $verified
-     * @param  ?CodeType  $codeType
+     * @param  ?\Clerk\Backend\Models\Operations\CodeType  $codeType
      * @phpstan-pure
      */
     public function __construct(?bool $verified = null, ?CodeType $codeType = null)

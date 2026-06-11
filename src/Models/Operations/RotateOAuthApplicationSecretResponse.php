@@ -35,7 +35,7 @@ class RotateOAuthApplicationSecretResponse
     /**
      * An OAuth application with client secret
      *
-     * @var ?Components\OAuthApplicationWithSecret $oAuthApplicationWithSecret
+     * @var ?\Clerk\Backend\Models\Components\OAuthApplicationWithSecret $oAuthApplicationWithSecret
      */
     public ?Components\OAuthApplicationWithSecret $oAuthApplicationWithSecret = null;
 
@@ -43,7 +43,7 @@ class RotateOAuthApplicationSecretResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\OAuthApplicationWithSecret  $oAuthApplicationWithSecret
+     * @param  ?\Clerk\Backend\Models\Components\OAuthApplicationWithSecret  $oAuthApplicationWithSecret
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\OAuthApplicationWithSecret $oAuthApplicationWithSecret = null)

@@ -16,7 +16,7 @@ class BlocklistIdentifier
      *
      *
      *
-     * @var ?BlocklistIdentifierObject $object
+     * @var ?\Clerk\Backend\Models\Components\BlocklistIdentifierObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\BlocklistIdentifierObject|null')]
@@ -44,7 +44,7 @@ class BlocklistIdentifier
 
     /**
      *
-     * @var ?BlocklistIdentifierIdentifierType $identifierType
+     * @var ?\Clerk\Backend\Models\Components\BlocklistIdentifierIdentifierType $identifierType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('identifier_type')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\BlocklistIdentifierIdentifierType|null')]
@@ -82,10 +82,10 @@ class BlocklistIdentifier
     public ?int $updatedAt = null;
 
     /**
-     * @param  ?BlocklistIdentifierObject  $object
+     * @param  ?\Clerk\Backend\Models\Components\BlocklistIdentifierObject  $object
      * @param  ?string  $id
      * @param  ?string  $identifier
-     * @param  ?BlocklistIdentifierIdentifierType  $identifierType
+     * @param  ?\Clerk\Backend\Models\Components\BlocklistIdentifierIdentifierType  $identifierType
      * @param  ?string  $instanceId
      * @param  ?int  $createdAt
      * @param  ?int  $updatedAt

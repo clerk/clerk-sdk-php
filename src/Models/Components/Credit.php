@@ -24,7 +24,7 @@ class Credit
     /**
      * Credit amount.
      *
-     * @var ?SchemasCommerceSubscriptionItemCreditAmount $amount
+     * @var ?\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemCreditAmount $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemCreditAmount|null')]
@@ -33,7 +33,7 @@ class Credit
 
     /**
      * @param  ?float  $cycleRemainingPercent
-     * @param  ?SchemasCommerceSubscriptionItemCreditAmount  $amount
+     * @param  ?\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemCreditAmount  $amount
      * @phpstan-pure
      */
     public function __construct(?float $cycleRemainingPercent = null, ?SchemasCommerceSubscriptionItemCreditAmount $amount = null)

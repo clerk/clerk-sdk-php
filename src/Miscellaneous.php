@@ -51,8 +51,8 @@ class Miscellaneous
      * The Clerk interstitial endpoint serves an html page that loads clerk.js in order to check the user's authentication state.
      * It is used by Clerk SDKs when the user's authentication state cannot be immediately determined.
      *
-     * @param  ?Operations\GetPublicInterstitialRequest  $request
-     * @return Operations\GetPublicInterstitialResponse
+     * @param  ?\Clerk\Backend\Models\Operations\GetPublicInterstitialRequest  $request
+     * @return \Clerk\Backend\Models\Operations\GetPublicInterstitialResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function getPublicInterstitial(?Operations\GetPublicInterstitialRequest $request = null, ?Options $options = null): Operations\GetPublicInterstitialResponse
@@ -103,11 +103,12 @@ class Miscellaneous
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 

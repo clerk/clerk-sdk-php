@@ -35,7 +35,7 @@ class DeleteMachineResponse
     /**
      * Success
      *
-     * @var ?Components\MachineDeleted $machineDeleted
+     * @var ?\Clerk\Backend\Models\Components\MachineDeleted $machineDeleted
      */
     public ?Components\MachineDeleted $machineDeleted = null;
 
@@ -43,7 +43,7 @@ class DeleteMachineResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\MachineDeleted  $machineDeleted
+     * @param  ?\Clerk\Backend\Models\Components\MachineDeleted  $machineDeleted
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\MachineDeleted $machineDeleted = null)

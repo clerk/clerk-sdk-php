@@ -16,7 +16,7 @@ class Web3Wallet
      *
      *
      *
-     * @var Web3WalletObject $object
+     * @var \Clerk\Backend\Models\Components\Web3WalletObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Web3WalletObject')]
@@ -59,7 +59,7 @@ class Web3Wallet
 
     /**
      *
-     * @var Web3Signature|VerificationAdminVerificationAdmin|null $verification
+     * @var \Clerk\Backend\Models\Components\Web3Signature|\Clerk\Backend\Models\Components\VerificationAdminVerificationAdmin|null $verification
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Web3Signature|\Clerk\Backend\Models\Components\VerificationAdminVerificationAdmin|null')]
@@ -67,12 +67,12 @@ class Web3Wallet
     public Web3Signature|VerificationAdminVerificationAdmin|null $verification;
 
     /**
-     * @param  Web3WalletObject  $object
+     * @param  \Clerk\Backend\Models\Components\Web3WalletObject  $object
      * @param  string  $web3Wallet
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  ?string  $id
-     * @param  Web3Signature|VerificationAdminVerificationAdmin|null  $verification
+     * @param  \Clerk\Backend\Models\Components\Web3Signature|\Clerk\Backend\Models\Components\VerificationAdminVerificationAdmin|null  $verification
      * @phpstan-pure
      */
     public function __construct(Web3WalletObject $object, string $web3Wallet, int $createdAt, int $updatedAt, ?string $id = null, Web3Signature|VerificationAdminVerificationAdmin|null $verification = null)

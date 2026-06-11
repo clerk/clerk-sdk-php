@@ -34,7 +34,7 @@ class VerificationGoogleOneTapErrorClerkError
 
     /**
      *
-     * @var ?ClerkErrorErrorExternalAccountWithVerificationVerificationMeta $meta
+     * @var ?\Clerk\Backend\Models\Components\ClerkErrorErrorExternalAccountWithVerificationVerificationMeta $meta
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('meta')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ClerkErrorErrorExternalAccountWithVerificationVerificationMeta|null')]
@@ -45,7 +45,7 @@ class VerificationGoogleOneTapErrorClerkError
      * @param  string  $message
      * @param  string  $longMessage
      * @param  string  $code
-     * @param  ?ClerkErrorErrorExternalAccountWithVerificationVerificationMeta  $meta
+     * @param  ?\Clerk\Backend\Models\Components\ClerkErrorErrorExternalAccountWithVerificationVerificationMeta  $meta
      * @phpstan-pure
      */
     public function __construct(string $message, string $longMessage, string $code, ?ClerkErrorErrorExternalAccountWithVerificationVerificationMeta $meta = null)

@@ -30,7 +30,7 @@ class PreviewTemplateRequest
     /**
      * Required parameters
      *
-     * @var ?PreviewTemplateRequestBody $requestBody
+     * @var ?\Clerk\Backend\Models\Operations\PreviewTemplateRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?PreviewTemplateRequestBody $requestBody = null;
@@ -38,7 +38,7 @@ class PreviewTemplateRequest
     /**
      * @param  string  $templateType
      * @param  string  $slug
-     * @param  ?PreviewTemplateRequestBody  $requestBody
+     * @param  ?\Clerk\Backend\Models\Operations\PreviewTemplateRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $templateType, string $slug, ?PreviewTemplateRequestBody $requestBody = null)

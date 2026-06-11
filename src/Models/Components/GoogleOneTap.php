@@ -13,7 +13,7 @@ class GoogleOneTap
 {
     /**
      *
-     * @var VerificationGoogleOneTapVerificationStatus $status
+     * @var \Clerk\Backend\Models\Components\VerificationGoogleOneTapVerificationStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationGoogleOneTapVerificationStatus')]
@@ -21,7 +21,7 @@ class GoogleOneTap
 
     /**
      *
-     * @var VerificationGoogleOneTapVerificationStrategy $strategy
+     * @var \Clerk\Backend\Models\Components\VerificationGoogleOneTapVerificationStrategy $strategy
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationGoogleOneTapVerificationStrategy')]
@@ -29,7 +29,7 @@ class GoogleOneTap
 
     /**
      *
-     * @var ?VerificationGoogleOneTapVerificationObject $object
+     * @var ?\Clerk\Backend\Models\Components\VerificationGoogleOneTapVerificationObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationGoogleOneTapVerificationObject|null')]
@@ -60,7 +60,7 @@ class GoogleOneTap
 
     /**
      *
-     * @var ?VerificationGoogleOneTapErrorClerkError $error
+     * @var ?\Clerk\Backend\Models\Components\VerificationGoogleOneTapErrorClerkError $error
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationGoogleOneTapErrorClerkError|null')]
@@ -68,13 +68,13 @@ class GoogleOneTap
     public ?VerificationGoogleOneTapErrorClerkError $error = null;
 
     /**
-     * @param  VerificationGoogleOneTapVerificationStatus  $status
-     * @param  VerificationGoogleOneTapVerificationStrategy  $strategy
-     * @param  ?VerificationGoogleOneTapVerificationObject  $object
+     * @param  \Clerk\Backend\Models\Components\VerificationGoogleOneTapVerificationStatus  $status
+     * @param  \Clerk\Backend\Models\Components\VerificationGoogleOneTapVerificationStrategy  $strategy
+     * @param  ?\Clerk\Backend\Models\Components\VerificationGoogleOneTapVerificationObject  $object
      * @param  ?int  $expireAt
      * @param  ?int  $attempts
      * @param  ?string  $verifiedAtClient
-     * @param  ?VerificationGoogleOneTapErrorClerkError  $error
+     * @param  ?\Clerk\Backend\Models\Components\VerificationGoogleOneTapErrorClerkError  $error
      * @phpstan-pure
      */
     public function __construct(VerificationGoogleOneTapVerificationStatus $status, VerificationGoogleOneTapVerificationStrategy $strategy, ?VerificationGoogleOneTapVerificationObject $object = null, ?int $expireAt = null, ?int $attempts = null, ?string $verifiedAtClient = null, ?VerificationGoogleOneTapErrorClerkError $error = null)

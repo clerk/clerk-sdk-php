@@ -13,7 +13,7 @@ class CommercePriceTransitionDetails
 {
     /**
      *
-     * @var SchemasCommercePlan $previousPlan
+     * @var \Clerk\Backend\Models\Components\SchemasCommercePlan $previousPlan
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('previous_plan')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasCommercePlan')]
@@ -21,7 +21,7 @@ class CommercePriceTransitionDetails
 
     /**
      *
-     * @var BillingPriceResponse $previousPrice
+     * @var \Clerk\Backend\Models\Components\BillingPriceResponse $previousPrice
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('previous_price')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\BillingPriceResponse')]
@@ -38,7 +38,7 @@ class CommercePriceTransitionDetails
     /**
      * When the new price takes effect.
      *
-     * @var EffectiveMode $effectiveMode
+     * @var \Clerk\Backend\Models\Components\EffectiveMode $effectiveMode
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('effective_mode')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\EffectiveMode')]
@@ -55,7 +55,7 @@ class CommercePriceTransitionDetails
     /**
      * The status of the previous subscription item after transition.
      *
-     * @var PreviousSubscriptionItemStatus $previousSubscriptionItemStatus
+     * @var \Clerk\Backend\Models\Components\PreviousSubscriptionItemStatus $previousSubscriptionItemStatus
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('previous_subscription_item_status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\PreviousSubscriptionItemStatus')]
@@ -81,7 +81,7 @@ class CommercePriceTransitionDetails
     /**
      * Amount charged immediately, if any.
      *
-     * @var ?ImmediateCharge $immediateCharge
+     * @var ?\Clerk\Backend\Models\Components\ImmediateCharge $immediateCharge
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('immediate_charge')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ImmediateCharge|null')]
@@ -89,15 +89,15 @@ class CommercePriceTransitionDetails
     public ?ImmediateCharge $immediateCharge = null;
 
     /**
-     * @param  SchemasCommercePlan  $previousPlan
-     * @param  BillingPriceResponse  $previousPrice
+     * @param  \Clerk\Backend\Models\Components\SchemasCommercePlan  $previousPlan
+     * @param  \Clerk\Backend\Models\Components\BillingPriceResponse  $previousPrice
      * @param  int  $effectiveAt
-     * @param  EffectiveMode  $effectiveMode
+     * @param  \Clerk\Backend\Models\Components\EffectiveMode  $effectiveMode
      * @param  bool  $chargedImmediately
-     * @param  PreviousSubscriptionItemStatus  $previousSubscriptionItemStatus
+     * @param  \Clerk\Backend\Models\Components\PreviousSubscriptionItemStatus  $previousSubscriptionItemStatus
      * @param  string  $previousSubscriptionItemId
      * @param  ?int  $nextBillingDate
-     * @param  ?ImmediateCharge  $immediateCharge
+     * @param  ?\Clerk\Backend\Models\Components\ImmediateCharge  $immediateCharge
      * @phpstan-pure
      */
     public function __construct(SchemasCommercePlan $previousPlan, BillingPriceResponse $previousPrice, int $effectiveAt, EffectiveMode $effectiveMode, bool $chargedImmediately, PreviousSubscriptionItemStatus $previousSubscriptionItemStatus, string $previousSubscriptionItemId, ?int $nextBillingDate = null, ?ImmediateCharge $immediateCharge = null)

@@ -13,7 +13,7 @@ class BillingPaymentAttemptCredits
 {
     /**
      *
-     * @var CommerceMoneyResponse $total
+     * @var \Clerk\Backend\Models\Components\CommerceMoneyResponse $total
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('total')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
@@ -21,7 +21,7 @@ class BillingPaymentAttemptCredits
 
     /**
      *
-     * @var ?BillingPaymentAttemptProration $proration
+     * @var ?\Clerk\Backend\Models\Components\BillingPaymentAttemptProration $proration
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('proration')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\BillingPaymentAttemptProration|null')]
@@ -29,16 +29,16 @@ class BillingPaymentAttemptCredits
 
     /**
      *
-     * @var ?BillingPaymentAttemptPayer $payer
+     * @var ?\Clerk\Backend\Models\Components\BillingPaymentAttemptPayer $payer
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('payer')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\BillingPaymentAttemptPayer|null')]
     public ?BillingPaymentAttemptPayer $payer;
 
     /**
-     * @param  CommerceMoneyResponse  $total
-     * @param  ?BillingPaymentAttemptProration  $proration
-     * @param  ?BillingPaymentAttemptPayer  $payer
+     * @param  \Clerk\Backend\Models\Components\CommerceMoneyResponse  $total
+     * @param  ?\Clerk\Backend\Models\Components\BillingPaymentAttemptProration  $proration
+     * @param  ?\Clerk\Backend\Models\Components\BillingPaymentAttemptPayer  $payer
      * @phpstan-pure
      */
     public function __construct(CommerceMoneyResponse $total, ?BillingPaymentAttemptProration $proration = null, ?BillingPaymentAttemptPayer $payer = null)

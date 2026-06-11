@@ -35,7 +35,7 @@ class UpdateOrganizationRoleResponse
     /**
      * Success
      *
-     * @var ?Components\Role $role
+     * @var ?\Clerk\Backend\Models\Components\Role $role
      */
     public ?Components\Role $role = null;
 
@@ -43,7 +43,7 @@ class UpdateOrganizationRoleResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\Role  $role
+     * @param  ?\Clerk\Backend\Models\Components\Role  $role
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\Role $role = null)

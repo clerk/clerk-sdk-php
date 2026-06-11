@@ -35,7 +35,7 @@ class GetClientResponse
     /**
      * Success
      *
-     * @var ?Components\Client $client
+     * @var ?\Clerk\Backend\Models\Components\Client $client
      */
     public ?Components\Client $client = null;
 
@@ -43,7 +43,7 @@ class GetClientResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\Client  $client
+     * @param  ?\Clerk\Backend\Models\Components\Client  $client
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\Client $client = null)

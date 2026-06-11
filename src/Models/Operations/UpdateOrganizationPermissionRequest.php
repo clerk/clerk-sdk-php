@@ -21,14 +21,14 @@ class UpdateOrganizationPermissionRequest
 
     /**
      *
-     * @var UpdateOrganizationPermissionRequestBody $requestBody
+     * @var \Clerk\Backend\Models\Operations\UpdateOrganizationPermissionRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public UpdateOrganizationPermissionRequestBody $requestBody;
 
     /**
      * @param  string  $permissionId
-     * @param  UpdateOrganizationPermissionRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\UpdateOrganizationPermissionRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $permissionId, UpdateOrganizationPermissionRequestBody $requestBody)

@@ -35,7 +35,7 @@ class UpdateInstanceRestrictionsResponse
     /**
      * Success
      *
-     * @var ?Components\InstanceRestrictions $instanceRestrictions
+     * @var ?\Clerk\Backend\Models\Components\InstanceRestrictions $instanceRestrictions
      */
     public ?Components\InstanceRestrictions $instanceRestrictions = null;
 
@@ -43,7 +43,7 @@ class UpdateInstanceRestrictionsResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\InstanceRestrictions  $instanceRestrictions
+     * @param  ?\Clerk\Backend\Models\Components\InstanceRestrictions  $instanceRestrictions
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\InstanceRestrictions $instanceRestrictions = null)

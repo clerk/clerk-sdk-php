@@ -14,7 +14,7 @@ class TestingToken
 {
     /**
      *
-     * @var TestingTokenObject $object
+     * @var \Clerk\Backend\Models\Components\TestingTokenObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\TestingTokenObject')]
@@ -39,7 +39,7 @@ class TestingToken
     public int $expiresAt;
 
     /**
-     * @param  TestingTokenObject  $object
+     * @param  \Clerk\Backend\Models\Components\TestingTokenObject  $object
      * @param  string  $token
      * @param  int  $expiresAt
      * @phpstan-pure

@@ -35,7 +35,7 @@ class ListAllowlistIdentifiersResponse
     /**
      * Success
      *
-     * @var ?array<Components\AllowlistIdentifier> $allowlistIdentifierList
+     * @var ?array<\Clerk\Backend\Models\Components\AllowlistIdentifier> $allowlistIdentifierList
      */
     public ?array $allowlistIdentifierList = null;
 
@@ -43,7 +43,7 @@ class ListAllowlistIdentifiersResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?array<Components\AllowlistIdentifier>  $allowlistIdentifierList
+     * @param  ?array<\Clerk\Backend\Models\Components\AllowlistIdentifier>  $allowlistIdentifierList
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?array $allowlistIdentifierList = null)

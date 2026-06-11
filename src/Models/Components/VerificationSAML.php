@@ -13,7 +13,7 @@ class VerificationSAML
 {
     /**
      *
-     * @var VerificationSAMLVerificationSAMLAccountStatus $status
+     * @var \Clerk\Backend\Models\Components\VerificationSAMLVerificationSAMLAccountStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationSAMLVerificationSAMLAccountStatus')]
@@ -21,7 +21,7 @@ class VerificationSAML
 
     /**
      *
-     * @var VerificationSAMLVerificationSAMLAccountStrategy $strategy
+     * @var \Clerk\Backend\Models\Components\VerificationSAMLVerificationSAMLAccountStrategy $strategy
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationSAMLVerificationSAMLAccountStrategy')]
@@ -29,7 +29,7 @@ class VerificationSAML
 
     /**
      *
-     * @var ?VerificationSAMLVerificationSAMLAccountObject $object
+     * @var ?\Clerk\Backend\Models\Components\VerificationSAMLVerificationSAMLAccountObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationSAMLVerificationSAMLAccountObject|null')]
@@ -53,7 +53,7 @@ class VerificationSAML
 
     /**
      *
-     * @var ?VerificationSAMLErrorSAMLAccountClerkError $error
+     * @var ?\Clerk\Backend\Models\Components\VerificationSAMLErrorSAMLAccountClerkError $error
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationSAMLErrorSAMLAccountClerkError|null')]
@@ -77,12 +77,12 @@ class VerificationSAML
     public ?string $verifiedAtClient = null;
 
     /**
-     * @param  VerificationSAMLVerificationSAMLAccountStatus  $status
-     * @param  VerificationSAMLVerificationSAMLAccountStrategy  $strategy
-     * @param  ?VerificationSAMLVerificationSAMLAccountObject  $object
+     * @param  \Clerk\Backend\Models\Components\VerificationSAMLVerificationSAMLAccountStatus  $status
+     * @param  \Clerk\Backend\Models\Components\VerificationSAMLVerificationSAMLAccountStrategy  $strategy
+     * @param  ?\Clerk\Backend\Models\Components\VerificationSAMLVerificationSAMLAccountObject  $object
      * @param  ?int  $attempts
      * @param  ?string  $externalVerificationRedirectUrl
-     * @param  ?VerificationSAMLErrorSAMLAccountClerkError  $error
+     * @param  ?\Clerk\Backend\Models\Components\VerificationSAMLErrorSAMLAccountClerkError  $error
      * @param  ?int  $expireAt
      * @param  ?string  $verifiedAtClient
      * @phpstan-pure

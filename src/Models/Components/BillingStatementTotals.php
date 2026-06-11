@@ -14,7 +14,7 @@ class BillingStatementTotals
 {
     /**
      *
-     * @var CommerceMoneyResponse $grandTotal
+     * @var \Clerk\Backend\Models\Components\CommerceMoneyResponse $grandTotal
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('grand_total')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
@@ -22,7 +22,7 @@ class BillingStatementTotals
 
     /**
      *
-     * @var CommerceMoneyResponse $subtotal
+     * @var \Clerk\Backend\Models\Components\CommerceMoneyResponse $subtotal
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('subtotal')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
@@ -30,7 +30,7 @@ class BillingStatementTotals
 
     /**
      *
-     * @var CommerceMoneyResponse $baseFee
+     * @var \Clerk\Backend\Models\Components\CommerceMoneyResponse $baseFee
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('base_fee')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
@@ -38,17 +38,17 @@ class BillingStatementTotals
 
     /**
      *
-     * @var CommerceMoneyResponse $taxTotal
+     * @var \Clerk\Backend\Models\Components\CommerceMoneyResponse $taxTotal
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_total')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
     public CommerceMoneyResponse $taxTotal;
 
     /**
-     * @param  CommerceMoneyResponse  $grandTotal
-     * @param  CommerceMoneyResponse  $subtotal
-     * @param  CommerceMoneyResponse  $baseFee
-     * @param  CommerceMoneyResponse  $taxTotal
+     * @param  \Clerk\Backend\Models\Components\CommerceMoneyResponse  $grandTotal
+     * @param  \Clerk\Backend\Models\Components\CommerceMoneyResponse  $subtotal
+     * @param  \Clerk\Backend\Models\Components\CommerceMoneyResponse  $baseFee
+     * @param  \Clerk\Backend\Models\Components\CommerceMoneyResponse  $taxTotal
      * @phpstan-pure
      */
     public function __construct(CommerceMoneyResponse $grandTotal, CommerceMoneyResponse $subtotal, CommerceMoneyResponse $baseFee, CommerceMoneyResponse $taxTotal)

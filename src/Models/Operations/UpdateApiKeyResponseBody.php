@@ -14,7 +14,7 @@ class UpdateApiKeyResponseBody
 {
     /**
      *
-     * @var UpdateApiKeyObject $object
+     * @var \Clerk\Backend\Models\Operations\UpdateApiKeyObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\UpdateApiKeyObject')]
@@ -134,7 +134,7 @@ class UpdateApiKeyResponseBody
     public ?string $description = null;
 
     /**
-     * @param  UpdateApiKeyObject  $object
+     * @param  \Clerk\Backend\Models\Operations\UpdateApiKeyObject  $object
      * @param  string  $id
      * @param  string  $type
      * @param  string  $subject

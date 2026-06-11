@@ -21,14 +21,14 @@ class SetUserPasswordCompromisedRequest
 
     /**
      *
-     * @var ?SetUserPasswordCompromisedRequestBody $requestBody
+     * @var ?\Clerk\Backend\Models\Operations\SetUserPasswordCompromisedRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?SetUserPasswordCompromisedRequestBody $requestBody = null;
 
     /**
      * @param  string  $userId
-     * @param  ?SetUserPasswordCompromisedRequestBody  $requestBody
+     * @param  ?\Clerk\Backend\Models\Operations\SetUserPasswordCompromisedRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $userId, ?SetUserPasswordCompromisedRequestBody $requestBody = null)

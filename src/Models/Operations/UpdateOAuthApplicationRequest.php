@@ -21,14 +21,14 @@ class UpdateOAuthApplicationRequest
 
     /**
      *
-     * @var UpdateOAuthApplicationRequestBody $requestBody
+     * @var \Clerk\Backend\Models\Operations\UpdateOAuthApplicationRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public UpdateOAuthApplicationRequestBody $requestBody;
 
     /**
      * @param  string  $oauthApplicationId
-     * @param  UpdateOAuthApplicationRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\UpdateOAuthApplicationRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $oauthApplicationId, UpdateOAuthApplicationRequestBody $requestBody)

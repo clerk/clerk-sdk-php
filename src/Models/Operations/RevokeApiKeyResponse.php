@@ -35,7 +35,7 @@ class RevokeApiKeyResponse
     /**
      * 200 OK
      *
-     * @var ?RevokeApiKeyResponseBody $object
+     * @var ?\Clerk\Backend\Models\Operations\RevokeApiKeyResponseBody $object
      */
     public ?RevokeApiKeyResponseBody $object = null;
 
@@ -43,7 +43,7 @@ class RevokeApiKeyResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?RevokeApiKeyResponseBody  $object
+     * @param  ?\Clerk\Backend\Models\Operations\RevokeApiKeyResponseBody  $object
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?RevokeApiKeyResponseBody $object = null)

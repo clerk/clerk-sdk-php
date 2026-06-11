@@ -13,9 +13,19 @@ namespace Clerk\Backend\Models\Components;
 class NextPayment
 {
     /**
-     * Amount for the next payment.
+     * Per-unit total breakdown (for example, seats) for the next payment.
      *
-     * @var ?CommerceSubscriptionItemAmount $amount
+     * @var ?array<\Clerk\Backend\Models\Components\CommercePerUnitTotal> $perUnitTotals
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('per_unit_totals')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\CommercePerUnitTotal>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $perUnitTotals = null;
+
+    /**
+     * Base plan fee for the next payment. Does not include per-unit (e.g. seat) charges; see `totals.grand_total` for the full amount.
+     *
+     * @var ?\Clerk\Backend\Models\Components\CommerceSubscriptionItemAmount $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceSubscriptionItemAmount|null')]
@@ -32,13 +42,27 @@ class NextPayment
     public ?int $date = null;
 
     /**
-     * @param  ?CommerceSubscriptionItemAmount  $amount
+     * Breakdown of the recurring amount that will be billed at renewal (base fee + per-unit charges). Tax and credits are not previewed.
+     *
+     * @var ?\Clerk\Backend\Models\Components\CommerceSubscriptionItemTotals $totals
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('totals')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceSubscriptionItemTotals|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?CommerceSubscriptionItemTotals $totals = null;
+
+    /**
+     * @param  ?array<\Clerk\Backend\Models\Components\CommercePerUnitTotal>  $perUnitTotals
+     * @param  ?\Clerk\Backend\Models\Components\CommerceSubscriptionItemAmount  $amount
      * @param  ?int  $date
+     * @param  ?\Clerk\Backend\Models\Components\CommerceSubscriptionItemTotals  $totals
      * @phpstan-pure
      */
-    public function __construct(?CommerceSubscriptionItemAmount $amount = null, ?int $date = null)
+    public function __construct(?array $perUnitTotals = null, ?CommerceSubscriptionItemAmount $amount = null, ?int $date = null, ?CommerceSubscriptionItemTotals $totals = null)
     {
+        $this->perUnitTotals = $perUnitTotals;
         $this->amount = $amount;
         $this->date = $date;
+        $this->totals = $totals;
     }
 }

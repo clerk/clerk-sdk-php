@@ -14,7 +14,7 @@ class GetApiKeyResponseBody
 {
     /**
      *
-     * @var GetApiKeyObject $object
+     * @var \Clerk\Backend\Models\Operations\GetApiKeyObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\GetApiKeyObject')]
@@ -134,7 +134,7 @@ class GetApiKeyResponseBody
     public ?string $description = null;
 
     /**
-     * @param  GetApiKeyObject  $object
+     * @param  \Clerk\Backend\Models\Operations\GetApiKeyObject  $object
      * @param  string  $id
      * @param  string  $type
      * @param  string  $subject

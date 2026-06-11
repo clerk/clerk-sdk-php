@@ -14,7 +14,7 @@ class RoleSetItem
 {
     /**
      *
-     * @var RoleSetItemObject $object
+     * @var \Clerk\Backend\Models\Components\RoleSetItemObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\RoleSetItemObject')]
@@ -87,7 +87,7 @@ class RoleSetItem
     public ?bool $hasMembers = null;
 
     /**
-     * @param  RoleSetItemObject  $object
+     * @param  \Clerk\Backend\Models\Components\RoleSetItemObject  $object
      * @param  string  $id
      * @param  string  $name
      * @param  string  $key

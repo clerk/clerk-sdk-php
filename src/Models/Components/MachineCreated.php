@@ -14,7 +14,7 @@ class MachineCreated
 {
     /**
      *
-     * @var MachineCreatedObject $object
+     * @var \Clerk\Backend\Models\Components\MachineCreatedObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\MachineCreatedObject')]
@@ -63,7 +63,7 @@ class MachineCreated
     /**
      * Array of machines this machine has access to.
      *
-     * @var array<MachineWithoutScopedMachines> $scopedMachines
+     * @var array<\Clerk\Backend\Models\Components\MachineWithoutScopedMachines> $scopedMachines
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('scoped_machines')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\MachineWithoutScopedMachines>')]
@@ -87,13 +87,13 @@ class MachineCreated
     public ?int $defaultTokenTtl = null;
 
     /**
-     * @param  MachineCreatedObject  $object
+     * @param  \Clerk\Backend\Models\Components\MachineCreatedObject  $object
      * @param  string  $id
      * @param  string  $name
      * @param  string  $instanceId
      * @param  int  $createdAt
      * @param  int  $updatedAt
-     * @param  array<MachineWithoutScopedMachines>  $scopedMachines
+     * @param  array<\Clerk\Backend\Models\Components\MachineWithoutScopedMachines>  $scopedMachines
      * @param  string  $secretKey
      * @param  ?int  $defaultTokenTtl
      * @phpstan-pure

@@ -13,7 +13,7 @@ class VerificationOTP
 {
     /**
      *
-     * @var VerificationOtpVerificationStatus $status
+     * @var \Clerk\Backend\Models\Components\VerificationOtpVerificationStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationOtpVerificationStatus')]
@@ -21,7 +21,7 @@ class VerificationOTP
 
     /**
      *
-     * @var VerificationOtpVerificationStrategy $strategy
+     * @var \Clerk\Backend\Models\Components\VerificationOtpVerificationStrategy $strategy
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationOtpVerificationStrategy')]
@@ -29,7 +29,7 @@ class VerificationOTP
 
     /**
      *
-     * @var ?VerificationOtpVerificationObject $object
+     * @var ?\Clerk\Backend\Models\Components\VerificationOtpVerificationObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationOtpVerificationObject|null')]
@@ -51,6 +51,15 @@ class VerificationOTP
     public ?int $expireAt;
 
     /**
+     * The delivery channel of the code (phone codes only).
+     *
+     * @var ?string $channel
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('channel')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $channel = null;
+
+    /**
      *
      * @var ?string $verifiedAtClient
      */
@@ -59,21 +68,23 @@ class VerificationOTP
     public ?string $verifiedAtClient = null;
 
     /**
-     * @param  VerificationOtpVerificationStatus  $status
-     * @param  VerificationOtpVerificationStrategy  $strategy
-     * @param  ?VerificationOtpVerificationObject  $object
+     * @param  \Clerk\Backend\Models\Components\VerificationOtpVerificationStatus  $status
+     * @param  \Clerk\Backend\Models\Components\VerificationOtpVerificationStrategy  $strategy
+     * @param  ?\Clerk\Backend\Models\Components\VerificationOtpVerificationObject  $object
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
+     * @param  ?string  $channel
      * @param  ?string  $verifiedAtClient
      * @phpstan-pure
      */
-    public function __construct(VerificationOtpVerificationStatus $status, VerificationOtpVerificationStrategy $strategy, ?VerificationOtpVerificationObject $object = null, ?int $attempts = null, ?int $expireAt = null, ?string $verifiedAtClient = null)
+    public function __construct(VerificationOtpVerificationStatus $status, VerificationOtpVerificationStrategy $strategy, ?VerificationOtpVerificationObject $object = null, ?int $attempts = null, ?int $expireAt = null, ?string $channel = null, ?string $verifiedAtClient = null)
     {
         $this->status = $status;
         $this->strategy = $strategy;
         $this->object = $object;
         $this->attempts = $attempts;
         $this->expireAt = $expireAt;
+        $this->channel = $channel;
         $this->verifiedAtClient = $verifiedAtClient;
     }
 }

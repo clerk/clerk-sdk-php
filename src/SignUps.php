@@ -52,7 +52,7 @@ class SignUps
      * Retrieve the details of the sign-up with the given ID
      *
      * @param  string  $id
-     * @return Operations\GetSignUpResponse
+     * @return \Clerk\Backend\Models\Operations\GetSignUpResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function get(string $id, ?Options $options = null): Operations\GetSignUpResponse
@@ -103,11 +103,12 @@ class SignUps
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['403', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -151,8 +152,8 @@ class SignUps
      * Update the sign-up with the given ID
      *
      * @param  string  $id
-     * @param  ?Operations\UpdateSignUpRequestBody  $requestBody
-     * @return Operations\UpdateSignUpResponse
+     * @param  ?\Clerk\Backend\Models\Operations\UpdateSignUpRequestBody  $requestBody
+     * @return \Clerk\Backend\Models\Operations\UpdateSignUpResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function update(string $id, ?Operations\UpdateSignUpRequestBody $requestBody = null, ?Options $options = null): Operations\UpdateSignUpResponse
@@ -208,11 +209,12 @@ class SignUps
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['403', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

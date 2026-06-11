@@ -35,7 +35,7 @@ class ListOAuthApplicationsResponse
     /**
      * A list of OAuth applications
      *
-     * @var ?Components\OAuthApplications $oAuthApplications
+     * @var ?\Clerk\Backend\Models\Components\OAuthApplications $oAuthApplications
      */
     public ?Components\OAuthApplications $oAuthApplications = null;
 
@@ -43,7 +43,7 @@ class ListOAuthApplicationsResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\OAuthApplications  $oAuthApplications
+     * @param  ?\Clerk\Backend\Models\Components\OAuthApplications  $oAuthApplications
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\OAuthApplications $oAuthApplications = null)

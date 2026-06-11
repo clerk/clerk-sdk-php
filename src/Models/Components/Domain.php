@@ -13,7 +13,7 @@ class Domain
 {
     /**
      *
-     * @var DomainObject $object
+     * @var \Clerk\Backend\Models\Components\DomainObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\DomainObject')]
@@ -76,7 +76,7 @@ class Domain
     /**
      * $cnameTargets
      *
-     * @var ?array<CNameTarget> $cnameTargets
+     * @var ?array<\Clerk\Backend\Models\Components\CNameTarget> $cnameTargets
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cname_targets')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\CNameTarget>|null')]
@@ -84,7 +84,7 @@ class Domain
     public ?array $cnameTargets = null;
 
     /**
-     * @param  DomainObject  $object
+     * @param  \Clerk\Backend\Models\Components\DomainObject  $object
      * @param  string  $id
      * @param  string  $name
      * @param  bool  $isSatellite
@@ -92,7 +92,7 @@ class Domain
      * @param  string  $developmentOrigin
      * @param  ?string  $accountsPortalUrl
      * @param  ?string  $proxyUrl
-     * @param  ?array<CNameTarget>  $cnameTargets
+     * @param  ?array<\Clerk\Backend\Models\Components\CNameTarget>  $cnameTargets
      * @phpstan-pure
      */
     public function __construct(DomainObject $object, string $id, string $name, bool $isSatellite, string $frontendApiUrl, string $developmentOrigin, ?string $accountsPortalUrl = null, ?string $proxyUrl = null, ?array $cnameTargets = null)

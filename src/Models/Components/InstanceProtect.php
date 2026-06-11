@@ -14,7 +14,7 @@ class InstanceProtect
 {
     /**
      *
-     * @var InstanceProtectObject $object
+     * @var \Clerk\Backend\Models\Components\InstanceProtectObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\InstanceProtectObject')]
@@ -35,7 +35,7 @@ class InstanceProtect
     public bool $specterEnabled;
 
     /**
-     * @param  InstanceProtectObject  $object
+     * @param  \Clerk\Backend\Models\Components\InstanceProtectObject  $object
      * @param  bool  $rulesEnabled
      * @param  bool  $specterEnabled
      * @phpstan-pure

@@ -13,7 +13,7 @@ class OrganizationWithLogo
 {
     /**
      *
-     * @var OrganizationWithLogoObject $object
+     * @var \Clerk\Backend\Models\Components\OrganizationWithLogoObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationWithLogoObject')]
@@ -171,7 +171,7 @@ class OrganizationWithLogo
     public ?string $roleSetKey = null;
 
     /**
-     * @param  OrganizationWithLogoObject  $object
+     * @param  \Clerk\Backend\Models\Components\OrganizationWithLogoObject  $object
      * @param  string  $id
      * @param  string  $name
      * @param  string  $slug

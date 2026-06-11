@@ -31,7 +31,7 @@ class Two
     /**
      * The IdP provider of the connection.
      *
-     * @var RequestBodyProvider $provider
+     * @var \Clerk\Backend\Models\Operations\RequestBodyProvider $provider
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('provider')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\RequestBodyProvider')]
@@ -113,7 +113,7 @@ class Two
     /**
      * Define the attribute name mapping between Identity Provider and Clerk's user properties
      *
-     * @var ?RequestBodyAttributeMapping $attributeMapping
+     * @var ?\Clerk\Backend\Models\Operations\RequestBodyAttributeMapping $attributeMapping
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('attribute_mapping')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\RequestBodyAttributeMapping|null')]
@@ -123,7 +123,7 @@ class Two
     /**
      * @param  string  $name
      * @param  array<string>  $domains
-     * @param  RequestBodyProvider  $provider
+     * @param  \Clerk\Backend\Models\Operations\RequestBodyProvider  $provider
      * @param  ?string  $domain
      * @param  ?bool  $forceAuthn
      * @param  ?string  $idpEntityId
@@ -132,7 +132,7 @@ class Two
      * @param  ?string  $idpMetadataUrl
      * @param  ?string  $idpMetadata
      * @param  ?string  $organizationId
-     * @param  ?RequestBodyAttributeMapping  $attributeMapping
+     * @param  ?\Clerk\Backend\Models\Operations\RequestBodyAttributeMapping  $attributeMapping
      * @phpstan-pure
      */
     public function __construct(string $name, array $domains, RequestBodyProvider $provider, ?string $domain = null, ?bool $forceAuthn = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?RequestBodyAttributeMapping $attributeMapping = null)

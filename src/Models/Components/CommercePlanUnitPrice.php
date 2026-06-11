@@ -30,7 +30,7 @@ class CommercePlanUnitPrice
     /**
      * Tiered pricing configuration for this unit
      *
-     * @var array<CommercePlanUnitPriceTier> $tiers
+     * @var array<\Clerk\Backend\Models\Components\CommercePlanUnitPriceTier> $tiers
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tiers')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\CommercePlanUnitPriceTier>')]
@@ -39,7 +39,7 @@ class CommercePlanUnitPrice
     /**
      * @param  string  $name
      * @param  int  $blockSize
-     * @param  array<CommercePlanUnitPriceTier>  $tiers
+     * @param  array<\Clerk\Backend\Models\Components\CommercePlanUnitPriceTier>  $tiers
      * @phpstan-pure
      */
     public function __construct(string $name, int $blockSize, array $tiers)

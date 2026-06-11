@@ -7,7 +7,7 @@
 
 ```php
 /**
-* @var Components\Web3Signature
+* @var \Clerk\Backend\Models\Components\Web3Signature
 */
 Components\Web3Signature $value = /* values here */
 ```
@@ -16,7 +16,7 @@ Components\Web3Signature $value = /* values here */
 
 ```php
 /**
-* @var Components\VerificationAdminVerificationAdmin
+* @var \Clerk\Backend\Models\Components\VerificationAdminVerificationAdmin
 */
 Components\VerificationAdminVerificationAdmin $value = /* values here */
 ```

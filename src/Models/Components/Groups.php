@@ -15,7 +15,7 @@ class Groups
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var BillingStatementGroupsObject $object
+     * @var \Clerk\Backend\Models\Components\BillingStatementGroupsObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\BillingStatementGroupsObject')]
@@ -32,16 +32,16 @@ class Groups
     /**
      * The payment attempts included in the group
      *
-     * @var array<BillingPaymentAttempt> $items
+     * @var array<\Clerk\Backend\Models\Components\BillingPaymentAttempt> $items
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('items')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\BillingPaymentAttempt>')]
     public array $items;
 
     /**
-     * @param  BillingStatementGroupsObject  $object
+     * @param  \Clerk\Backend\Models\Components\BillingStatementGroupsObject  $object
      * @param  int  $timestamp
-     * @param  array<BillingPaymentAttempt>  $items
+     * @param  array<\Clerk\Backend\Models\Components\BillingPaymentAttempt>  $items
      * @phpstan-pure
      */
     public function __construct(BillingStatementGroupsObject $object, int $timestamp, array $items)

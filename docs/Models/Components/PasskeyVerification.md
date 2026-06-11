@@ -7,7 +7,7 @@
 
 ```php
 /**
-* @var Components\VerificationPasskey
+* @var \Clerk\Backend\Models\Components\VerificationPasskey
 */
 Components\VerificationPasskey $value = /* values here */
 ```

@@ -13,7 +13,7 @@ class VerificationTicket
 {
     /**
      *
-     * @var VerificationTicketVerificationSAMLAccountStatus $status
+     * @var \Clerk\Backend\Models\Components\VerificationTicketVerificationSAMLAccountStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationTicketVerificationSAMLAccountStatus')]
@@ -21,7 +21,7 @@ class VerificationTicket
 
     /**
      *
-     * @var VerificationTicketVerificationSAMLAccountStrategy $strategy
+     * @var \Clerk\Backend\Models\Components\VerificationTicketVerificationSAMLAccountStrategy $strategy
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationTicketVerificationSAMLAccountStrategy')]
@@ -29,7 +29,7 @@ class VerificationTicket
 
     /**
      *
-     * @var ?VerificationTicketVerificationSAMLAccountObject $object
+     * @var ?\Clerk\Backend\Models\Components\VerificationTicketVerificationSAMLAccountObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationTicketVerificationSAMLAccountObject|null')]
@@ -59,9 +59,9 @@ class VerificationTicket
     public ?string $verifiedAtClient = null;
 
     /**
-     * @param  VerificationTicketVerificationSAMLAccountStatus  $status
-     * @param  VerificationTicketVerificationSAMLAccountStrategy  $strategy
-     * @param  ?VerificationTicketVerificationSAMLAccountObject  $object
+     * @param  \Clerk\Backend\Models\Components\VerificationTicketVerificationSAMLAccountStatus  $status
+     * @param  \Clerk\Backend\Models\Components\VerificationTicketVerificationSAMLAccountStrategy  $strategy
+     * @param  ?\Clerk\Backend\Models\Components\VerificationTicketVerificationSAMLAccountObject  $object
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
      * @param  ?string  $verifiedAtClient

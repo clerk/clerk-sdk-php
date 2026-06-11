@@ -53,7 +53,7 @@ class OrganizationRoles
      *
      * @param  string  $organizationRoleId
      * @param  string  $permissionId
-     * @return Operations\AssignPermissionToOrganizationRoleResponse
+     * @return \Clerk\Backend\Models\Operations\AssignPermissionToOrganizationRoleResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function assignPermission(string $organizationRoleId, string $permissionId, ?Options $options = null): Operations\AssignPermissionToOrganizationRoleResponse
@@ -105,11 +105,12 @@ class OrganizationRoles
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '403', '404', '409', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -155,8 +156,8 @@ class OrganizationRoles
      * You can optionally provide a description for the role and specify whether it should be included in the initial role set.
      * Organization roles support permissions that can be assigned to control access within the organization.
      *
-     * @param  Operations\CreateOrganizationRoleRequestBody  $request
-     * @return Operations\CreateOrganizationRoleResponse
+     * @param  \Clerk\Backend\Models\Operations\CreateOrganizationRoleRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\CreateOrganizationRoleResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function create(Operations\CreateOrganizationRoleRequestBody $request, ?Options $options = null): Operations\CreateOrganizationRoleResponse
@@ -209,11 +210,12 @@ class OrganizationRoles
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '402', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -258,7 +260,7 @@ class OrganizationRoles
      * The role cannot be deleted if it is currently used as the default creator role, domain default role, assigned to any members, or exists in any invitations.
      *
      * @param  string  $organizationRoleId
-     * @return Operations\DeleteOrganizationRoleResponse
+     * @return \Clerk\Backend\Models\Operations\DeleteOrganizationRoleResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function delete(string $organizationRoleId, ?Options $options = null): Operations\DeleteOrganizationRoleResponse
@@ -309,11 +311,12 @@ class OrganizationRoles
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -357,7 +360,7 @@ class OrganizationRoles
      * Use this request to retrieve an existing organization role by its ID.
      *
      * @param  string  $organizationRoleId
-     * @return Operations\GetOrganizationRoleResponse
+     * @return \Clerk\Backend\Models\Operations\GetOrganizationRoleResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function get(string $organizationRoleId, ?Options $options = null): Operations\GetOrganizationRoleResponse
@@ -408,11 +411,12 @@ class OrganizationRoles
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '403', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -462,7 +466,7 @@ class OrganizationRoles
      * @param  ?string  $orderBy
      * @param  ?int  $limit
      * @param  ?int  $offset
-     * @return Operations\ListOrganizationRolesResponse
+     * @return \Clerk\Backend\Models\Operations\ListOrganizationRolesResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function list(?string $query = null, ?string $orderBy = null, ?int $limit = null, ?int $offset = null, ?Options $options = null): Operations\ListOrganizationRolesResponse
@@ -519,11 +523,12 @@ class OrganizationRoles
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -568,7 +573,7 @@ class OrganizationRoles
      *
      * @param  string  $organizationRoleId
      * @param  string  $permissionId
-     * @return Operations\RemovePermissionFromOrganizationRoleResponse
+     * @return \Clerk\Backend\Models\Operations\RemovePermissionFromOrganizationRoleResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function removePermission(string $organizationRoleId, string $permissionId, ?Options $options = null): Operations\RemovePermissionFromOrganizationRoleResponse
@@ -620,11 +625,12 @@ class OrganizationRoles
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -670,9 +676,9 @@ class OrganizationRoles
      * All parameters are optional - you can update only the fields you want to change.
      * If the role is used as a creator role or domain default role, updating the key will cascade the update to the organization settings.
      *
-     * @param  Operations\UpdateOrganizationRoleRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\UpdateOrganizationRoleRequestBody  $requestBody
      * @param  string  $organizationRoleId
-     * @return Operations\UpdateOrganizationRoleResponse
+     * @return \Clerk\Backend\Models\Operations\UpdateOrganizationRoleResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function update(Operations\UpdateOrganizationRoleRequestBody $requestBody, string $organizationRoleId, ?Options $options = null): Operations\UpdateOrganizationRoleResponse
@@ -729,11 +735,12 @@ class OrganizationRoles
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

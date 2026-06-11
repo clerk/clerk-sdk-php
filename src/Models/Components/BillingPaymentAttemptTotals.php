@@ -14,7 +14,7 @@ class BillingPaymentAttemptTotals
 {
     /**
      *
-     * @var CommerceMoneyResponse $subtotal
+     * @var \Clerk\Backend\Models\Components\CommerceMoneyResponse $subtotal
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('subtotal')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
@@ -22,7 +22,7 @@ class BillingPaymentAttemptTotals
 
     /**
      *
-     * @var CommerceMoneyResponse $baseFee
+     * @var \Clerk\Backend\Models\Components\CommerceMoneyResponse $baseFee
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('base_fee')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
@@ -30,7 +30,7 @@ class BillingPaymentAttemptTotals
 
     /**
      *
-     * @var CommerceMoneyResponse $taxTotal
+     * @var \Clerk\Backend\Models\Components\CommerceMoneyResponse $taxTotal
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_total')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
@@ -38,7 +38,7 @@ class BillingPaymentAttemptTotals
 
     /**
      *
-     * @var CommerceMoneyResponse $grandTotal
+     * @var \Clerk\Backend\Models\Components\CommerceMoneyResponse $grandTotal
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('grand_total')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
@@ -47,16 +47,16 @@ class BillingPaymentAttemptTotals
     /**
      * $perUnitTotals
      *
-     * @var ?array<CommercePerUnitTotal> $perUnitTotals
+     * @var ?array<\Clerk\Backend\Models\Components\SchemasCommercePerUnitTotal> $perUnitTotals
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('per_unit_totals')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\CommercePerUnitTotal>|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\SchemasCommercePerUnitTotal>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $perUnitTotals = null;
 
     /**
      *
-     * @var ?BillingPaymentAttemptCredits $credits
+     * @var ?\Clerk\Backend\Models\Components\BillingPaymentAttemptCredits $credits
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('credits')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\BillingPaymentAttemptCredits|null')]
@@ -64,15 +64,26 @@ class BillingPaymentAttemptTotals
     public ?BillingPaymentAttemptCredits $credits = null;
 
     /**
-     * @param  CommerceMoneyResponse  $subtotal
-     * @param  CommerceMoneyResponse  $baseFee
-     * @param  CommerceMoneyResponse  $taxTotal
-     * @param  CommerceMoneyResponse  $grandTotal
-     * @param  ?array<CommercePerUnitTotal>  $perUnitTotals
-     * @param  ?BillingPaymentAttemptCredits  $credits
+     * Information about the discounts applied to the payment
+     *
+     * @var ?\Clerk\Backend\Models\Components\BillingPaymentAttemptDiscounts $discounts
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('discounts')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\BillingPaymentAttemptDiscounts|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?BillingPaymentAttemptDiscounts $discounts = null;
+
+    /**
+     * @param  \Clerk\Backend\Models\Components\CommerceMoneyResponse  $subtotal
+     * @param  \Clerk\Backend\Models\Components\CommerceMoneyResponse  $baseFee
+     * @param  \Clerk\Backend\Models\Components\CommerceMoneyResponse  $taxTotal
+     * @param  \Clerk\Backend\Models\Components\CommerceMoneyResponse  $grandTotal
+     * @param  ?array<\Clerk\Backend\Models\Components\SchemasCommercePerUnitTotal>  $perUnitTotals
+     * @param  ?\Clerk\Backend\Models\Components\BillingPaymentAttemptCredits  $credits
+     * @param  ?\Clerk\Backend\Models\Components\BillingPaymentAttemptDiscounts  $discounts
      * @phpstan-pure
      */
-    public function __construct(CommerceMoneyResponse $subtotal, CommerceMoneyResponse $baseFee, CommerceMoneyResponse $taxTotal, CommerceMoneyResponse $grandTotal, ?array $perUnitTotals = null, ?BillingPaymentAttemptCredits $credits = null)
+    public function __construct(CommerceMoneyResponse $subtotal, CommerceMoneyResponse $baseFee, CommerceMoneyResponse $taxTotal, CommerceMoneyResponse $grandTotal, ?array $perUnitTotals = null, ?BillingPaymentAttemptCredits $credits = null, ?BillingPaymentAttemptDiscounts $discounts = null)
     {
         $this->subtotal = $subtotal;
         $this->baseFee = $baseFee;
@@ -80,5 +91,6 @@ class BillingPaymentAttemptTotals
         $this->grandTotal = $grandTotal;
         $this->perUnitTotals = $perUnitTotals;
         $this->credits = $credits;
+        $this->discounts = $discounts;
     }
 }

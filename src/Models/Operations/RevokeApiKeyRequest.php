@@ -20,14 +20,14 @@ class RevokeApiKeyRequest
 
     /**
      *
-     * @var RevokeApiKeyRequestBody $requestBody
+     * @var \Clerk\Backend\Models\Operations\RevokeApiKeyRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public RevokeApiKeyRequestBody $requestBody;
 
     /**
      * @param  string  $apiKeyID
-     * @param  RevokeApiKeyRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\RevokeApiKeyRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $apiKeyID, RevokeApiKeyRequestBody $requestBody)

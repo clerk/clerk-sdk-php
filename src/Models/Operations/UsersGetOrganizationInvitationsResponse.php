@@ -35,7 +35,7 @@ class UsersGetOrganizationInvitationsResponse
     /**
      * A list of organization invitations with public organization data
      *
-     * @var ?Components\OrganizationInvitationsWithPublicOrganizationData $organizationInvitationsWithPublicOrganizationData
+     * @var ?\Clerk\Backend\Models\Components\OrganizationInvitationsWithPublicOrganizationData $organizationInvitationsWithPublicOrganizationData
      */
     public ?Components\OrganizationInvitationsWithPublicOrganizationData $organizationInvitationsWithPublicOrganizationData = null;
 
@@ -43,7 +43,7 @@ class UsersGetOrganizationInvitationsResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\OrganizationInvitationsWithPublicOrganizationData  $organizationInvitationsWithPublicOrganizationData
+     * @param  ?\Clerk\Backend\Models\Components\OrganizationInvitationsWithPublicOrganizationData  $organizationInvitationsWithPublicOrganizationData
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\OrganizationInvitationsWithPublicOrganizationData $organizationInvitationsWithPublicOrganizationData = null)

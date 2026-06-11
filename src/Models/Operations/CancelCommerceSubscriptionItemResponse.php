@@ -35,7 +35,7 @@ class CancelCommerceSubscriptionItemResponse
     /**
      * A commerce subscription item.
      *
-     * @var ?Components\CommerceSubscriptionItem $commerceSubscriptionItem
+     * @var ?\Clerk\Backend\Models\Components\CommerceSubscriptionItem $commerceSubscriptionItem
      */
     public ?Components\CommerceSubscriptionItem $commerceSubscriptionItem = null;
 
@@ -43,7 +43,7 @@ class CancelCommerceSubscriptionItemResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\CommerceSubscriptionItem  $commerceSubscriptionItem
+     * @param  ?\Clerk\Backend\Models\Components\CommerceSubscriptionItem  $commerceSubscriptionItem
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\CommerceSubscriptionItem $commerceSubscriptionItem = null)

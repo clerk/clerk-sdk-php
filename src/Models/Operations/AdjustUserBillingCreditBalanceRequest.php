@@ -23,14 +23,14 @@ class AdjustUserBillingCreditBalanceRequest
     /**
      * Parameters for the credit balance adjustment
      *
-     * @var Components\AdjustCreditBalanceRequest $adjustCreditBalanceRequest
+     * @var \Clerk\Backend\Models\Components\AdjustCreditBalanceRequest $adjustCreditBalanceRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public Components\AdjustCreditBalanceRequest $adjustCreditBalanceRequest;
 
     /**
      * @param  string  $userId
-     * @param  Components\AdjustCreditBalanceRequest  $adjustCreditBalanceRequest
+     * @param  \Clerk\Backend\Models\Components\AdjustCreditBalanceRequest  $adjustCreditBalanceRequest
      * @phpstan-pure
      */
     public function __construct(string $userId, Components\AdjustCreditBalanceRequest $adjustCreditBalanceRequest)

@@ -35,7 +35,7 @@ class GetInstanceOAuthApplicationSettingsResponse
     /**
      * Success
      *
-     * @var ?Components\OAuthApplicationSettings $oAuthApplicationSettings
+     * @var ?\Clerk\Backend\Models\Components\OAuthApplicationSettings $oAuthApplicationSettings
      */
     public ?Components\OAuthApplicationSettings $oAuthApplicationSettings = null;
 
@@ -43,7 +43,7 @@ class GetInstanceOAuthApplicationSettingsResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\OAuthApplicationSettings  $oAuthApplicationSettings
+     * @param  ?\Clerk\Backend\Models\Components\OAuthApplicationSettings  $oAuthApplicationSettings
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\OAuthApplicationSettings $oAuthApplicationSettings = null)

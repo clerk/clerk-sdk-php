@@ -35,7 +35,7 @@ class ListWaitlistEntriesResponse
     /**
      * List of waitlist entries
      *
-     * @var ?Components\WaitlistEntries $waitlistEntries
+     * @var ?\Clerk\Backend\Models\Components\WaitlistEntries $waitlistEntries
      */
     public ?Components\WaitlistEntries $waitlistEntries = null;
 
@@ -43,7 +43,7 @@ class ListWaitlistEntriesResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\WaitlistEntries  $waitlistEntries
+     * @param  ?\Clerk\Backend\Models\Components\WaitlistEntries  $waitlistEntries
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\WaitlistEntries $waitlistEntries = null)

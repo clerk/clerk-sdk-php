@@ -13,7 +13,7 @@ class SignUpVerification
 {
     /**
      *
-     * @var ?NextAction $nextAction
+     * @var ?\Clerk\Backend\Models\Components\NextAction $nextAction
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('next_action')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\NextAction|null')]
@@ -41,7 +41,7 @@ class SignUpVerification
     public ?array $additionalProperties = null;
 
     /**
-     * @param  ?NextAction  $nextAction
+     * @param  ?\Clerk\Backend\Models\Components\NextAction  $nextAction
      * @param  ?array<string>  $supportedStrategies
      * @param  ?array<string, mixed>  $additionalProperties
      * @phpstan-pure

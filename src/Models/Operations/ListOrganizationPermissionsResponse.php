@@ -35,7 +35,7 @@ class ListOrganizationPermissionsResponse
     /**
      * Success
      *
-     * @var ?Components\Permissions $permissions
+     * @var ?\Clerk\Backend\Models\Components\Permissions $permissions
      */
     public ?Components\Permissions $permissions = null;
 
@@ -43,7 +43,7 @@ class ListOrganizationPermissionsResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\Permissions  $permissions
+     * @param  ?\Clerk\Backend\Models\Components\Permissions  $permissions
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\Permissions $permissions = null)

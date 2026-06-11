@@ -30,7 +30,7 @@ class GetSessionListRequest
     /**
      * Filter sessions by the provided status
      *
-     * @var ?Status $status
+     * @var ?\Clerk\Backend\Models\Operations\Status $status
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status')]
     public ?Status $status = null;
@@ -70,7 +70,7 @@ class GetSessionListRequest
     /**
      * @param  ?string  $clientId
      * @param  ?string  $userId
-     * @param  ?Status  $status
+     * @param  ?\Clerk\Backend\Models\Operations\Status  $status
      * @param  ?bool  $paginated
      * @param  ?int  $limit
      * @param  ?int  $offset

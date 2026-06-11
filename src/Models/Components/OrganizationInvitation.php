@@ -17,7 +17,7 @@ class OrganizationInvitation
      *
      *
      *
-     * @var OrganizationInvitationObject $object
+     * @var \Clerk\Backend\Models\Components\OrganizationInvitationObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationInvitationObject')]
@@ -94,7 +94,7 @@ class OrganizationInvitation
     /**
      * An organization inviter's public user data
      *
-     * @var ?OrganizationInvitationPublicUserData $publicInviterData
+     * @var ?\Clerk\Backend\Models\Components\OrganizationInvitationPublicUserData $publicInviterData
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('public_inviter_data')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationInvitationPublicUserData|null')]
@@ -134,7 +134,7 @@ class OrganizationInvitation
     public ?int $expiresAt;
 
     /**
-     * @param  OrganizationInvitationObject  $object
+     * @param  \Clerk\Backend\Models\Components\OrganizationInvitationObject  $object
      * @param  string  $id
      * @param  string  $emailAddress
      * @param  string  $role
@@ -144,7 +144,7 @@ class OrganizationInvitation
      * @param  int  $updatedAt
      * @param  ?string  $organizationId
      * @param  ?string  $inviterId
-     * @param  ?OrganizationInvitationPublicUserData  $publicInviterData
+     * @param  ?\Clerk\Backend\Models\Components\OrganizationInvitationPublicUserData  $publicInviterData
      * @param  ?string  $status
      * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?string  $url

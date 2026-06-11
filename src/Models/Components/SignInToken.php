@@ -14,7 +14,7 @@ class SignInToken
 {
     /**
      *
-     * @var SignInTokenObject $object
+     * @var \Clerk\Backend\Models\Components\SignInTokenObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SignInTokenObject')]
@@ -29,7 +29,7 @@ class SignInToken
 
     /**
      *
-     * @var SignInTokenStatus $status
+     * @var \Clerk\Backend\Models\Components\SignInTokenStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SignInTokenStatus')]
@@ -79,9 +79,9 @@ class SignInToken
     public ?string $url = null;
 
     /**
-     * @param  SignInTokenObject  $object
+     * @param  \Clerk\Backend\Models\Components\SignInTokenObject  $object
      * @param  string  $id
-     * @param  SignInTokenStatus  $status
+     * @param  \Clerk\Backend\Models\Components\SignInTokenStatus  $status
      * @param  string  $userId
      * @param  int  $createdAt
      * @param  int  $updatedAt
