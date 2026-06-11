@@ -9,6 +9,7 @@
 * [get](#get) - Retrieve an OAuth application by ID
 * [update](#update) - Update an OAuth application
 * [delete](#delete) - Delete an OAuth application
+* [uploadLogo](#uploadlogo) - Upload a logo for the OAuth application
 * [rotateSecret](#rotatesecret) - Rotate the client secret of the given OAuth application
 
 ## list
@@ -271,6 +272,60 @@ if ($response->deletedObject !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 403, 404            | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## uploadLogo
+
+Set or replace an OAuth application's logo by uploading an image file.
+This endpoint uses the `multipart/form-data` request content type and accepts a file of image type.
+The file size cannot exceed 10MB.
+Only the following file content types are supported: `image/jpeg`, `image/png`, `image/gif`, `image/webp`.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="UploadOAuthApplicationLogo" method="put" path="/oauth_applications/{oauth_application_id}/logo" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->oauthApplications->uploadLogo(
+    oauthApplicationId: '<id>',
+    requestBody: $requestBody
+
+);
+
+if ($response->oAuthApplication !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                             | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           |
+| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `oauthApplicationId`                                                                                                  | *string*                                                                                                              | :heavy_check_mark:                                                                                                    | The ID of the OAuth application for which to upload a logo                                                            |
+| `requestBody`                                                                                                         | [?Operations\UploadOAuthApplicationLogoRequestBody](../../Models/Operations/UploadOAuthApplicationLogoRequestBody.md) | :heavy_minus_sign:                                                                                                    | N/A                                                                                                                   |
+
+### Response
+
+**[?Operations\UploadOAuthApplicationLogoResponse](../../Models/Operations/UploadOAuthApplicationLogoResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 403, 404, 413  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## rotateSecret

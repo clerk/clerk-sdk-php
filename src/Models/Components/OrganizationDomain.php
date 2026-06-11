@@ -17,7 +17,7 @@ class OrganizationDomain
      *
      *
      *
-     * @var OrganizationDomainObject $object
+     * @var \Clerk\Backend\Models\Components\OrganizationDomainObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationDomainObject')]
@@ -50,7 +50,7 @@ class OrganizationDomain
     /**
      * Mode of enrollment for the domain
      *
-     * @var EnrollmentMode $enrollmentMode
+     * @var \Clerk\Backend\Models\Components\EnrollmentMode $enrollmentMode
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('enrollment_mode')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\EnrollmentMode')]
@@ -97,9 +97,34 @@ class OrganizationDomain
     public ?string $affiliationEmailAddress;
 
     /**
-     * Verification details for the domain
+     * Verification details for the user-facing affiliation between the domain and the organization (e.g. affiliation_email_code).
      *
-     * @var ?OrganizationDomainVerification $verification
+     *
+     *
+     * @var ?\Clerk\Backend\Models\Components\AffiliationVerification $affiliationVerification
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('affiliation_verification')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\AffiliationVerification|null')]
+    public ?AffiliationVerification $affiliationVerification;
+
+    /**
+     * Verification details for the underlying DNS domain ownership proof (TXT challenge or dashboard override). Null until ownership has been attempted.
+     *
+     *
+     *
+     * @var ?\Clerk\Backend\Models\Components\OwnershipVerification $ownershipVerification
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ownership_verification')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OwnershipVerification|null')]
+    public ?OwnershipVerification $ownershipVerification;
+
+    /**
+     * Deprecated alias for `affiliation_verification`. Kept for backward compatibility on the current API version; will be removed in the next API version. Prefer `affiliation_verification`.
+     *
+     *
+     *
+     * @var ?\Clerk\Backend\Models\Components\OrganizationDomainVerification $verification
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationDomainVerification|null')]
@@ -108,7 +133,7 @@ class OrganizationDomain
     /**
      * Public organization data associated with this domain
      *
-     * @var ?PublicOrganizationData $publicOrganizationData
+     * @var ?\Clerk\Backend\Models\Components\PublicOrganizationData $publicOrganizationData
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('public_organization_data')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\PublicOrganizationData|null')]
@@ -116,21 +141,23 @@ class OrganizationDomain
     public ?PublicOrganizationData $publicOrganizationData = null;
 
     /**
-     * @param  OrganizationDomainObject  $object
+     * @param  \Clerk\Backend\Models\Components\OrganizationDomainObject  $object
      * @param  string  $id
      * @param  string  $organizationId
      * @param  string  $name
-     * @param  EnrollmentMode  $enrollmentMode
+     * @param  \Clerk\Backend\Models\Components\EnrollmentMode  $enrollmentMode
      * @param  int  $totalPendingInvitations
      * @param  int  $totalPendingSuggestions
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  ?string  $affiliationEmailAddress
-     * @param  ?OrganizationDomainVerification  $verification
-     * @param  ?PublicOrganizationData  $publicOrganizationData
+     * @param  ?\Clerk\Backend\Models\Components\AffiliationVerification  $affiliationVerification
+     * @param  ?\Clerk\Backend\Models\Components\OwnershipVerification  $ownershipVerification
+     * @param  ?\Clerk\Backend\Models\Components\OrganizationDomainVerification  $verification
+     * @param  ?\Clerk\Backend\Models\Components\PublicOrganizationData  $publicOrganizationData
      * @phpstan-pure
      */
-    public function __construct(OrganizationDomainObject $object, string $id, string $organizationId, string $name, EnrollmentMode $enrollmentMode, int $totalPendingInvitations, int $totalPendingSuggestions, int $createdAt, int $updatedAt, ?string $affiliationEmailAddress = null, ?OrganizationDomainVerification $verification = null, ?PublicOrganizationData $publicOrganizationData = null)
+    public function __construct(OrganizationDomainObject $object, string $id, string $organizationId, string $name, EnrollmentMode $enrollmentMode, int $totalPendingInvitations, int $totalPendingSuggestions, int $createdAt, int $updatedAt, ?string $affiliationEmailAddress = null, ?AffiliationVerification $affiliationVerification = null, ?OwnershipVerification $ownershipVerification = null, ?OrganizationDomainVerification $verification = null, ?PublicOrganizationData $publicOrganizationData = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -142,6 +169,8 @@ class OrganizationDomain
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
         $this->affiliationEmailAddress = $affiliationEmailAddress;
+        $this->affiliationVerification = $affiliationVerification;
+        $this->ownershipVerification = $ownershipVerification;
         $this->verification = $verification;
         $this->publicOrganizationData = $publicOrganizationData;
     }

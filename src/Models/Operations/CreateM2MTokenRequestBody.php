@@ -12,6 +12,22 @@ namespace Clerk\Backend\Models\Operations;
 class CreateM2MTokenRequestBody
 {
     /**
+     * Enables server-side token reuse for opaque-format tokens. When set, if a non-revoked, non-expired M2M token already exists for this machine with identical `claims` and `scopes` and at least this many seconds of remaining lifetime, that existing token is returned and no new token is minted.
+     *
+     *
+     * Use this when caching tokens in application memory across requests is impractical — for example, in serverless functions, short-lived job workers, or autoscaling containers that churn faster than the token TTL. Pooling at the server collapses many redundant create calls into reuse of a single live token, which is the recommended pattern for high-volume M2M traffic.
+     *
+     * Must be strictly less than the effective token lifetime — that is, `seconds_until_expiration` when provided, or the machine's default TTL otherwise. A value greater than or equal to the lifetime is rejected with a 400, since no freshly-minted token would ever satisfy the requirement.
+     *
+     * Only applies to opaque-format tokens (`token_format` defaults to `opaque`). JWT-format tokens are stateless and are never deduplicated.
+     *
+     * @var ?int $minRemainingTtlSeconds
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('min_remaining_ttl_seconds')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $minRemainingTtlSeconds = null;
+
+    /**
      *
      * @var ?float $secondsUntilExpiration
      */
@@ -30,7 +46,7 @@ class CreateM2MTokenRequestBody
 
     /**
      *
-     * @var ?TokenFormat $tokenFormat
+     * @var ?\Clerk\Backend\Models\Operations\TokenFormat $tokenFormat
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('token_format')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\TokenFormat|null')]
@@ -38,13 +54,15 @@ class CreateM2MTokenRequestBody
     public ?TokenFormat $tokenFormat = null;
 
     /**
-     * @param  ?TokenFormat  $tokenFormat
+     * @param  ?\Clerk\Backend\Models\Operations\TokenFormat  $tokenFormat
+     * @param  ?int  $minRemainingTtlSeconds
      * @param  ?float  $secondsUntilExpiration
      * @param  mixed  $claims
      * @phpstan-pure
      */
-    public function __construct(?float $secondsUntilExpiration = null, mixed $claims = null, ?TokenFormat $tokenFormat = TokenFormat::Opaque)
+    public function __construct(?int $minRemainingTtlSeconds = null, ?float $secondsUntilExpiration = null, mixed $claims = null, ?TokenFormat $tokenFormat = TokenFormat::Opaque)
     {
+        $this->minRemainingTtlSeconds = $minRemainingTtlSeconds;
         $this->secondsUntilExpiration = $secondsUntilExpiration;
         $this->claims = $claims;
         $this->tokenFormat = $tokenFormat;

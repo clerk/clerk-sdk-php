@@ -35,7 +35,7 @@ class RefreshSessionResponse
     /**
      * Success
      *
-     * @var Components\Token|Components\Cookies|null $sessionRefresh
+     * @var \Clerk\Backend\Models\Components\Token|\Clerk\Backend\Models\Components\Cookies|null $sessionRefresh
      */
     public Components\Token|Components\Cookies|null $sessionRefresh = null;
 
@@ -43,7 +43,7 @@ class RefreshSessionResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  Components\Token|Components\Cookies|null  $sessionRefresh
+     * @param  \Clerk\Backend\Models\Components\Token|\Clerk\Backend\Models\Components\Cookies|null  $sessionRefresh
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, Components\Token|Components\Cookies|null $sessionRefresh = null)

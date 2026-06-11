@@ -35,7 +35,7 @@ class CreateRedirectURLResponse
     /**
      * Success
      *
-     * @var ?Components\RedirectURL $redirectURL
+     * @var ?\Clerk\Backend\Models\Components\RedirectURL $redirectURL
      */
     public ?Components\RedirectURL $redirectURL = null;
 
@@ -43,7 +43,7 @@ class CreateRedirectURLResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\RedirectURL  $redirectURL
+     * @param  ?\Clerk\Backend\Models\Components\RedirectURL  $redirectURL
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\RedirectURL $redirectURL = null)

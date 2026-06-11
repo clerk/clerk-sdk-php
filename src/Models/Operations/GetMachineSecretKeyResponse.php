@@ -35,7 +35,7 @@ class GetMachineSecretKeyResponse
     /**
      * Success
      *
-     * @var ?Components\MachineSecretKey $machineSecretKey
+     * @var ?\Clerk\Backend\Models\Components\MachineSecretKey $machineSecretKey
      */
     public ?Components\MachineSecretKey $machineSecretKey = null;
 
@@ -43,7 +43,7 @@ class GetMachineSecretKeyResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\MachineSecretKey  $machineSecretKey
+     * @param  ?\Clerk\Backend\Models\Components\MachineSecretKey  $machineSecretKey
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\MachineSecretKey $machineSecretKey = null)

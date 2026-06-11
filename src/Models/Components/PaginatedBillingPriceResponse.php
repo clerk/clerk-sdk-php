@@ -15,7 +15,7 @@ class PaginatedBillingPriceResponse
     /**
      * Array of prices.
      *
-     * @var array<BillingPriceResponse> $data
+     * @var array<\Clerk\Backend\Models\Components\BillingPriceResponse> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\BillingPriceResponse>')]
@@ -30,7 +30,7 @@ class PaginatedBillingPriceResponse
     public int $totalCount;
 
     /**
-     * @param  array<BillingPriceResponse>  $data
+     * @param  array<\Clerk\Backend\Models\Components\BillingPriceResponse>  $data
      * @param  int  $totalCount
      * @phpstan-pure
      */

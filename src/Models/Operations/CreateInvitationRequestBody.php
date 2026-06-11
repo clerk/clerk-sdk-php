@@ -47,7 +47,7 @@ class CreateInvitationRequestBody
     /**
      * The slug of the email template to use for the invitation email.
      *
-     * @var ?TemplateSlug $templateSlug
+     * @var ?\Clerk\Backend\Models\Operations\TemplateSlug $templateSlug
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('template_slug')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\TemplateSlug|null')]
@@ -87,7 +87,7 @@ class CreateInvitationRequestBody
      * @param  string  $emailAddress
      * @param  ?array<string, mixed>  $publicMetadata
      * @param  ?string  $redirectUrl
-     * @param  ?TemplateSlug  $templateSlug
+     * @param  ?\Clerk\Backend\Models\Operations\TemplateSlug  $templateSlug
      * @param  ?bool  $notify
      * @param  ?bool  $ignoreExisting
      * @param  ?int  $expiresInDays

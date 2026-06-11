@@ -21,14 +21,14 @@ class UpdateOrganizationRequest
 
     /**
      *
-     * @var UpdateOrganizationRequestBody $requestBody
+     * @var \Clerk\Backend\Models\Operations\UpdateOrganizationRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public UpdateOrganizationRequestBody $requestBody;
 
     /**
      * @param  string  $organizationId
-     * @param  UpdateOrganizationRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\UpdateOrganizationRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $organizationId, UpdateOrganizationRequestBody $requestBody)

@@ -15,7 +15,7 @@ class MachineList
     /**
      * $data
      *
-     * @var array<Machine> $data
+     * @var array<\Clerk\Backend\Models\Components\Machine> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\Machine>')]
@@ -30,7 +30,7 @@ class MachineList
     public int $totalCount;
 
     /**
-     * @param  array<Machine>  $data
+     * @param  array<\Clerk\Backend\Models\Components\Machine>  $data
      * @param  int  $totalCount
      * @phpstan-pure
      */

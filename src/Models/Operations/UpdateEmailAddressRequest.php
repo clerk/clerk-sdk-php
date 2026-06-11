@@ -21,14 +21,14 @@ class UpdateEmailAddressRequest
 
     /**
      *
-     * @var ?UpdateEmailAddressRequestBody $requestBody
+     * @var ?\Clerk\Backend\Models\Operations\UpdateEmailAddressRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?UpdateEmailAddressRequestBody $requestBody = null;
 
     /**
      * @param  string  $emailAddressId
-     * @param  ?UpdateEmailAddressRequestBody  $requestBody
+     * @param  ?\Clerk\Backend\Models\Operations\UpdateEmailAddressRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $emailAddressId, ?UpdateEmailAddressRequestBody $requestBody = null)

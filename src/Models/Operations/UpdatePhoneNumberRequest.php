@@ -21,14 +21,14 @@ class UpdatePhoneNumberRequest
 
     /**
      *
-     * @var ?UpdatePhoneNumberRequestBody $requestBody
+     * @var ?\Clerk\Backend\Models\Operations\UpdatePhoneNumberRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?UpdatePhoneNumberRequestBody $requestBody = null;
 
     /**
      * @param  string  $phoneNumberId
-     * @param  ?UpdatePhoneNumberRequestBody  $requestBody
+     * @param  ?\Clerk\Backend\Models\Operations\UpdatePhoneNumberRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $phoneNumberId, ?UpdatePhoneNumberRequestBody $requestBody = null)

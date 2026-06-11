@@ -35,7 +35,7 @@ class VerifyTOTPResponse
     /**
      * The provided TOTP or backup code was correct.
      *
-     * @var ?VerifyTOTPResponseBody $object
+     * @var ?\Clerk\Backend\Models\Operations\VerifyTOTPResponseBody $object
      */
     public ?VerifyTOTPResponseBody $object = null;
 
@@ -43,7 +43,7 @@ class VerifyTOTPResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?VerifyTOTPResponseBody  $object
+     * @param  ?\Clerk\Backend\Models\Operations\VerifyTOTPResponseBody  $object
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?VerifyTOTPResponseBody $object = null)

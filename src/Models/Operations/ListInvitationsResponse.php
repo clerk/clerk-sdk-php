@@ -35,7 +35,7 @@ class ListInvitationsResponse
     /**
      * List of invitations
      *
-     * @var ?array<Components\Invitation> $invitationList
+     * @var ?array<\Clerk\Backend\Models\Components\Invitation> $invitationList
      */
     public ?array $invitationList = null;
 
@@ -43,7 +43,7 @@ class ListInvitationsResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?array<Components\Invitation>  $invitationList
+     * @param  ?array<\Clerk\Backend\Models\Components\Invitation>  $invitationList
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?array $invitationList = null)

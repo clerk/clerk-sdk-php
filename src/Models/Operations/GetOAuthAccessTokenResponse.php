@@ -35,7 +35,7 @@ class GetOAuthAccessTokenResponse
     /**
      * Success
      *
-     * @var ?array<Components\OAuthAccessToken> $oAuthAccessToken
+     * @var ?array<\Clerk\Backend\Models\Components\OAuthAccessToken> $oAuthAccessToken
      */
     public ?array $oAuthAccessToken = null;
 
@@ -43,7 +43,7 @@ class GetOAuthAccessTokenResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?array<Components\OAuthAccessToken>  $oAuthAccessToken
+     * @param  ?array<\Clerk\Backend\Models\Components\OAuthAccessToken>  $oAuthAccessToken
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?array $oAuthAccessToken = null)

@@ -29,7 +29,7 @@ class UpdateOrganizationDomainRequest
 
     /**
      *
-     * @var UpdateOrganizationDomainRequestBody $requestBody
+     * @var \Clerk\Backend\Models\Operations\UpdateOrganizationDomainRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public UpdateOrganizationDomainRequestBody $requestBody;
@@ -37,7 +37,7 @@ class UpdateOrganizationDomainRequest
     /**
      * @param  string  $organizationId
      * @param  string  $domainId
-     * @param  UpdateOrganizationDomainRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\UpdateOrganizationDomainRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $organizationId, string $domainId, UpdateOrganizationDomainRequestBody $requestBody)

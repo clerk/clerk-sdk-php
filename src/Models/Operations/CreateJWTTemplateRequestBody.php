@@ -22,7 +22,7 @@ class CreateJWTTemplateRequestBody
     /**
      * JWT template claims in JSON format
      *
-     * @var Claims $claims
+     * @var \Clerk\Backend\Models\Operations\Claims $claims
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('claims')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\Claims')]
@@ -75,7 +75,7 @@ class CreateJWTTemplateRequestBody
 
     /**
      * @param  string  $name
-     * @param  Claims  $claims
+     * @param  \Clerk\Backend\Models\Operations\Claims  $claims
      * @param  ?bool  $customSigningKey
      * @param  ?int  $lifetime
      * @param  ?int  $allowedClockSkew

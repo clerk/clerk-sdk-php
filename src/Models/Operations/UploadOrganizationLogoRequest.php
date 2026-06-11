@@ -21,14 +21,14 @@ class UploadOrganizationLogoRequest
 
     /**
      *
-     * @var ?UploadOrganizationLogoRequestBody $requestBody
+     * @var ?\Clerk\Backend\Models\Operations\UploadOrganizationLogoRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=multipart/form-data')]
     public ?UploadOrganizationLogoRequestBody $requestBody = null;
 
     /**
      * @param  string  $organizationId
-     * @param  ?UploadOrganizationLogoRequestBody  $requestBody
+     * @param  ?\Clerk\Backend\Models\Operations\UploadOrganizationLogoRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $organizationId, ?UploadOrganizationLogoRequestBody $requestBody = null)

@@ -14,7 +14,7 @@ class DefaultRole
 {
     /**
      *
-     * @var RoleSetDefaultRoleObject $object
+     * @var \Clerk\Backend\Models\Components\RoleSetDefaultRoleObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\RoleSetDefaultRoleObject')]
@@ -87,7 +87,7 @@ class DefaultRole
     public ?bool $hasMembers = null;
 
     /**
-     * @param  RoleSetDefaultRoleObject  $object
+     * @param  \Clerk\Backend\Models\Components\RoleSetDefaultRoleObject  $object
      * @param  string  $id
      * @param  string  $name
      * @param  string  $key

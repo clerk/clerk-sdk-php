@@ -52,8 +52,8 @@ class Sessions
      * Creates a session JSON Web Token (JWT) based on a session.
      *
      * @param  string  $sessionId
-     * @param  ?Operations\CreateSessionTokenRequestBody  $requestBody
-     * @return Operations\CreateSessionTokenResponse
+     * @param  ?\Clerk\Backend\Models\Operations\CreateSessionTokenRequestBody  $requestBody
+     * @return \Clerk\Backend\Models\Operations\CreateSessionTokenResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function createToken(string $sessionId, ?Operations\CreateSessionTokenRequestBody $requestBody = null, ?Options $options = null): Operations\CreateSessionTokenResponse
@@ -109,11 +109,12 @@ class Sessions
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -158,8 +159,8 @@ class Sessions
      *
      * @param  string  $sessionId
      * @param  string  $templateName
-     * @param  ?Operations\CreateSessionTokenFromTemplateRequestBody  $requestBody
-     * @return Operations\CreateSessionTokenFromTemplateResponse
+     * @param  ?\Clerk\Backend\Models\Operations\CreateSessionTokenFromTemplateRequestBody  $requestBody
+     * @return \Clerk\Backend\Models\Operations\CreateSessionTokenFromTemplateResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function createTokenFromTemplate(string $sessionId, string $templateName, ?Operations\CreateSessionTokenFromTemplateRequestBody $requestBody = null, ?Options $options = null): Operations\CreateSessionTokenFromTemplateResponse
@@ -216,11 +217,12 @@ class Sessions
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -264,7 +266,7 @@ class Sessions
      * Retrieve the details of a session
      *
      * @param  string  $sessionId
-     * @return Operations\GetSessionResponse
+     * @return \Clerk\Backend\Models\Operations\GetSessionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function get(string $sessionId, ?Options $options = null): Operations\GetSessionResponse
@@ -315,11 +317,12 @@ class Sessions
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -368,8 +371,8 @@ class Sessions
      * **Deprecation Notice (2024-01-01):** All parameters were initially considered optional, however
      * moving forward at least one of `client_id` or `user_id` parameters should be provided.
      *
-     * @param  ?Operations\GetSessionListRequest  $request
-     * @return Operations\GetSessionListResponse
+     * @param  ?\Clerk\Backend\Models\Operations\GetSessionListRequest  $request
+     * @return \Clerk\Backend\Models\Operations\GetSessionListResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function list(?Operations\GetSessionListRequest $request = null, ?Options $options = null): Operations\GetSessionListResponse
@@ -420,11 +423,12 @@ class Sessions
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -469,8 +473,8 @@ class Sessions
      * are validation errors, which signals the SDKs to fall back to the handshake flow.
      *
      * @param  string  $sessionId
-     * @param  ?Operations\RefreshSessionRequestBody  $requestBody
-     * @return Operations\RefreshSessionResponse
+     * @param  ?\Clerk\Backend\Models\Operations\RefreshSessionRequestBody  $requestBody
+     * @return \Clerk\Backend\Models\Operations\RefreshSessionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function refresh(string $sessionId, ?Operations\RefreshSessionRequestBody $requestBody = null, ?Options $options = null): Operations\RefreshSessionResponse
@@ -526,11 +530,12 @@ class Sessions
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -575,7 +580,7 @@ class Sessions
      * In multi-session mode, a revoked session will still be returned along with its client object, however the user will need to sign in again.
      *
      * @param  string  $sessionId
-     * @return Operations\RevokeSessionResponse
+     * @return \Clerk\Backend\Models\Operations\RevokeSessionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function revoke(string $sessionId, ?Options $options = null): Operations\RevokeSessionResponse
@@ -626,11 +631,12 @@ class Sessions
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -676,8 +682,8 @@ class Sessions
      * **This operation is intended only for use in testing, and is not available for production instances.** If you are looking to generate a user session from the backend,
      * we recommend using the [Sign-in Tokens](https://clerk.com/docs/reference/backend-api/tag/Sign-in-Tokens#operation/CreateSignInToken) resource instead.
      *
-     * @param  ?Operations\CreateSessionRequestBody  $request
-     * @return Operations\CreateSessionResponse
+     * @param  ?\Clerk\Backend\Models\Operations\CreateSessionRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\CreateSessionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function create(?Operations\CreateSessionRequestBody $request = null, ?Options $options = null): Operations\CreateSessionResponse
@@ -729,11 +735,12 @@ class Sessions
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

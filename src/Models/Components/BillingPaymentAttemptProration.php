@@ -13,7 +13,7 @@ class BillingPaymentAttemptProration
 {
     /**
      *
-     * @var CommerceMoneyResponse $amount
+     * @var \Clerk\Backend\Models\Components\CommerceMoneyResponse $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
@@ -41,7 +41,7 @@ class BillingPaymentAttemptProration
     public float $cycleRemainingPercent;
 
     /**
-     * @param  CommerceMoneyResponse  $amount
+     * @param  \Clerk\Backend\Models\Components\CommerceMoneyResponse  $amount
      * @param  int  $cycleDaysRemaining
      * @param  int  $cycleDaysTotal
      * @param  float  $cycleRemainingPercent

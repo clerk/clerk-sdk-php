@@ -35,7 +35,7 @@ class GetOrganizationBillingCreditBalanceResponse
     /**
      * A payer's credit balance.
      *
-     * @var ?Components\CommerceCreditBalanceResponse $commerceCreditBalanceResponse
+     * @var ?\Clerk\Backend\Models\Components\CommerceCreditBalanceResponse $commerceCreditBalanceResponse
      */
     public ?Components\CommerceCreditBalanceResponse $commerceCreditBalanceResponse = null;
 
@@ -43,7 +43,7 @@ class GetOrganizationBillingCreditBalanceResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\CommerceCreditBalanceResponse  $commerceCreditBalanceResponse
+     * @param  ?\Clerk\Backend\Models\Components\CommerceCreditBalanceResponse  $commerceCreditBalanceResponse
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\CommerceCreditBalanceResponse $commerceCreditBalanceResponse = null)

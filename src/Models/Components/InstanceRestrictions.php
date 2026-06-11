@@ -15,7 +15,7 @@ class InstanceRestrictions
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var InstanceRestrictionsObject $object
+     * @var \Clerk\Backend\Models\Components\InstanceRestrictionsObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\InstanceRestrictionsObject')]
@@ -57,7 +57,7 @@ class InstanceRestrictions
     public bool $blockDisposableEmailDomains;
 
     /**
-     * @param  InstanceRestrictionsObject  $object
+     * @param  \Clerk\Backend\Models\Components\InstanceRestrictionsObject  $object
      * @param  bool  $allowlist
      * @param  bool  $blocklist
      * @param  bool  $allowlistBlocklistDisabledOnSignIn

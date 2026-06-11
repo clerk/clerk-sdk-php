@@ -29,7 +29,7 @@ class UpdateOrganizationMembershipMetadataRequest
 
     /**
      *
-     * @var ?UpdateOrganizationMembershipMetadataRequestBody $requestBody
+     * @var ?\Clerk\Backend\Models\Operations\UpdateOrganizationMembershipMetadataRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?UpdateOrganizationMembershipMetadataRequestBody $requestBody = null;
@@ -37,7 +37,7 @@ class UpdateOrganizationMembershipMetadataRequest
     /**
      * @param  string  $organizationId
      * @param  string  $userId
-     * @param  ?UpdateOrganizationMembershipMetadataRequestBody  $requestBody
+     * @param  ?\Clerk\Backend\Models\Operations\UpdateOrganizationMembershipMetadataRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $organizationId, string $userId, ?UpdateOrganizationMembershipMetadataRequestBody $requestBody = null)

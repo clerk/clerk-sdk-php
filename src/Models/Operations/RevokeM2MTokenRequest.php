@@ -20,14 +20,14 @@ class RevokeM2MTokenRequest
 
     /**
      *
-     * @var RevokeM2MTokenRequestBody $requestBody
+     * @var \Clerk\Backend\Models\Operations\RevokeM2MTokenRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public RevokeM2MTokenRequestBody $requestBody;
 
     /**
      * @param  string  $m2mTokenId
-     * @param  RevokeM2MTokenRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\RevokeM2MTokenRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $m2mTokenId, RevokeM2MTokenRequestBody $requestBody)

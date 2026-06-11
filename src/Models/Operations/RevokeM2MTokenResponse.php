@@ -35,7 +35,7 @@ class RevokeM2MTokenResponse
     /**
      * 200 OK
      *
-     * @var ?RevokeM2MTokenResponseBody $object
+     * @var ?\Clerk\Backend\Models\Operations\RevokeM2MTokenResponseBody $object
      */
     public ?RevokeM2MTokenResponseBody $object = null;
 
@@ -43,7 +43,7 @@ class RevokeM2MTokenResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?RevokeM2MTokenResponseBody  $object
+     * @param  ?\Clerk\Backend\Models\Operations\RevokeM2MTokenResponseBody  $object
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?RevokeM2MTokenResponseBody $object = null)

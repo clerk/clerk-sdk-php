@@ -34,7 +34,7 @@ class GetApiKeysRequest
 
     /**
      *
-     * @var ?IncludeInvalid $includeInvalid
+     * @var ?\Clerk\Backend\Models\Operations\IncludeInvalid $includeInvalid
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=include_invalid')]
     public ?IncludeInvalid $includeInvalid = null;
@@ -56,7 +56,7 @@ class GetApiKeysRequest
     /**
      * @param  string  $subject
      * @param  ?string  $type
-     * @param  ?IncludeInvalid  $includeInvalid
+     * @param  ?\Clerk\Backend\Models\Operations\IncludeInvalid  $includeInvalid
      * @param  ?float  $limit
      * @param  ?string  $query
      * @param  ?float  $offset

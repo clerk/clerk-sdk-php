@@ -15,7 +15,7 @@ class CommerceSubscription
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var CommerceSubscriptionObject $object
+     * @var \Clerk\Backend\Models\Components\CommerceSubscriptionObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceSubscriptionObject')]
@@ -40,7 +40,7 @@ class CommerceSubscription
     /**
      * The current status of the subscription.
      *
-     * @var CommerceSubscriptionStatus $status
+     * @var \Clerk\Backend\Models\Components\CommerceSubscriptionStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceSubscriptionStatus')]
@@ -73,7 +73,7 @@ class CommerceSubscription
     /**
      * Array of subscription items in this subscription.
      *
-     * @var array<CommerceSubscriptionItem> $subscriptionItems
+     * @var array<\Clerk\Backend\Models\Components\CommerceSubscriptionItem> $subscriptionItems
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('subscription_items')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\CommerceSubscriptionItem>')]
@@ -97,7 +97,7 @@ class CommerceSubscription
 
     /**
      *
-     * @var ?CommerceSubscriptionNextPayment $nextPayment
+     * @var ?\Clerk\Backend\Models\Components\CommerceSubscriptionNextPayment $nextPayment
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('next_payment')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceSubscriptionNextPayment|null')]
@@ -114,17 +114,17 @@ class CommerceSubscription
     public ?bool $eligibleForFreeTrial = null;
 
     /**
-     * @param  CommerceSubscriptionObject  $object
+     * @param  \Clerk\Backend\Models\Components\CommerceSubscriptionObject  $object
      * @param  string  $id
      * @param  string  $instanceId
-     * @param  CommerceSubscriptionStatus  $status
+     * @param  \Clerk\Backend\Models\Components\CommerceSubscriptionStatus  $status
      * @param  string  $payerId
      * @param  int  $createdAt
      * @param  int  $updatedAt
-     * @param  array<CommerceSubscriptionItem>  $subscriptionItems
+     * @param  array<\Clerk\Backend\Models\Components\CommerceSubscriptionItem>  $subscriptionItems
      * @param  ?int  $activeAt
      * @param  ?int  $pastDueAt
-     * @param  ?CommerceSubscriptionNextPayment  $nextPayment
+     * @param  ?\Clerk\Backend\Models\Components\CommerceSubscriptionNextPayment  $nextPayment
      * @param  ?bool  $eligibleForFreeTrial
      * @phpstan-pure
      */

@@ -51,8 +51,8 @@ class JwtTemplates
      *
      * Create a new JWT template
      *
-     * @param  ?Operations\CreateJWTTemplateRequestBody  $request
-     * @return Operations\CreateJWTTemplateResponse
+     * @param  ?\Clerk\Backend\Models\Operations\CreateJWTTemplateRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\CreateJWTTemplateResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function create(?Operations\CreateJWTTemplateRequestBody $request = null, ?Options $options = null): Operations\CreateJWTTemplateResponse
@@ -104,11 +104,12 @@ class JwtTemplates
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '402', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -150,7 +151,7 @@ class JwtTemplates
      * Delete a Template
      *
      * @param  string  $templateId
-     * @return Operations\DeleteJWTTemplateResponse
+     * @return \Clerk\Backend\Models\Operations\DeleteJWTTemplateResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function delete(string $templateId, ?Options $options = null): Operations\DeleteJWTTemplateResponse
@@ -201,11 +202,12 @@ class JwtTemplates
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['403', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -249,7 +251,7 @@ class JwtTemplates
      * Retrieve the details of a given JWT template
      *
      * @param  string  $templateId
-     * @return Operations\GetJWTTemplateResponse
+     * @return \Clerk\Backend\Models\Operations\GetJWTTemplateResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function get(string $templateId, ?Options $options = null): Operations\GetJWTTemplateResponse
@@ -300,11 +302,12 @@ class JwtTemplates
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -348,7 +351,7 @@ class JwtTemplates
      * @param  ?bool  $paginated
      * @param  ?int  $limit
      * @param  ?int  $offset
-     * @return Operations\ListJWTTemplatesResponse
+     * @return \Clerk\Backend\Models\Operations\ListJWTTemplatesResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function list(?bool $paginated = null, ?int $limit = null, ?int $offset = null, ?Options $options = null): Operations\ListJWTTemplatesResponse
@@ -404,11 +407,12 @@ class JwtTemplates
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -441,8 +445,8 @@ class JwtTemplates
      * Updates an existing JWT template
      *
      * @param  string  $templateId
-     * @param  ?Operations\UpdateJWTTemplateRequestBody  $requestBody
-     * @return Operations\UpdateJWTTemplateResponse
+     * @param  ?\Clerk\Backend\Models\Operations\UpdateJWTTemplateRequestBody  $requestBody
+     * @return \Clerk\Backend\Models\Operations\UpdateJWTTemplateResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function update(string $templateId, ?Operations\UpdateJWTTemplateRequestBody $requestBody = null, ?Options $options = null): Operations\UpdateJWTTemplateResponse
@@ -498,11 +502,12 @@ class JwtTemplates
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '402', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

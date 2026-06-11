@@ -35,7 +35,7 @@ class GetOAuthApplicationResponse
     /**
      * An OAuth application
      *
-     * @var ?Components\OAuthApplication $oAuthApplication
+     * @var ?\Clerk\Backend\Models\Components\OAuthApplication $oAuthApplication
      */
     public ?Components\OAuthApplication $oAuthApplication = null;
 
@@ -43,7 +43,7 @@ class GetOAuthApplicationResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\OAuthApplication  $oAuthApplication
+     * @param  ?\Clerk\Backend\Models\Components\OAuthApplication  $oAuthApplication
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\OAuthApplication $oAuthApplication = null)

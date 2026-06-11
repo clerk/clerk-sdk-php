@@ -14,7 +14,7 @@ class RevokeApiKeyResponseBody
 {
     /**
      *
-     * @var RevokeApiKeyObject $object
+     * @var \Clerk\Backend\Models\Operations\RevokeApiKeyObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\RevokeApiKeyObject')]
@@ -134,7 +134,7 @@ class RevokeApiKeyResponseBody
     public ?string $description = null;
 
     /**
-     * @param  RevokeApiKeyObject  $object
+     * @param  \Clerk\Backend\Models\Operations\RevokeApiKeyObject  $object
      * @param  string  $id
      * @param  string  $type
      * @param  string  $subject

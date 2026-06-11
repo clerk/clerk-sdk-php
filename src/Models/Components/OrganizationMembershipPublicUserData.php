@@ -57,6 +57,14 @@ class OrganizationMembershipPublicUserData
 
     /**
      *
+     * @var ?bool $banned
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('banned')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $banned = null;
+
+    /**
+     *
      * @var ?string $identifier
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('identifier')]
@@ -78,11 +86,12 @@ class OrganizationMembershipPublicUserData
      * @param  ?string  $firstName
      * @param  ?string  $lastName
      * @param  ?string  $profileImageUrl
+     * @param  ?bool  $banned
      * @param  ?string  $identifier
      * @param  ?string  $username
      * @phpstan-pure
      */
-    public function __construct(string $userId, string $imageUrl, bool $hasImage, ?string $firstName = null, ?string $lastName = null, ?string $profileImageUrl = null, ?string $identifier = null, ?string $username = null)
+    public function __construct(string $userId, string $imageUrl, bool $hasImage, ?string $firstName = null, ?string $lastName = null, ?string $profileImageUrl = null, ?bool $banned = null, ?string $identifier = null, ?string $username = null)
     {
         $this->userId = $userId;
         $this->imageUrl = $imageUrl;
@@ -90,6 +99,7 @@ class OrganizationMembershipPublicUserData
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->profileImageUrl = $profileImageUrl;
+        $this->banned = $banned;
         $this->identifier = $identifier;
         $this->username = $username;
     }

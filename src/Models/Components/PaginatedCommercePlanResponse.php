@@ -15,7 +15,7 @@ class PaginatedCommercePlanResponse
     /**
      * Array of plans.
      *
-     * @var array<CommercePlan> $data
+     * @var array<\Clerk\Backend\Models\Components\CommercePlan> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\CommercePlan>')]
@@ -30,7 +30,7 @@ class PaginatedCommercePlanResponse
     public int $totalCount;
 
     /**
-     * @param  array<CommercePlan>  $data
+     * @param  array<\Clerk\Backend\Models\Components\CommercePlan>  $data
      * @param  int  $totalCount
      * @phpstan-pure
      */

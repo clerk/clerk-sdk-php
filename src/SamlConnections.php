@@ -50,13 +50,16 @@ class SamlConnections
      * Create a SAML Connection
      *
      * Create a new SAML Connection.
+     * Deprecated: Use the Enterprise Connections API instead. This endpoint will be removed in future versions.
      *
-     * @param  Operations\One|Operations\Two|null  $request
-     * @return Operations\CreateSAMLConnectionResponse
+     * @param  \Clerk\Backend\Models\Operations\One|\Clerk\Backend\Models\Operations\Two|null  $request
+     * @return \Clerk\Backend\Models\Operations\CreateSAMLConnectionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
+     * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     public function create(Operations\One|Operations\Two|null $request = null, ?Options $options = null): Operations\CreateSAMLConnectionResponse
     {
+        trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
         $retryConfig = null;
         if ($options) {
             $retryConfig = $options->retryConfig;
@@ -104,11 +107,12 @@ class SamlConnections
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['402', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -120,13 +124,13 @@ class SamlConnections
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
-                    schemasSAMLConnection: $obj);
+                    samlConnection: $obj);
 
                 return $response;
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
-        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['402', '403', '404', '422'])) {
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['402', '403', '404', '409', '422'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -150,13 +154,16 @@ class SamlConnections
      * Delete a SAML Connection
      *
      * Deletes the SAML Connection whose ID matches the provided `id` in the path.
+     * Deprecated: Use the Enterprise Connections API instead. This endpoint will be removed in future versions.
      *
      * @param  string  $samlConnectionId
-     * @return Operations\DeleteSAMLConnectionResponse
+     * @return \Clerk\Backend\Models\Operations\DeleteSAMLConnectionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
+     * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     public function delete(string $samlConnectionId, ?Options $options = null): Operations\DeleteSAMLConnectionResponse
     {
+        trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
         $retryConfig = null;
         if ($options) {
             $retryConfig = $options->retryConfig;
@@ -203,11 +210,12 @@ class SamlConnections
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['402', '403', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -249,13 +257,16 @@ class SamlConnections
      * Retrieve a SAML Connection by ID
      *
      * Fetches the SAML Connection whose ID matches the provided `saml_connection_id` in the path.
+     * Deprecated: Use the Enterprise Connections API instead. This endpoint will be removed in future versions.
      *
      * @param  string  $samlConnectionId
-     * @return Operations\GetSAMLConnectionResponse
+     * @return \Clerk\Backend\Models\Operations\GetSAMLConnectionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
+     * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     public function get(string $samlConnectionId, ?Options $options = null): Operations\GetSAMLConnectionResponse
     {
+        trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
         $retryConfig = null;
         if ($options) {
             $retryConfig = $options->retryConfig;
@@ -302,11 +313,12 @@ class SamlConnections
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['402', '403', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -318,7 +330,7 @@ class SamlConnections
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
-                    schemasSAMLConnection: $obj);
+                    samlConnection: $obj);
 
                 return $response;
             } else {
@@ -350,13 +362,16 @@ class SamlConnections
      * Returns the list of SAML Connections for an instance.
      * Results can be paginated using the optional `limit` and `offset` query parameters.
      * The SAML Connections are ordered by descending creation date and the most recent will be returned first.
+     * Deprecated: Use the Enterprise Connections API instead. This endpoint will be removed in future versions.
      *
-     * @param  ?Operations\ListSAMLConnectionsRequest  $request
-     * @return Operations\ListSAMLConnectionsResponse
+     * @param  ?\Clerk\Backend\Models\Operations\ListSAMLConnectionsRequest  $request
+     * @return \Clerk\Backend\Models\Operations\ListSAMLConnectionsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
+     * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     public function list(?Operations\ListSAMLConnectionsRequest $request = null, ?Options $options = null): Operations\ListSAMLConnectionsResponse
     {
+        trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
         $retryConfig = null;
         if ($options) {
             $retryConfig = $options->retryConfig;
@@ -403,11 +418,12 @@ class SamlConnections
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['402', '403', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -449,14 +465,17 @@ class SamlConnections
      * Update a SAML Connection
      *
      * Updates the SAML Connection whose ID matches the provided `id` in the path.
+     * Deprecated: Use the Enterprise Connections API instead. This endpoint will be removed in future versions.
      *
-     * @param  Operations\UpdateSAMLConnectionRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\UpdateSAMLConnectionRequestBody  $requestBody
      * @param  string  $samlConnectionId
-     * @return Operations\UpdateSAMLConnectionResponse
+     * @return \Clerk\Backend\Models\Operations\UpdateSAMLConnectionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
+     * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     public function update(Operations\UpdateSAMLConnectionRequestBody $requestBody, string $samlConnectionId, ?Options $options = null): Operations\UpdateSAMLConnectionResponse
     {
+        trigger_error('Method '.__METHOD__.' is deprecated', E_USER_DEPRECATED);
         $retryConfig = null;
         if ($options) {
             $retryConfig = $options->retryConfig;
@@ -509,11 +528,12 @@ class SamlConnections
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['402', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -525,13 +545,13 @@ class SamlConnections
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
-                    schemasSAMLConnection: $obj);
+                    samlConnection: $obj);
 
                 return $response;
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
-        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['402', '403', '404', '422'])) {
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['402', '403', '404', '409', '422'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 

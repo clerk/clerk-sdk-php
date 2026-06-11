@@ -35,7 +35,7 @@ class CreateOrganizationResponse
     /**
      * An organization
      *
-     * @var ?Components\Organization $organization
+     * @var ?\Clerk\Backend\Models\Components\Organization $organization
      */
     public ?Components\Organization $organization = null;
 
@@ -43,7 +43,7 @@ class CreateOrganizationResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\Organization  $organization
+     * @param  ?\Clerk\Backend\Models\Components\Organization  $organization
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\Organization $organization = null)

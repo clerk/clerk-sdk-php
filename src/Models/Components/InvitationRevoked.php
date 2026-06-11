@@ -14,7 +14,7 @@ class InvitationRevoked
 {
     /**
      *
-     * @var InvitationRevokedObject $object
+     * @var \Clerk\Backend\Models\Components\InvitationRevokedObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\InvitationRevokedObject')]
@@ -45,7 +45,7 @@ class InvitationRevoked
 
     /**
      *
-     * @var InvitationRevokedStatus $status
+     * @var \Clerk\Backend\Models\Components\InvitationRevokedStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\InvitationRevokedStatus')]
@@ -73,14 +73,6 @@ class InvitationRevoked
 
     /**
      *
-     * @var ?bool $revoked
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('revoked')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $revoked = null;
-
-    /**
-     *
      * @var ?string $url
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('url')]
@@ -99,11 +91,19 @@ class InvitationRevoked
     public ?int $expiresAt = null;
 
     /**
-     * @param  InvitationRevokedObject  $object
+     *
+     * @var ?bool $revoked
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('revoked')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $revoked = null;
+
+    /**
+     * @param  \Clerk\Backend\Models\Components\InvitationRevokedObject  $object
      * @param  string  $id
      * @param  string  $emailAddress
      * @param  array<string, mixed>  $publicMetadata
-     * @param  InvitationRevokedStatus  $status
+     * @param  \Clerk\Backend\Models\Components\InvitationRevokedStatus  $status
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  ?bool  $revoked
@@ -111,7 +111,7 @@ class InvitationRevoked
      * @param  ?int  $expiresAt
      * @phpstan-pure
      */
-    public function __construct(InvitationRevokedObject $object, string $id, string $emailAddress, array $publicMetadata, InvitationRevokedStatus $status, int $createdAt, int $updatedAt, ?bool $revoked = null, ?string $url = null, ?int $expiresAt = null)
+    public function __construct(InvitationRevokedObject $object, string $id, string $emailAddress, array $publicMetadata, InvitationRevokedStatus $status, int $createdAt, int $updatedAt, ?string $url = null, ?int $expiresAt = null, ?bool $revoked = true)
     {
         $this->object = $object;
         $this->id = $id;
@@ -120,8 +120,8 @@ class InvitationRevoked
         $this->status = $status;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
-        $this->revoked = $revoked;
         $this->url = $url;
         $this->expiresAt = $expiresAt;
+        $this->revoked = $revoked;
     }
 }

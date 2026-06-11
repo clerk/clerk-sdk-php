@@ -7,7 +7,7 @@
 
 ```php
 /**
-* @var Components\VerificationSamlErrorEnterpriseAccountClerkError
+* @var \Clerk\Backend\Models\Components\VerificationSamlErrorEnterpriseAccountClerkError
 */
 Components\VerificationSamlErrorEnterpriseAccountClerkError $value = /* values here */
 ```

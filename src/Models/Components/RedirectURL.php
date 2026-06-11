@@ -14,7 +14,7 @@ class RedirectURL
 {
     /**
      *
-     * @var RedirectURLObject $object
+     * @var \Clerk\Backend\Models\Components\RedirectURLObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\RedirectURLObject')]
@@ -55,7 +55,7 @@ class RedirectURL
     public int $updatedAt;
 
     /**
-     * @param  RedirectURLObject  $object
+     * @param  \Clerk\Backend\Models\Components\RedirectURLObject  $object
      * @param  string  $id
      * @param  string  $url
      * @param  int  $createdAt

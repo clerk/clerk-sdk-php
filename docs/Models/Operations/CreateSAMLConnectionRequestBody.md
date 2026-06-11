@@ -7,7 +7,7 @@
 
 ```php
 /**
-* @var Operations\One
+* @var \Clerk\Backend\Models\Operations\One
 */
 Operations\One $value = /* values here */
 ```
@@ -16,7 +16,7 @@ Operations\One $value = /* values here */
 
 ```php
 /**
-* @var Operations\Two
+* @var \Clerk\Backend\Models\Operations\Two
 */
 Operations\Two $value = /* values here */
 ```

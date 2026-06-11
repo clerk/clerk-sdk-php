@@ -35,7 +35,7 @@ class GetCommerceSubscriptionItemListResponse
     /**
      * A list of commerce subscription items.
      *
-     * @var ?Components\PaginatedCommerceSubscriptionItemResponse $paginatedCommerceSubscriptionItemResponse
+     * @var ?\Clerk\Backend\Models\Components\PaginatedCommerceSubscriptionItemResponse $paginatedCommerceSubscriptionItemResponse
      */
     public ?Components\PaginatedCommerceSubscriptionItemResponse $paginatedCommerceSubscriptionItemResponse = null;
 
@@ -43,7 +43,7 @@ class GetCommerceSubscriptionItemListResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\PaginatedCommerceSubscriptionItemResponse  $paginatedCommerceSubscriptionItemResponse
+     * @param  ?\Clerk\Backend\Models\Components\PaginatedCommerceSubscriptionItemResponse  $paginatedCommerceSubscriptionItemResponse
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\PaginatedCommerceSubscriptionItemResponse $paginatedCommerceSubscriptionItemResponse = null)

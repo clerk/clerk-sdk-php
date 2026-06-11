@@ -35,7 +35,7 @@ class ListMachinesResponse
     /**
      * Success
      *
-     * @var ?Components\MachineList $machineList
+     * @var ?\Clerk\Backend\Models\Components\MachineList $machineList
      */
     public ?Components\MachineList $machineList = null;
 
@@ -43,7 +43,7 @@ class ListMachinesResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\MachineList  $machineList
+     * @param  ?\Clerk\Backend\Models\Components\MachineList  $machineList
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\MachineList $machineList = null)

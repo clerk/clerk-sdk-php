@@ -35,7 +35,7 @@ class CreateRoleSetResponse
     /**
      * Success
      *
-     * @var ?Components\RoleSet $roleSet
+     * @var ?\Clerk\Backend\Models\Components\RoleSet $roleSet
      */
     public ?Components\RoleSet $roleSet = null;
 
@@ -43,7 +43,7 @@ class CreateRoleSetResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\RoleSet  $roleSet
+     * @param  ?\Clerk\Backend\Models\Components\RoleSet  $roleSet
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\RoleSet $roleSet = null)

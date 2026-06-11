@@ -14,7 +14,7 @@ class CommercePayerResponse
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var CommercePayerResponseObject $object
+     * @var \Clerk\Backend\Models\Components\CommercePayerResponseObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommercePayerResponseObject')]
@@ -47,7 +47,7 @@ class CommercePayerResponse
 
     /**
      *
-     * @var ?CommerceMoneyResponse $creditsBalance
+     * @var ?\Clerk\Backend\Models\Components\CommerceMoneyResponse $creditsBalance
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('credits_balance')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse|null')]
@@ -127,11 +127,11 @@ class CommercePayerResponse
     public ?string $organizationName = null;
 
     /**
-     * @param  CommercePayerResponseObject  $object
+     * @param  \Clerk\Backend\Models\Components\CommercePayerResponseObject  $object
      * @param  string  $id
      * @param  string  $instanceId
      * @param  ?string  $imageUrl
-     * @param  ?CommerceMoneyResponse  $creditsBalance
+     * @param  ?\Clerk\Backend\Models\Components\CommerceMoneyResponse  $creditsBalance
      * @param  ?int  $createdAt
      * @param  ?int  $updatedAt
      * @param  ?string  $userId

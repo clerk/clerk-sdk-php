@@ -23,14 +23,14 @@ class ExtendBillingSubscriptionItemFreeTrialRequest
     /**
      * Parameters for extending the free trial
      *
-     * @var Components\ExtendFreeTrialRequest $extendFreeTrialRequest
+     * @var \Clerk\Backend\Models\Components\ExtendFreeTrialRequest $extendFreeTrialRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public Components\ExtendFreeTrialRequest $extendFreeTrialRequest;
 
     /**
      * @param  string  $subscriptionItemId
-     * @param  Components\ExtendFreeTrialRequest  $extendFreeTrialRequest
+     * @param  \Clerk\Backend\Models\Components\ExtendFreeTrialRequest  $extendFreeTrialRequest
      * @phpstan-pure
      */
     public function __construct(string $subscriptionItemId, Components\ExtendFreeTrialRequest $extendFreeTrialRequest)

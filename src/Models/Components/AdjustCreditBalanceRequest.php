@@ -22,7 +22,7 @@ class AdjustCreditBalanceRequest
     /**
      * Whether to increase or decrease the credit balance.
      *
-     * @var Action $action
+     * @var \Clerk\Backend\Models\Components\Action $action
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('action')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Action')]
@@ -56,7 +56,7 @@ class AdjustCreditBalanceRequest
 
     /**
      * @param  int  $amount
-     * @param  Action  $action
+     * @param  \Clerk\Backend\Models\Components\Action  $action
      * @param  string  $idempotencyKey
      * @param  ?string  $currency
      * @param  ?string  $note

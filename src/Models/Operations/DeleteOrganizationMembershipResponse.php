@@ -35,7 +35,7 @@ class DeleteOrganizationMembershipResponse
     /**
      * Success
      *
-     * @var ?Components\OrganizationMembership $organizationMembership
+     * @var ?\Clerk\Backend\Models\Components\OrganizationMembership $organizationMembership
      */
     public ?Components\OrganizationMembership $organizationMembership = null;
 
@@ -43,7 +43,7 @@ class DeleteOrganizationMembershipResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\OrganizationMembership  $organizationMembership
+     * @param  ?\Clerk\Backend\Models\Components\OrganizationMembership  $organizationMembership
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\OrganizationMembership $organizationMembership = null)

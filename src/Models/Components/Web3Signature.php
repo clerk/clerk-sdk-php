@@ -13,7 +13,7 @@ class Web3Signature
 {
     /**
      *
-     * @var VerificationWeb3VerificationStatus $status
+     * @var \Clerk\Backend\Models\Components\VerificationWeb3VerificationStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationWeb3VerificationStatus')]
@@ -21,7 +21,7 @@ class Web3Signature
 
     /**
      *
-     * @var VerificationWeb3VerificationStrategy $strategy
+     * @var \Clerk\Backend\Models\Components\VerificationWeb3VerificationStrategy $strategy
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationWeb3VerificationStrategy')]
@@ -29,7 +29,7 @@ class Web3Signature
 
     /**
      *
-     * @var ?VerificationWeb3VerificationObject $object
+     * @var ?\Clerk\Backend\Models\Components\VerificationWeb3VerificationObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationWeb3VerificationObject|null')]
@@ -75,9 +75,9 @@ class Web3Signature
     public ?string $verifiedAtClient = null;
 
     /**
-     * @param  VerificationWeb3VerificationStatus  $status
-     * @param  VerificationWeb3VerificationStrategy  $strategy
-     * @param  ?VerificationWeb3VerificationObject  $object
+     * @param  \Clerk\Backend\Models\Components\VerificationWeb3VerificationStatus  $status
+     * @param  \Clerk\Backend\Models\Components\VerificationWeb3VerificationStrategy  $strategy
+     * @param  ?\Clerk\Backend\Models\Components\VerificationWeb3VerificationObject  $object
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
      * @param  ?string  $nonce

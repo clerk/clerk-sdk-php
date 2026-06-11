@@ -21,14 +21,14 @@ class SetUserProfileImageRequest
 
     /**
      *
-     * @var SetUserProfileImageRequestBody $requestBody
+     * @var \Clerk\Backend\Models\Operations\SetUserProfileImageRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=multipart/form-data')]
     public SetUserProfileImageRequestBody $requestBody;
 
     /**
      * @param  string  $userId
-     * @param  SetUserProfileImageRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\SetUserProfileImageRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $userId, SetUserProfileImageRequestBody $requestBody)

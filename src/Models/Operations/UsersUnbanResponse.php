@@ -35,7 +35,7 @@ class UsersUnbanResponse
     /**
      * Success
      *
-     * @var ?array<Components\User> $userList
+     * @var ?array<\Clerk\Backend\Models\Components\User> $userList
      */
     public ?array $userList = null;
 
@@ -43,7 +43,7 @@ class UsersUnbanResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?array<Components\User>  $userList
+     * @param  ?array<\Clerk\Backend\Models\Components\User>  $userList
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?array $userList = null)

@@ -35,7 +35,7 @@ class GetSessionListResponse
     /**
      * Success
      *
-     * @var ?array<Components\Session> $sessionList
+     * @var ?array<\Clerk\Backend\Models\Components\Session> $sessionList
      */
     public ?array $sessionList = null;
 
@@ -43,7 +43,7 @@ class GetSessionListResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?array<Components\Session>  $sessionList
+     * @param  ?array<\Clerk\Backend\Models\Components\Session>  $sessionList
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?array $sessionList = null)

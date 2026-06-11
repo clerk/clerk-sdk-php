@@ -23,7 +23,7 @@ class SAMLAccount
      *
      *
      *
-     * @var SAMLAccountObject $object
+     * @var \Clerk\Backend\Models\Components\SAMLAccountObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SAMLAccountObject')]
@@ -62,7 +62,7 @@ class SAMLAccount
 
     /**
      *
-     * @var VerificationSAML|VerificationTicket|null $verification
+     * @var \Clerk\Backend\Models\Components\VerificationSAML|\Clerk\Backend\Models\Components\VerificationTicket|null $verification
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationSAML|\Clerk\Backend\Models\Components\VerificationTicket|null')]
@@ -106,29 +106,29 @@ class SAMLAccount
 
     /**
      *
-     * @var SAMLConnection1|SAMLConnection2|null $samlConnection
+     * @var \Clerk\Backend\Models\Components\SAMLAccountConnection1|\Clerk\Backend\Models\Components\SAMLAccountConnection2|null $samlConnection
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('saml_connection')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SAMLConnection1|\Clerk\Backend\Models\Components\SAMLConnection2|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SAMLAccountConnection1|\Clerk\Backend\Models\Components\SAMLAccountConnection2|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public SAMLConnection1|SAMLConnection2|null $samlConnection = null;
+    public SAMLAccountConnection1|SAMLAccountConnection2|null $samlConnection = null;
 
     /**
      * @param  string  $id
-     * @param  SAMLAccountObject  $object
+     * @param  \Clerk\Backend\Models\Components\SAMLAccountObject  $object
      * @param  string  $provider
      * @param  bool  $active
      * @param  string  $emailAddress
      * @param  ?array<string, mixed>  $publicMetadata
-     * @param  VerificationSAML|VerificationTicket|null  $verification
+     * @param  \Clerk\Backend\Models\Components\VerificationSAML|\Clerk\Backend\Models\Components\VerificationTicket|null  $verification
      * @param  ?string  $firstName
      * @param  ?string  $lastName
      * @param  ?string  $providerUserId
      * @param  ?int  $lastAuthenticatedAt
-     * @param  SAMLConnection1|SAMLConnection2|null  $samlConnection
+     * @param  \Clerk\Backend\Models\Components\SAMLAccountConnection1|\Clerk\Backend\Models\Components\SAMLAccountConnection2|null  $samlConnection
      * @phpstan-pure
      */
-    public function __construct(string $id, SAMLAccountObject $object, string $provider, bool $active, string $emailAddress, ?array $publicMetadata = null, VerificationSAML|VerificationTicket|null $verification = null, ?string $firstName = null, ?string $lastName = null, ?string $providerUserId = null, ?int $lastAuthenticatedAt = null, SAMLConnection1|SAMLConnection2|null $samlConnection = null)
+    public function __construct(string $id, SAMLAccountObject $object, string $provider, bool $active, string $emailAddress, ?array $publicMetadata = null, VerificationSAML|VerificationTicket|null $verification = null, ?string $firstName = null, ?string $lastName = null, ?string $providerUserId = null, ?int $lastAuthenticatedAt = null, SAMLAccountConnection1|SAMLAccountConnection2|null $samlConnection = null)
     {
         $this->id = $id;
         $this->object = $object;

@@ -51,8 +51,8 @@ class BlocklistIdentifiers
      *
      * Create an identifier that is blocked from accessing an instance
      *
-     * @param  ?Operations\CreateBlocklistIdentifierRequestBody  $request
-     * @return Operations\CreateBlocklistIdentifierResponse
+     * @param  ?\Clerk\Backend\Models\Operations\CreateBlocklistIdentifierRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\CreateBlocklistIdentifierResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function create(?Operations\CreateBlocklistIdentifierRequestBody $request = null, ?Options $options = null): Operations\CreateBlocklistIdentifierResponse
@@ -104,11 +104,12 @@ class BlocklistIdentifiers
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '402', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -152,7 +153,7 @@ class BlocklistIdentifiers
      * Delete an identifier from the instance block-list
      *
      * @param  string  $identifierId
-     * @return Operations\DeleteBlocklistIdentifierResponse
+     * @return \Clerk\Backend\Models\Operations\DeleteBlocklistIdentifierResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function delete(string $identifierId, ?Options $options = null): Operations\DeleteBlocklistIdentifierResponse
@@ -203,11 +204,12 @@ class BlocklistIdentifiers
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['402', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -250,7 +252,7 @@ class BlocklistIdentifiers
      *
      * Get a list of all identifiers which are not allowed to access an instance
      *
-     * @return Operations\ListBlocklistIdentifiersResponse
+     * @return \Clerk\Backend\Models\Operations\ListBlocklistIdentifiersResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function list(?Options $options = null): Operations\ListBlocklistIdentifiersResponse
@@ -298,11 +300,12 @@ class BlocklistIdentifiers
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '402', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

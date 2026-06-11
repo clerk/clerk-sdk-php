@@ -51,8 +51,8 @@ class M2m
      *
      * Creates a new M2M Token. Must be authenticated via a Machine Secret Key.
      *
-     * @param  Operations\CreateM2MTokenRequestBody  $request
-     * @return Operations\CreateM2MTokenResponse
+     * @param  \Clerk\Backend\Models\Operations\CreateM2MTokenRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\CreateM2MTokenResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function createToken(Operations\CreateM2MTokenRequestBody $request, ?Options $options = null): Operations\CreateM2MTokenResponse
@@ -105,11 +105,12 @@ class M2m
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '409', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['201'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -172,8 +173,8 @@ class M2m
      * - When fetching M2M tokens with a Machine Secret Key, only tokens associated with the authenticated machine can be retrieved.
      * - When fetching M2M tokens with a Clerk Secret Key, tokens for any machine in the instance can be retrieved.
      *
-     * @param  Operations\GetM2MTokensRequest  $request
-     * @return Operations\GetM2MTokensResponse
+     * @param  \Clerk\Backend\Models\Operations\GetM2MTokensRequest  $request
+     * @return \Clerk\Backend\Models\Operations\GetM2MTokensResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function listTokens(Operations\GetM2MTokensRequest $request, ?Options $options = null): Operations\GetM2MTokensResponse
@@ -224,11 +225,12 @@ class M2m
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '403', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -303,9 +305,9 @@ class M2m
      * - When revoking a M2M Token with a Machine Secret Key, the token must managed by the Machine associated with the Machine Secret Key.
      * - When revoking a M2M Token with a Clerk Secret Key, any token on the Instance can be revoked.
      *
-     * @param  Operations\RevokeM2MTokenRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\RevokeM2MTokenRequestBody  $requestBody
      * @param  string  $m2mTokenId
-     * @return Operations\RevokeM2MTokenResponse
+     * @return \Clerk\Backend\Models\Operations\RevokeM2MTokenResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function revokeToken(Operations\RevokeM2MTokenRequestBody $requestBody, string $m2mTokenId, ?Options $options = null): Operations\RevokeM2MTokenResponse
@@ -362,11 +364,12 @@ class M2m
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -427,8 +430,8 @@ class M2m
      * - When verifying a M2M Token with a Machine Secret Key, the token must be granted access to the Machine associated with the Machine Secret Key.
      * - When verifying a M2M Token with a Clerk Secret Key, any token on the Instance can be verified.
      *
-     * @param  Operations\VerifyM2MTokenRequestBody  $request
-     * @return Operations\VerifyM2MTokenResponse
+     * @param  \Clerk\Backend\Models\Operations\VerifyM2MTokenRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\VerifyM2MTokenResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function verifyToken(Operations\VerifyM2MTokenRequestBody $request, ?Options $options = null): Operations\VerifyM2MTokenResponse
@@ -481,11 +484,12 @@ class M2m
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

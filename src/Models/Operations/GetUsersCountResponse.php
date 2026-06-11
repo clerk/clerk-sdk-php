@@ -35,7 +35,7 @@ class GetUsersCountResponse
     /**
      * Success
      *
-     * @var ?Components\TotalCount $totalCount
+     * @var ?\Clerk\Backend\Models\Components\TotalCount $totalCount
      */
     public ?Components\TotalCount $totalCount = null;
 
@@ -43,7 +43,7 @@ class GetUsersCountResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\TotalCount  $totalCount
+     * @param  ?\Clerk\Backend\Models\Components\TotalCount  $totalCount
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\TotalCount $totalCount = null)

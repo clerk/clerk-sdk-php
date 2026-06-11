@@ -13,11 +13,11 @@ class Two
 {
     /**
      *
-     * @var SchemasSAMLConnection2Object $object
+     * @var \Clerk\Backend\Models\Components\SAMLConnection2Object $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasSAMLConnection2Object')]
-    public SchemasSAMLConnection2Object $object;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SAMLConnection2Object')]
+    public SAMLConnection2Object $object;
 
     /**
      *
@@ -113,6 +113,13 @@ class Two
     public bool $disableAdditionalIdentifications;
 
     /**
+     *
+     * @var bool $allowOrganizationAccountLinking
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('allow_organization_account_linking')]
+    public bool $allowOrganizationAccountLinking;
+
+    /**
      * Enable or deactivate ForceAuthn
      *
      * @var bool $forceAuthn
@@ -172,7 +179,7 @@ class Two
 
     /**
      *
-     * @var ?SAMLConnectionAttributeMapping $attributeMapping
+     * @var ?\Clerk\Backend\Models\Components\SAMLConnectionAttributeMapping $attributeMapping
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('attribute_mapping')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SAMLConnectionAttributeMapping|null')]
@@ -212,7 +219,7 @@ class Two
     public ?string $enterpriseConnectionId = null;
 
     /**
-     * @param  SchemasSAMLConnection2Object  $object
+     * @param  \Clerk\Backend\Models\Components\SAMLConnection2Object  $object
      * @param  string  $id
      * @param  string  $name
      * @param  array<string>  $domains
@@ -226,6 +233,7 @@ class Two
      * @param  bool  $allowSubdomains
      * @param  bool  $allowIdpInitiated
      * @param  bool  $disableAdditionalIdentifications
+     * @param  bool  $allowOrganizationAccountLinking
      * @param  bool  $forceAuthn
      * @param  int  $createdAt
      * @param  int  $updatedAt
@@ -233,14 +241,14 @@ class Two
      * @param  ?string  $idpEntityId
      * @param  ?string  $idpSsoUrl
      * @param  ?string  $idpCertificate
-     * @param  ?SAMLConnectionAttributeMapping  $attributeMapping
+     * @param  ?\Clerk\Backend\Models\Components\SAMLConnectionAttributeMapping  $attributeMapping
      * @param  ?string  $idpMetadataUrl
      * @param  ?string  $idpMetadata
      * @param  ?string  $organizationId
      * @param  ?string  $enterpriseConnectionId
      * @phpstan-pure
      */
-    public function __construct(SchemasSAMLConnection2Object $object, string $id, string $name, array $domains, string $acsUrl, string $spEntityId, string $spMetadataUrl, bool $active, string $provider, int $userCount, bool $syncUserAttributes, bool $allowSubdomains, bool $allowIdpInitiated, bool $disableAdditionalIdentifications, bool $forceAuthn, int $createdAt, int $updatedAt, ?string $domain = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?SAMLConnectionAttributeMapping $attributeMapping = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?string $enterpriseConnectionId = null)
+    public function __construct(SAMLConnection2Object $object, string $id, string $name, array $domains, string $acsUrl, string $spEntityId, string $spMetadataUrl, bool $active, string $provider, int $userCount, bool $syncUserAttributes, bool $allowSubdomains, bool $allowIdpInitiated, bool $disableAdditionalIdentifications, bool $allowOrganizationAccountLinking, bool $forceAuthn, int $createdAt, int $updatedAt, ?string $domain = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?SAMLConnectionAttributeMapping $attributeMapping = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?string $enterpriseConnectionId = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -256,6 +264,7 @@ class Two
         $this->allowSubdomains = $allowSubdomains;
         $this->allowIdpInitiated = $allowIdpInitiated;
         $this->disableAdditionalIdentifications = $disableAdditionalIdentifications;
+        $this->allowOrganizationAccountLinking = $allowOrganizationAccountLinking;
         $this->forceAuthn = $forceAuthn;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;

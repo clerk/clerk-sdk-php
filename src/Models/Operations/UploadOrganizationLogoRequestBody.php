@@ -13,7 +13,7 @@ class UploadOrganizationLogoRequestBody
 {
     /**
      *
-     * @var UploadOrganizationLogoFile $file
+     * @var \Clerk\Backend\Models\Operations\UploadOrganizationLogoFile $file
      */
     #[SpeakeasyMetadata('multipartForm:file=true,name=file')]
     public UploadOrganizationLogoFile $file;
@@ -27,7 +27,7 @@ class UploadOrganizationLogoRequestBody
     public ?string $uploaderUserId = null;
 
     /**
-     * @param  UploadOrganizationLogoFile  $file
+     * @param  \Clerk\Backend\Models\Operations\UploadOrganizationLogoFile  $file
      * @param  ?string  $uploaderUserId
      * @phpstan-pure
      */

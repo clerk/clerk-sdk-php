@@ -15,7 +15,7 @@ class Jwks
     /**
      * $keys
      *
-     * @var ?array<Keys> $keys
+     * @var ?array<\Clerk\Backend\Models\Components\Keys> $keys
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('keys')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\Keys>|null')]
@@ -23,7 +23,7 @@ class Jwks
     public ?array $keys = null;
 
     /**
-     * @param  ?array<Keys>  $keys
+     * @param  ?array<\Clerk\Backend\Models\Components\Keys>  $keys
      * @phpstan-pure
      */
     public function __construct(?array $keys = null)

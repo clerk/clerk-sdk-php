@@ -7,7 +7,7 @@
 
 ```php
 /**
-* @var Components\Otp
+* @var \Clerk\Backend\Models\Components\Otp
 */
 Components\Otp $value = /* values here */
 ```
@@ -16,7 +16,7 @@ Components\Otp $value = /* values here */
 
 ```php
 /**
-* @var Components\Admin
+* @var \Clerk\Backend\Models\Components\Admin
 */
 Components\Admin $value = /* values here */
 ```
@@ -25,7 +25,7 @@ Components\Admin $value = /* values here */
 
 ```php
 /**
-* @var Components\FromOAuth
+* @var \Clerk\Backend\Models\Components\FromOAuth
 */
 Components\FromOAuth $value = /* values here */
 ```
@@ -34,26 +34,35 @@ Components\FromOAuth $value = /* values here */
 
 ```php
 /**
-* @var Components\Ticket
+* @var \Clerk\Backend\Models\Components\Ticket
 */
 Components\Ticket $value = /* values here */
 ```
 
-### `Components\Saml`
+### `Components\VerificationSAMLVerificationEmailAddressSAML`
 
 ```php
 /**
-* @var Components\Saml
+* @var \Clerk\Backend\Models\Components\VerificationSAMLVerificationEmailAddressSAML
 */
-Components\Saml $value = /* values here */
+Components\VerificationSAMLVerificationEmailAddressSAML $value = /* values here */
 ```
 
 ### `Components\EmailLink`
 
 ```php
 /**
-* @var Components\EmailLink
+* @var \Clerk\Backend\Models\Components\EmailLink
 */
 Components\EmailLink $value = /* values here */
+```
+
+### `Components\VerificationSCIM`
+
+```php
+/**
+* @var \Clerk\Backend\Models\Components\VerificationSCIM
+*/
+Components\VerificationSCIM $value = /* values here */
 ```
 

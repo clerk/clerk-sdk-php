@@ -21,14 +21,14 @@ class AddRolesToRoleSetRequest
 
     /**
      *
-     * @var AddRolesToRoleSetRequestBody $requestBody
+     * @var \Clerk\Backend\Models\Operations\AddRolesToRoleSetRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public AddRolesToRoleSetRequestBody $requestBody;
 
     /**
      * @param  string  $roleSetKeyOrId
-     * @param  AddRolesToRoleSetRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\AddRolesToRoleSetRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $roleSetKeyOrId, AddRolesToRoleSetRequestBody $requestBody)

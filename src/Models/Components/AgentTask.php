@@ -14,7 +14,7 @@ class AgentTask
 {
     /**
      *
-     * @var AgentTaskObject $object
+     * @var \Clerk\Backend\Models\Components\AgentTaskObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\AgentTaskObject')]
@@ -35,7 +35,18 @@ class AgentTask
      *
      *
      *
+     * @var string $agentTaskId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('agent_task_id')]
+    public string $agentTaskId;
+
+    /**
+     * A unique identifier for this agent task. Deprecated: use agent_task_id instead.
+     *
+     *
+     *
      * @var string $taskId
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('task_id')]
     public string $taskId;
@@ -52,16 +63,18 @@ class AgentTask
     public ?string $url = null;
 
     /**
-     * @param  AgentTaskObject  $object
+     * @param  \Clerk\Backend\Models\Components\AgentTaskObject  $object
      * @param  string  $agentId
+     * @param  string  $agentTaskId
      * @param  string  $taskId
      * @param  ?string  $url
      * @phpstan-pure
      */
-    public function __construct(AgentTaskObject $object, string $agentId, string $taskId, ?string $url = null)
+    public function __construct(AgentTaskObject $object, string $agentId, string $agentTaskId, string $taskId, ?string $url = null)
     {
         $this->object = $object;
         $this->agentId = $agentId;
+        $this->agentTaskId = $agentTaskId;
         $this->taskId = $taskId;
         $this->url = $url;
     }

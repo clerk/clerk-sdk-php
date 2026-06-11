@@ -22,7 +22,7 @@ class ListWaitlistEntriesRequest
     /**
      * Filter waitlist entries by their status
      *
-     * @var ?ListWaitlistEntriesQueryParamStatus $status
+     * @var ?\Clerk\Backend\Models\Operations\ListWaitlistEntriesQueryParamStatus $status
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status')]
     public ?ListWaitlistEntriesQueryParamStatus $status = null;
@@ -66,7 +66,7 @@ class ListWaitlistEntriesRequest
      * @param  ?int  $limit
      * @param  ?int  $offset
      * @param  ?string  $query
-     * @param  ?ListWaitlistEntriesQueryParamStatus  $status
+     * @param  ?\Clerk\Backend\Models\Operations\ListWaitlistEntriesQueryParamStatus  $status
      * @param  ?string  $orderBy
      * @phpstan-pure
      */

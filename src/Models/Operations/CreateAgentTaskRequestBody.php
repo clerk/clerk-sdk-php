@@ -16,7 +16,7 @@ class CreateAgentTaskRequestBody
      *
      * Exactly one of user_id or identifier must be provided.
      *
-     * @var OnBehalfOf $onBehalfOf
+     * @var \Clerk\Backend\Models\Operations\OnBehalfOf $onBehalfOf
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('on_behalf_of')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\OnBehalfOf')]
@@ -25,7 +25,7 @@ class CreateAgentTaskRequestBody
     /**
      * The permissions granted to the agent task. Must be "*" (all permissions).
      *
-     * @var Permissions $permissions
+     * @var \Clerk\Backend\Models\Operations\Permissions $permissions
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('permissions')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\Permissions')]
@@ -75,8 +75,8 @@ class CreateAgentTaskRequestBody
     public ?int $sessionMaxDurationInSeconds = null;
 
     /**
-     * @param  OnBehalfOf  $onBehalfOf
-     * @param  Permissions  $permissions
+     * @param  \Clerk\Backend\Models\Operations\OnBehalfOf  $onBehalfOf
+     * @param  \Clerk\Backend\Models\Operations\Permissions  $permissions
      * @param  string  $agentName
      * @param  string  $taskDescription
      * @param  string  $redirectUrl

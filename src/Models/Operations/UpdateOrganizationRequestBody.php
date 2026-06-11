@@ -12,26 +12,6 @@ namespace Clerk\Backend\Models\Operations;
 class UpdateOrganizationRequestBody
 {
     /**
-     * Metadata saved on the organization, that is visible to both your frontend and backend.
-     *
-     * @var ?array<string, mixed> $publicMetadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $publicMetadata = null;
-
-    /**
-     * Metadata saved on the organization that is only visible to your backend.
-     *
-     * @var ?array<string, mixed> $privateMetadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('private_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $privateMetadata = null;
-
-    /**
      * The new name of the organization.
      *
      * May not contain URLs or HTML.
@@ -89,8 +69,6 @@ class UpdateOrganizationRequestBody
     public ?string $roleSetKey = null;
 
     /**
-     * @param  ?array<string, mixed>  $publicMetadata
-     * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?string  $name
      * @param  ?string  $slug
      * @param  ?int  $maxAllowedMemberships
@@ -99,10 +77,8 @@ class UpdateOrganizationRequestBody
      * @param  ?string  $roleSetKey
      * @phpstan-pure
      */
-    public function __construct(?array $publicMetadata = null, ?array $privateMetadata = null, ?string $name = null, ?string $slug = null, ?int $maxAllowedMemberships = null, ?bool $adminDeleteEnabled = null, ?string $createdAt = null, ?string $roleSetKey = null)
+    public function __construct(?string $name = null, ?string $slug = null, ?int $maxAllowedMemberships = null, ?bool $adminDeleteEnabled = null, ?string $createdAt = null, ?string $roleSetKey = null)
     {
-        $this->publicMetadata = $publicMetadata;
-        $this->privateMetadata = $privateMetadata;
         $this->name = $name;
         $this->slug = $slug;
         $this->maxAllowedMemberships = $maxAllowedMemberships;

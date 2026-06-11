@@ -14,7 +14,7 @@ class Invitation
 {
     /**
      *
-     * @var InvitationObject $object
+     * @var \Clerk\Backend\Models\Components\InvitationObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\InvitationObject')]
@@ -45,7 +45,7 @@ class Invitation
 
     /**
      *
-     * @var InvitationStatus $status
+     * @var \Clerk\Backend\Models\Components\InvitationStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\InvitationStatus')]
@@ -99,11 +99,11 @@ class Invitation
     public ?int $expiresAt = null;
 
     /**
-     * @param  InvitationObject  $object
+     * @param  \Clerk\Backend\Models\Components\InvitationObject  $object
      * @param  string  $id
      * @param  string  $emailAddress
      * @param  array<string, mixed>  $publicMetadata
-     * @param  InvitationStatus  $status
+     * @param  \Clerk\Backend\Models\Components\InvitationStatus  $status
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  ?bool  $revoked

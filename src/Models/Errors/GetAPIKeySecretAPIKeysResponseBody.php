@@ -15,7 +15,7 @@ class GetAPIKeySecretAPIKeysResponseBody
     /**
      * $errors
      *
-     * @var array<GetAPIKeySecretAPIKeysErrors> $errors
+     * @var array<\Clerk\Backend\Models\Errors\GetAPIKeySecretAPIKeysErrors> $errors
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('errors')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Errors\GetAPIKeySecretAPIKeysErrors>')]
@@ -31,7 +31,7 @@ class GetAPIKeySecretAPIKeysResponseBody
     public ?\Psr\Http\Message\ResponseInterface $rawResponse = null;
 
     /**
-     * @param  array<GetAPIKeySecretAPIKeysErrors>  $errors
+     * @param  array<\Clerk\Backend\Models\Errors\GetAPIKeySecretAPIKeysErrors>  $errors
      * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
      * @phpstan-pure
      */

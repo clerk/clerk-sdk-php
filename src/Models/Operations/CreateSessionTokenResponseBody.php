@@ -14,7 +14,7 @@ class CreateSessionTokenResponseBody
 {
     /**
      *
-     * @var ?ObjectT $object
+     * @var ?\Clerk\Backend\Models\Operations\ObjectT $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\ObjectT|null')]
@@ -30,7 +30,7 @@ class CreateSessionTokenResponseBody
     public ?string $jwt = null;
 
     /**
-     * @param  ?ObjectT  $object
+     * @param  ?\Clerk\Backend\Models\Operations\ObjectT  $object
      * @param  ?string  $jwt
      * @phpstan-pure
      */

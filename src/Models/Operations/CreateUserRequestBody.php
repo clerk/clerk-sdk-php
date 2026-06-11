@@ -16,6 +16,7 @@ class CreateUserRequestBody
      *
      * Must be unique across your instance.
      * The first email address will be set as the user's primary email address.
+     * Created verified by default; see `email_address_identification_status` to create them reserved.
      *
      * @var ?array<string> $emailAddress
      */
@@ -25,10 +26,27 @@ class CreateUserRequestBody
     public ?array $emailAddress = null;
 
     /**
+     * Controls the status each email address is created with. Runs parallel to
+     *
+     * `email_address`: when provided, it must contain exactly one item per email
+     * address, applied by position. When omitted or empty, every email address is
+     * created `verified`. Set an item to `reserved` to create the corresponding
+     * email address reserved instead (unverified but usable for sign-in and locked
+     * so no other user can claim it).
+     *
+     * @var ?array<\Clerk\Backend\Models\Operations\EmailAddressIdentificationStatus> $emailAddressIdentificationStatus
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('email_address_identification_status')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Operations\EmailAddressIdentificationStatus>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $emailAddressIdentificationStatus = null;
+
+    /**
      * Phone numbers to add to the user.
      *
      * Must be unique across your instance.
      * The first phone number will be set as the user's primary phone number.
+     * Created verified by default; see `phone_number_identification_status` to create them reserved.
      *
      * @var ?array<string> $phoneNumber
      */
@@ -36,6 +54,22 @@ class CreateUserRequestBody
     #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $phoneNumber = null;
+
+    /**
+     * Controls the status each phone number is created with. Runs parallel to
+     *
+     * `phone_number`: when provided, it must contain exactly one item per phone
+     * number, applied by position. When omitted or empty, every phone number is
+     * created `verified`. Set an item to `reserved` to create the corresponding
+     * phone number reserved instead (unverified but usable for sign-in and locked
+     * so no other user can claim it).
+     *
+     * @var ?array<\Clerk\Backend\Models\Operations\PhoneNumberIdentificationStatus> $phoneNumberIdentificationStatus
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('phone_number_identification_status')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Operations\PhoneNumberIdentificationStatus>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $phoneNumberIdentificationStatus = null;
 
     /**
      * Web3 wallets to add to the user.
@@ -55,9 +89,10 @@ class CreateUserRequestBody
      *
      *
      * The algorithms we support at the moment are [`bcrypt`](https://en.wikipedia.org/wiki/Bcrypt), [`bcrypt_sha256_django`](https://docs.djangoproject.com/en/4.0/topics/auth/passwords/), [`md5`](https://en.wikipedia.org/wiki/MD5), `pbkdf2_sha1`, `pbkdf2_sha256`, [`pbkdf2_sha256_django`](https://docs.djangoproject.com/en/4.0/topics/auth/passwords/),
-     * [`phpass`](https://www.openwall.com/phpass/), `md5_phpass`, [`scrypt_firebase`](https://firebaseopensource.com/projects/firebase/scrypt/),
+     * `pbkdf2_sha512`, [`phpass`](https://www.openwall.com/phpass/), `md5_phpass`, [`scrypt_firebase`](https://firebaseopensource.com/projects/firebase/scrypt/),
      * [`scrypt_werkzeug`](https://werkzeug.palletsprojects.com/en/3.0.x/utils/#werkzeug.security.generate_password_hash), [`sha256`](https://en.wikipedia.org/wiki/SHA-2),
-     * [`ldap_ssha`](https://www.openldap.org/faq/data/cache/347.html), the [`argon2`](https://argon2.online/) variants: `argon2i` and `argon2id`, and `sha512_symfony`, the SHA-512 variant of the [Symfony](https://symfony.com/doc/current/security/passwords.html) legacy hasher.
+     * [`ldap_ssha`](https://www.openldap.org/faq/data/cache/347.html), the [`argon2`](https://argon2.online/) variants: `argon2i` and `argon2id`, `sha512_symfony`, the SHA-512 variant of the [Symfony](https://symfony.com/doc/current/security/passwords.html) legacy hasher,
+     * and `pbkdf2_sha512_hex`, a variant of `pbkdf2_sha512` that accepts hex-encoded salt and hash.
      *
      * Each of the supported hashers expects the incoming digest to be in a particular format. See the [Clerk docs](https://clerk.com/docs/references/backend/user/create-user) for more information.
      *
@@ -306,8 +341,32 @@ class CreateUserRequestBody
     public ?bool $bypassClientTrust = null;
 
     /**
+     * When set to `true`, the user is created already banned and cannot sign in.
+     *
+     * Requires the same plan support as the ban user endpoint.
+     *
+     * @var ?bool $banned
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('banned')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $banned = null;
+
+    /**
+     * When set to `true`, the user is created already locked.
+     *
+     * Requires the user lockout feature to be enabled on the instance.
+     *
+     * @var ?bool $locked
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('locked')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $locked = null;
+
+    /**
      * @param  ?array<string>  $emailAddress
+     * @param  ?array<\Clerk\Backend\Models\Operations\EmailAddressIdentificationStatus>  $emailAddressIdentificationStatus
      * @param  ?array<string>  $phoneNumber
+     * @param  ?array<\Clerk\Backend\Models\Operations\PhoneNumberIdentificationStatus>  $phoneNumberIdentificationStatus
      * @param  ?array<string>  $web3Wallet
      * @param  ?string  $passwordHasher
      * @param  ?array<string>  $backupCodes
@@ -332,12 +391,16 @@ class CreateUserRequestBody
      * @param  ?int  $createOrganizationsLimit
      * @param  ?string  $createdAt
      * @param  ?bool  $bypassClientTrust
+     * @param  ?bool  $banned
+     * @param  ?bool  $locked
      * @phpstan-pure
      */
-    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $web3Wallet = null, ?string $passwordHasher = null, ?array $backupCodes = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $locale = null, ?string $username = null, ?string $password = null, ?string $passwordDigest = null, ?bool $skipPasswordChecks = null, ?bool $skipPasswordRequirement = null, ?string $totpSecret = null, ?bool $deleteSelfEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?bool $skipUserRequirement = null, ?bool $createOrganizationEnabled = null, ?int $createOrganizationsLimit = null, ?string $createdAt = null, ?bool $bypassClientTrust = null)
+    public function __construct(?array $emailAddress = null, ?array $emailAddressIdentificationStatus = null, ?array $phoneNumber = null, ?array $phoneNumberIdentificationStatus = null, ?array $web3Wallet = null, ?string $passwordHasher = null, ?array $backupCodes = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $locale = null, ?string $username = null, ?string $password = null, ?string $passwordDigest = null, ?bool $skipPasswordChecks = null, ?bool $skipPasswordRequirement = null, ?string $totpSecret = null, ?bool $deleteSelfEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?bool $skipUserRequirement = null, ?bool $createOrganizationEnabled = null, ?int $createOrganizationsLimit = null, ?string $createdAt = null, ?bool $bypassClientTrust = null, ?bool $banned = null, ?bool $locked = null)
     {
         $this->emailAddress = $emailAddress;
+        $this->emailAddressIdentificationStatus = $emailAddressIdentificationStatus;
         $this->phoneNumber = $phoneNumber;
+        $this->phoneNumberIdentificationStatus = $phoneNumberIdentificationStatus;
         $this->web3Wallet = $web3Wallet;
         $this->passwordHasher = $passwordHasher;
         $this->backupCodes = $backupCodes;
@@ -362,5 +425,7 @@ class CreateUserRequestBody
         $this->createOrganizationsLimit = $createOrganizationsLimit;
         $this->createdAt = $createdAt;
         $this->bypassClientTrust = $bypassClientTrust;
+        $this->banned = $banned;
+        $this->locked = $locked;
     }
 }

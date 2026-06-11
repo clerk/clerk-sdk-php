@@ -24,7 +24,7 @@ class User
      *
      *
      *
-     * @var UserObject $object
+     * @var \Clerk\Backend\Models\Components\UserObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\UserObject')]
@@ -49,7 +49,7 @@ class User
     /**
      * $emailAddresses
      *
-     * @var array<EmailAddress> $emailAddresses
+     * @var array<\Clerk\Backend\Models\Components\EmailAddress> $emailAddresses
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('email_addresses')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\EmailAddress>')]
@@ -58,7 +58,7 @@ class User
     /**
      * $phoneNumbers
      *
-     * @var array<PhoneNumber> $phoneNumbers
+     * @var array<\Clerk\Backend\Models\Components\PhoneNumber> $phoneNumbers
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('phone_numbers')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\PhoneNumber>')]
@@ -67,7 +67,7 @@ class User
     /**
      * $web3Wallets
      *
-     * @var array<Web3Wallet> $web3Wallets
+     * @var array<\Clerk\Backend\Models\Components\Web3Wallet> $web3Wallets
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('web3_wallets')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\Web3Wallet>')]
@@ -76,7 +76,7 @@ class User
     /**
      * $passkeys
      *
-     * @var array<Passkey> $passkeys
+     * @var array<\Clerk\Backend\Models\Components\Passkey> $passkeys
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('passkeys')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\Passkey>')]
@@ -113,7 +113,7 @@ class User
     /**
      * $externalAccounts
      *
-     * @var array<ExternalAccountWithVerification> $externalAccounts
+     * @var array<\Clerk\Backend\Models\Components\ExternalAccountWithVerification> $externalAccounts
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('external_accounts')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\ExternalAccountWithVerification>')]
@@ -122,7 +122,7 @@ class User
     /**
      * $samlAccounts
      *
-     * @var array<SAMLAccount> $samlAccounts
+     * @var array<\Clerk\Backend\Models\Components\SAMLAccount> $samlAccounts
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('saml_accounts')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\SAMLAccount>')]
@@ -131,7 +131,7 @@ class User
     /**
      * $enterpriseAccounts
      *
-     * @var array<EnterpriseAccount> $enterpriseAccounts
+     * @var array<\Clerk\Backend\Models\Components\EnterpriseAccount> $enterpriseAccounts
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('enterprise_accounts')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\EnterpriseAccount>')]
@@ -296,7 +296,7 @@ class User
     /**
      * $organizationMemberships
      *
-     * @var ?array<OrganizationMembership> $organizationMemberships
+     * @var ?array<\Clerk\Backend\Models\Components\OrganizationMembership> $organizationMemberships
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('organization_memberships')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\OrganizationMembership>|null')]
@@ -312,6 +312,17 @@ class User
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('last_sign_in_at')]
     public ?int $lastSignInAt;
+
+    /**
+     * Flag to denote whether user has been deprovisioned and is restricted from signing in.
+     *
+     *
+     *
+     * @var ?bool $deprovisioned
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('deprovisioned')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $deprovisioned = null;
 
     /**
      * The number of seconds remaining until the lockout period expires for a locked user. A null value for a locked user indicates that lockout never expires.
@@ -394,6 +405,15 @@ class User
     public ?int $createOrganizationsLimit = null;
 
     /**
+     *
+     * @var ?\Clerk\Backend\Models\Components\Scim $scim
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('scim')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Scim|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?Scim $scim = null;
+
+    /**
      * When set to `true`, the user will bypass client trust checks during sign-in.
      *
      * @var ?bool $bypassClientTrust
@@ -404,20 +424,20 @@ class User
 
     /**
      * @param  string  $id
-     * @param  UserObject  $object
+     * @param  \Clerk\Backend\Models\Components\UserObject  $object
      * @param  bool  $hasImage
      * @param  array<string, mixed>  $publicMetadata
-     * @param  array<EmailAddress>  $emailAddresses
-     * @param  array<PhoneNumber>  $phoneNumbers
-     * @param  array<Web3Wallet>  $web3Wallets
-     * @param  array<Passkey>  $passkeys
+     * @param  array<\Clerk\Backend\Models\Components\EmailAddress>  $emailAddresses
+     * @param  array<\Clerk\Backend\Models\Components\PhoneNumber>  $phoneNumbers
+     * @param  array<\Clerk\Backend\Models\Components\Web3Wallet>  $web3Wallets
+     * @param  array<\Clerk\Backend\Models\Components\Passkey>  $passkeys
      * @param  bool  $passwordEnabled
      * @param  bool  $twoFactorEnabled
      * @param  bool  $totpEnabled
      * @param  bool  $backupCodeEnabled
-     * @param  array<ExternalAccountWithVerification>  $externalAccounts
-     * @param  array<SAMLAccount>  $samlAccounts
-     * @param  array<EnterpriseAccount>  $enterpriseAccounts
+     * @param  array<\Clerk\Backend\Models\Components\ExternalAccountWithVerification>  $externalAccounts
+     * @param  array<\Clerk\Backend\Models\Components\SAMLAccount>  $samlAccounts
+     * @param  array<\Clerk\Backend\Models\Components\EnterpriseAccount>  $enterpriseAccounts
      * @param  bool  $banned
      * @param  bool  $locked
      * @param  int  $updatedAt
@@ -436,8 +456,9 @@ class User
      * @param  ?array<string, mixed>  $unsafeMetadata
      * @param  ?int  $mfaEnabledAt
      * @param  ?int  $mfaDisabledAt
-     * @param  ?array<OrganizationMembership>  $organizationMemberships
+     * @param  ?array<\Clerk\Backend\Models\Components\OrganizationMembership>  $organizationMemberships
      * @param  ?int  $lastSignInAt
+     * @param  ?bool  $deprovisioned
      * @param  ?int  $lockoutExpiresInSeconds
      * @param  ?int  $verificationAttemptsRemaining
      * @param  ?int  $lastActiveAt
@@ -447,9 +468,10 @@ class User
      * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?int  $passwordLastUpdatedAt
      * @param  ?int  $createOrganizationsLimit
+     * @param  ?\Clerk\Backend\Models\Components\Scim  $scim
      * @phpstan-pure
      */
-    public function __construct(string $id, UserObject $object, bool $hasImage, array $publicMetadata, array $emailAddresses, array $phoneNumbers, array $web3Wallets, array $passkeys, bool $passwordEnabled, bool $twoFactorEnabled, bool $totpEnabled, bool $backupCodeEnabled, array $externalAccounts, array $samlAccounts, array $enterpriseAccounts, bool $banned, bool $locked, int $updatedAt, int $createdAt, bool $deleteSelfEnabled, bool $createOrganizationEnabled, ?string $externalId = null, ?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $username = null, ?string $firstName = null, ?string $lastName = null, ?string $profileImageUrl = null, ?string $imageUrl = null, ?array $unsafeMetadata = null, ?int $mfaEnabledAt = null, ?int $mfaDisabledAt = null, ?array $organizationMemberships = null, ?int $lastSignInAt = null, ?int $lockoutExpiresInSeconds = null, ?int $verificationAttemptsRemaining = null, ?int $lastActiveAt = null, ?int $legalAcceptedAt = null, ?string $locale = null, ?array $privateMetadata = null, ?int $passwordLastUpdatedAt = null, ?int $createOrganizationsLimit = null, ?bool $bypassClientTrust = false)
+    public function __construct(string $id, UserObject $object, bool $hasImage, array $publicMetadata, array $emailAddresses, array $phoneNumbers, array $web3Wallets, array $passkeys, bool $passwordEnabled, bool $twoFactorEnabled, bool $totpEnabled, bool $backupCodeEnabled, array $externalAccounts, array $samlAccounts, array $enterpriseAccounts, bool $banned, bool $locked, int $updatedAt, int $createdAt, bool $deleteSelfEnabled, bool $createOrganizationEnabled, ?string $externalId = null, ?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $username = null, ?string $firstName = null, ?string $lastName = null, ?string $profileImageUrl = null, ?string $imageUrl = null, ?array $unsafeMetadata = null, ?int $mfaEnabledAt = null, ?int $mfaDisabledAt = null, ?array $organizationMemberships = null, ?int $lastSignInAt = null, ?bool $deprovisioned = null, ?int $lockoutExpiresInSeconds = null, ?int $verificationAttemptsRemaining = null, ?int $lastActiveAt = null, ?int $legalAcceptedAt = null, ?string $locale = null, ?array $privateMetadata = null, ?int $passwordLastUpdatedAt = null, ?int $createOrganizationsLimit = null, ?Scim $scim = null, ?bool $bypassClientTrust = false)
     {
         $this->id = $id;
         $this->object = $object;
@@ -486,6 +508,7 @@ class User
         $this->mfaDisabledAt = $mfaDisabledAt;
         $this->organizationMemberships = $organizationMemberships;
         $this->lastSignInAt = $lastSignInAt;
+        $this->deprovisioned = $deprovisioned;
         $this->lockoutExpiresInSeconds = $lockoutExpiresInSeconds;
         $this->verificationAttemptsRemaining = $verificationAttemptsRemaining;
         $this->lastActiveAt = $lastActiveAt;
@@ -494,6 +517,7 @@ class User
         $this->privateMetadata = $privateMetadata;
         $this->passwordLastUpdatedAt = $passwordLastUpdatedAt;
         $this->createOrganizationsLimit = $createOrganizationsLimit;
+        $this->scim = $scim;
         $this->bypassClientTrust = $bypassClientTrust;
     }
 }

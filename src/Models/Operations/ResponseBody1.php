@@ -13,7 +13,7 @@ class ResponseBody1
 {
     /**
      *
-     * @var ResponseBodyObject $object
+     * @var \Clerk\Backend\Models\Operations\ResponseBodyObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\ResponseBodyObject')]
@@ -92,7 +92,7 @@ class ResponseBody1
     public ?float $expiration;
 
     /**
-     * @param  ResponseBodyObject  $object
+     * @param  \Clerk\Backend\Models\Operations\ResponseBodyObject  $object
      * @param  string  $id
      * @param  string  $clientId
      * @param  string  $subject

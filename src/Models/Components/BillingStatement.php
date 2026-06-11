@@ -14,7 +14,7 @@ class BillingStatement
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var BillingStatementObject $object
+     * @var \Clerk\Backend\Models\Components\BillingStatementObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\BillingStatementObject')]
@@ -46,7 +46,7 @@ class BillingStatement
 
     /**
      *
-     * @var CommercePayerResponse $payer
+     * @var \Clerk\Backend\Models\Components\CommercePayerResponse $payer
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('payer')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommercePayerResponse')]
@@ -55,7 +55,7 @@ class BillingStatement
     /**
      * The current status of the statement.
      *
-     * @var BillingStatementStatus $status
+     * @var \Clerk\Backend\Models\Components\BillingStatementStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\BillingStatementStatus')]
@@ -64,7 +64,7 @@ class BillingStatement
     /**
      * Totals for the statement.
      *
-     * @var BillingStatementTotals $totals
+     * @var \Clerk\Backend\Models\Components\BillingStatementTotals $totals
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('totals')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\BillingStatementTotals')]
@@ -73,21 +73,21 @@ class BillingStatement
     /**
      * Array of statement groups.
      *
-     * @var array<Groups> $groups
+     * @var array<\Clerk\Backend\Models\Components\Groups> $groups
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('groups')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\Groups>')]
     public array $groups;
 
     /**
-     * @param  BillingStatementObject  $object
+     * @param  \Clerk\Backend\Models\Components\BillingStatementObject  $object
      * @param  string  $id
      * @param  string  $instanceId
      * @param  int  $timestamp
-     * @param  CommercePayerResponse  $payer
-     * @param  BillingStatementStatus  $status
-     * @param  BillingStatementTotals  $totals
-     * @param  array<Groups>  $groups
+     * @param  \Clerk\Backend\Models\Components\CommercePayerResponse  $payer
+     * @param  \Clerk\Backend\Models\Components\BillingStatementStatus  $status
+     * @param  \Clerk\Backend\Models\Components\BillingStatementTotals  $totals
+     * @param  array<\Clerk\Backend\Models\Components\Groups>  $groups
      * @phpstan-pure
      */
     public function __construct(BillingStatementObject $object, string $id, string $instanceId, int $timestamp, CommercePayerResponse $payer, BillingStatementStatus $status, BillingStatementTotals $totals, array $groups)

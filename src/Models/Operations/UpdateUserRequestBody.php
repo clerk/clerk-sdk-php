@@ -28,9 +28,10 @@ class UpdateUserRequestBody
      *
      *
      * The algorithms we support at the moment are [`bcrypt`](https://en.wikipedia.org/wiki/Bcrypt), [`bcrypt_sha256_django`](https://docs.djangoproject.com/en/4.0/topics/auth/passwords/), [`md5`](https://en.wikipedia.org/wiki/MD5), `pbkdf2_sha1`, `pbkdf2_sha256`, [`pbkdf2_sha256_django`](https://docs.djangoproject.com/en/4.0/topics/auth/passwords/),
-     * [`phpass`](https://www.openwall.com/phpass/), `md5_phpass`, [`scrypt_firebase`](https://firebaseopensource.com/projects/firebase/scrypt/),
+     * `pbkdf2_sha512`, [`phpass`](https://www.openwall.com/phpass/), `md5_phpass`, [`scrypt_firebase`](https://firebaseopensource.com/projects/firebase/scrypt/),
      * [`scrypt_werkzeug`](https://werkzeug.palletsprojects.com/en/3.0.x/utils/#werkzeug.security.generate_password_hash), [`sha256`](https://en.wikipedia.org/wiki/SHA-2),
-     * [`ldap_ssha`](https://www.openldap.org/faq/data/cache/347.html), the [`argon2`](https://argon2.online/) variants: `argon2i` and `argon2id`, and `sha512_symfony`, the SHA-512 variant of the [Symfony](https://symfony.com/doc/current/security/passwords.html) legacy hasher.
+     * [`ldap_ssha`](https://www.openldap.org/faq/data/cache/347.html), the [`argon2`](https://argon2.online/) variants: `argon2i` and `argon2id`, `sha512_symfony`, the SHA-512 variant of the [Symfony](https://symfony.com/doc/current/security/passwords.html) legacy hasher,
+     * and `pbkdf2_sha512_hex`, a variant of `pbkdf2_sha512` that accepts hex-encoded salt and hash.
      *
      * Each of the supported hashers expects the incoming digest to be in a particular format. See the [Clerk docs](https://clerk.com/docs/references/backend/user/create-user) for more information.
      *
@@ -42,8 +43,6 @@ class UpdateUserRequestBody
 
     /**
      * If Backup Codes are configured on the instance, you can provide them to enable it on the specific user without the need to reset them.
-     *
-     * You must provide the backup codes in plain format or the corresponding bcrypt digest.
      *
      * @var ?array<string> $backupCodes
      */
@@ -175,48 +174,11 @@ class UpdateUserRequestBody
     /**
      * In case TOTP is configured on the instance, you can provide the secret to enable it on the specific user without the need to reset it.
      *
-     * Please note that currently the supported options are:
-     * * Period: 30 seconds
-     * * Code length: 6 digits
-     * * Algorithm: SHA1
-     *
      * @var ?string $totpSecret
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('totp_secret')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $totpSecret = null;
-
-    /**
-     * Metadata saved on the user, that is visible to both your Frontend and Backend APIs
-     *
-     * @var ?array<string, mixed> $publicMetadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('public_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $publicMetadata = null;
-
-    /**
-     * Metadata saved on the user, that is only visible to your Backend API
-     *
-     * @var ?array<string, mixed> $privateMetadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('private_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $privateMetadata = null;
-
-    /**
-     * Metadata saved on the user, that can be updated from both the Frontend and Backend APIs.
-     *
-     * Note: Since this data can be modified from the frontend, it is not guaranteed to be safe.
-     *
-     * @var ?array<string, mixed> $unsafeMetadata
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('unsafe_metadata')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $unsafeMetadata = null;
 
     /**
      * If true, the user can delete themselves with the Frontend API.
@@ -237,7 +199,7 @@ class UpdateUserRequestBody
     public ?bool $createOrganizationEnabled = null;
 
     /**
-     * A custom timestamp denoting _when_ the user accepted legal requirements, specified in RFC3339 format (e.g. `2012-10-20T07:15:20.902Z`).
+     * A custom timestamp denoting _when_ the user accepted legal requirements, specified in RFC3339 format.
      *
      * @var ?string $legalAcceptedAt
      */
@@ -247,8 +209,6 @@ class UpdateUserRequestBody
 
     /**
      * When set to `true` all legal checks are skipped.
-     *
-     * It is not recommended to skip legal checks unless you are migrating a user to Clerk.
      *
      * @var ?bool $skipLegalChecks
      */
@@ -266,7 +226,7 @@ class UpdateUserRequestBody
     public ?int $createOrganizationsLimit = null;
 
     /**
-     * A custom date/time denoting _when_ the user signed up to the application, specified in RFC3339 format (e.g. `2012-10-20T07:15:20.902Z`).
+     * A custom date/time denoting _when_ the user signed up to the application.
      *
      * @var ?string $createdAt
      */
@@ -312,9 +272,6 @@ class UpdateUserRequestBody
      * @param  ?bool  $skipPasswordChecks
      * @param  ?bool  $signOutOfOtherSessions
      * @param  ?string  $totpSecret
-     * @param  ?array<string, mixed>  $publicMetadata
-     * @param  ?array<string, mixed>  $privateMetadata
-     * @param  ?array<string, mixed>  $unsafeMetadata
      * @param  ?bool  $deleteSelfEnabled
      * @param  ?bool  $createOrganizationEnabled
      * @param  ?string  $legalAcceptedAt
@@ -324,7 +281,7 @@ class UpdateUserRequestBody
      * @param  ?bool  $bypassClientTrust
      * @phpstan-pure
      */
-    public function __construct(?string $passwordDigest = null, ?string $passwordHasher = null, ?array $backupCodes = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $locale = null, ?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $username = null, ?string $profileImageId = null, ?string $password = null, ?bool $skipPasswordChecks = null, ?bool $signOutOfOtherSessions = null, ?string $totpSecret = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null, ?bool $deleteSelfEnabled = null, ?bool $createOrganizationEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?int $createOrganizationsLimit = null, ?string $createdAt = null, ?bool $bypassClientTrust = null, ?bool $notifyPrimaryEmailAddressChanged = false)
+    public function __construct(?string $passwordDigest = null, ?string $passwordHasher = null, ?array $backupCodes = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $locale = null, ?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $username = null, ?string $profileImageId = null, ?string $password = null, ?bool $skipPasswordChecks = null, ?bool $signOutOfOtherSessions = null, ?string $totpSecret = null, ?bool $deleteSelfEnabled = null, ?bool $createOrganizationEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?int $createOrganizationsLimit = null, ?string $createdAt = null, ?bool $bypassClientTrust = null, ?bool $notifyPrimaryEmailAddressChanged = false)
     {
         $this->passwordDigest = $passwordDigest;
         $this->passwordHasher = $passwordHasher;
@@ -342,9 +299,6 @@ class UpdateUserRequestBody
         $this->skipPasswordChecks = $skipPasswordChecks;
         $this->signOutOfOtherSessions = $signOutOfOtherSessions;
         $this->totpSecret = $totpSecret;
-        $this->publicMetadata = $publicMetadata;
-        $this->privateMetadata = $privateMetadata;
-        $this->unsafeMetadata = $unsafeMetadata;
         $this->deleteSelfEnabled = $deleteSelfEnabled;
         $this->createOrganizationEnabled = $createOrganizationEnabled;
         $this->legalAcceptedAt = $legalAcceptedAt;

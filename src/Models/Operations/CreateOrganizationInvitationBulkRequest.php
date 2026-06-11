@@ -22,14 +22,14 @@ class CreateOrganizationInvitationBulkRequest
     /**
      * $requestBody
      *
-     * @var array<CreateOrganizationInvitationBulkRequestBody> $requestBody
+     * @var array<\Clerk\Backend\Models\Operations\CreateOrganizationInvitationBulkRequestBody> $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public array $requestBody;
 
     /**
      * @param  string  $organizationId
-     * @param  array<CreateOrganizationInvitationBulkRequestBody>  $requestBody
+     * @param  array<\Clerk\Backend\Models\Operations\CreateOrganizationInvitationBulkRequestBody>  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $organizationId, array $requestBody)

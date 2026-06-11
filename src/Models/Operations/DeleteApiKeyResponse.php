@@ -35,7 +35,7 @@ class DeleteApiKeyResponse
     /**
      * 200 OK
      *
-     * @var ?DeleteApiKeyResponseBody $object
+     * @var ?\Clerk\Backend\Models\Operations\DeleteApiKeyResponseBody $object
      */
     public ?DeleteApiKeyResponseBody $object = null;
 
@@ -43,7 +43,7 @@ class DeleteApiKeyResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?DeleteApiKeyResponseBody  $object
+     * @param  ?\Clerk\Backend\Models\Operations\DeleteApiKeyResponseBody  $object
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?DeleteApiKeyResponseBody $object = null)

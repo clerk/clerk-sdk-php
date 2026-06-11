@@ -53,8 +53,8 @@ class OauthApplications
      * The callback URL must be a valid URL.
      * All URL schemes are allowed such as `http://`, `https://`, `myapp://`, etc...
      *
-     * @param  ?Operations\CreateOAuthApplicationRequestBody  $request
-     * @return Operations\CreateOAuthApplicationResponse
+     * @param  ?\Clerk\Backend\Models\Operations\CreateOAuthApplicationRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\CreateOAuthApplicationResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function create(?Operations\CreateOAuthApplicationRequestBody $request = null, ?Options $options = null): Operations\CreateOAuthApplicationResponse
@@ -106,11 +106,12 @@ class OauthApplications
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '403', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -155,7 +156,7 @@ class OauthApplications
      * This is not reversible.
      *
      * @param  string  $oauthApplicationId
-     * @return Operations\DeleteOAuthApplicationResponse
+     * @return \Clerk\Backend\Models\Operations\DeleteOAuthApplicationResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function delete(string $oauthApplicationId, ?Options $options = null): Operations\DeleteOAuthApplicationResponse
@@ -206,11 +207,12 @@ class OauthApplications
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['403', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -254,7 +256,7 @@ class OauthApplications
      * Fetches the OAuth application whose ID matches the provided `id` in the path.
      *
      * @param  string  $oauthApplicationId
-     * @return Operations\GetOAuthApplicationResponse
+     * @return \Clerk\Backend\Models\Operations\GetOAuthApplicationResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function get(string $oauthApplicationId, ?Options $options = null): Operations\GetOAuthApplicationResponse
@@ -305,11 +307,12 @@ class OauthApplications
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['403', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -359,7 +362,7 @@ class OauthApplications
      * @param  ?int  $offset
      * @param  ?string  $orderBy
      * @param  ?string  $nameQuery
-     * @return Operations\ListOAuthApplicationsResponse
+     * @return \Clerk\Backend\Models\Operations\ListOAuthApplicationsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function list(?int $limit = null, ?int $offset = null, ?string $orderBy = null, ?string $nameQuery = null, ?Options $options = null): Operations\ListOAuthApplicationsResponse
@@ -416,11 +419,12 @@ class OauthApplications
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '403', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -465,7 +469,7 @@ class OauthApplications
      * When the client secret is rotated, make sure to update it in authorized OAuth clients.
      *
      * @param  string  $oauthApplicationId
-     * @return Operations\RotateOAuthApplicationSecretResponse
+     * @return \Clerk\Backend\Models\Operations\RotateOAuthApplicationSecretResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function rotateSecret(string $oauthApplicationId, ?Options $options = null): Operations\RotateOAuthApplicationSecretResponse
@@ -516,11 +520,12 @@ class OauthApplications
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['403', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -563,9 +568,9 @@ class OauthApplications
      *
      * Updates an existing OAuth application
      *
-     * @param  Operations\UpdateOAuthApplicationRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\UpdateOAuthApplicationRequestBody  $requestBody
      * @param  string  $oauthApplicationId
-     * @return Operations\UpdateOAuthApplicationResponse
+     * @return \Clerk\Backend\Models\Operations\UpdateOAuthApplicationResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function update(Operations\UpdateOAuthApplicationRequestBody $requestBody, string $oauthApplicationId, ?Options $options = null): Operations\UpdateOAuthApplicationResponse
@@ -622,11 +627,12 @@ class OauthApplications
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -645,6 +651,115 @@ class OauthApplications
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } elseif (Utils\Utils::matchStatusCodes($statusCode, ['400', '403', '404', '422'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Errors\ClerkErrors', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['4XX'])) {
+            throw new \Clerk\Backend\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
+            throw new \Clerk\Backend\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } else {
+            throw new \Clerk\Backend\Models\Errors\SDKException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        }
+    }
+
+    /**
+     * Upload a logo for the OAuth application
+     *
+     * Set or replace an OAuth application's logo by uploading an image file.
+     * This endpoint uses the `multipart/form-data` request content type and accepts a file of image type.
+     * The file size cannot exceed 10MB.
+     * Only the following file content types are supported: `image/jpeg`, `image/png`, `image/gif`, `image/webp`.
+     *
+     * @param  string  $oauthApplicationId
+     * @param  ?\Clerk\Backend\Models\Operations\UploadOAuthApplicationLogoRequestBody  $requestBody
+     * @return \Clerk\Backend\Models\Operations\UploadOAuthApplicationLogoResponse
+     * @throws \Clerk\Backend\Models\Errors\SDKException
+     */
+    public function uploadLogo(string $oauthApplicationId, ?Operations\UploadOAuthApplicationLogoRequestBody $requestBody = null, ?Options $options = null): Operations\UploadOAuthApplicationLogoResponse
+    {
+        $retryConfig = null;
+        if ($options) {
+            $retryConfig = $options->retryConfig;
+        }
+        if ($retryConfig === null && $this->sdkConfiguration->retryConfig) {
+            $retryConfig = $this->sdkConfiguration->retryConfig;
+        } else {
+            $retryConfig = new Retry\RetryConfigBackoff(
+                initialIntervalMs: 500,
+                maxIntervalMs: 60000,
+                exponent: 1.5,
+                maxElapsedTimeMs: 3600000,
+                retryConnectionErrors: true,
+            );
+        }
+        $retryCodes = null;
+        if ($options) {
+            $retryCodes = $options->retryCodes;
+        }
+        if ($retryCodes === null) {
+            $retryCodes = [
+                '5XX',
+            ];
+        }
+        $request = new Operations\UploadOAuthApplicationLogoRequest(
+            oauthApplicationId: $oauthApplicationId,
+            requestBody: $requestBody,
+        );
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/oauth_applications/{oauth_application_id}/logo', Operations\UploadOAuthApplicationLogoRequest::class, $request);
+        $urlOverride = null;
+        $httpOptions = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'multipart');
+        if ($body !== null) {
+            $httpOptions = array_merge_recursive($httpOptions, $body);
+        }
+        $httpOptions['headers']['Accept'] = 'application/json';
+        $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('PUT', $url);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'UploadOAuthApplicationLogo', null, $this->sdkConfiguration->securitySource);
+        $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
+        $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
+        $httpRequest = Utils\Utils::removeHeaders($httpRequest);
+        try {
+            $httpResponse = RetryUtils::retryWrapper(fn () => $this->sdkConfiguration->client->send($httpRequest, $httpOptions), $retryConfig, $retryCodes);
+        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
+            $httpResponse = $res;
+        }
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
+            $httpResponse = $res;
+        }
+
+        $statusCode = $httpResponse->getStatusCode();
+        if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Components\OAuthApplication', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\UploadOAuthApplicationLogoResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    oAuthApplication: $obj);
+
+                return $response;
+            } else {
+                throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['400', '403', '404', '413'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 

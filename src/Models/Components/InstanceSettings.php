@@ -15,7 +15,7 @@ class InstanceSettings
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var ?InstanceSettingsObject $object
+     * @var ?\Clerk\Backend\Models\Components\InstanceSettingsObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\InstanceSettingsObject|null')]
@@ -63,7 +63,7 @@ class InstanceSettings
     public ?bool $enhancedEmailDeliverability = null;
 
     /**
-     * @param  ?InstanceSettingsObject  $object
+     * @param  ?\Clerk\Backend\Models\Components\InstanceSettingsObject  $object
      * @param  ?string  $id
      * @param  ?bool  $restrictedToAllowlist
      * @param  ?string  $fromEmailAddress

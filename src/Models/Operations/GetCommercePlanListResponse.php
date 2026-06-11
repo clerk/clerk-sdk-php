@@ -35,7 +35,7 @@ class GetCommercePlanListResponse
     /**
      * A list of commerce plans.
      *
-     * @var ?Components\PaginatedCommercePlanResponse $paginatedCommercePlanResponse
+     * @var ?\Clerk\Backend\Models\Components\PaginatedCommercePlanResponse $paginatedCommercePlanResponse
      */
     public ?Components\PaginatedCommercePlanResponse $paginatedCommercePlanResponse = null;
 
@@ -43,7 +43,7 @@ class GetCommercePlanListResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\PaginatedCommercePlanResponse  $paginatedCommercePlanResponse
+     * @param  ?\Clerk\Backend\Models\Components\PaginatedCommercePlanResponse  $paginatedCommercePlanResponse
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\PaginatedCommercePlanResponse $paginatedCommercePlanResponse = null)

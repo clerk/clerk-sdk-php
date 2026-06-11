@@ -21,14 +21,14 @@ class MergeOrganizationMetadataRequest
 
     /**
      *
-     * @var MergeOrganizationMetadataRequestBody $requestBody
+     * @var \Clerk\Backend\Models\Operations\MergeOrganizationMetadataRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public MergeOrganizationMetadataRequestBody $requestBody;
 
     /**
      * @param  string  $organizationId
-     * @param  MergeOrganizationMetadataRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\MergeOrganizationMetadataRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $organizationId, MergeOrganizationMetadataRequestBody $requestBody)

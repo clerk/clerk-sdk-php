@@ -24,7 +24,7 @@ class OrganizationMembership
      *
      *
      *
-     * @var OrganizationMembershipObject $object
+     * @var \Clerk\Backend\Models\Components\OrganizationMembershipObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationMembershipObject')]
@@ -57,7 +57,7 @@ class OrganizationMembership
 
     /**
      *
-     * @var OrganizationMembershipOrganization $organization
+     * @var \Clerk\Backend\Models\Components\OrganizationMembershipOrganization $organization
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('organization')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationMembershipOrganization')]
@@ -100,7 +100,7 @@ class OrganizationMembership
     /**
      * An organization membership with public user data populated
      *
-     * @var ?OrganizationMembershipPublicUserData $publicUserData
+     * @var ?\Clerk\Backend\Models\Components\OrganizationMembershipPublicUserData $publicUserData
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('public_user_data')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OrganizationMembershipPublicUserData|null')]
@@ -109,16 +109,16 @@ class OrganizationMembership
 
     /**
      * @param  string  $id
-     * @param  OrganizationMembershipObject  $object
+     * @param  \Clerk\Backend\Models\Components\OrganizationMembershipObject  $object
      * @param  string  $role
      * @param  array<string>  $permissions
      * @param  array<string, mixed>  $publicMetadata
-     * @param  OrganizationMembershipOrganization  $organization
+     * @param  \Clerk\Backend\Models\Components\OrganizationMembershipOrganization  $organization
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  ?string  $roleName
      * @param  ?array<string, mixed>  $privateMetadata
-     * @param  ?OrganizationMembershipPublicUserData  $publicUserData
+     * @param  ?\Clerk\Backend\Models\Components\OrganizationMembershipPublicUserData  $publicUserData
      * @phpstan-pure
      */
     public function __construct(string $id, OrganizationMembershipObject $object, string $role, array $permissions, array $publicMetadata, OrganizationMembershipOrganization $organization, int $createdAt, int $updatedAt, ?string $roleName = null, ?array $privateMetadata = null, ?OrganizationMembershipPublicUserData $publicUserData = null)

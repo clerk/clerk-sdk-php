@@ -14,7 +14,7 @@ class FeatureResponse
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var FeatureResponseObject $object
+     * @var \Clerk\Backend\Models\Components\FeatureResponseObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\FeatureResponseObject')]
@@ -61,7 +61,7 @@ class FeatureResponse
     public ?string $avatarUrl;
 
     /**
-     * @param  FeatureResponseObject  $object
+     * @param  \Clerk\Backend\Models\Components\FeatureResponseObject  $object
      * @param  string  $id
      * @param  string  $name
      * @param  string  $slug

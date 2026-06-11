@@ -13,9 +13,19 @@ namespace Clerk\Backend\Models\Components;
 class NextInvoice
 {
     /**
-     * Amount for the next payment.
+     * Per-unit total breakdown (for example, seats) for the next payment.
      *
-     * @var ?SchemasCommerceSubscriptionItemNextInvoiceAmount $amount
+     * @var ?array<\Clerk\Backend\Models\Components\CommercePerUnitTotal> $perUnitTotals
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('per_unit_totals')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\CommercePerUnitTotal>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $perUnitTotals = null;
+
+    /**
+     * Base plan fee for the next payment. Does not include per-unit (e.g. seat) charges; see `totals.grand_total` for the full amount.
+     *
+     * @var ?\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemNextInvoiceAmount $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemNextInvoiceAmount|null')]
@@ -32,13 +42,27 @@ class NextInvoice
     public ?int $date = null;
 
     /**
-     * @param  ?SchemasCommerceSubscriptionItemNextInvoiceAmount  $amount
+     * Breakdown of the recurring amount that will be billed at renewal (base fee + per-unit charges). Tax and credits are not previewed.
+     *
+     * @var ?\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemTotals $totals
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('totals')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemTotals|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?SchemasCommerceSubscriptionItemTotals $totals = null;
+
+    /**
+     * @param  ?array<\Clerk\Backend\Models\Components\CommercePerUnitTotal>  $perUnitTotals
+     * @param  ?\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemNextInvoiceAmount  $amount
      * @param  ?int  $date
+     * @param  ?\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemTotals  $totals
      * @phpstan-pure
      */
-    public function __construct(?SchemasCommerceSubscriptionItemNextInvoiceAmount $amount = null, ?int $date = null)
+    public function __construct(?array $perUnitTotals = null, ?SchemasCommerceSubscriptionItemNextInvoiceAmount $amount = null, ?int $date = null, ?SchemasCommerceSubscriptionItemTotals $totals = null)
     {
+        $this->perUnitTotals = $perUnitTotals;
         $this->amount = $amount;
         $this->date = $date;
+        $this->totals = $totals;
     }
 }

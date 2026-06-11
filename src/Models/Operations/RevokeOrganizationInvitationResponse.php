@@ -35,7 +35,7 @@ class RevokeOrganizationInvitationResponse
     /**
      * An organization invitation
      *
-     * @var ?Components\OrganizationInvitation $organizationInvitation
+     * @var ?\Clerk\Backend\Models\Components\OrganizationInvitation $organizationInvitation
      */
     public ?Components\OrganizationInvitation $organizationInvitation = null;
 
@@ -43,7 +43,7 @@ class RevokeOrganizationInvitationResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\OrganizationInvitation  $organizationInvitation
+     * @param  ?\Clerk\Backend\Models\Components\OrganizationInvitation  $organizationInvitation
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\OrganizationInvitation $organizationInvitation = null)

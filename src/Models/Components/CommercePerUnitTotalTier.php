@@ -13,7 +13,7 @@ class CommercePerUnitTotalTier
 {
     /**
      *
-     * @var CommerceMoneyResponse $feePerBlock
+     * @var \Clerk\Backend\Models\Components\CommerceMoneyResponse $feePerBlock
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('fee_per_block')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
@@ -21,14 +21,14 @@ class CommercePerUnitTotalTier
 
     /**
      *
-     * @var CommerceMoneyResponse $total
+     * @var \Clerk\Backend\Models\Components\CommerceMoneyResponse $total
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('total')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
     public CommerceMoneyResponse $total;
 
     /**
-     * Units billed in this tier; null means unlimited
+     * Units billed in this tier; null means unlimited.
      *
      * @var ?int $quantity
      */
@@ -37,8 +37,8 @@ class CommercePerUnitTotalTier
     public ?int $quantity = null;
 
     /**
-     * @param  CommerceMoneyResponse  $feePerBlock
-     * @param  CommerceMoneyResponse  $total
+     * @param  \Clerk\Backend\Models\Components\CommerceMoneyResponse  $feePerBlock
+     * @param  \Clerk\Backend\Models\Components\CommerceMoneyResponse  $total
      * @param  ?int  $quantity
      * @phpstan-pure
      */

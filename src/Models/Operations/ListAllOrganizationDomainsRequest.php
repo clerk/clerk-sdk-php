@@ -22,7 +22,7 @@ class ListAllOrganizationDomainsRequest
     /**
      * Filter by verification status
      *
-     * @var ?Verified $verified
+     * @var ?\Clerk\Backend\Models\Operations\Verified $verified
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=verified')]
     public ?Verified $verified = null;
@@ -30,7 +30,7 @@ class ListAllOrganizationDomainsRequest
     /**
      * Filter by enrollment mode
      *
-     * @var ?array<EnrollmentMode> $enrollmentMode
+     * @var ?array<\Clerk\Backend\Models\Operations\EnrollmentMode> $enrollmentMode
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=false,name=enrollment_mode')]
     public ?array $enrollmentMode = null;
@@ -95,8 +95,8 @@ class ListAllOrganizationDomainsRequest
 
     /**
      * @param  ?string  $organizationId
-     * @param  ?Verified  $verified
-     * @param  ?array<EnrollmentMode>  $enrollmentMode
+     * @param  ?\Clerk\Backend\Models\Operations\Verified  $verified
+     * @param  ?array<\Clerk\Backend\Models\Operations\EnrollmentMode>  $enrollmentMode
      * @param  ?string  $query
      * @param  ?array<string>  $domains
      * @param  ?string  $orderBy

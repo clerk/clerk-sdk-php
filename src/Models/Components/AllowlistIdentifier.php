@@ -17,7 +17,7 @@ class AllowlistIdentifier
      *
      *
      *
-     * @var ?AllowlistIdentifierObject $object
+     * @var ?\Clerk\Backend\Models\Components\AllowlistIdentifierObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\AllowlistIdentifierObject|null')]
@@ -53,7 +53,7 @@ class AllowlistIdentifier
 
     /**
      *
-     * @var ?IdentifierType $identifierType
+     * @var ?\Clerk\Backend\Models\Components\IdentifierType $identifierType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('identifier_type')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\IdentifierType|null')]
@@ -91,11 +91,11 @@ class AllowlistIdentifier
     public ?int $updatedAt = null;
 
     /**
-     * @param  ?AllowlistIdentifierObject  $object
+     * @param  ?\Clerk\Backend\Models\Components\AllowlistIdentifierObject  $object
      * @param  ?string  $id
      * @param  ?string  $invitationId
      * @param  ?string  $identifier
-     * @param  ?IdentifierType  $identifierType
+     * @param  ?\Clerk\Backend\Models\Components\IdentifierType  $identifierType
      * @param  ?string  $instanceId
      * @param  ?int  $createdAt
      * @param  ?int  $updatedAt

@@ -54,9 +54,9 @@ class Users
      * Each adjustment is recorded as a ledger entry. The idempotency_key parameter
      * ensures that duplicate requests are safely handled.
      *
-     * @param  Components\AdjustCreditBalanceRequest  $adjustCreditBalanceRequest
+     * @param  \Clerk\Backend\Models\Components\AdjustCreditBalanceRequest  $adjustCreditBalanceRequest
      * @param  string  $userId
-     * @return Operations\AdjustUserBillingCreditBalanceResponse
+     * @return \Clerk\Backend\Models\Operations\AdjustUserBillingCreditBalanceResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function adjustBillingCreditBalance(Components\AdjustCreditBalanceRequest $adjustCreditBalanceRequest, string $userId, ?Options $options = null): Operations\AdjustUserBillingCreditBalanceResponse
@@ -113,11 +113,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '404', '409', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -172,7 +173,7 @@ class Users
      * Marks the given user as banned, which means that all their sessions are revoked and they are not allowed to sign in again.
      *
      * @param  string  $userId
-     * @return Operations\BanUserResponse
+     * @return \Clerk\Backend\Models\Operations\BanUserResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function ban(string $userId, ?Options $options = null): Operations\BanUserResponse
@@ -223,11 +224,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['402', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -270,14 +272,14 @@ class Users
      *
      * Creates a new user. Your user management settings determine how you should setup your user model.
      *
-     * Any email address and phone number created using this method will be marked as verified.
+     * By default, any email address and phone number created using this method is marked as verified. Use the `email_address_identification_status` and `phone_number_identification_status` arrays to instead create some or all of them as reserved (unverified but usable for sign-in and locked so no other user can claim them).
      *
      * Note: If you are performing a migration, check out our guide on [zero downtime migrations](https://clerk.com/docs/deployments/migrate-overview).
      *
      * The following rate limit rules apply to this endpoint: 1000 requests per 10 seconds for production instances and 100 requests per 10 seconds for development instances
      *
-     * @param  Operations\CreateUserRequestBody  $request
-     * @return Operations\CreateUserResponse
+     * @param  \Clerk\Backend\Models\Operations\CreateUserRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\CreateUserResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function create(Operations\CreateUserRequestBody $request, ?Options $options = null): Operations\CreateUserResponse
@@ -330,11 +332,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -352,7 +355,7 @@ class Users
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
-        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '422'])) {
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '402', '403', '422'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -378,7 +381,7 @@ class Users
      * Disable all of a user's backup codes.
      *
      * @param  string  $userId
-     * @return Operations\DeleteBackupCodeResponse
+     * @return \Clerk\Backend\Models\Operations\DeleteBackupCodeResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function deleteBackupCodes(string $userId, ?Options $options = null): Operations\DeleteBackupCodeResponse
@@ -429,11 +432,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['404', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -489,7 +493,7 @@ class Users
      *
      * @param  string  $userId
      * @param  string  $externalAccountId
-     * @return Operations\DeleteExternalAccountResponse
+     * @return \Clerk\Backend\Models\Operations\DeleteExternalAccountResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function deleteExternalAccount(string $userId, string $externalAccountId, ?Options $options = null): Operations\DeleteExternalAccountResponse
@@ -541,11 +545,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '403', '404', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -600,7 +605,7 @@ class Users
      * Deletes all of the user's TOTPs.
      *
      * @param  string  $userId
-     * @return Operations\DeleteTOTPResponse
+     * @return \Clerk\Backend\Models\Operations\DeleteTOTPResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function deleteTOTP(string $userId, ?Options $options = null): Operations\DeleteTOTPResponse
@@ -651,11 +656,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['404', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -710,7 +716,7 @@ class Users
      * Delete the specified user
      *
      * @param  string  $userId
-     * @return Operations\DeleteUserResponse
+     * @return \Clerk\Backend\Models\Operations\DeleteUserResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function delete(string $userId, ?Options $options = null): Operations\DeleteUserResponse
@@ -761,11 +767,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -809,7 +816,7 @@ class Users
      * Delete a user's profile image
      *
      * @param  string  $userId
-     * @return Operations\DeleteUserProfileImageResponse
+     * @return \Clerk\Backend\Models\Operations\DeleteUserProfileImageResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function deleteProfileImage(string $userId, ?Options $options = null): Operations\DeleteUserProfileImageResponse
@@ -860,11 +867,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -908,7 +916,7 @@ class Users
      * Disable all of a user's MFA methods (e.g. OTP sent via SMS, TOTP on their authenticator app) at once.
      *
      * @param  string  $userId
-     * @return Operations\DisableMFAResponse
+     * @return \Clerk\Backend\Models\Operations\DisableMFAResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function disableMfa(string $userId, ?Options $options = null): Operations\DisableMFAResponse
@@ -959,11 +967,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['404', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1018,8 +1027,8 @@ class Users
      * Fetch the corresponding OAuth access token for a user that has previously authenticated with a particular OAuth provider.
      * For OAuth 2.0, if the access token has expired and we have a corresponding refresh token, the access token will be refreshed transparently the new one will be returned.
      *
-     * @param  Operations\GetOAuthAccessTokenRequest  $request
-     * @return Operations\GetOAuthAccessTokenResponse
+     * @param  \Clerk\Backend\Models\Operations\GetOAuthAccessTokenRequest  $request
+     * @return \Clerk\Backend\Models\Operations\GetOAuthAccessTokenResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function getOAuthAccessToken(Operations\GetOAuthAccessTokenRequest $request, ?Options $options = null): Operations\GetOAuthAccessTokenResponse
@@ -1070,11 +1079,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1118,7 +1128,7 @@ class Users
      * Retrieve the details of a user
      *
      * @param  string  $userId
-     * @return Operations\GetUserResponse
+     * @return \Clerk\Backend\Models\Operations\GetUserResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function get(string $userId, ?Options $options = null): Operations\GetUserResponse
@@ -1169,11 +1179,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1218,7 +1229,7 @@ class Users
      * Credits can be applied during checkout to reduce the charge or automatically applied to upcoming recurring charges
      *
      * @param  string  $userId
-     * @return Operations\GetUserBillingCreditBalanceResponse
+     * @return \Clerk\Backend\Models\Operations\GetUserBillingCreditBalanceResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function getBillingCreditBalance(string $userId, ?Options $options = null): Operations\GetUserBillingCreditBalanceResponse
@@ -1269,11 +1280,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1330,7 +1342,7 @@ class Users
      * The subscription contains subscription items which represent the individual plans the user is subscribed to.
      *
      * @param  string  $userId
-     * @return Operations\GetUserBillingSubscriptionResponse
+     * @return \Clerk\Backend\Models\Operations\GetUserBillingSubscriptionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function getBillingSubscription(string $userId, ?Options $options = null): Operations\GetUserBillingSubscriptionResponse
@@ -1381,11 +1393,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1440,8 +1453,8 @@ class Users
      * Returns a list of all users.
      * The users are returned sorted by creation date, with the newest users appearing first.
      *
-     * @param  ?Operations\GetUserListRequest  $request
-     * @return Operations\GetUserListResponse
+     * @param  ?\Clerk\Backend\Models\Operations\GetUserListRequest  $request
+     * @return \Clerk\Backend\Models\Operations\GetUserListResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function list(?Operations\GetUserListRequest $request = null, ?Options $options = null): Operations\GetUserListResponse
@@ -1492,11 +1505,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1539,8 +1553,8 @@ class Users
      *
      * Returns a total count of all users that match the given filtering criteria.
      *
-     * @param  ?Operations\GetUsersCountRequest  $request
-     * @return Operations\GetUsersCountResponse
+     * @param  ?\Clerk\Backend\Models\Operations\GetUsersCountRequest  $request
+     * @return \Clerk\Backend\Models\Operations\GetUsersCountResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function count(?Operations\GetUsersCountRequest $request = null, ?Options $options = null): Operations\GetUsersCountResponse
@@ -1591,11 +1605,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1641,7 +1656,7 @@ class Users
      * @param  ?string  $orderBy
      * @param  ?int  $limit
      * @param  ?int  $offset
-     * @return Operations\InstanceGetOrganizationMembershipsResponse
+     * @return \Clerk\Backend\Models\Operations\InstanceGetOrganizationMembershipsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function getInstanceOrganizationMemberships(?string $orderBy = null, ?int $limit = null, ?int $offset = null, ?Options $options = null): Operations\InstanceGetOrganizationMembershipsResponse
@@ -1697,11 +1712,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1757,7 +1773,7 @@ class Users
      * Lock duration can be configured in the instance's restrictions settings.
      *
      * @param  string  $userId
-     * @return Operations\LockUserResponse
+     * @return \Clerk\Backend\Models\Operations\LockUserResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function lock(string $userId, ?Options $options = null): Operations\LockUserResponse
@@ -1808,11 +1824,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['403', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1851,13 +1868,127 @@ class Users
     }
 
     /**
+     * Replace a user's metadata
+     *
+     * Replace a user's metadata attributes with the provided values.
+     *
+     * Unlike `PATCH /v1/users/{user_id}/metadata` (merge semantics), this endpoint
+     * replaces the supplied metadata fields entirely — the prior contents of each
+     * supplied field are discarded. Fields omitted from the request body are
+     * left unchanged.
+     *
+     * Prefer the `PATCH` endpoint for partial updates. Use `PUT` only when you
+     * explicitly intend to overwrite a metadata field wholesale.
+     *
+     * @param  string  $userId
+     * @param  ?\Clerk\Backend\Models\Operations\ReplaceUserMetadataRequestBody  $requestBody
+     * @return \Clerk\Backend\Models\Operations\ReplaceUserMetadataResponse
+     * @throws \Clerk\Backend\Models\Errors\SDKException
+     */
+    public function replaceMetadata(string $userId, ?Operations\ReplaceUserMetadataRequestBody $requestBody = null, ?Options $options = null): Operations\ReplaceUserMetadataResponse
+    {
+        $retryConfig = null;
+        if ($options) {
+            $retryConfig = $options->retryConfig;
+        }
+        if ($retryConfig === null && $this->sdkConfiguration->retryConfig) {
+            $retryConfig = $this->sdkConfiguration->retryConfig;
+        } else {
+            $retryConfig = new Retry\RetryConfigBackoff(
+                initialIntervalMs: 500,
+                maxIntervalMs: 60000,
+                exponent: 1.5,
+                maxElapsedTimeMs: 3600000,
+                retryConnectionErrors: true,
+            );
+        }
+        $retryCodes = null;
+        if ($options) {
+            $retryCodes = $options->retryCodes;
+        }
+        if ($retryCodes === null) {
+            $retryCodes = [
+                '5XX',
+            ];
+        }
+        $request = new Operations\ReplaceUserMetadataRequest(
+            userId: $userId,
+            requestBody: $requestBody,
+        );
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/users/{user_id}/metadata', Operations\ReplaceUserMetadataRequest::class, $request);
+        $urlOverride = null;
+        $httpOptions = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
+        if ($body !== null) {
+            $httpOptions = array_merge_recursive($httpOptions, $body);
+        }
+        $httpOptions['headers']['Accept'] = 'application/json';
+        $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('PUT', $url);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'ReplaceUserMetadata', null, $this->sdkConfiguration->securitySource);
+        $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
+        $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
+        $httpRequest = Utils\Utils::removeHeaders($httpRequest);
+        try {
+            $httpResponse = RetryUtils::retryWrapper(fn () => $this->sdkConfiguration->client->send($httpRequest, $httpOptions), $retryConfig, $retryCodes);
+        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
+            $httpResponse = $res;
+        }
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
+            $httpResponse = $res;
+        }
+
+        $statusCode = $httpResponse->getStatusCode();
+        if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Components\User', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\ReplaceUserMetadataResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    user: $obj);
+
+                return $response;
+            } else {
+                throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '404', '422'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Errors\ClerkErrors', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['4XX'])) {
+            throw new \Clerk\Backend\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
+            throw new \Clerk\Backend\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } else {
+            throw new \Clerk\Backend\Models\Errors\SDKException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        }
+    }
+
+    /**
      * Set a user's password as compromised
      *
      * Sets the given user's password as compromised. The user will be prompted to reset their password on their next sign-in.
      *
      * @param  string  $userId
-     * @param  ?Operations\SetUserPasswordCompromisedRequestBody  $requestBody
-     * @return Operations\SetUserPasswordCompromisedResponse
+     * @param  ?\Clerk\Backend\Models\Operations\SetUserPasswordCompromisedRequestBody  $requestBody
+     * @return \Clerk\Backend\Models\Operations\SetUserPasswordCompromisedResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function setPasswordCompromised(string $userId, ?Operations\SetUserPasswordCompromisedRequestBody $requestBody = null, ?Options $options = null): Operations\SetUserPasswordCompromisedResponse
@@ -1913,11 +2044,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1960,9 +2092,9 @@ class Users
      *
      * Update a user's profile image
      *
-     * @param  Operations\SetUserProfileImageRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\SetUserProfileImageRequestBody  $requestBody
      * @param  string  $userId
-     * @return Operations\SetUserProfileImageResponse
+     * @return \Clerk\Backend\Models\Operations\SetUserProfileImageResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function setProfileImage(Operations\SetUserProfileImageRequestBody $requestBody, string $userId, ?Options $options = null): Operations\SetUserProfileImageResponse
@@ -2019,11 +2151,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -2067,7 +2200,7 @@ class Users
      * Removes the ban mark from the given user.
      *
      * @param  string  $userId
-     * @return Operations\UnbanUserResponse
+     * @return \Clerk\Backend\Models\Operations\UnbanUserResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function unban(string $userId, ?Options $options = null): Operations\UnbanUserResponse
@@ -2118,11 +2251,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['402', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -2166,7 +2300,7 @@ class Users
      * Removes the lock from the given user.
      *
      * @param  string  $userId
-     * @return Operations\UnlockUserResponse
+     * @return \Clerk\Backend\Models\Operations\UnlockUserResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function unlock(string $userId, ?Options $options = null): Operations\UnlockUserResponse
@@ -2217,11 +2351,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['403', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -2265,7 +2400,7 @@ class Users
      * Sets the given user's password as no longer compromised. The user will no longer be prompted to reset their password on their next sign-in.
      *
      * @param  string  $userId
-     * @return Operations\UnsetUserPasswordCompromisedResponse
+     * @return \Clerk\Backend\Models\Operations\UnsetUserPasswordCompromisedResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function unsetPasswordCompromised(string $userId, ?Options $options = null): Operations\UnsetUserPasswordCompromisedResponse
@@ -2316,11 +2451,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -2367,16 +2503,13 @@ class Users
      * Both IDs should correspond to verified identifications that belong to the user.
      *
      * You can remove a user's username by setting the username attribute to null or the blank string "".
-     * This is a destructive action; the identification will be deleted forever.
-     * Usernames can be removed only if they are optional in your instance settings and there's at least one other identifier which can be used for authentication.
      *
-     * This endpoint allows changing a user's password. When passing the `password` parameter directly you have two further options.
-     * You can ignore the password policy checks for your instance by setting the `skip_password_checks` parameter to `true`.
-     * You can also choose to sign the user out of all their active sessions on any device once the password is updated. Just set `sign_out_of_other_sessions` to `true`.
+     * As of API version 2026-05-12, this endpoint no longer accepts `public_metadata`, `private_metadata`, or `unsafe_metadata`.
+     * Use `PATCH /v1/users/{user_id}/metadata` to merge updates into existing metadata, or `PUT /v1/users/{user_id}/metadata` to replace a metadata field entirely.
      *
-     * @param  Operations\UpdateUserRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\UpdateUserRequestBody  $requestBody
      * @param  string  $userId
-     * @return Operations\UpdateUserResponse
+     * @return \Clerk\Backend\Models\Operations\UpdateUserResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function update(Operations\UpdateUserRequestBody $requestBody, string $userId, ?Options $options = null): Operations\UpdateUserResponse
@@ -2433,11 +2566,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '404', '409', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -2488,8 +2622,8 @@ class Users
      * You can remove metadata keys at any level by setting their value to `null`.
      *
      * @param  string  $userId
-     * @param  ?Operations\UpdateUserMetadataRequestBody  $requestBody
-     * @return Operations\UpdateUserMetadataResponse
+     * @param  ?\Clerk\Backend\Models\Operations\UpdateUserMetadataRequestBody  $requestBody
+     * @return \Clerk\Backend\Models\Operations\UpdateUserMetadataResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function updateMetadata(string $userId, ?Operations\UpdateUserMetadataRequestBody $requestBody = null, ?Options $options = null): Operations\UpdateUserMetadataResponse
@@ -2545,11 +2679,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -2594,7 +2729,7 @@ class Users
      *
      * @param  string  $userId
      * @param  string  $passkeyIdentificationId
-     * @return Operations\UserPasskeyDeleteResponse
+     * @return \Clerk\Backend\Models\Operations\UserPasskeyDeleteResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function deletePasskey(string $userId, string $passkeyIdentificationId, ?Options $options = null): Operations\UserPasskeyDeleteResponse
@@ -2646,11 +2781,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['403', '404', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -2706,7 +2842,7 @@ class Users
      *
      * @param  string  $userId
      * @param  string  $web3WalletIdentificationId
-     * @return Operations\UserWeb3WalletDeleteResponse
+     * @return \Clerk\Backend\Models\Operations\UserWeb3WalletDeleteResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function deleteWeb3Wallet(string $userId, string $web3WalletIdentificationId, ?Options $options = null): Operations\UserWeb3WalletDeleteResponse
@@ -2758,11 +2894,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '403', '404', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -2816,8 +2953,8 @@ class Users
      *
      * Marks multiple users as banned, which means that all their sessions are revoked and they are not allowed to sign in again.
      *
-     * @param  Operations\UsersBanRequestBody  $request
-     * @return Operations\UsersBanResponse
+     * @param  \Clerk\Backend\Models\Operations\UsersBanRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\UsersBanResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function bulkBan(Operations\UsersBanRequestBody $request, ?Options $options = null): Operations\UsersBanResponse
@@ -2870,11 +3007,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '402', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -2920,8 +3058,8 @@ class Users
      * @param  string  $userId
      * @param  ?int  $limit
      * @param  ?int  $offset
-     * @param  ?Operations\QueryParamStatus  $status
-     * @return Operations\UsersGetOrganizationInvitationsResponse
+     * @param  ?\Clerk\Backend\Models\Operations\QueryParamStatus  $status
+     * @return \Clerk\Backend\Models\Operations\UsersGetOrganizationInvitationsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function getOrganizationInvitations(string $userId, ?int $limit = null, ?int $offset = null, ?Operations\QueryParamStatus $status = null, ?Options $options = null): Operations\UsersGetOrganizationInvitationsResponse
@@ -2978,11 +3116,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '403', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -3028,7 +3167,7 @@ class Users
      * @param  string  $userId
      * @param  ?int  $limit
      * @param  ?int  $offset
-     * @return Operations\UsersGetOrganizationMembershipsResponse
+     * @return \Clerk\Backend\Models\Operations\UsersGetOrganizationMembershipsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function getOrganizationMemberships(string $userId, ?int $limit = null, ?int $offset = null, ?Options $options = null): Operations\UsersGetOrganizationMembershipsResponse
@@ -3084,11 +3223,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['403', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -3131,8 +3271,8 @@ class Users
      *
      * Removes the ban mark from multiple users.
      *
-     * @param  Operations\UsersUnbanRequestBody  $request
-     * @return Operations\UsersUnbanResponse
+     * @param  \Clerk\Backend\Models\Operations\UsersUnbanRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\UsersUnbanResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function bulkUnban(Operations\UsersUnbanRequestBody $request, ?Options $options = null): Operations\UsersUnbanResponse
@@ -3185,11 +3325,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '402', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -3234,8 +3375,8 @@ class Users
      * Useful for custom auth flows and re-verification.
      *
      * @param  string  $userId
-     * @param  ?Operations\VerifyPasswordRequestBody  $requestBody
-     * @return Operations\VerifyPasswordResponse
+     * @param  ?\Clerk\Backend\Models\Operations\VerifyPasswordRequestBody  $requestBody
+     * @return \Clerk\Backend\Models\Operations\VerifyPasswordResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function verifyPassword(string $userId, ?Operations\VerifyPasswordRequestBody $requestBody = null, ?Options $options = null): Operations\VerifyPasswordResponse
@@ -3291,11 +3432,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -3342,8 +3484,8 @@ class Users
      * Useful for custom auth flows and re-verification.
      *
      * @param  string  $userId
-     * @param  ?Operations\VerifyTOTPRequestBody  $requestBody
-     * @return Operations\VerifyTOTPResponse
+     * @param  ?\Clerk\Backend\Models\Operations\VerifyTOTPRequestBody  $requestBody
+     * @return \Clerk\Backend\Models\Operations\VerifyTOTPResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function verifyTotp(string $userId, ?Operations\VerifyTOTPRequestBody $requestBody = null, ?Options $options = null): Operations\VerifyTOTPResponse
@@ -3399,11 +3541,12 @@ class Users
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

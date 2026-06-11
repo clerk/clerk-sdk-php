@@ -22,7 +22,7 @@ class UsersGetOrganizationInvitationsRequest
     /**
      * Filter organization invitations based on their status
      *
-     * @var ?QueryParamStatus $status
+     * @var ?\Clerk\Backend\Models\Operations\QueryParamStatus $status
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status')]
     public ?QueryParamStatus $status = null;
@@ -52,7 +52,7 @@ class UsersGetOrganizationInvitationsRequest
      * @param  string  $userId
      * @param  ?int  $limit
      * @param  ?int  $offset
-     * @param  ?QueryParamStatus  $status
+     * @param  ?\Clerk\Backend\Models\Operations\QueryParamStatus  $status
      * @phpstan-pure
      */
     public function __construct(string $userId, ?QueryParamStatus $status = null, ?int $limit = 10, ?int $offset = 0)

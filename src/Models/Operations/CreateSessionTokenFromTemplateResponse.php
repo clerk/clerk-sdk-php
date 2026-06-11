@@ -35,7 +35,7 @@ class CreateSessionTokenFromTemplateResponse
     /**
      * OK
      *
-     * @var ?CreateSessionTokenFromTemplateResponseBody $object
+     * @var ?\Clerk\Backend\Models\Operations\CreateSessionTokenFromTemplateResponseBody $object
      */
     public ?CreateSessionTokenFromTemplateResponseBody $object = null;
 
@@ -43,7 +43,7 @@ class CreateSessionTokenFromTemplateResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?CreateSessionTokenFromTemplateResponseBody  $object
+     * @param  ?\Clerk\Backend\Models\Operations\CreateSessionTokenFromTemplateResponseBody  $object
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?CreateSessionTokenFromTemplateResponseBody $object = null)

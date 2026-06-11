@@ -14,7 +14,7 @@ class CreateM2MTokenResponseBody
 {
     /**
      *
-     * @var CreateM2MTokenObject $object
+     * @var \Clerk\Backend\Models\Operations\CreateM2MTokenObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\CreateM2MTokenObject')]
@@ -114,7 +114,7 @@ class CreateM2MTokenResponseBody
     public mixed $claims = null;
 
     /**
-     * @param  CreateM2MTokenObject  $object
+     * @param  \Clerk\Backend\Models\Operations\CreateM2MTokenObject  $object
      * @param  string  $id
      * @param  string  $subject
      * @param  string  $token

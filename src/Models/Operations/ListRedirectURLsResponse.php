@@ -35,7 +35,7 @@ class ListRedirectURLsResponse
     /**
      * List of Redirect URLs
      *
-     * @var ?array<Components\RedirectURL> $redirectURLList
+     * @var ?array<\Clerk\Backend\Models\Components\RedirectURL> $redirectURLList
      */
     public ?array $redirectURLList = null;
 
@@ -43,7 +43,7 @@ class ListRedirectURLsResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?array<Components\RedirectURL>  $redirectURLList
+     * @param  ?array<\Clerk\Backend\Models\Components\RedirectURL>  $redirectURLList
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?array $redirectURLList = null)

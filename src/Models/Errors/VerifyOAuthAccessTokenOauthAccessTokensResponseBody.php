@@ -15,7 +15,7 @@ class VerifyOAuthAccessTokenOauthAccessTokensResponseBody
     /**
      * $errors
      *
-     * @var array<VerifyOAuthAccessTokenOauthAccessTokensErrors> $errors
+     * @var array<\Clerk\Backend\Models\Errors\VerifyOAuthAccessTokenOauthAccessTokensErrors> $errors
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('errors')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Errors\VerifyOAuthAccessTokenOauthAccessTokensErrors>')]
@@ -31,7 +31,7 @@ class VerifyOAuthAccessTokenOauthAccessTokensResponseBody
     public ?\Psr\Http\Message\ResponseInterface $rawResponse = null;
 
     /**
-     * @param  array<VerifyOAuthAccessTokenOauthAccessTokensErrors>  $errors
+     * @param  array<\Clerk\Backend\Models\Errors\VerifyOAuthAccessTokenOauthAccessTokensErrors>  $errors
      * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
      * @phpstan-pure
      */

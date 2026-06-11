@@ -13,7 +13,7 @@ class M2mTokens
 {
     /**
      *
-     * @var GetM2MTokensObject $object
+     * @var \Clerk\Backend\Models\Operations\GetM2MTokensObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\GetM2MTokensObject')]
@@ -106,7 +106,7 @@ class M2mTokens
     public mixed $claims = null;
 
     /**
-     * @param  GetM2MTokensObject  $object
+     * @param  \Clerk\Backend\Models\Operations\GetM2MTokensObject  $object
      * @param  string  $id
      * @param  string  $subject
      * @param  bool  $revoked

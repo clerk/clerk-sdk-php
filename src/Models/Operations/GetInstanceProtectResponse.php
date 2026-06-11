@@ -35,7 +35,7 @@ class GetInstanceProtectResponse
     /**
      * Success
      *
-     * @var ?Components\InstanceProtect $instanceProtect
+     * @var ?\Clerk\Backend\Models\Components\InstanceProtect $instanceProtect
      */
     public ?Components\InstanceProtect $instanceProtect = null;
 
@@ -43,7 +43,7 @@ class GetInstanceProtectResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\InstanceProtect  $instanceProtect
+     * @param  ?\Clerk\Backend\Models\Components\InstanceProtect  $instanceProtect
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\InstanceProtect $instanceProtect = null)

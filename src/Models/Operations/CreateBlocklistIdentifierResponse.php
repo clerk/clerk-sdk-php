@@ -35,7 +35,7 @@ class CreateBlocklistIdentifierResponse
     /**
      * Success
      *
-     * @var ?Components\BlocklistIdentifier $blocklistIdentifier
+     * @var ?\Clerk\Backend\Models\Components\BlocklistIdentifier $blocklistIdentifier
      */
     public ?Components\BlocklistIdentifier $blocklistIdentifier = null;
 
@@ -43,7 +43,7 @@ class CreateBlocklistIdentifierResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\BlocklistIdentifier  $blocklistIdentifier
+     * @param  ?\Clerk\Backend\Models\Components\BlocklistIdentifier  $blocklistIdentifier
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\BlocklistIdentifier $blocklistIdentifier = null)

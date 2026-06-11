@@ -14,7 +14,7 @@ class BillingPaymentAttempt
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var BillingPaymentAttemptObject $object
+     * @var \Clerk\Backend\Models\Components\BillingPaymentAttemptObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\BillingPaymentAttemptObject')]
@@ -63,7 +63,7 @@ class BillingPaymentAttempt
     /**
      * The payee associated with this payment attempt.
      *
-     * @var Payee $payee
+     * @var \Clerk\Backend\Models\Components\Payee $payee
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('payee')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Payee')]
@@ -79,7 +79,7 @@ class BillingPaymentAttempt
 
     /**
      *
-     * @var CommercePayerResponse $payer
+     * @var \Clerk\Backend\Models\Components\CommercePayerResponse $payer
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('payer')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommercePayerResponse')]
@@ -87,7 +87,7 @@ class BillingPaymentAttempt
 
     /**
      *
-     * @var CommerceMoneyResponse $amount
+     * @var \Clerk\Backend\Models\Components\CommerceMoneyResponse $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
@@ -103,7 +103,7 @@ class BillingPaymentAttempt
 
     /**
      *
-     * @var CommercePaymentMethodResponse $paymentMethod
+     * @var \Clerk\Backend\Models\Components\CommercePaymentMethodResponse $paymentMethod
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('payment_method')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommercePaymentMethodResponse')]
@@ -120,7 +120,7 @@ class BillingPaymentAttempt
     /**
      * The current status of the payment attempt.
      *
-     * @var BillingPaymentAttemptStatus $status
+     * @var \Clerk\Backend\Models\Components\BillingPaymentAttemptStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\BillingPaymentAttemptStatus')]
@@ -154,7 +154,7 @@ class BillingPaymentAttempt
     /**
      * The subscription item associated with this payment attempt.
      *
-     * @var ?SubscriptionItem $subscriptionItem
+     * @var ?\Clerk\Backend\Models\Components\SubscriptionItem $subscriptionItem
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('subscription_item')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SubscriptionItem|null')]
@@ -196,7 +196,7 @@ class BillingPaymentAttempt
     /**
      * Totals breakdown for this payment attempt.
      *
-     * @var ?BillingPaymentAttemptTotals $totals
+     * @var ?\Clerk\Backend\Models\Components\BillingPaymentAttemptTotals $totals
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('totals')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\BillingPaymentAttemptTotals|null')]
@@ -204,29 +204,29 @@ class BillingPaymentAttempt
     public ?BillingPaymentAttemptTotals $totals = null;
 
     /**
-     * @param  BillingPaymentAttemptObject  $object
+     * @param  \Clerk\Backend\Models\Components\BillingPaymentAttemptObject  $object
      * @param  string  $id
      * @param  string  $paymentId
      * @param  string  $instanceId
      * @param  string  $chargeType
      * @param  string  $payeeId
-     * @param  Payee  $payee
+     * @param  \Clerk\Backend\Models\Components\Payee  $payee
      * @param  string  $payerId
-     * @param  CommercePayerResponse  $payer
-     * @param  CommerceMoneyResponse  $amount
+     * @param  \Clerk\Backend\Models\Components\CommercePayerResponse  $payer
+     * @param  \Clerk\Backend\Models\Components\CommerceMoneyResponse  $amount
      * @param  string  $paymentMethodId
-     * @param  CommercePaymentMethodResponse  $paymentMethod
+     * @param  \Clerk\Backend\Models\Components\CommercePaymentMethodResponse  $paymentMethod
      * @param  string  $statementId
-     * @param  BillingPaymentAttemptStatus  $status
+     * @param  \Clerk\Backend\Models\Components\BillingPaymentAttemptStatus  $status
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  ?string  $subscriptionItemId
-     * @param  ?SubscriptionItem  $subscriptionItem
+     * @param  ?\Clerk\Backend\Models\Components\SubscriptionItem  $subscriptionItem
      * @param  ?string  $gatewayExternalId
      * @param  ?string  $gatewayExternalUrl
      * @param  ?int  $paidAt
      * @param  ?int  $failedAt
-     * @param  ?BillingPaymentAttemptTotals  $totals
+     * @param  ?\Clerk\Backend\Models\Components\BillingPaymentAttemptTotals  $totals
      * @phpstan-pure
      */
     public function __construct(BillingPaymentAttemptObject $object, string $id, string $paymentId, string $instanceId, string $chargeType, string $payeeId, Payee $payee, string $payerId, CommercePayerResponse $payer, CommerceMoneyResponse $amount, string $paymentMethodId, CommercePaymentMethodResponse $paymentMethod, string $statementId, BillingPaymentAttemptStatus $status, int $createdAt, int $updatedAt, ?string $subscriptionItemId = null, ?SubscriptionItem $subscriptionItem = null, ?string $gatewayExternalId = null, ?string $gatewayExternalUrl = null, ?int $paidAt = null, ?int $failedAt = null, ?BillingPaymentAttemptTotals $totals = null)

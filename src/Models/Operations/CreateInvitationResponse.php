@@ -35,7 +35,7 @@ class CreateInvitationResponse
     /**
      * Success
      *
-     * @var ?Components\Invitation $invitation
+     * @var ?\Clerk\Backend\Models\Components\Invitation $invitation
      */
     public ?Components\Invitation $invitation = null;
 
@@ -43,7 +43,7 @@ class CreateInvitationResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\Invitation  $invitation
+     * @param  ?\Clerk\Backend\Models\Components\Invitation  $invitation
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\Invitation $invitation = null)

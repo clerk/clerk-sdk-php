@@ -9,7 +9,7 @@ Success
 
 ```php
 /**
-* @var Components\Token
+* @var \Clerk\Backend\Models\Components\Token
 */
 Components\Token $value = /* values here */
 ```
@@ -18,7 +18,7 @@ Components\Token $value = /* values here */
 
 ```php
 /**
-* @var Components\Cookies
+* @var \Clerk\Backend\Models\Components\Cookies
 */
 Components\Cookies $value = /* values here */
 ```

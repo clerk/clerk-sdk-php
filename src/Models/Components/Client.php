@@ -17,7 +17,7 @@ class Client
      *
      *
      *
-     * @var ObjectT $object
+     * @var \Clerk\Backend\Models\Components\ObjectT $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ObjectT')]
@@ -45,7 +45,7 @@ class Client
     /**
      * $sessions
      *
-     * @var array<Session> $sessions
+     * @var array<\Clerk\Backend\Models\Components\Session> $sessions
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('sessions')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\Session>')]
@@ -106,10 +106,10 @@ class Client
     public ?string $lastAuthenticationStrategy;
 
     /**
-     * @param  ObjectT  $object
+     * @param  \Clerk\Backend\Models\Components\ObjectT  $object
      * @param  string  $id
      * @param  array<string>  $sessionIds
-     * @param  array<Session>  $sessions
+     * @param  array<\Clerk\Backend\Models\Components\Session>  $sessions
      * @param  int  $updatedAt
      * @param  int  $createdAt
      * @param  ?string  $signInId

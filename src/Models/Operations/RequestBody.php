@@ -53,7 +53,7 @@ class RequestBody
     /**
      * The slug of the email template to use for the invitation email.
      *
-     * @var ?CreateBulkInvitationsTemplateSlug $templateSlug
+     * @var ?\Clerk\Backend\Models\Operations\CreateBulkInvitationsTemplateSlug $templateSlug
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('template_slug')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\CreateBulkInvitationsTemplateSlug|null')]
@@ -84,7 +84,7 @@ class RequestBody
 
     /**
      * @param  string  $emailAddress
-     * @param  ?CreateBulkInvitationsTemplateSlug  $templateSlug
+     * @param  ?\Clerk\Backend\Models\Operations\CreateBulkInvitationsTemplateSlug  $templateSlug
      * @param  ?array<string, mixed>  $publicMetadata
      * @param  ?string  $redirectUrl
      * @param  ?bool  $notify

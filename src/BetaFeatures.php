@@ -51,8 +51,8 @@ class BetaFeatures
      *
      * Updates the settings of an instance
      *
-     * @param  ?Operations\UpdateInstanceAuthConfigRequestBody  $request
-     * @return Operations\UpdateInstanceAuthConfigResponse
+     * @param  ?\Clerk\Backend\Models\Operations\UpdateInstanceAuthConfigRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\UpdateInstanceAuthConfigResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function updateInstanceSettings(?Operations\UpdateInstanceAuthConfigRequestBody $request = null, ?Options $options = null): Operations\UpdateInstanceAuthConfigResponse
@@ -104,11 +104,12 @@ class BetaFeatures
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['402', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -155,8 +156,8 @@ class BetaFeatures
      *
      * WARNING: Changing your domain will invalidate all current user sessions (i.e. users will be logged out). Also, while your application is being deployed, a small downtime is expected to occur.
      *
-     * @param  ?Operations\UpdateProductionInstanceDomainRequestBody  $request
-     * @return Operations\UpdateProductionInstanceDomainResponse
+     * @param  ?\Clerk\Backend\Models\Operations\UpdateProductionInstanceDomainRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\UpdateProductionInstanceDomainResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -210,11 +211,12 @@ class BetaFeatures
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['202'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 

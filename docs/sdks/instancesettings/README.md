@@ -9,9 +9,12 @@ Modify the settings of your instance.
 * [get](#get) - Fetch the current instance
 * [update](#update) - Update instance settings
 * [updateRestrictions](#updaterestrictions) - Update instance restrictions
+* [getCommunication](#getcommunication) - Get instance communication settings
+* [updateCommunication](#updatecommunication) - Update instance communication settings
 * [getOAuthApplicationSettings](#getoauthapplicationsettings) - Get OAuth application settings
 * [updateOAuthApplicationSettings](#updateoauthapplicationsettings) - Update OAuth application settings
 * [changeDomain](#changedomain) - Update production instance domain
+* [getOrganizationSettings](#getorganizationsettings) - Get instance organization settings
 * [updateOrganizationSettings](#updateorganizationsettings) - Update instance organization settings
 * [getInstanceProtect](#getinstanceprotect) - Get instance protect settings
 * [updateInstanceProtect](#updateinstanceprotect) - Update instance protect settings
@@ -151,6 +154,99 @@ if ($response->instanceRestrictions !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 402, 422            | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## getCommunication
+
+Retrieves the per-instance SMS communication settings, including the SMS country blocklist.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="GetInstanceCommunication" method="get" path="/instance/communication" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->instanceSettings->getCommunication(
+
+);
+
+if ($response->instanceCommunication !== null) {
+    // handle response
+}
+```
+
+### Response
+
+**[?Operations\GetInstanceCommunicationResponse](../../Models/Operations/GetInstanceCommunicationResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## updateCommunication
+
+Replaces the SMS country blocklist for this instance. Pass the full set of ISO 3166-1
+alpha-2 country codes that should be blocked; codes that aren't recognized as SMS-tier
+countries are silently dropped from the persisted list. Omitting `blocked_country_codes`
+is a no-op.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="UpdateInstanceCommunication" method="patch" path="/instance/communication" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->instanceSettings->updateCommunication(
+    request: $request
+);
+
+if ($response->instanceCommunication !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                              | Type                                                                                                                   | Required                                                                                                               | Description                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                                             | [Operations\UpdateInstanceCommunicationRequestBody](../../Models/Operations/UpdateInstanceCommunicationRequestBody.md) | :heavy_check_mark:                                                                                                     | The request object to use for the request.                                                                             |
+
+### Response
+
+**[?Operations\UpdateInstanceCommunicationResponse](../../Models/Operations/UpdateInstanceCommunicationResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 422                 | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## getOAuthApplicationSettings
@@ -294,6 +390,48 @@ if ($response->statusCode === 200) {
 | Errors\ClerkErrors  | 400, 422            | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
+## getOrganizationSettings
+
+Retrieves the organization settings of the instance
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="GetInstanceOrganizationSettings" method="get" path="/instance/organization_settings" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->instanceSettings->getOrganizationSettings(
+
+);
+
+if ($response->organizationSettings !== null) {
+    // handle response
+}
+```
+
+### Response
+
+**[?Operations\GetInstanceOrganizationSettingsResponse](../../Models/Operations/GetInstanceOrganizationSettingsResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 402, 404, 422       | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
 ## updateOrganizationSettings
 
 Updates the organization settings of the instance
@@ -337,10 +475,10 @@ if ($response->organizationSettings !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 402, 404, 422  | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| Errors\ClerkErrors      | 400, 402, 403, 404, 422 | application/json        |
+| Errors\SDKException     | 4XX, 5XX                | \*/\*                   |
 
 ## getInstanceProtect
 

@@ -1,4 +1,4 @@
-speakeasyVersion: 1.749.0
+speakeasyVersion: 1.777.0
 sources:
     backend-php:
         sourceNamespace: clerk-openapi
@@ -14,19 +14,19 @@ sources:
             - latest
     clerk-openapi:
         sourceNamespace: clerk-openapi
-        sourceRevisionDigest: sha256:9925228df9e79b73494a9562af086a54c935af7eb18119c3ac09a24d94f0abbe
-        sourceBlobDigest: sha256:de9c002b801ef4410225c475dfd97d83484bcd298f746efee66cd32490029399
+        sourceRevisionDigest: sha256:d15346bde80f5abad95d77c66b96208b660c78544a4c4dca48b2068565d13717
+        sourceBlobDigest: sha256:2ca2b3040b8261f61ac0c56c7fd9a942f7ad5ed5312eb73d44b7b9b648605b29
         tags:
             - latest
-            - "2025-11-10"
+            - "2026-05-12"
 targets:
     clerk-php:
         source: clerk-openapi
         sourceNamespace: clerk-openapi
-        sourceRevisionDigest: sha256:9925228df9e79b73494a9562af086a54c935af7eb18119c3ac09a24d94f0abbe
-        sourceBlobDigest: sha256:de9c002b801ef4410225c475dfd97d83484bcd298f746efee66cd32490029399
+        sourceRevisionDigest: sha256:d15346bde80f5abad95d77c66b96208b660c78544a4c4dca48b2068565d13717
+        sourceBlobDigest: sha256:2ca2b3040b8261f61ac0c56c7fd9a942f7ad5ed5312eb73d44b7b9b648605b29
         codeSamplesNamespace: clerk-openapi-php-code-samples
-        codeSamplesRevisionDigest: sha256:1ed648bcc513c93d6c15e6142cbd8c234c378f2102ccbf53f4ad7c110b864ca9
+        codeSamplesRevisionDigest: sha256:ff97e3969ed881f87956c53b2adaaf00c1989617de838d21b742f2ded29a9bc2
     my-first-target:
         source: clerk-backend-php
         sourceNamespace: clerk-openapi
@@ -38,7 +38,7 @@ workflow:
     sources:
         clerk-openapi:
             inputs:
-                - location: https://raw.githubusercontent.com/clerk/openapi-specs/refs/heads/main/bapi/2025-11-10.yml
+                - location: https://raw.githubusercontent.com/clerk/openapi-specs/refs/heads/main/bapi/2026-05-12.yml
             overlays:
                 - location: https://raw.githubusercontent.com/clerk/openapi-specs/refs/heads/main/.speakeasy/bapi/fixes.yml
             registry:

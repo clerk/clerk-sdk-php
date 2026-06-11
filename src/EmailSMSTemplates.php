@@ -51,9 +51,9 @@ class EmailSMSTemplates
      *
      * Returns the details of a template
      *
-     * @param  Operations\PathParamTemplateType  $templateType
+     * @param  \Clerk\Backend\Models\Operations\PathParamTemplateType  $templateType
      * @param  string  $slug
-     * @return Operations\GetTemplateResponse
+     * @return \Clerk\Backend\Models\Operations\GetTemplateResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -107,11 +107,12 @@ class EmailSMSTemplates
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -155,11 +156,11 @@ class EmailSMSTemplates
      * Returns a list of all templates.
      * The templates are returned sorted by position.
      *
-     * @param  Operations\TemplateType  $templateType
+     * @param  \Clerk\Backend\Models\Operations\TemplateType  $templateType
      * @param  ?bool  $paginated
      * @param  ?int  $limit
      * @param  ?int  $offset
-     * @return Operations\GetTemplateListResponse
+     * @return \Clerk\Backend\Models\Operations\GetTemplateListResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -218,11 +219,12 @@ class EmailSMSTemplates
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -265,9 +267,9 @@ class EmailSMSTemplates
      *
      * Reverts an updated template to its default state
      *
-     * @param  Operations\RevertTemplatePathParamTemplateType  $templateType
+     * @param  \Clerk\Backend\Models\Operations\RevertTemplatePathParamTemplateType  $templateType
      * @param  string  $slug
-     * @return Operations\RevertTemplateResponse
+     * @return \Clerk\Backend\Models\Operations\RevertTemplateResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -321,11 +323,12 @@ class EmailSMSTemplates
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '402', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -370,10 +373,10 @@ class EmailSMSTemplates
      * If disabled, Clerk will not deliver the resulting email or SMS.
      * The app developer will need to listen to the `email.created` or `sms.created` webhooks in order to handle delivery themselves.
      *
-     * @param  Operations\ToggleTemplateDeliveryPathParamTemplateType  $templateType
+     * @param  \Clerk\Backend\Models\Operations\ToggleTemplateDeliveryPathParamTemplateType  $templateType
      * @param  string  $slug
-     * @param  ?Operations\ToggleTemplateDeliveryRequestBody  $requestBody
-     * @return Operations\ToggleTemplateDeliveryResponse
+     * @param  ?\Clerk\Backend\Models\Operations\ToggleTemplateDeliveryRequestBody  $requestBody
+     * @return \Clerk\Backend\Models\Operations\ToggleTemplateDeliveryResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -432,11 +435,12 @@ class EmailSMSTemplates
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

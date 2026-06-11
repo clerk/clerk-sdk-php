@@ -21,14 +21,14 @@ class CreateOrganizationDomainRequest
 
     /**
      *
-     * @var CreateOrganizationDomainRequestBody $requestBody
+     * @var \Clerk\Backend\Models\Operations\CreateOrganizationDomainRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public CreateOrganizationDomainRequestBody $requestBody;
 
     /**
      * @param  string  $organizationId
-     * @param  CreateOrganizationDomainRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\CreateOrganizationDomainRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $organizationId, CreateOrganizationDomainRequestBody $requestBody)

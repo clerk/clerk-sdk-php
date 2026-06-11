@@ -58,8 +58,8 @@ class ProxyChecks
      * The `proxy_url` parameter allows for testing proxy configurations for domains that don't have a proxy URL yet, or operate on
      * a different proxy URL than the one provided. It can also be used to re-validate a domain that is already configured to work with a proxy.
      *
-     * @param  ?Operations\VerifyDomainProxyRequestBody  $request
-     * @return Operations\VerifyDomainProxyResponse
+     * @param  ?\Clerk\Backend\Models\Operations\VerifyDomainProxyRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\VerifyDomainProxyResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function verify(?Operations\VerifyDomainProxyRequestBody $request = null, ?Options $options = null): Operations\VerifyDomainProxyResponse
@@ -111,11 +111,12 @@ class ProxyChecks
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

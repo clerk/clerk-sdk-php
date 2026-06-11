@@ -49,8 +49,8 @@ class OauthAccessTokens
     /**
      * Verify an OAuth Access Token
      *
-     * @param  Operations\VerifyOAuthAccessTokenRequestBody  $request
-     * @return Operations\VerifyOAuthAccessTokenResponse
+     * @param  \Clerk\Backend\Models\Operations\VerifyOAuthAccessTokenRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\VerifyOAuthAccessTokenResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function verify(Operations\VerifyOAuthAccessTokenRequestBody $request, ?Options $options = null): Operations\VerifyOAuthAccessTokenResponse
@@ -103,11 +103,12 @@ class OauthAccessTokens
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

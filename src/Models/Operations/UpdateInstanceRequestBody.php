@@ -87,6 +87,16 @@ class UpdateInstanceRequestBody
     public ?bool $urlBasedSessionSyncing = null;
 
     /**
+     * When password is required at the instance level, sets the preferred sign-in strategy surfaced to Clerk components. Has no effect when password is not required. Defaults to `password`. Set to an empty string to clear the override.
+     *
+     * @var ?\Clerk\Backend\Models\Operations\PreferredSignInStrategyWhenPasswordRequired $preferredSignInStrategyWhenPasswordRequired
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('preferred_sign_in_strategy_when_password_required')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\PreferredSignInStrategyWhenPasswordRequired|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?PreferredSignInStrategyWhenPasswordRequired $preferredSignInStrategyWhenPasswordRequired = null;
+
+    /**
      * @param  ?array<string>  $allowedOrigins
      * @param  ?bool  $testMode
      * @param  ?bool  $hibp
@@ -95,9 +105,10 @@ class UpdateInstanceRequestBody
      * @param  ?string  $developmentOrigin
      * @param  ?bool  $cookielessDev
      * @param  ?bool  $urlBasedSessionSyncing
+     * @param  ?\Clerk\Backend\Models\Operations\PreferredSignInStrategyWhenPasswordRequired  $preferredSignInStrategyWhenPasswordRequired
      * @phpstan-pure
      */
-    public function __construct(?array $allowedOrigins = null, ?bool $testMode = null, ?bool $hibp = null, ?string $supportEmail = null, ?string $clerkJsVersion = null, ?string $developmentOrigin = null, ?bool $cookielessDev = null, ?bool $urlBasedSessionSyncing = null)
+    public function __construct(?array $allowedOrigins = null, ?bool $testMode = null, ?bool $hibp = null, ?string $supportEmail = null, ?string $clerkJsVersion = null, ?string $developmentOrigin = null, ?bool $cookielessDev = null, ?bool $urlBasedSessionSyncing = null, ?PreferredSignInStrategyWhenPasswordRequired $preferredSignInStrategyWhenPasswordRequired = null)
     {
         $this->allowedOrigins = $allowedOrigins;
         $this->testMode = $testMode;
@@ -107,5 +118,6 @@ class UpdateInstanceRequestBody
         $this->developmentOrigin = $developmentOrigin;
         $this->cookielessDev = $cookielessDev;
         $this->urlBasedSessionSyncing = $urlBasedSessionSyncing;
+        $this->preferredSignInStrategyWhenPasswordRequired = $preferredSignInStrategyWhenPasswordRequired;
     }
 }

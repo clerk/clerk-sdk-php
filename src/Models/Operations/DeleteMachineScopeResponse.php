@@ -35,7 +35,7 @@ class DeleteMachineScopeResponse
     /**
      * Machine scope deleted successfully for a machine
      *
-     * @var ?Components\MachineScopeDeleted $machineScopeDeleted
+     * @var ?\Clerk\Backend\Models\Components\MachineScopeDeleted $machineScopeDeleted
      */
     public ?Components\MachineScopeDeleted $machineScopeDeleted = null;
 
@@ -43,7 +43,7 @@ class DeleteMachineScopeResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\MachineScopeDeleted  $machineScopeDeleted
+     * @param  ?\Clerk\Backend\Models\Components\MachineScopeDeleted  $machineScopeDeleted
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\MachineScopeDeleted $machineScopeDeleted = null)

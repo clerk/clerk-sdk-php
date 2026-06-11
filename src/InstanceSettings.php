@@ -55,8 +55,8 @@ class InstanceSettings
      *
      * WARNING: Changing your domain will invalidate all current user sessions (i.e. users will be logged out). Also, while your application is being deployed, a small downtime is expected to occur.
      *
-     * @param  ?Operations\ChangeProductionInstanceDomainRequestBody  $request
-     * @return Operations\ChangeProductionInstanceDomainResponse
+     * @param  ?\Clerk\Backend\Models\Operations\ChangeProductionInstanceDomainRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\ChangeProductionInstanceDomainResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function changeDomain(?Operations\ChangeProductionInstanceDomainRequestBody $request = null, ?Options $options = null): Operations\ChangeProductionInstanceDomainResponse
@@ -108,11 +108,12 @@ class InstanceSettings
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['202'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -146,7 +147,7 @@ class InstanceSettings
      *
      * Fetches the current instance
      *
-     * @return Operations\GetInstanceResponse
+     * @return \Clerk\Backend\Models\Operations\GetInstanceResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function get(?Options $options = null): Operations\GetInstanceResponse
@@ -194,11 +195,12 @@ class InstanceSettings
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -226,11 +228,96 @@ class InstanceSettings
     }
 
     /**
+     * Get instance communication settings
+     *
+     * Retrieves the per-instance SMS communication settings, including the SMS country blocklist.
+     *
+     * @return \Clerk\Backend\Models\Operations\GetInstanceCommunicationResponse
+     * @throws \Clerk\Backend\Models\Errors\SDKException
+     */
+    public function getCommunication(?Options $options = null): Operations\GetInstanceCommunicationResponse
+    {
+        $retryConfig = null;
+        if ($options) {
+            $retryConfig = $options->retryConfig;
+        }
+        if ($retryConfig === null && $this->sdkConfiguration->retryConfig) {
+            $retryConfig = $this->sdkConfiguration->retryConfig;
+        } else {
+            $retryConfig = new Retry\RetryConfigBackoff(
+                initialIntervalMs: 500,
+                maxIntervalMs: 60000,
+                exponent: 1.5,
+                maxElapsedTimeMs: 3600000,
+                retryConnectionErrors: true,
+            );
+        }
+        $retryCodes = null;
+        if ($options) {
+            $retryCodes = $options->retryCodes;
+        }
+        if ($retryCodes === null) {
+            $retryCodes = [
+                '5XX',
+            ];
+        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/instance/communication');
+        $urlOverride = null;
+        $httpOptions = ['http_errors' => false];
+        $httpOptions['headers']['Accept'] = 'application/json';
+        $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'GetInstanceCommunication', null, $this->sdkConfiguration->securitySource);
+        $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
+        $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
+        $httpRequest = Utils\Utils::removeHeaders($httpRequest);
+        try {
+            $httpResponse = RetryUtils::retryWrapper(fn () => $this->sdkConfiguration->client->send($httpRequest, $httpOptions), $retryConfig, $retryCodes);
+        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
+            $httpResponse = $res;
+        }
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
+            $httpResponse = $res;
+        }
+
+        $statusCode = $httpResponse->getStatusCode();
+        if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Components\InstanceCommunication', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\GetInstanceCommunicationResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    instanceCommunication: $obj);
+
+                return $response;
+            } else {
+                throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['4XX'])) {
+            throw new \Clerk\Backend\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
+            throw new \Clerk\Backend\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } else {
+            throw new \Clerk\Backend\Models\Errors\SDKException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        }
+    }
+
+    /**
      * Get OAuth application settings
      *
      * Retrieves the settings for OAuth applications for the instance (dynamic client registration, JWT access tokens, etc.).
      *
-     * @return Operations\GetInstanceOAuthApplicationSettingsResponse
+     * @return \Clerk\Backend\Models\Operations\GetInstanceOAuthApplicationSettingsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function getOAuthApplicationSettings(?Options $options = null): Operations\GetInstanceOAuthApplicationSettingsResponse
@@ -278,11 +365,12 @@ class InstanceSettings
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -310,9 +398,105 @@ class InstanceSettings
     }
 
     /**
+     * Get instance organization settings
+     *
+     * Retrieves the organization settings of the instance
+     *
+     * @return \Clerk\Backend\Models\Operations\GetInstanceOrganizationSettingsResponse
+     * @throws \Clerk\Backend\Models\Errors\SDKException
+     */
+    public function getOrganizationSettings(?Options $options = null): Operations\GetInstanceOrganizationSettingsResponse
+    {
+        $retryConfig = null;
+        if ($options) {
+            $retryConfig = $options->retryConfig;
+        }
+        if ($retryConfig === null && $this->sdkConfiguration->retryConfig) {
+            $retryConfig = $this->sdkConfiguration->retryConfig;
+        } else {
+            $retryConfig = new Retry\RetryConfigBackoff(
+                initialIntervalMs: 500,
+                maxIntervalMs: 60000,
+                exponent: 1.5,
+                maxElapsedTimeMs: 3600000,
+                retryConnectionErrors: true,
+            );
+        }
+        $retryCodes = null;
+        if ($options) {
+            $retryCodes = $options->retryCodes;
+        }
+        if ($retryCodes === null) {
+            $retryCodes = [
+                '5XX',
+            ];
+        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/instance/organization_settings');
+        $urlOverride = null;
+        $httpOptions = ['http_errors' => false];
+        $httpOptions['headers']['Accept'] = 'application/json';
+        $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'GetInstanceOrganizationSettings', null, $this->sdkConfiguration->securitySource);
+        $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
+        $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
+        $httpRequest = Utils\Utils::removeHeaders($httpRequest);
+        try {
+            $httpResponse = RetryUtils::retryWrapper(fn () => $this->sdkConfiguration->client->send($httpRequest, $httpOptions), $retryConfig, $retryCodes);
+        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
+            $httpResponse = $res;
+        }
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
+            $httpResponse = $res;
+        }
+
+        $statusCode = $httpResponse->getStatusCode();
+        if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Components\OrganizationSettings', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\GetInstanceOrganizationSettingsResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    organizationSettings: $obj);
+
+                return $response;
+            } else {
+                throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['402', '404', '422'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Errors\ClerkErrors', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['4XX'])) {
+            throw new \Clerk\Backend\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
+            throw new \Clerk\Backend\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } else {
+            throw new \Clerk\Backend\Models\Errors\SDKException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        }
+    }
+
+    /**
      * Get instance protect settings
      *
-     * @return Operations\GetInstanceProtectResponse
+     * @return \Clerk\Backend\Models\Operations\GetInstanceProtectResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function getInstanceProtect(?Options $options = null): Operations\GetInstanceProtectResponse
@@ -360,11 +544,12 @@ class InstanceSettings
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -396,8 +581,8 @@ class InstanceSettings
      *
      * Updates the settings of an instance
      *
-     * @param  ?Operations\UpdateInstanceRequestBody  $request
-     * @return Operations\UpdateInstanceResponse
+     * @param  ?\Clerk\Backend\Models\Operations\UpdateInstanceRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\UpdateInstanceResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function update(?Operations\UpdateInstanceRequestBody $request = null, ?Options $options = null): Operations\UpdateInstanceResponse
@@ -449,11 +634,12 @@ class InstanceSettings
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
             $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -483,12 +669,117 @@ class InstanceSettings
     }
 
     /**
+     * Update instance communication settings
+     *
+     * Replaces the SMS country blocklist for this instance. Pass the full set of ISO 3166-1
+     * alpha-2 country codes that should be blocked; codes that aren't recognized as SMS-tier
+     * countries are silently dropped from the persisted list. Omitting `blocked_country_codes`
+     * is a no-op.
+     *
+     *
+     * @param  ?\Clerk\Backend\Models\Operations\UpdateInstanceCommunicationRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\UpdateInstanceCommunicationResponse
+     * @throws \Clerk\Backend\Models\Errors\SDKException
+     */
+    public function updateCommunication(?Operations\UpdateInstanceCommunicationRequestBody $request = null, ?Options $options = null): Operations\UpdateInstanceCommunicationResponse
+    {
+        $retryConfig = null;
+        if ($options) {
+            $retryConfig = $options->retryConfig;
+        }
+        if ($retryConfig === null && $this->sdkConfiguration->retryConfig) {
+            $retryConfig = $this->sdkConfiguration->retryConfig;
+        } else {
+            $retryConfig = new Retry\RetryConfigBackoff(
+                initialIntervalMs: 500,
+                maxIntervalMs: 60000,
+                exponent: 1.5,
+                maxElapsedTimeMs: 3600000,
+                retryConnectionErrors: true,
+            );
+        }
+        $retryCodes = null;
+        if ($options) {
+            $retryCodes = $options->retryCodes;
+        }
+        if ($retryCodes === null) {
+            $retryCodes = [
+                '5XX',
+            ];
+        }
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/instance/communication');
+        $urlOverride = null;
+        $httpOptions = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
+        if ($body !== null) {
+            $httpOptions = array_merge_recursive($httpOptions, $body);
+        }
+        $httpOptions['headers']['Accept'] = 'application/json';
+        $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('PATCH', $url);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'UpdateInstanceCommunication', null, $this->sdkConfiguration->securitySource);
+        $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
+        $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
+        $httpRequest = Utils\Utils::removeHeaders($httpRequest);
+        try {
+            $httpResponse = RetryUtils::retryWrapper(fn () => $this->sdkConfiguration->client->send($httpRequest, $httpOptions), $retryConfig, $retryCodes);
+        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
+            $httpResponse = $res;
+        }
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
+            $httpResponse = $res;
+        }
+
+        $statusCode = $httpResponse->getStatusCode();
+        if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Components\InstanceCommunication', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\UpdateInstanceCommunicationResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    instanceCommunication: $obj);
+
+                return $response;
+            } else {
+                throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['422'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Errors\ClerkErrors', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['4XX'])) {
+            throw new \Clerk\Backend\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
+            throw new \Clerk\Backend\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } else {
+            throw new \Clerk\Backend\Models\Errors\SDKException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        }
+    }
+
+    /**
      * Update OAuth application settings
      *
      * Updates the OAuth application settings for the instance.
      *
-     * @param  ?Operations\UpdateInstanceOAuthApplicationSettingsRequestBody  $request
-     * @return Operations\UpdateInstanceOAuthApplicationSettingsResponse
+     * @param  ?\Clerk\Backend\Models\Operations\UpdateInstanceOAuthApplicationSettingsRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\UpdateInstanceOAuthApplicationSettingsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function updateOAuthApplicationSettings(?Operations\UpdateInstanceOAuthApplicationSettingsRequestBody $request = null, ?Options $options = null): Operations\UpdateInstanceOAuthApplicationSettingsResponse
@@ -540,11 +831,12 @@ class InstanceSettings
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -587,8 +879,8 @@ class InstanceSettings
      *
      * Updates the organization settings of the instance
      *
-     * @param  ?Operations\UpdateInstanceOrganizationSettingsRequestBody  $request
-     * @return Operations\UpdateInstanceOrganizationSettingsResponse
+     * @param  ?\Clerk\Backend\Models\Operations\UpdateInstanceOrganizationSettingsRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\UpdateInstanceOrganizationSettingsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function updateOrganizationSettings(?Operations\UpdateInstanceOrganizationSettingsRequestBody $request = null, ?Options $options = null): Operations\UpdateInstanceOrganizationSettingsResponse
@@ -640,11 +932,12 @@ class InstanceSettings
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '402', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -662,7 +955,7 @@ class InstanceSettings
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
-        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['400', '402', '404', '422'])) {
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['400', '402', '403', '404', '422'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -685,8 +978,8 @@ class InstanceSettings
     /**
      * Update instance protect settings
      *
-     * @param  ?Operations\UpdateInstanceProtectRequestBody  $request
-     * @return Operations\UpdateInstanceProtectResponse
+     * @param  ?\Clerk\Backend\Models\Operations\UpdateInstanceProtectRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\UpdateInstanceProtectResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function updateInstanceProtect(?Operations\UpdateInstanceProtectRequestBody $request = null, ?Options $options = null): Operations\UpdateInstanceProtectResponse
@@ -738,11 +1031,12 @@ class InstanceSettings
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -785,8 +1079,8 @@ class InstanceSettings
      *
      * Updates the restriction settings of an instance
      *
-     * @param  ?Operations\UpdateInstanceRestrictionsRequestBody  $request
-     * @return Operations\UpdateInstanceRestrictionsResponse
+     * @param  ?\Clerk\Backend\Models\Operations\UpdateInstanceRestrictionsRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\UpdateInstanceRestrictionsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function updateRestrictions(?Operations\UpdateInstanceRestrictionsRequestBody $request = null, ?Options $options = null): Operations\UpdateInstanceRestrictionsResponse
@@ -838,11 +1132,12 @@ class InstanceSettings
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['402', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

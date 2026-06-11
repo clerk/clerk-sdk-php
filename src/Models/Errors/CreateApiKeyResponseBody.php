@@ -15,10 +15,10 @@ class CreateApiKeyResponseBody
     /**
      * $errors
      *
-     * @var array<Errors> $errors
+     * @var array<\Clerk\Backend\Models\Errors\CreateApiKeyErrors> $errors
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('errors')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Errors\Errors>')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Errors\CreateApiKeyErrors>')]
     public array $errors;
 
     /**
@@ -31,7 +31,7 @@ class CreateApiKeyResponseBody
     public ?\Psr\Http\Message\ResponseInterface $rawResponse = null;
 
     /**
-     * @param  array<Errors>  $errors
+     * @param  array<\Clerk\Backend\Models\Errors\CreateApiKeyErrors>  $errors
      * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
      * @phpstan-pure
      */

@@ -15,7 +15,7 @@ class MachineScopeDeleted
     /**
      * String representing the object's type.
      *
-     * @var MachineScopeDeletedObject $object
+     * @var \Clerk\Backend\Models\Components\MachineScopeDeletedObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\MachineScopeDeletedObject')]
@@ -46,13 +46,13 @@ class MachineScopeDeleted
     public bool $deleted;
 
     /**
-     * @param  MachineScopeDeletedObject  $object
+     * @param  \Clerk\Backend\Models\Components\MachineScopeDeletedObject  $object
      * @param  string  $fromMachineId
      * @param  string  $toMachineId
      * @param  bool  $deleted
      * @phpstan-pure
      */
-    public function __construct(MachineScopeDeletedObject $object, string $fromMachineId, string $toMachineId, bool $deleted)
+    public function __construct(MachineScopeDeletedObject $object, string $fromMachineId, string $toMachineId, bool $deleted = true)
     {
         $this->object = $object;
         $this->fromMachineId = $fromMachineId;

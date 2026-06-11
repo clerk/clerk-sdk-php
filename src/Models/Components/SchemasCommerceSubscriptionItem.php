@@ -15,7 +15,7 @@ class SchemasCommerceSubscriptionItem
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var SchemasCommerceSubscriptionItemObject $object
+     * @var \Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemObject')]
@@ -40,7 +40,7 @@ class SchemasCommerceSubscriptionItem
     /**
      * Current status of the subscription item.
      *
-     * @var SchemasCommerceSubscriptionItemStatus $status
+     * @var \Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemStatus')]
@@ -57,7 +57,7 @@ class SchemasCommerceSubscriptionItem
     /**
      * The billing period for this subscription.
      *
-     * @var SchemasCommerceSubscriptionItemPlanPeriod $planPeriod
+     * @var \Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemPlanPeriod $planPeriod
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('plan_period')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemPlanPeriod')]
@@ -123,7 +123,7 @@ class SchemasCommerceSubscriptionItem
     /**
      * The associated commerce plan.
      *
-     * @var ?SchemasCommerceSubscriptionItemPlan $plan
+     * @var ?\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemPlan $plan
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('plan')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemPlan|null')]
@@ -132,7 +132,7 @@ class SchemasCommerceSubscriptionItem
     /**
      * Credit information (only available in PaymentAttempt events).
      *
-     * @var ?Credit $credit
+     * @var ?\Clerk\Backend\Models\Components\Credit $credit
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('credit')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Credit|null')]
@@ -142,7 +142,7 @@ class SchemasCommerceSubscriptionItem
     /**
      * The payment source associated with this subscription.
      *
-     * @var ?PaymentSource $paymentSource
+     * @var ?\Clerk\Backend\Models\Components\PaymentSource $paymentSource
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('payment_source')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\PaymentSource|null')]
@@ -152,7 +152,7 @@ class SchemasCommerceSubscriptionItem
     /**
      * Total amount paid over the lifetime of this subscription.
      *
-     * @var ?LifetimePaid $lifetimePaid
+     * @var ?\Clerk\Backend\Models\Components\LifetimePaid $lifetimePaid
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('lifetime_paid')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\LifetimePaid|null')]
@@ -162,7 +162,7 @@ class SchemasCommerceSubscriptionItem
     /**
      * Current amount for this subscription.
      *
-     * @var ?SchemasCommerceSubscriptionItemAmount $amount
+     * @var ?\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemAmount $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemAmount|null')]
@@ -172,7 +172,7 @@ class SchemasCommerceSubscriptionItem
     /**
      * Information about the next invoice.
      *
-     * @var ?NextInvoice $nextInvoice
+     * @var ?\Clerk\Backend\Models\Components\NextInvoice $nextInvoice
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('next_invoice')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\NextInvoice|null')]
@@ -182,7 +182,7 @@ class SchemasCommerceSubscriptionItem
     /**
      * Information about the next payment.
      *
-     * @var ?SchemasCommerceSubscriptionItemNextPayment $nextPayment
+     * @var ?\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemNextPayment $nextPayment
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('next_payment')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemNextPayment|null')]
@@ -192,7 +192,7 @@ class SchemasCommerceSubscriptionItem
     /**
      * The payer associated with this subscription.
      *
-     * @var ?Payer $payer
+     * @var ?\Clerk\Backend\Models\Components\Payer $payer
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('payer')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Payer|null')]
@@ -245,12 +245,12 @@ class SchemasCommerceSubscriptionItem
     public ?int $endedAt = null;
 
     /**
-     * @param  SchemasCommerceSubscriptionItemObject  $object
+     * @param  \Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemObject  $object
      * @param  string  $id
      * @param  string  $instanceId
-     * @param  SchemasCommerceSubscriptionItemStatus  $status
+     * @param  \Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemStatus  $status
      * @param  string  $planId
-     * @param  SchemasCommerceSubscriptionItemPlanPeriod  $planPeriod
+     * @param  \Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemPlanPeriod  $planPeriod
      * @param  string  $paymentSourceId
      * @param  string  $payerId
      * @param  bool  $isFreeTrial
@@ -258,14 +258,14 @@ class SchemasCommerceSubscriptionItem
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  ?string  $priceId
-     * @param  ?SchemasCommerceSubscriptionItemPlan  $plan
-     * @param  ?Credit  $credit
-     * @param  ?PaymentSource  $paymentSource
-     * @param  ?LifetimePaid  $lifetimePaid
-     * @param  ?SchemasCommerceSubscriptionItemAmount  $amount
-     * @param  ?NextInvoice  $nextInvoice
-     * @param  ?SchemasCommerceSubscriptionItemNextPayment  $nextPayment
-     * @param  ?Payer  $payer
+     * @param  ?\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemPlan  $plan
+     * @param  ?\Clerk\Backend\Models\Components\Credit  $credit
+     * @param  ?\Clerk\Backend\Models\Components\PaymentSource  $paymentSource
+     * @param  ?\Clerk\Backend\Models\Components\LifetimePaid  $lifetimePaid
+     * @param  ?\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemAmount  $amount
+     * @param  ?\Clerk\Backend\Models\Components\NextInvoice  $nextInvoice
+     * @param  ?\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemNextPayment  $nextPayment
+     * @param  ?\Clerk\Backend\Models\Components\Payer  $payer
      * @param  ?int  $periodStart
      * @param  ?int  $periodEnd
      * @param  ?int  $canceledAt

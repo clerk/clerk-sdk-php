@@ -25,7 +25,7 @@ class GetCommercePlanListRequest
     /**
      * Filter plans by payer type
      *
-     * @var ?PayerType $payerType
+     * @var ?\Clerk\Backend\Models\Operations\PayerType $payerType
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=payer_type')]
     public ?PayerType $payerType = null;
@@ -55,7 +55,7 @@ class GetCommercePlanListRequest
      * @param  ?bool  $paginated
      * @param  ?int  $limit
      * @param  ?int  $offset
-     * @param  ?PayerType  $payerType
+     * @param  ?\Clerk\Backend\Models\Operations\PayerType  $payerType
      * @phpstan-pure
      */
     public function __construct(?bool $paginated = null, ?PayerType $payerType = null, ?int $limit = 10, ?int $offset = 0)

@@ -13,7 +13,7 @@ class Data
 {
     /**
      *
-     * @var GetApiKeysObject $object
+     * @var \Clerk\Backend\Models\Operations\GetApiKeysObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\GetApiKeysObject')]
@@ -133,7 +133,7 @@ class Data
     public ?string $description = null;
 
     /**
-     * @param  GetApiKeysObject  $object
+     * @param  \Clerk\Backend\Models\Operations\GetApiKeysObject  $object
      * @param  string  $id
      * @param  string  $type
      * @param  string  $subject

@@ -34,7 +34,7 @@ class ErrorClerkError
 
     /**
      *
-     * @var ?ErrorMeta $meta
+     * @var ?\Clerk\Backend\Models\Components\ErrorMeta $meta
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('meta')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ErrorMeta|null')]
@@ -45,7 +45,7 @@ class ErrorClerkError
      * @param  string  $message
      * @param  string  $longMessage
      * @param  string  $code
-     * @param  ?ErrorMeta  $meta
+     * @param  ?\Clerk\Backend\Models\Components\ErrorMeta  $meta
      * @phpstan-pure
      */
     public function __construct(string $message, string $longMessage, string $code, ?ErrorMeta $meta = null)

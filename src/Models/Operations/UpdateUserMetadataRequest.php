@@ -21,14 +21,14 @@ class UpdateUserMetadataRequest
 
     /**
      *
-     * @var ?UpdateUserMetadataRequestBody $requestBody
+     * @var ?\Clerk\Backend\Models\Operations\UpdateUserMetadataRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?UpdateUserMetadataRequestBody $requestBody = null;
 
     /**
      * @param  string  $userId
-     * @param  ?UpdateUserMetadataRequestBody  $requestBody
+     * @param  ?\Clerk\Backend\Models\Operations\UpdateUserMetadataRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $userId, ?UpdateUserMetadataRequestBody $requestBody = null)

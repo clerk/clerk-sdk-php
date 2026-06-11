@@ -51,8 +51,8 @@ class AllowlistIdentifiers
      *
      * Create an identifier allowed to sign up to an instance
      *
-     * @param  ?Operations\CreateAllowlistIdentifierRequestBody  $request
-     * @return Operations\CreateAllowlistIdentifierResponse
+     * @param  ?\Clerk\Backend\Models\Operations\CreateAllowlistIdentifierRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\CreateAllowlistIdentifierResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function create(?Operations\CreateAllowlistIdentifierRequestBody $request = null, ?Options $options = null): Operations\CreateAllowlistIdentifierResponse
@@ -104,11 +104,12 @@ class AllowlistIdentifiers
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '402', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -152,7 +153,7 @@ class AllowlistIdentifiers
      * Delete an identifier from the instance allow-list
      *
      * @param  string  $identifierId
-     * @return Operations\DeleteAllowlistIdentifierResponse
+     * @return \Clerk\Backend\Models\Operations\DeleteAllowlistIdentifierResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function delete(string $identifierId, ?Options $options = null): Operations\DeleteAllowlistIdentifierResponse
@@ -203,11 +204,12 @@ class AllowlistIdentifiers
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['402', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -253,7 +255,7 @@ class AllowlistIdentifiers
      * @param  ?bool  $paginated
      * @param  ?int  $limit
      * @param  ?int  $offset
-     * @return Operations\ListAllowlistIdentifiersResponse
+     * @return \Clerk\Backend\Models\Operations\ListAllowlistIdentifiersResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function list(?bool $paginated = null, ?int $limit = null, ?int $offset = null, ?Options $options = null): Operations\ListAllowlistIdentifiersResponse
@@ -309,11 +311,12 @@ class AllowlistIdentifiers
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '402', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

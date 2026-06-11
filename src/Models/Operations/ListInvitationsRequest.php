@@ -14,7 +14,7 @@ class ListInvitationsRequest
     /**
      * Filter invitations based on their status
      *
-     * @var ?ListInvitationsQueryParamStatus $status
+     * @var ?\Clerk\Backend\Models\Operations\ListInvitationsQueryParamStatus $status
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status')]
     public ?ListInvitationsQueryParamStatus $status = null;
@@ -74,7 +74,7 @@ class ListInvitationsRequest
     public ?int $offset = null;
 
     /**
-     * @param  ?ListInvitationsQueryParamStatus  $status
+     * @param  ?\Clerk\Backend\Models\Operations\ListInvitationsQueryParamStatus  $status
      * @param  ?string  $query
      * @param  ?string  $orderBy
      * @param  ?bool  $paginated

@@ -35,7 +35,7 @@ class UpdateJWTTemplateResponse
     /**
      * Success
      *
-     * @var ?Components\JWTTemplate $jwtTemplate
+     * @var ?\Clerk\Backend\Models\Components\JWTTemplate $jwtTemplate
      */
     public ?Components\JWTTemplate $jwtTemplate = null;
 
@@ -43,7 +43,7 @@ class UpdateJWTTemplateResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\JWTTemplate  $jwtTemplate
+     * @param  ?\Clerk\Backend\Models\Components\JWTTemplate  $jwtTemplate
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\JWTTemplate $jwtTemplate = null)

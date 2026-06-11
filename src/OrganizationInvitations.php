@@ -67,8 +67,8 @@ class OrganizationInvitations
      * When the organization invitation is accepted, the metadata will be transferred to the newly created organization membership.
      *
      * @param  string  $organizationId
-     * @param  ?Operations\CreateOrganizationInvitationRequestBody  $requestBody
-     * @return Operations\CreateOrganizationInvitationResponse
+     * @param  ?\Clerk\Backend\Models\Operations\CreateOrganizationInvitationRequestBody  $requestBody
+     * @return \Clerk\Backend\Models\Operations\CreateOrganizationInvitationResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function create(string $organizationId, ?Operations\CreateOrganizationInvitationRequestBody $requestBody = null, ?Options $options = null): Operations\CreateOrganizationInvitationResponse
@@ -124,11 +124,12 @@ class OrganizationInvitations
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '402', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -186,9 +187,9 @@ class OrganizationInvitations
      * by both the Frontend and the Backend, whereas the private metadata are only visible by the Backend.
      * When the organization invitation is accepted, the metadata will be transferred to the newly created organization membership.
      *
-     * @param  array<Operations\CreateOrganizationInvitationBulkRequestBody>  $requestBody
+     * @param  array<\Clerk\Backend\Models\Operations\CreateOrganizationInvitationBulkRequestBody>  $requestBody
      * @param  string  $organizationId
-     * @return Operations\CreateOrganizationInvitationBulkResponse
+     * @return \Clerk\Backend\Models\Operations\CreateOrganizationInvitationBulkResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function bulkCreate(array $requestBody, string $organizationId, ?Options $options = null): Operations\CreateOrganizationInvitationBulkResponse
@@ -245,11 +246,12 @@ class OrganizationInvitations
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -294,7 +296,7 @@ class OrganizationInvitations
      *
      * @param  string  $organizationId
      * @param  string  $invitationId
-     * @return Operations\GetOrganizationInvitationResponse
+     * @return \Clerk\Backend\Models\Operations\GetOrganizationInvitationResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function get(string $organizationId, string $invitationId, ?Options $options = null): Operations\GetOrganizationInvitationResponse
@@ -346,11 +348,12 @@ class OrganizationInvitations
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '403', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -398,8 +401,8 @@ class OrganizationInvitations
      * You can filter by the invited user email address providing the `query` query parameter.
      * The organization invitations are ordered by descending creation date by default.
      *
-     * @param  ?Operations\ListInstanceOrganizationInvitationsRequest  $request
-     * @return Operations\ListInstanceOrganizationInvitationsResponse
+     * @param  ?\Clerk\Backend\Models\Operations\ListInstanceOrganizationInvitationsRequest  $request
+     * @return \Clerk\Backend\Models\Operations\ListInstanceOrganizationInvitationsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function getAll(?Operations\ListInstanceOrganizationInvitationsRequest $request = null, ?Options $options = null): Operations\ListInstanceOrganizationInvitationsResponse
@@ -450,11 +453,12 @@ class OrganizationInvitations
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -513,8 +517,8 @@ class OrganizationInvitations
      * Most recent invitations will be returned first.
      * Any invitations created as a result of an Organization Domain are not included in the results.
      *
-     * @param  Operations\ListOrganizationInvitationsRequest  $request
-     * @return Operations\ListOrganizationInvitationsResponse
+     * @param  \Clerk\Backend\Models\Operations\ListOrganizationInvitationsRequest  $request
+     * @return \Clerk\Backend\Models\Operations\ListOrganizationInvitationsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function list(Operations\ListOrganizationInvitationsRequest $request, ?Options $options = null): Operations\ListOrganizationInvitationsResponse
@@ -565,11 +569,12 @@ class OrganizationInvitations
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -620,7 +625,7 @@ class OrganizationInvitations
      * @param  string  $organizationId
      * @param  ?int  $limit
      * @param  ?int  $offset
-     * @return Operations\ListPendingOrganizationInvitationsResponse
+     * @return \Clerk\Backend\Models\Operations\ListPendingOrganizationInvitationsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -678,11 +683,12 @@ class OrganizationInvitations
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -731,8 +737,8 @@ class OrganizationInvitations
      *
      * @param  string  $organizationId
      * @param  string  $invitationId
-     * @param  ?Operations\RevokeOrganizationInvitationRequestBody  $requestBody
-     * @return Operations\RevokeOrganizationInvitationResponse
+     * @param  ?\Clerk\Backend\Models\Operations\RevokeOrganizationInvitationRequestBody  $requestBody
+     * @return \Clerk\Backend\Models\Operations\RevokeOrganizationInvitationResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function revoke(string $organizationId, string $invitationId, ?Operations\RevokeOrganizationInvitationRequestBody $requestBody = null, ?Options $options = null): Operations\RevokeOrganizationInvitationResponse
@@ -789,11 +795,12 @@ class OrganizationInvitations
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '403', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

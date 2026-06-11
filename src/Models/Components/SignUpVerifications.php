@@ -13,7 +13,7 @@ class SignUpVerifications
 {
     /**
      *
-     * @var ?SignUpVerification $emailAddress
+     * @var ?\Clerk\Backend\Models\Components\SignUpVerification $emailAddress
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('email_address')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SignUpVerification|null')]
@@ -21,7 +21,7 @@ class SignUpVerifications
 
     /**
      *
-     * @var ?SignUpVerification $phoneNumber
+     * @var ?\Clerk\Backend\Models\Components\SignUpVerification $phoneNumber
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('phone_number')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SignUpVerification|null')]
@@ -29,7 +29,7 @@ class SignUpVerifications
 
     /**
      *
-     * @var ?SignUpVerification $web3Wallet
+     * @var ?\Clerk\Backend\Models\Components\SignUpVerification $web3Wallet
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('web3_wallet')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SignUpVerification|null')]
@@ -37,17 +37,17 @@ class SignUpVerifications
 
     /**
      *
-     * @var ?ExternalAccount $externalAccount
+     * @var ?\Clerk\Backend\Models\Components\ExternalAccount $externalAccount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('external_account')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ExternalAccount|null')]
     public ?ExternalAccount $externalAccount;
 
     /**
-     * @param  ?SignUpVerification  $emailAddress
-     * @param  ?SignUpVerification  $phoneNumber
-     * @param  ?SignUpVerification  $web3Wallet
-     * @param  ?ExternalAccount  $externalAccount
+     * @param  ?\Clerk\Backend\Models\Components\SignUpVerification  $emailAddress
+     * @param  ?\Clerk\Backend\Models\Components\SignUpVerification  $phoneNumber
+     * @param  ?\Clerk\Backend\Models\Components\SignUpVerification  $web3Wallet
+     * @param  ?\Clerk\Backend\Models\Components\ExternalAccount  $externalAccount
      * @phpstan-pure
      */
     public function __construct(?SignUpVerification $emailAddress = null, ?SignUpVerification $phoneNumber = null, ?SignUpVerification $web3Wallet = null, ?ExternalAccount $externalAccount = null)

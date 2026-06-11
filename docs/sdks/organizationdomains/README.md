@@ -8,6 +8,7 @@
 * [list](#list) - Get a list of all domains of an organization.
 * [update](#update) - Update an organization domain.
 * [delete](#delete) - Remove a domain from an organization.
+* [verifyOwnership](#verifyownership) - Mark an organization domain's ownership as verified
 * [listAll](#listall) - List all organization domains
 
 ## create
@@ -216,6 +217,64 @@ if ($response->deletedObject !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 400, 401, 404       | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## verifyOwnership
+
+Flips the organization domain's ownership state to verified via the
+manual override path, bypassing the self-serve TXT DNS challenge. The
+domain row records strategy=`manual_override` and an
+`organization_domain.ownership_verified` audit event is emitted with the
+same strategy.
+
+Idempotent: re-calling on an already-verified domain returns the current
+ownership state without re-emitting the audit event.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="VerifyOrganizationDomainOwnership" method="post" path="/organizations/{organization_id}/domains/{domain_id}/verify_ownership" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->organizationDomains->verifyOwnership(
+    organizationId: '<id>',
+    domainId: '<id>'
+
+);
+
+if ($response->organizationDomain !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                              | Type                                                   | Required                                               | Description                                            |
+| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
+| `organizationId`                                       | *string*                                               | :heavy_check_mark:                                     | The ID of the organization to which the domain belongs |
+| `domainId`                                             | *string*                                               | :heavy_check_mark:                                     | The ID of the domain                                   |
+
+### Response
+
+**[?Operations\VerifyOrganizationDomainOwnershipResponse](../../Models/Operations/VerifyOrganizationDomainOwnershipResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 401, 403, 404       | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## listAll

@@ -34,7 +34,7 @@ class VerificationSAMLErrorSAMLAccountClerkError
 
     /**
      *
-     * @var ?ClerkErrorErrorSAMLAccountMeta $meta
+     * @var ?\Clerk\Backend\Models\Components\ClerkErrorErrorSAMLAccountMeta $meta
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('meta')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ClerkErrorErrorSAMLAccountMeta|null')]
@@ -45,7 +45,7 @@ class VerificationSAMLErrorSAMLAccountClerkError
      * @param  string  $message
      * @param  string  $longMessage
      * @param  string  $code
-     * @param  ?ClerkErrorErrorSAMLAccountMeta  $meta
+     * @param  ?\Clerk\Backend\Models\Components\ClerkErrorErrorSAMLAccountMeta  $meta
      * @phpstan-pure
      */
     public function __construct(string $message, string $longMessage, string $code, ?ClerkErrorErrorSAMLAccountMeta $meta = null)

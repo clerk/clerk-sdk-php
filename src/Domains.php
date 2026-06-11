@@ -55,8 +55,8 @@ class Domains
      * At the moment, instances can have only one primary domain, so the `is_satellite` parameter must be set to `true`.
      * If you're planning to configure the new satellite domain to run behind a proxy, pass the `proxy_url` parameter accordingly.
      *
-     * @param  ?Operations\AddDomainRequestBody  $request
-     * @return Operations\AddDomainResponse
+     * @param  ?\Clerk\Backend\Models\Operations\AddDomainRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\AddDomainResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function add(?Operations\AddDomainRequestBody $request = null, ?Options $options = null): Operations\AddDomainResponse
@@ -108,11 +108,12 @@ class Domains
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '402', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -157,7 +158,7 @@ class Domains
      * It is currently not possible to delete the instance's primary domain.
      *
      * @param  string  $domainId
-     * @return Operations\DeleteDomainResponse
+     * @return \Clerk\Backend\Models\Operations\DeleteDomainResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function delete(string $domainId, ?Options $options = null): Operations\DeleteDomainResponse
@@ -208,11 +209,12 @@ class Domains
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['403', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -256,7 +258,7 @@ class Domains
      * Use this endpoint to get a list of all domains for an instance.
      * The response will contain the primary domain for the instance and any satellite domains. Each domain in the response contains information about the URLs where Clerk operates and the required CNAME targets.
      *
-     * @return Operations\ListDomainsResponse
+     * @return \Clerk\Backend\Models\Operations\ListDomainsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function list(?Options $options = null): Operations\ListDomainsResponse
@@ -304,11 +306,12 @@ class Domains
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -347,9 +350,9 @@ class Domains
      * emails to work. Expect downtime otherwise. Updating a primary domain's name will also
      * update the instance's home origin, affecting the default application paths.
      *
-     * @param  Operations\UpdateDomainRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\UpdateDomainRequestBody  $requestBody
      * @param  string  $domainId
-     * @return Operations\UpdateDomainResponse
+     * @return \Clerk\Backend\Models\Operations\UpdateDomainResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function update(Operations\UpdateDomainRequestBody $requestBody, string $domainId, ?Options $options = null): Operations\UpdateDomainResponse
@@ -406,11 +409,12 @@ class Domains
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

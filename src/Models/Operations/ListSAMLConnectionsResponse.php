@@ -35,7 +35,7 @@ class ListSAMLConnectionsResponse
     /**
      * A list of SAML Connections
      *
-     * @var ?Components\SAMLConnections $samlConnections
+     * @var ?\Clerk\Backend\Models\Components\SAMLConnections $samlConnections
      */
     public ?Components\SAMLConnections $samlConnections = null;
 
@@ -43,7 +43,7 @@ class ListSAMLConnectionsResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\SAMLConnections  $samlConnections
+     * @param  ?\Clerk\Backend\Models\Components\SAMLConnections  $samlConnections
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\SAMLConnections $samlConnections = null)

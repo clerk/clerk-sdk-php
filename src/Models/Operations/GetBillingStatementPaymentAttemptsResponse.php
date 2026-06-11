@@ -35,7 +35,7 @@ class GetBillingStatementPaymentAttemptsResponse
     /**
      * A list of billing payment attempts.
      *
-     * @var ?Components\PaginatedBillingPaymentAttemptResponse $paginatedBillingPaymentAttemptResponse
+     * @var ?\Clerk\Backend\Models\Components\PaginatedBillingPaymentAttemptResponse $paginatedBillingPaymentAttemptResponse
      */
     public ?Components\PaginatedBillingPaymentAttemptResponse $paginatedBillingPaymentAttemptResponse = null;
 
@@ -43,7 +43,7 @@ class GetBillingStatementPaymentAttemptsResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\PaginatedBillingPaymentAttemptResponse  $paginatedBillingPaymentAttemptResponse
+     * @param  ?\Clerk\Backend\Models\Components\PaginatedBillingPaymentAttemptResponse  $paginatedBillingPaymentAttemptResponse
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\PaginatedBillingPaymentAttemptResponse $paginatedBillingPaymentAttemptResponse = null)

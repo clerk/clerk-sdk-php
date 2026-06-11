@@ -15,7 +15,7 @@ class CommercePriceTransitionResponse
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var CommercePriceTransitionResponseObject $object
+     * @var \Clerk\Backend\Models\Components\CommercePriceTransitionResponseObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommercePriceTransitionResponseObject')]
@@ -23,7 +23,7 @@ class CommercePriceTransitionResponse
 
     /**
      *
-     * @var SchemasCommerceSubscriptionItem $subscriptionItem
+     * @var \Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItem $subscriptionItem
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('subscription_item')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItem')]
@@ -31,16 +31,16 @@ class CommercePriceTransitionResponse
 
     /**
      *
-     * @var CommercePriceTransitionDetails $transition
+     * @var \Clerk\Backend\Models\Components\CommercePriceTransitionDetails $transition
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('transition')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommercePriceTransitionDetails')]
     public CommercePriceTransitionDetails $transition;
 
     /**
-     * @param  CommercePriceTransitionResponseObject  $object
-     * @param  SchemasCommerceSubscriptionItem  $subscriptionItem
-     * @param  CommercePriceTransitionDetails  $transition
+     * @param  \Clerk\Backend\Models\Components\CommercePriceTransitionResponseObject  $object
+     * @param  \Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItem  $subscriptionItem
+     * @param  \Clerk\Backend\Models\Components\CommercePriceTransitionDetails  $transition
      * @phpstan-pure
      */
     public function __construct(CommercePriceTransitionResponseObject $object, SchemasCommerceSubscriptionItem $subscriptionItem, CommercePriceTransitionDetails $transition)

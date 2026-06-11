@@ -51,8 +51,8 @@ class RedirectUrls
      *
      * Create a redirect URL
      *
-     * @param  ?Operations\CreateRedirectURLRequestBody  $request
-     * @return Operations\CreateRedirectURLResponse
+     * @param  ?\Clerk\Backend\Models\Operations\CreateRedirectURLRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\CreateRedirectURLResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function create(?Operations\CreateRedirectURLRequestBody $request = null, ?Options $options = null): Operations\CreateRedirectURLResponse
@@ -104,11 +104,12 @@ class RedirectUrls
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -152,7 +153,7 @@ class RedirectUrls
      * Remove the selected redirect URL from the whitelist of the instance
      *
      * @param  string  $id
-     * @return Operations\DeleteRedirectURLResponse
+     * @return \Clerk\Backend\Models\Operations\DeleteRedirectURLResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function delete(string $id, ?Options $options = null): Operations\DeleteRedirectURLResponse
@@ -203,11 +204,12 @@ class RedirectUrls
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -251,7 +253,7 @@ class RedirectUrls
      * Retrieve the details of the redirect URL with the given ID
      *
      * @param  string  $id
-     * @return Operations\GetRedirectURLResponse
+     * @return \Clerk\Backend\Models\Operations\GetRedirectURLResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function get(string $id, ?Options $options = null): Operations\GetRedirectURLResponse
@@ -302,11 +304,12 @@ class RedirectUrls
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -352,7 +355,7 @@ class RedirectUrls
      * @param  ?bool  $paginated
      * @param  ?int  $limit
      * @param  ?int  $offset
-     * @return Operations\ListRedirectURLsResponse
+     * @return \Clerk\Backend\Models\Operations\ListRedirectURLsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function list(?bool $paginated = null, ?int $limit = null, ?int $offset = null, ?Options $options = null): Operations\ListRedirectURLsResponse
@@ -408,11 +411,12 @@ class RedirectUrls
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

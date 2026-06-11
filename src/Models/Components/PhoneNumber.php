@@ -17,7 +17,7 @@ class PhoneNumber
      *
      *
      *
-     * @var PhoneNumberObject $object
+     * @var \Clerk\Backend\Models\Components\PhoneNumberObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\PhoneNumberObject')]
@@ -40,7 +40,7 @@ class PhoneNumber
     /**
      * $linkedTo
      *
-     * @var array<IdentificationLink> $linkedTo
+     * @var array<\Clerk\Backend\Models\Components\IdentificationLink> $linkedTo
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('linked_to')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\IdentificationLink>')]
@@ -92,7 +92,7 @@ class PhoneNumber
 
     /**
      *
-     * @var VerificationOTP|VerificationAdmin|null $verification
+     * @var \Clerk\Backend\Models\Components\VerificationOTP|\Clerk\Backend\Models\Components\VerificationAdmin|null $verification
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verification')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationOTP|\Clerk\Backend\Models\Components\VerificationAdmin|null')]
@@ -110,16 +110,16 @@ class PhoneNumber
     public ?array $backupCodes = null;
 
     /**
-     * @param  PhoneNumberObject  $object
+     * @param  \Clerk\Backend\Models\Components\PhoneNumberObject  $object
      * @param  string  $phoneNumber
      * @param  bool  $reserved
-     * @param  array<IdentificationLink>  $linkedTo
+     * @param  array<\Clerk\Backend\Models\Components\IdentificationLink>  $linkedTo
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  ?string  $id
      * @param  ?bool  $reservedForSecondFactor
      * @param  ?bool  $defaultSecondFactor
-     * @param  VerificationOTP|VerificationAdmin|null  $verification
+     * @param  \Clerk\Backend\Models\Components\VerificationOTP|\Clerk\Backend\Models\Components\VerificationAdmin|null  $verification
      * @param  ?array<string>  $backupCodes
      * @phpstan-pure
      */

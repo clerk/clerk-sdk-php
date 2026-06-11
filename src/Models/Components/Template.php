@@ -25,7 +25,7 @@ class Template
      *
      *
      *
-     * @var ?TemplateObject $object
+     * @var ?\Clerk\Backend\Models\Components\TemplateObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\TemplateObject|null')]
@@ -233,7 +233,7 @@ class Template
 
     /**
      * @param  ?string  $id
-     * @param  ?TemplateObject  $object
+     * @param  ?\Clerk\Backend\Models\Components\TemplateObject  $object
      * @param  ?string  $resourceType
      * @param  ?string  $templateType
      * @param  ?string  $name

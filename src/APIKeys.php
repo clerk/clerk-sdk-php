@@ -49,8 +49,8 @@ class APIKeys
     /**
      * Create an API Key
      *
-     * @param  Operations\CreateApiKeyRequestBody  $request
-     * @return Operations\CreateApiKeyResponse
+     * @param  \Clerk\Backend\Models\Operations\CreateApiKeyRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\CreateApiKeyResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function createApiKey(Operations\CreateApiKeyRequestBody $request, ?Options $options = null): Operations\CreateApiKeyResponse
@@ -103,11 +103,12 @@ class APIKeys
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '409', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -162,7 +163,7 @@ class APIKeys
      * Delete an API Key
      *
      * @param  string  $apiKeyID
-     * @return Operations\DeleteApiKeyResponse
+     * @return \Clerk\Backend\Models\Operations\DeleteApiKeyResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function deleteApiKey(string $apiKeyID, ?Options $options = null): Operations\DeleteApiKeyResponse
@@ -213,11 +214,12 @@ class APIKeys
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -272,7 +274,7 @@ class APIKeys
      * Get an API Key by ID
      *
      * @param  string  $apiKeyID
-     * @return Operations\GetApiKeyResponse
+     * @return \Clerk\Backend\Models\Operations\GetApiKeyResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function getApiKey(string $apiKeyID, ?Options $options = null): Operations\GetApiKeyResponse
@@ -323,11 +325,12 @@ class APIKeys
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -382,7 +385,7 @@ class APIKeys
      * Get an API Key Secret
      *
      * @param  string  $apiKeyID
-     * @return Operations\GetApiKeySecretResponse
+     * @return \Clerk\Backend\Models\Operations\GetApiKeySecretResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function getApiKeySecret(string $apiKeyID, ?Options $options = null): Operations\GetApiKeySecretResponse
@@ -433,11 +436,12 @@ class APIKeys
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -491,8 +495,8 @@ class APIKeys
     /**
      * Get API Keys
      *
-     * @param  Operations\GetApiKeysRequest  $request
-     * @return Operations\GetApiKeysResponse
+     * @param  \Clerk\Backend\Models\Operations\GetApiKeysRequest  $request
+     * @return \Clerk\Backend\Models\Operations\GetApiKeysResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function getApiKeys(Operations\GetApiKeysRequest $request, ?Options $options = null): Operations\GetApiKeysResponse
@@ -543,11 +547,12 @@ class APIKeys
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -601,9 +606,9 @@ class APIKeys
     /**
      * Revoke an API Key
      *
-     * @param  Operations\RevokeApiKeyRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\RevokeApiKeyRequestBody  $requestBody
      * @param  string  $apiKeyID
-     * @return Operations\RevokeApiKeyResponse
+     * @return \Clerk\Backend\Models\Operations\RevokeApiKeyResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function revokeApiKey(Operations\RevokeApiKeyRequestBody $requestBody, string $apiKeyID, ?Options $options = null): Operations\RevokeApiKeyResponse
@@ -660,11 +665,12 @@ class APIKeys
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -718,9 +724,9 @@ class APIKeys
     /**
      * Update an API Key
      *
-     * @param  Operations\UpdateApiKeyRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\UpdateApiKeyRequestBody  $requestBody
      * @param  string  $apiKeyID
-     * @return Operations\UpdateApiKeyResponse
+     * @return \Clerk\Backend\Models\Operations\UpdateApiKeyResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function updateApiKey(Operations\UpdateApiKeyRequestBody $requestBody, string $apiKeyID, ?Options $options = null): Operations\UpdateApiKeyResponse
@@ -777,11 +783,12 @@ class APIKeys
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -835,8 +842,8 @@ class APIKeys
     /**
      * Verify an API Key
      *
-     * @param  Operations\VerifyApiKeyRequestBody  $request
-     * @return Operations\VerifyApiKeyResponse
+     * @param  \Clerk\Backend\Models\Operations\VerifyApiKeyRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\VerifyApiKeyResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function verifyApiKey(Operations\VerifyApiKeyRequestBody $request, ?Options $options = null): Operations\VerifyApiKeyResponse
@@ -889,11 +896,12 @@ class APIKeys
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

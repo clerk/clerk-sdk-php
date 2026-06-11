@@ -35,7 +35,7 @@ class RevokeInvitationResponse
     /**
      * Success
      *
-     * @var ?Components\InvitationRevoked $invitationRevoked
+     * @var ?\Clerk\Backend\Models\Components\InvitationRevoked $invitationRevoked
      */
     public ?Components\InvitationRevoked $invitationRevoked = null;
 
@@ -43,7 +43,7 @@ class RevokeInvitationResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\InvitationRevoked  $invitationRevoked
+     * @param  ?\Clerk\Backend\Models\Components\InvitationRevoked  $invitationRevoked
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\InvitationRevoked $invitationRevoked = null)

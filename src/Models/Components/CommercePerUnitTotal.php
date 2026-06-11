@@ -12,7 +12,7 @@ namespace Clerk\Backend\Models\Components;
 class CommercePerUnitTotal
 {
     /**
-     * Name of the billable unit (for example, seats)
+     * Name of the billable unit (for example, `seats`).
      *
      * @var string $name
      */
@@ -20,7 +20,7 @@ class CommercePerUnitTotal
     public string $name;
 
     /**
-     * Number of units included in each pricing block
+     * Number of units included in each pricing block.
      *
      * @var int $blockSize
      */
@@ -28,9 +28,9 @@ class CommercePerUnitTotal
     public int $blockSize;
 
     /**
-     * Computed totals for each pricing tier
+     * Computed totals for each pricing tier.
      *
-     * @var array<CommercePerUnitTotalTier> $tiers
+     * @var array<\Clerk\Backend\Models\Components\CommercePerUnitTotalTier> $tiers
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tiers')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\CommercePerUnitTotalTier>')]
@@ -39,7 +39,7 @@ class CommercePerUnitTotal
     /**
      * @param  string  $name
      * @param  int  $blockSize
-     * @param  array<CommercePerUnitTotalTier>  $tiers
+     * @param  array<\Clerk\Backend\Models\Components\CommercePerUnitTotalTier>  $tiers
      * @phpstan-pure
      */
     public function __construct(string $name, int $blockSize, array $tiers)

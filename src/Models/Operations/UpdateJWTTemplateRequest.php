@@ -21,14 +21,14 @@ class UpdateJWTTemplateRequest
 
     /**
      *
-     * @var ?UpdateJWTTemplateRequestBody $requestBody
+     * @var ?\Clerk\Backend\Models\Operations\UpdateJWTTemplateRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?UpdateJWTTemplateRequestBody $requestBody = null;
 
     /**
      * @param  string  $templateId
-     * @param  ?UpdateJWTTemplateRequestBody  $requestBody
+     * @param  ?\Clerk\Backend\Models\Operations\UpdateJWTTemplateRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $templateId, ?UpdateJWTTemplateRequestBody $requestBody = null)

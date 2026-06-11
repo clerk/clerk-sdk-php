@@ -35,7 +35,7 @@ class DeleteTOTPResponse
     /**
      * Successful operation.
      *
-     * @var ?DeleteTOTPResponseBody $object
+     * @var ?\Clerk\Backend\Models\Operations\DeleteTOTPResponseBody $object
      */
     public ?DeleteTOTPResponseBody $object = null;
 
@@ -43,7 +43,7 @@ class DeleteTOTPResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?DeleteTOTPResponseBody  $object
+     * @param  ?\Clerk\Backend\Models\Operations\DeleteTOTPResponseBody  $object
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?DeleteTOTPResponseBody $object = null)

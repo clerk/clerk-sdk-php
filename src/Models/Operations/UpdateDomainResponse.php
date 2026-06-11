@@ -35,7 +35,7 @@ class UpdateDomainResponse
     /**
      * A domain
      *
-     * @var ?Components\Domain $domain
+     * @var ?\Clerk\Backend\Models\Components\Domain $domain
      */
     public ?Components\Domain $domain = null;
 
@@ -43,7 +43,7 @@ class UpdateDomainResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\Domain  $domain
+     * @param  ?\Clerk\Backend\Models\Components\Domain  $domain
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\Domain $domain = null)

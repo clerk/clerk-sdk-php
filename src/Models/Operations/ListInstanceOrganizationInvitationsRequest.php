@@ -14,7 +14,7 @@ class ListInstanceOrganizationInvitationsRequest
     /**
      * Filter organization invitations based on their status
      *
-     * @var ?ListInstanceOrganizationInvitationsQueryParamStatus $status
+     * @var ?\Clerk\Backend\Models\Operations\ListInstanceOrganizationInvitationsQueryParamStatus $status
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status')]
     public ?ListInstanceOrganizationInvitationsQueryParamStatus $status = null;
@@ -64,7 +64,7 @@ class ListInstanceOrganizationInvitationsRequest
 
     /**
      * @param  ?string  $orderBy
-     * @param  ?ListInstanceOrganizationInvitationsQueryParamStatus  $status
+     * @param  ?\Clerk\Backend\Models\Operations\ListInstanceOrganizationInvitationsQueryParamStatus  $status
      * @param  ?string  $query
      * @param  ?int  $limit
      * @param  ?int  $offset

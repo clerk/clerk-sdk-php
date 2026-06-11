@@ -14,7 +14,7 @@ class CreatorRole
 {
     /**
      *
-     * @var RoleSetCreatorRoleObject $object
+     * @var \Clerk\Backend\Models\Components\RoleSetCreatorRoleObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\RoleSetCreatorRoleObject')]
@@ -87,7 +87,7 @@ class CreatorRole
     public ?bool $hasMembers = null;
 
     /**
-     * @param  RoleSetCreatorRoleObject  $object
+     * @param  \Clerk\Backend\Models\Components\RoleSetCreatorRoleObject  $object
      * @param  string  $id
      * @param  string  $name
      * @param  string  $key

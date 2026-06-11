@@ -14,7 +14,7 @@ class ActorToken
 {
     /**
      *
-     * @var ActorTokenObject $object
+     * @var \Clerk\Backend\Models\Components\ActorTokenObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ActorTokenObject')]
@@ -29,7 +29,7 @@ class ActorToken
 
     /**
      *
-     * @var ActorTokenStatus $status
+     * @var \Clerk\Backend\Models\Components\ActorTokenStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ActorTokenStatus')]
@@ -44,7 +44,7 @@ class ActorToken
 
     /**
      *
-     * @var ActorTokenActor $actor
+     * @var \Clerk\Backend\Models\Components\ActorTokenActor $actor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('actor')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ActorTokenActor')]
@@ -87,11 +87,11 @@ class ActorToken
     public ?string $url = null;
 
     /**
-     * @param  ActorTokenObject  $object
+     * @param  \Clerk\Backend\Models\Components\ActorTokenObject  $object
      * @param  string  $id
-     * @param  ActorTokenStatus  $status
+     * @param  \Clerk\Backend\Models\Components\ActorTokenStatus  $status
      * @param  string  $userId
-     * @param  ActorTokenActor  $actor
+     * @param  \Clerk\Backend\Models\Components\ActorTokenActor  $actor
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  ?string  $token

@@ -14,7 +14,7 @@ class GetTemplateListRequest
     /**
      * The type of templates to list (email or SMS)
      *
-     * @var TemplateType $templateType
+     * @var \Clerk\Backend\Models\Operations\TemplateType $templateType
      */
     #[SpeakeasyMetadata('pathParam:style=simple,explode=false,name=template_type')]
     public TemplateType $templateType;
@@ -52,7 +52,7 @@ class GetTemplateListRequest
     public ?int $offset = null;
 
     /**
-     * @param  TemplateType  $templateType
+     * @param  \Clerk\Backend\Models\Operations\TemplateType  $templateType
      * @param  ?bool  $paginated
      * @param  ?int  $limit
      * @param  ?int  $offset

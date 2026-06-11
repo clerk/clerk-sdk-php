@@ -66,7 +66,7 @@ class CreateRoleSetRequestBody
      *
      * Only one role set can be "initial" per instance.
      *
-     * @var ?Type $type
+     * @var ?\Clerk\Backend\Models\Operations\Type $type
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\Type|null')]
@@ -88,7 +88,7 @@ class CreateRoleSetRequestBody
      * @param  string  $creatorRoleKey
      * @param  array<string>  $roles
      * @param  ?string  $key
-     * @param  ?Type  $type
+     * @param  ?\Clerk\Backend\Models\Operations\Type  $type
      * @param  ?string  $description
      * @phpstan-pure
      */

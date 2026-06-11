@@ -54,9 +54,9 @@ class Organizations
      * Each adjustment is recorded as a ledger entry. The idempotency_key parameter
      * ensures that duplicate requests are safely handled.
      *
-     * @param  Components\AdjustCreditBalanceRequest  $adjustCreditBalanceRequest
+     * @param  \Clerk\Backend\Models\Components\AdjustCreditBalanceRequest  $adjustCreditBalanceRequest
      * @param  string  $organizationId
-     * @return Operations\AdjustOrganizationBillingCreditBalanceResponse
+     * @return \Clerk\Backend\Models\Operations\AdjustOrganizationBillingCreditBalanceResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function adjustBillingCreditBalance(Components\AdjustCreditBalanceRequest $adjustCreditBalanceRequest, string $organizationId, ?Options $options = null): Operations\AdjustOrganizationBillingCreditBalanceResponse
@@ -113,11 +113,12 @@ class Organizations
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '404', '409', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -180,8 +181,8 @@ class Organizations
      * The `created_by` user will see this as their [active organization](https://clerk.com/docs/organizations/overview#active-organization)
      * the next time they create a session, presuming they don't explicitly set a different organization as active before then.
      *
-     * @param  ?Operations\CreateOrganizationRequestBody  $request
-     * @return Operations\CreateOrganizationResponse
+     * @param  ?\Clerk\Backend\Models\Operations\CreateOrganizationRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\CreateOrganizationResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function create(?Operations\CreateOrganizationRequestBody $request = null, ?Options $options = null): Operations\CreateOrganizationResponse
@@ -233,11 +234,12 @@ class Organizations
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '402', '403', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -286,7 +288,7 @@ class Organizations
      * organization will be cleared.
      *
      * @param  string  $organizationId
-     * @return Operations\DeleteOrganizationResponse
+     * @return \Clerk\Backend\Models\Operations\DeleteOrganizationResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function delete(string $organizationId, ?Options $options = null): Operations\DeleteOrganizationResponse
@@ -337,11 +339,12 @@ class Organizations
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -385,7 +388,7 @@ class Organizations
      * Delete the organization's logo.
      *
      * @param  string  $organizationId
-     * @return Operations\DeleteOrganizationLogoResponse
+     * @return \Clerk\Backend\Models\Operations\DeleteOrganizationLogoResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function deleteLogo(string $organizationId, ?Options $options = null): Operations\DeleteOrganizationLogoResponse
@@ -436,11 +439,12 @@ class Organizations
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -486,7 +490,7 @@ class Organizations
      * @param  string  $organizationId
      * @param  ?bool  $includeMembersCount
      * @param  ?bool  $includeMissingMemberWithElevatedPermissions
-     * @return Operations\GetOrganizationResponse
+     * @return \Clerk\Backend\Models\Operations\GetOrganizationResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function get(string $organizationId, ?bool $includeMembersCount = null, ?bool $includeMissingMemberWithElevatedPermissions = null, ?Options $options = null): Operations\GetOrganizationResponse
@@ -542,11 +546,12 @@ class Organizations
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['403', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -591,7 +596,7 @@ class Organizations
      * Credits can be applied during checkout to reduce the charge or automatically applied to upcoming recurring charges.
      *
      * @param  string  $organizationId
-     * @return Operations\GetOrganizationBillingCreditBalanceResponse
+     * @return \Clerk\Backend\Models\Operations\GetOrganizationBillingCreditBalanceResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function getBillingCreditBalance(string $organizationId, ?Options $options = null): Operations\GetOrganizationBillingCreditBalanceResponse
@@ -642,11 +647,12 @@ class Organizations
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -703,7 +709,7 @@ class Organizations
      * The subscription contains subscription items which represent the individual plans the organization is subscribed to.
      *
      * @param  string  $organizationId
-     * @return Operations\GetOrganizationBillingSubscriptionResponse
+     * @return \Clerk\Backend\Models\Operations\GetOrganizationBillingSubscriptionResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function getBillingSubscription(string $organizationId, ?Options $options = null): Operations\GetOrganizationBillingSubscriptionResponse
@@ -754,11 +760,12 @@ class Organizations
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '403', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -815,8 +822,8 @@ class Organizations
      * The organizations are ordered by descending creation date.
      * Most recent organizations will be returned first.
      *
-     * @param  ?Operations\ListOrganizationsRequest  $request
-     * @return Operations\ListOrganizationsResponse
+     * @param  ?\Clerk\Backend\Models\Operations\ListOrganizationsRequest  $request
+     * @return \Clerk\Backend\Models\Operations\ListOrganizationsResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function list(?Operations\ListOrganizationsRequest $request = null, ?Options $options = null): Operations\ListOrganizationsResponse
@@ -867,11 +874,12 @@ class Organizations
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '403', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -917,9 +925,9 @@ class Organizations
      * Deep meaning that any nested JSON objects will be merged as well.
      * You can remove metadata keys at any level by setting their value to `null`.
      *
-     * @param  Operations\MergeOrganizationMetadataRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\MergeOrganizationMetadataRequestBody  $requestBody
      * @param  string  $organizationId
-     * @return Operations\MergeOrganizationMetadataResponse
+     * @return \Clerk\Backend\Models\Operations\MergeOrganizationMetadataResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function mergeMetadata(Operations\MergeOrganizationMetadataRequestBody $requestBody, string $organizationId, ?Options $options = null): Operations\MergeOrganizationMetadataResponse
@@ -976,11 +984,12 @@ class Organizations
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1019,13 +1028,128 @@ class Organizations
     }
 
     /**
+     * Replace metadata for an organization
+     *
+     * Replace an organization's metadata attributes with the provided values.
+     * Unlike `PATCH /v1/organizations/{organization_id}/metadata` (merge semantics), this
+     * endpoint replaces the supplied metadata fields entirely — the prior contents of each
+     * supplied field are discarded. Fields omitted from the request body are left unchanged.
+     * Prefer the `PATCH` endpoint for partial updates. Use `PUT` only when you explicitly
+     * intend to overwrite a metadata field wholesale.
+     *
+     * @param  \Clerk\Backend\Models\Operations\ReplaceOrganizationMetadataRequestBody  $requestBody
+     * @param  string  $organizationId
+     * @return \Clerk\Backend\Models\Operations\ReplaceOrganizationMetadataResponse
+     * @throws \Clerk\Backend\Models\Errors\SDKException
+     */
+    public function replaceMetadata(Operations\ReplaceOrganizationMetadataRequestBody $requestBody, string $organizationId, ?Options $options = null): Operations\ReplaceOrganizationMetadataResponse
+    {
+        $retryConfig = null;
+        if ($options) {
+            $retryConfig = $options->retryConfig;
+        }
+        if ($retryConfig === null && $this->sdkConfiguration->retryConfig) {
+            $retryConfig = $this->sdkConfiguration->retryConfig;
+        } else {
+            $retryConfig = new Retry\RetryConfigBackoff(
+                initialIntervalMs: 500,
+                maxIntervalMs: 60000,
+                exponent: 1.5,
+                maxElapsedTimeMs: 3600000,
+                retryConnectionErrors: true,
+            );
+        }
+        $retryCodes = null;
+        if ($options) {
+            $retryCodes = $options->retryCodes;
+        }
+        if ($retryCodes === null) {
+            $retryCodes = [
+                '5XX',
+            ];
+        }
+        $request = new Operations\ReplaceOrganizationMetadataRequest(
+            organizationId: $organizationId,
+            requestBody: $requestBody,
+        );
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/organizations/{organization_id}/metadata', Operations\ReplaceOrganizationMetadataRequest::class, $request);
+        $urlOverride = null;
+        $httpOptions = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
+        if ($body === null) {
+            throw new \Exception('Request body is required');
+        }
+        $httpOptions = array_merge_recursive($httpOptions, $body);
+        $httpOptions['headers']['Accept'] = 'application/json';
+        $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('PUT', $url);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'ReplaceOrganizationMetadata', null, $this->sdkConfiguration->securitySource);
+        $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
+        $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
+        $httpRequest = Utils\Utils::removeHeaders($httpRequest);
+        try {
+            $httpResponse = RetryUtils::retryWrapper(fn () => $this->sdkConfiguration->client->send($httpRequest, $httpOptions), $retryConfig, $retryCodes);
+        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
+            $httpResponse = $res;
+        }
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
+            $httpResponse = $res;
+        }
+
+        $statusCode = $httpResponse->getStatusCode();
+        if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Components\Organization', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\ReplaceOrganizationMetadataResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    organization: $obj);
+
+                return $response;
+            } else {
+                throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '404', '422'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Errors\ClerkErrors', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['4XX'])) {
+            throw new \Clerk\Backend\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
+            throw new \Clerk\Backend\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } else {
+            throw new \Clerk\Backend\Models\Errors\SDKException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        }
+    }
+
+    /**
      * Update an organization
      *
-     * Updates an existing organization
+     * Updates an existing organization.
      *
-     * @param  Operations\UpdateOrganizationRequestBody  $requestBody
+     * As of API version 2026-05-12, this endpoint no longer accepts `public_metadata` or `private_metadata`.
+     * Use `PATCH /v1/organizations/{organization_id}/metadata` to merge updates into existing metadata, or `PUT /v1/organizations/{organization_id}/metadata` to replace a metadata field entirely.
+     *
+     * @param  \Clerk\Backend\Models\Operations\UpdateOrganizationRequestBody  $requestBody
      * @param  string  $organizationId
-     * @return Operations\UpdateOrganizationResponse
+     * @return \Clerk\Backend\Models\Operations\UpdateOrganizationResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function update(Operations\UpdateOrganizationRequestBody $requestBody, string $organizationId, ?Options $options = null): Operations\UpdateOrganizationResponse
@@ -1082,11 +1206,12 @@ class Organizations
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '402', '403', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -1133,8 +1258,8 @@ class Organizations
      * Only the following file content types are supported: `image/jpeg`, `image/png`, `image/gif`, `image/webp`.
      *
      * @param  string  $organizationId
-     * @param  ?Operations\UploadOrganizationLogoRequestBody  $requestBody
-     * @return Operations\UploadOrganizationLogoResponse
+     * @param  ?\Clerk\Backend\Models\Operations\UploadOrganizationLogoRequestBody  $requestBody
+     * @return \Clerk\Backend\Models\Operations\UploadOrganizationLogoResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function uploadLogo(string $organizationId, ?Operations\UploadOrganizationLogoRequestBody $requestBody = null, ?Options $options = null): Operations\UploadOrganizationLogoResponse
@@ -1190,11 +1315,12 @@ class Organizations
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '403', '404', '413', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

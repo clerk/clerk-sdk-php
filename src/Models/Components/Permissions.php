@@ -15,7 +15,7 @@ class Permissions
     /**
      * $data
      *
-     * @var array<Permission> $data
+     * @var array<\Clerk\Backend\Models\Components\Permission> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\Permission>')]
@@ -32,7 +32,7 @@ class Permissions
     public int $totalCount;
 
     /**
-     * @param  array<Permission>  $data
+     * @param  array<\Clerk\Backend\Models\Components\Permission>  $data
      * @param  int  $totalCount
      * @phpstan-pure
      */

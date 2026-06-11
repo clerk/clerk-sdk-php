@@ -13,7 +13,7 @@ class Role
 {
     /**
      *
-     * @var RoleObject $object
+     * @var \Clerk\Backend\Models\Components\RoleObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\RoleObject')]
@@ -51,7 +51,7 @@ class Role
     /**
      * $permissions
      *
-     * @var array<Permission> $permissions
+     * @var array<\Clerk\Backend\Models\Components\Permission> $permissions
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('permissions')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\Permission>')]
@@ -85,12 +85,12 @@ class Role
     public ?string $description;
 
     /**
-     * @param  RoleObject  $object
+     * @param  \Clerk\Backend\Models\Components\RoleObject  $object
      * @param  string  $id
      * @param  string  $name
      * @param  string  $key
      * @param  bool  $isCreatorEligible
-     * @param  array<Permission>  $permissions
+     * @param  array<\Clerk\Backend\Models\Components\Permission>  $permissions
      * @param  int  $createdAt
      * @param  int  $updatedAt
      * @param  ?string  $description

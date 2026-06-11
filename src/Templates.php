@@ -53,8 +53,8 @@ class Templates
      *
      * @param  string  $templateType
      * @param  string  $slug
-     * @param  ?Operations\PreviewTemplateRequestBody  $requestBody
-     * @return Operations\PreviewTemplateResponse
+     * @param  ?\Clerk\Backend\Models\Operations\PreviewTemplateRequestBody  $requestBody
+     * @return \Clerk\Backend\Models\Operations\PreviewTemplateResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -113,11 +113,12 @@ class Templates
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

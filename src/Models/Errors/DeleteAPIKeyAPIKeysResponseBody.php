@@ -15,7 +15,7 @@ class DeleteAPIKeyAPIKeysResponseBody
     /**
      * $errors
      *
-     * @var array<DeleteAPIKeyAPIKeysErrors> $errors
+     * @var array<\Clerk\Backend\Models\Errors\DeleteAPIKeyAPIKeysErrors> $errors
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('errors')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Errors\DeleteAPIKeyAPIKeysErrors>')]
@@ -31,7 +31,7 @@ class DeleteAPIKeyAPIKeysResponseBody
     public ?\Psr\Http\Message\ResponseInterface $rawResponse = null;
 
     /**
-     * @param  array<DeleteAPIKeyAPIKeysErrors>  $errors
+     * @param  array<\Clerk\Backend\Models\Errors\DeleteAPIKeyAPIKeysErrors>  $errors
      * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
      * @phpstan-pure
      */

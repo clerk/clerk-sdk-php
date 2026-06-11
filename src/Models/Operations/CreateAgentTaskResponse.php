@@ -35,7 +35,7 @@ class CreateAgentTaskResponse
     /**
      * Success
      *
-     * @var ?Components\AgentTask $agentTask
+     * @var ?\Clerk\Backend\Models\Components\AgentTask $agentTask
      */
     public ?Components\AgentTask $agentTask = null;
 
@@ -43,7 +43,7 @@ class CreateAgentTaskResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\AgentTask  $agentTask
+     * @param  ?\Clerk\Backend\Models\Components\AgentTask  $agentTask
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\AgentTask $agentTask = null)

@@ -15,7 +15,7 @@ class OrganizationDomains
     /**
      * $data
      *
-     * @var array<OrganizationDomain> $data
+     * @var array<\Clerk\Backend\Models\Components\OrganizationDomain> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\OrganizationDomain>')]
@@ -32,7 +32,7 @@ class OrganizationDomains
     public int $totalCount;
 
     /**
-     * @param  array<OrganizationDomain>  $data
+     * @param  array<\Clerk\Backend\Models\Components\OrganizationDomain>  $data
      * @param  int  $totalCount
      * @phpstan-pure
      */

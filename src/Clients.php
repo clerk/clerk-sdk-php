@@ -52,7 +52,7 @@ class Clients
      * Returns the details of a client.
      *
      * @param  string  $clientId
-     * @return Operations\GetClientResponse
+     * @return \Clerk\Backend\Models\Operations\GetClientResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function get(string $clientId, ?Options $options = null): Operations\GetClientResponse
@@ -103,11 +103,12 @@ class Clients
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -155,7 +156,7 @@ class Clients
      * @param  ?bool  $paginated
      * @param  ?int  $limit
      * @param  ?int  $offset
-     * @return Operations\GetClientListResponse
+     * @return \Clerk\Backend\Models\Operations\GetClientListResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      * @deprecated  method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -213,11 +214,12 @@ class Clients
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '410', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -260,8 +262,8 @@ class Clients
      *
      * Verifies the client in the provided token
      *
-     * @param  ?Operations\VerifyClientRequestBody  $request
-     * @return Operations\VerifyClientResponse
+     * @param  ?\Clerk\Backend\Models\Operations\VerifyClientRequestBody  $request
+     * @return \Clerk\Backend\Models\Operations\VerifyClientResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
      */
     public function verify(?Operations\VerifyClientRequestBody $request = null, ?Options $options = null): Operations\VerifyClientResponse
@@ -313,11 +315,12 @@ class Clients
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '404', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

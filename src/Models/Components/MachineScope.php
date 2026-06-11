@@ -14,7 +14,7 @@ class MachineScope
 {
     /**
      *
-     * @var MachineScopeObject $object
+     * @var \Clerk\Backend\Models\Components\MachineScopeObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\MachineScopeObject')]
@@ -45,7 +45,7 @@ class MachineScope
     public int $createdAt;
 
     /**
-     * @param  MachineScopeObject  $object
+     * @param  \Clerk\Backend\Models\Components\MachineScopeObject  $object
      * @param  string  $fromMachineId
      * @param  string  $toMachineId
      * @param  int  $createdAt

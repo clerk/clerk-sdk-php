@@ -16,7 +16,7 @@ class ClerkErrors
     /**
      * $errors
      *
-     * @var array<Components\ClerkError> $errors
+     * @var array<\Clerk\Backend\Models\Components\ClerkError> $errors
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('errors')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\ClerkError>')]
@@ -24,7 +24,7 @@ class ClerkErrors
 
     /**
      *
-     * @var ?Meta $meta
+     * @var ?\Clerk\Backend\Models\Errors\Meta $meta
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('meta')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Errors\Meta|null')]
@@ -32,8 +32,8 @@ class ClerkErrors
     public ?Meta $meta = null;
 
     /**
-     * @param  array<Components\ClerkError>  $errors
-     * @param  ?Meta  $meta
+     * @param  array<\Clerk\Backend\Models\Components\ClerkError>  $errors
+     * @param  ?\Clerk\Backend\Models\Errors\Meta  $meta
      * @phpstan-pure
      */
     public function __construct(array $errors, ?Meta $meta = null)

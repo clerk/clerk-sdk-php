@@ -35,7 +35,7 @@ class CreateTestingTokenResponse
     /**
      * A Testing Token
      *
-     * @var ?Components\TestingToken $testingToken
+     * @var ?\Clerk\Backend\Models\Components\TestingToken $testingToken
      */
     public ?Components\TestingToken $testingToken = null;
 
@@ -43,7 +43,7 @@ class CreateTestingTokenResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\TestingToken  $testingToken
+     * @param  ?\Clerk\Backend\Models\Components\TestingToken  $testingToken
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\TestingToken $testingToken = null)

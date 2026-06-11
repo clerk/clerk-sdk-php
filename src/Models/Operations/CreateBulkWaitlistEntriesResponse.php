@@ -35,7 +35,7 @@ class CreateBulkWaitlistEntriesResponse
     /**
      * Array of waitlist entries
      *
-     * @var ?array<Components\WaitlistEntry> $waitlistEntryList
+     * @var ?array<\Clerk\Backend\Models\Components\WaitlistEntry> $waitlistEntryList
      */
     public ?array $waitlistEntryList = null;
 
@@ -43,7 +43,7 @@ class CreateBulkWaitlistEntriesResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?array<Components\WaitlistEntry>  $waitlistEntryList
+     * @param  ?array<\Clerk\Backend\Models\Components\WaitlistEntry>  $waitlistEntryList
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?array $waitlistEntryList = null)

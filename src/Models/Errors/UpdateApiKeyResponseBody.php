@@ -15,7 +15,7 @@ class UpdateApiKeyResponseBody
     /**
      * $errors
      *
-     * @var array<UpdateApiKeyErrors> $errors
+     * @var array<\Clerk\Backend\Models\Errors\UpdateApiKeyErrors> $errors
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('errors')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Errors\UpdateApiKeyErrors>')]
@@ -31,7 +31,7 @@ class UpdateApiKeyResponseBody
     public ?\Psr\Http\Message\ResponseInterface $rawResponse = null;
 
     /**
-     * @param  array<UpdateApiKeyErrors>  $errors
+     * @param  array<\Clerk\Backend\Models\Errors\UpdateApiKeyErrors>  $errors
      * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
      * @phpstan-pure
      */

@@ -21,14 +21,14 @@ class ReplaceRoleSetRequest
 
     /**
      *
-     * @var ReplaceRoleSetRequestBody $requestBody
+     * @var \Clerk\Backend\Models\Operations\ReplaceRoleSetRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ReplaceRoleSetRequestBody $requestBody;
 
     /**
      * @param  string  $roleSetKeyOrId
-     * @param  ReplaceRoleSetRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\ReplaceRoleSetRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $roleSetKeyOrId, ReplaceRoleSetRequestBody $requestBody)

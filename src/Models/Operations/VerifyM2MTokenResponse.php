@@ -35,7 +35,7 @@ class VerifyM2MTokenResponse
     /**
      * 200 OK
      *
-     * @var ?VerifyM2MTokenResponseBody $object
+     * @var ?\Clerk\Backend\Models\Operations\VerifyM2MTokenResponseBody $object
      */
     public ?VerifyM2MTokenResponseBody $object = null;
 
@@ -43,7 +43,7 @@ class VerifyM2MTokenResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?VerifyM2MTokenResponseBody  $object
+     * @param  ?\Clerk\Backend\Models\Operations\VerifyM2MTokenResponseBody  $object
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?VerifyM2MTokenResponseBody $object = null)

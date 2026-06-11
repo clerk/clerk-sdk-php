@@ -1,20 +1,26 @@
-# SamlConnections
+# ~~SamlConnections~~
+
+> [!WARNING]
+> This SDK is **DEPRECATED**
 
 ## Overview
 
 ### Available Operations
 
-* [list](#list) - Get a list of SAML Connections for an instance
-* [create](#create) - Create a SAML Connection
-* [get](#get) - Retrieve a SAML Connection by ID
-* [update](#update) - Update a SAML Connection
-* [delete](#delete) - Delete a SAML Connection
+* [~~list~~](#list) - Get a list of SAML Connections for an instance :warning: **Deprecated**
+* [~~create~~](#create) - Create a SAML Connection :warning: **Deprecated**
+* [~~get~~](#get) - Retrieve a SAML Connection by ID :warning: **Deprecated**
+* [~~update~~](#update) - Update a SAML Connection :warning: **Deprecated**
+* [~~delete~~](#delete) - Delete a SAML Connection :warning: **Deprecated**
 
-## list
+## ~~list~~
 
 Returns the list of SAML Connections for an instance.
 Results can be paginated using the optional `limit` and `offset` query parameters.
 The SAML Connections are ordered by descending creation date and the most recent will be returned first.
+Deprecated: Use the Enterprise Connections API instead. This endpoint will be removed in future versions.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -61,9 +67,12 @@ if ($response->samlConnections !== null) {
 | Errors\ClerkErrors  | 402, 403, 422       | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## create
+## ~~create~~
 
 Create a new SAML Connection.
+Deprecated: Use the Enterprise Connections API instead. This endpoint will be removed in future versions.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -87,7 +96,7 @@ $response = $sdk->samlConnections->create(
     request: $request
 );
 
-if ($response->schemasSAMLConnection !== null) {
+if ($response->samlConnection !== null) {
     // handle response
 }
 ```
@@ -104,14 +113,17 @@ if ($response->schemasSAMLConnection !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 402, 403, 404, 422  | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| Errors\ClerkErrors      | 402, 403, 404, 409, 422 | application/json        |
+| Errors\SDKException     | 4XX, 5XX                | \*/\*                   |
 
-## get
+## ~~get~~
 
 Fetches the SAML Connection whose ID matches the provided `saml_connection_id` in the path.
+Deprecated: Use the Enterprise Connections API instead. This endpoint will be removed in future versions.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -135,7 +147,7 @@ $response = $sdk->samlConnections->get(
     samlConnectionId: '<id>'
 );
 
-if ($response->schemasSAMLConnection !== null) {
+if ($response->samlConnection !== null) {
     // handle response
 }
 ```
@@ -157,9 +169,12 @@ if ($response->schemasSAMLConnection !== null) {
 | Errors\ClerkErrors  | 402, 403, 404       | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
-## update
+## ~~update~~
 
 Updates the SAML Connection whose ID matches the provided `id` in the path.
+Deprecated: Use the Enterprise Connections API instead. This endpoint will be removed in future versions.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -186,7 +201,7 @@ $response = $sdk->samlConnections->update(
 
 );
 
-if ($response->schemasSAMLConnection !== null) {
+if ($response->samlConnection !== null) {
     // handle response
 }
 ```
@@ -204,14 +219,17 @@ if ($response->schemasSAMLConnection !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 402, 403, 404, 422  | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| Errors\ClerkErrors      | 402, 403, 404, 409, 422 | application/json        |
+| Errors\SDKException     | 4XX, 5XX                | \*/\*                   |
 
-## delete
+## ~~delete~~
 
 Deletes the SAML Connection whose ID matches the provided `id` in the path.
+Deprecated: Use the Enterprise Connections API instead. This endpoint will be removed in future versions.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 

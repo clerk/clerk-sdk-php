@@ -7,7 +7,7 @@
 
 ```php
 /**
-* @var Components\VerificationSAML
+* @var \Clerk\Backend\Models\Components\VerificationSAML
 */
 Components\VerificationSAML $value = /* values here */
 ```
@@ -16,7 +16,7 @@ Components\VerificationSAML $value = /* values here */
 
 ```php
 /**
-* @var Components\VerificationTicket
+* @var \Clerk\Backend\Models\Components\VerificationTicket
 */
 Components\VerificationTicket $value = /* values here */
 ```

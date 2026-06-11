@@ -14,7 +14,7 @@ class ProxyCheck
 {
     /**
      *
-     * @var ProxyCheckObject $object
+     * @var \Clerk\Backend\Models\Components\ProxyCheckObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ProxyCheckObject')]
@@ -79,7 +79,7 @@ class ProxyCheck
     public ?int $lastRunAt;
 
     /**
-     * @param  ProxyCheckObject  $object
+     * @param  \Clerk\Backend\Models\Components\ProxyCheckObject  $object
      * @param  string  $id
      * @param  string  $domainId
      * @param  string  $proxyUrl

@@ -43,7 +43,7 @@ class UpdateRoleSetRequestBody
      *
      * Only one role set can be "initial" per instance; setting this will change any existing initial role set to "custom".
      *
-     * @var ?UpdateRoleSetType $type
+     * @var ?\Clerk\Backend\Models\Operations\UpdateRoleSetType $type
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\UpdateRoleSetType|null')]
@@ -76,7 +76,7 @@ class UpdateRoleSetRequestBody
      * @param  ?string  $name
      * @param  ?string  $key
      * @param  ?string  $description
-     * @param  ?UpdateRoleSetType  $type
+     * @param  ?\Clerk\Backend\Models\Operations\UpdateRoleSetType  $type
      * @param  ?string  $defaultRoleKey
      * @param  ?string  $creatorRoleKey
      * @phpstan-pure

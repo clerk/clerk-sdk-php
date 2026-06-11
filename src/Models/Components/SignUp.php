@@ -14,7 +14,7 @@ class SignUp
 {
     /**
      *
-     * @var SignUpObject $object
+     * @var \Clerk\Backend\Models\Components\SignUpObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SignUpObject')]
@@ -29,7 +29,7 @@ class SignUp
 
     /**
      *
-     * @var SignUpStatus $status
+     * @var \Clerk\Backend\Models\Components\SignUpStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SignUpStatus')]
@@ -73,7 +73,7 @@ class SignUp
 
     /**
      *
-     * @var SignUpVerifications $verifications
+     * @var \Clerk\Backend\Models\Components\SignUpVerifications $verifications
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('verifications')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SignUpVerifications')]
@@ -198,7 +198,7 @@ class SignUp
 
     /**
      *
-     * @var ?SignUpExternalAccount $externalAccount
+     * @var ?\Clerk\Backend\Models\Components\SignUpExternalAccount $externalAccount
      * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('external_account')]
@@ -216,14 +216,14 @@ class SignUp
     public ?string $locale = null;
 
     /**
-     * @param  SignUpObject  $object
+     * @param  \Clerk\Backend\Models\Components\SignUpObject  $object
      * @param  string  $id
-     * @param  SignUpStatus  $status
+     * @param  \Clerk\Backend\Models\Components\SignUpStatus  $status
      * @param  array<string>  $requiredFields
      * @param  array<string>  $optionalFields
      * @param  array<string>  $missingFields
      * @param  array<string>  $unverifiedFields
-     * @param  SignUpVerifications  $verifications
+     * @param  \Clerk\Backend\Models\Components\SignUpVerifications  $verifications
      * @param  bool  $passwordEnabled
      * @param  bool  $customAction
      * @param  int  $abandonAt
@@ -239,7 +239,7 @@ class SignUp
      * @param  ?string  $createdSessionId
      * @param  ?string  $createdUserId
      * @param  ?int  $legalAcceptedAt
-     * @param  ?SignUpExternalAccount  $externalAccount
+     * @param  ?\Clerk\Backend\Models\Components\SignUpExternalAccount  $externalAccount
      * @param  ?string  $locale
      * @phpstan-pure
      */

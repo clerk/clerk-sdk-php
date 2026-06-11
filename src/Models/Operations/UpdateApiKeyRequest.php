@@ -20,14 +20,14 @@ class UpdateApiKeyRequest
 
     /**
      *
-     * @var UpdateApiKeyRequestBody $requestBody
+     * @var \Clerk\Backend\Models\Operations\UpdateApiKeyRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public UpdateApiKeyRequestBody $requestBody;
 
     /**
      * @param  string  $apiKeyID
-     * @param  UpdateApiKeyRequestBody  $requestBody
+     * @param  \Clerk\Backend\Models\Operations\UpdateApiKeyRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $apiKeyID, UpdateApiKeyRequestBody $requestBody)

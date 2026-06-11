@@ -15,7 +15,7 @@ class WaitlistEntries
     /**
      * $data
      *
-     * @var array<WaitlistEntry> $data
+     * @var array<\Clerk\Backend\Models\Components\WaitlistEntry> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\WaitlistEntry>')]
@@ -30,7 +30,7 @@ class WaitlistEntries
     public int $totalCount;
 
     /**
-     * @param  array<WaitlistEntry>  $data
+     * @param  array<\Clerk\Backend\Models\Components\WaitlistEntry>  $data
      * @param  int  $totalCount
      * @phpstan-pure
      */

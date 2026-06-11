@@ -21,14 +21,14 @@ class CreateMachineScopeRequest
 
     /**
      *
-     * @var ?CreateMachineScopeRequestBody $requestBody
+     * @var ?\Clerk\Backend\Models\Operations\CreateMachineScopeRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?CreateMachineScopeRequestBody $requestBody = null;
 
     /**
      * @param  string  $machineId
-     * @param  ?CreateMachineScopeRequestBody  $requestBody
+     * @param  ?\Clerk\Backend\Models\Operations\CreateMachineScopeRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $machineId, ?CreateMachineScopeRequestBody $requestBody = null)

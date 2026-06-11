@@ -14,7 +14,7 @@ class SchemasFeatureResponse
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var SchemasFeatureResponseObject $object
+     * @var \Clerk\Backend\Models\Components\SchemasFeatureResponseObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasFeatureResponseObject')]
@@ -61,7 +61,7 @@ class SchemasFeatureResponse
     public string $avatarUrl;
 
     /**
-     * @param  SchemasFeatureResponseObject  $object
+     * @param  \Clerk\Backend\Models\Components\SchemasFeatureResponseObject  $object
      * @param  string  $id
      * @param  string  $name
      * @param  string  $description

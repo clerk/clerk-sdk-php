@@ -35,7 +35,7 @@ class CreatePhoneNumberResponse
     /**
      * Success
      *
-     * @var ?Components\PhoneNumber $phoneNumber
+     * @var ?\Clerk\Backend\Models\Components\PhoneNumber $phoneNumber
      */
     public ?Components\PhoneNumber $phoneNumber = null;
 
@@ -43,7 +43,7 @@ class CreatePhoneNumberResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\PhoneNumber  $phoneNumber
+     * @param  ?\Clerk\Backend\Models\Components\PhoneNumber  $phoneNumber
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\PhoneNumber $phoneNumber = null)

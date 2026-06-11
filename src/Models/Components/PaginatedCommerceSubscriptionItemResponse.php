@@ -15,7 +15,7 @@ class PaginatedCommerceSubscriptionItemResponse
     /**
      * Array of subscription items.
      *
-     * @var array<CommerceSubscriptionItem> $data
+     * @var array<\Clerk\Backend\Models\Components\CommerceSubscriptionItem> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\CommerceSubscriptionItem>')]
@@ -30,7 +30,7 @@ class PaginatedCommerceSubscriptionItemResponse
     public int $totalCount;
 
     /**
-     * @param  array<CommerceSubscriptionItem>  $data
+     * @param  array<\Clerk\Backend\Models\Components\CommerceSubscriptionItem>  $data
      * @param  int  $totalCount
      * @phpstan-pure
      */

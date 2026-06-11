@@ -23,7 +23,7 @@ class CommerceCreditBalanceResponse
     /**
      * The current credit balance. Null when the payer has never had credits.
      *
-     * @var ?Balance $balance
+     * @var ?\Clerk\Backend\Models\Components\Balance $balance
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('balance')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Balance|null')]
@@ -31,7 +31,7 @@ class CommerceCreditBalanceResponse
 
     /**
      * @param  string  $object
-     * @param  ?Balance  $balance
+     * @param  ?\Clerk\Backend\Models\Components\Balance  $balance
      * @phpstan-pure
      */
     public function __construct(string $object, ?Balance $balance = null)

@@ -13,7 +13,7 @@ class OAuthApplicationWithSecret
 {
     /**
      *
-     * @var OAuthApplicationWithSecretObject $object
+     * @var \Clerk\Backend\Models\Components\OAuthApplicationWithSecretObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\OAuthApplicationWithSecretObject')]
@@ -183,7 +183,7 @@ class OAuthApplicationWithSecret
     public ?string $clientSecret = null;
 
     /**
-     * @param  OAuthApplicationWithSecretObject  $object
+     * @param  \Clerk\Backend\Models\Components\OAuthApplicationWithSecretObject  $object
      * @param  string  $id
      * @param  string  $instanceId
      * @param  string  $name

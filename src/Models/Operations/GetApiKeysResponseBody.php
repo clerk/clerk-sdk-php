@@ -15,7 +15,7 @@ class GetApiKeysResponseBody
     /**
      * $data
      *
-     * @var array<Data> $data
+     * @var array<\Clerk\Backend\Models\Operations\Data> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Operations\Data>')]
@@ -29,7 +29,7 @@ class GetApiKeysResponseBody
     public float $totalCount;
 
     /**
-     * @param  array<Data>  $data
+     * @param  array<\Clerk\Backend\Models\Operations\Data>  $data
      * @param  float  $totalCount
      * @phpstan-pure
      */

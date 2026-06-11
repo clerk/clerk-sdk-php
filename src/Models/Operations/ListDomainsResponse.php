@@ -35,7 +35,7 @@ class ListDomainsResponse
     /**
      * A list of domains
      *
-     * @var ?Components\Domains $domains
+     * @var ?\Clerk\Backend\Models\Components\Domains $domains
      */
     public ?Components\Domains $domains = null;
 
@@ -43,7 +43,7 @@ class ListDomainsResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\Domains  $domains
+     * @param  ?\Clerk\Backend\Models\Components\Domains  $domains
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\Domains $domains = null)

@@ -15,7 +15,7 @@ class OrganizationInvitationsWithPublicOrganizationData
     /**
      * $data
      *
-     * @var array<OrganizationInvitationWithPublicOrganizationData> $data
+     * @var array<\Clerk\Backend\Models\Components\OrganizationInvitationWithPublicOrganizationData> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\OrganizationInvitationWithPublicOrganizationData>')]
@@ -32,7 +32,7 @@ class OrganizationInvitationsWithPublicOrganizationData
     public int $totalCount;
 
     /**
-     * @param  array<OrganizationInvitationWithPublicOrganizationData>  $data
+     * @param  array<\Clerk\Backend\Models\Components\OrganizationInvitationWithPublicOrganizationData>  $data
      * @param  int  $totalCount
      * @phpstan-pure
      */

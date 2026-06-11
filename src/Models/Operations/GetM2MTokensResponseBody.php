@@ -15,7 +15,7 @@ class GetM2MTokensResponseBody
     /**
      * $m2mTokens
      *
-     * @var array<M2mTokens> $m2mTokens
+     * @var array<\Clerk\Backend\Models\Operations\M2mTokens> $m2mTokens
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('m2m_tokens')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Operations\M2mTokens>')]
@@ -29,7 +29,7 @@ class GetM2MTokensResponseBody
     public float $totalCount;
 
     /**
-     * @param  array<M2mTokens>  $m2mTokens
+     * @param  array<\Clerk\Backend\Models\Operations\M2mTokens>  $m2mTokens
      * @param  float  $totalCount
      * @phpstan-pure
      */

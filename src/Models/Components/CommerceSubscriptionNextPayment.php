@@ -21,20 +21,44 @@ class CommerceSubscriptionNextPayment
 
     /**
      *
-     * @var CommerceMoneyResponse $amount
+     * @var \Clerk\Backend\Models\Components\CommerceMoneyResponse $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
     public CommerceMoneyResponse $amount;
 
     /**
+     * Per-unit total breakdown (for example, seats) for the next payment.
+     *
+     * @var ?array<\Clerk\Backend\Models\Components\SchemasCommercePerUnitTotal> $perUnitTotals
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('per_unit_totals')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\SchemasCommercePerUnitTotal>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $perUnitTotals = null;
+
+    /**
+     * Breakdown of the recurring amount that will be billed at renewal (base fee + per-unit charges). Tax and credits are not previewed.
+     *
+     * @var ?\Clerk\Backend\Models\Components\CommerceSubscriptionNextPaymentTotals $totals
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('totals')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceSubscriptionNextPaymentTotals|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?CommerceSubscriptionNextPaymentTotals $totals = null;
+
+    /**
      * @param  int  $date
-     * @param  CommerceMoneyResponse  $amount
+     * @param  \Clerk\Backend\Models\Components\CommerceMoneyResponse  $amount
+     * @param  ?array<\Clerk\Backend\Models\Components\SchemasCommercePerUnitTotal>  $perUnitTotals
+     * @param  ?\Clerk\Backend\Models\Components\CommerceSubscriptionNextPaymentTotals  $totals
      * @phpstan-pure
      */
-    public function __construct(int $date, CommerceMoneyResponse $amount)
+    public function __construct(int $date, CommerceMoneyResponse $amount, ?array $perUnitTotals = null, ?CommerceSubscriptionNextPaymentTotals $totals = null)
     {
         $this->date = $date;
         $this->amount = $amount;
+        $this->perUnitTotals = $perUnitTotals;
+        $this->totals = $totals;
     }
 }

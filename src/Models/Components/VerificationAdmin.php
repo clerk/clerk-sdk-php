@@ -13,7 +13,7 @@ class VerificationAdmin
 {
     /**
      *
-     * @var VerificationAdminVerificationPhoneNumberStatus $status
+     * @var \Clerk\Backend\Models\Components\VerificationAdminVerificationPhoneNumberStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationAdminVerificationPhoneNumberStatus')]
@@ -21,7 +21,7 @@ class VerificationAdmin
 
     /**
      *
-     * @var VerificationAdminVerificationStrategy $strategy
+     * @var \Clerk\Backend\Models\Components\VerificationAdminVerificationStrategy $strategy
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationAdminVerificationStrategy')]
@@ -29,7 +29,7 @@ class VerificationAdmin
 
     /**
      *
-     * @var ?VerificationAdminVerificationPhoneNumberObject $object
+     * @var ?\Clerk\Backend\Models\Components\VerificationAdminVerificationPhoneNumberObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationAdminVerificationPhoneNumberObject|null')]
@@ -59,9 +59,9 @@ class VerificationAdmin
     public ?string $verifiedAtClient = null;
 
     /**
-     * @param  VerificationAdminVerificationPhoneNumberStatus  $status
-     * @param  VerificationAdminVerificationStrategy  $strategy
-     * @param  ?VerificationAdminVerificationPhoneNumberObject  $object
+     * @param  \Clerk\Backend\Models\Components\VerificationAdminVerificationPhoneNumberStatus  $status
+     * @param  \Clerk\Backend\Models\Components\VerificationAdminVerificationStrategy  $strategy
+     * @param  ?\Clerk\Backend\Models\Components\VerificationAdminVerificationPhoneNumberObject  $object
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
      * @param  ?string  $verifiedAtClient

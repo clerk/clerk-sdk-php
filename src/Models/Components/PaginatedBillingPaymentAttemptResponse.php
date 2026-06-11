@@ -15,7 +15,7 @@ class PaginatedBillingPaymentAttemptResponse
     /**
      * Array of billing payment attempts.
      *
-     * @var array<BillingPaymentAttempt> $data
+     * @var array<\Clerk\Backend\Models\Components\BillingPaymentAttempt> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\BillingPaymentAttempt>')]
@@ -30,7 +30,7 @@ class PaginatedBillingPaymentAttemptResponse
     public int $totalCount;
 
     /**
-     * @param  array<BillingPaymentAttempt>  $data
+     * @param  array<\Clerk\Backend\Models\Components\BillingPaymentAttempt>  $data
      * @param  int  $totalCount
      * @phpstan-pure
      */

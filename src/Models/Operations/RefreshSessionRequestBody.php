@@ -60,7 +60,7 @@ class RefreshSessionRequestBody
     /**
      * The format of the response.
      *
-     * @var ?Format $format
+     * @var ?\Clerk\Backend\Models\Operations\Format $format
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('format')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\Format|null')]
@@ -72,7 +72,7 @@ class RefreshSessionRequestBody
      * @param  string  $refreshToken
      * @param  string  $requestOrigin
      * @param  ?array<string, mixed>  $requestHeaders
-     * @param  ?Format  $format
+     * @param  ?\Clerk\Backend\Models\Operations\Format  $format
      * @param  ?string  $requestOriginatingIp
      * @phpstan-pure
      */

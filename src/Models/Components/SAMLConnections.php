@@ -15,7 +15,7 @@ class SAMLConnections
     /**
      * $data
      *
-     * @var array<One|Two> $data
+     * @var array<\Clerk\Backend\Models\Components\One|\Clerk\Backend\Models\Components\Two> $data
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('data')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\One|\Clerk\Backend\Models\Components\Two>')]
@@ -32,7 +32,7 @@ class SAMLConnections
     public int $totalCount;
 
     /**
-     * @param  array<One|Two>  $data
+     * @param  array<\Clerk\Backend\Models\Components\One|\Clerk\Backend\Models\Components\Two>  $data
      * @param  int  $totalCount
      * @phpstan-pure
      */

@@ -21,14 +21,14 @@ class UpdateMachineRequest
 
     /**
      *
-     * @var ?UpdateMachineRequestBody $requestBody
+     * @var ?\Clerk\Backend\Models\Operations\UpdateMachineRequestBody $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public ?UpdateMachineRequestBody $requestBody = null;
 
     /**
      * @param  string  $machineId
-     * @param  ?UpdateMachineRequestBody  $requestBody
+     * @param  ?\Clerk\Backend\Models\Operations\UpdateMachineRequestBody  $requestBody
      * @phpstan-pure
      */
     public function __construct(string $machineId, ?UpdateMachineRequestBody $requestBody = null)

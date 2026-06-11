@@ -9,93 +9,43 @@ declare(strict_types=1);
 namespace Clerk\Backend\Models\Components;
 
 
+/** Saml - SAML-specific metadata, present for SAML connections */
 class Saml
 {
     /**
      *
-     * @var VerificationSamlVerificationStatus $status
+     * @var ?string $samlRequest
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationSamlVerificationStatus')]
-    public VerificationSamlVerificationStatus $status;
-
-    /**
-     *
-     * @var VerificationSamlVerificationStrategy $strategy
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationSamlVerificationStrategy')]
-    public VerificationSamlVerificationStrategy $strategy;
-
-    /**
-     *
-     * @var ?VerificationSamlVerificationObject $object
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationSamlVerificationObject|null')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('saml_request')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?VerificationSamlVerificationObject $object = null;
+    public ?string $samlRequest = null;
 
     /**
      *
-     * @var ?int $attempts
+     * @var ?string $samlResponse
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('attempts')]
-    public ?int $attempts;
-
-    /**
-     *
-     * @var ?string $externalVerificationRedirectUrl
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('external_verification_redirect_url')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('saml_response')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $externalVerificationRedirectUrl = null;
+    public ?string $samlResponse = null;
 
     /**
      *
-     * @var ?VerificationSamlErrorClerkError $error
+     * @var ?string $relayState
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('error')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationSamlErrorClerkError|null')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('relay_state')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?VerificationSamlErrorClerkError $error = null;
+    public ?string $relayState = null;
 
     /**
-     *
-     * @var ?int $expireAt
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('expire_at')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $expireAt = null;
-
-    /**
-     *
-     * @var ?string $verifiedAtClient
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('verified_at_client')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $verifiedAtClient = null;
-
-    /**
-     * @param  VerificationSamlVerificationStatus  $status
-     * @param  VerificationSamlVerificationStrategy  $strategy
-     * @param  ?VerificationSamlVerificationObject  $object
-     * @param  ?int  $attempts
-     * @param  ?string  $externalVerificationRedirectUrl
-     * @param  ?VerificationSamlErrorClerkError  $error
-     * @param  ?int  $expireAt
-     * @param  ?string  $verifiedAtClient
+     * @param  ?string  $samlRequest
+     * @param  ?string  $samlResponse
+     * @param  ?string  $relayState
      * @phpstan-pure
      */
-    public function __construct(VerificationSamlVerificationStatus $status, VerificationSamlVerificationStrategy $strategy, ?VerificationSamlVerificationObject $object = null, ?int $attempts = null, ?string $externalVerificationRedirectUrl = null, ?VerificationSamlErrorClerkError $error = null, ?int $expireAt = null, ?string $verifiedAtClient = null)
+    public function __construct(?string $samlRequest = null, ?string $samlResponse = null, ?string $relayState = null)
     {
-        $this->status = $status;
-        $this->strategy = $strategy;
-        $this->object = $object;
-        $this->attempts = $attempts;
-        $this->externalVerificationRedirectUrl = $externalVerificationRedirectUrl;
-        $this->error = $error;
-        $this->expireAt = $expireAt;
-        $this->verifiedAtClient = $verifiedAtClient;
+        $this->samlRequest = $samlRequest;
+        $this->samlResponse = $samlResponse;
+        $this->relayState = $relayState;
     }
 }

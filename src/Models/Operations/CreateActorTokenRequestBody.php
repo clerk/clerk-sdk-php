@@ -24,7 +24,7 @@ class CreateActorTokenRequestBody
      *
      * This whole payload will be also included in the JWT session token.
      *
-     * @var Actor $actor
+     * @var \Clerk\Backend\Models\Operations\Actor $actor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('actor')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\Actor')]
@@ -54,7 +54,7 @@ class CreateActorTokenRequestBody
 
     /**
      * @param  string  $userId
-     * @param  Actor  $actor
+     * @param  \Clerk\Backend\Models\Operations\Actor  $actor
      * @param  ?int  $expiresInSeconds
      * @param  ?int  $sessionMaxDurationInSeconds
      * @phpstan-pure

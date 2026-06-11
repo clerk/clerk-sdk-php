@@ -13,7 +13,7 @@ class Otp
 {
     /**
      *
-     * @var VerificationStatus $status
+     * @var \Clerk\Backend\Models\Components\VerificationStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationStatus')]
@@ -21,7 +21,7 @@ class Otp
 
     /**
      *
-     * @var Strategy $strategy
+     * @var \Clerk\Backend\Models\Components\Strategy $strategy
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('strategy')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Strategy')]
@@ -29,7 +29,7 @@ class Otp
 
     /**
      *
-     * @var ?VerificationObject $object
+     * @var ?\Clerk\Backend\Models\Components\VerificationObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
     #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\VerificationObject|null')]
@@ -51,6 +51,15 @@ class Otp
     public ?int $expireAt;
 
     /**
+     * The delivery channel of the code (phone codes only).
+     *
+     * @var ?string $channel
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('channel')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $channel = null;
+
+    /**
      *
      * @var ?string $verifiedAtClient
      */
@@ -59,21 +68,23 @@ class Otp
     public ?string $verifiedAtClient = null;
 
     /**
-     * @param  VerificationStatus  $status
-     * @param  Strategy  $strategy
-     * @param  ?VerificationObject  $object
+     * @param  \Clerk\Backend\Models\Components\VerificationStatus  $status
+     * @param  \Clerk\Backend\Models\Components\Strategy  $strategy
+     * @param  ?\Clerk\Backend\Models\Components\VerificationObject  $object
      * @param  ?int  $attempts
      * @param  ?int  $expireAt
+     * @param  ?string  $channel
      * @param  ?string  $verifiedAtClient
      * @phpstan-pure
      */
-    public function __construct(VerificationStatus $status, Strategy $strategy, ?VerificationObject $object = null, ?int $attempts = null, ?int $expireAt = null, ?string $verifiedAtClient = null)
+    public function __construct(VerificationStatus $status, Strategy $strategy, ?VerificationObject $object = null, ?int $attempts = null, ?int $expireAt = null, ?string $channel = null, ?string $verifiedAtClient = null)
     {
         $this->status = $status;
         $this->strategy = $strategy;
         $this->object = $object;
         $this->attempts = $attempts;
         $this->expireAt = $expireAt;
+        $this->channel = $channel;
         $this->verifiedAtClient = $verifiedAtClient;
     }
 }
