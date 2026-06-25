@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace Clerk\Backend\Models\Components;
 
 
-class Actor
+class Actor extends \Clerk\Backend\Models\Operations\Actor
 {
 
     public function __construct()
