@@ -475,12 +475,12 @@ class Billing
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItem', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Components\CommerceSubscriptionItem2', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\ExtendBillingSubscriptionItemFreeTrialResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
-                    schemasCommerceSubscriptionItem: $obj);
+                    commerceSubscriptionItem2: $obj);
 
                 return $response;
             } else {

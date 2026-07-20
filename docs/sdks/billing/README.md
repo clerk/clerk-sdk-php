@@ -317,7 +317,7 @@ $response = $sdk->billing->extendSubscriptionItemFreeTrial(
 
 );
 
-if ($response->schemasCommerceSubscriptionItem !== null) {
+if ($response->commerceSubscriptionItem2 !== null) {
     // handle response
 }
 ```

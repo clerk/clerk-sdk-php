@@ -1,0 +1,11 @@
+# CreateSCIMDirectoryRequestBody
+
+
+## Fields
+
+| Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `enterpriseConnectionId`                                                            | *string*                                                                            | :heavy_check_mark:                                                                  | The ID of the enterprise connection to associate with this SCIM directory.          |
+| `name`                                                                              | *?string*                                                                           | :heavy_minus_sign:                                                                  | A human-friendly name for the SCIM directory.                                       |
+| `provider`                                                                          | *string*                                                                            | :heavy_check_mark:                                                                  | The identity provider for this SCIM directory.                                      |
+| `groupRoleMappings`                                                                 | array<[Operations\GroupRoleMappings](../../Models/Operations/GroupRoleMappings.md)> | :heavy_minus_sign:                                                                  | Optional SCIM group to organization role mappings to create with the directory.     |

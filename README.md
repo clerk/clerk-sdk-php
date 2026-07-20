@@ -358,6 +358,7 @@ if ($response->statusCode === 200) {
 * [delete](docs/sdks/oauthapplications/README.md#delete) - Delete an OAuth application
 * [uploadLogo](docs/sdks/oauthapplications/README.md#uploadlogo) - Upload a logo for the OAuth application
 * [rotateSecret](docs/sdks/oauthapplications/README.md#rotatesecret) - Rotate the client secret of the given OAuth application
+* [revokeToken](docs/sdks/oauthapplications/README.md#revoketoken) - Revoke an OAuth application token
 
 ### [OrganizationDomains](docs/sdks/organizationdomains/README.md)
 
@@ -457,6 +458,19 @@ if ($response->statusCode === 200) {
 * [~~get~~](docs/sdks/samlconnections/README.md#get) - Retrieve a SAML Connection by ID :warning: **Deprecated**
 * [~~update~~](docs/sdks/samlconnections/README.md#update) - Update a SAML Connection :warning: **Deprecated**
 * [~~delete~~](docs/sdks/samlconnections/README.md#delete) - Delete a SAML Connection :warning: **Deprecated**
+
+### [ScimDirectories](docs/sdks/scimdirectories/README.md)
+
+* [list](docs/sdks/scimdirectories/README.md#list) - List all SCIM directories
+* [create](docs/sdks/scimdirectories/README.md#create) - Create a SCIM directory
+* [get](docs/sdks/scimdirectories/README.md#get) - Retrieve a SCIM directory
+* [update](docs/sdks/scimdirectories/README.md#update) - Update a SCIM directory
+* [delete](docs/sdks/scimdirectories/README.md#delete) - Delete a SCIM directory
+* [rotateApiKey](docs/sdks/scimdirectories/README.md#rotateapikey) - Rotate a SCIM directory's API key
+* [listGroupRoleMappings](docs/sdks/scimdirectories/README.md#listgrouprolemappings) - List SCIM group role mappings
+* [createGroupRoleMapping](docs/sdks/scimdirectories/README.md#creategrouprolemapping) - Create a SCIM group role mapping
+* [replaceGroupRoleMappings](docs/sdks/scimdirectories/README.md#replacegrouprolemappings) - Replace SCIM group role mappings
+* [deleteGroupRoleMapping](docs/sdks/scimdirectories/README.md#deletegrouprolemapping) - Delete a SCIM group role mapping
 
 ### [Sessions](docs/sdks/sessions/README.md)
 

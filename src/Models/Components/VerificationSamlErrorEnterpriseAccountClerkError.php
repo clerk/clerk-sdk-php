@@ -33,22 +33,23 @@ class VerificationSamlErrorEnterpriseAccountClerkError
     public string $code;
 
     /**
+     * $meta
      *
-     * @var ?\Clerk\Backend\Models\Components\ClerkErrorErrorEnterpriseAccountMeta $meta
+     * @var ?array<string, mixed> $meta
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('meta')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ClerkErrorErrorEnterpriseAccountMeta|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ClerkErrorErrorEnterpriseAccountMeta $meta = null;
+    public ?array $meta = null;
 
     /**
      * @param  string  $message
      * @param  string  $longMessage
      * @param  string  $code
-     * @param  ?\Clerk\Backend\Models\Components\ClerkErrorErrorEnterpriseAccountMeta  $meta
+     * @param  ?array<string, mixed>  $meta
      * @phpstan-pure
      */
-    public function __construct(string $message, string $longMessage, string $code, ?ClerkErrorErrorEnterpriseAccountMeta $meta = null)
+    public function __construct(string $message, string $longMessage, string $code, ?array $meta = null)
     {
         $this->message = $message;
         $this->longMessage = $longMessage;

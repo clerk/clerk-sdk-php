@@ -11,6 +11,7 @@
 * [delete](#delete) - Delete an OAuth application
 * [uploadLogo](#uploadlogo) - Upload a logo for the OAuth application
 * [rotateSecret](#rotatesecret) - Rotate the client secret of the given OAuth application
+* [revokeToken](#revoketoken) - Revoke an OAuth application token
 
 ## list
 
@@ -375,4 +376,60 @@ if ($response->oAuthApplicationWithSecret !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 403, 404            | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## revokeToken
+
+Revoke both OAuth access token and refresh token for the associated grant for the given OAuth application.
+The request may specify either token.
+JWT access tokens cannot be revoked.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="RevokeOAuthApplicationToken" method="post" path="/oauth_applications/{oauth_application_id}/revoke_token" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+$requestBody = new Operations\RevokeOAuthApplicationTokenRequestBody(
+    token: '<value>',
+);
+
+$response = $sdk->oauthApplications->revokeToken(
+    oauthApplicationId: '<id>',
+    requestBody: $requestBody
+
+);
+
+if ($response->statusCode === 200) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                              | Type                                                                                                                   | Required                                                                                                               | Description                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `oauthApplicationId`                                                                                                   | *string*                                                                                                               | :heavy_check_mark:                                                                                                     | The ID of the OAuth application for which to revoke the token                                                          |
+| `requestBody`                                                                                                          | [Operations\RevokeOAuthApplicationTokenRequestBody](../../Models/Operations/RevokeOAuthApplicationTokenRequestBody.md) | :heavy_check_mark:                                                                                                     | N/A                                                                                                                    |
+
+### Response
+
+**[?Operations\RevokeOAuthApplicationTokenResponse](../../Models/Operations/RevokeOAuthApplicationTokenResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 403, 404, 422  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |

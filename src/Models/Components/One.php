@@ -178,6 +178,26 @@ class One
     public ?string $idpCertificate;
 
     /**
+     * Unix timestamp (milliseconds) of the start of the IdP certificate validity window (X.509 NotBefore). Null when no certificate is configured.
+     *
+     *
+     *
+     * @var ?int $idpCertificateIssuedAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('idp_certificate_issued_at')]
+    public ?int $idpCertificateIssuedAt;
+
+    /**
+     * Unix timestamp (milliseconds) of the end of the IdP certificate validity window (X.509 NotAfter). Null when no certificate is configured.
+     *
+     *
+     *
+     * @var ?int $idpCertificateExpiresAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('idp_certificate_expires_at')]
+    public ?int $idpCertificateExpiresAt;
+
+    /**
      *
      * @var ?\Clerk\Backend\Models\Components\SAMLConnectionAttributeMapping $attributeMapping
      */
@@ -241,6 +261,8 @@ class One
      * @param  ?string  $idpEntityId
      * @param  ?string  $idpSsoUrl
      * @param  ?string  $idpCertificate
+     * @param  ?int  $idpCertificateIssuedAt
+     * @param  ?int  $idpCertificateExpiresAt
      * @param  ?\Clerk\Backend\Models\Components\SAMLConnectionAttributeMapping  $attributeMapping
      * @param  ?string  $idpMetadataUrl
      * @param  ?string  $idpMetadata
@@ -248,7 +270,7 @@ class One
      * @param  ?string  $enterpriseConnectionId
      * @phpstan-pure
      */
-    public function __construct(SAMLConnectionObject $object, string $id, string $name, string $domain, string $acsUrl, string $spEntityId, string $spMetadataUrl, bool $active, string $provider, int $userCount, bool $syncUserAttributes, bool $allowSubdomains, bool $allowIdpInitiated, bool $disableAdditionalIdentifications, bool $allowOrganizationAccountLinking, bool $forceAuthn, int $createdAt, int $updatedAt, ?array $domains = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?SAMLConnectionAttributeMapping $attributeMapping = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?string $enterpriseConnectionId = null)
+    public function __construct(SAMLConnectionObject $object, string $id, string $name, string $domain, string $acsUrl, string $spEntityId, string $spMetadataUrl, bool $active, string $provider, int $userCount, bool $syncUserAttributes, bool $allowSubdomains, bool $allowIdpInitiated, bool $disableAdditionalIdentifications, bool $allowOrganizationAccountLinking, bool $forceAuthn, int $createdAt, int $updatedAt, ?array $domains = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?int $idpCertificateIssuedAt = null, ?int $idpCertificateExpiresAt = null, ?SAMLConnectionAttributeMapping $attributeMapping = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?string $enterpriseConnectionId = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -272,6 +294,8 @@ class One
         $this->idpEntityId = $idpEntityId;
         $this->idpSsoUrl = $idpSsoUrl;
         $this->idpCertificate = $idpCertificate;
+        $this->idpCertificateIssuedAt = $idpCertificateIssuedAt;
+        $this->idpCertificateExpiresAt = $idpCertificateExpiresAt;
         $this->attributeMapping = $attributeMapping;
         $this->idpMetadataUrl = $idpMetadataUrl;
         $this->idpMetadata = $idpMetadata;

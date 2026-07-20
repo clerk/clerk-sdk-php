@@ -1,0 +1,9 @@
+# CreateSCIMGroupRoleMappingRequest
+
+
+## Fields
+
+| Field                                                                                                                | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `scimDirectoryId`                                                                                                    | *string*                                                                                                             | :heavy_check_mark:                                                                                                   | The ID of the SCIM directory.                                                                                        |
+| `requestBody`                                                                                                        | [Operations\CreateSCIMGroupRoleMappingRequestBody](../../Models/Operations/CreateSCIMGroupRoleMappingRequestBody.md) | :heavy_check_mark:                                                                                                   | N/A                                                                                                                  |
