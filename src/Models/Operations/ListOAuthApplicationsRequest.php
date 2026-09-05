@@ -14,6 +14,9 @@ class ListOAuthApplicationsRequest
     /**
      * Returns OAuth applications with names that match the given query, via case-insensitive partial match.
      *
+     * Also returns the OAuth application whose `client_id` is exactly the given query, which is useful for
+     * resolving a `client_id` to the OAuth application `id` required by the read, update and delete endpoints.
+     *
      * @var ?string $nameQuery
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=name_query')]

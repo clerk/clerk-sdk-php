@@ -105,6 +105,16 @@ class UpdateEnterpriseConnectionSaml
     public ?bool $forceAuthn = null;
 
     /**
+     * Configuration for the login_hint sent to the IdP on SSO sign-in
+     *
+     * @var ?\Clerk\Backend\Models\Operations\UpdateEnterpriseConnectionLoginHint $loginHint
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('login_hint')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\UpdateEnterpriseConnectionLoginHint|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?UpdateEnterpriseConnectionLoginHint $loginHint = null;
+
+    /**
      * @param  ?string  $name
      * @param  ?string  $idpEntityId
      * @param  ?string  $idpSsoUrl
@@ -115,9 +125,10 @@ class UpdateEnterpriseConnectionSaml
      * @param  ?bool  $allowSubdomains
      * @param  ?bool  $allowIdpInitiated
      * @param  ?bool  $forceAuthn
+     * @param  ?\Clerk\Backend\Models\Operations\UpdateEnterpriseConnectionLoginHint  $loginHint
      * @phpstan-pure
      */
-    public function __construct(?string $name = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?UpdateEnterpriseConnectionAttributeMapping $attributeMapping = null, ?bool $allowSubdomains = null, ?bool $allowIdpInitiated = null, ?bool $forceAuthn = null)
+    public function __construct(?string $name = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?UpdateEnterpriseConnectionAttributeMapping $attributeMapping = null, ?bool $allowSubdomains = null, ?bool $allowIdpInitiated = null, ?bool $forceAuthn = null, ?UpdateEnterpriseConnectionLoginHint $loginHint = null)
     {
         $this->name = $name;
         $this->idpEntityId = $idpEntityId;
@@ -129,5 +140,6 @@ class UpdateEnterpriseConnectionSaml
         $this->allowSubdomains = $allowSubdomains;
         $this->allowIdpInitiated = $allowIdpInitiated;
         $this->forceAuthn = $forceAuthn;
+        $this->loginHint = $loginHint;
     }
 }

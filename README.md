@@ -234,6 +234,8 @@ if ($response->statusCode === 200) {
 * [cancelSubscriptionItem](docs/sdks/billing/README.md#cancelsubscriptionitem) - Cancel a subscription item
 * [extendSubscriptionItemFreeTrial](docs/sdks/billing/README.md#extendsubscriptionitemfreetrial) - Extend free trial for a subscription item
 * [createPriceTransition](docs/sdks/billing/README.md#createpricetransition) - Create a price transition for a subscription item
+* [applySubscriptionItemDiscount](docs/sdks/billing/README.md#applysubscriptionitemdiscount) - Apply a discount to a subscription item
+* [removeSubscriptionItemDiscount](docs/sdks/billing/README.md#removesubscriptionitemdiscount) - Remove a discount from a subscription item
 * [listStatements](docs/sdks/billing/README.md#liststatements) - List all billing statements
 * [getStatement](docs/sdks/billing/README.md#getstatement) - Retrieve a billing statement
 * [getStatementPaymentAttempts](docs/sdks/billing/README.md#getstatementpaymentattempts) - List payment attempts for a billing statement
@@ -249,6 +251,19 @@ if ($response->statusCode === 200) {
 * [~~list~~](docs/sdks/clients/README.md#list) - List all clients :warning: **Deprecated**
 * [verify](docs/sdks/clients/README.md#verify) - Verify a client
 * [get](docs/sdks/clients/README.md#get) - Get a client
+
+### [Directories](docs/sdks/directories/README.md)
+
+* [list](docs/sdks/directories/README.md#list) - List all directories
+* [create](docs/sdks/directories/README.md#create) - Create a directory
+* [get](docs/sdks/directories/README.md#get) - Retrieve a directory
+* [update](docs/sdks/directories/README.md#update) - Update a directory
+* [delete](docs/sdks/directories/README.md#delete) - Delete a directory
+* [rotateApiKey](docs/sdks/directories/README.md#rotateapikey) - Rotate a directory's API key
+* [listGroupRoleMappings](docs/sdks/directories/README.md#listgrouprolemappings) - List directory group role mappings
+* [createGroupRoleMapping](docs/sdks/directories/README.md#creategrouprolemapping) - Create a directory group role mapping
+* [replaceGroupRoleMappings](docs/sdks/directories/README.md#replacegrouprolemappings) - Replace directory group role mappings
+* [deleteGroupRoleMapping](docs/sdks/directories/README.md#deletegrouprolemapping) - Delete a directory group role mapping
 
 ### [Domains](docs/sdks/domains/README.md)
 
@@ -358,6 +373,7 @@ if ($response->statusCode === 200) {
 * [delete](docs/sdks/oauthapplications/README.md#delete) - Delete an OAuth application
 * [uploadLogo](docs/sdks/oauthapplications/README.md#uploadlogo) - Upload a logo for the OAuth application
 * [rotateSecret](docs/sdks/oauthapplications/README.md#rotatesecret) - Rotate the client secret of the given OAuth application
+* [revokeToken](docs/sdks/oauthapplications/README.md#revoketoken) - Revoke an OAuth application token
 
 ### [OrganizationDomains](docs/sdks/organizationdomains/README.md)
 
@@ -458,6 +474,19 @@ if ($response->statusCode === 200) {
 * [~~update~~](docs/sdks/samlconnections/README.md#update) - Update a SAML Connection :warning: **Deprecated**
 * [~~delete~~](docs/sdks/samlconnections/README.md#delete) - Delete a SAML Connection :warning: **Deprecated**
 
+### [ScimDirectories](docs/sdks/scimdirectories/README.md)
+
+* [list](docs/sdks/scimdirectories/README.md#list) - List all directories
+* [create](docs/sdks/scimdirectories/README.md#create) - Create a directory
+* [get](docs/sdks/scimdirectories/README.md#get) - Retrieve a directory
+* [update](docs/sdks/scimdirectories/README.md#update) - Update a directory
+* [delete](docs/sdks/scimdirectories/README.md#delete) - Delete a directory
+* [rotateApiKey](docs/sdks/scimdirectories/README.md#rotateapikey) - Rotate a directory's API key
+* [listGroupRoleMappings](docs/sdks/scimdirectories/README.md#listgrouprolemappings) - List SCIM group role mappings
+* [createGroupRoleMapping](docs/sdks/scimdirectories/README.md#creategrouprolemapping) - Create a SCIM group role mapping
+* [replaceGroupRoleMappings](docs/sdks/scimdirectories/README.md#replacegrouprolemappings) - Replace SCIM group role mappings
+* [deleteGroupRoleMapping](docs/sdks/scimdirectories/README.md#deletegrouprolemapping) - Delete a SCIM group role mapping
+
 ### [Sessions](docs/sdks/sessions/README.md)
 
 * [list](docs/sdks/sessions/README.md#list) - List all sessions
@@ -510,11 +539,14 @@ if ($response->statusCode === 200) {
 * [getOAuthAccessToken](docs/sdks/users/README.md#getoauthaccesstoken) - Retrieve the OAuth access token of a user
 * [getOrganizationMemberships](docs/sdks/users/README.md#getorganizationmemberships) - Retrieve all memberships for a user
 * [getOrganizationInvitations](docs/sdks/users/README.md#getorganizationinvitations) - Retrieve all invitations for a user
+* [removePassword](docs/sdks/users/README.md#removepassword) - Remove a user's password
 * [verifyPassword](docs/sdks/users/README.md#verifypassword) - Verify the password of a user
 * [verifyTotp](docs/sdks/users/README.md#verifytotp) - Verify a TOTP or backup code for a user
 * [disableMfa](docs/sdks/users/README.md#disablemfa) - Disable a user's MFA methods
 * [deleteBackupCodes](docs/sdks/users/README.md#deletebackupcodes) - Disable all user's Backup codes
 * [deletePasskey](docs/sdks/users/README.md#deletepasskey) - Delete a user passkey
+* [listTrustedDevices](docs/sdks/users/README.md#listtrusteddevices) - List a user's trusted devices
+* [revokeTrustedDevice](docs/sdks/users/README.md#revoketrusteddevice) - Revoke a user's trusted device
 * [deleteWeb3Wallet](docs/sdks/users/README.md#deleteweb3wallet) - Delete a user web3 wallet
 * [deleteTOTP](docs/sdks/users/README.md#deletetotp) - Delete all the user's TOTPs
 * [deleteExternalAccount](docs/sdks/users/README.md#deleteexternalaccount) - Delete External Account

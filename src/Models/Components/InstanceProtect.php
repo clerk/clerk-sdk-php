@@ -35,15 +35,25 @@ class InstanceProtect
     public bool $specterEnabled;
 
     /**
+     * Whether the instance has opted out of the Protect prerequisite checks, asserting its setup already meets the requirements.
+     *
+     * @var bool $checksBypassed
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('checks_bypassed')]
+    public bool $checksBypassed;
+
+    /**
      * @param  \Clerk\Backend\Models\Components\InstanceProtectObject  $object
      * @param  bool  $rulesEnabled
      * @param  bool  $specterEnabled
+     * @param  bool  $checksBypassed
      * @phpstan-pure
      */
-    public function __construct(InstanceProtectObject $object, bool $rulesEnabled, bool $specterEnabled)
+    public function __construct(InstanceProtectObject $object, bool $rulesEnabled, bool $specterEnabled, bool $checksBypassed)
     {
         $this->object = $object;
         $this->rulesEnabled = $rulesEnabled;
         $this->specterEnabled = $specterEnabled;
+        $this->checksBypassed = $checksBypassed;
     }
 }

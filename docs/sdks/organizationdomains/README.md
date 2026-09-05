@@ -165,7 +165,7 @@ if ($response->organizationDomain !== null) {
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 404, 422       | application/json    |
+| Errors\ClerkErrors  | 400, 403, 404, 422  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## delete
@@ -216,7 +216,7 @@ if ($response->deletedObject !== null) {
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 401, 404       | application/json    |
+| Errors\ClerkErrors  | 400, 401, 403, 404  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## verifyOwnership

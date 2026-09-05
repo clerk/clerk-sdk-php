@@ -55,8 +55,12 @@ class InstanceSettings
     public ?bool $progressiveSignUp = null;
 
     /**
+     * Deprecated. When enabled, production authentication emails for this instance are sent through Clerk's legacy managed email delivery path. This setting is being retired; use the instance's configured email sending domain instead.
+     *
+     *
      *
      * @var ?bool $enhancedEmailDeliverability
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('enhanced_email_deliverability')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]

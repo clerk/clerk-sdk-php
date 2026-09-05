@@ -23,16 +23,16 @@ class Seats
     /**
      * Per-unit cost breakdown by pricing tier
      *
-     * @var ?array<\Clerk\Backend\Models\Components\SchemasCommercePerUnitTotalTier> $tiers
+     * @var ?array<\Clerk\Backend\Models\Components\CommercePerUnitTotalTier2> $tiers
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tiers')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\SchemasCommercePerUnitTotalTier>|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\CommercePerUnitTotalTier2>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $tiers = null;
 
     /**
      * @param  ?int  $quantity
-     * @param  ?array<\Clerk\Backend\Models\Components\SchemasCommercePerUnitTotalTier>  $tiers
+     * @param  ?array<\Clerk\Backend\Models\Components\CommercePerUnitTotalTier2>  $tiers
      * @phpstan-pure
      */
     public function __construct(?int $quantity = null, ?array $tiers = null)

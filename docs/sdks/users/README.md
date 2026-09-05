@@ -26,11 +26,14 @@
 * [getOAuthAccessToken](#getoauthaccesstoken) - Retrieve the OAuth access token of a user
 * [getOrganizationMemberships](#getorganizationmemberships) - Retrieve all memberships for a user
 * [getOrganizationInvitations](#getorganizationinvitations) - Retrieve all invitations for a user
+* [removePassword](#removepassword) - Remove a user's password
 * [verifyPassword](#verifypassword) - Verify the password of a user
 * [verifyTotp](#verifytotp) - Verify a TOTP or backup code for a user
 * [disableMfa](#disablemfa) - Disable a user's MFA methods
 * [deleteBackupCodes](#deletebackupcodes) - Disable all user's Backup codes
 * [deletePasskey](#deletepasskey) - Delete a user passkey
+* [listTrustedDevices](#listtrusteddevices) - List a user's trusted devices
+* [revokeTrustedDevice](#revoketrusteddevice) - Revoke a user's trusted device
 * [deleteWeb3Wallet](#deleteweb3wallet) - Delete a user web3 wallet
 * [deleteTOTP](#deletetotp) - Delete all the user's TOTPs
 * [deleteExternalAccount](#deleteexternalaccount) - Delete External Account
@@ -42,6 +45,11 @@
 
 Returns a list of all users.
 The users are returned sorted by creation date, with the newest users appearing first.
+
+To walk more than a few pages, paginate with `starting_after` rather than `offset`.
+A cursor page costs the same no matter how far into the list it sits, while a large `offset`
+has to walk and discard every row before it, so it gets progressively slower and eventually
+times out. Cursor pagination requires the `created_at` ordering, which is the default.
 
 ### Example Usage
 
@@ -1204,6 +1212,60 @@ if ($response->organizationInvitationsWithPublicOrganizationData !== null) {
 | Errors\ClerkErrors  | 400, 403, 404       | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
+## removePassword
+
+Removes the password credential from the given user. This is a privileged operation and does not require the user's current password. Password removal is allowed even when the user has no other sign-in method configured.
+
+If the user does not have a password, the user is returned unchanged and no password-deletion or user-update event is emitted. By default, existing sessions remain active. Set `sign_out_of_other_sessions` to `true` to revoke sessions active when the request is processed.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="RemoveUserPassword" method="post" path="/users/{user_id}/remove_password" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->users->removePassword(
+    userId: '<id>',
+    requestBody: $requestBody
+
+);
+
+if ($response->user !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
+| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `userId`                                                                                              | *string*                                                                                              | :heavy_check_mark:                                                                                    | The ID of the user whose password to remove                                                           |
+| `requestBody`                                                                                         | [?Operations\RemoveUserPasswordRequestBody](../../Models/Operations/RemoveUserPasswordRequestBody.md) | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |
+
+### Response
+
+**[?Operations\RemoveUserPasswordResponse](../../Models/Operations/RemoveUserPasswordResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 401, 403, 404  | application/json    |
+| Errors\ClerkErrors  | 500                 | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
 ## verifyPassword
 
 Check that the user's password matches the supplied input.
@@ -1460,6 +1522,107 @@ if ($response->deletedObject !== null) {
 | Errors\ClerkErrors  | 500                 | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
+## listTrustedDevices
+
+Returns the active trusted devices enrolled by the user.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="ListUserTrustedDevices" method="get" path="/users/{user_id}/trusted_devices" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->users->listTrustedDevices(
+    userId: '<id>'
+);
+
+if ($response->trustedDeviceList !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `userId`                                              | *string*                                              | :heavy_check_mark:                                    | The ID of the user whose trusted devices are returned |
+
+### Response
+
+**[?Operations\ListUserTrustedDevicesResponse](../../Models/Operations/ListUserTrustedDevicesResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 403, 404            | application/json    |
+| Errors\ClerkErrors  | 500                 | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## revokeTrustedDevice
+
+Revokes an active trusted device enrolled by the user.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="RevokeUserTrustedDevice" method="delete" path="/users/{user_id}/trusted_devices/{trusted_device_id}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->users->revokeTrustedDevice(
+    userId: '<id>',
+    trustedDeviceId: '<id>'
+
+);
+
+if ($response->trustedDevice !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                       | Type                                            | Required                                        | Description                                     |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| `userId`                                        | *string*                                        | :heavy_check_mark:                              | The ID of the user that owns the trusted device |
+| `trustedDeviceId`                               | *string*                                        | :heavy_check_mark:                              | The ID of the trusted device to revoke          |
+
+### Response
+
+**[?Operations\RevokeUserTrustedDeviceResponse](../../Models/Operations/RevokeUserTrustedDeviceResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 403, 404            | application/json    |
+| Errors\ClerkErrors  | 500                 | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
 ## deleteWeb3Wallet
 
 Delete the web3 wallet identification for a given user.
@@ -1667,6 +1830,8 @@ if ($response->user !== null) {
 ## unsetPasswordCompromised
 
 Sets the given user's password as no longer compromised. The user will no longer be prompted to reset their password on their next sign-in.
+
+If the user is in reserved-email password quarantine, the quarantine is preserved and the returned user will still have `requires_password_reset` set to `true`. Reserved-email password quarantine can only be cleared by completing a password reset or changing/removing the password.
 
 ### Example Usage
 
