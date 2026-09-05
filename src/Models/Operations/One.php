@@ -121,6 +121,16 @@ class One
     public ?CreateSAMLConnectionRequestBodyAttributeMapping $attributeMapping = null;
 
     /**
+     * Configuration for the login_hint sent to the IdP on SSO sign-in
+     *
+     * @var ?\Clerk\Backend\Models\Operations\CreateSAMLConnectionRequestBodyLoginHint $loginHint
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('login_hint')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\CreateSAMLConnectionRequestBodyLoginHint|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?CreateSAMLConnectionRequestBodyLoginHint $loginHint = null;
+
+    /**
      * @param  string  $name
      * @param  string  $domain
      * @param  \Clerk\Backend\Models\Operations\CreateSAMLConnectionRequestBodyProvider  $provider
@@ -133,9 +143,10 @@ class One
      * @param  ?string  $idpMetadata
      * @param  ?string  $organizationId
      * @param  ?\Clerk\Backend\Models\Operations\CreateSAMLConnectionRequestBodyAttributeMapping  $attributeMapping
+     * @param  ?\Clerk\Backend\Models\Operations\CreateSAMLConnectionRequestBodyLoginHint  $loginHint
      * @phpstan-pure
      */
-    public function __construct(string $name, string $domain, CreateSAMLConnectionRequestBodyProvider $provider, ?array $domains = null, ?bool $forceAuthn = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?CreateSAMLConnectionRequestBodyAttributeMapping $attributeMapping = null)
+    public function __construct(string $name, string $domain, CreateSAMLConnectionRequestBodyProvider $provider, ?array $domains = null, ?bool $forceAuthn = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?CreateSAMLConnectionRequestBodyAttributeMapping $attributeMapping = null, ?CreateSAMLConnectionRequestBodyLoginHint $loginHint = null)
     {
         $this->name = $name;
         $this->domain = $domain;
@@ -149,5 +160,6 @@ class One
         $this->idpMetadata = $idpMetadata;
         $this->organizationId = $organizationId;
         $this->attributeMapping = $attributeMapping;
+        $this->loginHint = $loginHint;
     }
 }

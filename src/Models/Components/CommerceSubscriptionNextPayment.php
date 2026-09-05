@@ -30,10 +30,10 @@ class CommerceSubscriptionNextPayment
     /**
      * Per-unit total breakdown (for example, seats) for the next payment.
      *
-     * @var ?array<\Clerk\Backend\Models\Components\SchemasCommercePerUnitTotal> $perUnitTotals
+     * @var ?array<\Clerk\Backend\Models\Components\CommercePerUnitTotal2> $perUnitTotals
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('per_unit_totals')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\SchemasCommercePerUnitTotal>|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\CommercePerUnitTotal2>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $perUnitTotals = null;
 
@@ -50,7 +50,7 @@ class CommerceSubscriptionNextPayment
     /**
      * @param  int  $date
      * @param  \Clerk\Backend\Models\Components\CommerceMoneyResponse  $amount
-     * @param  ?array<\Clerk\Backend\Models\Components\SchemasCommercePerUnitTotal>  $perUnitTotals
+     * @param  ?array<\Clerk\Backend\Models\Components\CommercePerUnitTotal2>  $perUnitTotals
      * @param  ?\Clerk\Backend\Models\Components\CommerceSubscriptionNextPaymentTotals  $totals
      * @phpstan-pure
      */

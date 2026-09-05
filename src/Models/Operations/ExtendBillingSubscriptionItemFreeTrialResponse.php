@@ -35,22 +35,22 @@ class ExtendBillingSubscriptionItemFreeTrialResponse
     /**
      * A commerce subscription item.
      *
-     * @var ?\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItem $schemasCommerceSubscriptionItem
+     * @var ?\Clerk\Backend\Models\Components\CommerceSubscriptionItem2 $commerceSubscriptionItem2
      */
-    public ?Components\SchemasCommerceSubscriptionItem $schemasCommerceSubscriptionItem = null;
+    public ?Components\CommerceSubscriptionItem2 $commerceSubscriptionItem2 = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItem  $schemasCommerceSubscriptionItem
+     * @param  ?\Clerk\Backend\Models\Components\CommerceSubscriptionItem2  $commerceSubscriptionItem2
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\SchemasCommerceSubscriptionItem $schemasCommerceSubscriptionItem = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\CommerceSubscriptionItem2 $commerceSubscriptionItem2 = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->schemasCommerceSubscriptionItem = $schemasCommerceSubscriptionItem;
+        $this->commerceSubscriptionItem2 = $commerceSubscriptionItem2;
     }
 }

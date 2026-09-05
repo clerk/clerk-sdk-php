@@ -65,6 +65,14 @@ class OrganizationMembershipPublicUserData
 
     /**
      *
+     * @var ?bool $deprovisioned
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('deprovisioned')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $deprovisioned = null;
+
+    /**
+     *
      * @var ?string $identifier
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('identifier')]
@@ -87,11 +95,12 @@ class OrganizationMembershipPublicUserData
      * @param  ?string  $lastName
      * @param  ?string  $profileImageUrl
      * @param  ?bool  $banned
+     * @param  ?bool  $deprovisioned
      * @param  ?string  $identifier
      * @param  ?string  $username
      * @phpstan-pure
      */
-    public function __construct(string $userId, string $imageUrl, bool $hasImage, ?string $firstName = null, ?string $lastName = null, ?string $profileImageUrl = null, ?bool $banned = null, ?string $identifier = null, ?string $username = null)
+    public function __construct(string $userId, string $imageUrl, bool $hasImage, ?string $firstName = null, ?string $lastName = null, ?string $profileImageUrl = null, ?bool $banned = null, ?bool $deprovisioned = null, ?string $identifier = null, ?string $username = null)
     {
         $this->userId = $userId;
         $this->imageUrl = $imageUrl;
@@ -100,6 +109,7 @@ class OrganizationMembershipPublicUserData
         $this->lastName = $lastName;
         $this->profileImageUrl = $profileImageUrl;
         $this->banned = $banned;
+        $this->deprovisioned = $deprovisioned;
         $this->identifier = $identifier;
         $this->username = $username;
     }

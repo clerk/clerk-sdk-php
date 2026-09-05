@@ -46,6 +46,15 @@ class UpdateEnterpriseConnectionCustomAttributes
     public ?string $scimPath = null;
 
     /**
+     * The new name for `scim_path`. Send either one, or both with the same value; sending both with different values is rejected.
+     *
+     * @var ?string $directoryPath
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('directory_path')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $directoryPath = null;
+
+    /**
      * When true, the attribute supports multiple values; values from the IdP are written to public_metadata as an array. Defaults to false.
      *
      * @var ?bool $multiValued
@@ -59,15 +68,17 @@ class UpdateEnterpriseConnectionCustomAttributes
      * @param  string  $key
      * @param  ?string  $ssoPath
      * @param  ?string  $scimPath
+     * @param  ?string  $directoryPath
      * @param  ?bool  $multiValued
      * @phpstan-pure
      */
-    public function __construct(string $name, string $key, ?string $ssoPath = null, ?string $scimPath = null, ?bool $multiValued = null)
+    public function __construct(string $name, string $key, ?string $ssoPath = null, ?string $scimPath = null, ?string $directoryPath = null, ?bool $multiValued = null)
     {
         $this->name = $name;
         $this->key = $key;
         $this->ssoPath = $ssoPath;
         $this->scimPath = $scimPath;
+        $this->directoryPath = $directoryPath;
         $this->multiValued = $multiValued;
     }
 }

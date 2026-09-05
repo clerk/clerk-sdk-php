@@ -21,6 +21,16 @@ class UpdateInstanceOAuthApplicationSettingsRequestBody
     public ?bool $dynamicOauthClientRegistration = null;
 
     /**
+     * Default scopes. Set to null to reset to Clerk-provided defaults.
+     *
+     * @var ?array<string> $defaultScopes
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('default_scopes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $defaultScopes = null;
+
+    /**
      * Whether OAuth JWT access tokens are enabled for the instance (disabled indicates opaque access tokens).
      *
      * @var ?bool $oauthJwtAccessTokens
@@ -30,13 +40,48 @@ class UpdateInstanceOAuthApplicationSettingsRequestBody
     public ?bool $oauthJwtAccessTokens = null;
 
     /**
+     * Whether the instance advertises support for Client ID Metadata Documents in its OAuth authorization server metadata.
+     *
+     * @var ?bool $clientIdMetadataDocumentsAdvertised
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('client_id_metadata_documents_advertised')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $clientIdMetadataDocumentsAdvertised = null;
+
+    /**
+     * When true, new unknown CIMD clients are rejected. Previously auto-connected and pre-registered clients remain admitted; deleting a client makes it unknown again.
+     *
+     * @var ?bool $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('client_id_metadata_documents_only_allow_pre_registered_clients')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients = null;
+
+    /**
+     * When true, recorded implicitly allowed CIMD clients are rejected on future client lookups. Explicitly allowed clients remain accepted. This does not revoke previously issued access tokens.
+     *
+     * @var ?bool $clientIdMetadataDocumentsBlockImplicitlyAllowedClients
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('client_id_metadata_documents_block_implicitly_allowed_clients')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $clientIdMetadataDocumentsBlockImplicitlyAllowedClients = null;
+
+    /**
      * @param  ?bool  $dynamicOauthClientRegistration
+     * @param  ?array<string>  $defaultScopes
      * @param  ?bool  $oauthJwtAccessTokens
+     * @param  ?bool  $clientIdMetadataDocumentsAdvertised
+     * @param  ?bool  $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients
+     * @param  ?bool  $clientIdMetadataDocumentsBlockImplicitlyAllowedClients
      * @phpstan-pure
      */
-    public function __construct(?bool $dynamicOauthClientRegistration = null, ?bool $oauthJwtAccessTokens = null)
+    public function __construct(?bool $dynamicOauthClientRegistration = null, ?array $defaultScopes = null, ?bool $oauthJwtAccessTokens = null, ?bool $clientIdMetadataDocumentsAdvertised = null, ?bool $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients = null, ?bool $clientIdMetadataDocumentsBlockImplicitlyAllowedClients = null)
     {
         $this->dynamicOauthClientRegistration = $dynamicOauthClientRegistration;
+        $this->defaultScopes = $defaultScopes;
         $this->oauthJwtAccessTokens = $oauthJwtAccessTokens;
+        $this->clientIdMetadataDocumentsAdvertised = $clientIdMetadataDocumentsAdvertised;
+        $this->clientIdMetadataDocumentsOnlyAllowPreRegisteredClients = $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients;
+        $this->clientIdMetadataDocumentsBlockImplicitlyAllowedClients = $clientIdMetadataDocumentsBlockImplicitlyAllowedClients;
     }
 }

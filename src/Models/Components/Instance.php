@@ -45,17 +45,27 @@ class Instance
     public ?array $allowedOrigins;
 
     /**
+     * The ID of the Clerk workspace that owns the instance's application. It is null when the application has no owner.
+     *
+     * @var ?string $workspaceId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('workspace_id')]
+    public ?string $workspaceId;
+
+    /**
      * @param  \Clerk\Backend\Models\Components\InstanceObject  $object
      * @param  string  $id
      * @param  string  $environmentType
      * @param  ?array<string>  $allowedOrigins
+     * @param  ?string  $workspaceId
      * @phpstan-pure
      */
-    public function __construct(InstanceObject $object, string $id, string $environmentType, ?array $allowedOrigins = null)
+    public function __construct(InstanceObject $object, string $id, string $environmentType, ?array $allowedOrigins = null, ?string $workspaceId = null)
     {
         $this->object = $object;
         $this->id = $id;
         $this->environmentType = $environmentType;
         $this->allowedOrigins = $allowedOrigins;
+        $this->workspaceId = $workspaceId;
     }
 }
