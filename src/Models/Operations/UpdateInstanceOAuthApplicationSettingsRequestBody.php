@@ -21,6 +21,18 @@ class UpdateInstanceOAuthApplicationSettingsRequestBody
     public ?bool $dynamicOauthClientRegistration = null;
 
     /**
+     * Default scopes assigned when a dynamically registered or first-contact CIMD client omits `scope`. Accepts built-in keys and current custom catalog keys. `advertised` does not affect eligibility. Duplicate keys, unknown keys, and `offline_access` are rejected. An empty array or null resets to Clerk-provided defaults.
+     *
+     *
+     *
+     * @var ?array<string> $defaultScopes
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('default_scopes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $defaultScopes = null;
+
+    /**
      * Whether OAuth JWT access tokens are enabled for the instance (disabled indicates opaque access tokens).
      *
      * @var ?bool $oauthJwtAccessTokens
@@ -30,13 +42,70 @@ class UpdateInstanceOAuthApplicationSettingsRequestBody
     public ?bool $oauthJwtAccessTokens = null;
 
     /**
+     * Whether OAuth access tokens can include an aud claim derived from the RFC 8707 resource parameter.
+     *
+     * @var ?bool $audClaimEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('aud_claim_enabled')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $audClaimEnabled = null;
+
+    /**
+     * Whether all new OAuth authorization-code requests must use PKCE with the S256 challenge method.
+     *
+     * @var ?bool $pkceRequired
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('pkce_required')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $pkceRequired = null;
+
+    /**
+     * Whether the instance advertises support for Client ID Metadata Documents in its OAuth authorization server metadata.
+     *
+     * @var ?bool $clientIdMetadataDocumentsAdvertised
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('client_id_metadata_documents_advertised')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $clientIdMetadataDocumentsAdvertised = null;
+
+    /**
+     * When true, new unknown CIMD clients are rejected. Previously auto-connected and pre-registered clients remain admitted; deleting a client makes it unknown again.
+     *
+     * @var ?bool $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('client_id_metadata_documents_only_allow_pre_registered_clients')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients = null;
+
+    /**
+     * When true, recorded implicitly allowed CIMD clients are rejected on future client lookups. Explicitly allowed clients remain accepted. This does not revoke previously issued access tokens.
+     *
+     * @var ?bool $clientIdMetadataDocumentsBlockImplicitlyAllowedClients
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('client_id_metadata_documents_block_implicitly_allowed_clients')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $clientIdMetadataDocumentsBlockImplicitlyAllowedClients = null;
+
+    /**
      * @param  ?bool  $dynamicOauthClientRegistration
+     * @param  ?array<string>  $defaultScopes
      * @param  ?bool  $oauthJwtAccessTokens
+     * @param  ?bool  $audClaimEnabled
+     * @param  ?bool  $pkceRequired
+     * @param  ?bool  $clientIdMetadataDocumentsAdvertised
+     * @param  ?bool  $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients
+     * @param  ?bool  $clientIdMetadataDocumentsBlockImplicitlyAllowedClients
      * @phpstan-pure
      */
-    public function __construct(?bool $dynamicOauthClientRegistration = null, ?bool $oauthJwtAccessTokens = null)
+    public function __construct(?bool $dynamicOauthClientRegistration = null, ?array $defaultScopes = null, ?bool $oauthJwtAccessTokens = null, ?bool $audClaimEnabled = null, ?bool $pkceRequired = null, ?bool $clientIdMetadataDocumentsAdvertised = null, ?bool $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients = null, ?bool $clientIdMetadataDocumentsBlockImplicitlyAllowedClients = null)
     {
         $this->dynamicOauthClientRegistration = $dynamicOauthClientRegistration;
+        $this->defaultScopes = $defaultScopes;
         $this->oauthJwtAccessTokens = $oauthJwtAccessTokens;
+        $this->audClaimEnabled = $audClaimEnabled;
+        $this->pkceRequired = $pkceRequired;
+        $this->clientIdMetadataDocumentsAdvertised = $clientIdMetadataDocumentsAdvertised;
+        $this->clientIdMetadataDocumentsOnlyAllowPreRegisteredClients = $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients;
+        $this->clientIdMetadataDocumentsBlockImplicitlyAllowedClients = $clientIdMetadataDocumentsBlockImplicitlyAllowedClients;
     }
 }

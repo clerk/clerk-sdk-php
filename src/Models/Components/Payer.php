@@ -15,11 +15,11 @@ class Payer
     /**
      * String representing the object's type. Objects of the same type share the same value.
      *
-     * @var \Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemPayerObject $object
+     * @var \Clerk\Backend\Models\Components\CommerceSubscriptionItem2PayerObject $object
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemPayerObject')]
-    public SchemasCommerceSubscriptionItemPayerObject $object;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceSubscriptionItem2PayerObject')]
+    public CommerceSubscriptionItem2PayerObject $object;
 
     /**
      * Unique identifier for the payer.
@@ -122,7 +122,7 @@ class Payer
     public ?CommerceMoneyResponse $creditsBalance = null;
 
     /**
-     * @param  \Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemPayerObject  $object
+     * @param  \Clerk\Backend\Models\Components\CommerceSubscriptionItem2PayerObject  $object
      * @param  string  $id
      * @param  string  $instanceId
      * @param  string  $firstName
@@ -137,7 +137,7 @@ class Payer
      * @param  ?\Clerk\Backend\Models\Components\CommerceMoneyResponse  $creditsBalance
      * @phpstan-pure
      */
-    public function __construct(SchemasCommerceSubscriptionItemPayerObject $object, string $id, string $instanceId, string $firstName, string $lastName, string $email, string $imageUrl, int $createdAt, int $updatedAt, ?string $userId = null, ?string $organizationId = null, ?string $organizationName = null, ?CommerceMoneyResponse $creditsBalance = null)
+    public function __construct(CommerceSubscriptionItem2PayerObject $object, string $id, string $instanceId, string $firstName, string $lastName, string $email, string $imageUrl, int $createdAt, int $updatedAt, ?string $userId = null, ?string $organizationId = null, ?string $organizationName = null, ?CommerceMoneyResponse $creditsBalance = null)
     {
         $this->object = $object;
         $this->id = $id;

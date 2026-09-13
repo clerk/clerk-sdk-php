@@ -28,7 +28,9 @@ class ListOrganizationDomainsRequest
     public ?string $verified = null;
 
     /**
-     * Filter domains by their enrollment mode
+     * Filter domains by their enrollment mode. Accepts `automatic_invitation`, `automatic_suggestion`, `manual_invitation` or `enterprise_sso`.
+     *
+     * Prefix a value with `-` to exclude it instead (e.g. `-enterprise_sso`). Include and exclude filters can be combined and compose as AND.
      *
      * @var ?string $enrollmentMode
      */

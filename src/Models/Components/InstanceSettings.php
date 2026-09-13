@@ -55,8 +55,12 @@ class InstanceSettings
     public ?bool $progressiveSignUp = null;
 
     /**
+     * Deprecated. This setting is retired and no longer affects email delivery; all email is sent through the instance's configured email sending domain. The field is preserved for API compatibility only and will be removed in a future version.
+     *
+     *
      *
      * @var ?bool $enhancedEmailDeliverability
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('enhanced_email_deliverability')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]

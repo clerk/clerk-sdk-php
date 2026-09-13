@@ -24,19 +24,19 @@ class Credit
     /**
      * Credit amount.
      *
-     * @var ?\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemCreditAmount $amount
+     * @var ?\Clerk\Backend\Models\Components\CommerceSubscriptionItem2CreditAmount $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemCreditAmount|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceSubscriptionItem2CreditAmount|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?SchemasCommerceSubscriptionItemCreditAmount $amount = null;
+    public ?CommerceSubscriptionItem2CreditAmount $amount = null;
 
     /**
      * @param  ?float  $cycleRemainingPercent
-     * @param  ?\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItemCreditAmount  $amount
+     * @param  ?\Clerk\Backend\Models\Components\CommerceSubscriptionItem2CreditAmount  $amount
      * @phpstan-pure
      */
-    public function __construct(?float $cycleRemainingPercent = null, ?SchemasCommerceSubscriptionItemCreditAmount $amount = null)
+    public function __construct(?float $cycleRemainingPercent = null, ?CommerceSubscriptionItem2CreditAmount $amount = null)
     {
         $this->cycleRemainingPercent = $cycleRemainingPercent;
         $this->amount = $amount;

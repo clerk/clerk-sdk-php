@@ -38,15 +38,78 @@ class OAuthApplicationSettings
     public bool $oauthJwtAccessTokens;
 
     /**
+     * Whether OAuth access tokens can include an aud claim derived from the RFC 8707 resource parameter.
+     *
+     * @var bool $audClaimEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('aud_claim_enabled')]
+    public bool $audClaimEnabled;
+
+    /**
+     * Whether all new OAuth authorization-code requests must use PKCE with the S256 challenge method.
+     *
+     * @var bool $pkceRequired
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('pkce_required')]
+    public bool $pkceRequired;
+
+    /**
+     * Whether the instance advertises support for Client ID Metadata Documents in its OAuth authorization server metadata.
+     *
+     * @var bool $clientIdMetadataDocumentsAdvertised
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('client_id_metadata_documents_advertised')]
+    public bool $clientIdMetadataDocumentsAdvertised;
+
+    /**
+     * When true, new unknown CIMD clients are rejected. Previously auto-connected and pre-registered clients remain admitted; deleting a client makes it unknown again.
+     *
+     * @var bool $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('client_id_metadata_documents_only_allow_pre_registered_clients')]
+    public bool $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients;
+
+    /**
+     * When true, recorded implicitly allowed CIMD clients are rejected on future client lookups. Explicitly allowed clients remain accepted. This does not revoke previously issued access tokens.
+     *
+     * @var bool $clientIdMetadataDocumentsBlockImplicitlyAllowedClients
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('client_id_metadata_documents_block_implicitly_allowed_clients')]
+    public bool $clientIdMetadataDocumentsBlockImplicitlyAllowedClients;
+
+    /**
+     * Default scopes assigned when a dynamically registered or first-contact CIMD client omits `scope`. Contains built-in keys and custom catalog keys. Null means Clerk-provided defaults. `advertised` does not affect eligibility. An empty input array is stored and returned as null.
+     *
+     *
+     *
+     * @var ?array<string> $defaultScopes
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('default_scopes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    public ?array $defaultScopes;
+
+    /**
      * @param  \Clerk\Backend\Models\Components\OAuthApplicationSettingsObject  $object
      * @param  bool  $dynamicOauthClientRegistration
      * @param  bool  $oauthJwtAccessTokens
+     * @param  bool  $audClaimEnabled
+     * @param  bool  $pkceRequired
+     * @param  bool  $clientIdMetadataDocumentsAdvertised
+     * @param  bool  $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients
+     * @param  bool  $clientIdMetadataDocumentsBlockImplicitlyAllowedClients
+     * @param  ?array<string>  $defaultScopes
      * @phpstan-pure
      */
-    public function __construct(OAuthApplicationSettingsObject $object, bool $dynamicOauthClientRegistration, bool $oauthJwtAccessTokens)
+    public function __construct(OAuthApplicationSettingsObject $object, bool $dynamicOauthClientRegistration, bool $oauthJwtAccessTokens, bool $audClaimEnabled, bool $pkceRequired, bool $clientIdMetadataDocumentsAdvertised, bool $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients, bool $clientIdMetadataDocumentsBlockImplicitlyAllowedClients, ?array $defaultScopes = null)
     {
         $this->object = $object;
         $this->dynamicOauthClientRegistration = $dynamicOauthClientRegistration;
         $this->oauthJwtAccessTokens = $oauthJwtAccessTokens;
+        $this->audClaimEnabled = $audClaimEnabled;
+        $this->pkceRequired = $pkceRequired;
+        $this->clientIdMetadataDocumentsAdvertised = $clientIdMetadataDocumentsAdvertised;
+        $this->clientIdMetadataDocumentsOnlyAllowPreRegisteredClients = $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients;
+        $this->clientIdMetadataDocumentsBlockImplicitlyAllowedClients = $clientIdMetadataDocumentsBlockImplicitlyAllowedClients;
+        $this->defaultScopes = $defaultScopes;
     }
 }

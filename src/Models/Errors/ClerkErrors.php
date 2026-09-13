@@ -23,20 +23,21 @@ class ClerkErrors
     public array $errors;
 
     /**
+     * $meta
      *
-     * @var ?\Clerk\Backend\Models\Errors\Meta $meta
+     * @var ?array<string, mixed> $meta
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('meta')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Errors\Meta|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?Meta $meta = null;
+    public ?array $meta = null;
 
     /**
      * @param  array<\Clerk\Backend\Models\Components\ClerkError>  $errors
-     * @param  ?\Clerk\Backend\Models\Errors\Meta  $meta
+     * @param  ?array<string, mixed>  $meta
      * @phpstan-pure
      */
-    public function __construct(array $errors, ?Meta $meta = null)
+    public function __construct(array $errors, ?array $meta = null)
     {
         $this->errors = $errors;
         $this->meta = $meta;

@@ -51,6 +51,17 @@ class UpdateOrganizationRequestBody
     public ?bool $adminDeleteEnabled = null;
 
     /**
+     * Whether this organization can configure self-serve enterprise SSO.
+     *
+     * Requires the instance to have the self-serve SSO entitlement enabled.
+     *
+     * @var ?bool $selfServeSsoEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('self_serve_sso_enabled')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $selfServeSsoEnabled = null;
+
+    /**
      * A custom date/time denoting _when_ the organization was created, specified in RFC3339 format (e.g. `2012-10-20T07:15:20.902Z`).
      *
      * @var ?string $createdAt
@@ -73,16 +84,18 @@ class UpdateOrganizationRequestBody
      * @param  ?string  $slug
      * @param  ?int  $maxAllowedMemberships
      * @param  ?bool  $adminDeleteEnabled
+     * @param  ?bool  $selfServeSsoEnabled
      * @param  ?string  $createdAt
      * @param  ?string  $roleSetKey
      * @phpstan-pure
      */
-    public function __construct(?string $name = null, ?string $slug = null, ?int $maxAllowedMemberships = null, ?bool $adminDeleteEnabled = null, ?string $createdAt = null, ?string $roleSetKey = null)
+    public function __construct(?string $name = null, ?string $slug = null, ?int $maxAllowedMemberships = null, ?bool $adminDeleteEnabled = null, ?bool $selfServeSsoEnabled = null, ?string $createdAt = null, ?string $roleSetKey = null)
     {
         $this->name = $name;
         $this->slug = $slug;
         $this->maxAllowedMemberships = $maxAllowedMemberships;
         $this->adminDeleteEnabled = $adminDeleteEnabled;
+        $this->selfServeSsoEnabled = $selfServeSsoEnabled;
         $this->createdAt = $createdAt;
         $this->roleSetKey = $roleSetKey;
     }

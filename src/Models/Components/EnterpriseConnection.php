@@ -12,6 +12,14 @@ namespace Clerk\Backend\Models\Components;
 class EnterpriseConnection
 {
     /**
+     *
+     * @var \Clerk\Backend\Models\Components\EnterpriseConnectionObject $object
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('object')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\EnterpriseConnectionObject')]
+    public EnterpriseConnectionObject $object;
+
+    /**
      * The enterprise connection ID
      *
      * @var string $id
@@ -142,6 +150,7 @@ class EnterpriseConnection
     public ?OauthConfig $oauthConfig = null;
 
     /**
+     * @param  \Clerk\Backend\Models\Components\EnterpriseConnectionObject  $object
      * @param  string  $id
      * @param  string  $name
      * @param  string  $provider
@@ -159,8 +168,9 @@ class EnterpriseConnection
      * @param  ?\Clerk\Backend\Models\Components\OauthConfig  $oauthConfig
      * @phpstan-pure
      */
-    public function __construct(string $id, string $name, string $provider, bool $active, array $domains, int $createdAt, int $updatedAt, ?bool $syncUserAttributes = null, ?bool $disableAdditionalIdentifications = null, ?bool $allowOrganizationAccountLinking = null, ?array $customAttributes = null, ?string $logoPublicUrl = null, ?string $organizationId = null, ?EnterpriseConnectionSamlConnection $samlConnection = null, ?OauthConfig $oauthConfig = null)
+    public function __construct(EnterpriseConnectionObject $object, string $id, string $name, string $provider, bool $active, array $domains, int $createdAt, int $updatedAt, ?bool $syncUserAttributes = null, ?bool $disableAdditionalIdentifications = null, ?bool $allowOrganizationAccountLinking = null, ?array $customAttributes = null, ?string $logoPublicUrl = null, ?string $organizationId = null, ?EnterpriseConnectionSamlConnection $samlConnection = null, ?OauthConfig $oauthConfig = null)
     {
+        $this->object = $object;
         $this->id = $id;
         $this->name = $name;
         $this->provider = $provider;

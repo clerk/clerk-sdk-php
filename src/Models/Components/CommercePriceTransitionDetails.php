@@ -13,11 +13,11 @@ class CommercePriceTransitionDetails
 {
     /**
      *
-     * @var \Clerk\Backend\Models\Components\SchemasCommercePlan $previousPlan
+     * @var \Clerk\Backend\Models\Components\CommercePlan2 $previousPlan
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('previous_plan')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasCommercePlan')]
-    public SchemasCommercePlan $previousPlan;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommercePlan2')]
+    public CommercePlan2 $previousPlan;
 
     /**
      *
@@ -89,7 +89,7 @@ class CommercePriceTransitionDetails
     public ?ImmediateCharge $immediateCharge = null;
 
     /**
-     * @param  \Clerk\Backend\Models\Components\SchemasCommercePlan  $previousPlan
+     * @param  \Clerk\Backend\Models\Components\CommercePlan2  $previousPlan
      * @param  \Clerk\Backend\Models\Components\BillingPriceResponse  $previousPrice
      * @param  int  $effectiveAt
      * @param  \Clerk\Backend\Models\Components\EffectiveMode  $effectiveMode
@@ -100,7 +100,7 @@ class CommercePriceTransitionDetails
      * @param  ?\Clerk\Backend\Models\Components\ImmediateCharge  $immediateCharge
      * @phpstan-pure
      */
-    public function __construct(SchemasCommercePlan $previousPlan, BillingPriceResponse $previousPrice, int $effectiveAt, EffectiveMode $effectiveMode, bool $chargedImmediately, PreviousSubscriptionItemStatus $previousSubscriptionItemStatus, string $previousSubscriptionItemId, ?int $nextBillingDate = null, ?ImmediateCharge $immediateCharge = null)
+    public function __construct(CommercePlan2 $previousPlan, BillingPriceResponse $previousPrice, int $effectiveAt, EffectiveMode $effectiveMode, bool $chargedImmediately, PreviousSubscriptionItemStatus $previousSubscriptionItemStatus, string $previousSubscriptionItemId, ?int $nextBillingDate = null, ?ImmediateCharge $immediateCharge = null)
     {
         $this->previousPlan = $previousPlan;
         $this->previousPrice = $previousPrice;

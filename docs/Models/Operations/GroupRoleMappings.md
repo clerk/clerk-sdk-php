@@ -1,0 +1,11 @@
+# GroupRoleMappings
+
+
+## Fields
+
+| Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `scimGroupId`                                                                       | *string*                                                                            | :heavy_check_mark:                                                                  | The SCIM group ID from the identity provider.                                       |
+| `scimGroupDisplayName`                                                              | *?string*                                                                           | :heavy_minus_sign:                                                                  | Optional display name for the SCIM group.                                           |
+| `roleId`                                                                            | *string*                                                                            | :heavy_check_mark:                                                                  | The organization role ID to assign to members of the SCIM group.                    |
+| `precedence`                                                                        | *?int*                                                                              | :heavy_minus_sign:                                                                  | The precedence for this mapping. If omitted, precedence is assigned by array order. |

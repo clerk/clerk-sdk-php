@@ -59,7 +59,7 @@ if ($response->actorToken !== null) {
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 402, 422       | application/json    |
+| Errors\ClerkErrors  | 400, 402, 403, 422  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## revoke

@@ -1,0 +1,8 @@
+# RotateSCIMDirectoryAPIKeyRequest
+
+
+## Fields
+
+| Field                                           | Type                                            | Required                                        | Description                                     |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| `scimDirectoryId`                               | *string*                                        | :heavy_check_mark:                              | The ID of the directory whose API key to rotate |

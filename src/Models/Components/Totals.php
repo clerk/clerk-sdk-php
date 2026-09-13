@@ -47,10 +47,10 @@ class Totals
     /**
      * $perUnitTotals
      *
-     * @var ?array<\Clerk\Backend\Models\Components\SchemasCommercePerUnitTotal> $perUnitTotals
+     * @var ?array<\Clerk\Backend\Models\Components\CommercePerUnitTotal2> $perUnitTotals
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('per_unit_totals')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\SchemasCommercePerUnitTotal>|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\CommercePerUnitTotal2>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $perUnitTotals = null;
 
@@ -78,7 +78,7 @@ class Totals
      * @param  \Clerk\Backend\Models\Components\CommerceMoneyResponse  $baseFee
      * @param  \Clerk\Backend\Models\Components\CommerceMoneyResponse  $taxTotal
      * @param  \Clerk\Backend\Models\Components\CommerceMoneyResponse  $grandTotal
-     * @param  ?array<\Clerk\Backend\Models\Components\SchemasCommercePerUnitTotal>  $perUnitTotals
+     * @param  ?array<\Clerk\Backend\Models\Components\CommercePerUnitTotal2>  $perUnitTotals
      * @param  ?\Clerk\Backend\Models\Components\CommerceSubscriptionItemCredits  $credits
      * @param  ?\Clerk\Backend\Models\Components\Discounts  $discounts
      * @phpstan-pure

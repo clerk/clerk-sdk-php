@@ -48,17 +48,31 @@ class CreateEmailAddressRequestBody
     public ?bool $primary = null;
 
     /**
+     * If set to `true` and the email address is created as the user's new primary,
+     *
+     * the previous primary email address is notified of the change.
+     * By default, no notification is sent.
+     *
+     * @var ?bool $notifyPrimaryEmailAddressChanged
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('notify_primary_email_address_changed')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $notifyPrimaryEmailAddressChanged = null;
+
+    /**
      * @param  string  $userId
      * @param  string  $emailAddress
      * @param  ?bool  $verified
      * @param  ?bool  $primary
+     * @param  ?bool  $notifyPrimaryEmailAddressChanged
      * @phpstan-pure
      */
-    public function __construct(string $userId, string $emailAddress, ?bool $verified = null, ?bool $primary = null)
+    public function __construct(string $userId, string $emailAddress, ?bool $verified = null, ?bool $primary = null, ?bool $notifyPrimaryEmailAddressChanged = false)
     {
         $this->userId = $userId;
         $this->emailAddress = $emailAddress;
         $this->verified = $verified;
         $this->primary = $primary;
+        $this->notifyPrimaryEmailAddressChanged = $notifyPrimaryEmailAddressChanged;
     }
 }
