@@ -54,7 +54,7 @@ class BigIntHandler implements SubscribingHandlerInterface
             return $any;
         }
 
-        return (int) $any->toBase(10);
+        return $any->toInt();
     }
 
     /** @phpstan-ignore-next-line */

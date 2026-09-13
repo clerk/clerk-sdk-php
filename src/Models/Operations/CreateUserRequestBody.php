@@ -243,6 +243,18 @@ class CreateUserRequestBody
     public ?bool $skipPasswordRequirement = null;
 
     /**
+     * When set to `true`, the instance's restrictions are not applied to this user.
+     *
+     * Those settings are the allowlist, the blocklist, blocked disposable email domains and blocked email subaddresses, and they normally reject a matching identifier here just as they do at sign-up.
+     * Use this when your backend is creating a user it already trusts, such as during a migration or from an admin tool.
+     *
+     * @var ?bool $skipRestrictionChecks
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('skip_restriction_checks')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $skipRestrictionChecks = null;
+
+    /**
      * In case TOTP is configured on the instance, you can provide the secret to enable it on the newly created user without the need to reset it.
      *
      * Please note that currently the supported options are:
@@ -332,7 +344,7 @@ class CreateUserRequestBody
     public ?string $createdAt = null;
 
     /**
-     * When set to `true`, the user will bypass client trust checks during sign-in.
+     * When set to `true`, the user will bypass Device Trust checks during sign-in.
      *
      * @var ?bool $bypassClientTrust
      */
@@ -382,6 +394,7 @@ class CreateUserRequestBody
      * @param  ?string  $passwordDigest
      * @param  ?bool  $skipPasswordChecks
      * @param  ?bool  $skipPasswordRequirement
+     * @param  ?bool  $skipRestrictionChecks
      * @param  ?string  $totpSecret
      * @param  ?bool  $deleteSelfEnabled
      * @param  ?string  $legalAcceptedAt
@@ -395,7 +408,7 @@ class CreateUserRequestBody
      * @param  ?bool  $locked
      * @phpstan-pure
      */
-    public function __construct(?array $emailAddress = null, ?array $emailAddressIdentificationStatus = null, ?array $phoneNumber = null, ?array $phoneNumberIdentificationStatus = null, ?array $web3Wallet = null, ?string $passwordHasher = null, ?array $backupCodes = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $locale = null, ?string $username = null, ?string $password = null, ?string $passwordDigest = null, ?bool $skipPasswordChecks = null, ?bool $skipPasswordRequirement = null, ?string $totpSecret = null, ?bool $deleteSelfEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?bool $skipUserRequirement = null, ?bool $createOrganizationEnabled = null, ?int $createOrganizationsLimit = null, ?string $createdAt = null, ?bool $bypassClientTrust = null, ?bool $banned = null, ?bool $locked = null)
+    public function __construct(?array $emailAddress = null, ?array $emailAddressIdentificationStatus = null, ?array $phoneNumber = null, ?array $phoneNumberIdentificationStatus = null, ?array $web3Wallet = null, ?string $passwordHasher = null, ?array $backupCodes = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $locale = null, ?string $username = null, ?string $password = null, ?string $passwordDigest = null, ?bool $skipPasswordChecks = null, ?bool $skipPasswordRequirement = null, ?bool $skipRestrictionChecks = null, ?string $totpSecret = null, ?bool $deleteSelfEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?bool $skipUserRequirement = null, ?bool $createOrganizationEnabled = null, ?int $createOrganizationsLimit = null, ?string $createdAt = null, ?bool $bypassClientTrust = null, ?bool $banned = null, ?bool $locked = null)
     {
         $this->emailAddress = $emailAddress;
         $this->emailAddressIdentificationStatus = $emailAddressIdentificationStatus;
@@ -416,6 +429,7 @@ class CreateUserRequestBody
         $this->passwordDigest = $passwordDigest;
         $this->skipPasswordChecks = $skipPasswordChecks;
         $this->skipPasswordRequirement = $skipPasswordRequirement;
+        $this->skipRestrictionChecks = $skipRestrictionChecks;
         $this->totpSecret = $totpSecret;
         $this->deleteSelfEnabled = $deleteSelfEnabled;
         $this->legalAcceptedAt = $legalAcceptedAt;

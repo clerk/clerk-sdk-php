@@ -37,20 +37,12 @@ class CommerceCreditLedgerResponse
     public string $payerId;
 
     /**
-     * The signed credit amount. Positive for increases, negative for decreases.
      *
-     * @var int $amount
+     * @var \Clerk\Backend\Models\Components\CommerceMoneyResponse $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    public int $amount;
-
-    /**
-     * The currency code of the credit adjustment.
-     *
-     * @var string $currency
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('currency')]
-    public string $currency;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceMoneyResponse')]
+    public CommerceMoneyResponse $amount;
 
     /**
      * The type of source that originated the adjustment (e.g. "grant").
@@ -89,21 +81,19 @@ class CommerceCreditLedgerResponse
      * @param  string  $object
      * @param  string  $id
      * @param  string  $payerId
-     * @param  int  $amount
-     * @param  string  $currency
+     * @param  \Clerk\Backend\Models\Components\CommerceMoneyResponse  $amount
      * @param  string  $sourceType
      * @param  string  $sourceId
      * @param  \DateTime  $createdAt
      * @param  ?string  $note
      * @phpstan-pure
      */
-    public function __construct(string $object, string $id, string $payerId, int $amount, string $currency, string $sourceType, string $sourceId, \DateTime $createdAt, ?string $note = null)
+    public function __construct(string $object, string $id, string $payerId, CommerceMoneyResponse $amount, string $sourceType, string $sourceId, \DateTime $createdAt, ?string $note = null)
     {
         $this->object = $object;
         $this->id = $id;
         $this->payerId = $payerId;
         $this->amount = $amount;
-        $this->currency = $currency;
         $this->sourceType = $sourceType;
         $this->sourceId = $sourceId;
         $this->createdAt = $createdAt;

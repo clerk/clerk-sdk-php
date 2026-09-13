@@ -12,6 +12,7 @@ namespace Clerk\Backend\Models\Operations;
 class UpdateInstanceProtectRequestBody
 {
     /**
+     * Set true to enforce Protect rules on this instance. Set false to stop enforcing and return the instance to its default posture, where traffic is still evaluated in shadow but nothing is blocked. This does not remove the instance from Protect.
      *
      * @var ?bool $rulesEnabled
      */

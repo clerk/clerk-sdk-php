@@ -33,22 +33,23 @@ class VerificationOauthErrorEnterpriseAccountClerkError
     public string $code;
 
     /**
+     * $meta
      *
-     * @var ?\Clerk\Backend\Models\Components\ClerkErrorErrorEnterpriseAccountVerificationMeta $meta
+     * @var ?array<string, mixed> $meta
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('meta')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ClerkErrorErrorEnterpriseAccountVerificationMeta|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ClerkErrorErrorEnterpriseAccountVerificationMeta $meta = null;
+    public ?array $meta = null;
 
     /**
      * @param  string  $message
      * @param  string  $longMessage
      * @param  string  $code
-     * @param  ?\Clerk\Backend\Models\Components\ClerkErrorErrorEnterpriseAccountVerificationMeta  $meta
+     * @param  ?array<string, mixed>  $meta
      * @phpstan-pure
      */
-    public function __construct(string $message, string $longMessage, string $code, ?ClerkErrorErrorEnterpriseAccountVerificationMeta $meta = null)
+    public function __construct(string $message, string $longMessage, string $code, ?array $meta = null)
     {
         $this->message = $message;
         $this->longMessage = $longMessage;

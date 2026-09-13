@@ -67,6 +67,16 @@ class EnterpriseConnectionSamlConnection
     public ?bool $forceAuthn = null;
 
     /**
+     * Configuration for the login_hint sent to the IdP on SSO sign-in
+     *
+     * @var ?\Clerk\Backend\Models\Components\LoginHint $loginHint
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('login_hint')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\LoginHint|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?LoginHint $loginHint = null;
+
+    /**
      * IdP entity ID (optional, when connection details are loaded)
      *
      * @var ?string $idpEntityId
@@ -127,6 +137,7 @@ class EnterpriseConnectionSamlConnection
      * @param  ?bool  $allowIdpInitiated
      * @param  ?bool  $allowSubdomains
      * @param  ?bool  $forceAuthn
+     * @param  ?\Clerk\Backend\Models\Components\LoginHint  $loginHint
      * @param  ?string  $idpEntityId
      * @param  ?string  $idpSsoUrl
      * @param  ?string  $idpMetadataUrl
@@ -135,7 +146,7 @@ class EnterpriseConnectionSamlConnection
      * @param  ?string  $spMetadataUrl
      * @phpstan-pure
      */
-    public function __construct(?string $id = null, ?string $name = null, ?bool $active = null, ?bool $allowIdpInitiated = null, ?bool $allowSubdomains = null, ?bool $forceAuthn = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpMetadataUrl = null, ?string $acsUrl = null, ?string $spEntityId = null, ?string $spMetadataUrl = null)
+    public function __construct(?string $id = null, ?string $name = null, ?bool $active = null, ?bool $allowIdpInitiated = null, ?bool $allowSubdomains = null, ?bool $forceAuthn = null, ?LoginHint $loginHint = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpMetadataUrl = null, ?string $acsUrl = null, ?string $spEntityId = null, ?string $spMetadataUrl = null)
     {
         $this->id = $id;
         $this->name = $name;
@@ -143,6 +154,7 @@ class EnterpriseConnectionSamlConnection
         $this->allowIdpInitiated = $allowIdpInitiated;
         $this->allowSubdomains = $allowSubdomains;
         $this->forceAuthn = $forceAuthn;
+        $this->loginHint = $loginHint;
         $this->idpEntityId = $idpEntityId;
         $this->idpSsoUrl = $idpSsoUrl;
         $this->idpMetadataUrl = $idpMetadataUrl;

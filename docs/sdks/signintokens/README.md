@@ -54,7 +54,7 @@ if ($response->signInToken !== null) {
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 404, 422            | application/json    |
+| Errors\ClerkErrors  | 403, 404, 422       | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## revoke

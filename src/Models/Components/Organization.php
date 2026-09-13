@@ -152,6 +152,17 @@ class Organization
     public ?int $lastActiveAt = null;
 
     /**
+     * Whether this organization can configure self-serve enterprise SSO.
+     *
+     *
+     *
+     * @var ?bool $selfServeSsoEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('self_serve_sso_enabled')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $selfServeSsoEnabled = null;
+
+    /**
      * The key of the [role set](https://clerk.com/docs/guides/organizations/control-access/role-sets) assigned to this organization.
      *
      *
@@ -180,10 +191,11 @@ class Organization
      * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?string  $createdBy
      * @param  ?int  $lastActiveAt
+     * @param  ?bool  $selfServeSsoEnabled
      * @param  ?string  $roleSetKey
      * @phpstan-pure
      */
-    public function __construct(OrganizationObject $object, string $id, string $name, string $slug, bool $hasImage, int $maxAllowedMemberships, bool $adminDeleteEnabled, array $publicMetadata, int $createdAt, int $updatedAt, ?string $imageUrl = null, ?int $membersCount = null, ?bool $missingMemberWithElevatedPermissions = null, ?int $pendingInvitationsCount = null, ?array $privateMetadata = null, ?string $createdBy = null, ?int $lastActiveAt = null, ?string $roleSetKey = null)
+    public function __construct(OrganizationObject $object, string $id, string $name, string $slug, bool $hasImage, int $maxAllowedMemberships, bool $adminDeleteEnabled, array $publicMetadata, int $createdAt, int $updatedAt, ?string $imageUrl = null, ?int $membersCount = null, ?bool $missingMemberWithElevatedPermissions = null, ?int $pendingInvitationsCount = null, ?array $privateMetadata = null, ?string $createdBy = null, ?int $lastActiveAt = null, ?bool $selfServeSsoEnabled = null, ?string $roleSetKey = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -202,6 +214,7 @@ class Organization
         $this->privateMetadata = $privateMetadata;
         $this->createdBy = $createdBy;
         $this->lastActiveAt = $lastActiveAt;
+        $this->selfServeSsoEnabled = $selfServeSsoEnabled;
         $this->roleSetKey = $roleSetKey;
     }
 }

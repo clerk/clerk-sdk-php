@@ -51,7 +51,7 @@ class CreateOAuthApplicationRequestBody
     public ?bool $public = null;
 
     /**
-     * Define the allowed scopes for the new OAuth applications that dictate the user payload of the OAuth user info endpoint. Available scopes are `profile`, `email`, `public_metadata`, `private_metadata`. Provide the requested scopes as a string, separated by spaces.
+     * Define the application's built-in and custom scope ceiling. Provide scope keys as a space-delimited string. Custom keys must exist in the instance OAuth scope catalog.
      *
      * @var ?string $scopes
      */
@@ -78,16 +78,26 @@ class CreateOAuthApplicationRequestBody
     public ?bool $pkceRequired = null;
 
     /**
+     * True to enable the OAuth Device Authorization Grant for this application. Enabling requires the OAuth Device Authorization Grant feature to be enabled for the instance.
+     *
+     * @var ?bool $deviceAuthorizationGrantEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('device_authorization_grant_enabled')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $deviceAuthorizationGrantEnabled = null;
+
+    /**
      * @param  string  $name
      * @param  ?array<string>  $redirectUris
      * @param  ?string  $callbackUrl
      * @param  ?string  $scopes
      * @param  ?bool  $consentScreenEnabled
      * @param  ?bool  $pkceRequired
+     * @param  ?bool  $deviceAuthorizationGrantEnabled
      * @param  ?bool  $public
      * @phpstan-pure
      */
-    public function __construct(string $name, ?array $redirectUris = null, ?string $callbackUrl = null, ?bool $public = null, ?string $scopes = 'profile email', ?bool $consentScreenEnabled = true, ?bool $pkceRequired = false)
+    public function __construct(string $name, ?array $redirectUris = null, ?string $callbackUrl = null, ?bool $public = null, ?string $scopes = 'profile email', ?bool $consentScreenEnabled = true, ?bool $pkceRequired = false, ?bool $deviceAuthorizationGrantEnabled = false)
     {
         $this->name = $name;
         $this->redirectUris = $redirectUris;
@@ -96,5 +106,6 @@ class CreateOAuthApplicationRequestBody
         $this->scopes = $scopes;
         $this->consentScreenEnabled = $consentScreenEnabled;
         $this->pkceRequired = $pkceRequired;
+        $this->deviceAuthorizationGrantEnabled = $deviceAuthorizationGrantEnabled;
     }
 }

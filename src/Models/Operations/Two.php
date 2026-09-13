@@ -121,6 +121,16 @@ class Two
     public ?RequestBodyAttributeMapping $attributeMapping = null;
 
     /**
+     * Configuration for the login_hint sent to the IdP on SSO sign-in
+     *
+     * @var ?\Clerk\Backend\Models\Operations\RequestBodyLoginHint $loginHint
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('login_hint')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\RequestBodyLoginHint|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?RequestBodyLoginHint $loginHint = null;
+
+    /**
      * @param  string  $name
      * @param  array<string>  $domains
      * @param  \Clerk\Backend\Models\Operations\RequestBodyProvider  $provider
@@ -133,9 +143,10 @@ class Two
      * @param  ?string  $idpMetadata
      * @param  ?string  $organizationId
      * @param  ?\Clerk\Backend\Models\Operations\RequestBodyAttributeMapping  $attributeMapping
+     * @param  ?\Clerk\Backend\Models\Operations\RequestBodyLoginHint  $loginHint
      * @phpstan-pure
      */
-    public function __construct(string $name, array $domains, RequestBodyProvider $provider, ?string $domain = null, ?bool $forceAuthn = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?RequestBodyAttributeMapping $attributeMapping = null)
+    public function __construct(string $name, array $domains, RequestBodyProvider $provider, ?string $domain = null, ?bool $forceAuthn = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?RequestBodyAttributeMapping $attributeMapping = null, ?RequestBodyLoginHint $loginHint = null)
     {
         $this->name = $name;
         $this->domains = $domains;
@@ -149,5 +160,6 @@ class Two
         $this->idpMetadata = $idpMetadata;
         $this->organizationId = $organizationId;
         $this->attributeMapping = $attributeMapping;
+        $this->loginHint = $loginHint;
     }
 }
