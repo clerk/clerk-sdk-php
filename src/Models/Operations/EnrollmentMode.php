@@ -14,4 +14,9 @@ enum EnrollmentMode: string
     case ManualInvitation = 'manual_invitation';
     case AutomaticInvitation = 'automatic_invitation';
     case AutomaticSuggestion = 'automatic_suggestion';
+    case EnterpriseSso = 'enterprise_sso';
+    case MinusManualInvitation = '-manual_invitation';
+    case MinusAutomaticInvitation = '-automatic_invitation';
+    case MinusAutomaticSuggestion = '-automatic_suggestion';
+    case MinusEnterpriseSso = '-enterprise_sso';
 }

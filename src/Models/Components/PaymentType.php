@@ -14,4 +14,5 @@ enum PaymentType: string
 {
     case Card = 'card';
     case Link = 'link';
+    case PayerCredits = 'payer-credits';
 }

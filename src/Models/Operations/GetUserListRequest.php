@@ -254,6 +254,22 @@ class GetUserListRequest
     public ?array $providerUserId = null;
 
     /**
+     * A cursor for pagination: the `id` of the last user on the previous page. Returns the users that follow it.
+     *
+     *
+     * **Requires ordering by `created_at`** — that is, `order_by` omitted, or set to `created_at`, `+created_at`
+     * or `-created_at`. Any other `order_by` value is rejected with a 422: the other orderings sort by a value
+     * that is neither unique per user nor immutable, so a cursor over them would skip or repeat users.
+     *
+     * Cannot be combined with a non-zero `offset`, which is also a 422. Keep every other parameter identical
+     * across requests, and stop when a page returns fewer than `limit` users.
+     *
+     * @var ?string $startingAfter
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=starting_after')]
+    public ?string $startingAfter = null;
+
+    /**
      * Applies a limit to the number of results returned.
      *
      * Can be used for paginating the results together with `offset`.
@@ -282,6 +298,7 @@ class GetUserListRequest
      * For example, if you want users to be returned in descending order according to their `created_at` property, you can use `-created_at`.
      * If you don't use `+` or `-`, then `+` is implied. We only support one `order_by` parameter, and if multiple `order_by` parameters are provided, we will only keep the first one. For example,
      * if you pass `order_by=username&order_by=created_at`, we will consider only the first `order_by` parameter, which is `username`. The `created_at` parameter will be ignored in this case.
+     * Only the `created_at` orderings can be combined with `starting_after` cursor pagination; see that parameter.
      *
      * @var ?string $orderBy
      */
@@ -313,10 +330,11 @@ class GetUserListRequest
      * @param  ?array<string>  $providerUserId
      * @param  ?int  $limit
      * @param  ?int  $offset
+     * @param  ?string  $startingAfter
      * @param  ?string  $orderBy
      * @phpstan-pure
      */
-    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $externalId = null, ?array $username = null, ?array $web3Wallet = null, ?array $userId = null, ?array $organizationId = null, ?string $query = null, ?string $emailAddressQuery = null, ?string $phoneNumberQuery = null, ?string $usernameQuery = null, ?string $nameQuery = null, ?bool $banned = null, ?int $lastActiveAtBefore = null, ?int $lastActiveAtAfter = null, ?int $lastActiveAtSince = null, ?int $createdAtBefore = null, ?int $createdAtAfter = null, ?int $lastSignInAtBefore = null, ?int $lastSignInAtAfter = null, ?string $provider = null, ?array $providerUserId = null, ?int $limit = 10, ?int $offset = 0, ?string $orderBy = '-created_at')
+    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $externalId = null, ?array $username = null, ?array $web3Wallet = null, ?array $userId = null, ?array $organizationId = null, ?string $query = null, ?string $emailAddressQuery = null, ?string $phoneNumberQuery = null, ?string $usernameQuery = null, ?string $nameQuery = null, ?bool $banned = null, ?int $lastActiveAtBefore = null, ?int $lastActiveAtAfter = null, ?int $lastActiveAtSince = null, ?int $createdAtBefore = null, ?int $createdAtAfter = null, ?int $lastSignInAtBefore = null, ?int $lastSignInAtAfter = null, ?string $provider = null, ?array $providerUserId = null, ?string $startingAfter = null, ?int $limit = 10, ?int $offset = 0, ?string $orderBy = '-created_at')
     {
         $this->emailAddress = $emailAddress;
         $this->phoneNumber = $phoneNumber;
@@ -340,6 +358,7 @@ class GetUserListRequest
         $this->lastSignInAtAfter = $lastSignInAtAfter;
         $this->provider = $provider;
         $this->providerUserId = $providerUserId;
+        $this->startingAfter = $startingAfter;
         $this->limit = $limit;
         $this->offset = $offset;
         $this->orderBy = $orderBy;

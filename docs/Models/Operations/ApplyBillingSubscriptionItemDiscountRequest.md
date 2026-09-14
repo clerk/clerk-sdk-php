@@ -1,0 +1,9 @@
+# ApplyBillingSubscriptionItemDiscountRequest
+
+
+## Fields
+
+| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `subscriptionItemId`                                                                               | *string*                                                                                           | :heavy_check_mark:                                                                                 | The ID of the subscription item to apply the discount to                                           |
+| `applyCommerceDiscountRequest`                                                                     | [Components\ApplyCommerceDiscountRequest](../../Models/Components/ApplyCommerceDiscountRequest.md) | :heavy_check_mark:                                                                                 | Parameters for applying the discount                                                               |

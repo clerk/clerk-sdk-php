@@ -96,6 +96,16 @@ class Saml
     public ?bool $forceAuthn = null;
 
     /**
+     * Configuration for the login_hint sent to the IdP on SSO sign-in
+     *
+     * @var ?\Clerk\Backend\Models\Operations\CreateEnterpriseConnectionLoginHint $loginHint
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('login_hint')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\CreateEnterpriseConnectionLoginHint|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?CreateEnterpriseConnectionLoginHint $loginHint = null;
+
+    /**
      * @param  ?string  $idpEntityId
      * @param  ?string  $idpSsoUrl
      * @param  ?string  $idpCertificate
@@ -105,9 +115,10 @@ class Saml
      * @param  ?bool  $allowSubdomains
      * @param  ?bool  $allowIdpInitiated
      * @param  ?bool  $forceAuthn
+     * @param  ?\Clerk\Backend\Models\Operations\CreateEnterpriseConnectionLoginHint  $loginHint
      * @phpstan-pure
      */
-    public function __construct(?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?CreateEnterpriseConnectionAttributeMapping $attributeMapping = null, ?bool $allowSubdomains = null, ?bool $allowIdpInitiated = null, ?bool $forceAuthn = null)
+    public function __construct(?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?CreateEnterpriseConnectionAttributeMapping $attributeMapping = null, ?bool $allowSubdomains = null, ?bool $allowIdpInitiated = null, ?bool $forceAuthn = null, ?CreateEnterpriseConnectionLoginHint $loginHint = null)
     {
         $this->idpEntityId = $idpEntityId;
         $this->idpSsoUrl = $idpSsoUrl;
@@ -118,5 +129,6 @@ class Saml
         $this->allowSubdomains = $allowSubdomains;
         $this->allowIdpInitiated = $allowIdpInitiated;
         $this->forceAuthn = $forceAuthn;
+        $this->loginHint = $loginHint;
     }
 }

@@ -10,3 +10,4 @@ Mode of enrollment for the domain
 | `ManualInvitation`    | manual_invitation     |
 | `AutomaticInvitation` | automatic_invitation  |
 | `AutomaticSuggestion` | automatic_suggestion  |
+| `EnterpriseSso`       | enterprise_sso        |

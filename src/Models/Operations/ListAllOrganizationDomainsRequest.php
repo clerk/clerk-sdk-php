@@ -28,7 +28,9 @@ class ListAllOrganizationDomainsRequest
     public ?Verified $verified = null;
 
     /**
-     * Filter by enrollment mode
+     * Filter by enrollment mode. Prefix a value with `-` to exclude it instead
+     *
+     * (e.g. `-enterprise_sso`). Include and exclude filters can be combined and compose as AND.
      *
      * @var ?array<\Clerk\Backend\Models\Operations\EnrollmentMode> $enrollmentMode
      */
