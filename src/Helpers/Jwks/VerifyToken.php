@@ -156,10 +156,11 @@ class VerifyToken
         }
 
         $kid = self::parseKid($token);
+        $cacheKey = self::jwkCacheKey($kid, $options);
 
         if (! $options->getSkipJwksCache()) {
             // Check cache first
-            $cachedPem = self::$jwkCache->get($kid);
+            $cachedPem = self::$jwkCache->get($cacheKey);
             if ($cachedPem !== null) {
                 return $cachedPem;
             }
@@ -187,7 +188,9 @@ class VerifyToken
                     $pem = $rsaKey->toString('PKCS8');
 
                     // Cache the PEM
-                    self::$jwkCache->set($kid, $pem);
+                    if (! $options->getSkipJwksCache()) {
+                        self::$jwkCache->set($cacheKey, $pem);
+                    }
 
                     return $pem;
                 } catch (Exception $ex) {
@@ -213,16 +216,30 @@ class VerifyToken
         throw new TokenVerificationException(TokenVerificationErrorReason::$JWK_KID_MISMATCH);
     }
 
-    private static function fetchJwks(VerifyTokenOptions $options): \Clerk\Backend\Models\Components\Jwks
+    private static function jwkCacheKey(string $kid, VerifyTokenOptions $options): string
+    {
+        $scope = json_encode([
+            $options->getApiUrl(),
+            $options->getApiVersion(),
+            self::getJwksAuthKey($options),
+        ], JSON_THROW_ON_ERROR);
+
+        return hash('sha256', $scope).':'.$kid;
+    }
+
+    private static function getJwksAuthKey(VerifyTokenOptions $options): string
     {
         if ($options->getSecretKey() === null && $options->getMachineSecretKey() === null) {
             throw new TokenVerificationException(TokenVerificationErrorReason::$SECRET_KEY_MISSING);
         }
 
         // Use machine secret key if available, otherwise fall back to secret key
-        $authKey = $options->getMachineSecretKey() !== null
-            ? $options->getMachineSecretKey()
-            : $options->getSecretKey();
+        return $options->getMachineSecretKey() ?? $options->getSecretKey();
+    }
+
+    private static function fetchJwks(VerifyTokenOptions $options): \Clerk\Backend\Models\Components\Jwks
+    {
+        $authKey = self::getJwksAuthKey($options);
 
         $client = new Client();
         try {
