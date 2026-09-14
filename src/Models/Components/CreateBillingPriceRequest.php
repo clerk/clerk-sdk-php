@@ -20,7 +20,7 @@ class CreateBillingPriceRequest
     public string $planId;
 
     /**
-     * The monthly amount in cents. Must be at least $1 (100 cents) if not null.
+     * The monthly amount in cents. Use `0` for a complimentary price. Positive amounts must be at least $1 (100 cents).
      *
      * @var ?int $amount
      */
@@ -47,7 +47,7 @@ class CreateBillingPriceRequest
     public ?CreateBillingPriceRequestSupportedBillingPeriods $supportedBillingPeriods = null;
 
     /**
-     * The monthly amount in cents when billed annually. Must be at least $1 (100 cents) if not null.
+     * The monthly amount in cents when billed annually. Use `0` for a complimentary price. Positive amounts must be at least $1 (100 cents).
      *
      * @var ?int $annualMonthlyAmount
      */

@@ -21,6 +21,7 @@ class InstanceProtect
     public InstanceProtectObject $object;
 
     /**
+     * Whether Protect rules are enforced on this instance. False does not mean the instance is outside Protect — by default it is still evaluated in shadow, where rules are scored and recorded but never block.
      *
      * @var bool $rulesEnabled
      */
@@ -35,15 +36,45 @@ class InstanceProtect
     public bool $specterEnabled;
 
     /**
+     * Whether the instance has opted out of the Protect prerequisite checks, asserting its setup already meets the requirements.
+     *
+     * @var bool $checksBypassed
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('checks_bypassed')]
+    public bool $checksBypassed;
+
+    /**
+     * Whether the Protect system has verified the instance's prerequisite checks. Protect rules are gated on checks being verified, bypassed or exempt.
+     *
+     * @var bool $checksVerified
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('checks_verified')]
+    public bool $checksVerified;
+
+    /**
+     * Whether the instance was created into Protect and so was never subject to the prerequisite checks at all.
+     *
+     * @var bool $checksExempt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('checks_exempt')]
+    public bool $checksExempt;
+
+    /**
      * @param  \Clerk\Backend\Models\Components\InstanceProtectObject  $object
      * @param  bool  $rulesEnabled
      * @param  bool  $specterEnabled
+     * @param  bool  $checksBypassed
+     * @param  bool  $checksVerified
+     * @param  bool  $checksExempt
      * @phpstan-pure
      */
-    public function __construct(InstanceProtectObject $object, bool $rulesEnabled, bool $specterEnabled)
+    public function __construct(InstanceProtectObject $object, bool $rulesEnabled, bool $specterEnabled, bool $checksBypassed, bool $checksVerified, bool $checksExempt)
     {
         $this->object = $object;
         $this->rulesEnabled = $rulesEnabled;
         $this->specterEnabled = $specterEnabled;
+        $this->checksBypassed = $checksBypassed;
+        $this->checksVerified = $checksVerified;
+        $this->checksExempt = $checksExempt;
     }
 }

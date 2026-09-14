@@ -33,22 +33,23 @@ class VerificationGoogleOneTapErrorClerkError
     public string $code;
 
     /**
+     * $meta
      *
-     * @var ?\Clerk\Backend\Models\Components\ClerkErrorErrorExternalAccountWithVerificationVerificationMeta $meta
+     * @var ?array<string, mixed> $meta
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('meta')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\ClerkErrorErrorExternalAccountWithVerificationVerificationMeta|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ClerkErrorErrorExternalAccountWithVerificationVerificationMeta $meta = null;
+    public ?array $meta = null;
 
     /**
      * @param  string  $message
      * @param  string  $longMessage
      * @param  string  $code
-     * @param  ?\Clerk\Backend\Models\Components\ClerkErrorErrorExternalAccountWithVerificationVerificationMeta  $meta
+     * @param  ?array<string, mixed>  $meta
      * @phpstan-pure
      */
-    public function __construct(string $message, string $longMessage, string $code, ?ClerkErrorErrorExternalAccountWithVerificationVerificationMeta $meta = null)
+    public function __construct(string $message, string $longMessage, string $code, ?array $meta = null)
     {
         $this->message = $message;
         $this->longMessage = $longMessage;

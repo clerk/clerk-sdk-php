@@ -10,14 +10,14 @@ namespace Clerk\Backend\Models\Components;
 
 
 /**
- * Scim - Metadata describing a user's linkage to a SCIM directory. This object is only delivered on `user.created` and `user.updated` webhook events, and only when the user is provisioned through a SCIM directory. Its absence does not necessarily mean the user is not SCIM-managed.
+ * Scim - Metadata describing a user's linkage to a directory. This object is only delivered on `user.created` and `user.updated` webhook events, and only when the user is provisioned through a directory. Its absence does not necessarily mean the user is not managed by a directory.
  *
  *
  */
 class Scim
 {
     /**
-     * The ID of the SCIM directory the user is provisioned from.
+     * The ID of the directory the user is provisioned from.
      *
      *
      *
@@ -27,7 +27,7 @@ class Scim
     public string $directoryId;
 
     /**
-     * Whether the SCIM directory is currently enabled. Omitted when false.
+     * Whether the directory is currently enabled. Omitted when false.
      *
      *
      *
@@ -38,7 +38,7 @@ class Scim
     public ?bool $directoryEnabled = null;
 
     /**
-     * The user's external ID as reported by the SCIM directory, if any.
+     * The user's external ID as reported by the directory, if any.
      *
      *
      *

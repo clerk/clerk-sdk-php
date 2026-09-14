@@ -264,6 +264,10 @@ class Utils
      */
     public static function urljoin(string $base, string $rel): string
     {
+        if ($rel === '') {
+            return $base;
+        }
+
         $pbase = parse_url($base);
         if ($pbase === false) {
             throw new \InvalidArgumentException('Invalid base URL: '.$base);
@@ -278,43 +282,54 @@ class Utils
         }
 
         $merged = array_merge($pbase, $prel);
-        if (array_key_exists('path', $pbase) && array_key_exists('path', $prel) && $prel['path'][0] != '/') {
-            // Relative path
-            $dir = preg_replace('@/[^/]*$@', '', $pbase['path']);
-            $merged['path'] = $dir.'/'.$prel['path'];
-        } elseif (array_key_exists('path', $pbase)) {
-            $merged['path'] = $pbase['path'];
-        } elseif (array_key_exists('path', $prel)) {
-            $merged['path'] = $prel['path'];
+        $isRelativePath = false;
+        $normalizePath = false;
+        if (isset($prel['host'])) {
+            // A reference with its own authority is used as given, dot segments included
+            $merged['path'] = $prel['path'] ?? '';
+        } elseif (isset($prel['path']) && $prel['path'] !== '') {
+            $normalizePath = true;
+            if ($prel['path'][0] == '/') {
+                $merged['path'] = $prel['path'];
+            } else {
+                // Relative path
+                $isRelativePath = true;
+                $dir = isset($pbase['path']) ? preg_replace('@/[^/]*$@', '', $pbase['path']) : '';
+                $merged['path'] = $dir.'/'.$prel['path'];
+            }
         } else {
-            $merged['path'] = '';
+            // A query- or fragment-only reference keeps the base path as given
+            $merged['path'] = $pbase['path'] ?? '';
         }
 
-        // Get the path components, and remove the initial empty one
-        $pathParts = explode('/', $merged['path']);
-        array_shift($pathParts);
+        if ($normalizePath && $merged['path'] !== '') {
+            // Get the path components, and remove the initial empty one
+            $pathParts = explode('/', $merged['path']);
+            if ($pathParts[0] === '') {
+                array_shift($pathParts);
+            }
 
-        $path = [];
-        $prevPart = '';
-        foreach ($pathParts as $part) {
-            if ($part == '..' && count($path) > 0) {
-                // Cancel out the parent directory (if there's a parent to cancel)
-                $parent = array_pop($path);
-                // But if it was also a parent directory, leave it in
-                if ($parent == '..') {
-                    array_push($path, $parent);
+            $path = [];
+            foreach ($pathParts as $part) {
+                if ($part === '..') {
+                    // Cancel out the parent directory; a '..' above the root is dropped
+                    array_pop($path);
+                } elseif ($part === '.') {
+                    continue;
+                } elseif ($part !== '' || ! $isRelativePath) {
+                    // Merging a relative path collapses empty components; an
+                    // absolute reference keeps them
                     array_push($path, $part);
                 }
-            } elseif ($prevPart != '' || ($part != '.' && $part != '')) {
-                // Don't include empty or current-directory components
-                if ($part == '.') {
-                    $part = '';
-                }
-                array_push($path, $part);
             }
-            $prevPart = $part;
+            $lastPart = end($pathParts);
+            if ($lastPart == '.' || $lastPart == '..' || ($isRelativePath && $lastPart === '')) {
+                // A path ending in '.', '..', or a collapsed empty component
+                // resolves to a directory, keeping its trailing slash
+                array_push($path, '');
+            }
+            $merged['path'] = '/'.implode('/', $path);
         }
-        $merged['path'] = '/'.implode('/', $path);
 
         $ret = '';
         if (isset($merged['scheme'])) {
@@ -350,6 +365,8 @@ class Utils
 
         if (isset($prel['query'])) {
             $ret .= '?'.$prel['query'];
+        } elseif (($prel['path'] ?? '') === '' && ! isset($prel['host']) && isset($pbase['query'])) {
+            $ret .= '?'.$pbase['query'];
         }
 
         if (isset($prel['fragment'])) {

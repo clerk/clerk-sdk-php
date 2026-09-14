@@ -36,6 +36,23 @@ class Instance
     public string $environmentType;
 
     /**
+     * Subdomains of the instance's own domains that may originate requests, when the subdomain allowlist is enabled. Production instances only; always empty on a development instance.
+     *
+     * @var array<string> $allowedSubdomains
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('allowed_subdomains')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>')]
+    public array $allowedSubdomains;
+
+    /**
+     * Whether requests from subdomains of the instance's own domains are restricted to `allowed_subdomains`. When false, every subdomain of the instance's domain is accepted. Production instances only; always false on a development instance.
+     *
+     * @var bool $subdomainAllowlistEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('subdomain_allowlist_enabled')]
+    public bool $subdomainAllowlistEnabled;
+
+    /**
      * $allowedOrigins
      *
      * @var ?array<string> $allowedOrigins
@@ -45,17 +62,31 @@ class Instance
     public ?array $allowedOrigins;
 
     /**
+     * The ID of the Clerk workspace that owns the instance's application. It is null when the application has no owner.
+     *
+     * @var ?string $workspaceId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('workspace_id')]
+    public ?string $workspaceId;
+
+    /**
      * @param  \Clerk\Backend\Models\Components\InstanceObject  $object
      * @param  string  $id
      * @param  string  $environmentType
+     * @param  array<string>  $allowedSubdomains
+     * @param  bool  $subdomainAllowlistEnabled
      * @param  ?array<string>  $allowedOrigins
+     * @param  ?string  $workspaceId
      * @phpstan-pure
      */
-    public function __construct(InstanceObject $object, string $id, string $environmentType, ?array $allowedOrigins = null)
+    public function __construct(InstanceObject $object, string $id, string $environmentType, array $allowedSubdomains, bool $subdomainAllowlistEnabled, ?array $allowedOrigins = null, ?string $workspaceId = null)
     {
         $this->object = $object;
         $this->id = $id;
         $this->environmentType = $environmentType;
+        $this->allowedSubdomains = $allowedSubdomains;
+        $this->subdomainAllowlistEnabled = $subdomainAllowlistEnabled;
         $this->allowedOrigins = $allowedOrigins;
+        $this->workspaceId = $workspaceId;
     }
 }

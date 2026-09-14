@@ -70,12 +70,22 @@ class OAuthApplication
 
     /**
      *
+     * @var bool $deviceAuthorizationGrantEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('device_authorization_grant_enabled')]
+    public bool $deviceAuthorizationGrantEnabled;
+
+    /**
+     *
      * @var bool $public
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('public')]
     public bool $public;
 
     /**
+     * The complete scope ceiling for the OAuth application, as a space-delimited list of built-in and assigned custom scope keys.
+     *
+     *
      *
      * @var string $scopes
      */
@@ -180,6 +190,7 @@ class OAuthApplication
      * @param  bool  $dynamicallyRegistered
      * @param  bool  $consentScreenEnabled
      * @param  bool  $pkceRequired
+     * @param  bool  $deviceAuthorizationGrantEnabled
      * @param  bool  $public
      * @param  string  $scopes
      * @param  array<string>  $redirectUris
@@ -195,7 +206,7 @@ class OAuthApplication
      * @param  ?string  $clientImageUrl
      * @phpstan-pure
      */
-    public function __construct(OAuthApplicationObject $object, string $id, string $instanceId, string $name, string $clientId, bool $dynamicallyRegistered, bool $consentScreenEnabled, bool $pkceRequired, bool $public, string $scopes, array $redirectUris, string $callbackUrl, string $authorizeUrl, string $tokenFetchUrl, string $userInfoUrl, string $discoveryUrl, string $tokenIntrospectionUrl, int $createdAt, int $updatedAt, ?string $clientUri = null, ?string $clientImageUrl = null)
+    public function __construct(OAuthApplicationObject $object, string $id, string $instanceId, string $name, string $clientId, bool $dynamicallyRegistered, bool $consentScreenEnabled, bool $pkceRequired, bool $deviceAuthorizationGrantEnabled, bool $public, string $scopes, array $redirectUris, string $callbackUrl, string $authorizeUrl, string $tokenFetchUrl, string $userInfoUrl, string $discoveryUrl, string $tokenIntrospectionUrl, int $createdAt, int $updatedAt, ?string $clientUri = null, ?string $clientImageUrl = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -205,6 +216,7 @@ class OAuthApplication
         $this->dynamicallyRegistered = $dynamicallyRegistered;
         $this->consentScreenEnabled = $consentScreenEnabled;
         $this->pkceRequired = $pkceRequired;
+        $this->deviceAuthorizationGrantEnabled = $deviceAuthorizationGrantEnabled;
         $this->public = $public;
         $this->scopes = $scopes;
         $this->redirectUris = $redirectUris;

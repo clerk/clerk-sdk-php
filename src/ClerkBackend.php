@@ -111,6 +111,10 @@ class ClerkBackend
 
     public RoleSets $roleSets;
 
+    public ScimDirectories $scimDirectories;
+
+    public Directories $directories;
+
     public AdminPortalLinkTokens $adminPortalLinkTokens;
 
     /**
@@ -178,6 +182,8 @@ class ClerkBackend
         $this->billing = new Billing($this->sdkConfiguration);
         $this->organizationPermissions = new OrganizationPermissions($this->sdkConfiguration);
         $this->roleSets = new RoleSets($this->sdkConfiguration);
+        $this->scimDirectories = new ScimDirectories($this->sdkConfiguration);
+        $this->directories = new Directories($this->sdkConfiguration);
         $this->adminPortalLinkTokens = new AdminPortalLinkTokens($this->sdkConfiguration);
         $this->apiKeys = new APIKeys($this->sdkConfiguration);
         $this->m2m = new M2m($this->sdkConfiguration);

@@ -11,6 +11,8 @@
 * [cancelSubscriptionItem](#cancelsubscriptionitem) - Cancel a subscription item
 * [extendSubscriptionItemFreeTrial](#extendsubscriptionitemfreetrial) - Extend free trial for a subscription item
 * [createPriceTransition](#createpricetransition) - Create a price transition for a subscription item
+* [applySubscriptionItemDiscount](#applysubscriptionitemdiscount) - Apply a discount to a subscription item
+* [removeSubscriptionItemDiscount](#removesubscriptionitemdiscount) - Remove a discount from a subscription item
 * [listStatements](#liststatements) - List all billing statements
 * [getStatement](#getstatement) - Retrieve a billing statement
 * [getStatementPaymentAttempts](#getstatementpaymentattempts) - List payment attempts for a billing statement
@@ -317,7 +319,7 @@ $response = $sdk->billing->extendSubscriptionItemFreeTrial(
 
 );
 
-if ($response->schemasCommerceSubscriptionItem !== null) {
+if ($response->commerceSubscriptionItem2 !== null) {
     // handle response
 }
 ```
@@ -389,6 +391,117 @@ if ($response->commercePriceTransitionResponse !== null) {
 ### Response
 
 **[?Operations\CreateBillingPriceTransitionResponse](../../Models/Operations/CreateBillingPriceTransitionResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\ClerkErrors           | 400, 401, 403, 404, 409, 422 | application/json             |
+| Errors\ClerkErrors           | 500                          | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+
+## applySubscriptionItemDiscount
+
+Applies an existing discount to a subscription item.
+Manual application is an override path: self-serve distribution rules are not enforced.
+At most one active discount is allowed per subscription item; applying a different
+discount replaces the currently active one. Re-applying the same active discount returns a conflict.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="ApplyBillingSubscriptionItemDiscount" method="post" path="/billing/subscription_items/{subscription_item_id}/discounts" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+use Clerk\Backend\Models\Components;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+$applyCommerceDiscountRequest = new Components\ApplyCommerceDiscountRequest(
+    discountId: '<id>',
+);
+
+$response = $sdk->billing->applySubscriptionItemDiscount(
+    subscriptionItemId: '<id>',
+    applyCommerceDiscountRequest: $applyCommerceDiscountRequest
+
+);
+
+if ($response->commerceDiscountRedemptionResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `subscriptionItemId`                                                                               | *string*                                                                                           | :heavy_check_mark:                                                                                 | The ID of the subscription item to apply the discount to                                           |
+| `applyCommerceDiscountRequest`                                                                     | [Components\ApplyCommerceDiscountRequest](../../Models/Components/ApplyCommerceDiscountRequest.md) | :heavy_check_mark:                                                                                 | Parameters for applying the discount                                                               |
+
+### Response
+
+**[?Operations\ApplyBillingSubscriptionItemDiscountResponse](../../Models/Operations/ApplyBillingSubscriptionItemDiscountResponse.md)**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\ClerkErrors           | 400, 401, 403, 404, 409, 422 | application/json             |
+| Errors\ClerkErrors           | 500                          | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
+
+## removeSubscriptionItemDiscount
+
+Removes the active discount from a subscription item.
+The discount_id must match the subscription item's currently active discount.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="RemoveBillingSubscriptionItemDiscount" method="delete" path="/billing/subscription_items/{subscription_item_id}/discounts/{discount_id}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->billing->removeSubscriptionItemDiscount(
+    subscriptionItemId: '<id>',
+    discountId: '<id>'
+
+);
+
+if ($response->commerceDiscountRedemptionResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `subscriptionItemId`                                        | *string*                                                    | :heavy_check_mark:                                          | The ID of the subscription item to remove the discount from |
+| `discountId`                                                | *string*                                                    | :heavy_check_mark:                                          | The ID of the discount to remove                            |
+
+### Response
+
+**[?Operations\RemoveBillingSubscriptionItemDiscountResponse](../../Models/Operations/RemoveBillingSubscriptionItemDiscountResponse.md)**
 
 ### Errors
 

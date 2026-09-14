@@ -74,7 +74,7 @@ class Domain
     public ?string $proxyUrl = null;
 
     /**
-     * $cnameTargets
+     * Legacy CNAME-only DNS targets. Prefer `dns_targets` when present.
      *
      * @var ?array<\Clerk\Backend\Models\Components\CNameTarget> $cnameTargets
      */
@@ -82,6 +82,18 @@ class Domain
     #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\CNameTarget>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $cnameTargets = null;
+
+    /**
+     * The complete typed DNS contract. Consumers should use this field instead of merging it with `cname_targets`.
+     *
+     *
+     *
+     * @var ?array<\Clerk\Backend\Models\Components\DNSTarget> $dnsTargets
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('dns_targets')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\DNSTarget>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $dnsTargets = null;
 
     /**
      * @param  \Clerk\Backend\Models\Components\DomainObject  $object
@@ -93,9 +105,10 @@ class Domain
      * @param  ?string  $accountsPortalUrl
      * @param  ?string  $proxyUrl
      * @param  ?array<\Clerk\Backend\Models\Components\CNameTarget>  $cnameTargets
+     * @param  ?array<\Clerk\Backend\Models\Components\DNSTarget>  $dnsTargets
      * @phpstan-pure
      */
-    public function __construct(DomainObject $object, string $id, string $name, bool $isSatellite, string $frontendApiUrl, string $developmentOrigin, ?string $accountsPortalUrl = null, ?string $proxyUrl = null, ?array $cnameTargets = null)
+    public function __construct(DomainObject $object, string $id, string $name, bool $isSatellite, string $frontendApiUrl, string $developmentOrigin, ?string $accountsPortalUrl = null, ?string $proxyUrl = null, ?array $cnameTargets = null, ?array $dnsTargets = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -106,5 +119,6 @@ class Domain
         $this->accountsPortalUrl = $accountsPortalUrl;
         $this->proxyUrl = $proxyUrl;
         $this->cnameTargets = $cnameTargets;
+        $this->dnsTargets = $dnsTargets;
     }
 }

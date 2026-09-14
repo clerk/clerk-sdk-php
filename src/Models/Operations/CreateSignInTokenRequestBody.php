@@ -20,6 +20,17 @@ class CreateSignInTokenRequestBody
     public string $userId;
 
     /**
+     * The ID of the organization to activate when the user signs in.
+     *
+     * Organizations must be enabled for the instance, and the user must be a member of the organization.
+     *
+     * @var ?string $orgId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('org_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $orgId = null;
+
+    /**
      * Optional parameter to specify the life duration of the sign in token in seconds.
      *
      * By default, the duration is 30 days.
@@ -32,12 +43,14 @@ class CreateSignInTokenRequestBody
 
     /**
      * @param  string  $userId
+     * @param  ?string  $orgId
      * @param  ?int  $expiresInSeconds
      * @phpstan-pure
      */
-    public function __construct(string $userId, ?int $expiresInSeconds = 2592000)
+    public function __construct(string $userId, ?string $orgId = null, ?int $expiresInSeconds = 2592000)
     {
         $this->userId = $userId;
+        $this->orgId = $orgId;
         $this->expiresInSeconds = $expiresInSeconds;
     }
 }

@@ -235,7 +235,7 @@ class UpdateUserRequestBody
     public ?string $createdAt = null;
 
     /**
-     * When set to `true`, the user will bypass client trust checks during sign-in.
+     * When set to `true`, the user will bypass Device Trust checks during sign-in.
      *
      * @var ?bool $bypassClientTrust
      */

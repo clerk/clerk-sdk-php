@@ -23,11 +23,11 @@ class CommercePriceTransitionResponse
 
     /**
      *
-     * @var \Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItem $subscriptionItem
+     * @var \Clerk\Backend\Models\Components\CommerceSubscriptionItem2 $subscriptionItem
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('subscription_item')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItem')]
-    public SchemasCommerceSubscriptionItem $subscriptionItem;
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\CommerceSubscriptionItem2')]
+    public CommerceSubscriptionItem2 $subscriptionItem;
 
     /**
      *
@@ -39,11 +39,11 @@ class CommercePriceTransitionResponse
 
     /**
      * @param  \Clerk\Backend\Models\Components\CommercePriceTransitionResponseObject  $object
-     * @param  \Clerk\Backend\Models\Components\SchemasCommerceSubscriptionItem  $subscriptionItem
+     * @param  \Clerk\Backend\Models\Components\CommerceSubscriptionItem2  $subscriptionItem
      * @param  \Clerk\Backend\Models\Components\CommercePriceTransitionDetails  $transition
      * @phpstan-pure
      */
-    public function __construct(CommercePriceTransitionResponseObject $object, SchemasCommerceSubscriptionItem $subscriptionItem, CommercePriceTransitionDetails $transition)
+    public function __construct(CommercePriceTransitionResponseObject $object, CommerceSubscriptionItem2 $subscriptionItem, CommercePriceTransitionDetails $transition)
     {
         $this->object = $object;
         $this->subscriptionItem = $subscriptionItem;
