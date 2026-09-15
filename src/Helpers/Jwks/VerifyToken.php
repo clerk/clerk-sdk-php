@@ -73,7 +73,7 @@ class VerifyToken
             }
         }
 
-        if ($options->getAuthorizedParties() !== null) {
+        if ($options->getAuthorizedParties() !== null && $options->getAuthorizedParties() !== []) {
             if (isset($payload->azp) && ! in_array($payload->azp, $options->getAuthorizedParties())) {
                 throw new TokenVerificationException(TokenVerificationErrorReason::$TOKEN_INVALID_AUTHORIZED_PARTIES);
             }
