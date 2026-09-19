@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace Clerk\Backend\Models\Components;
 
 
-class Groups
+class UserScimGroups
 {
     /**
      *

@@ -20,6 +20,14 @@ class AddDomainRequestBody
     public string $name;
 
     /**
+     * Marks the new domain as satellite. Set to `false` only when migrating a production instance from an active provider domain to a custom domain.
+     *
+     * @var bool $isSatellite
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('is_satellite')]
+    public bool $isSatellite;
+
+    /**
      * The full URL of the proxy which will forward requests to the Clerk Frontend API for this domain. Applicable only to production instances.
      *
      * @var ?string $proxyUrl
@@ -29,23 +37,15 @@ class AddDomainRequestBody
     public ?string $proxyUrl = null;
 
     /**
-     * Marks the new domain as satellite. Only `true` is accepted at the moment.
-     *
-     * @var bool $isSatellite
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('is_satellite')]
-    public bool $isSatellite;
-
-    /**
      * @param  string  $name
      * @param  bool  $isSatellite
      * @param  ?string  $proxyUrl
      * @phpstan-pure
      */
-    public function __construct(string $name, ?string $proxyUrl = null, bool $isSatellite = true)
+    public function __construct(string $name, bool $isSatellite, ?string $proxyUrl = null)
     {
         $this->name = $name;
-        $this->proxyUrl = $proxyUrl;
         $this->isSatellite = $isSatellite;
+        $this->proxyUrl = $proxyUrl;
     }
 }
