@@ -10,11 +10,11 @@ namespace Clerk\Backend\Models\Components;
 
 
 /**
- * Scim - Alias of directory. Use directories for all links.
+ * UserDirectory - The most recently updated directory link. Use directories for all links.
  *
  * @deprecated  class: This will be removed in a future release, please migrate away from it as soon as possible.
  */
-class Scim
+class UserDirectory
 {
     /**
      * The user's resource ID in this directory.
@@ -68,10 +68,10 @@ class Scim
     /**
      * Omitted when groups were not loaded; an empty array means no group memberships.
      *
-     * @var ?array<\Clerk\Backend\Models\Components\UserScimGroups> $groups
+     * @var ?array<\Clerk\Backend\Models\Components\UserGroups> $groups
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('groups')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\UserScimGroups>|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\UserGroups>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $groups = null;
 
@@ -92,7 +92,7 @@ class Scim
      * @param  string  $directoryId
      * @param  bool  $directoryEnabled
      * @param  ?string  $enterpriseConnectionId
-     * @param  ?array<\Clerk\Backend\Models\Components\UserScimGroups>  $groups
+     * @param  ?array<\Clerk\Backend\Models\Components\UserGroups>  $groups
      * @param  ?string  $externalId
      * @phpstan-pure
      */
