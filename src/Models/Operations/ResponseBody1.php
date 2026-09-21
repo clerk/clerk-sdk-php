@@ -78,6 +78,16 @@ class ResponseBody1
     public float $updatedAt;
 
     /**
+     * The audiences of the access token. Omitted when no audience is set.
+     *
+     * @var ?array<string> $aud
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('aud')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $aud = null;
+
+    /**
      *
      * @var ?string $revocationReason
      */
@@ -101,11 +111,12 @@ class ResponseBody1
      * @param  bool  $expired
      * @param  float  $createdAt
      * @param  float  $updatedAt
+     * @param  ?array<string>  $aud
      * @param  ?string  $revocationReason
      * @param  ?float  $expiration
      * @phpstan-pure
      */
-    public function __construct(ResponseBodyObject $object, string $id, string $clientId, string $subject, array $scopes, bool $revoked, bool $expired, float $createdAt, float $updatedAt, ?string $revocationReason = null, ?float $expiration = null)
+    public function __construct(ResponseBodyObject $object, string $id, string $clientId, string $subject, array $scopes, bool $revoked, bool $expired, float $createdAt, float $updatedAt, ?array $aud = null, ?string $revocationReason = null, ?float $expiration = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -116,6 +127,7 @@ class ResponseBody1
         $this->expired = $expired;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
+        $this->aud = $aud;
         $this->revocationReason = $revocationReason;
         $this->expiration = $expiration;
     }

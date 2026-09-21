@@ -12,7 +12,7 @@ use Clerk\Backend\Utils\SpeakeasyMetadata;
 class DeleteDomainRequest
 {
     /**
-     * The ID of the domain that will be deleted. Must be a satellite domain.
+     * The ID of the domain that will be deleted.
      *
      * @var string $domainId
      */
