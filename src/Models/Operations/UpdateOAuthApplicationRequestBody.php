@@ -70,7 +70,7 @@ class UpdateOAuthApplicationRequestBody
     public ?bool $pkceRequired = null;
 
     /**
-     * True to enable the OAuth Device Authorization Grant for this application. Enabling requires the OAuth Device Authorization Grant feature to be enabled for the instance. Omit this field to leave the setting unchanged.
+     * True to enable the OAuth Device Authorization Grant for this application. Enabling requires the new OAuth IdP and a reachable device verification page. Omit this field to leave the setting unchanged.
      *
      * @var ?bool $deviceAuthorizationGrantEnabled
      */

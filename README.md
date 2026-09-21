@@ -269,7 +269,7 @@ if ($response->statusCode === 200) {
 
 * [list](docs/sdks/domains/README.md#list) - List all instance domains
 * [add](docs/sdks/domains/README.md#add) - Add a domain
-* [delete](docs/sdks/domains/README.md#delete) - Delete a satellite domain
+* [delete](docs/sdks/domains/README.md#delete) - Delete a domain
 * [update](docs/sdks/domains/README.md#update) - Update a domain
 
 ### [EmailAddresses](docs/sdks/emailaddresses/README.md)
@@ -493,6 +493,7 @@ if ($response->statusCode === 200) {
 * [create](docs/sdks/sessions/README.md#create) - Create a new active session
 * [get](docs/sdks/sessions/README.md#get) - Retrieve a session
 * [refresh](docs/sdks/sessions/README.md#refresh) - Refresh a session
+* [getReverification](docs/sdks/sessions/README.md#getreverification) - Retrieve a reverification
 * [revoke](docs/sdks/sessions/README.md#revoke) - Revoke a session
 * [createToken](docs/sdks/sessions/README.md#createtoken) - Create a session token
 * [createTokenFromTemplate](docs/sdks/sessions/README.md#createtokenfromtemplate) - Create a session token from a JWT template

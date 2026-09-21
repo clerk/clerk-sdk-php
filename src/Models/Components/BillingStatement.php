@@ -73,10 +73,10 @@ class BillingStatement
     /**
      * Array of statement groups.
      *
-     * @var array<\Clerk\Backend\Models\Components\Groups> $groups
+     * @var array<\Clerk\Backend\Models\Components\BillingStatementGroups> $groups
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('groups')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\Groups>')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\BillingStatementGroups>')]
     public array $groups;
 
     /**
@@ -87,7 +87,7 @@ class BillingStatement
      * @param  \Clerk\Backend\Models\Components\CommercePayerResponse  $payer
      * @param  \Clerk\Backend\Models\Components\BillingStatementStatus  $status
      * @param  \Clerk\Backend\Models\Components\BillingStatementTotals  $totals
-     * @param  array<\Clerk\Backend\Models\Components\Groups>  $groups
+     * @param  array<\Clerk\Backend\Models\Components\BillingStatementGroups>  $groups
      * @phpstan-pure
      */
     public function __construct(BillingStatementObject $object, string $id, string $instanceId, int $timestamp, CommercePayerResponse $payer, BillingStatementStatus $status, BillingStatementTotals $totals, array $groups)

@@ -1,8 +1,7 @@
-# ~~Scim~~
+# SCIMUserMetadata
 
-Alias of directory. Use directories for all links.
+Metadata describing a user's linkage to a directory. Included in user responses when directory data is requested, and in directory-triggered user webhooks. Its absence does not necessarily mean the user is not managed by a directory.
 
-> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 
 ## Fields
@@ -13,7 +12,7 @@ Alias of directory. Use directories for all links.
 | `directoryName`                                                                 | *string*                                                                        | :heavy_check_mark:                                                              | N/A                                                                             |
 | `provider`                                                                      | *string*                                                                        | :heavy_check_mark:                                                              | N/A                                                                             |
 | `enterpriseConnectionId`                                                        | *string*                                                                        | :heavy_check_mark:                                                              | N/A                                                                             |
-| `groups`                                                                        | array<[Components\UserScimGroups](../../Models/Components/UserScimGroups.md)>   | :heavy_minus_sign:                                                              | Omitted when groups were not loaded; an empty array means no group memberships. |
+| `groups`                                                                        | array<[Components\Groups](../../Models/Components/Groups.md)>                   | :heavy_minus_sign:                                                              | Omitted when groups were not loaded; an empty array means no group memberships. |
 | `directoryId`                                                                   | *string*                                                                        | :heavy_check_mark:                                                              | The ID of the directory the user is provisioned from.<br/>                      |
 | `directoryEnabled`                                                              | *bool*                                                                          | :heavy_check_mark:                                                              | Whether the directory is currently enabled.<br/>                                |
 | `externalId`                                                                    | *string*                                                                        | :heavy_check_mark:                                                              | The user's external ID as reported by the directory, if any.<br/>               |

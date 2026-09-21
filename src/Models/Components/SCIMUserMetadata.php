@@ -10,11 +10,11 @@ namespace Clerk\Backend\Models\Components;
 
 
 /**
- * Scim - Alias of directory. Use directories for all links.
+ * SCIMUserMetadata - Metadata describing a user's linkage to a directory. Included in user responses when directory data is requested, and in directory-triggered user webhooks. Its absence does not necessarily mean the user is not managed by a directory.
  *
- * @deprecated  class: This will be removed in a future release, please migrate away from it as soon as possible.
+ *
  */
-class Scim
+class SCIMUserMetadata
 {
     /**
      * The user's resource ID in this directory.
@@ -68,10 +68,10 @@ class Scim
     /**
      * Omitted when groups were not loaded; an empty array means no group memberships.
      *
-     * @var ?array<\Clerk\Backend\Models\Components\UserScimGroups> $groups
+     * @var ?array<\Clerk\Backend\Models\Components\Groups> $groups
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('groups')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\UserScimGroups>|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\Groups>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $groups = null;
 
@@ -92,7 +92,7 @@ class Scim
      * @param  string  $directoryId
      * @param  bool  $directoryEnabled
      * @param  ?string  $enterpriseConnectionId
-     * @param  ?array<\Clerk\Backend\Models\Components\UserScimGroups>  $groups
+     * @param  ?array<\Clerk\Backend\Models\Components\Groups>  $groups
      * @param  ?string  $externalId
      * @phpstan-pure
      */
