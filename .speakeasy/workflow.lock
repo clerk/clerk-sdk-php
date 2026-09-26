@@ -1,4 +1,4 @@
-speakeasyVersion: 1.798.0
+speakeasyVersion: 1.799.0
 sources:
     backend-php:
         sourceNamespace: clerk-openapi
@@ -26,7 +26,7 @@ targets:
         sourceRevisionDigest: sha256:3e81fc7955c44254605f6d3775360a4b7240784ef33b347a95774180d3de36df
         sourceBlobDigest: sha256:d00f1d0f528cdad594bf657503cb9134ce81a46b3d0f3c43329c8956125c6355
         codeSamplesNamespace: clerk-openapi-php-code-samples
-        codeSamplesRevisionDigest: sha256:9fb29878b0cee2d199579f9ee5f31cdf138178a907956248493eed04645dd1ec
+        codeSamplesRevisionDigest: sha256:6ebec4024c5d8416a34de89963a9374e33863cba065ae915221b6fefd9758089
     my-first-target:
         source: clerk-backend-php
         sourceNamespace: clerk-openapi
