@@ -3,17 +3,17 @@ id: 8c24a12b-d2f1-466a-bdaa-6d83a049a679
 management:
   docChecksum: b03e3390aaa6e645468a26976949a077
   docVersion: "2026-05-12"
-  speakeasyVersion: 1.798.0
-  generationVersion: 2.938.0
-  releaseVersion: 2.0.1
-  configChecksum: 692bee8618bfac2b813ec1d78144b6bf
+  speakeasyVersion: 1.799.0
+  generationVersion: 2.941.0
+  releaseVersion: 2.0.2
+  configChecksum: c606b7f7703550a868b8aa9509a4bd1b
   repoURL: https://github.com/clerk/clerk-sdk-php.git
   installationURL: https://github.com/clerk/clerk-sdk-php.git
   published: true
 persistentEdits:
-  generation_id: f2c96899-d642-44b8-8b36-0c7f928aec47
-  pristine_commit_hash: 7b265aabf8000d4b35eb6718800a4f4e531fc143
-  pristine_tree_hash: 040e45ba0457b0f70dbd063f2390297da219a93e
+  generation_id: 7ebb2191-7f57-4a9c-9f3f-7e639560ce83
+  pristine_commit_hash: 170f5645e678253fbbaa02bb3f35bb91cef5e8a1
+  pristine_tree_hash: e561eac09defc642d4f6c39acc940ecf84c50b14
 features:
   php:
     additionalProperties: 0.1.1
@@ -10347,8 +10347,8 @@ trackedFiles:
     pristine_git_object: 376c66d8375879737853278cc5bbfd8a4a2b8a13
   src/SDKConfiguration.php:
     id: 9d60ab0bec0b
-    last_write_checksum: sha1:6597e0bcb9318fabc638ca2217b95593547b8912
-    pristine_git_object: a208d51a4a172c9c45a37951cd5e83403826fd0c
+    last_write_checksum: sha1:321f0da762301138489a2d2aa15a3d749f7a6ac0
+    pristine_git_object: 5ea0442ad26a2406b31e6b0e68d4149fc60e1aec
   src/SamlConnections.php:
     id: 473af6fe9f80
     last_write_checksum: sha1:919f47603f500b976692b05d05d31db7e68a2423
@@ -13212,7 +13212,6 @@ examples:
           application/json: {"errors": [{"message": "<value>", "long_message": "<value>", "code": "<value>"}]}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Php SDK Changes:\n* `clerkbackend->sessions->getReverification()`: **Added**\n* `clerkbackend->phonenumbers->attemptVerification()`:  `error` **Changed**\n* `clerkbackend->users->list()`:  `response.[]` **Changed**\n* `clerkbackend->users->create()`:  `response` **Changed**\n* `clerkbackend->users->get()`:  `response` **Changed**\n* `clerkbackend->users->update()`:  `response` **Changed**\n* `clerkbackend->users->ban()`:  `response` **Changed**\n* `clerkbackend->users->unban()`:  `response` **Changed**\n* `clerkbackend->users->bulkBan()`:  `response.[]` **Changed**\n* `clerkbackend->users->bulkUnban()`:  `response.[]` **Changed**\n* `clerkbackend->users->lock()`:  `response` **Changed**\n* `clerkbackend->users->unlock()`:  `response` **Changed**\n* `clerkbackend->users->setProfileImage()`:  `response` **Changed**\n* `clerkbackend->users->deleteProfileImage()`:  `response` **Changed**\n* `clerkbackend->users->updateMetadata()`:  `response` **Changed**\n* `clerkbackend->users->replaceMetadata()`:  `response` **Changed**\n* `clerkbackend->users->removePassword()`:  `response` **Changed**\n* `clerkbackend->users->setPasswordCompromised()`:  `response` **Changed**\n* `clerkbackend->users->unsetPasswordCompromised()`:  `response` **Changed**\n* `clerkbackend->domains->add()`: \n  *  `request->isSatellite` **Changed**\n* `clerkbackend->oauthaccesstokens->verify()`:  `response.union(1)->aud` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md
