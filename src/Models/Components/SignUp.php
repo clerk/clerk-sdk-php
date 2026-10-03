@@ -207,6 +207,15 @@ class SignUp
     public ?SignUpExternalAccount $externalAccount = null;
 
     /**
+     * The IANA timezone associated with the sign-up attempt.
+     *
+     * @var ?string $timezone
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('timezone')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $timezone = null;
+
+    /**
      * The user locale preference for the sign-up specified as a BCP-47 language tag.
      *
      * @var ?string $locale
@@ -240,10 +249,11 @@ class SignUp
      * @param  ?string  $createdUserId
      * @param  ?int  $legalAcceptedAt
      * @param  ?\Clerk\Backend\Models\Components\SignUpExternalAccount  $externalAccount
+     * @param  ?string  $timezone
      * @param  ?string  $locale
      * @phpstan-pure
      */
-    public function __construct(SignUpObject $object, string $id, SignUpStatus $status, array $requiredFields, array $optionalFields, array $missingFields, array $unverifiedFields, SignUpVerifications $verifications, bool $passwordEnabled, bool $customAction, int $abandonAt, ?string $username = null, ?string $emailAddress = null, ?string $phoneNumber = null, ?string $web3Wallet = null, ?string $firstName = null, ?string $lastName = null, ?array $unsafeMetadata = null, ?array $publicMetadata = null, ?string $externalId = null, ?string $createdSessionId = null, ?string $createdUserId = null, ?int $legalAcceptedAt = null, ?SignUpExternalAccount $externalAccount = null, ?string $locale = null)
+    public function __construct(SignUpObject $object, string $id, SignUpStatus $status, array $requiredFields, array $optionalFields, array $missingFields, array $unverifiedFields, SignUpVerifications $verifications, bool $passwordEnabled, bool $customAction, int $abandonAt, ?string $username = null, ?string $emailAddress = null, ?string $phoneNumber = null, ?string $web3Wallet = null, ?string $firstName = null, ?string $lastName = null, ?array $unsafeMetadata = null, ?array $publicMetadata = null, ?string $externalId = null, ?string $createdSessionId = null, ?string $createdUserId = null, ?int $legalAcceptedAt = null, ?SignUpExternalAccount $externalAccount = null, ?string $timezone = null, ?string $locale = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -269,6 +279,7 @@ class SignUp
         $this->createdUserId = $createdUserId;
         $this->legalAcceptedAt = $legalAcceptedAt;
         $this->externalAccount = $externalAccount;
+        $this->timezone = $timezone;
         $this->locale = $locale;
     }
 }

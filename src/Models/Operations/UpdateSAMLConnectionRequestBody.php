@@ -12,6 +12,16 @@ namespace Clerk\Backend\Models\Operations;
 class UpdateSAMLConnectionRequestBody
 {
     /**
+     * The IdP X.509 signing certificates the connection trusts, one per entry, in PEM or bare base64. Replaces the connection's whole certificate set and takes precedence over idp_certificate
+     *
+     * @var ?array<string> $idpCertificates
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('idp_certificates')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $idpCertificates = null;
+
+    /**
      * Enable or deactivate ForceAuthn
      *
      * @var ?bool $forceAuthn
@@ -68,9 +78,10 @@ class UpdateSAMLConnectionRequestBody
     public ?string $idpSsoUrl = null;
 
     /**
-     * The x509 certificated as provided by the IdP
+     * Deprecated, use idp_certificates. One X.509 certificate, PEM or bare base64, or several concatenated PEM certificates; replaces the connection's whole certificate set
      *
      * @var ?string $idpCertificate
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('idp_certificate')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
@@ -187,6 +198,7 @@ class UpdateSAMLConnectionRequestBody
     public ?bool $consentVerifiedDomainsDeletion = null;
 
     /**
+     * @param  ?array<string>  $idpCertificates
      * @param  ?bool  $forceAuthn
      * @param  ?string  $name
      * @param  ?string  $domain
@@ -208,8 +220,9 @@ class UpdateSAMLConnectionRequestBody
      * @param  ?bool  $consentVerifiedDomainsDeletion
      * @phpstan-pure
      */
-    public function __construct(?bool $forceAuthn = null, ?string $name = null, ?string $domain = null, ?array $domains = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?AttributeMapping $attributeMapping = null, ?bool $active = null, ?bool $syncUserAttributes = null, ?bool $allowSubdomains = null, ?bool $allowIdpInitiated = null, ?bool $disableAdditionalIdentifications = null, ?bool $allowOrganizationAccountLinking = null, ?LoginHint $loginHint = null, ?bool $consentVerifiedDomainsDeletion = null)
+    public function __construct(?array $idpCertificates = null, ?bool $forceAuthn = null, ?string $name = null, ?string $domain = null, ?array $domains = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?AttributeMapping $attributeMapping = null, ?bool $active = null, ?bool $syncUserAttributes = null, ?bool $allowSubdomains = null, ?bool $allowIdpInitiated = null, ?bool $disableAdditionalIdentifications = null, ?bool $allowOrganizationAccountLinking = null, ?LoginHint $loginHint = null, ?bool $consentVerifiedDomainsDeletion = null)
     {
+        $this->idpCertificates = $idpCertificates;
         $this->forceAuthn = $forceAuthn;
         $this->name = $name;
         $this->domain = $domain;
