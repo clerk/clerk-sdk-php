@@ -80,6 +80,20 @@ class UpdateOrganizationRequestBody
     public ?string $roleSetKey = null;
 
     /**
+     * Maps role keys in the organization's current role set to role keys in the new role set. Only applies when `role_set_key` changes the role set.
+     *
+     * Every role that a member holds and that the new role set does not include must be mapped, otherwise the request fails with a 422.
+     * Mapping a role that both role sets include moves its members to the destination role.
+     * Memberships are reassigned asynchronously after the response.
+     *
+     * @var ?array<string, string> $reassignmentMappings
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('reassignment_mappings')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $reassignmentMappings = null;
+
+    /**
      * @param  ?string  $name
      * @param  ?string  $slug
      * @param  ?int  $maxAllowedMemberships
@@ -87,9 +101,10 @@ class UpdateOrganizationRequestBody
      * @param  ?bool  $selfServeSsoEnabled
      * @param  ?string  $createdAt
      * @param  ?string  $roleSetKey
+     * @param  ?array<string, string>  $reassignmentMappings
      * @phpstan-pure
      */
-    public function __construct(?string $name = null, ?string $slug = null, ?int $maxAllowedMemberships = null, ?bool $adminDeleteEnabled = null, ?bool $selfServeSsoEnabled = null, ?string $createdAt = null, ?string $roleSetKey = null)
+    public function __construct(?string $name = null, ?string $slug = null, ?int $maxAllowedMemberships = null, ?bool $adminDeleteEnabled = null, ?bool $selfServeSsoEnabled = null, ?string $createdAt = null, ?string $roleSetKey = null, ?array $reassignmentMappings = null)
     {
         $this->name = $name;
         $this->slug = $slug;
@@ -98,5 +113,6 @@ class UpdateOrganizationRequestBody
         $this->selfServeSsoEnabled = $selfServeSsoEnabled;
         $this->createdAt = $createdAt;
         $this->roleSetKey = $roleSetKey;
+        $this->reassignmentMappings = $reassignmentMappings;
     }
 }
