@@ -17,6 +17,16 @@ namespace Clerk\Backend\Models\Operations;
 class Saml
 {
     /**
+     * The IdP X.509 signing certificates the connection trusts, one per entry, in PEM or bare base64. Replaces the connection's whole certificate set and takes precedence over idp_certificate
+     *
+     * @var ?array<string> $idpCertificates
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('idp_certificates')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $idpCertificates = null;
+
+    /**
      * IdP entity ID
      *
      * @var ?string $idpEntityId
@@ -35,9 +45,10 @@ class Saml
     public ?string $idpSsoUrl = null;
 
     /**
-     * IdP certificate (PEM)
+     * Deprecated, use idp_certificates. One X.509 certificate, PEM or bare base64, or several concatenated PEM certificates; replaces the connection's whole certificate set
      *
      * @var ?string $idpCertificate
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('idp_certificate')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
@@ -106,6 +117,7 @@ class Saml
     public ?CreateEnterpriseConnectionLoginHint $loginHint = null;
 
     /**
+     * @param  ?array<string>  $idpCertificates
      * @param  ?string  $idpEntityId
      * @param  ?string  $idpSsoUrl
      * @param  ?string  $idpCertificate
@@ -118,8 +130,9 @@ class Saml
      * @param  ?\Clerk\Backend\Models\Operations\CreateEnterpriseConnectionLoginHint  $loginHint
      * @phpstan-pure
      */
-    public function __construct(?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?CreateEnterpriseConnectionAttributeMapping $attributeMapping = null, ?bool $allowSubdomains = null, ?bool $allowIdpInitiated = null, ?bool $forceAuthn = null, ?CreateEnterpriseConnectionLoginHint $loginHint = null)
+    public function __construct(?array $idpCertificates = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?CreateEnterpriseConnectionAttributeMapping $attributeMapping = null, ?bool $allowSubdomains = null, ?bool $allowIdpInitiated = null, ?bool $forceAuthn = null, ?CreateEnterpriseConnectionLoginHint $loginHint = null)
     {
+        $this->idpCertificates = $idpCertificates;
         $this->idpEntityId = $idpEntityId;
         $this->idpSsoUrl = $idpSsoUrl;
         $this->idpCertificate = $idpCertificate;
