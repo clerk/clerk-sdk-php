@@ -29,6 +29,7 @@ class InstanceProtect
     public bool $rulesEnabled;
 
     /**
+     * Whether Device Intelligence is enabled. Managed automatically or by Clerk support.
      *
      * @var bool $specterEnabled
      */
