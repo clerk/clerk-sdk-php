@@ -122,6 +122,28 @@ class OrganizationWithLogo
     public ?int $pendingInvitationsCount = null;
 
     /**
+     * Whether this organization can configure self-serve enterprise SSO.
+     *
+     *
+     *
+     * @var ?bool $selfServeSsoEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('self_serve_sso_enabled')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $selfServeSsoEnabled = null;
+
+    /**
+     * Whether this organization can configure self-serve Directory Sync (SCIM).
+     *
+     *
+     *
+     * @var ?bool $selfServeDirectorySyncEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('self_serve_directory_sync_enabled')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $selfServeDirectorySyncEnabled = null;
+
+    /**
      * $privateMetadata
      *
      * @var ?array<string, mixed> $privateMetadata
@@ -160,17 +182,6 @@ class OrganizationWithLogo
     public ?string $logoUrl = null;
 
     /**
-     * Whether this organization can configure self-serve enterprise SSO.
-     *
-     *
-     *
-     * @var ?bool $selfServeSsoEnabled
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('self_serve_sso_enabled')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $selfServeSsoEnabled = null;
-
-    /**
      * The key of the [role set](https://clerk.com/docs/guides/organizations/control-access/role-sets) assigned to this organization.
      *
      *
@@ -196,15 +207,16 @@ class OrganizationWithLogo
      * @param  ?int  $membersCount
      * @param  ?bool  $missingMemberWithElevatedPermissions
      * @param  ?int  $pendingInvitationsCount
+     * @param  ?bool  $selfServeSsoEnabled
+     * @param  ?bool  $selfServeDirectorySyncEnabled
      * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?string  $createdBy
      * @param  ?int  $lastActiveAt
      * @param  ?string  $logoUrl
-     * @param  ?bool  $selfServeSsoEnabled
      * @param  ?string  $roleSetKey
      * @phpstan-pure
      */
-    public function __construct(OrganizationWithLogoObject $object, string $id, string $name, string $slug, string $imageUrl, bool $hasImage, int $maxAllowedMemberships, bool $adminDeleteEnabled, array $publicMetadata, int $createdAt, int $updatedAt, ?int $membersCount = null, ?bool $missingMemberWithElevatedPermissions = null, ?int $pendingInvitationsCount = null, ?array $privateMetadata = null, ?string $createdBy = null, ?int $lastActiveAt = null, ?string $logoUrl = null, ?bool $selfServeSsoEnabled = null, ?string $roleSetKey = null)
+    public function __construct(OrganizationWithLogoObject $object, string $id, string $name, string $slug, string $imageUrl, bool $hasImage, int $maxAllowedMemberships, bool $adminDeleteEnabled, array $publicMetadata, int $createdAt, int $updatedAt, ?int $membersCount = null, ?bool $missingMemberWithElevatedPermissions = null, ?int $pendingInvitationsCount = null, ?bool $selfServeSsoEnabled = null, ?bool $selfServeDirectorySyncEnabled = null, ?array $privateMetadata = null, ?string $createdBy = null, ?int $lastActiveAt = null, ?string $logoUrl = null, ?string $roleSetKey = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -220,11 +232,12 @@ class OrganizationWithLogo
         $this->membersCount = $membersCount;
         $this->missingMemberWithElevatedPermissions = $missingMemberWithElevatedPermissions;
         $this->pendingInvitationsCount = $pendingInvitationsCount;
+        $this->selfServeSsoEnabled = $selfServeSsoEnabled;
+        $this->selfServeDirectorySyncEnabled = $selfServeDirectorySyncEnabled;
         $this->privateMetadata = $privateMetadata;
         $this->createdBy = $createdBy;
         $this->lastActiveAt = $lastActiveAt;
         $this->logoUrl = $logoUrl;
-        $this->selfServeSsoEnabled = $selfServeSsoEnabled;
         $this->roleSetKey = $roleSetKey;
     }
 }

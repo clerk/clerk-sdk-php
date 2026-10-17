@@ -99,6 +99,8 @@ class ClerkBackend
 
     public EnterpriseConnections $enterpriseConnections;
 
+    public SsoBypassAllowlistUsers $ssoBypassAllowlistUsers;
+
     public TestingTokens $testingTokens;
 
     public AgentTasks $agentTasks;
@@ -176,6 +178,7 @@ class ClerkBackend
         $this->oauthApplications = new OauthApplications($this->sdkConfiguration);
         $this->samlConnections = new SamlConnections($this->sdkConfiguration);
         $this->enterpriseConnections = new EnterpriseConnections($this->sdkConfiguration);
+        $this->ssoBypassAllowlistUsers = new SsoBypassAllowlistUsers($this->sdkConfiguration);
         $this->testingTokens = new TestingTokens($this->sdkConfiguration);
         $this->agentTasks = new AgentTasks($this->sdkConfiguration);
         $this->waitlistEntries = new WaitlistEntries($this->sdkConfiguration);

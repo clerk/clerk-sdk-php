@@ -323,6 +323,7 @@ if ($response->statusCode === 200) {
 * [create](docs/sdks/invitations/README.md#create) - Create an invitation
 * [list](docs/sdks/invitations/README.md#list) - List all invitations
 * [bulkCreate](docs/sdks/invitations/README.md#bulkcreate) - Create multiple invitations
+* [delete](docs/sdks/invitations/README.md#delete) - Delete an invitation
 * [revoke](docs/sdks/invitations/README.md#revoke) - Revokes an invitation
 
 ### [Jwks](docs/sdks/jwks/README.md)
@@ -507,6 +508,12 @@ if ($response->statusCode === 200) {
 
 * [get](docs/sdks/signups/README.md#get) - Retrieve a sign-up by ID
 * [update](docs/sdks/signups/README.md#update) - Update a sign-up
+
+### [SsoBypassAllowlistUsers](docs/sdks/ssobypassallowlistusers/README.md)
+
+* [list](docs/sdks/ssobypassallowlistusers/README.md#list) - List the SSO bypass allowlist
+* [create](docs/sdks/ssobypassallowlistusers/README.md#create) - Add a user to the SSO bypass allowlist
+* [delete](docs/sdks/ssobypassallowlistusers/README.md#delete) - Remove a user from the SSO bypass allowlist
 
 ### [~~Templates~~](docs/sdks/templates/README.md)
 

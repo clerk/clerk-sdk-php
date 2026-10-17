@@ -7,6 +7,7 @@
 * [create](#create) - Create an invitation
 * [list](#list) - List all invitations
 * [bulkCreate](#bulkcreate) - Create multiple invitations
+* [delete](#delete) - Delete an invitation
 * [revoke](#revoke) - Revokes an invitation
 
 ## create
@@ -158,6 +159,57 @@ if ($response->invitationList !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 400, 422            | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## delete
+
+Permanently deletes the given invitation and the copies of the invitation email Clerk stored for its recipient.
+Unlike revoking, deleting removes the invitation record itself, which helps honor a data erasure request from someone who was invited but never signed up.
+Other records that contain the same email address, such as users or organization invitations, are not affected.
+Invitations of any status can be deleted.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="DeleteInvitation" method="delete" path="/invitations/{invitation_id}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->invitations->delete(
+    invitationId: '<id>'
+);
+
+if ($response->deletedObject !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                          | Type                               | Required                           | Description                        |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| `invitationId`                     | *string*                           | :heavy_check_mark:                 | The ID of the invitation to delete |
+
+### Response
+
+**[?Operations\DeleteInvitationResponse](../../Models/Operations/DeleteInvitationResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 404                 | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## revoke

@@ -12,6 +12,24 @@ namespace Clerk\Backend\Models\Operations;
 class UpdateOAuthApplicationRequestBody
 {
     /**
+     * Enable exchanges from the active audience. Requires an audience URI. Disabling preserves target configuration.
+     *
+     * @var ?bool $tokenExchangeEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('token_exchange_enabled')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $tokenExchangeEnabled = null;
+
+    /**
+     * Confirm adoption of an existing unowned resource, preserving its accepted scopes and target references. Does not override another application's reservation.
+     *
+     * @var ?bool $adoptAudienceResource
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('adopt_audience_resource')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $adoptAudienceResource = null;
+
+    /**
      * The new name of the OAuth application.
      *
      * Max length: 256
@@ -70,6 +88,15 @@ class UpdateOAuthApplicationRequestBody
     public ?bool $pkceRequired = null;
 
     /**
+     * An absolute resource URI for a confidential application (RFC 8707 section 2). Registers a resource with no accepted scopes, or adopts an unowned resource with confirmation. Every claimed URI remains permanently reserved to this app, including retirement and deletion, and counts toward the instance resource quota. Changing it stops new exchanges from the old audience immediately. Already-issued tokens retain their lifetime. Clearing requires exchange disabled in an earlier update.
+     *
+     * @var ?string $audienceUri
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('audience_uri')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $audienceUri = null;
+
+    /**
      * True to enable the OAuth Device Authorization Grant for this application. Enabling requires the new OAuth IdP and a reachable device verification page. Omit this field to leave the setting unchanged.
      *
      * @var ?bool $deviceAuthorizationGrantEnabled
@@ -88,24 +115,30 @@ class UpdateOAuthApplicationRequestBody
     public ?bool $public = null;
 
     /**
+     * @param  ?bool  $tokenExchangeEnabled
+     * @param  ?bool  $adoptAudienceResource
      * @param  ?string  $name
      * @param  ?array<string>  $redirectUris
      * @param  ?string  $callbackUrl
      * @param  ?string  $scopes
      * @param  ?bool  $consentScreenEnabled
      * @param  ?bool  $pkceRequired
+     * @param  ?string  $audienceUri
      * @param  ?bool  $deviceAuthorizationGrantEnabled
      * @param  ?bool  $public
      * @phpstan-pure
      */
-    public function __construct(?string $name = null, ?array $redirectUris = null, ?string $callbackUrl = null, ?string $scopes = null, ?bool $consentScreenEnabled = null, ?bool $pkceRequired = null, ?bool $deviceAuthorizationGrantEnabled = null, ?bool $public = null)
+    public function __construct(?bool $tokenExchangeEnabled = null, ?bool $adoptAudienceResource = null, ?string $name = null, ?array $redirectUris = null, ?string $callbackUrl = null, ?string $scopes = null, ?bool $consentScreenEnabled = null, ?bool $pkceRequired = null, ?string $audienceUri = null, ?bool $deviceAuthorizationGrantEnabled = null, ?bool $public = null)
     {
+        $this->tokenExchangeEnabled = $tokenExchangeEnabled;
+        $this->adoptAudienceResource = $adoptAudienceResource;
         $this->name = $name;
         $this->redirectUris = $redirectUris;
         $this->callbackUrl = $callbackUrl;
         $this->scopes = $scopes;
         $this->consentScreenEnabled = $consentScreenEnabled;
         $this->pkceRequired = $pkceRequired;
+        $this->audienceUri = $audienceUri;
         $this->deviceAuthorizationGrantEnabled = $deviceAuthorizationGrantEnabled;
         $this->public = $public;
     }
