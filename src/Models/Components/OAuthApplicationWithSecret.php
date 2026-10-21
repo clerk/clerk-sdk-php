@@ -69,6 +69,14 @@ class OAuthApplicationWithSecret
     public bool $pkceRequired;
 
     /**
+     * Whether this confidential application accepts token exchanges from its active audience.
+     *
+     * @var bool $tokenExchangeEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('token_exchange_enabled')]
+    public bool $tokenExchangeEnabled;
+
+    /**
      *
      * @var bool $deviceAuthorizationGrantEnabled
      */
@@ -182,6 +190,14 @@ class OAuthApplicationWithSecret
     public ?string $clientImageUrl;
 
     /**
+     * The active application audience URI, whose registry identity is permanently reserved to this application.
+     *
+     * @var ?string $audienceUri
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('audience_uri')]
+    public ?string $audienceUri;
+
+    /**
      * Empty if public client.
      *
      *
@@ -201,6 +217,7 @@ class OAuthApplicationWithSecret
      * @param  bool  $dynamicallyRegistered
      * @param  bool  $consentScreenEnabled
      * @param  bool  $pkceRequired
+     * @param  bool  $tokenExchangeEnabled
      * @param  bool  $deviceAuthorizationGrantEnabled
      * @param  bool  $public
      * @param  string  $scopes
@@ -215,10 +232,11 @@ class OAuthApplicationWithSecret
      * @param  int  $updatedAt
      * @param  ?string  $clientUri
      * @param  ?string  $clientImageUrl
+     * @param  ?string  $audienceUri
      * @param  ?string  $clientSecret
      * @phpstan-pure
      */
-    public function __construct(OAuthApplicationWithSecretObject $object, string $id, string $instanceId, string $name, string $clientId, bool $dynamicallyRegistered, bool $consentScreenEnabled, bool $pkceRequired, bool $deviceAuthorizationGrantEnabled, bool $public, string $scopes, array $redirectUris, string $callbackUrl, string $authorizeUrl, string $tokenFetchUrl, string $userInfoUrl, string $discoveryUrl, string $tokenIntrospectionUrl, int $createdAt, int $updatedAt, ?string $clientUri = null, ?string $clientImageUrl = null, ?string $clientSecret = null)
+    public function __construct(OAuthApplicationWithSecretObject $object, string $id, string $instanceId, string $name, string $clientId, bool $dynamicallyRegistered, bool $consentScreenEnabled, bool $pkceRequired, bool $tokenExchangeEnabled, bool $deviceAuthorizationGrantEnabled, bool $public, string $scopes, array $redirectUris, string $callbackUrl, string $authorizeUrl, string $tokenFetchUrl, string $userInfoUrl, string $discoveryUrl, string $tokenIntrospectionUrl, int $createdAt, int $updatedAt, ?string $clientUri = null, ?string $clientImageUrl = null, ?string $audienceUri = null, ?string $clientSecret = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -228,6 +246,7 @@ class OAuthApplicationWithSecret
         $this->dynamicallyRegistered = $dynamicallyRegistered;
         $this->consentScreenEnabled = $consentScreenEnabled;
         $this->pkceRequired = $pkceRequired;
+        $this->tokenExchangeEnabled = $tokenExchangeEnabled;
         $this->deviceAuthorizationGrantEnabled = $deviceAuthorizationGrantEnabled;
         $this->public = $public;
         $this->scopes = $scopes;
@@ -242,6 +261,7 @@ class OAuthApplicationWithSecret
         $this->updatedAt = $updatedAt;
         $this->clientUri = $clientUri;
         $this->clientImageUrl = $clientImageUrl;
+        $this->audienceUri = $audienceUri;
         $this->clientSecret = $clientSecret;
     }
 }
