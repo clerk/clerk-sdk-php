@@ -122,6 +122,17 @@ class OrganizationWithLogo
     public ?int $pendingInvitationsCount = null;
 
     /**
+     * Whether this organization can configure self-serve enterprise SSO.
+     *
+     *
+     *
+     * @var ?bool $selfServeSsoEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('self_serve_sso_enabled')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $selfServeSsoEnabled = null;
+
+    /**
      * $privateMetadata
      *
      * @var ?array<string, mixed> $privateMetadata
@@ -160,17 +171,6 @@ class OrganizationWithLogo
     public ?string $logoUrl = null;
 
     /**
-     * Whether this organization can configure self-serve enterprise SSO.
-     *
-     *
-     *
-     * @var ?bool $selfServeSsoEnabled
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('self_serve_sso_enabled')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $selfServeSsoEnabled = null;
-
-    /**
      * The key of the [role set](https://clerk.com/docs/guides/organizations/control-access/role-sets) assigned to this organization.
      *
      *
@@ -196,15 +196,15 @@ class OrganizationWithLogo
      * @param  ?int  $membersCount
      * @param  ?bool  $missingMemberWithElevatedPermissions
      * @param  ?int  $pendingInvitationsCount
+     * @param  ?bool  $selfServeSsoEnabled
      * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?string  $createdBy
      * @param  ?int  $lastActiveAt
      * @param  ?string  $logoUrl
-     * @param  ?bool  $selfServeSsoEnabled
      * @param  ?string  $roleSetKey
      * @phpstan-pure
      */
-    public function __construct(OrganizationWithLogoObject $object, string $id, string $name, string $slug, string $imageUrl, bool $hasImage, int $maxAllowedMemberships, bool $adminDeleteEnabled, array $publicMetadata, int $createdAt, int $updatedAt, ?int $membersCount = null, ?bool $missingMemberWithElevatedPermissions = null, ?int $pendingInvitationsCount = null, ?array $privateMetadata = null, ?string $createdBy = null, ?int $lastActiveAt = null, ?string $logoUrl = null, ?bool $selfServeSsoEnabled = null, ?string $roleSetKey = null)
+    public function __construct(OrganizationWithLogoObject $object, string $id, string $name, string $slug, string $imageUrl, bool $hasImage, int $maxAllowedMemberships, bool $adminDeleteEnabled, array $publicMetadata, int $createdAt, int $updatedAt, ?int $membersCount = null, ?bool $missingMemberWithElevatedPermissions = null, ?int $pendingInvitationsCount = null, ?bool $selfServeSsoEnabled = null, ?array $privateMetadata = null, ?string $createdBy = null, ?int $lastActiveAt = null, ?string $logoUrl = null, ?string $roleSetKey = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -220,11 +220,11 @@ class OrganizationWithLogo
         $this->membersCount = $membersCount;
         $this->missingMemberWithElevatedPermissions = $missingMemberWithElevatedPermissions;
         $this->pendingInvitationsCount = $pendingInvitationsCount;
+        $this->selfServeSsoEnabled = $selfServeSsoEnabled;
         $this->privateMetadata = $privateMetadata;
         $this->createdBy = $createdBy;
         $this->lastActiveAt = $lastActiveAt;
         $this->logoUrl = $logoUrl;
-        $this->selfServeSsoEnabled = $selfServeSsoEnabled;
         $this->roleSetKey = $roleSetKey;
     }
 }

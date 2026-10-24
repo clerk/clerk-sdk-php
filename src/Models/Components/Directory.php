@@ -62,6 +62,17 @@ class Directory
     public bool $enabled;
 
     /**
+     * Whether syncing is paused. A paused directory rejects provisioning requests and skips
+     *
+     * scheduled syncs, but keeps the organization memberships it granted. Disabling a directory
+     * removes them instead.
+     *
+     * @var bool $paused
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('paused')]
+    public bool $paused;
+
+    /**
      * Whether group-to-role mapping is enabled for this directory.
      *
      * @var bool $groupRoleMappingEnabled
@@ -129,6 +140,7 @@ class Directory
      * @param  string  $endpointUrl
      * @param  string  $provider
      * @param  bool  $enabled
+     * @param  bool  $paused
      * @param  bool  $groupRoleMappingEnabled
      * @param  array<string, string>  $attributeMapping
      * @param  int  $createdAt
@@ -138,7 +150,7 @@ class Directory
      * @param  ?string  $apiKey
      * @phpstan-pure
      */
-    public function __construct(DirectoryObject $object, string $id, string $name, string $endpointUrl, string $provider, bool $enabled, bool $groupRoleMappingEnabled, array $attributeMapping, int $createdAt, int $updatedAt, ?array $customAttributes = null, ?string $enterpriseConnectionId = null, ?string $apiKey = null)
+    public function __construct(DirectoryObject $object, string $id, string $name, string $endpointUrl, string $provider, bool $enabled, bool $paused, bool $groupRoleMappingEnabled, array $attributeMapping, int $createdAt, int $updatedAt, ?array $customAttributes = null, ?string $enterpriseConnectionId = null, ?string $apiKey = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -146,6 +158,7 @@ class Directory
         $this->endpointUrl = $endpointUrl;
         $this->provider = $provider;
         $this->enabled = $enabled;
+        $this->paused = $paused;
         $this->groupRoleMappingEnabled = $groupRoleMappingEnabled;
         $this->attributeMapping = $attributeMapping;
         $this->createdAt = $createdAt;

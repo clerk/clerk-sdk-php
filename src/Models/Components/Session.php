@@ -59,7 +59,7 @@ class Session
     public int $lastActiveAt;
 
     /**
-     * Unix timestamp of expiration.
+     * Unix timestamp in milliseconds of expiration. Zero means no maximum lifetime.
      *
      *
      *
@@ -69,7 +69,7 @@ class Session
     public int $expireAt;
 
     /**
-     * Unix timestamp of abandonment.
+     * Unix timestamp in milliseconds of abandonment. Zero means no abandonment deadline.
      *
      *
      *
