@@ -33,7 +33,7 @@ class CreateSignInTokenRequestBody
     /**
      * Optional parameter to specify the life duration of the sign in token in seconds.
      *
-     * By default, the duration is 30 days.
+     * By default, the duration is 30 days, or 10 minutes when `second_factor_verification` is set.
      *
      * @var ?int $expiresInSeconds
      */
@@ -42,15 +42,33 @@ class CreateSignInTokenRequestBody
     public ?int $expiresInSeconds = null;
 
     /**
+     * Optional parameter that lets a user with a second factor enabled complete the sign in without being prompted for it.
+     *
+     * When omitted, redeeming the token completes only the first factor, and the user must still complete their second factor.
+     * `fresh`: the second factor is treated as verified at sign in. The session token's `fva` claim reports a second factor age of 0.
+     * `stale`: the second factor is treated as unverified. The session token's `fva` claim reports the maximum second factor age of 99999, so any reverification that requires a second factor prompts the user to complete one.
+     * Has no effect for users without a second factor enabled.
+     * A token created with this parameter signs in a user with a second factor enabled without prompting for it, so `expires_in_seconds` defaults to 10 minutes. We recommend keeping it short.
+     *
+     * @var ?\Clerk\Backend\Models\Operations\SecondFactorVerification $secondFactorVerification
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('second_factor_verification')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\SecondFactorVerification|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?SecondFactorVerification $secondFactorVerification = null;
+
+    /**
      * @param  string  $userId
      * @param  ?string  $orgId
      * @param  ?int  $expiresInSeconds
+     * @param  ?\Clerk\Backend\Models\Operations\SecondFactorVerification  $secondFactorVerification
      * @phpstan-pure
      */
-    public function __construct(string $userId, ?string $orgId = null, ?int $expiresInSeconds = 2592000)
+    public function __construct(string $userId, ?string $orgId = null, ?int $expiresInSeconds = null, ?SecondFactorVerification $secondFactorVerification = null)
     {
         $this->userId = $userId;
         $this->orgId = $orgId;
         $this->expiresInSeconds = $expiresInSeconds;
+        $this->secondFactorVerification = $secondFactorVerification;
     }
 }

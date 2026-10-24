@@ -16,6 +16,7 @@
 * [bulkUnban](#bulkunban) - Unban multiple users
 * [lock](#lock) - Lock a user
 * [unlock](#unlock) - Unlock a user
+* [merge](#merge) - Merge another user into this user
 * [setProfileImage](#setprofileimage) - Set user profile image
 * [deleteProfileImage](#deleteprofileimage) - Delete user profile image
 * [updateMetadata](#updatemetadata) - Merge and update a user's metadata
@@ -675,6 +676,89 @@ if ($response->user !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 403                 | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## merge
+
+Moves the identifications, connected accounts, passkeys, TOTP, backup codes, organization
+memberships, membership requests, suggestions and metadata of the user in `from_user_id` onto the
+user in the path, then deletes the `from_user_id` user.
+Where both users have a value, the user in the path keeps its own. First and last name, profile
+image, `external_id`, and the password are taken from the `from_user_id` user only where the user in
+the path has none, so if it has no password, the `from_user_id` user's password signs in to it
+afterwards. When both users have the same
+identifier, the verified copy is kept. The `from_user_id` user's sessions are revoked.
+With `dry_run`, the merge is computed and returned but nothing is changed.
+
+A merge cannot be undone. The response's `deleted_user` is the `from_user_id` user as it was before
+the merge, so store it if you may need it. It does not include passwords, TOTP secrets, backup codes,
+passkeys or connected-account tokens, which cannot be restored. Use `dry_run` to preview a merge.
+
+The merge sends a `user.merged` webhook alongside `user.updated` and `user.deleted`. Webhooks are not
+delivered in order, so `user.updated` (the user now owning the `from_user_id` user's emails) can arrive
+before `user.deleted`; handle `user.merged` by moving the `from_user_id` user's data to the user rather
+than relying on that order. Moved organization memberships keep their ID, so their
+`organizationMembership.updated` webhook carries the same membership ID with a different user.
+
+Some users cannot be merged. The request then fails with a 409 `user_merge_not_allowed` error whose
+`meta.reasons` lists every reason that applies:
+- `user_banned`, `from_user_banned`: either user is banned.
+- `user_directory_managed`, `from_user_directory_managed`: either user is linked to a SCIM directory.
+- `from_user_enterprise_account`: the `from_user_id` user has a SAML or enterprise SSO account.
+- `from_user_billing_payer`: the `from_user_id` user is a billing payer.
+- `from_user_student_pack`: the `from_user_id` user has claimed a student pack.
+- `too_many_resources`: the users have too many identifications and organization memberships, requests
+  and suggestions combined to merge in one request. This reason is returned on its own.
+- `same_user`: `from_user_id` is the user in the path.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="MergeUser" method="post" path="/users/{user_id}/merge" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+$requestBody = new Operations\MergeUserRequestBody(
+    fromUserId: '<id>',
+);
+
+$response = $sdk->users->merge(
+    userId: '<id>',
+    requestBody: $requestBody
+
+);
+
+if ($response->object !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `userId`                                                                           | *string*                                                                           | :heavy_check_mark:                                                                 | The ID of the user that remains after the merge                                    |
+| `requestBody`                                                                      | [Operations\MergeUserRequestBody](../../Models/Operations/MergeUserRequestBody.md) | :heavy_check_mark:                                                                 | N/A                                                                                |
+
+### Response
+
+**[?Operations\MergeUserResponse](../../Models/Operations/MergeUserResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 400, 404, 409, 422  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## setProfileImage

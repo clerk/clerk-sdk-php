@@ -48,6 +48,16 @@ class Two
     public ?string $domain = null;
 
     /**
+     * The IdP X.509 signing certificates the connection trusts, one per entry, in PEM or bare base64. Replaces the connection's whole certificate set and takes precedence over idp_certificate
+     *
+     * @var ?array<string> $idpCertificates
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('idp_certificates')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $idpCertificates = null;
+
+    /**
      * Enable or deactivate ForceAuthn
      *
      * @var ?bool $forceAuthn
@@ -75,9 +85,10 @@ class Two
     public ?string $idpSsoUrl = null;
 
     /**
-     * The X.509 certificate as provided by the IdP
+     * Deprecated, use idp_certificates. One X.509 certificate, PEM or bare base64, or several concatenated PEM certificates; replaces the connection's whole certificate set
      *
      * @var ?string $idpCertificate
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('idp_certificate')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
@@ -135,6 +146,7 @@ class Two
      * @param  array<string>  $domains
      * @param  \Clerk\Backend\Models\Operations\RequestBodyProvider  $provider
      * @param  ?string  $domain
+     * @param  ?array<string>  $idpCertificates
      * @param  ?bool  $forceAuthn
      * @param  ?string  $idpEntityId
      * @param  ?string  $idpSsoUrl
@@ -146,12 +158,13 @@ class Two
      * @param  ?\Clerk\Backend\Models\Operations\RequestBodyLoginHint  $loginHint
      * @phpstan-pure
      */
-    public function __construct(string $name, array $domains, RequestBodyProvider $provider, ?string $domain = null, ?bool $forceAuthn = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?RequestBodyAttributeMapping $attributeMapping = null, ?RequestBodyLoginHint $loginHint = null)
+    public function __construct(string $name, array $domains, RequestBodyProvider $provider, ?string $domain = null, ?array $idpCertificates = null, ?bool $forceAuthn = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?string $idpMetadataUrl = null, ?string $idpMetadata = null, ?string $organizationId = null, ?RequestBodyAttributeMapping $attributeMapping = null, ?RequestBodyLoginHint $loginHint = null)
     {
         $this->name = $name;
         $this->domains = $domains;
         $this->provider = $provider;
         $this->domain = $domain;
+        $this->idpCertificates = $idpCertificates;
         $this->forceAuthn = $forceAuthn;
         $this->idpEntityId = $idpEntityId;
         $this->idpSsoUrl = $idpSsoUrl;

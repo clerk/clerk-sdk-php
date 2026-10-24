@@ -2097,6 +2097,142 @@ class Users
     }
 
     /**
+     * Merge another user into this user
+     *
+     * Moves the identifications, connected accounts, passkeys, TOTP, backup codes, organization
+     * memberships, membership requests, suggestions and metadata of the user in `from_user_id` onto the
+     * user in the path, then deletes the `from_user_id` user.
+     * Where both users have a value, the user in the path keeps its own. First and last name, profile
+     * image, `external_id`, and the password are taken from the `from_user_id` user only where the user in
+     * the path has none, so if it has no password, the `from_user_id` user's password signs in to it
+     * afterwards. When both users have the same
+     * identifier, the verified copy is kept. The `from_user_id` user's sessions are revoked.
+     * With `dry_run`, the merge is computed and returned but nothing is changed.
+     *
+     * A merge cannot be undone. The response's `deleted_user` is the `from_user_id` user as it was before
+     * the merge, so store it if you may need it. It does not include passwords, TOTP secrets, backup codes,
+     * passkeys or connected-account tokens, which cannot be restored. Use `dry_run` to preview a merge.
+     *
+     * The merge sends a `user.merged` webhook alongside `user.updated` and `user.deleted`. Webhooks are not
+     * delivered in order, so `user.updated` (the user now owning the `from_user_id` user's emails) can arrive
+     * before `user.deleted`; handle `user.merged` by moving the `from_user_id` user's data to the user rather
+     * than relying on that order. Moved organization memberships keep their ID, so their
+     * `organizationMembership.updated` webhook carries the same membership ID with a different user.
+     *
+     * Some users cannot be merged. The request then fails with a 409 `user_merge_not_allowed` error whose
+     * `meta.reasons` lists every reason that applies:
+     * - `user_banned`, `from_user_banned`: either user is banned.
+     * - `user_directory_managed`, `from_user_directory_managed`: either user is linked to a SCIM directory.
+     * - `from_user_enterprise_account`: the `from_user_id` user has a SAML or enterprise SSO account.
+     * - `from_user_billing_payer`: the `from_user_id` user is a billing payer.
+     * - `from_user_student_pack`: the `from_user_id` user has claimed a student pack.
+     * - `too_many_resources`: the users have too many identifications and organization memberships, requests
+     *   and suggestions combined to merge in one request. This reason is returned on its own.
+     * - `same_user`: `from_user_id` is the user in the path.
+     *
+     * @param  \Clerk\Backend\Models\Operations\MergeUserRequestBody  $requestBody
+     * @param  string  $userId
+     * @return \Clerk\Backend\Models\Operations\MergeUserResponse
+     * @throws \Clerk\Backend\Models\Errors\SDKException
+     */
+    public function merge(Operations\MergeUserRequestBody $requestBody, string $userId, ?Options $options = null): Operations\MergeUserResponse
+    {
+        $retryConfig = null;
+        if ($options) {
+            $retryConfig = $options->retryConfig;
+        }
+        if ($retryConfig === null && $this->sdkConfiguration->retryConfig) {
+            $retryConfig = $this->sdkConfiguration->retryConfig;
+        } else {
+            $retryConfig = new Retry\RetryConfigBackoff(
+                initialIntervalMs: 500,
+                maxIntervalMs: 60000,
+                exponent: 1.5,
+                maxElapsedTimeMs: 3600000,
+                retryConnectionErrors: true,
+            );
+        }
+        $retryCodes = null;
+        if ($options) {
+            $retryCodes = $options->retryCodes;
+        }
+        if ($retryCodes === null) {
+            $retryCodes = [
+                '5XX',
+            ];
+        }
+        $request = new Operations\MergeUserRequest(
+            userId: $userId,
+            requestBody: $requestBody,
+        );
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/users/{user_id}/merge', Operations\MergeUserRequest::class, $request);
+        $urlOverride = null;
+        $httpOptions = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
+        if ($body === null) {
+            throw new \Exception('Request body is required');
+        }
+        $httpOptions = array_merge_recursive($httpOptions, $body);
+        $httpOptions['headers']['Accept'] = 'application/json';
+        $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'MergeUser', null, $this->sdkConfiguration->securitySource);
+        $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
+        $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
+        $httpRequest = Utils\Utils::removeHeaders($httpRequest);
+        try {
+            $httpResponse = RetryUtils::retryWrapper(fn () => $this->sdkConfiguration->client->send($httpRequest, $httpOptions), $retryConfig, $retryCodes);
+        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
+            $httpResponse = $res;
+        }
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
+            $httpResponse = $res;
+        }
+
+        $statusCode = $httpResponse->getStatusCode();
+        if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Operations\MergeUserResponseBody', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\MergeUserResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    object: $obj);
+
+                return $response;
+            } else {
+                throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['400', '404', '409', '422'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\Clerk\Backend\Models\Errors\ClerkErrors', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                throw $obj->toException();
+            } else {
+                throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['4XX'])) {
+            throw new \Clerk\Backend\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
+            throw new \Clerk\Backend\Models\Errors\SDKException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } else {
+            throw new \Clerk\Backend\Models\Errors\SDKException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        }
+    }
+
+    /**
      * Remove a user's password
      *
      * Removes the password credential from the given user. This is a privileged operation and does not require the user's current password. Password removal is allowed even when the user has no other sign-in method configured.
