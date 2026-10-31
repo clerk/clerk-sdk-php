@@ -1,0 +1,17 @@
+# LogDeviceContext
+
+Device information for the log event.
+
+
+## Fields
+
+| Field                                                                           | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `ipAddress`                                                                     | *?string*                                                                       | :heavy_minus_sign:                                                              | The IP address of the client.                                                   |
+| `userAgent`                                                                     | *?string*                                                                       | :heavy_minus_sign:                                                              | The user agent string of the client.                                            |
+| `browser`                                                                       | [?Components\LogBrowserContext](../../Models/Components/LogBrowserContext.md)   | :heavy_minus_sign:                                                              | Browser information.                                                            |
+| `deviceType`                                                                    | *?string*                                                                       | :heavy_minus_sign:                                                              | The type of device (e.g., "desktop", "mobile", "tablet").                       |
+| `isMobile`                                                                      | *?bool*                                                                         | :heavy_minus_sign:                                                              | Whether the device is a mobile device.                                          |
+| `location`                                                                      | [?Components\LogLocationContext](../../Models/Components/LogLocationContext.md) | :heavy_minus_sign:                                                              | Geographic location information.                                                |
+| `clerkJsVersion`                                                                | *?string*                                                                       | :heavy_minus_sign:                                                              | The version of Clerk.js used by the client.                                     |
+| `isNative`                                                                      | *?bool*                                                                         | :heavy_minus_sign:                                                              | Whether the client is a native application.                                     |

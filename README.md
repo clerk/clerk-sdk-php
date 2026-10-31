@@ -260,6 +260,8 @@ if ($response->statusCode === 200) {
 * [update](docs/sdks/directories/README.md#update) - Update a directory
 * [delete](docs/sdks/directories/README.md#delete) - Delete a directory
 * [rotateApiKey](docs/sdks/directories/README.md#rotateapikey) - Rotate a directory's API key
+* [getGroup](docs/sdks/directories/README.md#getgroup) - Retrieve a directory group
+* [listGroupMembers](docs/sdks/directories/README.md#listgroupmembers) - List directory group members
 * [listGroupRoleMappings](docs/sdks/directories/README.md#listgrouprolemappings) - List directory group role mappings
 * [createGroupRoleMapping](docs/sdks/directories/README.md#creategrouprolemapping) - Create a directory group role mapping
 * [replaceGroupRoleMappings](docs/sdks/directories/README.md#replacegrouprolemappings) - Replace directory group role mappings
@@ -323,6 +325,7 @@ if ($response->statusCode === 200) {
 * [create](docs/sdks/invitations/README.md#create) - Create an invitation
 * [list](docs/sdks/invitations/README.md#list) - List all invitations
 * [bulkCreate](docs/sdks/invitations/README.md#bulkcreate) - Create multiple invitations
+* [delete](docs/sdks/invitations/README.md#delete) - Delete an invitation
 * [revoke](docs/sdks/invitations/README.md#revoke) - Revokes an invitation
 
 ### [Jwks](docs/sdks/jwks/README.md)
@@ -336,6 +339,13 @@ if ($response->statusCode === 200) {
 * [get](docs/sdks/jwttemplates/README.md#get) - Retrieve a template
 * [update](docs/sdks/jwttemplates/README.md#update) - Update a JWT template
 * [delete](docs/sdks/jwttemplates/README.md#delete) - Delete a Template
+
+### [Logs](docs/sdks/logs/README.md)
+
+* [list](docs/sdks/logs/README.md#list) - List all logs
+* [getSchema](docs/sdks/logs/README.md#getschema) - Retrieve the payload schema of a log event type
+* [listGroupEvents](docs/sdks/logs/README.md#listgroupevents) - List an event group's logs
+* [get](docs/sdks/logs/README.md#get) - Retrieve a single log
 
 ### [M2m](docs/sdks/m2m/README.md)
 
@@ -508,6 +518,12 @@ if ($response->statusCode === 200) {
 * [get](docs/sdks/signups/README.md#get) - Retrieve a sign-up by ID
 * [update](docs/sdks/signups/README.md#update) - Update a sign-up
 
+### [SsoBypassAllowlistUsers](docs/sdks/ssobypassallowlistusers/README.md)
+
+* [list](docs/sdks/ssobypassallowlistusers/README.md#list) - List the SSO bypass allowlist
+* [create](docs/sdks/ssobypassallowlistusers/README.md#create) - Add a user to the SSO bypass allowlist
+* [delete](docs/sdks/ssobypassallowlistusers/README.md#delete) - Remove a user from the SSO bypass allowlist
+
 ### [~~Templates~~](docs/sdks/templates/README.md)
 
 * [~~preview~~](docs/sdks/templates/README.md#preview) - Preview changes to a template :warning: **Deprecated**
@@ -530,6 +546,7 @@ if ($response->statusCode === 200) {
 * [bulkUnban](docs/sdks/users/README.md#bulkunban) - Unban multiple users
 * [lock](docs/sdks/users/README.md#lock) - Lock a user
 * [unlock](docs/sdks/users/README.md#unlock) - Unlock a user
+* [merge](docs/sdks/users/README.md#merge) - Merge another user into this user
 * [setProfileImage](docs/sdks/users/README.md#setprofileimage) - Set user profile image
 * [deleteProfileImage](docs/sdks/users/README.md#deleteprofileimage) - Delete user profile image
 * [updateMetadata](docs/sdks/users/README.md#updatemetadata) - Merge and update a user's metadata

@@ -396,6 +396,14 @@ class User
     public ?string $locale = null;
 
     /**
+     *
+     * @var ?string $timezone
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('timezone')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $timezone = null;
+
+    /**
      * $privateMetadata
      *
      * @var ?array<string, mixed> $privateMetadata
@@ -492,13 +500,14 @@ class User
      * @param  ?array<\Clerk\Backend\Models\Components\SCIMUserMetadata>  $directories
      * @param  ?\Clerk\Backend\Models\Components\UserDirectory  $directory
      * @param  ?string  $locale
+     * @param  ?string  $timezone
      * @param  ?array<string, mixed>  $privateMetadata
      * @param  ?int  $passwordLastUpdatedAt
      * @param  ?int  $createOrganizationsLimit
      * @param  ?\Clerk\Backend\Models\Components\Scim  $scim
      * @phpstan-pure
      */
-    public function __construct(string $id, UserObject $object, bool $hasImage, array $publicMetadata, array $emailAddresses, array $phoneNumbers, array $web3Wallets, array $passkeys, bool $passwordEnabled, bool $twoFactorEnabled, bool $totpEnabled, bool $backupCodeEnabled, array $externalAccounts, array $samlAccounts, array $enterpriseAccounts, bool $banned, bool $locked, int $updatedAt, int $createdAt, bool $deleteSelfEnabled, bool $createOrganizationEnabled, ?string $externalId = null, ?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $username = null, ?string $firstName = null, ?string $lastName = null, ?string $profileImageUrl = null, ?string $imageUrl = null, ?array $unsafeMetadata = null, ?int $mfaEnabledAt = null, ?int $mfaDisabledAt = null, ?array $organizationMemberships = null, ?int $lastSignInAt = null, ?bool $deprovisioned = null, ?int $lockoutExpiresInSeconds = null, ?int $verificationAttemptsRemaining = null, ?int $lastActiveAt = null, ?int $legalAcceptedAt = null, ?array $directories = null, ?UserDirectory $directory = null, ?string $locale = null, ?array $privateMetadata = null, ?int $passwordLastUpdatedAt = null, ?int $createOrganizationsLimit = null, ?Scim $scim = null, ?bool $bypassClientTrust = false)
+    public function __construct(string $id, UserObject $object, bool $hasImage, array $publicMetadata, array $emailAddresses, array $phoneNumbers, array $web3Wallets, array $passkeys, bool $passwordEnabled, bool $twoFactorEnabled, bool $totpEnabled, bool $backupCodeEnabled, array $externalAccounts, array $samlAccounts, array $enterpriseAccounts, bool $banned, bool $locked, int $updatedAt, int $createdAt, bool $deleteSelfEnabled, bool $createOrganizationEnabled, ?string $externalId = null, ?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $username = null, ?string $firstName = null, ?string $lastName = null, ?string $profileImageUrl = null, ?string $imageUrl = null, ?array $unsafeMetadata = null, ?int $mfaEnabledAt = null, ?int $mfaDisabledAt = null, ?array $organizationMemberships = null, ?int $lastSignInAt = null, ?bool $deprovisioned = null, ?int $lockoutExpiresInSeconds = null, ?int $verificationAttemptsRemaining = null, ?int $lastActiveAt = null, ?int $legalAcceptedAt = null, ?array $directories = null, ?UserDirectory $directory = null, ?string $locale = null, ?string $timezone = null, ?array $privateMetadata = null, ?int $passwordLastUpdatedAt = null, ?int $createOrganizationsLimit = null, ?Scim $scim = null, ?bool $bypassClientTrust = false)
     {
         $this->id = $id;
         $this->object = $object;
@@ -543,6 +552,7 @@ class User
         $this->directories = $directories;
         $this->directory = $directory;
         $this->locale = $locale;
+        $this->timezone = $timezone;
         $this->privateMetadata = $privateMetadata;
         $this->passwordLastUpdatedAt = $passwordLastUpdatedAt;
         $this->createOrganizationsLimit = $createOrganizationsLimit;
