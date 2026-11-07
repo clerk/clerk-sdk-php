@@ -128,10 +128,10 @@ if ($response->organizationInvitation !== null) {
 
 ### Errors
 
-| Error Type              | Status Code             | Content Type            |
-| ----------------------- | ----------------------- | ----------------------- |
-| Errors\ClerkErrors      | 400, 402, 403, 404, 422 | application/json        |
-| Errors\SDKException     | 4XX, 5XX                | \*/\*                   |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| Errors\ClerkErrors           | 400, 402, 403, 404, 422, 429 | application/json             |
+| Errors\SDKException          | 4XX, 5XX                     | \*/\*                        |
 
 ## list
 
@@ -256,10 +256,10 @@ if ($response->organizationInvitations !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 403, 404, 422  | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| Errors\ClerkErrors      | 400, 403, 404, 422, 429 | application/json        |
+| Errors\SDKException     | 4XX, 5XX                | \*/\*                   |
 
 ## ~~listPending~~
 

@@ -7,6 +7,7 @@
 * [list](#list) - List all sessions
 * [create](#create) - Create a new active session
 * [get](#get) - Retrieve a session
+* [update](#update) - Update a session
 * [refresh](#refresh) - Refresh a session
 * [getReverification](#getreverification) - Retrieve a reverification
 * [revoke](#revoke) - Revoke a session
@@ -167,6 +168,69 @@ if ($response->session !== null) {
 | Errors\ClerkErrors  | 400, 401, 404       | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
+## update
+
+Changes when a session expires. Use this to give one session a longer or shorter lifetime than the one configured for your instance, for example to keep a user signed in on a device they chose to remember.
+
+`expire_at` can exceed the instance's session lifetime. The change applies only to this session, so new sign-ins still start from the instance's session lifetime. If `expire_at` is later than the session's `abandon_at`, `abandon_at` moves to the same time. The inactivity timeout, if your instance has one, still applies.
+
+Only active and pending sessions can be updated. Expired, revoked, and other ended sessions can't be revived, and sessions with an actor, such as impersonation and agent sessions, can't be updated. To end a session immediately, revoke it instead.
+
+Take the session ID from the `sid` claim of a verified session token. Never take it from an unverified client request, or a user could change another user's session.
+
+Requires a plan that includes custom session duration.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="UpdateSession" method="patch" path="/sessions/{session_id}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+use Clerk\Backend\Models\Operations;
+use Clerk\Backend\Utils;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+$requestBody = new Operations\UpdateSessionRequestBody(
+    expireAt: Utils\Utils::parseDateTime('2024-10-26T14:00:58.586Z'),
+);
+
+$response = $sdk->sessions->update(
+    sessionId: '<id>',
+    requestBody: $requestBody
+
+);
+
+if ($response->session !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `sessionId`                                                                                | *string*                                                                                   | :heavy_check_mark:                                                                         | The ID of the session                                                                      |
+| `requestBody`                                                                              | [Operations\UpdateSessionRequestBody](../../Models/Operations/UpdateSessionRequestBody.md) | :heavy_check_mark:                                                                         | N/A                                                                                        |
+
+### Response
+
+**[?Operations\UpdateSessionResponse](../../Models/Operations/UpdateSessionResponse.md)**
+
+### Errors
+
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| Errors\ClerkErrors      | 400, 401, 402, 404, 422 | application/json        |
+| Errors\SDKException     | 4XX, 5XX                | \*/\*                   |
+
 ## refresh
 
 Refreshes a session by creating a new session token. A 401 is returned when there
@@ -216,7 +280,7 @@ if ($response->sessionRefresh !== null) {
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 401            | application/json    |
+| Errors\ClerkErrors  | 400, 401, 403       | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## getReverification
@@ -295,7 +359,9 @@ $sdk = Backend\ClerkBackend::builder()
 
 
 $response = $sdk->sessions->revoke(
-    sessionId: '<id>'
+    sessionId: '<id>',
+    requestBody: $requestBody
+
 );
 
 if ($response->session !== null) {
@@ -305,9 +371,10 @@ if ($response->session !== null) {
 
 ### Parameters
 
-| Parameter             | Type                  | Required              | Description           |
-| --------------------- | --------------------- | --------------------- | --------------------- |
-| `sessionId`           | *string*              | :heavy_check_mark:    | The ID of the session |
+| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `sessionId`                                                                                 | *string*                                                                                    | :heavy_check_mark:                                                                          | The ID of the session                                                                       |
+| `requestBody`                                                                               | [?Operations\RevokeSessionRequestBody](../../Models/Operations/RevokeSessionRequestBody.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
 
 ### Response
 
@@ -317,7 +384,7 @@ if ($response->session !== null) {
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 401, 404       | application/json    |
+| Errors\ClerkErrors  | 400, 401, 404, 422  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## createToken
@@ -368,7 +435,7 @@ if ($response->object !== null) {
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 401, 404            | application/json    |
+| Errors\ClerkErrors  | 401, 403, 404       | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## createTokenFromTemplate
@@ -421,5 +488,5 @@ if ($response->object !== null) {
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 401, 404            | application/json    |
+| Errors\ClerkErrors  | 401, 403, 404       | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |

@@ -20,11 +20,20 @@ class RevokeSessionRequest
     public string $sessionId;
 
     /**
+     *
+     * @var ?\Clerk\Backend\Models\Operations\RevokeSessionRequestBody $requestBody
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public ?RevokeSessionRequestBody $requestBody = null;
+
+    /**
      * @param  string  $sessionId
+     * @param  ?\Clerk\Backend\Models\Operations\RevokeSessionRequestBody  $requestBody
      * @phpstan-pure
      */
-    public function __construct(string $sessionId)
+    public function __construct(string $sessionId, ?RevokeSessionRequestBody $requestBody = null)
     {
         $this->sessionId = $sessionId;
+        $this->requestBody = $requestBody;
     }
 }

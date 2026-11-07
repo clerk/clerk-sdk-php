@@ -185,6 +185,15 @@ class CreateUserRequestBody
     public ?string $locale = null;
 
     /**
+     * The IANA timezone to assign to the user (e.g., "America/New_York", "Europe/Paris"). Set to null to clear it and allow automatic capture on a later trusted sign-in.
+     *
+     * @var ?string $timezone
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('timezone')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $timezone = null;
+
+    /**
      * The username to give to the user.
      *
      * It must be unique across your instance.
@@ -389,6 +398,7 @@ class CreateUserRequestBody
      * @param  ?string  $firstName
      * @param  ?string  $lastName
      * @param  ?string  $locale
+     * @param  ?string  $timezone
      * @param  ?string  $username
      * @param  ?string  $password
      * @param  ?string  $passwordDigest
@@ -408,7 +418,7 @@ class CreateUserRequestBody
      * @param  ?bool  $locked
      * @phpstan-pure
      */
-    public function __construct(?array $emailAddress = null, ?array $emailAddressIdentificationStatus = null, ?array $phoneNumber = null, ?array $phoneNumberIdentificationStatus = null, ?array $web3Wallet = null, ?string $passwordHasher = null, ?array $backupCodes = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $locale = null, ?string $username = null, ?string $password = null, ?string $passwordDigest = null, ?bool $skipPasswordChecks = null, ?bool $skipPasswordRequirement = null, ?bool $skipRestrictionChecks = null, ?string $totpSecret = null, ?bool $deleteSelfEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?bool $skipUserRequirement = null, ?bool $createOrganizationEnabled = null, ?int $createOrganizationsLimit = null, ?string $createdAt = null, ?bool $bypassClientTrust = null, ?bool $banned = null, ?bool $locked = null)
+    public function __construct(?array $emailAddress = null, ?array $emailAddressIdentificationStatus = null, ?array $phoneNumber = null, ?array $phoneNumberIdentificationStatus = null, ?array $web3Wallet = null, ?string $passwordHasher = null, ?array $backupCodes = null, ?array $publicMetadata = null, ?array $privateMetadata = null, ?array $unsafeMetadata = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $locale = null, ?string $timezone = null, ?string $username = null, ?string $password = null, ?string $passwordDigest = null, ?bool $skipPasswordChecks = null, ?bool $skipPasswordRequirement = null, ?bool $skipRestrictionChecks = null, ?string $totpSecret = null, ?bool $deleteSelfEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?bool $skipUserRequirement = null, ?bool $createOrganizationEnabled = null, ?int $createOrganizationsLimit = null, ?string $createdAt = null, ?bool $bypassClientTrust = null, ?bool $banned = null, ?bool $locked = null)
     {
         $this->emailAddress = $emailAddress;
         $this->emailAddressIdentificationStatus = $emailAddressIdentificationStatus;
@@ -424,6 +434,7 @@ class CreateUserRequestBody
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->locale = $locale;
+        $this->timezone = $timezone;
         $this->username = $username;
         $this->password = $password;
         $this->passwordDigest = $passwordDigest;
