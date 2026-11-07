@@ -31,6 +31,18 @@ class EnterpriseConnectionSamlConnection
     public ?string $name = null;
 
     /**
+     * Every IdP signing certificate the connection trusts, primary first. A SAML response verifies against any of them.
+     *
+     *
+     *
+     * @var ?array<\Clerk\Backend\Models\Components\IdpCertificates> $idpCertificates
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('idp_certificates')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\Clerk\Backend\Models\Components\IdpCertificates>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $idpCertificates = null;
+
+    /**
      * Whether the SAML connection is active
      *
      * @var ?bool $active
@@ -95,6 +107,33 @@ class EnterpriseConnectionSamlConnection
     public ?string $idpSsoUrl = null;
 
     /**
+     * Primary IdP X.509 signing certificate (optional, when connection details are loaded)
+     *
+     * @var ?string $idpCertificate
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('idp_certificate')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $idpCertificate = null;
+
+    /**
+     * Unix timestamp (milliseconds) of the primary certificate's X.509 NotBefore
+     *
+     * @var ?int $idpCertificateIssuedAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('idp_certificate_issued_at')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $idpCertificateIssuedAt = null;
+
+    /**
+     * Unix timestamp (milliseconds) of the primary certificate's X.509 NotAfter
+     *
+     * @var ?int $idpCertificateExpiresAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('idp_certificate_expires_at')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $idpCertificateExpiresAt = null;
+
+    /**
      * IdP metadata URL (optional, when connection details are loaded)
      *
      * @var ?string $idpMetadataUrl
@@ -133,6 +172,7 @@ class EnterpriseConnectionSamlConnection
     /**
      * @param  ?string  $id
      * @param  ?string  $name
+     * @param  ?array<\Clerk\Backend\Models\Components\IdpCertificates>  $idpCertificates
      * @param  ?bool  $active
      * @param  ?bool  $allowIdpInitiated
      * @param  ?bool  $allowSubdomains
@@ -140,16 +180,20 @@ class EnterpriseConnectionSamlConnection
      * @param  ?\Clerk\Backend\Models\Components\LoginHint  $loginHint
      * @param  ?string  $idpEntityId
      * @param  ?string  $idpSsoUrl
+     * @param  ?string  $idpCertificate
+     * @param  ?int  $idpCertificateIssuedAt
+     * @param  ?int  $idpCertificateExpiresAt
      * @param  ?string  $idpMetadataUrl
      * @param  ?string  $acsUrl
      * @param  ?string  $spEntityId
      * @param  ?string  $spMetadataUrl
      * @phpstan-pure
      */
-    public function __construct(?string $id = null, ?string $name = null, ?bool $active = null, ?bool $allowIdpInitiated = null, ?bool $allowSubdomains = null, ?bool $forceAuthn = null, ?LoginHint $loginHint = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpMetadataUrl = null, ?string $acsUrl = null, ?string $spEntityId = null, ?string $spMetadataUrl = null)
+    public function __construct(?string $id = null, ?string $name = null, ?array $idpCertificates = null, ?bool $active = null, ?bool $allowIdpInitiated = null, ?bool $allowSubdomains = null, ?bool $forceAuthn = null, ?LoginHint $loginHint = null, ?string $idpEntityId = null, ?string $idpSsoUrl = null, ?string $idpCertificate = null, ?int $idpCertificateIssuedAt = null, ?int $idpCertificateExpiresAt = null, ?string $idpMetadataUrl = null, ?string $acsUrl = null, ?string $spEntityId = null, ?string $spMetadataUrl = null)
     {
         $this->id = $id;
         $this->name = $name;
+        $this->idpCertificates = $idpCertificates;
         $this->active = $active;
         $this->allowIdpInitiated = $allowIdpInitiated;
         $this->allowSubdomains = $allowSubdomains;
@@ -157,6 +201,9 @@ class EnterpriseConnectionSamlConnection
         $this->loginHint = $loginHint;
         $this->idpEntityId = $idpEntityId;
         $this->idpSsoUrl = $idpSsoUrl;
+        $this->idpCertificate = $idpCertificate;
+        $this->idpCertificateIssuedAt = $idpCertificateIssuedAt;
+        $this->idpCertificateExpiresAt = $idpCertificateExpiresAt;
         $this->idpMetadataUrl = $idpMetadataUrl;
         $this->acsUrl = $acsUrl;
         $this->spEntityId = $spEntityId;
