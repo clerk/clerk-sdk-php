@@ -28,6 +28,16 @@ class ListInvitationsRequest
     public ?string $query = null;
 
     /**
+     * Returns invitations with the specified email addresses.
+     *
+     * Accepts up to 100 email addresses.
+     *
+     * @var ?array<string> $emailAddress
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=email_address')]
+    public ?array $emailAddress = null;
+
+    /**
      * Whether to paginate the results.
      *
      * If true, the results will be paginated.
@@ -76,16 +86,18 @@ class ListInvitationsRequest
     /**
      * @param  ?\Clerk\Backend\Models\Operations\ListInvitationsQueryParamStatus  $status
      * @param  ?string  $query
+     * @param  ?array<string>  $emailAddress
      * @param  ?string  $orderBy
      * @param  ?bool  $paginated
      * @param  ?int  $limit
      * @param  ?int  $offset
      * @phpstan-pure
      */
-    public function __construct(?ListInvitationsQueryParamStatus $status = null, ?string $query = null, ?bool $paginated = null, ?string $orderBy = '-created_at', ?int $limit = 10, ?int $offset = 0)
+    public function __construct(?ListInvitationsQueryParamStatus $status = null, ?string $query = null, ?array $emailAddress = null, ?bool $paginated = null, ?string $orderBy = '-created_at', ?int $limit = 10, ?int $offset = 0)
     {
         $this->status = $status;
         $this->query = $query;
+        $this->emailAddress = $emailAddress;
         $this->paginated = $paginated;
         $this->orderBy = $orderBy;
         $this->limit = $limit;

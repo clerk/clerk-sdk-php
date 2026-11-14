@@ -10,6 +10,8 @@
 * [update](#update) - Update a directory
 * [delete](#delete) - Delete a directory
 * [rotateApiKey](#rotateapikey) - Rotate a directory's API key
+* [getGroup](#getgroup) - Retrieve a directory group
+* [listGroupMembers](#listgroupmembers) - List directory group members
 * [listGroupRoleMappings](#listgrouprolemappings) - List directory group role mappings
 * [createGroupRoleMapping](#creategrouprolemapping) - Create a directory group role mapping
 * [replaceGroupRoleMappings](#replacegrouprolemappings) - Replace directory group role mappings
@@ -311,6 +313,113 @@ if ($response->directory !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 401, 403, 404, 422  | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## getGroup
+
+Returns one group of the directory, as reported by the identity provider.
+Responds with 404 once the identity provider has deleted the group.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="GetDirectoryGroup" method="get" path="/directories/{directory_id}/groups/{group_id}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->directories->getGroup(
+    directoryId: '<id>',
+    groupId: '<id>'
+
+);
+
+if ($response->directoryGroup !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                          | Type                                               | Required                                           | Description                                        |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| `directoryId`                                      | *string*                                           | :heavy_check_mark:                                 | The ID of the directory.                           |
+| `groupId`                                          | *string*                                           | :heavy_check_mark:                                 | The ID of the group, as assigned by the directory. |
+
+### Response
+
+**[?Operations\GetDirectoryGroupResponse](../../Models/Operations/GetDirectoryGroupResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 401, 403, 404       | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## listGroupMembers
+
+Returns the members of a group, as reported by the identity provider, using cursor-based pagination.
+Each member carries the Clerk user it is linked to, or null until that user has been provisioned.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="ListDirectoryGroupMembers" method="get" path="/directories/{directory_id}/groups/{group_id}/members" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->directories->listGroupMembers(
+    directoryId: '<id>',
+    groupId: '<id>',
+    limit: 10
+
+);
+
+if ($response->directoryGroupMemberList !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                 | Type                                                                                                                      | Required                                                                                                                  | Description                                                                                                               |
+| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `directoryId`                                                                                                             | *string*                                                                                                                  | :heavy_check_mark:                                                                                                        | The ID of the directory.                                                                                                  |
+| `groupId`                                                                                                                 | *string*                                                                                                                  | :heavy_check_mark:                                                                                                        | The ID of the group, as assigned by the directory.                                                                        |
+| `limit`                                                                                                                   | *?int*                                                                                                                    | :heavy_minus_sign:                                                                                                        | Applies a limit to the number of results returned.<br/>Can be used for paginating the results together with `starting_after`. |
+| `startingAfter`                                                                                                           | *?string*                                                                                                                 | :heavy_minus_sign:                                                                                                        | A cursor for pagination. Provide the `starting_after` cursor from a previous response to fetch the next page.             |
+
+### Response
+
+**[?Operations\ListDirectoryGroupMembersResponse](../../Models/Operations/ListDirectoryGroupMembersResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 401, 403, 404       | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## listGroupRoleMappings

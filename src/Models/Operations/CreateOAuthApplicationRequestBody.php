@@ -22,6 +22,24 @@ class CreateOAuthApplicationRequestBody
     public string $name;
 
     /**
+     * Enable exchanges from the active audience. Requires an audience URI. Disabling preserves target configuration.
+     *
+     * @var ?bool $tokenExchangeEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('token_exchange_enabled')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $tokenExchangeEnabled = null;
+
+    /**
+     * Confirm adoption of an existing unowned resource, preserving its accepted scopes and target references. Does not override another application's reservation.
+     *
+     * @var ?bool $adoptAudienceResource
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('adopt_audience_resource')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $adoptAudienceResource = null;
+
+    /**
      * An array of redirect URIs of the new OAuth application
      *
      * @var ?array<string> $redirectUris
@@ -40,6 +58,15 @@ class CreateOAuthApplicationRequestBody
     #[\Speakeasy\Serializer\Annotation\SerializedName('callback_url')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $callbackUrl = null;
+
+    /**
+     * An absolute resource URI for a confidential application (RFC 8707 section 2). Registers a resource with no accepted scopes, or adopts an unowned resource with confirmation. Every claimed URI remains permanently reserved to this app, including retirement and deletion, and counts toward the instance resource quota. Changing it stops new exchanges from the old audience immediately. Already-issued tokens retain their lifetime. Clearing requires exchange disabled in an earlier update.
+     *
+     * @var ?string $audienceUri
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('audience_uri')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $audienceUri = null;
 
     /**
      * If true, this client is public and you can use the Proof Key of Code Exchange (PKCE) flow.
@@ -88,20 +115,26 @@ class CreateOAuthApplicationRequestBody
 
     /**
      * @param  string  $name
+     * @param  ?bool  $tokenExchangeEnabled
+     * @param  ?bool  $adoptAudienceResource
      * @param  ?array<string>  $redirectUris
      * @param  ?string  $callbackUrl
      * @param  ?string  $scopes
      * @param  ?bool  $consentScreenEnabled
      * @param  ?bool  $pkceRequired
+     * @param  ?string  $audienceUri
      * @param  ?bool  $deviceAuthorizationGrantEnabled
      * @param  ?bool  $public
      * @phpstan-pure
      */
-    public function __construct(string $name, ?array $redirectUris = null, ?string $callbackUrl = null, ?bool $public = null, ?string $scopes = 'profile email', ?bool $consentScreenEnabled = true, ?bool $pkceRequired = false, ?bool $deviceAuthorizationGrantEnabled = false)
+    public function __construct(string $name, ?bool $tokenExchangeEnabled = null, ?bool $adoptAudienceResource = null, ?array $redirectUris = null, ?string $callbackUrl = null, ?string $audienceUri = null, ?bool $public = null, ?string $scopes = 'profile email', ?bool $consentScreenEnabled = true, ?bool $pkceRequired = false, ?bool $deviceAuthorizationGrantEnabled = false)
     {
         $this->name = $name;
+        $this->tokenExchangeEnabled = $tokenExchangeEnabled;
+        $this->adoptAudienceResource = $adoptAudienceResource;
         $this->redirectUris = $redirectUris;
         $this->callbackUrl = $callbackUrl;
+        $this->audienceUri = $audienceUri;
         $this->public = $public;
         $this->scopes = $scopes;
         $this->consentScreenEnabled = $consentScreenEnabled;
