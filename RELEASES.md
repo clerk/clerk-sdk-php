@@ -139,3 +139,13 @@ Based on:
 - [php v2.0.1] .
 ### Releases
 - [Composer v2.0.1] https://packagist.org/packages/clerkinc/backend-php#v2.0.1 - .
+
+## 2026-11-14 00:30:37
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.809.0 (2.961.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [php v2.0.2] .
+### Releases
+- [Composer v2.0.2] https://packagist.org/packages/clerkinc/backend-php#v2.0.2 - .

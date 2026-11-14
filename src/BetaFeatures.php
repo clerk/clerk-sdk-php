@@ -156,6 +156,8 @@ class BetaFeatures
      *
      * WARNING: Changing your domain will invalidate all current user sessions (i.e. users will be logged out). Also, while your application is being deployed, a small downtime is expected to occur.
      *
+     * Returns 403 `domain_managed_by_integration` for applications in a Vercel-managed workspace; change the domain from the Vercel integration instead.
+     *
      * @param  ?\Clerk\Backend\Models\Operations\UpdateProductionInstanceDomainRequestBody  $request
      * @return \Clerk\Backend\Models\Operations\UpdateProductionInstanceDomainResponse
      * @throws \Clerk\Backend\Models\Errors\SDKException
@@ -225,7 +227,7 @@ class BetaFeatures
                 contentType: $contentType,
                 rawResponse: $httpResponse
             );
-        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['400', '422'])) {
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['400', '403', '422'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 

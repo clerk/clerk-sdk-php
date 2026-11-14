@@ -30,6 +30,18 @@ class UpdateSCIMDirectoryRequestBody
     public ?bool $enabled = null;
 
     /**
+     * Pause or resume syncing. Pausing rejects provisioning requests and skips scheduled
+     *
+     * syncs while keeping the organization memberships the directory granted, so sync picks
+     * up where it left off. Disabling removes them instead.
+     *
+     * @var ?bool $paused
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('paused')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $paused = null;
+
+    /**
      * The identity provider for this directory.
      *
      * @var ?string $provider
@@ -62,15 +74,17 @@ class UpdateSCIMDirectoryRequestBody
     /**
      * @param  ?string  $name
      * @param  ?bool  $enabled
+     * @param  ?bool  $paused
      * @param  ?string  $provider
      * @param  ?array<string, ?string>  $attributeMapping
      * @param  ?bool  $groupRoleMappingEnabled
      * @phpstan-pure
      */
-    public function __construct(?string $name = null, ?bool $enabled = null, ?string $provider = null, ?array $attributeMapping = null, ?bool $groupRoleMappingEnabled = null)
+    public function __construct(?string $name = null, ?bool $enabled = null, ?bool $paused = null, ?string $provider = null, ?array $attributeMapping = null, ?bool $groupRoleMappingEnabled = null)
     {
         $this->name = $name;
         $this->enabled = $enabled;
+        $this->paused = $paused;
         $this->provider = $provider;
         $this->attributeMapping = $attributeMapping;
         $this->groupRoleMappingEnabled = $groupRoleMappingEnabled;

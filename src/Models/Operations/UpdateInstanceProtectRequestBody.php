@@ -21,21 +21,11 @@ class UpdateInstanceProtectRequestBody
     public ?bool $rulesEnabled = null;
 
     /**
-     *
-     * @var ?bool $specterEnabled
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('specter_enabled')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $specterEnabled = null;
-
-    /**
      * @param  ?bool  $rulesEnabled
-     * @param  ?bool  $specterEnabled
      * @phpstan-pure
      */
-    public function __construct(?bool $rulesEnabled = null, ?bool $specterEnabled = null)
+    public function __construct(?bool $rulesEnabled = null)
     {
         $this->rulesEnabled = $rulesEnabled;
-        $this->specterEnabled = $specterEnabled;
     }
 }
