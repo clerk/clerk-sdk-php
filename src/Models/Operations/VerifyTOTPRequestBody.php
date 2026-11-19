@@ -20,11 +20,25 @@ class VerifyTOTPRequestBody
     public string $code;
 
     /**
+     * When `true`, a wrong code counts toward the user's lockout, and a locked user is rejected with a `user_locked` error before the code is checked.
+     *
+     * Has no effect on instances with user lockout disabled.
+     * To enforce lockout across a password check and a sign-in token, set this parameter on both requests.
+     *
+     * @var ?bool $honorLockout
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('honor_lockout')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $honorLockout = null;
+
+    /**
      * @param  string  $code
+     * @param  ?bool  $honorLockout
      * @phpstan-pure
      */
-    public function __construct(string $code)
+    public function __construct(string $code, ?bool $honorLockout = false)
     {
         $this->code = $code;
+        $this->honorLockout = $honorLockout;
     }
 }
