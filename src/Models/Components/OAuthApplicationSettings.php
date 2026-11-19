@@ -46,6 +46,14 @@ class OAuthApplicationSettings
     public bool $audClaimEnabled;
 
     /**
+     * Whether refresh grants without a resource can adopt the requested resource when audience claims are enabled.
+     *
+     * @var bool $audClaimRefreshBackfillEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('aud_claim_refresh_backfill_enabled')]
+    public bool $audClaimRefreshBackfillEnabled;
+
+    /**
      * Whether all new OAuth authorization-code requests must use PKCE with the S256 challenge method.
      *
      * @var bool $pkceRequired
@@ -89,27 +97,41 @@ class OAuthApplicationSettings
     public ?array $defaultScopes;
 
     /**
+     * Administrator-selected scope ceiling for dynamically registered and automatically admitted CIMD clients. Null preserves registered client limits; defaults must be a subset. Fresh user consent is required for expansion.
+     *
+     * @var ?array<string> $dynamicClientAllowedScopes
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('dynamic_client_allowed_scopes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $dynamicClientAllowedScopes = null;
+
+    /**
      * @param  \Clerk\Backend\Models\Components\OAuthApplicationSettingsObject  $object
      * @param  bool  $dynamicOauthClientRegistration
      * @param  bool  $oauthJwtAccessTokens
      * @param  bool  $audClaimEnabled
+     * @param  bool  $audClaimRefreshBackfillEnabled
      * @param  bool  $pkceRequired
      * @param  bool  $clientIdMetadataDocumentsAdvertised
      * @param  bool  $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients
      * @param  bool  $clientIdMetadataDocumentsBlockImplicitlyAllowedClients
      * @param  ?array<string>  $defaultScopes
+     * @param  ?array<string>  $dynamicClientAllowedScopes
      * @phpstan-pure
      */
-    public function __construct(OAuthApplicationSettingsObject $object, bool $dynamicOauthClientRegistration, bool $oauthJwtAccessTokens, bool $audClaimEnabled, bool $pkceRequired, bool $clientIdMetadataDocumentsAdvertised, bool $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients, bool $clientIdMetadataDocumentsBlockImplicitlyAllowedClients, ?array $defaultScopes = null)
+    public function __construct(OAuthApplicationSettingsObject $object, bool $dynamicOauthClientRegistration, bool $oauthJwtAccessTokens, bool $audClaimEnabled, bool $audClaimRefreshBackfillEnabled, bool $pkceRequired, bool $clientIdMetadataDocumentsAdvertised, bool $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients, bool $clientIdMetadataDocumentsBlockImplicitlyAllowedClients, ?array $defaultScopes = null, ?array $dynamicClientAllowedScopes = null)
     {
         $this->object = $object;
         $this->dynamicOauthClientRegistration = $dynamicOauthClientRegistration;
         $this->oauthJwtAccessTokens = $oauthJwtAccessTokens;
         $this->audClaimEnabled = $audClaimEnabled;
+        $this->audClaimRefreshBackfillEnabled = $audClaimRefreshBackfillEnabled;
         $this->pkceRequired = $pkceRequired;
         $this->clientIdMetadataDocumentsAdvertised = $clientIdMetadataDocumentsAdvertised;
         $this->clientIdMetadataDocumentsOnlyAllowPreRegisteredClients = $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients;
         $this->clientIdMetadataDocumentsBlockImplicitlyAllowedClients = $clientIdMetadataDocumentsBlockImplicitlyAllowedClients;
         $this->defaultScopes = $defaultScopes;
+        $this->dynamicClientAllowedScopes = $dynamicClientAllowedScopes;
     }
 }

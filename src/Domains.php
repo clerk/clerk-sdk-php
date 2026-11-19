@@ -57,6 +57,7 @@ class Domains
      * set `is_satellite` to `false`. The custom domain becomes active and the provider domain stays attached.
      * Additional custom primary domains are not supported.
      * If you're planning to configure the new satellite domain to run behind a proxy, pass the `proxy_url` parameter accordingly.
+     * Adding a custom primary domain returns 403 `domain_managed_by_integration` for applications in a Vercel-managed workspace; change the domain from the Vercel integration instead.
      *
      * @param  ?\Clerk\Backend\Models\Operations\AddDomainRequestBody  $request
      * @return \Clerk\Backend\Models\Operations\AddDomainResponse
@@ -134,7 +135,7 @@ class Domains
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
-        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['400', '402', '422'])) {
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['400', '402', '403', '422'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -159,6 +160,7 @@ class Domains
      *
      * Deletes a domain for the instance.
      * The instance's active domain cannot be deleted.
+     * Deleting a non-satellite domain returns 403 `domain_managed_by_integration` for applications in a Vercel-managed workspace; change the domain from the Vercel integration instead.
      *
      * @param  string  $domainId
      * @return \Clerk\Backend\Models\Operations\DeleteDomainResponse
@@ -352,6 +354,7 @@ class Domains
      * you have to make sure that you've completed all the necessary setup steps for DNS and
      * emails to work. Expect downtime otherwise. Updating a primary domain's name will also
      * update the instance's home origin, affecting the default application paths.
+     * Updating the `name` or `is_secondary` of a primary domain returns 403 `domain_managed_by_integration` for applications in a Vercel-managed workspace; change the domain from the Vercel integration instead.
      *
      * @param  \Clerk\Backend\Models\Operations\UpdateDomainRequestBody  $requestBody
      * @param  string  $domainId
@@ -435,7 +438,7 @@ class Domains
             } else {
                 throw new \Clerk\Backend\Models\Errors\SDKException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
-        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['400', '404', '422'])) {
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['400', '403', '404', '422'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 

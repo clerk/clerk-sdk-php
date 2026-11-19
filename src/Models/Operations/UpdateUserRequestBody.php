@@ -90,6 +90,15 @@ class UpdateUserRequestBody
     public ?string $locale = null;
 
     /**
+     * The IANA timezone to assign to the user (e.g., "America/New_York", "Europe/Paris"). Set to null to clear it and allow automatic capture on a later trusted sign-in.
+     *
+     * @var ?string $timezone
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('timezone')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $timezone = null;
+
+    /**
      * The ID of the email address to set as primary.
      *
      * It must be verified, and present on the current user.
@@ -262,6 +271,7 @@ class UpdateUserRequestBody
      * @param  ?string  $firstName
      * @param  ?string  $lastName
      * @param  ?string  $locale
+     * @param  ?string  $timezone
      * @param  ?string  $primaryEmailAddressId
      * @param  ?bool  $notifyPrimaryEmailAddressChanged
      * @param  ?string  $primaryPhoneNumberId
@@ -281,7 +291,7 @@ class UpdateUserRequestBody
      * @param  ?bool  $bypassClientTrust
      * @phpstan-pure
      */
-    public function __construct(?string $passwordDigest = null, ?string $passwordHasher = null, ?array $backupCodes = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $locale = null, ?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $username = null, ?string $profileImageId = null, ?string $password = null, ?bool $skipPasswordChecks = null, ?bool $signOutOfOtherSessions = null, ?string $totpSecret = null, ?bool $deleteSelfEnabled = null, ?bool $createOrganizationEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?int $createOrganizationsLimit = null, ?string $createdAt = null, ?bool $bypassClientTrust = null, ?bool $notifyPrimaryEmailAddressChanged = false)
+    public function __construct(?string $passwordDigest = null, ?string $passwordHasher = null, ?array $backupCodes = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $locale = null, ?string $timezone = null, ?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $username = null, ?string $profileImageId = null, ?string $password = null, ?bool $skipPasswordChecks = null, ?bool $signOutOfOtherSessions = null, ?string $totpSecret = null, ?bool $deleteSelfEnabled = null, ?bool $createOrganizationEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?int $createOrganizationsLimit = null, ?string $createdAt = null, ?bool $bypassClientTrust = null, ?bool $notifyPrimaryEmailAddressChanged = false)
     {
         $this->passwordDigest = $passwordDigest;
         $this->passwordHasher = $passwordHasher;
@@ -290,6 +300,7 @@ class UpdateUserRequestBody
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->locale = $locale;
+        $this->timezone = $timezone;
         $this->primaryEmailAddressId = $primaryEmailAddressId;
         $this->primaryPhoneNumberId = $primaryPhoneNumberId;
         $this->primaryWeb3WalletId = $primaryWeb3WalletId;

@@ -70,6 +70,14 @@ class Instance
     public ?string $workspaceId;
 
     /**
+     * The maximum number of users the instance can hold. Creating a user fails with a `user_quota_exceeded` error once the instance's total user count, as returned by `GET /v1/users/count` without filters, reaches this value. It is null when the instance has no user limit.
+     *
+     * @var ?int $maxAllowedUsers
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('max_allowed_users')]
+    public ?int $maxAllowedUsers;
+
+    /**
      * @param  \Clerk\Backend\Models\Components\InstanceObject  $object
      * @param  string  $id
      * @param  string  $environmentType
@@ -77,9 +85,10 @@ class Instance
      * @param  bool  $subdomainAllowlistEnabled
      * @param  ?array<string>  $allowedOrigins
      * @param  ?string  $workspaceId
+     * @param  ?int  $maxAllowedUsers
      * @phpstan-pure
      */
-    public function __construct(InstanceObject $object, string $id, string $environmentType, array $allowedSubdomains, bool $subdomainAllowlistEnabled, ?array $allowedOrigins = null, ?string $workspaceId = null)
+    public function __construct(InstanceObject $object, string $id, string $environmentType, array $allowedSubdomains, bool $subdomainAllowlistEnabled, ?array $allowedOrigins = null, ?string $workspaceId = null, ?int $maxAllowedUsers = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -88,5 +97,6 @@ class Instance
         $this->subdomainAllowlistEnabled = $subdomainAllowlistEnabled;
         $this->allowedOrigins = $allowedOrigins;
         $this->workspaceId = $workspaceId;
+        $this->maxAllowedUsers = $maxAllowedUsers;
     }
 }

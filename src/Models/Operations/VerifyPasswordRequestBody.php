@@ -20,11 +20,25 @@ class VerifyPasswordRequestBody
     public string $password;
 
     /**
+     * When `true`, a wrong password counts toward the user's lockout, and a locked user is rejected with a `user_locked` error before the password is checked.
+     *
+     * Has no effect on instances with user lockout disabled.
+     * To enforce lockout across a password check and a sign-in token, set this parameter on both requests.
+     *
+     * @var ?bool $honorLockout
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('honor_lockout')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $honorLockout = null;
+
+    /**
      * @param  string  $password
+     * @param  ?bool  $honorLockout
      * @phpstan-pure
      */
-    public function __construct(string $password)
+    public function __construct(string $password, ?bool $honorLockout = false)
     {
         $this->password = $password;
+        $this->honorLockout = $honorLockout;
     }
 }

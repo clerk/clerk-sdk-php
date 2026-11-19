@@ -88,6 +88,16 @@ class ResponseBody1
     public ?array $aud = null;
 
     /**
+     * The actor chain of an access token issued by an OAuth 2.0 Token Exchange (RFC 8693 section 4.1). Omitted for other access tokens.
+     *
+     * @var ?\Clerk\Backend\Models\Operations\Act $act
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('act')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Operations\Act|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?Act $act = null;
+
+    /**
      *
      * @var ?string $revocationReason
      */
@@ -112,11 +122,12 @@ class ResponseBody1
      * @param  float  $createdAt
      * @param  float  $updatedAt
      * @param  ?array<string>  $aud
+     * @param  ?\Clerk\Backend\Models\Operations\Act  $act
      * @param  ?string  $revocationReason
      * @param  ?float  $expiration
      * @phpstan-pure
      */
-    public function __construct(ResponseBodyObject $object, string $id, string $clientId, string $subject, array $scopes, bool $revoked, bool $expired, float $createdAt, float $updatedAt, ?array $aud = null, ?string $revocationReason = null, ?float $expiration = null)
+    public function __construct(ResponseBodyObject $object, string $id, string $clientId, string $subject, array $scopes, bool $revoked, bool $expired, float $createdAt, float $updatedAt, ?array $aud = null, ?Act $act = null, ?string $revocationReason = null, ?float $expiration = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -128,6 +139,7 @@ class ResponseBody1
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
         $this->aud = $aud;
+        $this->act = $act;
         $this->revocationReason = $revocationReason;
         $this->expiration = $expiration;
     }

@@ -61,6 +61,7 @@ To migrate a production instance from an active provider domain to its first cus
 set `is_satellite` to `false`. The custom domain becomes active and the provider domain stays attached.
 Additional custom primary domains are not supported.
 If you're planning to configure the new satellite domain to run behind a proxy, pass the `proxy_url` parameter accordingly.
+Adding a custom primary domain returns 403 `domain_managed_by_integration` for applications in a Vercel-managed workspace; change the domain from the Vercel integration instead.
 
 ### Example Usage
 
@@ -103,13 +104,14 @@ if ($response->domain !== null) {
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 402, 422       | application/json    |
+| Errors\ClerkErrors  | 400, 402, 403, 422  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## delete
 
 Deletes a domain for the instance.
 The instance's active domain cannot be deleted.
+Deleting a non-satellite domain returns 403 `domain_managed_by_integration` for applications in a Vercel-managed workspace; change the domain from the Vercel integration instead.
 
 ### Example Usage
 
@@ -165,6 +167,7 @@ to `null` for the domain. When you update a production instance's primary domain
 you have to make sure that you've completed all the necessary setup steps for DNS and
 emails to work. Expect downtime otherwise. Updating a primary domain's name will also
 update the instance's home origin, affecting the default application paths.
+Updating the `name` or `is_secondary` of a primary domain returns 403 `domain_managed_by_integration` for applications in a Vercel-managed workspace; change the domain from the Vercel integration instead.
 
 ### Example Usage
 
@@ -211,5 +214,5 @@ if ($response->domain !== null) {
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 404, 422       | application/json    |
+| Errors\ClerkErrors  | 400, 403, 404, 422  | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |

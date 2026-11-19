@@ -21,6 +21,16 @@ class UpdateInstanceOAuthApplicationSettingsRequestBody
     public ?bool $dynamicOauthClientRegistration = null;
 
     /**
+     * Administrator-selected scope ceiling for dynamically registered and automatically admitted CIMD clients. Null preserves registered client limits; defaults must be a subset. Fresh user consent is required for expansion.
+     *
+     * @var ?array<string> $dynamicClientAllowedScopes
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('dynamic_client_allowed_scopes')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $dynamicClientAllowedScopes = null;
+
+    /**
      * Default scopes assigned when a dynamically registered or first-contact CIMD client omits `scope`. Accepts built-in keys and current custom catalog keys. `advertised` does not affect eligibility. Duplicate keys, unknown keys, and `offline_access` are rejected. An empty array or null resets to Clerk-provided defaults.
      *
      *
@@ -49,6 +59,15 @@ class UpdateInstanceOAuthApplicationSettingsRequestBody
     #[\Speakeasy\Serializer\Annotation\SerializedName('aud_claim_enabled')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $audClaimEnabled = null;
+
+    /**
+     * Whether refresh grants without a resource can adopt the requested resource when audience claims are enabled.
+     *
+     * @var ?bool $audClaimRefreshBackfillEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('aud_claim_refresh_backfill_enabled')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $audClaimRefreshBackfillEnabled = null;
 
     /**
      * Whether all new OAuth authorization-code requests must use PKCE with the S256 challenge method.
@@ -88,21 +107,25 @@ class UpdateInstanceOAuthApplicationSettingsRequestBody
 
     /**
      * @param  ?bool  $dynamicOauthClientRegistration
+     * @param  ?array<string>  $dynamicClientAllowedScopes
      * @param  ?array<string>  $defaultScopes
      * @param  ?bool  $oauthJwtAccessTokens
      * @param  ?bool  $audClaimEnabled
+     * @param  ?bool  $audClaimRefreshBackfillEnabled
      * @param  ?bool  $pkceRequired
      * @param  ?bool  $clientIdMetadataDocumentsAdvertised
      * @param  ?bool  $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients
      * @param  ?bool  $clientIdMetadataDocumentsBlockImplicitlyAllowedClients
      * @phpstan-pure
      */
-    public function __construct(?bool $dynamicOauthClientRegistration = null, ?array $defaultScopes = null, ?bool $oauthJwtAccessTokens = null, ?bool $audClaimEnabled = null, ?bool $pkceRequired = null, ?bool $clientIdMetadataDocumentsAdvertised = null, ?bool $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients = null, ?bool $clientIdMetadataDocumentsBlockImplicitlyAllowedClients = null)
+    public function __construct(?bool $dynamicOauthClientRegistration = null, ?array $dynamicClientAllowedScopes = null, ?array $defaultScopes = null, ?bool $oauthJwtAccessTokens = null, ?bool $audClaimEnabled = null, ?bool $audClaimRefreshBackfillEnabled = null, ?bool $pkceRequired = null, ?bool $clientIdMetadataDocumentsAdvertised = null, ?bool $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients = null, ?bool $clientIdMetadataDocumentsBlockImplicitlyAllowedClients = null)
     {
         $this->dynamicOauthClientRegistration = $dynamicOauthClientRegistration;
+        $this->dynamicClientAllowedScopes = $dynamicClientAllowedScopes;
         $this->defaultScopes = $defaultScopes;
         $this->oauthJwtAccessTokens = $oauthJwtAccessTokens;
         $this->audClaimEnabled = $audClaimEnabled;
+        $this->audClaimRefreshBackfillEnabled = $audClaimRefreshBackfillEnabled;
         $this->pkceRequired = $pkceRequired;
         $this->clientIdMetadataDocumentsAdvertised = $clientIdMetadataDocumentsAdvertised;
         $this->clientIdMetadataDocumentsOnlyAllowPreRegisteredClients = $clientIdMetadataDocumentsOnlyAllowPreRegisteredClients;
