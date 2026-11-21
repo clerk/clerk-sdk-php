@@ -85,7 +85,7 @@ $response = $sdk->users->list(
     request: $request
 );
 
-if ($response->userList !== null) {
+if ($response->userListOrCursorPage !== null) {
     // handle response
 }
 ```
@@ -104,7 +104,8 @@ if ($response->userList !== null) {
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 400, 401, 422       | application/json    |
+| Errors\ClerkErrors  | 400, 401, 403, 422  | application/json    |
+| Errors\ClerkErrors  | 503                 | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## create

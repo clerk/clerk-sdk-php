@@ -106,6 +106,15 @@ class Client
     public ?string $lastAuthenticationStrategy;
 
     /**
+     * Unix timestamp in milliseconds when this client was revoked.
+     *
+     * @var ?int $revokedAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('revoked_at')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $revokedAt = null;
+
+    /**
      * @param  \Clerk\Backend\Models\Components\ObjectT  $object
      * @param  string  $id
      * @param  array<string>  $sessionIds
@@ -116,9 +125,10 @@ class Client
      * @param  ?string  $signUpId
      * @param  ?string  $lastActiveSessionId
      * @param  ?string  $lastAuthenticationStrategy
+     * @param  ?int  $revokedAt
      * @phpstan-pure
      */
-    public function __construct(ObjectT $object, string $id, array $sessionIds, array $sessions, int $updatedAt, int $createdAt, ?string $signInId = null, ?string $signUpId = null, ?string $lastActiveSessionId = null, ?string $lastAuthenticationStrategy = null)
+    public function __construct(ObjectT $object, string $id, array $sessionIds, array $sessions, int $updatedAt, int $createdAt, ?string $signInId = null, ?string $signUpId = null, ?string $lastActiveSessionId = null, ?string $lastAuthenticationStrategy = null, ?int $revokedAt = null)
     {
         $this->object = $object;
         $this->id = $id;
@@ -130,5 +140,6 @@ class Client
         $this->signUpId = $signUpId;
         $this->lastActiveSessionId = $lastActiveSessionId;
         $this->lastAuthenticationStrategy = $lastAuthenticationStrategy;
+        $this->revokedAt = $revokedAt;
     }
 }

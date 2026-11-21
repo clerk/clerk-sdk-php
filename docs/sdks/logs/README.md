@@ -6,6 +6,7 @@
 
 * [list](#list) - List all logs
 * [getSchema](#getschema) - Retrieve the payload schema of a log event type
+* [listTypes](#listtypes) - List all log event types
 * [listGroupEvents](#listgroupevents) - List an event group's logs
 * [get](#get) - Retrieve a single log
 
@@ -103,8 +104,6 @@ intersection across every matching event type, and `matched_event_types`
 lists what the intersection was computed over; per-type metadata
 (description, severity, docs_group) is present only for concrete types.
 
-The response is the same for every instance.
-
 ### Example Usage
 
 <!-- UsageSnippet language="php" operationID="GetLogSchema" method="get" path="/logs/schemas" -->
@@ -134,9 +133,9 @@ if ($response->logSchema !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                 | Type                                                                                                                                                                                      | Required                                                                                                                                                                                  | Description                                                                                                                                                                               | Example                                                                                                                                                                                   |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`                                                                                                                                                                                    | *string*                                                                                                                                                                                  | :heavy_check_mark:                                                                                                                                                                        | The event type to describe: concrete (`sign_in.completed`),<br/>trailing-`*` wildcard (`sign_in.*`), or bare family name<br/>(`sign_in`). Unknown types return a 422. A bare `*` is not<br/>accepted. | sign_in.*                                                                                                                                                                                 |
+| Parameter                                                                                                                                                                                                                                  | Type                                                                                                                                                                                                                                       | Required                                                                                                                                                                                                                                   | Description                                                                                                                                                                                                                                | Example                                                                                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `type`                                                                                                                                                                                                                                     | *string*                                                                                                                                                                                                                                   | :heavy_check_mark:                                                                                                                                                                                                                         | The event type to describe: concrete (`sign_in.completed`),<br/>trailing-`*` wildcard (`sign_in.*`), or bare family name<br/>(`sign_in`). Unknown types return a 422. A bare `*` is not<br/>accepted; to list every event type, use `GET /logs/types`. | sign_in.*                                                                                                                                                                                                                                  |
 
 ### Response
 
@@ -147,6 +146,55 @@ if ($response->logSchema !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 401, 403, 422, 429  | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## listTypes
+
+Returns every event type the instance can see in its logs, each with
+its payload schema, sorted by `event_type`. Each entry is the same as
+the response of `GET /logs/schemas` for that type.
+
+Use it to discover the values that the `type` parameter of the list
+endpoint accepts, and the payload fields each one carries. The list is
+not paginated. Event types whose logs are enabled per instance (such as
+`sms.*` and `email.*`) are listed only once enabled.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="ListLogTypes" method="get" path="/logs/types" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->logs->listTypes(
+
+);
+
+if ($response->logSchemaList !== null) {
+    // handle response
+}
+```
+
+### Response
+
+**[?Operations\ListLogTypesResponse](../../Models/Operations/ListLogTypesResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 401, 403, 429       | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
 
 ## listGroupEvents
@@ -188,12 +236,12 @@ if ($response->logList !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                                       | Type                                                                                                                                            | Required                                                                                                                                        | Description                                                                                                                                     |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `groupId`                                                                                                                                       | *string*                                                                                                                                        | :heavy_check_mark:                                                                                                                              | The ID of the event group, e.g. a sign-in ID.                                                                                                   |
-| `startedAt`                                                                                                                                     | *int*                                                                                                                                           | :heavy_check_mark:                                                                                                                              | When the group started (Unix timestamp in milliseconds), the<br/>`started_at` of the group item. It bounds the time range searched.             |
-| `limit`                                                                                                                                         | *?int*                                                                                                                                          | :heavy_minus_sign:                                                                                                                              | Applies a limit to the number of results returned.                                                                                              |
-| `startingAfter`                                                                                                                                 | *?string*                                                                                                                                       | :heavy_minus_sign:                                                                                                                              | The group's `events_cursor` from the grouped view, or the<br/>`starting_after` cursor this endpoint returned. Only forward<br/>pagination is supported. |
+| Parameter                                                                                                                                                                                                                            | Type                                                                                                                                                                                                                                 | Required                                                                                                                                                                                                                             | Description                                                                                                                                                                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `groupId`                                                                                                                                                                                                                            | *string*                                                                                                                                                                                                                             | :heavy_check_mark:                                                                                                                                                                                                                   | The ID of the event group, e.g. a sign-in ID.                                                                                                                                                                                        |
+| `startedAt`                                                                                                                                                                                                                          | *?int*                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                   | When the group started (Unix timestamp in milliseconds), the<br/>`started_at` of the group item. Optional: when omitted, it is<br/>looked up from `group_id`, and a group that can't be found or is<br/>past the retention window returns a 404. |
+| `limit`                                                                                                                                                                                                                              | *?int*                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                   | Applies a limit to the number of results returned.                                                                                                                                                                                   |
+| `startingAfter`                                                                                                                                                                                                                      | *?string*                                                                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                                                                   | The group's `events_cursor` from the grouped view, or the<br/>`starting_after` cursor this endpoint returned. Only forward<br/>pagination is supported.                                                                              |
 
 ### Response
 
@@ -201,11 +249,11 @@ if ($response->logList !== null) {
 
 ### Errors
 
-| Error Type          | Status Code         | Content Type        |
-| ------------------- | ------------------- | ------------------- |
-| Errors\ClerkErrors  | 401, 403, 422, 429  | application/json    |
-| Errors\ClerkErrors  | 503                 | application/json    |
-| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| Errors\ClerkErrors      | 401, 403, 404, 422, 429 | application/json        |
+| Errors\ClerkErrors      | 503                     | application/json        |
+| Errors\SDKException     | 4XX, 5XX                | \*/\*                   |
 
 ## get
 

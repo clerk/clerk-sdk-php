@@ -7,6 +7,7 @@
 * [~~list~~](#list) - List all clients :warning: **Deprecated**
 * [verify](#verify) - Verify a client
 * [get](#get) - Get a client
+* [revoke](#revoke) - Revoke a client
 
 ## ~~list~~
 
@@ -158,4 +159,54 @@ if ($response->client !== null) {
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
 | Errors\ClerkErrors  | 400, 401, 404       | application/json    |
+| Errors\SDKException | 4XX, 5XX            | \*/\*               |
+
+## revoke
+
+Permanently revokes a client in a development or production instance, including its active and pending sessions and its linked development browser tokens. Other clients are unaffected. Repeating the request is safe.
+Returns the client with a non-null revoked_at timestamp and no current sessions. Revoked development browser tokens receive dev_browser_unauthenticated on authenticated Frontend API routes. Previously issued session JWTs remain valid until their expiration.
+To sign in again, the browser must initialize a new client. Unlike Frontend API DELETE /client, this operation requires a backend credential and the target client ID, not the affected browser's cookies.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="RevokeClient" method="post" path="/clients/{client_id}/revoke" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Clerk\Backend;
+
+$sdk = Backend\ClerkBackend::builder()
+    ->setSecurity(
+        '<YOUR_BEARER_TOKEN_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->clients->revoke(
+    clientId: '<id>'
+);
+
+if ($response->client2 !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `clientId`         | *string*           | :heavy_check_mark: | N/A                |
+
+### Response
+
+**[?Operations\RevokeClientResponse](../../Models/Operations/RevokeClientResponse.md)**
+
+### Errors
+
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| Errors\ClerkErrors  | 401, 404            | application/json    |
 | Errors\SDKException | 4XX, 5XX            | \*/\*               |
