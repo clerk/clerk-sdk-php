@@ -97,10 +97,11 @@ class LogGroup
     public ?int $matchedEventCount = null;
 
     /**
-     * How the flow ended, `completed` or `failed`. Null while the flow
+     * How the flow ended: `completed`, `failed`, or `abandoned` when
      *
-     * has not concluded: no status is recorded for a flow that is still
-     * going or was given up.
+     * nothing concluded it before its abandon deadline passed (a
+     * sign-in or sign-up nobody finished). Null while the flow is still
+     * going.
      *
      * @var ?string $status
      */

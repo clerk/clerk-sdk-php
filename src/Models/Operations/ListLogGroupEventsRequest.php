@@ -22,12 +22,14 @@ class ListLogGroupEventsRequest
     /**
      * When the group started (Unix timestamp in milliseconds), the
      *
-     * `started_at` of the group item. It bounds the time range searched.
+     * `started_at` of the group item. Optional: when omitted, it is
+     * looked up from `group_id`, and a group that can't be found or is
+     * past the retention window returns a 404.
      *
-     * @var int $startedAt
+     * @var ?int $startedAt
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=started_at')]
-    public int $startedAt;
+    public ?int $startedAt = null;
 
     /**
      * The group's `events_cursor` from the grouped view, or the
@@ -50,12 +52,12 @@ class ListLogGroupEventsRequest
 
     /**
      * @param  string  $groupId
-     * @param  int  $startedAt
+     * @param  ?int  $startedAt
      * @param  ?int  $limit
      * @param  ?string  $startingAfter
      * @phpstan-pure
      */
-    public function __construct(string $groupId, int $startedAt, ?string $startingAfter = null, ?int $limit = 10)
+    public function __construct(string $groupId, ?int $startedAt = null, ?string $startingAfter = null, ?int $limit = 10)
     {
         $this->groupId = $groupId;
         $this->startedAt = $startedAt;

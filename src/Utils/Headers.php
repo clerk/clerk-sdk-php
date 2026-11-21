@@ -41,7 +41,7 @@ class Headers
 
             $value = $this->serializeHeader($metadata, $value);
 
-            if (empty($value)) {
+            if ($value === '') {
                 continue;
             }
 
@@ -53,6 +53,18 @@ class Headers
 
     private function serializeHeader(ParamsMetadata $metadata, mixed $value): string
     {
+        if ($value instanceof \Brick\Math\BigInteger) {
+            return $value->toBase(10);
+        }
+
+        if ($value instanceof \Brick\Math\BigDecimal) {
+            return $value->__toString();
+        }
+
+        if ($value instanceof \Brick\DateTime\LocalDate || $value instanceof \DateTime || $value instanceof \UnitEnum) {
+            return valToString($value, ['dateTimeFormat' => $metadata->dateTimeFormat]);
+        }
+
         switch (gettype($value)) {
             case 'object':
                 $items = [];
