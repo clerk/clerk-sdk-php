@@ -16,7 +16,7 @@ class GetLogSchemaRequest
      *
      * trailing-`*` wildcard (`sign_in.*`), or bare family name
      * (`sign_in`). Unknown types return a 422. A bare `*` is not
-     * accepted.
+     * accepted; to list every event type, use `GET /logs/types`.
      *
      * @var string $type
      */

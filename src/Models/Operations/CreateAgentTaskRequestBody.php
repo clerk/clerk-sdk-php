@@ -64,6 +64,20 @@ class CreateAgentTaskRequestBody
     public string $redirectUrl;
 
     /**
+     * The organization the agent task session starts in. The user must be a member of it.
+     *
+     * If omitted, the user's last active organization is used, or the personal workspace
+     * when the user has none. When session_restricted is true, the session cannot use another
+     * workspace and ends when this one is no longer available, and creation fails when
+     * the result is the personal workspace but the user must choose an organization.
+     *
+     * @var ?string $sessionOrganizationId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('session_organization_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $sessionOrganizationId = null;
+
+    /**
      * The maximum duration that the session which will be created by the generated agent task should last.
      *
      * By default, the duration of a session created via an agent task lasts 30 minutes.
@@ -75,21 +89,40 @@ class CreateAgentTaskRequestBody
     public ?int $sessionMaxDurationInSeconds = null;
 
     /**
+     * When true, the session created by the agent task can refresh only its own session token and read.
+     *
+     * Clerk's Frontend API refuses every other write from a browser client that holds the session,
+     * including touch, sign-out through the API (the browser's cookie sign-out GET stays allowed), profile and organization writes, sign-in and sign-up, and OAuth approval.
+     * It also refuses changing the session's workspace (its active organization).
+     * Expect an app that relies on those calls, such as the clerk-js touch and sign-out, to receive 403 errors.
+     * The session token's `agt` claim then carries `rst: true`; it omits `rst` for an unrestricted session.
+     *
+     * @var ?bool $sessionRestricted
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('session_restricted')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $sessionRestricted = null;
+
+    /**
      * @param  \Clerk\Backend\Models\Operations\OnBehalfOf  $onBehalfOf
      * @param  \Clerk\Backend\Models\Operations\Permissions  $permissions
      * @param  string  $agentName
      * @param  string  $taskDescription
      * @param  string  $redirectUrl
      * @param  ?int  $sessionMaxDurationInSeconds
+     * @param  ?bool  $sessionRestricted
+     * @param  ?string  $sessionOrganizationId
      * @phpstan-pure
      */
-    public function __construct(OnBehalfOf $onBehalfOf, Permissions $permissions, string $agentName, string $taskDescription, string $redirectUrl, ?int $sessionMaxDurationInSeconds = 1800)
+    public function __construct(OnBehalfOf $onBehalfOf, Permissions $permissions, string $agentName, string $taskDescription, string $redirectUrl, ?string $sessionOrganizationId = null, ?int $sessionMaxDurationInSeconds = 1800, ?bool $sessionRestricted = false)
     {
         $this->onBehalfOf = $onBehalfOf;
         $this->permissions = $permissions;
         $this->agentName = $agentName;
         $this->taskDescription = $taskDescription;
         $this->redirectUrl = $redirectUrl;
+        $this->sessionOrganizationId = $sessionOrganizationId;
         $this->sessionMaxDurationInSeconds = $sessionMaxDurationInSeconds;
+        $this->sessionRestricted = $sessionRestricted;
     }
 }

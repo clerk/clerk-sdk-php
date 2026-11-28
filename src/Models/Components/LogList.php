@@ -28,19 +28,19 @@ class LogList
     /**
      * Cursor information for pagination.
      *
-     * @var ?\Clerk\Backend\Models\Components\Cursor $cursor
+     * @var ?\Clerk\Backend\Models\Components\LogListCursor $cursor
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('cursor')]
-    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\Cursor|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\Clerk\Backend\Models\Components\LogListCursor|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?Cursor $cursor = null;
+    public ?LogListCursor $cursor = null;
 
     /**
      * @param  array<\Clerk\Backend\Models\Components\Log|\Clerk\Backend\Models\Components\LogGroup>  $data
-     * @param  ?\Clerk\Backend\Models\Components\Cursor  $cursor
+     * @param  ?\Clerk\Backend\Models\Components\LogListCursor  $cursor
      * @phpstan-pure
      */
-    public function __construct(array $data, ?Cursor $cursor = null)
+    public function __construct(array $data, ?LogListCursor $cursor = null)
     {
         $this->data = $data;
         $this->cursor = $cursor;

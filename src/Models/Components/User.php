@@ -9,7 +9,6 @@ declare(strict_types=1);
 namespace Clerk\Backend\Models\Components;
 
 
-/** User - Success */
 class User
 {
     /**

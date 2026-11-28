@@ -181,6 +181,18 @@ class UpdateUserRequestBody
     public ?bool $signOutOfOtherSessions = null;
 
     /**
+     * When set to `true`, also clears Device Trust for the user on every client, whether or not the instance has Device Trust enabled.
+     *
+     * The next sign-in by this user on any client counts as a new device: it can require a Device Trust challenge and trigger the new device email.
+     * This parameter can only be used when providing a `password` and setting `sign_out_of_other_sessions` to `true`, otherwise a 422 is returned and the user is not updated.
+     *
+     * @var ?bool $resetClientTrust
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('reset_client_trust')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $resetClientTrust = null;
+
+    /**
      * In case TOTP is configured on the instance, you can provide the secret to enable it on the specific user without the need to reset it.
      *
      * @var ?string $totpSecret
@@ -281,6 +293,7 @@ class UpdateUserRequestBody
      * @param  ?string  $password
      * @param  ?bool  $skipPasswordChecks
      * @param  ?bool  $signOutOfOtherSessions
+     * @param  ?bool  $resetClientTrust
      * @param  ?string  $totpSecret
      * @param  ?bool  $deleteSelfEnabled
      * @param  ?bool  $createOrganizationEnabled
@@ -291,7 +304,7 @@ class UpdateUserRequestBody
      * @param  ?bool  $bypassClientTrust
      * @phpstan-pure
      */
-    public function __construct(?string $passwordDigest = null, ?string $passwordHasher = null, ?array $backupCodes = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $locale = null, ?string $timezone = null, ?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $username = null, ?string $profileImageId = null, ?string $password = null, ?bool $skipPasswordChecks = null, ?bool $signOutOfOtherSessions = null, ?string $totpSecret = null, ?bool $deleteSelfEnabled = null, ?bool $createOrganizationEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?int $createOrganizationsLimit = null, ?string $createdAt = null, ?bool $bypassClientTrust = null, ?bool $notifyPrimaryEmailAddressChanged = false)
+    public function __construct(?string $passwordDigest = null, ?string $passwordHasher = null, ?array $backupCodes = null, ?string $externalId = null, ?string $firstName = null, ?string $lastName = null, ?string $locale = null, ?string $timezone = null, ?string $primaryEmailAddressId = null, ?string $primaryPhoneNumberId = null, ?string $primaryWeb3WalletId = null, ?string $username = null, ?string $profileImageId = null, ?string $password = null, ?bool $skipPasswordChecks = null, ?bool $signOutOfOtherSessions = null, ?bool $resetClientTrust = null, ?string $totpSecret = null, ?bool $deleteSelfEnabled = null, ?bool $createOrganizationEnabled = null, ?string $legalAcceptedAt = null, ?bool $skipLegalChecks = null, ?int $createOrganizationsLimit = null, ?string $createdAt = null, ?bool $bypassClientTrust = null, ?bool $notifyPrimaryEmailAddressChanged = false)
     {
         $this->passwordDigest = $passwordDigest;
         $this->passwordHasher = $passwordHasher;
@@ -309,6 +322,7 @@ class UpdateUserRequestBody
         $this->password = $password;
         $this->skipPasswordChecks = $skipPasswordChecks;
         $this->signOutOfOtherSessions = $signOutOfOtherSessions;
+        $this->resetClientTrust = $resetClientTrust;
         $this->totpSecret = $totpSecret;
         $this->deleteSelfEnabled = $deleteSelfEnabled;
         $this->createOrganizationEnabled = $createOrganizationEnabled;
