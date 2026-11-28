@@ -254,6 +254,34 @@ class GetUserListRequest
     public ?array $providerUserId = null;
 
     /**
+     * Returns users matching every one of the given metadata filters. Repeat it once per filter; each value
+     *
+     * is a JSON object with these fields:
+     *
+     * - `scope` (required): `public`, `private` or `unsafe`, the metadata to match against.
+     * - `key` (required): a dot-separated path into the metadata, e.g. `settings.theme`. Escape a
+     *   literal dot in a key as `\.`.
+     * - `match` (required): `exists` matches users holding the key, whether it holds a value or nested
+     *   keys. `equals` matches the whole value, case-insensitively.
+     * - `value`: required for `equals`; not allowed for `exists`.
+     * - `negate`: `true` inverts the filter. With `exists` it returns the users who do not hold the
+     *   key. With `equals` it returns the users who hold the key with a different value.
+     *
+     * Other fields are rejected.
+     *
+     * With `metadata`, `offset` plus `limit` cannot exceed 1000, and `starting_after` is not accepted.
+     * `GET /v1/users/count` does not accept `metadata`.
+     *
+     * Results are eventually consistent. A user created, updated or deleted a short time ago may not
+     * yet be reflected in which users are returned or in their order. To read a user right after
+     * writing it, fetch it by ID.
+     *
+     * @var ?array<string> $metadata
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=metadata')]
+    public ?array $metadata = null;
+
+    /**
      * A cursor for pagination: the `id` of the last user on the previous page. Returns the users that follow it.
      *
      *
@@ -268,6 +296,64 @@ class GetUserListRequest
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=starting_after')]
     public ?string $startingAfter = null;
+
+    /**
+     * `cursor` pages by cursor, with any `order_by` and any filter, including `metadata`. The response is
+     *
+     * then an object in place of the array of users: `data` holds the users, and `cursor` is
+     * `{"starting_after": <string or null>, "ending_before": <string or null>, "has_next_page": <boolean>}`.
+     * Pass its `starting_after` back as `starting_after` for the next page, or its `ending_before` back
+     * as `ending_before` for the previous one, keeping every other parameter identical. Stop when
+     * `has_next_page` is `false`; `ending_before` is null on the first page. In this mode
+     * `starting_after` is that cursor, not a user ID; a cursor from a different `order_by` is rejected
+     * with a 422, as is a non-zero `offset`.
+     *
+     * Results in this mode are eventually consistent. A user created, updated or deleted a short time
+     * ago may not yet be reflected in which users are returned, in their order, or in any count. To
+     * read a user right after writing it, fetch it by ID.
+     *
+     * Without this parameter the list pages by offset, and `starting_after` takes a user ID.
+     * `offset` pages the same way, except that it does not accept `starting_after`.
+     *
+     * @var ?\Clerk\Backend\Models\Operations\Pagination $pagination
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=pagination')]
+    public ?Pagination $pagination = null;
+
+    /**
+     * With `pagination=cursor`, the `cursor.ending_before` of a previous response. Returns the page
+     *
+     * before it, in the same order. Cannot be combined with `starting_after`, and a cursor from a
+     * different `order_by` is rejected with a 422. A previous page can hold fewer than `limit` users
+     * even when more precede it.
+     *
+     * @var ?string $endingBefore
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=ending_before')]
+    public ?string $endingBefore = null;
+
+    /**
+     * With `pagination=cursor`, also counts the users from the start of this page onward, this page
+     *
+     * included. On the first page that is every user the request matches.
+     *
+     * A number counts up to that many. The response's `cursor` then carries one of two
+     * fields: `remaining_count_exact` when there are fewer users than the number given, and otherwise
+     * `remaining_count_at_least`, set to that number. Larger numbers make the request slower.
+     *
+     * `exact` counts them all, with no ceiling, and the `cursor` carries `remaining_count_exact`. The
+     * count takes longer the more users match, and a request whose count does not finish in time is
+     * rejected with a 422 `users_exact_count_timed_out`; retry it with a number, or without this
+     * parameter.
+     *
+     * The count is computed separately from the page and is subject to the same delay. Treat it as a
+     * close estimate: it can differ slightly from the number of users that paging through the results
+     * returns.
+     *
+     * @var ?\Clerk\Backend\Models\Operations\RemainingCount $remainingCount
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=remaining_count')]
+    public ?RemainingCount $remainingCount = null;
 
     /**
      * Applies a limit to the number of results returned.
@@ -328,13 +414,17 @@ class GetUserListRequest
      * @param  ?int  $lastSignInAtAfter
      * @param  ?string  $provider
      * @param  ?array<string>  $providerUserId
+     * @param  ?array<string>  $metadata
      * @param  ?int  $limit
      * @param  ?int  $offset
      * @param  ?string  $startingAfter
+     * @param  ?\Clerk\Backend\Models\Operations\Pagination  $pagination
+     * @param  ?string  $endingBefore
+     * @param  ?\Clerk\Backend\Models\Operations\RemainingCount  $remainingCount
      * @param  ?string  $orderBy
      * @phpstan-pure
      */
-    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $externalId = null, ?array $username = null, ?array $web3Wallet = null, ?array $userId = null, ?array $organizationId = null, ?string $query = null, ?string $emailAddressQuery = null, ?string $phoneNumberQuery = null, ?string $usernameQuery = null, ?string $nameQuery = null, ?bool $banned = null, ?int $lastActiveAtBefore = null, ?int $lastActiveAtAfter = null, ?int $lastActiveAtSince = null, ?int $createdAtBefore = null, ?int $createdAtAfter = null, ?int $lastSignInAtBefore = null, ?int $lastSignInAtAfter = null, ?string $provider = null, ?array $providerUserId = null, ?string $startingAfter = null, ?int $limit = 10, ?int $offset = 0, ?string $orderBy = '-created_at')
+    public function __construct(?array $emailAddress = null, ?array $phoneNumber = null, ?array $externalId = null, ?array $username = null, ?array $web3Wallet = null, ?array $userId = null, ?array $organizationId = null, ?string $query = null, ?string $emailAddressQuery = null, ?string $phoneNumberQuery = null, ?string $usernameQuery = null, ?string $nameQuery = null, ?bool $banned = null, ?int $lastActiveAtBefore = null, ?int $lastActiveAtAfter = null, ?int $lastActiveAtSince = null, ?int $createdAtBefore = null, ?int $createdAtAfter = null, ?int $lastSignInAtBefore = null, ?int $lastSignInAtAfter = null, ?string $provider = null, ?array $providerUserId = null, ?array $metadata = null, ?string $startingAfter = null, ?Pagination $pagination = null, ?string $endingBefore = null, ?RemainingCount $remainingCount = null, ?int $limit = 10, ?int $offset = 0, ?string $orderBy = '-created_at')
     {
         $this->emailAddress = $emailAddress;
         $this->phoneNumber = $phoneNumber;
@@ -358,7 +448,11 @@ class GetUserListRequest
         $this->lastSignInAtAfter = $lastSignInAtAfter;
         $this->provider = $provider;
         $this->providerUserId = $providerUserId;
+        $this->metadata = $metadata;
         $this->startingAfter = $startingAfter;
+        $this->pagination = $pagination;
+        $this->endingBefore = $endingBefore;
+        $this->remainingCount = $remainingCount;
         $this->limit = $limit;
         $this->offset = $offset;
         $this->orderBy = $orderBy;

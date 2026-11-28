@@ -52,6 +52,16 @@ class AgentTask
     public string $taskId;
 
     /**
+     * Whether the agent task session is restricted. When true, the session can refresh only its own session token and read. Clerk's Frontend API refuses every other write from a browser client that holds the session, including touch, sign-out, profile and organization writes, sign-in and sign-up, and OAuth approval. It also refuses changing the session's workspace (its active organization).
+     *
+     *
+     *
+     * @var bool $sessionRestricted
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('session_restricted')]
+    public bool $sessionRestricted;
+
+    /**
      * The URL that, when visited, creates a session for the user. Only present in the response to a create request.
      *
      *
@@ -63,19 +73,34 @@ class AgentTask
     public ?string $url = null;
 
     /**
+     * The organization the agent task session starts in, and the only one a restricted session can use. Null means the personal workspace.
+     *
+     *
+     *
+     * @var ?string $sessionOrganizationId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('session_organization_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $sessionOrganizationId = null;
+
+    /**
      * @param  \Clerk\Backend\Models\Components\AgentTaskObject  $object
      * @param  string  $agentId
      * @param  string  $agentTaskId
      * @param  string  $taskId
+     * @param  bool  $sessionRestricted
      * @param  ?string  $url
+     * @param  ?string  $sessionOrganizationId
      * @phpstan-pure
      */
-    public function __construct(AgentTaskObject $object, string $agentId, string $agentTaskId, string $taskId, ?string $url = null)
+    public function __construct(AgentTaskObject $object, string $agentId, string $agentTaskId, string $taskId, bool $sessionRestricted, ?string $url = null, ?string $sessionOrganizationId = null)
     {
         $this->object = $object;
         $this->agentId = $agentId;
         $this->agentTaskId = $agentTaskId;
         $this->taskId = $taskId;
+        $this->sessionRestricted = $sessionRestricted;
         $this->url = $url;
+        $this->sessionOrganizationId = $sessionOrganizationId;
     }
 }

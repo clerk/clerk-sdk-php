@@ -251,6 +251,7 @@ if ($response->statusCode === 200) {
 * [~~list~~](docs/sdks/clients/README.md#list) - List all clients :warning: **Deprecated**
 * [verify](docs/sdks/clients/README.md#verify) - Verify a client
 * [get](docs/sdks/clients/README.md#get) - Get a client
+* [revoke](docs/sdks/clients/README.md#revoke) - Revoke a client
 
 ### [Directories](docs/sdks/directories/README.md)
 
@@ -260,6 +261,7 @@ if ($response->statusCode === 200) {
 * [update](docs/sdks/directories/README.md#update) - Update a directory
 * [delete](docs/sdks/directories/README.md#delete) - Delete a directory
 * [rotateApiKey](docs/sdks/directories/README.md#rotateapikey) - Rotate a directory's API key
+* [listGroups](docs/sdks/directories/README.md#listgroups) - List directory groups
 * [getGroup](docs/sdks/directories/README.md#getgroup) - Retrieve a directory group
 * [listGroupMembers](docs/sdks/directories/README.md#listgroupmembers) - List directory group members
 * [listGroupRoleMappings](docs/sdks/directories/README.md#listgrouprolemappings) - List directory group role mappings
@@ -344,6 +346,7 @@ if ($response->statusCode === 200) {
 
 * [list](docs/sdks/logs/README.md#list) - List all logs
 * [getSchema](docs/sdks/logs/README.md#getschema) - Retrieve the payload schema of a log event type
+* [listTypes](docs/sdks/logs/README.md#listtypes) - List all log event types
 * [listGroupEvents](docs/sdks/logs/README.md#listgroupevents) - List an event group's logs
 * [get](docs/sdks/logs/README.md#get) - Retrieve a single log
 

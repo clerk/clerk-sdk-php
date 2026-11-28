@@ -35,22 +35,22 @@ class GetUserListResponse
     /**
      * Success
      *
-     * @var ?array<\Clerk\Backend\Models\Components\User> $userList
+     * @var array<\Clerk\Backend\Models\Components\User>|\Clerk\Backend\Models\Components\UserCursorPage|null $userListOrCursorPage
      */
-    public ?array $userList = null;
+    public array|Components\UserCursorPage|null $userListOrCursorPage = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?array<\Clerk\Backend\Models\Components\User>  $userList
+     * @param  array<\Clerk\Backend\Models\Components\User>|\Clerk\Backend\Models\Components\UserCursorPage|null  $userListOrCursorPage
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?array $userList = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, array|Components\UserCursorPage|null $userListOrCursorPage = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->userList = $userList;
+        $this->userListOrCursorPage = $userListOrCursorPage;
     }
 }

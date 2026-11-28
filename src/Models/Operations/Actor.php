@@ -25,6 +25,15 @@ class Actor
     public string $sub;
 
     /**
+     * Optional actor type. The value `agent` is reserved for agent task sessions and is rejected.
+     *
+     * @var ?string $type
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $type = null;
+
+    /**
      * $additionalProperties
      *
      * @var ?array<string, mixed> $additionalProperties
@@ -36,12 +45,14 @@ class Actor
 
     /**
      * @param  string  $sub
+     * @param  ?string  $type
      * @param  ?array<string, mixed>  $additionalProperties
      * @phpstan-pure
      */
-    public function __construct(string $sub, ?array $additionalProperties = null)
+    public function __construct(string $sub, ?string $type = null, ?array $additionalProperties = null)
     {
         $this->sub = $sub;
+        $this->type = $type;
         $this->additionalProperties = $additionalProperties;
     }
 }
